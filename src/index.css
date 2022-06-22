@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+a {
+  text-decoration: none !important;
+}
+.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.MuiSelect-select {
+  font-size: 1.1vw !important;
+}
+.selectedhjobfile {
+  font-size: 1vw !important;
+}
+.css-1cccqvr.MuiSelect-select {
+  font-size: 1vw !important;
+}
+.MuiSelect-select {
+  font-size: 1vw !important;
+}
+.labeltextarea {
+  margin-top: 0.2vw !important;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  font-size: 1.2vw !important;
+}
+
+.css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input {
+  font-size: 1.2vw !important;
+}
+
+.homepostjob-right {
+  overflow: scroll;
+}
+.input-homejobformdate {
+  width: max-content !important;
+  font-size: 1vw;
+}
+
+.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input {
+  color: black;
+  font-weight: 400 !important;
+}
+
+.jobpostfieldinputbox input {
+  width: 94% !important;
+}
+
+.css-29aysa {
+  width: 94% !important;
+}
+.makeStyles-select-1 {
+  width: 100% !important;
+}
+.jobpostfieldinputbox textarea {
+  width: 94% !important;
+}
+.makeStyles-select-73 {
+  width: 100% !important;
+}
+
+.makeStyles-select-13 {
+  width: 100% !important;
+}
+.makeStyles-select2-2 {
+  width: 100% !important;
+}
+.makeStyles-select-3{
+    width: 100% !important; 
+}
+
+.activejobpostbox {
+  height: fit-content !important;
+}
+.jss1{
+  width: 100% !important;
+  color: black !important;
+  font-weight: 400 !important;
+}
+.jss2{
+  width: 100% !important;
+  color: black !important;
+  font-weight: 400 !important;
+}
+.jss3{
+  width: 100% !important;
+  color: black !important;
+  font-weight: 400 !important;
+}
+
+.css-1cccqvr.MuiSelect-select{
+    color: black;
+}
+.recentnamesearc{
+  cursor: pointer;
+}
+
+
+
+.jobpostfieldinputbox input{
+  font-size: 1.1vw;
+}
