@@ -15,6 +15,7 @@ import Login from "./pages/Login/Login";
 import Dashbaord from "./pages/Dashbaord/Dashbaord";
 import Users from "./components/DashBoardSidebar/Users/Users";
 import { useSelector } from "react-redux";
+import UserFullDetails from "./components/DashBoardSidebar/UserFullDetail/UserFullDetails";
 
 function LayoutsWithNavbar() {
   return (
@@ -59,6 +60,7 @@ function App() {
           >
         
             <Route path="/dashbaord/users" element={<Users />} />
+            <Route path="/dashbaord/userdetail/:type" element={<UserFullDetails />} />
            
           </Route>
         </Routes>

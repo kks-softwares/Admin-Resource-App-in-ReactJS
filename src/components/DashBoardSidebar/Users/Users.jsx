@@ -81,6 +81,7 @@ export default function Users() {
           </span>
           <input
             type="text"
+            placeholder="search Users"
             value={setSelectedCategory}
             onChange={(e) => {
               setSetSelectedCategory(e.target.value);
