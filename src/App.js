@@ -1,9 +1,7 @@
 import "./App.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import ProtectedRoute from "./ProtectedRoute";
-
 import ProtectedRoute2 from "./ProtectedRoute2";
 import {
   BrowserRouter as Router,

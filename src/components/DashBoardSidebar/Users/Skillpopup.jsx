@@ -3,39 +3,45 @@ import React from "react";
 import img from "../../../assets/Landing page/apple (1)@2x.png";
 import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
 import { Navigate, useNavigate } from "react-router";
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "40vw",
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  height: "40vw",
-};
+
 export default function Skillpopup() {
-const navigate= useNavigate()
+  const navigate = useNavigate();
   return (
     <div>
       <div style={{ alignItems: "center" }} className="navoftableblogsdata">
-        <div onClick={()=>{navigate("/dashbaord/userdetail/profile")}} style={{ width: "10vw",cursor:"pointer" }}>#5435</div>
+        <div
+          onClick={() => {
+            navigate("/dashbaord/userdetail/My Profile");
+          }}
+          style={{ width: "10vw", cursor: "pointer" }}
+        >
+          #5435
+        </div>
         <div style={{ width: "6vw" }}>
-         
-          <img 
-          onClick={()=>{navigate("/dashbaord/userdetail/profile")}}
+          <img
+            onClick={() => {
+              navigate("/dashbaord/userdetail/My Profile");
+            }}
             style={{
               margin: "0 0.5vw",
               width: "2.5vw ",
               height: "2.5vw",
               borderRadius: "50%",
               objectFit: "cover",
-              cursor:"pointer"
+              cursor: "pointer",
             }}
             src={img}
             alt=""
           />{" "}
         </div>
-        <div onClick={()=>{navigate("/dashbaord/userdetail/profile")}} style={{ width: "15vw" ,cursor:"pointer" }}>Mahendran H</div>
+        <div
+          onClick={() => {
+            navigate("/dashbaord/userdetail/My Profile");
+          }}
+          style={{ width: "15vw", cursor: "pointer" }}
+        >
+          Mahendran H
+        </div>
 
         <div style={{ width: "15vw", color: "#41B541", fontWeight: "500" }}>
           Development
@@ -45,13 +51,12 @@ const navigate= useNavigate()
         <div style={{ width: "6vw" }}>
           {" "}
           <img
-      
             style={{
               margin: "0 0.5vw",
               width: "2vw ",
               height: "2vw",
               borderRadius: "50%",
-              cursor:"pointer",
+              cursor: "pointer",
               objectFit: "cover",
             }}
             src={img2}
@@ -59,6 +64,6 @@ const navigate= useNavigate()
           />{" "}
         </div>
       </div>
-     </div>
+    </div>
   );
 }
