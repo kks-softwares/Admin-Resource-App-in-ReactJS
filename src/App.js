@@ -15,6 +15,7 @@ import {
   Route,
   Outlet,
 } from "react-router-dom";
+import Login from "./pages/Login/Login";
 
 function LayoutsWithNavbar() {
   return (
@@ -23,16 +24,7 @@ function LayoutsWithNavbar() {
     </>
   );
 }
-// function LayoutsWithNavbar2({ user }) {
-//   return (
-//     <>
 
-//       <Profilenav user={user} />
-//       <Outlet />
-
-//     </>
-//   );
-// }
 
 function App() {
   const dispatch = useDispatch();
@@ -59,7 +51,8 @@ function App() {
               </ProtectedRoute>
             }
           >
-            {/* <Route path="/login" element={<Home />} /> */}
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
           </Route>
           {/* <Route
             path="/dashbaord"
