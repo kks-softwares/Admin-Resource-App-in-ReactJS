@@ -5,7 +5,9 @@ import img2 from "../../assets/Dashboard/Iconly-Light-outline-Buy.svg";
 import img3 from "../../assets/Dashboard/Iconly-Light-outline-Chart.svg";
 import img5 from "../../assets/Dashboard/Iconly-Light-outline-Paper Plus.svg";
 import img7 from "../../assets/Dashboard/Iconly-Light-outline-Paper.svg";
-
+import img8 from '../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-3 User.svg'
+import img89 from '../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Profile.svg'
+import img9 from '../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Paper Plus.svg'
 import { Link } from "react-router-dom";
 
 export default function BrowseWorkSiadebar() {
@@ -13,7 +15,7 @@ export default function BrowseWorkSiadebar() {
     <div style={{ position: "sticky" }} className="sidebardashbord-container">
       <Link to="/dashbaord/users">
         <div className="firstsidebarmenu">
-          <img src={img1} alt="" />
+          <img src={img89} alt="" />
           Users
         </div>
       </Link>
@@ -26,7 +28,7 @@ export default function BrowseWorkSiadebar() {
 
       <Link to="/dashbaord/Employee">
         <div className="firstsidebarmenu">
-          <img src={img7} alt="" />
+          <img src={img8} alt="" />
           Employee
         </div>
       </Link>
@@ -46,14 +48,14 @@ export default function BrowseWorkSiadebar() {
 
       <Link to="/dashbaord/skill">
         <div className="firstsidebarmenu">
-          <img src={img5} alt="" />
+          <img src={img3} alt="" />
           Skill Center
         </div>
       </Link>
 
       <Link to="/dashbaord/membership">
         <div className="firstsidebarmenu">
-          <img src={img3} alt="" />
+          <img src={img9} alt="" />
           Membership
         </div>
       </Link>

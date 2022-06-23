@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 import "./Dashboard.css";
 import DashbaordNav from "../../components/DashBaord/DashbaordNav";
 import { Outlet } from "react-router";
