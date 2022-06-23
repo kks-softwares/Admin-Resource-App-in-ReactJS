@@ -9,34 +9,31 @@ import img7 from "../../assets/Dashboard/Iconly-Light-outline-Paper.svg";
 import { Link } from "react-router-dom";
 
 export default function BrowseWorkSiadebar() {
- 
-
-
   return (
     <div style={{ position: "sticky" }} className="sidebardashbord-container">
-      <Link to="/dashbaord/appliedjob">
+      <Link to="/dashbaord/users">
         <div className="firstsidebarmenu">
           <img src={img1} alt="" />
           Users
         </div>
       </Link>
-      <Link to="/dashbaord/appliedjob">
+      <Link to="/dashbaord/Jobs">
         <div className="firstsidebarmenu">
           <img src={img1} alt="" />
           Jobs
         </div>
       </Link>
 
-      <Link to="/dashbaord/appliedjob">
-        <div  className="firstsidebarmenu">
+      <Link to="/dashbaord/Employee">
+        <div className="firstsidebarmenu">
           <img src={img7} alt="" />
           Employee
         </div>
       </Link>
-      <Link to="/dashbaord/appliedjob">
-        <div  className="firstsidebarmenu">
+      <Link to="/dashbaord/Blogs">
+        <div className="firstsidebarmenu">
           <img src={img7} alt="" />
-          Blog
+          Blogs
         </div>
       </Link>
 
@@ -47,14 +44,14 @@ export default function BrowseWorkSiadebar() {
         </div>
       </Link>
 
-      <Link to="/dashbaord/filemanager">
+      <Link to="/dashbaord/skill">
         <div className="firstsidebarmenu">
           <img src={img5} alt="" />
           Skill Center
         </div>
       </Link>
 
-      <Link to="/dashbaord/faq">
+      <Link to="/dashbaord/membership">
         <div className="firstsidebarmenu">
           <img src={img3} alt="" />
           Membership
