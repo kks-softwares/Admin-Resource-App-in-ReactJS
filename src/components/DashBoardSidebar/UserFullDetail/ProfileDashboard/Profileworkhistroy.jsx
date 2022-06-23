@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import img1 from "../../assets/My profile – 28/Component 70 – 6.svg";
-import img2 from "../../assets/My profile – 28/Component 71 – 6.svg";
+import img1 from "../../../../assets/My profile – 28/Component 70 – 6.svg";
+import img2 from "../../../../assets/My profile – 28/Component 71 – 6.svg";
 import "./profile.css";
 
 import StarRatings from "react-star-ratings";

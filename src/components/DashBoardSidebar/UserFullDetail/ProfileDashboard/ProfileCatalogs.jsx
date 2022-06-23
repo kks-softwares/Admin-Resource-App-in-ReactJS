@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./profile.css";
-import img1 from "../../assets/My profile – 28/Component 70 – 6.svg";
-import ProfileCatelogdetails from "./Profilepopup/ProfileCatelogDetails";
+import img1 from "../../../../assets/My profile – 28/Component 70 – 6.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import API_HOST from "../../env";
+import img5 from "../../../../assets/My profile – 28/local_police_black_24dp.svg";
+import img46 from "../../../../assets/My profile – 28/Landing page – 19.png";
+import API_HOST from "../../../../env";
 import { useSelector } from "react-redux";
-export default function ProfileCatalogs() {
-  const { user, loggedInStatus } = useSelector((state) => state.user);
+import { LockClockOutlined } from "@mui/icons-material";
+import StarRatings from "react-star-ratings";
+export default function ProfileCatalogs({user}) {
+  
 
   const [allCatalogs, setAllCatalogs] = useState([]);
 
@@ -26,7 +29,7 @@ export default function ProfileCatalogs() {
         className="profiletitleandmenunav"
       >
         <div className="profiledetailstitle">Catalogue</div>
-        <div className="profiledetailnavmanu">
+        <div hidden className="profiledetailnavmanu">
           <div>
             <Link to="/addcatalogue">
               <img src={img1} alt="" />
@@ -39,11 +42,66 @@ export default function ProfileCatalogs() {
         {allCatalogs.length > 0 &&
           allCatalogs?.map((catalogue, index) => {
             return (
-              <ProfileCatelogdetails
-                key={index}
-                catalogue={catalogue}
-                setAllCatalogs={setAllCatalogs}
-              />
+                <div className="pcatelogbox">
+                <div
+                  style={{
+                    background: `url('${
+                      catalogue?.files[0]?.file ? catalogue?.files[0]?.file : img46
+                    }') center center / cover no-repeat`,
+                  }}
+                  className="pcatelogimg"
+                >
+                  <div className="pcatelogimg2">
+                  
+                  </div>
+                </div>
+                <div className="pcatelog-title">{catalogue?.title}</div>
+                <div className="pcatelogdate">
+                  <div>
+                    From <span>$30</span>
+                  </div>
+                  <div>
+                    <span>
+                      <LockClockOutlined style={{ fontSize: "1vw" }} />
+                    </span>{" "}
+                    {catalogue?.deliveryDate}
+                  </div>
+                </div>
+                <div className="pcatelogperson">
+                  <div className="pcatelogpersonimg">
+                    <img src={user?.media} alt="" />
+                  </div>
+                  <div className="pcatelogpersonname">
+                    <div className="pcatelogpersonname1">Rahul Rajput</div>
+                    <div className="pcatelogpersonname2">
+                      {" "}
+                      <span>
+                        <img src={img5} alt="" />
+                      </span>{" "}
+                      Top Rated
+                    </div>
+                  </div>
+                  <div className="pcatelogpersonRatings">
+                    <span
+                      style={{
+                        position: "relative",
+                        bottom: "0.15vw",
+                        right: "0.2vw",
+                      }}
+                    >
+                      <StarRatings
+                        rating={1}
+                        starDimension="1.3vw"
+                        starSpacing="1vw"
+                        numberOfStars={1}
+                        starRatedColor="#064C87"
+                      />
+                    </span>
+                    4.4 (512)
+                  </div>
+                </div>
+              </div>
+           
             );
           })}
       </div>

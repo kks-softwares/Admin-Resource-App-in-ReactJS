@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./profile.css";
-import img1 from "../../assets/My profile – 28/Component 70 – 6.svg";
-
+import img1 from "../../../../assets/My profile – 28/Component 70 – 6.svg";
+import img46 from "../../../../assets/My profile – 28/Landing page – 19.png";
 import { makeStyles } from "@material-ui/core";
-import ProfilePortfoliodetails from "./Profilepopup/ProfilePortfoliodetails";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import API_HOST from "../../env";
+import API_HOST from "../../../../env";
 import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +42,7 @@ export default function Profileportfolio() {
         className="profiletitleandmenunav"
       >
         <div className="profiledetailstitle">Portfolio</div>
-        <div className="profiledetailnavmanu">
+        <div hidden className="profiledetailnavmanu">
           <div>
             <Link to="/addportfolio">
               <img src={img1} alt="" />
@@ -56,11 +55,21 @@ export default function Profileportfolio() {
         {allprotfolio.length > 0 &&
           allprotfolio?.map((portfolio, index) => {
             return (
-              <ProfilePortfoliodetails
-                portfolio={portfolio}
-                key={index}
-                setAllprotfoilio={setAllprotfoilio}
-              />
+              <div>
+                <div className="pportfoliocard">
+                  <div
+                    style={{
+                      background: `url('${
+                        portfolio?.icon ? portfolio?.icon : img46
+                      }') center center / cover no-repeat`,
+                    }}
+                    className="pportimg"
+                  ></div>
+                  <div className="pportfoliotext">
+                    {portfolio?.projectTitle}
+                  </div>
+                </div>
+              </div>
             );
           })}
       </div>

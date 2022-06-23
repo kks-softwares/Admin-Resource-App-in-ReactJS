@@ -39,7 +39,7 @@ function App() {
             path="/"
             element={
               <ProtectedRoute
-                auth={ !user?.fullName ? true : false}
+                auth={ user?.fullName ? true : false}
               >
                 <LayoutsWithNavbar />
               </ProtectedRoute>
@@ -52,7 +52,7 @@ function App() {
             path="/dashbaord"
             element={
               <ProtectedRoute2
-                auth={  !user?.fullName ? true : false}
+                auth={  user?.fullName ? true : false}
               >
                 <Dashbaord />
               </ProtectedRoute2>

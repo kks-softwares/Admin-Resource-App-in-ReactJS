@@ -1,8 +1,9 @@
 import React from "react";
 import "./profile.css";
-import bageds from "../../assets/My profile – 28/Group 9726.svg";
-import img1 from "../../assets/My profile – 28/Component 70 – 6.svg";
-import img2 from "../../assets/My profile – 28/Component 71 – 6.svg";
+import bageds from "../../../../assets/My profile – 28/Group 9726.svg";
+import img1 from "../../../../assets/My profile – 28/Component 70 – 6.svg";
+import img2 from "../../../../assets/My profile – 28/Component 71 – 6.svg";
+
 export default function ProfileBadges() {
   return (
     <div className="profilebadgecontainer">

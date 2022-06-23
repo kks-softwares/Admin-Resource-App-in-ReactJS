@@ -4,7 +4,16 @@ import { SearchSharp } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 
 import ProfileBanner from "./ProfileDashboard/ProfileBanner";
-
+ import ProfileBadges from './ProfileDashboard/ProfileBadges';
+ import Profileuserdetails from './ProfileDashboard/Profileuserdetails';
+ import Profileworkhistroy from './ProfileDashboard/Profileworkhistroy';
+ import ProfileCatalogs from './ProfileDashboard/ProfileCatalogs';
+ import Profileportfolio from './ProfileDashboard/Profileportfolio';
+ import ProfileSkills from './ProfileDashboard/ProfileSkills';
+ import ProfileCertificate from './ProfileDashboard/ProfileCertificate';
+ import ProfileWorkexperince from './ProfileDashboard/ProfileWorkexperince';
+ import ProfileEducation from './ProfileDashboard/ProfileEducation';
+ import ProfileOther from './ProfileDashboard/ProfileOther';
 export default function SkillCenter() {
   const navigate = useNavigate();
 
@@ -205,7 +214,7 @@ export default function SkillCenter() {
         <div>
           <div style={{ flexWrap: "wrap" }} className="filterboxflex">
             <ProfileBanner user={user} />
-            {/* <ProfileBadges user={user} />
+            <ProfileBadges user={user} />
             <Profileuserdetails user={user} />
             <Profileworkhistroy user={user} />
             <ProfileCatalogs user={user} />
@@ -214,7 +223,7 @@ export default function SkillCenter() {
             <ProfileCertificate user={user} />
             <ProfileWorkexperince user={user} />
             <ProfileEducation user={user} />
-            <ProfileOther user={user} /> */}
+            <ProfileOther user={user} />
           </div>
         </div>
       ) : (
