@@ -2,12 +2,8 @@ import "./App.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
-
 import ProtectedRoute from "./ProtectedRoute";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { userActions } from "./store/userSlice";
+
 import ProtectedRoute2 from "./ProtectedRoute2";
 import {
   BrowserRouter as Router,
@@ -16,6 +12,9 @@ import {
   Outlet,
 } from "react-router-dom";
 import Login from "./pages/Login/Login";
+import Dashbaord from "./pages/Dashbaord/Dashbaord";
+import Users from "./components/DashBoardSidebar/Users/Users";
+import { useSelector } from "react-redux";
 
 function LayoutsWithNavbar() {
   return (
@@ -25,17 +24,11 @@ function LayoutsWithNavbar() {
   );
 }
 
-
 function App() {
-  const dispatch = useDispatch();
-  const { user, loggedInStatus } = useSelector((state) => state.user);
+ 
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      dispatch(userActions.setUser({ user }));
-    }
-  }, [loggedInStatus]);
+ const { user } = useSelector((state) => state.user);
+ 
 
   return (
     <div className="App">
@@ -45,7 +38,7 @@ function App() {
             path="/"
             element={
               <ProtectedRoute
-                auth={localStorage.getItem("user") ? true : false}
+                auth={ user?.fullName ? true : false}
               >
                 <LayoutsWithNavbar />
               </ProtectedRoute>
@@ -54,57 +47,20 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
           </Route>
-          {/* <Route
+          <Route
             path="/dashbaord"
             element={
               <ProtectedRoute2
-                auth={localStorage.getItem("user") ? true : false}
+                auth={  user?.fullName ? true : false}
               >
                 <Dashbaord />
               </ProtectedRoute2>
             }
           >
-            <Route path="/dashbaord/browsework" element={<Browseworkmain />} />
-            <Route path="/dashbaord/postwork" element={<PostworkMAin />} />
-            <Route path="/dashbaord/createWork" element={<CreateWork />} />
-            <Route path="/dashbaord/appliedjob" element={<AppliedJob />} />
-            <Route path="/dashbaord/blog" element={<Blogs />} />
-            <Route path="/dashbaord/messages" element={<Chatting />} />
-            <Route path="/dashbaord/addblog" element={<Addblog />} />
-            <Route path="/dashbaord/skill/:type" element={<SkillCenter />} />
-            <Route path="/dashbaord/shop" element={<ShopRedeam />} />
-            <Route path="/dashbaord/refrences" element={<Refrences />} />
-            <Route path="/dashbaord/addrefrences" element={<Addrefrence />} />
-            <Route path="/dashbaord/filemanager" element={<FileManager />} />
-            <Route path="/dashbaord/setting" element={<Settings />} />
-            <Route
-              path="/dashbaord/jobdetail/:postid"
-              element={<Jobdetils />}
-            />
-            <Route path="/dashbaord/faq" element={<Faq />} />
-            <Route path="/dashbaord/wallet" element={<Wallet />} />
-            <Route path="/dashbaord/addpost/:category" element={<AddPost />} />
-            <Route
-              path="/dashbaord/bidding/:postid"
-              element={<BiddingFormDashboard />}
-            />
-            <Route
-              path="/dashbaord/contractJob/:bidingId"
-              element={<ContractJobdetail />}
-            />
-            <Route
-              path="/dashbaord/completedJob/:bidingId"
-              element={<EndContactdetailjob />}
-            />
-            <Route
-              path="/dashbaord/jobdetailfornobid/:postid"
-              element={<SimpleJobDetail />}
-            />
-            <Route
-              path="/dashbaord/jobdetailforbid/:postid"
-              element={<SimplewithBidLink />}
-            />
-          </Route> */}
+        
+            <Route path="/dashbaord/users" element={<Users />} />
+           
+          </Route>
         </Routes>
       </Router>
     </div>

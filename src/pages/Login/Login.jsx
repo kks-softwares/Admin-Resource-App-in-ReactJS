@@ -1,36 +1,17 @@
 import React, { useState } from "react";
 import "./navbar.css";
-import img from "../../assets/Landing page/logo3.png";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
 import img21 from "../../assets/jobhome/Secure login-pana.svg";
-import img22 from "../../assets/jobhome/Group 8414.svg";
 import { TextField } from "@mui/material";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { makeStyles } from "@material-ui/core";
-import img1 from "../../assets/png/Landing/instagram (2).png";
-import img2x from "../../assets/png/Landing/facebook.png";
-import img3 from "../../assets/png/Landing/twitter (1).png";
-import img4 from "../../assets/png/Landing/Group 7792.png";
 import { ArrowBack } from "@mui/icons-material";
 import { useNavigate } from "react-router";
 import { userActions } from "../../store/userSlice";
-import { useSelector, useDispatch } from "react-redux";
-import Fade from "react-reveal/Fade";
+import {  useDispatch } from "react-redux";
 import axios from "axios";
 import API_HOST from "../../env";
-import Typography from "@mui/material/Typography";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "75vw",
-  bgcolor: "background.paper",
-  boxShadow: 24,
-};
 const useStyles = makeStyles((theme) => ({
   input: {
     fontFamily: "Poppins",
@@ -44,22 +25,12 @@ const useStyles = makeStyles((theme) => ({
 export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loggedInStatus } = useSelector((state) => state.user);
-
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const [open2, setOpen2] = React.useState(false);
-  const handleOpen2 = () => setOpen2(true);
-  const handleClose2 = () => setOpen2(false);
   const [resetpassword, setResetpassword] = useState(true);
   const [checkmail, setCheckmail] = useState(false);
   const [newpassword, setnewpassword] = useState(false);
   const [resetdone, setResetdone] = useState(false);
   const [visitpassword, setVisitpassword] = useState(false);
-
-  const [handlepasswordmatch, setHandlepasswordmatch] = useState(false);
 
   const handlelogin = () => {
     const data = {
@@ -85,7 +56,7 @@ export default function Login() {
             user: { ...res.data.success.data },
           })
         );
-        navigate("/dashbaord/postwork");
+        navigate("/dashbaord/users");
       })
       .catch((e) => {
         console.log(e.response);
@@ -106,7 +77,7 @@ export default function Login() {
 
   return (
     <div id="myHeader" className="login-container">
-      <Fade>
+      
         <div style={{ height: "100vh" }} className="loginbox">
           <div className="loginbox1">
             <div className="loginbox1title">Welcome to 44 Resources</div>
@@ -126,7 +97,7 @@ export default function Login() {
             </div>
           </div>
           {resetpassword ? (
-            <div style={{marginTop:"12rem"}} className="loginbox2">
+            <div style={{ marginTop: "12rem" }} className="loginbox2">
               <div className="lgointext">Login</div>
               <div className="loginfield">
                 <TextField
@@ -499,7 +470,7 @@ export default function Login() {
             </>
           )}
         </div>
-      </Fade>
+    
     </div>
   );
 }

@@ -1,0 +1,33 @@
+.topbar-container {
+  background-color: #064c87;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.51vw 2.5vw;
+  width: 100vw;
+  height: 3vw;
+}
+.topvar-countryies {
+    
+  display: flex;
+  width: 25vw;
+  justify-content: space-evenly;
+}
+
+.topbar-c-icon {
+  display: flex;
+  cursor: pointer;
+  width: 5.5vw;
+  justify-content: space-between;
+}
+.topbar-c-icon img {
+  width: 1.62vw;
+  object-fit: contain;
+}
+.topbar-c-icon span {
+  font: normal normal normal 12px/18px Poppins;
+  color: #ffffff;
+  opacity: 1;
+  text-align: center;
+  font-size: 0.95vw;
+  line-height: 2vw;
+}
