@@ -1,0 +1,61 @@
+import React from "react";
+
+import img from "../../../assets/Landing page/apple (1)@2x.png";
+import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "40vw",
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  height: "40vw",
+};
+export default function Skillpopup() {
+
+  return (
+    <div>
+      <div style={{ alignItems: "center" }} className="navoftableblogsdata">
+        <div style={{ width: "10vw" }}>#5435</div>
+        <div style={{ width: "6vw" }}>
+          {" "}
+          <img
+            style={{
+              margin: "0 0.5vw",
+              width: "2.5vw ",
+              height: "2.5vw",
+              borderRadius: "50%",
+              objectFit: "cover",
+            }}
+            src={img}
+            alt=""
+          />{" "}
+        </div>
+        <div style={{ width: "15vw" }}>Mahendran H</div>
+
+        <div style={{ width: "15vw", color: "#41B541", fontWeight: "500" }}>
+          Development
+        </div>
+        <div style={{ width: "15vw" }}>Front End Developer</div>
+        <div style={{ width: "12vw" }}>12 June 2022</div>
+        <div style={{ width: "6vw" }}>
+          {" "}
+          <img
+      
+            style={{
+              margin: "0 0.5vw",
+              width: "2vw ",
+              height: "2vw",
+              borderRadius: "50%",
+              cursor:"pointer",
+              objectFit: "cover",
+            }}
+            src={img2}
+            alt=""
+          />{" "}
+        </div>
+      </div>
+     </div>
+  );
+}

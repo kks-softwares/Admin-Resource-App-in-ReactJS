@@ -3,7 +3,6 @@ import "./DashBoard.css";
 import img1 from "../../assets/Dashboard/Iconly-Light-outline-Bookmark.svg";
 import img2 from "../../assets/Dashboard/Iconly-Light-outline-Buy.svg";
 import img3 from "../../assets/Dashboard/Iconly-Light-outline-Chart.svg";
-import img5 from "../../assets/Dashboard/Iconly-Light-outline-Paper Plus.svg";
 import img7 from "../../assets/Dashboard/Iconly-Light-outline-Paper.svg";
 import img8 from '../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-3 User.svg'
 import img89 from '../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Profile.svg'
