@@ -43,7 +43,7 @@ export default function Skillpopup({data,index,page}) {
          {data?.fullName}
         </div>
 
-        <div style={{ width: "15vw", color: "#41B541", fontWeight: "500" }}>
+        <div style={{ width: "15vw", fontWeight: "400" }}>
           Development
         </div>
         <div style={{ width: "15vw" }}>Front End Developer</div>
