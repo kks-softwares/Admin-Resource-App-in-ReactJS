@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { SearchSharp } from "@mui/icons-material";
-import { useSelector } from "react-redux";
 import ProfileBanner from "./ProfileDashboard/ProfileBanner";
 import ProfileBadges from "./ProfileDashboard/ProfileBadges";
 import Profileuserdetails from "./ProfileDashboard/Profileuserdetails";
@@ -14,12 +13,17 @@ import ProfileWorkexperince from "./ProfileDashboard/ProfileWorkexperince";
 import ProfileEducation from "./ProfileDashboard/ProfileEducation";
 import ProfileOther from "./ProfileDashboard/ProfileOther";
 import "./CreatedJob/BiddingFormDashboard.css";
+import axios from "axios";
+import API_HOST from "../../../env";
+import CreateJobuserpage from "./CreatedJob/CreateJobuserpage";
+import AppliedJobpage from "./AppliedJiob/AppliedJobpage";
+
 export default function SkillCenter() {
   const navigate = useNavigate();
-  const { user, loggedInStatus } = useSelector((state) => state.user);
   const [workhistorytoggle, setWorkhistorytoggle] = useState(1);
   const [workhistorytoggle1, setWorkhistorytoggle1] = useState(1);
-  const { type } = useParams();
+  const { type, userName } = useParams();
+  const [user, setUser] = useState();
 
   useEffect(() => {
     if (type === "My Profile") {
@@ -43,7 +47,7 @@ export default function SkillCenter() {
     } else if (type === "File Manager") {
       setWorkhistorytoggle(7);
       setWorkhistorytoggle1(7);
-    } else if (type === "JBank Details") {
+    } else if (type === "Bank Details") {
       setWorkhistorytoggle(8);
       setWorkhistorytoggle1(8);
     } else if (type === "Documents") {
@@ -51,8 +55,15 @@ export default function SkillCenter() {
       setWorkhistorytoggle1(9);
     } else {
       setWorkhistorytoggle1(9);
+      setWorkhistorytoggle(9);
     }
   }, [type]);
+
+  useEffect(() => {
+    axios.get(`${API_HOST}/users/viewUser?userName=${userName}`).then((res) => {
+      setUser(res?.data?.success?.data);
+    });
+  }, [userName]);
 
   return (
     <div className="BrowseWorkMain-cntainer">
@@ -77,7 +88,7 @@ export default function SkillCenter() {
           right: "1vw",
           maxWidth: "80vw",
           overflow: "scroll",
-          width: "100vw",
+
           display: "flex",
           flexWrap: "none",
           justifyContent: "left",
@@ -93,7 +104,7 @@ export default function SkillCenter() {
             minWidth: "7vw",
           }}
           onClick={() => {
-            navigate("/dashbaord/userdetail/My Profile");
+            navigate(`/dashbaord/${userName}/My Profile`);
           }}
         >
           My Profile
@@ -106,7 +117,7 @@ export default function SkillCenter() {
             minWidth: "7vw",
           }}
           onClick={() => {
-            navigate("/dashbaord/userdetail/Wallet");
+            navigate(`/dashbaord/${userName}/Wallet`);
           }}
         >
           Wallet
@@ -119,7 +130,7 @@ export default function SkillCenter() {
             minWidth: "8vw",
           }}
           onClick={() => {
-            navigate("/dashbaord/userdetail/Created Job");
+            navigate(`/dashbaord/${userName}/Created Job`);
           }}
         >
           Created Job
@@ -132,7 +143,7 @@ export default function SkillCenter() {
             minWidth: "8vw",
           }}
           onClick={() => {
-            navigate("/dashbaord/userdetail/Job Applied");
+            navigate(`/dashbaord/${userName}/Job Applied`);
           }}
         >
           Job Applied
@@ -145,7 +156,7 @@ export default function SkillCenter() {
             minWidth: "12vw",
           }}
           onClick={() => {
-            navigate("/dashbaord/userdetail/Skill Center&Exams");
+            navigate(`/dashbaord/${userName}/Skill Center&Exams`);
           }}
         >
           Skill Center&Exams
@@ -158,7 +169,7 @@ export default function SkillCenter() {
             minWidth: "9vw",
           }}
           onClick={() => {
-            navigate("/dashbaord/userdetail/Reference List");
+            navigate(`/dashbaord/${userName}/Reference List`);
           }}
         >
           Reference List
@@ -172,7 +183,7 @@ export default function SkillCenter() {
             color: "black",
           }}
           onClick={() => {
-            navigate("/dashbaord/userdetail/File Manager");
+            navigate(`/dashbaord/${userName}/File Manager`);
           }}
         >
           File Manager
@@ -185,7 +196,7 @@ export default function SkillCenter() {
             minWidth: "8vw",
           }}
           onClick={() => {
-            navigate("/dashbaord/userdetail/Bank Details");
+            navigate(`/dashbaord/${userName}/Bank Details`);
           }}
         >
           Bank Details
@@ -198,7 +209,7 @@ export default function SkillCenter() {
             minWidth: "8vw",
           }}
           onClick={() => {
-            navigate("/dashbaord/userdetail/Document");
+            navigate(`/dashbaord/${userName}/Document`);
           }}
         >
           Document
@@ -208,16 +219,29 @@ export default function SkillCenter() {
           style={{
             color: "#064C87",
             borderBottom: "0.3vw solid #064C87",
-            width: "12vw",
+            minWidth: "9vw",
             position: "relative",
             right:
               workhistorytoggle === 1
-                ? "58vw"
+                ? "93vw"
                 : workhistorytoggle === 2
-                ? "42vw"
+                ? "83vw"
                 : workhistorytoggle === 3
-                ? "27vw"
-                : "13vw",
+                ? "74.5vw"
+                : workhistorytoggle === 4
+                ? "64.5vw"
+                : workhistorytoggle === 5
+                ? "52.5vw"
+                : workhistorytoggle === 6
+                ? "40vw"
+                : workhistorytoggle === 7
+                ? "29.5vw"
+                : workhistorytoggle === 8
+                ? "19.2vw"
+                : workhistorytoggle === 9
+                ? "9vw"
+                : "9vw",
+
             bottom: "0.3vw",
             transitionDuration: "1s",
             borderRadius: "0.2vw",
@@ -245,273 +269,7 @@ export default function SkillCenter() {
       )}
       {workhistorytoggle1 === 3 ? (
         <div>
-          <div className="catalogcontainerdashbaord">
-            <div style={{ overflow: "hidden" }} className="activejobpostbox">
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginBottom: "0.5vw",
-                }}
-              >
-                <div style={{ marginLeft: "0vw" }} className="taggreen">
-                  SDE
-                </div>
-                <div style={{ marginLeft: "1vw" }} className="taggreen1">
-                  database
-                </div>
-              </div>
-              <div style={{ height: "1.1vw" }} className="activejobpostname">
-                sde-2
-              </div>
-              <div
-                style={{ lineHeight: "1.2vw !important" }}
-                className="activejobpistbudgetbox"
-              >
-                <div>
-                  Budget <br />{" "}
-                  <span
-                    style={{
-                      fontSize: "0.9vw",
-                      position: "relative",
-                      bottom: "0.3vw",
-                    }}
-                  >
-                    $10- $50
-                  </span>
-                </div>
-                <div style={{ marginRight: "1vw" }}>
-                  Location <br />{" "}
-                  <span
-                    style={{
-                      fontSize: "0.9vw",
-                      position: "relative",
-                      bottom: "0.3vw",
-                    }}
-                  >
-                    Remote
-                  </span>
-                </div>
-                <div style={{ marginRight: "1vw" }}>
-                  Expired on <br />{" "}
-                  <span
-                    style={{
-                      fontSize: "0.9vw",
-                      position: "relative",
-                      bottom: "0.3vw",
-                    }}
-                  >
-                    07 Days
-                  </span>
-                </div>
-              </div>
-              <div
-                style={{ height: "4.2vw", margin: "0vw" }}
-                className="descriptionactibeobbox"
-              >
-                <div style={{ height: "2.8vw" }}>
-                  there https://xd.adobe.co m/view/a0b2e6f4-d68 6-48d5-8ac
-                  7-390d38af4f74 -f5e1/screen/7b684228 -76c1-4c54
-                  -9362-ca7aaef4d872/specs/
-                </div>
-
-                <br />
-                <span
-                // onClick={() => {
-                //   navigate(
-                //     `/dashbaord/jobdetailforbid/${data?.jobPostId}`
-                //   );
-                // }}
-                >
-                  more
-                </span>
-              </div>
-
-              <hr />
-              <div style={{ paddingLeft: "0vw" }} className="flexlastactiveb">
-                <div>Posted on - 10/10/2020</div>
-
-                <div style={{ color: "#00000090" }}> See More</div>
-              </div>
-            </div>
-
-            <div style={{ overflow: "hidden" }} className="activejobpostbox">
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginBottom: "0.5vw",
-                }}
-              >
-                <div style={{ marginLeft: "0vw" }} className="taggreen">
-                  SDE
-                </div>
-                <div style={{ marginLeft: "1vw" }} className="taggreen1">
-                  database
-                </div>
-              </div>
-              <div style={{ height: "1.1vw" }} className="activejobpostname">
-                sde-2
-              </div>
-              <div
-                style={{ lineHeight: "1.2vw !important" }}
-                className="activejobpistbudgetbox"
-              >
-                <div>
-                  Budget <br />{" "}
-                  <span
-                    style={{
-                      fontSize: "0.9vw",
-                      position: "relative",
-                      bottom: "0.3vw",
-                    }}
-                  >
-                    $10- $50
-                  </span>
-                </div>
-                <div style={{ marginRight: "1vw" }}>
-                  Location <br />{" "}
-                  <span
-                    style={{
-                      fontSize: "0.9vw",
-                      position: "relative",
-                      bottom: "0.3vw",
-                    }}
-                  >
-                    Remote
-                  </span>
-                </div>
-                <div style={{ marginRight: "1vw" }}>
-                  Expired on <br />{" "}
-                  <span
-                    style={{
-                      fontSize: "0.9vw",
-                      position: "relative",
-                      bottom: "0.3vw",
-                    }}
-                  >
-                    07 Days
-                  </span>
-                </div>
-              </div>
-              <div
-                style={{ height: "4.2vw", margin: "0vw" }}
-                className="descriptionactibeobbox"
-              >
-                <div style={{ height: "2.8vw" }}>
-                  there https://xd.adobe.co m/view/a0b2e6f4-d68 6-48d5-8ac
-                  7-390d38af4f74 -f5e1/screen/7b684228 -76c1-4c54
-                  -9362-ca7aaef4d872/specs/
-                </div>
-
-                <br />
-                <span
-                // onClick={() => {
-                //   navigate(
-                //     `/dashbaord/jobdetailforbid/${data?.jobPostId}`
-                //   );
-                // }}
-                >
-                  more
-                </span>
-              </div>
-
-              <hr />
-              <div style={{ paddingLeft: "0vw" }} className="flexlastactiveb">
-                <div>Posted on - 10/10/2020</div>
-
-                <div style={{ color: "#00000090" }}> See More</div>
-              </div>
-            </div>
-
-            <div style={{ overflow: "hidden" }} className="activejobpostbox">
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginBottom: "0.5vw",
-                }}
-              >
-                <div style={{ marginLeft: "0vw" }} className="taggreen">
-                  SDE
-                </div>
-                <div style={{ marginLeft: "1vw" }} className="taggreen1">
-                  database
-                </div>
-              </div>
-              <div style={{ height: "1.1vw" }} className="activejobpostname">
-                sde-2
-              </div>
-              <div
-                style={{ lineHeight: "1.2vw !important" }}
-                className="activejobpistbudgetbox"
-              >
-                <div>
-                  Budget <br />{" "}
-                  <span
-                    style={{
-                      fontSize: "0.9vw",
-                      position: "relative",
-                      bottom: "0.3vw",
-                    }}
-                  >
-                    $10- $50
-                  </span>
-                </div>
-                <div style={{ marginRight: "1vw" }}>
-                  Location <br />{" "}
-                  <span
-                    style={{
-                      fontSize: "0.9vw",
-                      position: "relative",
-                      bottom: "0.3vw",
-                    }}
-                  >
-                    Remote
-                  </span>
-                </div>
-                <div style={{ marginRight: "1vw" }}>
-                  Expired on <br />{" "}
-                  <span
-                    style={{
-                      fontSize: "0.9vw",
-                      position: "relative",
-                      bottom: "0.3vw",
-                    }}
-                  >
-                    07 Days
-                  </span>
-                </div>
-              </div>
-              <div
-                style={{ height: "4.2vw", margin: "0vw" }}
-                className="descriptionactibeobbox"
-              >
-                <div style={{ height: "2.8vw" }}>
-                  there https://xd.adobe.co m/view/a0b2e6f4-d68 6-48d5-8ac
-                  7-390d38af4f74 -f5e1/screen/7b684228 -76c1-4c54
-                  -9362-ca7aaef4d872/specs/
-                </div>
-
-                <br />
-                <span
-                // onClick={() => {
-                //   navigate(
-                //     `/dashbaord/jobdetailforbid/${data?.jobPostId}`
-                //   );
-                // }}
-                >
-                  more
-                </span>
-              </div>
-
-              <hr />
-              <div style={{ paddingLeft: "0vw" }} className="flexlastactiveb">
-                <div>Posted on - 10/10/2020</div>
-                <div style={{ color: "#00000090" }}> See More</div>
-              </div>
-            </div>
-          </div>
+          <CreateJobuserpage user={user} />
         </div>
       ) : (
         ""
@@ -528,179 +286,8 @@ export default function SkillCenter() {
               <div style={{ width: "11vw" }}>Status</div>
               <div style={{ width: "8vw" }}></div>
             </div>
-
-            <div
-              style={{ padding: "1vw", alignItems: "center" }}
-              className="dataapploidjobfle"
-            >
-              <div style={{ width: "15.5vw" }}>dataapploidjobfle</div>
-              <div
-                dangerouslySetInnerHTML={{ __html: "dataapploidjobfle" }}
-                style={{
-                  width: "30.5vw",
-                  fontSize: "0.8vw",
-                  paddingRight: "2vw",
-                }}
-              ></div>
-              <div style={{ width: "13.5vw" }}>${10}</div>
-              <div
-                style={{
-                  width: "11.5vw",
-                  color: "#F39600",
-                }}
-              >
-                Pending
-              </div>
-              <div style={{ width: "5.5vw", cursor: "pointer" }}>View</div>
-
-              {/* <Modal
-        open={openx}
-        onClose={handleClosex}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <div style={{ padding: "2vw", width: "100%", height: "100%" }}>
-            <div className="appliedjobformtitleflex">
-              <div>Job Details</div>
-              <div>
-                <CloseIcon
-                  onClick={handleClosex}
-                  style={{ fontSize: "1.5vw", cursor: "pointer" }}
-                />
-              </div>
-            </div>
-            <hr style={{ height: "0.1vw" }} />
-            <div className="titilenameappliedpopup">
-              {data?.appliedForJobPost[0]?.jobTitle}
-            </div>
-            <div className="descriptionappliedpopup">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </div>
-            <div className="titilenameappliedpopupmain">Basic Details</div>
-
-            <div className="flexwrapappliedpopup">
-              <div style={{ width: "50%", margin: "0.71vw 0vw" }}>
-                <div
-                  style={{ fontSize: "1.051vw" }}
-                  className="titilenameappliedpopup"
-                >
-                  Job Posted by
-                </div>
-                <div
-                  style={{ margin: "0.2vw" }}
-                  className="descriptionappliedpopup"
-                >
-                  {data?.appliedForJobPost[0]?.name} {""}
-                </div>
-              </div>
-              <div style={{ width: "50%", margin: "0.71vw 0vw" }}>
-                <div
-                  style={{ fontSize: "1.051vw" }}
-                  className="titilenameappliedpopup"
-                >
-                  Job Posted on
-                </div>
-                <div
-                  style={{ margin: "0.2vw" }}
-                  className="descriptionappliedpopup"
-                >
-                  Nov 12, 2021
-                </div>
-              </div>
-              <div style={{ width: "50%", margin: "0.71vw 0vw" }}>
-                <div
-                  style={{ fontSize: "1.051vw" }}
-                  className="titilenameappliedpopup"
-                >
-                  Duration
-                </div>
-                <div
-                  style={{ margin: "0.2vw" }}
-                  className="descriptionappliedpopup"
-                >
-                  1 month
-                </div>
-              </div>
-              <div style={{ width: "50%", margin: "0.71vw 0vw" }}>
-                <div
-                  style={{ fontSize: "1.051vw" }}
-                  className="titilenameappliedpopup"
-                >
-                  Date
-                </div>
-                <div
-                  style={{ margin: "0.2vw" }}
-                  className="descriptionappliedpopup"
-                >
-                  Job Posted by
-                </div>
-              </div>
-              <div style={{ width: "50%", margin: "0.71vw 0vw" }}>
-                <div
-                  style={{ fontSize: "1.051vw" }}
-                  className="titilenameappliedpopup"
-                >
-                  Bid value
-                </div>
-                <div
-                  style={{ margin: "0.2vw" }}
-                  className="descriptionappliedpopup"
-                >
-                  {data?.totalProjectPrice}
-                </div>
-              </div>
-              <div style={{ width: "50%", margin: "0.71vw 0vw" }}>
-                <div
-                  style={{ fontSize: "1.051vw" }}
-                  className="titilenameappliedpopup"
-                >
-                  Status
-                </div>
-                <div
-                  style={{ margin: "0.2vw" }}
-                  className="descriptionappliedpopup"
-                >
-                  Job Posted by
-                </div>
-              </div>
-            </div>
-            {data?.workStatus === null || data?.workStatus === "pending" ? (
-              <div className="descriptionappliedpopup">
-                Are you ready to Reject Proposal before Get Accepted?
-              </div>
-            ) : (
-              ""
-            )}
-
-            {data?.workStatus === null || data?.workStatus === "pending" ? (
-              <div className="homejobbuttons">
-                <button style={{ background: "white" }} onClick={handleClosex}>
-                  Cancel
-                </button>
-                <button style={{ color: "white" }} onClick={handleRejectbid}>
-                  Withdraw
-                </button>
-              </div>
-            ) : (
-              ""
-            )}
           </div>
-        </Box>
-      </Modal>
-  */}
-            </div>
-          </div>
-
+          <AppliedJobpage />
           {/* {totalpages !== 1 ? (
             <div style={{ width: "25vw" }} className="paginationbox">
               <div>

@@ -58,7 +58,7 @@ function App() {
           >
         
             <Route path="/dashbaord/users" element={<Users />} />
-            <Route path="/dashbaord/userdetail/:type" element={<UserFullDetails />} />
+            <Route path="/dashbaord/:userName/:type" element={<UserFullDetails />} />
            
           </Route>
         </Routes>

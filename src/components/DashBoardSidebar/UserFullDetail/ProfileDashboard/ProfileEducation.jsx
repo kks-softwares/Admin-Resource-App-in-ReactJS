@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import img1 from "../../../../assets/My profile – 28/Component 70 – 6.svg";
 import "./profile.css";
+import img2222 from "../../../../assets/My profile – 28/images.png";
 
 
 export default function ProfileEducation({ user }) {
  
   return (
-    <div style={{ height: "fit-content" }} className="profilebadgecontainer">
+    <div style={{ height: "fit-content",width:"78vw" }} className="profilebadgecontainer">
       <div
         style={{ padding: "2vw", margin: "0 0vw" }}
         className="profiletitleandmenunav"
@@ -31,7 +32,7 @@ export default function ProfileEducation({ user }) {
                 <div className="pworkexperinxecontainer">
                   <div className="pworkexperincebox">
                     <div className="pworkexperinceboximg">
-                      {/* <img src={img2222} alt="" /> */}
+                      <img src={img2222} alt="" />
                     </div>
                     <div className="pworkexperinceboxtext">
                       <div className="pworkexperincebox-name">
@@ -57,7 +58,7 @@ export default function ProfileEducation({ user }) {
              </div>
               <hr
                 style={{
-                  width: "80vw",
+                  width: "71vw",
                   margin: "0 4vw",
                   marginBottom: "1vw",
                   color: "#00000090",

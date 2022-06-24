@@ -56,7 +56,7 @@ export default function Profileportfolio() {
           allprotfolio?.map((portfolio, index) => {
             return (
               <div>
-                <div className="pportfoliocard">
+                <div style={{width:"32vw"}} className="pportfoliocard">
                   <div
                     style={{
                       background: `url('${

@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core";
 import { ArrowBack } from "@mui/icons-material";
 import { useNavigate } from "react-router";
 import { userActions } from "../../store/userSlice";
-import {  useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import API_HOST from "../../env";
 
@@ -38,25 +38,22 @@ export default function Login() {
       password: loginpassword,
     };
     axios
-      .post(`${API_HOST}/login`, data)
+      .post(`${API_HOST}/adminLogin`, data)
       .then((res) => {
-        console.log(res.data.success.data);
-        setWrongid(false);
-        setWrongidp(false);
-        window.localStorage.setItem(
-          "user",
-          JSON.stringify({ ...res.data.success.data })
-        );
-        window.localStorage.setItem(
-          "token",
-          JSON.stringify(res.data.success.Tokens)
-        );
-        dispatch(
-          userActions.setUser({
-            user: { ...res.data.success.data },
-          })
-        );
-        navigate("/dashbaord/users");
+        if (res.data?.fails) {
+          setWrongid(true);
+          setWrongidp(false);
+        } else {
+          setWrongid(false);
+          setWrongidp(false);
+
+          dispatch(
+            userActions.setUser({
+              user: { ...res.data.success.data },
+            })
+          );
+          navigate("/dashbaord/users");
+        }
       })
       .catch((e) => {
         console.log(e.response);
@@ -77,400 +74,398 @@ export default function Login() {
 
   return (
     <div id="myHeader" className="login-container">
-      
-        <div style={{ height: "100vh" }} className="loginbox">
-          <div className="loginbox1">
-            <div className="loginbox1title">Welcome to 44 Resources</div>
-            <div className="loginbox1subtitle">
-              See your Growth and get the Support
-            </div>
-            <div className="loginbox-img">
-              <img
+      <div style={{ height: "100vh" }} className="loginbox">
+        <div className="loginbox1">
+          <div className="loginbox1title">Welcome to 44 Resources</div>
+          <div className="loginbox1subtitle">
+            See your Growth and get the Support
+          </div>
+          <div className="loginbox-img">
+            <img
+              style={{
+                marginTop: "7rem",
+                width: "32vw",
+                marginLeft: "8vw",
+              }}
+              src={img21}
+              alt=""
+            />
+          </div>
+        </div>
+        {resetpassword ? (
+          <div style={{ marginTop: "12rem" }} className="loginbox2">
+            <div className="lgointext">Login</div>
+            <div className="loginfield">
+              <TextField
+                error={!wrongid ? false : true}
+                id={"outlined-basic"}
+                label="Email"
+                helperText={wrongid ? "Please enter a valid  Email" : ""}
+                value={loginid}
+                variant="outlined"
                 style={{
-                  marginTop: "7rem",
                   width: "32vw",
-                  marginLeft: "8vw",
                 }}
-                src={img21}
-                alt=""
+                InputLabelProps={{
+                  style: {
+                    fontSize: "1vw",
+                    fontFamily: "Poppins",
+                    fontStyle: "500",
+                    fontWeight: "500",
+                    color: !wrongid ? "black" : "#dc3545",
+                  },
+                }}
+                inputProps={{
+                  className: classes.input,
+                }}
+                onChange={(e) => {
+                  setLoginid(e.target.value);
+                  setWrongid(false);
+                }}
+              />
+              <AlternateEmailIcon
+                style={{
+                  fontSize: "2vw",
+                  position: "relative",
+                  top: "1vw",
+                  right: "3vw",
+                }}
               />
             </div>
-          </div>
-          {resetpassword ? (
-            <div style={{ marginTop: "12rem" }} className="loginbox2">
-              <div className="lgointext">Login</div>
-              <div className="loginfield">
-                <TextField
-                  error={!wrongid ? false : true}
-                  id={"outlined-basic"}
-                  label="Email"
-                  helperText={wrongid ? "Please enter a valid  Email" : ""}
-                  value={loginid}
-                  variant="outlined"
-                  style={{
-                    width: "32vw",
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: "1vw",
-                      fontFamily: "Poppins",
-                      fontStyle: "500",
-                      fontWeight: "500",
-                      color: !wrongid ? "black" : "#dc3545",
-                    },
-                  }}
-                  inputProps={{
-                    className: classes.input,
-                  }}
-                  onChange={(e) => {
-                    setLoginid(e.target.value);
-                    setWrongid(false);
-                  }}
-                />
-                <AlternateEmailIcon
-                  style={{
-                    fontSize: "2vw",
-                    position: "relative",
-                    top: "1vw",
-                    right: "3vw",
-                  }}
-                />
-              </div>
-              <div className="loginfield">
-                <TextField
-                  type={visitpassword ? "text" : "password"}
-                  error={!wrongidp ? false : true}
-                  id="outlined-basic"
-                  label="Password"
-                  variant="outlined"
-                  value={loginpassword}
-                  helperText={wrongidp ? "Please enter a valid  Password" : ""}
-                  style={{ width: "32vw" }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: "1vw",
-                      fontFamily: "Poppins",
-                      fontStyle: "500",
-                      fontWeight: "500",
-                      color: !wrongidp ? "black" : "#dc3545",
-                    },
-                  }}
-                  inputProps={{ className: classes.input }}
-                  onChange={(e) => {
-                    setLoginpassword(e.target.value);
-                    setWrongidp(false);
-                  }}
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      handlelogin();
-                    }
-                  }}
-                />
-                <VisibilityIcon
-                  style={{
-                    fontSize: "2vw",
-                    position: "relative",
-                    top: "1vw",
-                    right: "3vw",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    setVisitpassword(!visitpassword);
-                  }}
-                />
-              </div>
-
-              <div
-                className="forget-password"
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  setResetpassword(false);
+            <div className="loginfield">
+              <TextField
+                type={visitpassword ? "text" : "password"}
+                error={!wrongidp ? false : true}
+                id="outlined-basic"
+                label="Password"
+                variant="outlined"
+                value={loginpassword}
+                helperText={wrongidp ? "Please enter a valid  Password" : ""}
+                style={{ width: "32vw" }}
+                InputLabelProps={{
+                  style: {
+                    fontSize: "1vw",
+                    fontFamily: "Poppins",
+                    fontStyle: "500",
+                    fontWeight: "500",
+                    color: !wrongidp ? "black" : "#dc3545",
+                  },
                 }}
-              >
-                Forget Password
-              </div>
-
-              <button onClick={handlelogin} className="loginbutton">
-                Login
-              </button>
+                inputProps={{ className: classes.input }}
+                onChange={(e) => {
+                  setLoginpassword(e.target.value);
+                  setWrongidp(false);
+                }}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    handlelogin();
+                  }
+                }}
+              />
+              <VisibilityIcon
+                style={{
+                  fontSize: "2vw",
+                  position: "relative",
+                  top: "1vw",
+                  right: "3vw",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  setVisitpassword(!visitpassword);
+                }}
+              />
             </div>
-          ) : (
-            <>
-              {checkmail ? (
-                <>
-                  {newpassword ? (
-                    <>
-                      {resetdone ? (
-                        <div style={{ marginTop: "6vw" }} className="loginbox2">
-                          <div
-                            className="lgointext"
-                            style={{ marginBottom: "0.11vw" }}
-                          >
-                            Password Reset
-                          </div>
-                          <div
-                            className="loginbox1subtitle"
-                            style={{ marginBottom: "2vw" }}
-                          >
-                            Your Password has been changed Succesfully reset{" "}
-                            <br />
-                            Click below to log in magically
-                          </div>
 
-                          <button className="loginbutton" onClick={() => {}}>
-                            Continue
-                          </button>
+            <div
+              className="forget-password"
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                setResetpassword(false);
+              }}
+            >
+              Forget Password
+            </div>
 
-                          <div className="continueloginwithdont">
-                            <span>
-                              <ArrowBack
-                                style={{
-                                  fontSize: "1.5vw",
-                                  marginRight: "1vw",
-                                }}
-                              />
-                            </span>
-                            Back to{" "}
-                            <span
-                              onClick={() => {
-                                setResetpassword(true);
-                                setCheckmail(false);
-                                setResetdone(false);
-                                setnewpassword(false);
-                              }}
-                            >
-                              {" "}
-                              Login
-                            </span>
-                          </div>
+            <button onClick={handlelogin} className="loginbutton">
+              Login
+            </button>
+          </div>
+        ) : (
+          <>
+            {checkmail ? (
+              <>
+                {newpassword ? (
+                  <>
+                    {resetdone ? (
+                      <div style={{ marginTop: "6vw" }} className="loginbox2">
+                        <div
+                          className="lgointext"
+                          style={{ marginBottom: "0.11vw" }}
+                        >
+                          Password Reset
                         </div>
-                      ) : (
-                        <div style={{ marginTop: "3vw" }} className="loginbox2">
-                          <div
-                            className="lgointext"
-                            style={{ marginBottom: "0.11vw" }}
-                          >
-                            Set new password
-                          </div>
-                          <div
-                            className="loginbox1subtitle"
-                            style={{ marginBottom: "2vw" }}
-                          >
-                            Your new password must be different to previously
-                            used passwords
-                          </div>
-                          <div className="loginfield">
-                            <TextField
-                              id="outlined-basic"
-                              label="Password"
-                              variant="outlined"
-                              type="password"
-                              style={{ width: "32vw" }}
-                              InputLabelProps={{
-                                style: {
-                                  fontSize: "1vw",
-                                  fontFamily: "Poppins",
-                                  fontStyle: "500",
-                                  fontWeight: "500",
-                                  color: "black",
-                                },
-                              }}
-                              inputProps={{ className: classes.input }}
-                            />
-                            <VisibilityIcon
+                        <div
+                          className="loginbox1subtitle"
+                          style={{ marginBottom: "2vw" }}
+                        >
+                          Your Password has been changed Succesfully reset{" "}
+                          <br />
+                          Click below to log in magically
+                        </div>
+
+                        <button className="loginbutton" onClick={() => {}}>
+                          Continue
+                        </button>
+
+                        <div className="continueloginwithdont">
+                          <span>
+                            <ArrowBack
                               style={{
-                                fontSize: "2vw",
-                                position: "relative",
-                                top: "1vw",
-                                right: "3vw",
+                                fontSize: "1.5vw",
+                                marginRight: "1vw",
                               }}
                             />
-                          </div>
-                          <div className="loginfield">
-                            <TextField
-                              id="outlined-basic"
-                              label="Confirm Password"
-                              variant="outlined"
-                              type="password"
-                              style={{ width: "32vw" }}
-                              InputLabelProps={{
-                                style: {
-                                  fontSize: "1vw",
-                                  fontFamily: "Poppins",
-                                  fontStyle: "500",
-                                  fontWeight: "500",
-                                  color: "black",
-                                },
-                              }}
-                              inputProps={{ className: classes.input }}
-                            />
-                            <VisibilityIcon
-                              style={{
-                                fontSize: "2vw",
-                                position: "relative",
-                                top: "1vw",
-                                right: "3vw",
-                              }}
-                            />
-                          </div>
-                          <button
-                            className="loginbutton"
+                          </span>
+                          Back to{" "}
+                          <span
                             onClick={() => {
-                              setResetdone(true);
+                              setResetpassword(true);
+                              setCheckmail(false);
+                              setResetdone(false);
+                              setnewpassword(false);
                             }}
                           >
-                            Reset Password
-                          </button>
-
-                          {/* <div className="continueloginwithdont">
-                            Don't receive the mail? <span> Click to resend</span>
-                          </div> */}
-                          <div className="continueloginwithdont">
-                            <span>
-                              <ArrowBack
-                                style={{
-                                  fontSize: "1.5vw",
-                                  marginRight: "1vw",
-                                }}
-                              />
-                            </span>
-                            Back to{" "}
-                            <span
-                              onClick={() => {
-                                setResetpassword(true);
-                                setCheckmail(false);
-                                setResetdone(false);
-                                setnewpassword(false);
-                              }}
-                            >
-                              {" "}
-                              Login
-                            </span>
-                          </div>
+                            {" "}
+                            Login
+                          </span>
                         </div>
-                      )}
-                    </>
-                  ) : (
-                    <div style={{ marginTop: "6vw" }} className="loginbox2">
-                      <div
-                        className="lgointext"
-                        style={{ marginBottom: "0.11vw" }}
-                      >
-                        Check your mail
                       </div>
-                      <div
-                        className="loginbox1subtitle"
-                        style={{ marginBottom: "3vw" }}
-                      >
-                        We sent a Password reset Link to your Mail
-                      </div>
-
-                      <button
-                        className="loginbutton"
-                        onClick={() => {
-                          setnewpassword(true);
-                        }}
-                      >
-                        Verify
-                      </button>
-
-                      <div className="continueloginwithdont">
-                        Don't receive the mail? <span> Click to resend</span>
-                      </div>
-                      <div className="continueloginwithdont">
-                        <span>
-                          <ArrowBack
+                    ) : (
+                      <div style={{ marginTop: "3vw" }} className="loginbox2">
+                        <div
+                          className="lgointext"
+                          style={{ marginBottom: "0.11vw" }}
+                        >
+                          Set new password
+                        </div>
+                        <div
+                          className="loginbox1subtitle"
+                          style={{ marginBottom: "2vw" }}
+                        >
+                          Your new password must be different to previously used
+                          passwords
+                        </div>
+                        <div className="loginfield">
+                          <TextField
+                            id="outlined-basic"
+                            label="Password"
+                            variant="outlined"
+                            type="password"
+                            style={{ width: "32vw" }}
+                            InputLabelProps={{
+                              style: {
+                                fontSize: "1vw",
+                                fontFamily: "Poppins",
+                                fontStyle: "500",
+                                fontWeight: "500",
+                                color: "black",
+                              },
+                            }}
+                            inputProps={{ className: classes.input }}
+                          />
+                          <VisibilityIcon
                             style={{
-                              fontSize: "1.5vw",
-                              marginRight: "1vw",
+                              fontSize: "2vw",
+                              position: "relative",
+                              top: "1vw",
+                              right: "3vw",
                             }}
                           />
-                        </span>
-                        Back to{" "}
-                        <span
+                        </div>
+                        <div className="loginfield">
+                          <TextField
+                            id="outlined-basic"
+                            label="Confirm Password"
+                            variant="outlined"
+                            type="password"
+                            style={{ width: "32vw" }}
+                            InputLabelProps={{
+                              style: {
+                                fontSize: "1vw",
+                                fontFamily: "Poppins",
+                                fontStyle: "500",
+                                fontWeight: "500",
+                                color: "black",
+                              },
+                            }}
+                            inputProps={{ className: classes.input }}
+                          />
+                          <VisibilityIcon
+                            style={{
+                              fontSize: "2vw",
+                              position: "relative",
+                              top: "1vw",
+                              right: "3vw",
+                            }}
+                          />
+                        </div>
+                        <button
+                          className="loginbutton"
                           onClick={() => {
-                            setResetpassword(true);
-                            setCheckmail(false);
-                            setResetdone(false);
-                            setnewpassword(false);
+                            setResetdone(true);
                           }}
                         >
-                          {" "}
-                          Login
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <div style={{ marginTop: "3vw" }} className="loginbox2">
-                  <div className="lgointext" style={{ marginBottom: "0.82vw" }}>
-                    Forgot Password
-                  </div>
-                  <div className="loginbox1subtitle">
-                    No worries we'll send your reset instructions
-                  </div>
-                  <div className="loginfield">
-                    <TextField
-                      id="outlined-basic"
-                      label="Email"
-                      variant="outlined"
-                      style={{ width: "32vw" }}
-                      InputLabelProps={{
-                        style: {
-                          fontSize: "1vw",
-                          fontFamily: "Poppins",
-                          fontStyle: "500",
-                          fontWeight: "500",
-                          color: "black",
-                        },
-                      }}
-                      inputProps={{ className: classes.input }}
-                    />
-                    <AlternateEmailIcon
-                      style={{
-                        fontSize: "2vw",
-                        position: "relative",
-                        top: "1vw",
-                        right: "3vw",
-                      }}
-                    />
-                  </div>
-                  <button
-                    className="loginbutton"
-                    onClick={() => {
-                      setCheckmail(true);
-                    }}
-                  >
-                    Reset Password
-                  </button>
+                          Reset Password
+                        </button>
 
-                  <div className="continueloginwithdont">
-                    <span>
-                      <ArrowBack
-                        style={{ fontSize: "1.5vw", marginRight: "1vw" }}
-                      />
-                    </span>
-                    Back to{" "}
-                    <span
+                        {/* <div className="continueloginwithdont">
+                            Don't receive the mail? <span> Click to resend</span>
+                          </div> */}
+                        <div className="continueloginwithdont">
+                          <span>
+                            <ArrowBack
+                              style={{
+                                fontSize: "1.5vw",
+                                marginRight: "1vw",
+                              }}
+                            />
+                          </span>
+                          Back to{" "}
+                          <span
+                            onClick={() => {
+                              setResetpassword(true);
+                              setCheckmail(false);
+                              setResetdone(false);
+                              setnewpassword(false);
+                            }}
+                          >
+                            {" "}
+                            Login
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div style={{ marginTop: "6vw" }} className="loginbox2">
+                    <div
+                      className="lgointext"
+                      style={{ marginBottom: "0.11vw" }}
+                    >
+                      Check your mail
+                    </div>
+                    <div
+                      className="loginbox1subtitle"
+                      style={{ marginBottom: "3vw" }}
+                    >
+                      We sent a Password reset Link to your Mail
+                    </div>
+
+                    <button
+                      className="loginbutton"
                       onClick={() => {
-                        setResetpassword(true);
-                        setCheckmail(false);
-                        setResetdone(false);
-                        setnewpassword(false);
+                        setnewpassword(true);
                       }}
                     >
-                      {" "}
-                      Login
-                    </span>
+                      Verify
+                    </button>
+
+                    <div className="continueloginwithdont">
+                      Don't receive the mail? <span> Click to resend</span>
+                    </div>
+                    <div className="continueloginwithdont">
+                      <span>
+                        <ArrowBack
+                          style={{
+                            fontSize: "1.5vw",
+                            marginRight: "1vw",
+                          }}
+                        />
+                      </span>
+                      Back to{" "}
+                      <span
+                        onClick={() => {
+                          setResetpassword(true);
+                          setCheckmail(false);
+                          setResetdone(false);
+                          setnewpassword(false);
+                        }}
+                      >
+                        {" "}
+                        Login
+                      </span>
+                    </div>
                   </div>
+                )}
+              </>
+            ) : (
+              <div style={{ marginTop: "3vw" }} className="loginbox2">
+                <div className="lgointext" style={{ marginBottom: "0.82vw" }}>
+                  Forgot Password
                 </div>
-              )}
-            </>
-          )}
-        </div>
-    
+                <div className="loginbox1subtitle">
+                  No worries we'll send your reset instructions
+                </div>
+                <div className="loginfield">
+                  <TextField
+                    id="outlined-basic"
+                    label="Email"
+                    variant="outlined"
+                    style={{ width: "32vw" }}
+                    InputLabelProps={{
+                      style: {
+                        fontSize: "1vw",
+                        fontFamily: "Poppins",
+                        fontStyle: "500",
+                        fontWeight: "500",
+                        color: "black",
+                      },
+                    }}
+                    inputProps={{ className: classes.input }}
+                  />
+                  <AlternateEmailIcon
+                    style={{
+                      fontSize: "2vw",
+                      position: "relative",
+                      top: "1vw",
+                      right: "3vw",
+                    }}
+                  />
+                </div>
+                <button
+                  className="loginbutton"
+                  onClick={() => {
+                    setCheckmail(true);
+                  }}
+                >
+                  Reset Password
+                </button>
+
+                <div className="continueloginwithdont">
+                  <span>
+                    <ArrowBack
+                      style={{ fontSize: "1.5vw", marginRight: "1vw" }}
+                    />
+                  </span>
+                  Back to{" "}
+                  <span
+                    onClick={() => {
+                      setResetpassword(true);
+                      setCheckmail(false);
+                      setResetdone(false);
+                      setnewpassword(false);
+                    }}
+                  >
+                    {" "}
+                    Login
+                  </span>
+                </div>
+              </div>
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 }

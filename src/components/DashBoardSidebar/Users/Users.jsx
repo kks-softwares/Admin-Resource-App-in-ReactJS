@@ -6,7 +6,6 @@ import Box from "@mui/material/Box";
 import "./skill.css";
 import "./blog.css";
 import CloseIcon from "@mui/icons-material/Close";
-import { useSelector } from "react-redux";
 import axios from "axios";
 import API_HOST from "../../../env";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -14,6 +13,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
 import Modal from "@mui/material/Modal";
 import Skillpopup from "./Skillpopup";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -48,22 +48,6 @@ export default function Users() {
         "Communication",
       ],
     },
-    {
-      filternameName: "Course Length",
-      filters: ["Under 2 hours", "2-10 hours", "11-20 hours", "20+ hours"],
-    },
-    {
-      filternameName: "Certification",
-      filters: ["Paid Certification", "Free Certification"],
-    },
-    {
-      filternameName: "Course Difficulty",
-      filters: ["Begineer", "Intermediate", "Advanced", "Expert"],
-    },
-    {
-      filternameName: "Course Provider",
-      filters: ["Google", "Udemy", "Coursera", "Future Learn"],
-    },
   ]);
 
   const [arrayoffilterselected, setarrayoffilterselected] = useState([]);
@@ -72,6 +56,30 @@ export default function Users() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [previosfilter, setPreviosfilter] = useState([]);
+  const [allusers, setAllusers] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `${API_HOST}/users/viewUser?userName=${setSelectedCategory}&page=${page}`
+      )
+      .then((res) => {
+        setAllusers(res?.data?.success?.data?.docs);
+        window.scrollTo(0, 0, { behavior: "smooth" });
+      });
+    axios
+      .get(
+        `${API_HOST}/users/viewUser?userName=${setSelectedCategory}&page=${
+          page + 1
+        }`
+      )
+      .then((res) => {
+        if (res?.data?.success?.data?.docs?.length > 0) {
+          settotalpages(page + 1);
+        }
+      });
+  }, [page]);
+
   return (
     <div className="BrowseWorkMain-cntainer">
       <div className="searchboxcontainer">
@@ -272,7 +280,7 @@ export default function Users() {
         style={{ margin: "0vw 0vw", padding: "0", marginBottom: "2vw" }}
         className="navoftableblogs"
       >
-        List of Exams
+        List of Users
       </div>
       <div>
         <div
@@ -287,32 +295,56 @@ export default function Users() {
           <div style={{ width: "12vw" }}>Joined on</div>
           <div style={{ width: "6vw" }}></div>
         </div>
+        {allusers.length > 0 &&
+          allusers?.map((data) => {
+            return <Skillpopup data={data} />;
+          })}
 
-        <Skillpopup />
-        <Skillpopup />
-        <Skillpopup />
-        <Skillpopup />
-        <Skillpopup />
-        <Skillpopup />
-        <Skillpopup />
-        <Skillpopup />
+        {totalpages !== 1 ? (
+          <div style={{ width: "25vw" }} className="paginationbox">
+            <div>
+              <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
+            </div>
 
-        {/* <div className="paginationbox">
-              <div>
-                <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-              <div style={{ color: page === 1 ? "#2A6599" : "" }}>1</div>
-              <div>2</div>
-              <div>3</div>
-              <div>.</div>
-              <div>.</div>
-              <div>8</div>
-              <div>9</div>
-              <div>10</div>
-              <div>
-                <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-            </div> */}
+            <div
+              hidden={page - 4 > 0 ? false : true}
+              onClick={() => setPage(page - 4)}
+            >
+              {page - 4}
+            </div>
+            <div
+              hidden={page - 3 > 0 ? false : true}
+              onClick={() => setPage(page - 3)}
+            >
+              {page - 3}
+            </div>
+            <div
+              hidden={page - 2 > 0 ? false : true}
+              onClick={() => setPage(page - 2)}
+            >
+              {page - 2}
+            </div>
+            <div
+              hidden={page - 1 > 0 ? false : true}
+              onClick={() => setPage(page - 1)}
+            >
+              {page - 1}
+            </div>
+            <div style={{ color: "#2A6599" }}>{page}</div>
+            <div
+              hidden={page + 1 > totalpages ? true : false}
+              onClick={() => setPage(page + 1)}
+            >
+              {page + 1}
+            </div>
+
+            <div>
+              <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

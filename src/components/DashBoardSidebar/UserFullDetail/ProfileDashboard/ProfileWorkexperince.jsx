@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import img1 from "../../../../assets/My profile – 28/Component 70 – 6.svg";
 import "./profile.css";
+import img22 from "../../../../assets/My profile – 28/NoPath - Copy.png";
 
 export default function ProfileWorkexperince({ user }) {
   return (
@@ -34,7 +35,7 @@ export default function ProfileWorkexperince({ user }) {
               <div>
                 <div className="pworkexperincebox">
                   <div className="pworkexperinceboximg">
-                    {/* <img src={img22} alt="" /> */}
+                    <img src={img22} alt="" />
                   </div>
                   <div className="pworkexperinceboxtext">
                     <div className="pworkexperincebox-name">
@@ -72,7 +73,7 @@ export default function ProfileWorkexperince({ user }) {
             </div>
             <hr
               style={{
-                width: "80vw",
+                width: "71vw",
                 margin: "0 4vw",
                 marginBottom: "1vw",
                 color: "#00000090",

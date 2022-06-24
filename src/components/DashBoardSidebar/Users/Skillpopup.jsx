@@ -4,14 +4,14 @@ import img from "../../../assets/Landing page/apple (1)@2x.png";
 import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
 import { Navigate, useNavigate } from "react-router";
 
-export default function Skillpopup() {
+export default function Skillpopup({data}) {
   const navigate = useNavigate();
   return (
     <div>
       <div style={{ alignItems: "center" }} className="navoftableblogsdata">
         <div
           onClick={() => {
-            navigate("/dashbaord/userdetail/My Profile");
+            navigate(`/dashbaord/${data?.userName}/My Profile`);
           }}
           style={{ width: "10vw", cursor: "pointer" }}
         >
@@ -20,7 +20,7 @@ export default function Skillpopup() {
         <div style={{ width: "6vw" }}>
           <img
             onClick={() => {
-              navigate("/dashbaord/userdetail/My Profile");
+                navigate(`/dashbaord/${data?.userName}/My Profile`);
             }}
             style={{
               margin: "0 0.5vw",
@@ -30,17 +30,17 @@ export default function Skillpopup() {
               objectFit: "cover",
               cursor: "pointer",
             }}
-            src={img}
+            src={!data?.media?img:data?.media}
             alt=""
           />{" "}
         </div>
         <div
           onClick={() => {
-            navigate("/dashbaord/userdetail/My Profile");
+            navigate(`/dashbaord/${data?.userName}/My Profile`);
           }}
           style={{ width: "15vw", cursor: "pointer" }}
         >
-          Mahendran H
+         {data?.fullName}
         </div>
 
         <div style={{ width: "15vw", color: "#41B541", fontWeight: "500" }}>

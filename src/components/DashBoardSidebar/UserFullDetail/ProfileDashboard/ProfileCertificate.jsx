@@ -1,10 +1,11 @@
 import React from "react";
 import img1 from "../../../../assets/My profile – 28/Component 70 – 6.svg";
 import "./profile.css";
+import img from "../../../../assets/My profile – 28/awards-and-certifications.svg";
 
 export default function ProfileCertificate({ user }) {
   return (
-    <div style={{ height: "fit-content" }} className="profilebadgecontainer">
+    <div style={{ height: "fit-content",width:"78vw" }} className="profilebadgecontainer">
       <div
         style={{ padding: "2vw", margin: "0 0vw" }}
         className="profiletitleandmenunav"
@@ -31,7 +32,7 @@ export default function ProfileCertificate({ user }) {
                 <div>
                   <div className="pusercertificatebox">
                     <div className="pusercertificateboximg">
-                      {/* <img src={img} alt="" /> */}
+                      <img src={img} alt="" />
                     </div>
                     <div className="pusercertificateboxtext">
                       <div className="pusercertificateboxtexthead">
@@ -67,7 +68,7 @@ export default function ProfileCertificate({ user }) {
               </div>
               <hr
                 style={{
-                  width: "80vw",
+                  width: "71vw",
                   margin: "1vw 0vw",
                   marginBottom: "1vw",
                   color: "#00000090",

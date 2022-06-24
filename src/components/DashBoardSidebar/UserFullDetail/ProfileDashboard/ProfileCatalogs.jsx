@@ -6,12 +6,10 @@ import axios from "axios";
 import img5 from "../../../../assets/My profile – 28/local_police_black_24dp.svg";
 import img46 from "../../../../assets/My profile – 28/Landing page – 19.png";
 import API_HOST from "../../../../env";
-import { useSelector } from "react-redux";
+
 import { LockClockOutlined } from "@mui/icons-material";
 import StarRatings from "react-star-ratings";
-export default function ProfileCatalogs({user}) {
-  
-
+export default function ProfileCatalogs({ user }) {
   const [allCatalogs, setAllCatalogs] = useState([]);
 
   useEffect(() => {
@@ -42,19 +40,20 @@ export default function ProfileCatalogs({user}) {
         {allCatalogs.length > 0 &&
           allCatalogs?.map((catalogue, index) => {
             return (
-                <div className="pcatelogbox">
+              <div
+                style={{ margin: "1vw 2vw", width: "32vw" }}
+                className="pcatelogbox"
+              >
                 <div
                   style={{
                     background: `url('${
-                      catalogue?.files[0]?.file ? catalogue?.files[0]?.file : img46
+                      catalogue?.files[0]?.file
+                        ? catalogue?.files[0]?.file
+                        : img46
                     }') center center / cover no-repeat`,
                   }}
                   className="pcatelogimg"
-                >
-                  <div className="pcatelogimg2">
-                  
-                  </div>
-                </div>
+                ></div>
                 <div className="pcatelog-title">{catalogue?.title}</div>
                 <div className="pcatelogdate">
                   <div>
@@ -101,7 +100,6 @@ export default function ProfileCatalogs({user}) {
                   </div>
                 </div>
               </div>
-           
             );
           })}
       </div>
