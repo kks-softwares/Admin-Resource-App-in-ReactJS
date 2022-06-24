@@ -17,6 +17,10 @@
   flex-direction: column;
   box-shadow: 0px 2px 4px #00000029;
 }
+.hb-buttonx:hover{
+    background-color: #064C87;
+    color:white;
+}
 .titileofcardofexamstype {
   font-size: 1vw;
   font-weight: 500;

@@ -4,7 +4,7 @@ import img from "../../../assets/Landing page/apple (1)@2x.png";
 import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
 import { Navigate, useNavigate } from "react-router";
 
-export default function Skillpopup({data}) {
+export default function Skillpopup({data,index,page}) {
   const navigate = useNavigate();
   return (
     <div>
@@ -13,11 +13,11 @@ export default function Skillpopup({data}) {
           onClick={() => {
             navigate(`/dashbaord/${data?.userName}/My Profile`);
           }}
-          style={{ width: "10vw", cursor: "pointer" }}
+          style={{ width: "6vw", cursor: "pointer" }}
         >
-          #5435
+          #{(page-1)*10+(index+1)}
         </div>
-        <div style={{ width: "6vw" }}>
+        <div style={{ width: "9vw" }}>
           <img
             onClick={() => {
                 navigate(`/dashbaord/${data?.userName}/My Profile`);

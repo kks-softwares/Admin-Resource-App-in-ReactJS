@@ -24,6 +24,7 @@ export default function Dashbaord() {
               width: "84vw",
               height: "100%",
               overflow: "scroll",
+              overflowX:"hidden"
             }}
           >
             <Outlet />

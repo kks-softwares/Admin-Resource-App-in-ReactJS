@@ -287,8 +287,8 @@ export default function Users() {
           style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
           className="navoftableblogs"
         >
-          <div style={{ width: "10vw" }}>Id</div>
-          <div style={{ width: "6vw" }}> </div>
+          <div style={{ width: "6vw" }}>Id</div>
+          <div style={{ width: "9vw" }}> </div>
           <div style={{ width: "15vw" }}>Name</div>
           <div style={{ width: "15vw" }}>category</div>
           <div style={{ width: "15vw" }}>Designation</div>
@@ -296,8 +296,8 @@ export default function Users() {
           <div style={{ width: "6vw" }}></div>
         </div>
         {allusers.length > 0 &&
-          allusers?.map((data) => {
-            return <Skillpopup data={data} />;
+          allusers?.map((data,index) => {
+            return <Skillpopup data={data}  index={index} page={page}/>;
           })}
 
         {totalpages !== 1 ? (

@@ -84,6 +84,20 @@ export default function SkillCenter() {
 
       <div
         style={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "78vw",
+          margin: "1vw 1vw",
+          alignItems: "center",
+          height:"3vw"
+        }}
+      >
+        <div style={{color:"#064C87",fontSize:"2.1vw",textTransform:"capitalize"}}>{user?.fullName}</div>
+        <button  className="hb-buttonx">Chat us</button>
+      </div>
+
+      <div
+        style={{
           position: "relative",
           right: "1vw",
           maxWidth: "80vw",
