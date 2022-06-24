@@ -40,10 +40,7 @@ export default function Login() {
     axios
       .post(`${API_HOST}/adminLogin`, data)
       .then((res) => {
-        if (res.data?.fails) {
-          setWrongid(true);
-          setWrongidp(false);
-        } else {
+     
           setWrongid(false);
           setWrongidp(false);
 
@@ -53,16 +50,16 @@ export default function Login() {
             })
           );
           navigate("/dashbaord/users");
-        }
+        
       })
       .catch((e) => {
         console.log(e.response);
-        if (e.response.status === 404) {
-          setWrongid(true);
-          setWrongidp(false);
+        if (e.response.status === 404 || e.response.status === 406 ) {
+            setWrongidp(true);
+            setWrongid(false);
         } else {
-          setWrongidp(true);
-          setWrongid(false);
+          setWrongidp(false);
+          setWrongid(true);
         }
       });
   };
