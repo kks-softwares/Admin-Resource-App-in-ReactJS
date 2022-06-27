@@ -11,7 +11,7 @@ export default function Skillpopup1({ data, index, page }) {
       <div style={{ alignItems: "center" }} className="navoftableblogsdata">
         <div
           onClick={() => {
-            navigate(`/dashbaord/${data?.userName}/My Profile`);
+            navigate(`/dashbaord/blog`);
           }}
           style={{ width: "6vw", cursor: "pointer" }}
         >
@@ -20,7 +20,7 @@ export default function Skillpopup1({ data, index, page }) {
 
         <div
           onClick={() => {
-            navigate(`/dashbaord/${data?.userName}/My Profile`);
+            navigate(`/dashbaord/blog`);
           }}
           style={{ width: "15vw", cursor: "pointer" }}
         >

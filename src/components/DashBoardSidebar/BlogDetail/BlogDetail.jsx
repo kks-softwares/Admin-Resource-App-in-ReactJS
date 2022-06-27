@@ -1,191 +1,54 @@
 import React, { useState } from "react";
-import CloseIcon from "@mui/icons-material/Close";
-import { useNavigate } from "react-router";
-import AddIcon from "@mui/icons-material/Add";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import AddTableofContent from "./AddTableofContent";
 import img2 from "../../../assets/Web 1280 – 2/kaleidico-3V8xo5Gbusk-unsplash.png";
 import Cataloguecarosel from "./CatalogCarosel";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "70vw",
-  height: "50vw",
-  maxHeight: "50vw",
-  bgcolor: "background.paper",
-  border: "2px solid #ffffff",
-  overflowY: "scroll",
-  boxShadow: 24,
-  p: 4,
-};
-
-export default function Addblog() {
-  const [arrayofblogs, setArrayofblogs] = useState([1, 2]);
-  const navigate = useNavigate();
-  const [erroeshow, setErroeshow] = useState(false);
+import "./BlogDetail.css";
+import { useNavigate } from "react-router";
+import { ArrowBackIosNewOutlined } from "@mui/icons-material";
+export default function BlogDetail() {
   const [title, setTitle] = useState("");
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const navigate = useNavigate();
   return (
     <div>
       <div
+        onClick={() => navigate(-1)}
         style={{
-          width: "70vw",
-          margin: "auto",
-          height: "fit-content",
-          marginTop: "2vw",
+          cursor: "pointer",
+          marginBottom: "0vw",
+          position: "relative",
+          left: "1vw",
+          top: "1vw",
         }}
-        className="home-postjob-container"
+        className="filtericonboxname"
       >
-        <div
-          style={{
-            overflowX: "hidden",
-            paddingLeft: "4vw",
-            width: "70vw",
-            paddingTop: "2vw",
-          }}
-          className="homepostjob-right"
-        >
-          <div className="jobpostedformheading">Add Blogs</div>
-
-          <div>
-            <div className="jobpodtedfieldtitile"> Title</div>
-            <div className="jobpostfieldinputbox">
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                }}
-              />
-              <CloseIcon
-                style={{
-                  position: "relative",
-                  right: "2vw",
-                  top: "1.1vw",
-                  fontSize: "1.5vw",
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  setTitle("");
-                }}
-              />
-            </div>
-            {arrayofblogs.length > 0 &&
-              arrayofblogs?.map((data, index) => {
-                return (
-                  <AddTableofContent
-                    setArrayofblogs={setArrayofblogs}
-                    arrayofblogs={arrayofblogs}
-                    index={index}
-                  />
-                );
-              })}
-            <div
-              style={{ marginLeft: "1vw" }}
-              className="addmoreservicecatalog"
-              onClick={() => {
-                setArrayofblogs([...arrayofblogs, arrayofblogs.length + 1]);
+        <ArrowBackIosNewOutlined />
+      </div>
+      <div style={{ margin: "2vw" }}>
+        <div style={{ padding: "0vw" }} className="Blogdbannercontainer">
+          <div className="ctatlogcarouseltitle">
+            <button
+              style={{
+                marginLeft: "1vw",
+                width: "10vw",
+                cursor: "auto",
+                position: "relative",
+                top: "4vw",
+                zIndex: "100",
               }}
+              className="hb-button"
             >
-              <span>
-                <AddIcon style={{ fontSize: "1.3vw" }} />
-              </span>{" "}
-              Add More Milestones
+              Design
+            </button>
+            <div className="textofcontainercatalgue">
+              You will get a professional Facebook cover photo banner design in
+              24 hrs
             </div>
-            {erroeshow ? (
-              <div style={{ color: "red" }} className="jobpodtedfieldtitile">
-                {" "}
-                * Fill All the Fields
-              </div>
-            ) : (
-              ""
-            )}{" "}
-            <div style={{ marginBottom: "4vw" }} className="homejobbuttons">
-              <button
-                style={{ background: "white" }}
-                onClick={() => {
-                  navigate("/dashbaord/blog");
-                }}
-              >
-                Cancel
-              </button>
-
-              <button onClick={handleOpen} style={{ color: "white" }}>
-                Preview
-              </button>
-            </div>
+          </div>
+          <div style={{ position: "relative", bottom: "2.2vw" }}>
+            <Cataloguecarosel />
           </div>
         </div>
-      </div>
 
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <div className="profiletitleandmenunav">
-            <div className="profiledetailstitle">Preview Blogs</div>
-            <div className="profiledetailnavmanu">
-              <div>
-                <CloseIcon
-                  onClick={handleClose}
-                  style={{ fontSize: "1.5vw" }}
-                />
-              </div>
-            </div>
-          </div>
-          <hr style={{ color: "#00000090" }} />
-
-          <div style={{ padding: "0vw" }} className="Blogdbannercontainer">
-            <div className="ctatlogcarouseltitle">
-              <button
-                style={{
-                  marginLeft: "1vw",
-                  width: "10vw",
-                  cursor: "auto",
-                  position: "relative",
-                  top: "4vw",
-                  zIndex: "100",
-                }}
-                className="hb-button"
-              >
-                Design
-              </button>
-              <div className="textofcontainercatalgue">
-                You will get a professional Facebook cover photo banner design
-                in 24 hrs
-              </div>
-            </div>
-            <div style={{ position: "relative", bottom: "2.2vw" }}>
-              <Cataloguecarosel />
-            </div>
-          </div>
-          <hr style={{ margin: "0vw", height: "0vw" }} />
-          <div className="jobpodtedfieldtitile"> Title</div>
-          <div className="jobpostfieldinputbox">
-            <input type="text" value={title} disabled />
-            <CloseIcon
-              style={{
-                position: "relative",
-                left: "1.2vw",
-                top: "1.1vw",
-                fontSize: "1.5vw",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                setTitle("");
-              }}
-            />
-          </div>
-
+        <div style={{ position: "relative", bottom: "3vw" }}>
           <div className="jobpodtedfieldtitile"> Table of Content</div>
 
           <div className="widthfullblofpreview">
@@ -430,10 +293,24 @@ export default function Addblog() {
                 background: "white",
                 color: "black",
                 cursor: "pointer",
+                border: "1px solid #064C87",
+                marginRight: "1vw",
               }}
               className="handlecirclieaboutsave"
             >
               Cancel
+            </div>
+            <div
+              style={{
+                background: "white",
+                color: "black",
+                cursor: "pointer",
+                border: "1px solid #064C87",
+                marginRight: "1vw",
+              }}
+              className="handlecirclieaboutsave"
+            >
+              Reject
             </div>
             <div
               style={{ cursor: "pointer" }}
@@ -442,8 +319,8 @@ export default function Addblog() {
               Submit
             </div>
           </div>
-        </Box>
-      </Modal>
+        </div>
+      </div>
     </div>
   );
 }
