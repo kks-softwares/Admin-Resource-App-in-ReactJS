@@ -14,6 +14,8 @@ import Dashbaord from "./pages/Dashbaord/Dashbaord";
 import Users from "./components/DashBoardSidebar/Users/Users";
 import { useSelector } from "react-redux";
 import UserFullDetails from "./components/DashBoardSidebar/UserFullDetail/UserFullDetails";
+import Blogs from "./components/DashBoardSidebar/Blogs/Blogs";
+import Addblog from "./components/DashBoardSidebar/AddBlog/Addblog";
 
 function LayoutsWithNavbar() {
   return (
@@ -58,6 +60,8 @@ function App() {
           >
         
             <Route path="/dashbaord/users" element={<Users />} />
+            <Route path="/dashbaord/blogs" element={<Blogs />} />
+            <Route path="/dashbaord/addBlog" element={<Addblog />} />
             <Route path="/dashbaord/:userName/:type" element={<UserFullDetails />} />
            
           </Route>

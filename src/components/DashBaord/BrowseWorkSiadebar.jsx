@@ -31,7 +31,7 @@ export default function BrowseWorkSiadebar() {
           Employee
         </div>
       </Link>
-      <Link to="/dashbaord/Blogs">
+      <Link to="/dashbaord/blogs">
         <div className="firstsidebarmenu">
           <img src={img7} alt="" />
           Blogs
