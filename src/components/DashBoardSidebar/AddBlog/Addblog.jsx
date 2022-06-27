@@ -137,7 +137,7 @@ export default function Addblog() {
               <div>
                 <CloseIcon
                   onClick={handleClose}
-                  style={{ fontSize: "1.5vw" }}
+                  style={{ fontSize: "1.5vw" ,    cursor: "pointer", }}
                 />
               </div>
             </div>
@@ -169,7 +169,8 @@ export default function Addblog() {
             </div>
           </div>
           <hr style={{ margin: "0vw", height: "0vw" }} />
-          <div className="jobpodtedfieldtitile"> Title</div>
+           <div style={{position:"relative",bottom:"3vw"}}>
+           <div className="jobpodtedfieldtitile"> Title</div>
           <div className="jobpostfieldinputbox">
             <input type="text" value={title} disabled />
             <CloseIcon
@@ -442,6 +443,7 @@ export default function Addblog() {
               Submit
             </div>
           </div>
+           </div>
         </Box>
       </Modal>
     </div>
