@@ -4,9 +4,9 @@ import { useNavigate } from "react-router";
 import AddIcon from "@mui/icons-material/Add";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import AddTableofContent from "./AddTableofContent";
+import AddTableofContent1 from "./AddTableofContent1";
 import img2 from "../../../assets/Web 1280 – 2/kaleidico-3V8xo5Gbusk-unsplash.png";
-import Cataloguecarosel from "./CatalogCarosel";
+import Cataloguecarosel1 from "./CatalogCarosel1";
 import img from "../../../assets/Web 1280 – 14/Icon.svg";
 import img1 from "../../../assets/Web 1280 – 14/Group 9831.svg";
 import img21 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg";
@@ -26,7 +26,7 @@ const style = {
   p: 4,
 };
 
-export default function Addblog() {
+export default function Editblog() {
   const [arrayofblogs, setArrayofblogs] = useState([1, 2]);
   const navigate = useNavigate();
   const [erroeshow, setErroeshow] = useState(false);
@@ -56,7 +56,7 @@ export default function Addblog() {
           }}
           className="homepostjob-right"
         >
-          <div className="jobpostedformheading">Add Blogs</div>
+          <div className="jobpostedformheading">Edit Blog</div>
 
           <div>
             <div className="jobpodtedfieldtitile"> Title</div>
@@ -151,7 +151,7 @@ export default function Addblog() {
             {arrayofblogs.length > 0 &&
               arrayofblogs?.map((data, index) => {
                 return (
-                  <AddTableofContent
+                  <AddTableofContent1
                     setArrayofblogs={setArrayofblogs}
                     arrayofblogs={arrayofblogs}
                     index={index}
@@ -237,7 +237,7 @@ export default function Addblog() {
               </div>
             </div>
             <div style={{ position: "relative", bottom: "2.2vw" }}>
-              <Cataloguecarosel />
+              <Cataloguecarosel1 />
             </div>
           </div>
           <hr style={{ margin: "0vw", height: "0vw" }} />
@@ -525,7 +525,7 @@ export default function Addblog() {
                 style={{ cursor: "pointer" }}
                 className="handlecirclieaboutsave"
               >
-                Submit
+                Update
               </div>
             </div>
           </div>

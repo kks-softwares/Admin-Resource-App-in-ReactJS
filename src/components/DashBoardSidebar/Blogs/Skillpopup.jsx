@@ -51,6 +51,7 @@ export default function Skillpopup1({ data, index, page }) {
         <div style={{ width: "4vw" }}>
           {" "}
           <img
+          onClick={()=>navigate('/dashbaord/editBlog')}
             style={{
               margin: "0 0.5vw",
               width: "2vw ",

@@ -1,0 +1,371 @@
+import React, { useState } from "react";
+import CloseIcon from "@mui/icons-material/Close";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { makeStyles } from "@material-ui/core";
+import Box from "@mui/material/Box";
+
+import { useNavigate } from "react-router";
+
+import img from "../../../assets/Web 1280 – 14/Icon.svg";
+import img1 from "../../../assets/Web 1280 – 14/Group 9831.svg";
+import img22 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg";
+
+import { TextEditor } from "../BiddingForm/Texteditor";
+const useStyles = makeStyles((theme) => ({
+  select: {
+    height: "2.5vw",
+    width: "100%",
+    marginTop: "0.2vw",
+    padding: "1vw",
+    marginLeft: "0vw",
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: "1vw",
+    lineHeight: "120%",
+    color: "black",
+  },
+  select2: {
+    height: "1vw",
+    width: "100%",
+    marginTop: "0.1vw",
+    padding: "0.9vw 0.5vw",
+    marginLeft: "0vw",
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "0.51vw",
+    lineHeight: "100%",
+  },
+  select3: {
+    height: "1vw",
+    width: "100%",
+    marginTop: "0.1vw",
+    padding: "0vw 0vw",
+    marginLeft: "0vw",
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "0.51vw",
+    lineHeight: "100%",
+
+    position: "relative",
+    top: "0.81vw",
+    left: "0.2vw",
+  },
+  icon: {
+    fill: "white",
+  },
+}));
+export default function AddTableofContent1({setArrayofblogs,arrayofblogs,index}) {
+    const [previewblog, setPreviewblog] = useState(false)
+    const [description1, setDescription1] = useState("");
+    const navigate = useNavigate();
+  
+    const classes = useStyles();
+  
+    const [age4, setAge4] = React.useState(10);
+    const [age5, setAge5] = React.useState(10);
+    const [arrayoffiles, setArrayoffiles] = useState([]);
+    const handleChange4x = (event) => {
+      setAge4(event.target.value);
+    };
+    const handleChange5x = (event) => {
+      setAge5(event.target.value);
+    };
+  
+    const [desc, setDesc] = useState("");
+    const [minBudegt, setMinBudegt] = useState();
+    const [maxBudegt, setMaxBudegt] = useState();
+  return (
+      <>
+    { <div>
+         <div
+              style={{
+                left: "0vw",
+                width: "96%",
+                margin: "2vw 0vw 2vw 0vw",
+                display: "block",
+              }}
+              className="loginfield"
+            >
+              <div
+                style={{
+                  marginBottom: "0.0vw",
+                  marginBottom: "1vw",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+                className="jobpodtedfieldtitile"
+              >
+                <div>Table of Content </div>
+                <div>
+                  <CloseIcon
+                    style={{
+                      position: "relative",
+                      right: "1vw",
+                      fontSize: "2vw",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                        setArrayofblogs([
+                          ...arrayofblogs.slice(0, index),
+                          ...arrayofblogs.slice(
+                            index + 1,
+                            arrayofblogs.length
+                          ),
+                        ]);
+                      }}
+                  />
+                </div>
+              </div>
+              <div style={{ marginBottom: "2vw" }}>
+                <TextEditor width={"65vw"} setDescription1={setDescription1} />
+              </div>
+            </div>
+            <div
+              style={{
+                marginBottom: "0.0vw",
+
+                marginTop: "2vw",
+              }}
+              className="jobpodtedfieldtitile"
+            >
+              Image/Documents
+            </div>
+            <div
+              style={{
+                background: "white",
+                padding: "1vw",
+                marginTop: "0vw",
+                paddingRight: "2.5vw",
+                paddingLeft: "0vw",
+              }}
+            >
+              <div className="inputfilebox">
+                <div>
+                  <label htmlFor="inputctaelogfile">
+                    <div className="inputicon">
+                      <img src={img} alt="" />
+                    </div>
+                    <div className="inputcateaddformfile">
+                      Drag and Drop ,Browse to upload
+                    </div>
+                    <input
+                      type="file"
+                      id="inputctaelogfile"
+                      onChange={(e) => {
+                        setArrayoffiles([...arrayoffiles, e.target.files[0]]);
+                      }}
+                      hidden
+                    />
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div className="inputfilesshowncatebox">
+              {arrayoffiles?.length > 0 &&
+                arrayoffiles?.map((file, index) => {
+                  return (
+                    <div className="inputfilesshowncatboxsingle">
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <img src={img1} alt="" />
+                      </div>
+                      <div className="fileselctednamecate">{file?.name}</div>
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <img
+                          style={{
+                            width: "1.5vw",
+                            marginLeft: "1vw",
+                            cursor: "pointer",
+                          }}
+                          src={img22}
+                          alt=""
+                          onClick={() => {
+                            setArrayoffiles([
+                              ...arrayoffiles.slice(0, index),
+                              ...arrayoffiles.slice(
+                                index + 1,
+                                arrayoffiles.length
+                              ),
+                            ]);
+                          }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+            <div className="jobpodtedfieldtitile">Call to Action</div>
+            <div className="homjobpost-popbudegt">
+              <div className="min-maxhomejob">Title</div>
+              <div className="">
+                <Box
+                  sx={{
+                    background: "white",
+                    border: "1px solid #7070705b",
+                    height: "2.6vw",
+                    width: "24.5vw",
+                    borderRadius: "5px",
+                    margin: "0.5vw 1.5vw",
+                    padding: "0.2vw 0.2vw",
+                  }}
+                  className="setting-toggler"
+                >
+                  <FormControl variant="standard" fullWidth>
+                    <Select
+                      className={classes.select2}
+                      labelId="demo-simple-select-standard-label"
+                      id="demo-simple-select-standard"
+                      value={age4}
+                      disableUnderline
+                      inputProps={{
+                        classes: {
+                          icon: classes.icon,
+                        },
+                      }}
+                      onChange={handleChange4x}
+                      MenuProps={{
+                        PaperProps: {
+                          sx: {
+                            bgcolor: "white",
+
+                            "& .MuiMenuItem-root": {
+                              padding: "0.1vw 2vw",
+                              width: "23vw",
+                              height: "2vw",
+                              fontFamily: "Poppins",
+                              fontStyle: "normal",
+                              fontWeight: "500",
+                              fontSize: "0.81vw",
+                              lineHeight: "24px",
+                              color: "#6b6b6b",
+                            },
+                          },
+                        },
+                      }}
+                    >
+                      <MenuItem
+                        onClick={() => {
+                          setMinBudegt(10);
+                        }}
+                        value={10}
+                      >
+                      Mobile app Development Tips
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setMinBudegt(20);
+                        }}
+                        value={20}
+                      >
+                        Mobile app Development Tips
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setMinBudegt(50);
+                        }}
+                        value={30}
+                      >
+                       Mobile app Development Tips
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+              </div>
+              <div style={{ marginLeft: "1vw" }} className="min-maxhomejob">
+                Button Name
+              </div>
+              <div className="">
+                <Box
+                  sx={{
+                    background: "white",
+                    border: "1px solid #7070705b",
+                    height: "2.6vw",
+                    width: "25vw",
+                    borderRadius: "5px",
+                    margin: "0.5vw 1.5vw",
+                    padding: "0.2vw 0.2vw",
+                  }}
+                  className="setting-toggler"
+                >
+                  <FormControl variant="standard" fullWidth>
+                    <Select
+                      className={classes.select2}
+                      labelId="demo-simple-select-standard-label"
+                      id="demo-simple-select-standard"
+                      value={age5}
+                      disableUnderline
+                      inputProps={{
+                        classes: {
+                          icon: classes.icon,
+                        },
+                      }}
+                      onChange={handleChange5x}
+                      MenuProps={{
+                        PaperProps: {
+                          sx: {
+                            bgcolor: "white",
+                            "& .MuiMenuItem-root": {
+                              padding: "0.1vw 2vw",
+                              width: "23vw",
+                              height: "2vw",
+                              fontFamily: "Poppins",
+                              fontStyle: "normal",
+                              fontWeight: "500",
+                              fontSize: "0.81vw",
+                              lineHeight: "24px",
+                              color: "#6b6b6b",
+                            },
+                          },
+                        },
+                      }}
+                    >
+                      <MenuItem
+                        onClick={() => {
+                          setMaxBudegt(100);
+                        }}
+                        value={10}
+                      >
+                       Join Now
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setMaxBudegt(200);
+                        }}
+                        value={20}
+                      >
+                        Join Now
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setMaxBudegt(500);
+                        }}
+                        value={30}
+                      >
+                        Join Now
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+              </div>
+            </div>
+            <div className="jobpodtedfieldtitile">Description</div>
+            <div className="jobpostfieldinputbox">
+              <textarea
+                type="text"
+                placeholder="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit debitis eaque totam. Impedit ad et, dolor explicabo sequi distinctio debitis est neque dolore ipsum ut amet pariatur laboriosam nisi ipsam?
+                "
+                value={desc}
+                style={{ padding: "0.5vw" }}
+                onChange={(e) => {
+                  setDesc(e.target.value);
+                }}
+              />
+            </div>
+    </div>}
+    </>
+  )
+}
