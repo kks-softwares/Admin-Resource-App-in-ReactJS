@@ -49,76 +49,110 @@ a {
 }
 
 .jobpostfieldinputbox input {
-  width: 94% !important;
+  width: 94% !important;fill:black
 }
 
 .css-29aysa {
-  width: 94% !important;
+  width: 94% !important;fill:black
 }
 .makeStyles-select-1 {
-  width: 100% !important;
+  width: 100% !important;fill:black
 }
 .jobpostfieldinputbox textarea {
-  width: 94% !important;
+  width: 94% !important;fill:black
 }
 .makeStyles-select-73 {
-  width: 100% !important;
+  width: 100% !important;fill:black
 }
 
 .makeStyles-select-13 {
-  width: 100% !important;
+  width: 100% !important;fill:black
 }
 .makeStyles-select2-2 {
-  width: 100% !important;
+  width: 100% !important;fill:black
 }
 .makeStyles-select-3{
-    width: 100% !important; 
+    width: 100% !important; fill:black
 }
 .css-tzsjye{
  vertical-align: center !important;
- vertical-align: middle;
+ vertical-align: middle !important;
+ padding: 0.51vw 0vw;
+ padding:0vw 0.2vw;
  color: black !important;
+ fill:black
 }
 
 .activejobpostbox {
+    display: flex;
+   
+    align-items: center;
   height: fit-content !important;
 }
 .jss1{
-  width: 100% !important;
+    padding:0vw 0.3vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: none;
   color: black !important;
-  font-weight: 400 !important;
+  font-weight: 400 !important;fill:black
 }
 .jss2{
-  width: 100% !important;
+    padding:0vw 0.2vw;
+    padding:0vw 0.4vw;
+    display: flex;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: none;
   color: black !important;
-  font-weight: 400 !important;
+  font-weight: 400 !important;fill:black
 }
 .jss3{
-  width: 100% !important;
+  display: flex;
+  padding:0vw 0.4vw;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
   color: black !important;
-  font-weight: 400 !important;
+  font-weight: 400 !important;fill:black
 }
 .jss5{
-  width: 100% !important;
+    display: flex;
+    padding:0vw 0.4vw;
+    align-items: center;
+    justify-content: space-between;
+    text-align: none;
   color: black !important;
-  font-weight: 400 !important;
+  font-weight: 400 !important;fill:black
 }
 .jss4{
-  width: 100% !important;
+    display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
+  padding:0vw 0.4vw;
   color: black !important;
-  font-weight: 400 !important;
+  font-weight: 400 !important;fill:black
 }
 .jss6{
-  width: 100% !important;
+    display: flex;
+    padding:0vw 0.4vw;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
   color: black !important;
-  font-weight: 400 !important;
+  font-weight: 400 !important;fill:black
 }
 
 .css-1cccqvr.MuiSelect-select{
-    color: black;
+    color: black;fill:black
 }
 .recentnamesearc{
   cursor: pointer;
+
 }
 
 

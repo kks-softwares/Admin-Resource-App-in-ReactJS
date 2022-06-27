@@ -30,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
   select2: {
     height: "1vw",
     width: "100%",
-    marginTop: "0.1vw",
-    padding: "0.9vw 0.5vw",
+   
+    padding: "1vw 0.5vw",
     marginLeft: "0vw",
     fontFamily: "Poppins",
     fontStyle: "normal",
