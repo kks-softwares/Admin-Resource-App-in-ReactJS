@@ -22,18 +22,11 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+
 export default function Blogs() {
-  const [openx, setOpenx] = React.useState(false);
-  const [anchorElx, setAnchorElx] = React.useState(null);
-  const canBeOpen = openx && Boolean(anchorElx);
-  const id = canBeOpen ? "transition-popper" : undefined;
-  const [workhistorytoggle, setWorkhistorytoggle] = useState(1);
-
   const navigate = useNavigate();
-
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
-
   const [setSelectedCategory, setSetSelectedCategory] = useState("");
   const [arrayoffilters, setArrayoffilters] = useState([
     {
@@ -48,7 +41,6 @@ export default function Blogs() {
   ]);
 
   const [arrayoffilterselected, setarrayoffilterselected] = useState([]);
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -143,9 +135,6 @@ export default function Blogs() {
           style={{
             textAlign: "left",
           }}
-          onClick={() => {
-            setWorkhistorytoggle(1);
-          }}
         >
           List of Blogs
         </div>
@@ -163,147 +152,156 @@ export default function Blogs() {
           }}
         ></div>
       </div>
-    
-    <div style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
 
-      <div>
-        <div style={{ flexWrap: "wrap" }} className="filterboxflex">
-          <div
-            onClick={() => {
-              handleOpen();
-              setPreviosfilter([...arrayoffilterselected]);
-            }}
-            className="filtericonbox"
-          >
-            <img src={imgfilter} alt="" />
-          </div>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <div>
+          <div style={{ flexWrap: "wrap" }} className="filterboxflex">
+            <div
+              onClick={() => {
+                handleOpen();
+                setPreviosfilter([...arrayoffilterselected]);
+              }}
+              className="filtericonbox"
+            >
+              <img src={imgfilter} alt="" />
+            </div>
 
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <div className="profiletitleandmenunav">
-                <div className="profiledetailstitle">Add Filters</div>
-                <div className="profiledetailnavmanu">
-                  <div>
-                    <CloseIcon
-                      onClick={handleClose}
-                      style={{ fontSize: "1.5vw" }}
-                    />
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <div className="profiletitleandmenunav">
+                  <div className="profiledetailstitle">Add Filters</div>
+                  <div className="profiledetailnavmanu">
+                    <div>
+                      <CloseIcon
+                        onClick={handleClose}
+                        style={{ fontSize: "1.5vw" }}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <hr style={{ color: "#00000090" }} />
+                <hr style={{ color: "#00000090" }} />
 
-              {arrayoffilters?.map((data, index) => {
-                return (
-                  <div>
-                    <div
-                      style={{ fontSize: "1.2vw" }}
-                      className="profiledetailstitle"
-                    >
-                      {data?.filternameName}
+                {arrayoffilters?.map((data, index) => {
+                  return (
+                    <div>
+                      <div
+                        style={{ fontSize: "1.2vw" }}
+                        className="profiledetailstitle"
+                      >
+                        {data?.filternameName}
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        {data?.filters?.map((data1, index) => {
+                          return (
+                            <div
+                              onClick={() => {
+                                console.log(
+                                  arrayoffilterselected.indexOf(data1)
+                                );
+                                if (arrayoffilterselected.indexOf(data1) > -1) {
+                                  setarrayoffilterselected([
+                                    ...arrayoffilterselected.slice(
+                                      0,
+                                      arrayoffilterselected.indexOf(data1)
+                                    ),
+                                    ...arrayoffilterselected.slice(
+                                      arrayoffilterselected.indexOf(data1) + 1,
+                                      arrayoffilterselected.length
+                                    ),
+                                  ]);
+                                } else {
+                                  setarrayoffilterselected([
+                                    ...arrayoffilterselected,
+                                    data1,
+                                  ]);
+                                }
+                              }}
+                              style={{
+                                background: arrayoffilterselected.includes(
+                                  data1
+                                )
+                                  ? "#064C8720"
+                                  : "",
+                                cursor: "pointer",
+                              }}
+                              className="filterboxnameskill"
+                            >
+                              {data1}
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        flexWrap: "wrap",
-                      }}
-                    >
-                      {data?.filters?.map((data1, index) => {
-                        return (
-                          <div
-                            onClick={() => {
-                              console.log(arrayoffilterselected.indexOf(data1));
-                              if (arrayoffilterselected.indexOf(data1) > -1) {
-                                setarrayoffilterselected([
-                                  ...arrayoffilterselected.slice(
-                                    0,
-                                    arrayoffilterselected.indexOf(data1)
-                                  ),
-                                  ...arrayoffilterselected.slice(
-                                    arrayoffilterselected.indexOf(data1) + 1,
-                                    arrayoffilterselected.length
-                                  ),
-                                ]);
-                              } else {
-                                setarrayoffilterselected([
-                                  ...arrayoffilterselected,
-                                  data1,
-                                ]);
-                              }
-                            }}
-                            style={{
-                              background: arrayoffilterselected.includes(data1)
-                                ? "#064C8720"
-                                : "",
-                              cursor: "pointer",
-                            }}
-                            className="filterboxnameskill"
-                          >
-                            {data1}
-                          </div>
-                        );
-                      })}
-                    </div>
+                  );
+                })}
+
+                <hr style={{ color: "#00000090" }} />
+                <div
+                  style={{ marginTop: "0.31vw" }}
+                  className="handlemoreaboutskill"
+                >
+                  <div
+                    style={{
+                      background: "white",
+                      color: "black",
+                      cursor: "pointer",
+                    }}
+                    className="handlecirclieaboutsave"
+                    onClick={() => {
+                      setarrayoffilterselected(previosfilter);
+                      handleClose();
+                    }}
+                  >
+                    Cancel
                   </div>
-                );
+                  <div
+                    style={{ cursor: "pointer" }}
+                    className="handlecirclieaboutsave"
+                    // onClick={handleeducationdelete}
+                  >
+                    Submit
+                  </div>
+                </div>
+              </Box>
+            </Modal>
+
+            {arrayoffilterselected?.length > 0 &&
+              arrayoffilterselected?.map((filtername) => {
+                return <div className="filtericonboxname">{filtername}</div>;
               })}
 
-              <hr style={{ color: "#00000090" }} />
-              <div
-                style={{ marginTop: "0.31vw" }}
-                className="handlemoreaboutskill"
-              >
-                <div
-                  style={{
-                    background: "white",
-                    color: "black",
-                    cursor: "pointer",
-                  }}
-                  className="handlecirclieaboutsave"
-                  onClick={() => {
-                    setarrayoffilterselected(previosfilter);
-                    handleClose();
-                  }}
-                >
-                  Cancel
-                </div>
-                <div
-                  style={{ cursor: "pointer" }}
-                  className="handlecirclieaboutsave"
-                  // onClick={handleeducationdelete}
-                >
-                  Submit
-                </div>
-              </div>
-            </Box>
-          </Modal>
-
-          {arrayoffilterselected?.length > 0 &&
-            arrayoffilterselected?.map((filtername) => {
-              return <div className="filtericonboxname">{filtername}</div>;
-            })}
-
-          <div
-            onClick={() => setarrayoffilterselected([])}
-            style={{ cursor: "pointer" }}
-            className="filtericonboxname"
-          >
-            Clear all
+            <div
+              onClick={() => setarrayoffilterselected([])}
+              style={{ cursor: "pointer" }}
+              className="filtericonboxname"
+            >
+              Clear all
+            </div>
           </div>
         </div>
-      </div>
 
-      <div style={{width:"10vw"}} 
-          className="digitalwallate">
-              <span style={{ color: "#064C87" }}> Un Publish</span> 
+        <div style={{ width: "10vw" }} className="digitalwallate">
+          <span style={{ color: "#064C87" }}> Un Publish</span>
+        </div>
       </div>
-    </div>
 
       <div>
         <div
@@ -311,7 +309,6 @@ export default function Blogs() {
           className="navoftableblogs"
         >
           <div style={{ width: "5vw" }}>Id</div>
-
           <div style={{ width: "14vw" }}>Title</div>
           <div style={{ width: "10vw" }}>Category</div>
           <div style={{ width: "14vw" }}>Created by</div>
