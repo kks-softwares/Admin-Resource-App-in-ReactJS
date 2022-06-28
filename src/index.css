@@ -49,114 +49,133 @@ a {
 }
 
 .jobpostfieldinputbox input {
-  width: 94% !important;fill:black
+  width: 94% !important;
+  fill: black;
 }
 
 .css-29aysa {
-  width: 94% !important;fill:black
+  width: 94% !important;
+  fill: black;
 }
 .makeStyles-select-1 {
-  width: 100% !important;fill:black
+  width: 100% !important;
+  fill: black;
 }
 .jobpostfieldinputbox textarea {
-  width: 94% !important;fill:black
+  width: 94% !important;
+  fill: black;
 }
 .makeStyles-select-73 {
-  width: 100% !important;fill:black
+  width: 100% !important;
+  fill: black;
 }
 
 .makeStyles-select-13 {
-  width: 100% !important;fill:black
+  width: 100% !important;
+  fill: black;
 }
 .makeStyles-select2-2 {
-  width: 100% !important;fill:black
+  width: 100% !important;
+  fill: black;
 }
-.makeStyles-select-3{
-    width: 100% !important; fill:black
+.makeStyles-select-3 {
+  width: 100% !important;
+  fill: black;
 }
-.css-tzsjye{
- vertical-align: center !important;
- vertical-align: middle !important;
- padding: 0.51vw 0vw;
- padding:0vw 0.2vw;
- color: black !important;
- fill:black
+.css-tzsjye {
+  vertical-align: center !important;
+  vertical-align: middle !important;
+  padding: 0.51vw 0vw;
+  padding: 0vw 0.2vw;
+  color: black !important;
+  fill: black;
 }
 
 .activejobpostbox {
-    display: flex;
-   
-    align-items: center;
+  display: flex;
+
+  align-items: center;
   height: fit-content !important;
 }
-.jss1{
-    padding:0vw 0.3vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: none;
-  color: black !important;
-  font-weight: 400 !important;fill:black
-}
-.jss2{
-    padding:0vw 0.2vw;
-    padding:0vw 0.4vw;
-    display: flex;
-    align-items: center;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: none;
-  color: black !important;
-  font-weight: 400 !important;fill:black
-}
-.jss3{
+.jss1 {
+  padding: 0vw 0.3vw;
   display: flex;
-  padding:0vw 0.4vw;
   align-items: center;
   justify-content: space-between;
   text-align: none;
   color: black !important;
-  font-weight: 400 !important;fill:black
+  font-weight: 400 !important;
+  fill: black;
 }
-.jss5{
-    display: flex;
-    padding:0vw 0.4vw;
-    align-items: center;
-    justify-content: space-between;
-    text-align: none;
-  color: black !important;
-  font-weight: 400 !important;fill:black
-}
-.jss4{
-    display: flex;
+.jss2 {
+  padding: 0vw 0.2vw;
+  padding: 0vw 0.4vw;
+  display: flex;
   align-items: center;
-  justify-content: space-between;
-  text-align: none;
-  padding:0vw 0.4vw;
-  color: black !important;
-  font-weight: 400 !important;fill:black
-}
-.jss6{
-    display: flex;
-    padding:0vw 0.4vw;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   text-align: none;
   color: black !important;
-  font-weight: 400 !important;fill:black
+  font-weight: 400 !important;
+  fill: black;
+}
+.jss3 {
+  display: flex;
+  padding: 0vw 0.4vw;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
+  color: black !important;
+  font-weight: 400 !important;
+  fill: black !important;
+}
+.jss5 {
+  display: flex;
+  padding: 0vw 0.4vw;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
+  color: black !important;
+  font-weight: 400 !important;
+  fill: black;
+}
+.jss4 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
+  padding: 0vw 0.4vw;
+  color: black !important;
+  font-weight: 400 !important;
+  fill: black;
+}
+.jss6 {
+  display: flex;
+  padding: 0vw 0.4vw;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
+  color: black !important;
+  font-weight: 400 !important;
+  fill: black;
 }
 
-.css-1cccqvr.MuiSelect-select{
-    color: black;fill:black
+.css-1cccqvr.MuiSelect-select {
+  color: black;
+  fill: black;
 }
-.recentnamesearc{
+
+.css-1cccqvr.css-1cccqvr.css-1cccqvr {
+    padding-right: 24px;
+    min-width: 16px;
+    padding-top: 1.5vw;
+}
+
+.recentnamesearc {
   cursor: pointer;
-
 }
 
-
-
-.jobpostfieldinputbox input{
+.jobpostfieldinputbox input {
   font-size: 1.1vw;
 }

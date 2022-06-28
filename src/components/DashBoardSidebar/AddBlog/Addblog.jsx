@@ -30,55 +30,52 @@ const style = {
 };
 
 const useStyles = makeStyles((theme) => ({
-    select: {
-      height: "2.5vw",
-      width: "100%",
-      marginTop: "0.2vw",
-      padding: "1vw",
-      marginLeft: "0vw",
-      fontFamily: "Poppins",
-      fontStyle: "normal",
-      fontWeight: "bold",
-      fontSize: "1vw",
-      lineHeight: "120%",
-      color: "black",
-    },
-    select2: {
-      height: "1vw",
-      width: "100%",
-      marginTop: "0.1vw",
-      padding: "0.9vw 0.5vw",
-      marginLeft: "0vw",
-      fontFamily: "Poppins",
-      fontStyle: "normal",
-      fontWeight: "normal",
-      fontSize: "0.51vw",
-      lineHeight: "100%",
-    },
-    select3: {
-      height: "1vw",
-      width: "100%",
-      marginTop: "0.1vw",
-      padding: "0vw 0vw",
-      marginLeft: "0vw",
-      fontFamily: "Poppins",
-      fontStyle: "normal",
-      fontWeight: "normal",
-      fontSize: "0.51vw",
-      lineHeight: "100%",
-  
-      position: "relative",
-      top: "0.81vw",
-      left: "0.2vw",
-    },
-    icon: {
-      fill: "white",
-    },
-  }));
-  
+  select: {
+    height: "2.5vw",
+    width: "100%",
+    marginTop: "0.2vw",
+    padding: "1vw",
+    marginLeft: "0vw",
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: "1vw",
+    lineHeight: "120%",
+    color: "black",
+  },
+  select2: {
+    height: "1vw",
+    width: "100%",
+    padding: "1vw 0.5vw",
+    marginLeft: "0vw",
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "0.51vw",
+    lineHeight: "100%",
+  },
+  select3: {
+    height: "1vw",
+    width: "100%",
+    marginTop: "0.1vw",
+    padding: "0vw 0vw",
+    marginLeft: "0vw",
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "0.51vw",
+    lineHeight: "100%",
+    position: "relative",
+    top: "0.81vw",
+    left: "0.2vw",
+  },
+  icon: {
+    fill: "black",
+  },
+}));
 
 export default function Addblog() {
-    const classes = useStyles();
+  const classes = useStyles();
   const [arrayofblogs, setArrayofblogs] = useState([1]);
   const navigate = useNavigate();
   const [erroeshow, setErroeshow] = useState(false);
@@ -114,23 +111,24 @@ export default function Addblog() {
         >
           <div className="jobpostedformheading">Add Blogs</div>
 
-
-          <div className="jobpodtedfieldtitile">sub Category</div>
+          <div className="jobpodtedfieldtitile"> Category</div>
           <div className="">
             <Box
               sx={{
                 background: "white",
                 border: "1px solid #7070705b",
-                height: "3.0vw",
-                width: "29vw",
+                height: "2.6vw",
+                width: "64vw",
                 borderRadius: "5px",
-                margin: "0.5vw 0vw",
+                margin: "0.5vw 1.5vw",
+                padding: "0.2vw 0.2vw",
+                marginLeft:"0vw"
               }}
               className="setting-toggler"
             >
               <FormControl variant="standard" fullWidth>
                 <Select
-                  className={classes.select}
+                  className={classes.select2}
                   labelId="demo-simple-select-standard-label"
                   id="demo-simple-select-standard"
                   value={age3}
@@ -166,47 +164,44 @@ export default function Addblog() {
                     Select
                   </MenuItem>
 
-                  
-                        <MenuItem
-                          onClick={() => {
-                            setsCate("Business Ideas");
-                          }}
-                          value={ 1}
-                        >
-                          Business Ideas
-                        </MenuItem>
-                      
-                        <MenuItem
-                          onClick={() => {
-                            setsCate("Business Plans");
-                          }}
-                          value={ 2}
-                        >
-                       Business Plans
-                        </MenuItem>
-                        <MenuItem
-                          onClick={() => {
-                            setsCate("Business Plans");
-                          }}
-                          value={ 3}
-                        >
-                     Business Problems
-                        </MenuItem>
-                        <MenuItem
-                          onClick={() => {
-                            setsCate("Business Plans");
-                          }}
-                          value={ 4}
-                        >
-                      Others
-                        </MenuItem>
-                      
-                 
+                  <MenuItem
+                    onClick={() => {
+                      setsCate("Business Ideas");
+                    }}
+                    value={1}
+                  >
+                    Business Ideas
+                  </MenuItem>
+
+                  <MenuItem
+                    onClick={() => {
+                      setsCate("Business Plans");
+                    }}
+                    value={2}
+                  >
+                    Business Plans
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setsCate("Business Plans");
+                    }}
+                    value={3}
+                  >
+                    Business Problems
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setsCate("Business Plans");
+                    }}
+                    value={4}
+                  >
+                    Others
+                  </MenuItem>
                 </Select>
               </FormControl>
             </Box>
           </div>
-  
+
           <div>
             <div className="jobpodtedfieldtitile"> Title</div>
             <div className="jobpostfieldinputbox">
