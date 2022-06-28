@@ -148,7 +148,7 @@ export default function Addblog() {
 
                         "& .MuiMenuItem-root": {
                           padding: "0.1vw 2vw",
-                          width: "29vw",
+                          width: "100%",
                           height: "3vw",
                           fontFamily: "Poppins",
                           fontStyle: "normal",

@@ -178,6 +178,89 @@ a {
   font-weight: 400 !important;
   fill: black;
 }
+.jss11 {
+  padding: 0vw 0.3vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
+  color: black !important;
+  font-weight: 400 !important;
+  fill: black;
+}
+.jss12 {
+  padding: 0vw 0.2vw;
+  padding: 0vw 0.4vw;
+  display: flex;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
+  color: black !important;
+  font-weight: 400 !important;
+  fill: black;
+}
+.jss13 {
+  display: flex;
+  padding: 0vw 0.4vw;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
+  color: black !important;
+  font-weight: 400 !important;
+  fill: black !important;
+}
+.jss15 {
+  display: flex;
+  padding: 0vw 0.4vw;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
+  color: black !important;
+  font-weight: 400 !important;
+  fill: black;
+}
+.jss14 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
+  padding: 0vw 0.4vw;
+  color: black !important;
+  font-weight: 400 !important;
+  fill: black;
+}
+.jss16 {
+  display: flex;
+  padding: 0vw 0.4vw;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
+  color: black !important;
+  font-weight: 400 !important;
+  fill: black;
+}
+.jss17 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
+  padding: 0vw 0.4vw;
+  color: black !important;
+  font-weight: 400 !important;
+  fill: black;
+}
+.jss19 {
+  display: flex;
+  padding: 0vw 0.4vw;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
+  color: black !important;
+  font-weight: 400 !important;
+  fill: black;
+}
 
 .css-1cccqvr.MuiSelect-select {
   color: black;
