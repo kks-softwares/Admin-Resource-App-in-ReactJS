@@ -4,10 +4,8 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",Poppins,monospace;
 }
-
 a {
   text-decoration: none !important;
 }
@@ -151,6 +149,26 @@ a {
   fill: black;
 }
 .jss6 {
+  display: flex;
+  padding: 0vw 0.4vw;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
+  color: black !important;
+  font-weight: 400 !important;
+  fill: black;
+}
+.jss7 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: none;
+  padding: 0vw 0.4vw;
+  color: black !important;
+  font-weight: 400 !important;
+  fill: black;
+}
+.jss9 {
   display: flex;
   padding: 0vw 0.4vw;
   align-items: center;

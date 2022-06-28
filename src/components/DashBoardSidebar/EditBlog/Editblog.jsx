@@ -66,13 +66,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "normal",
     fontSize: "0.51vw",
     lineHeight: "100%",
-
     position: "relative",
     top: "0.81vw",
     left: "0.2vw",
   },
   icon: {
-    fill: "white",
+    fill: "black",
   },
 }));
 
@@ -130,7 +129,7 @@ export default function Addblog() {
             >
               <FormControl variant="standard" fullWidth>
                 <Select
-                  className={classes.select2}
+                className={classes.select2}
                   labelId="demo-simple-select-standard-label"
                   id="demo-simple-select-standard"
                   value={age3}

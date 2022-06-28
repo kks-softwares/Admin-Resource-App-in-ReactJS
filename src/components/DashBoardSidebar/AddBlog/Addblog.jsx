@@ -30,50 +30,47 @@ const style = {
 };
 
 const useStyles = makeStyles((theme) => ({
-  select: {
-    height: "2.5vw",
-    width: "100%",
-    marginTop: "0.2vw",
-    padding: "1vw",
-    marginLeft: "0vw",
-    fontFamily: "Poppins",
-    fontStyle: "normal",
-    fontWeight: "bold",
-    fontSize: "1vw",
-    lineHeight: "120%",
-    color: "black",
-  },
-  select2: {
-    height: "1vw",
-    width: "100%",
-    padding: "1vw 0.5vw",
-    marginLeft: "0vw",
-    fontFamily: "Poppins",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: "0.51vw",
-    lineHeight: "100%",
-  },
-  select3: {
-    height: "1vw",
-    width: "100%",
-    marginTop: "0.1vw",
-    padding: "0vw 0vw",
-    marginLeft: "0vw",
-    fontFamily: "Poppins",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: "0.51vw",
-    lineHeight: "100%",
-    position: "relative",
-    top: "0.81vw",
-    left: "0.2vw",
-  },
-  icon: {
-    fill: "black",
-  },
-}));
-
+    select: {
+      height: "1vw",
+      width: "100%",
+      padding: "1vw 0.5vw",
+      marginLeft: "0vw",
+      fontFamily: "Poppins",
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontSize: "0.51vw",
+      lineHeight: "100%",
+    },
+    select2: {
+      height: "1vw",
+      width: "100%",
+      padding: "1vw 0.5vw",
+      marginLeft: "0vw",
+      fontFamily: "Poppins",
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontSize: "0.51vw",
+      lineHeight: "100%",
+    },
+    select3: {
+      height: "1vw",
+      width: "100%",
+      marginTop: "0.1vw",
+      padding: "0vw 0vw",
+      marginLeft: "0vw",
+      fontFamily: "Poppins",
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontSize: "0.51vw",
+      lineHeight: "100%",
+      position: "relative",
+      top: "0.81vw",
+      left: "0.2vw",
+    },
+    icon: {
+      fill: "black",
+    },
+  }));
 export default function Addblog() {
   const classes = useStyles();
   const [arrayofblogs, setArrayofblogs] = useState([1]);
@@ -122,7 +119,7 @@ export default function Addblog() {
                 borderRadius: "5px",
                 margin: "0.5vw 1.5vw",
                 padding: "0.2vw 0.2vw",
-                marginLeft:"0vw"
+                marginLeft: "0vw",
               }}
               className="setting-toggler"
             >
@@ -147,7 +144,7 @@ export default function Addblog() {
 
                         "& .MuiMenuItem-root": {
                           padding: "0.1vw 2vw",
-                          width: "29vw",
+                          width: "100%",
                           height: "3vw",
                           fontFamily: "Poppins",
                           fontStyle: "normal",

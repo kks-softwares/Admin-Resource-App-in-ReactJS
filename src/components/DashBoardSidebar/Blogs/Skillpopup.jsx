@@ -13,7 +13,7 @@ export default function Skillpopup1({ data, index, page }) {
           onClick={() => {
             navigate(`/dashbaord/blog`);
           }}
-          style={{ width: "6vw", cursor: "pointer" }}
+          style={{ width: "5vw", cursor: "pointer" }}
         >
           #{(page - 1) * 10 + (index + 1)}
         </div>
@@ -22,15 +22,23 @@ export default function Skillpopup1({ data, index, page }) {
           onClick={() => {
             navigate(`/dashbaord/blog`);
           }}
-          style={{ width: "15vw", cursor: "pointer" }}
+          style={{ width: "14vw", cursor: "pointer" }}
         >
           Latest Growing Tech
         </div>
+        <div
+          onClick={() => {
+            navigate(`/dashbaord/blog`);
+          }}
+          style={{ width: "10vw", cursor: "pointer" }}
+        >
+          Business Plan
+        </div>
 
-        <div style={{ width: "15vw", fontWeight: "400" }}>
+        <div style={{ width: "14vw", fontWeight: "400" }}>
           Praveenkumar (#8732)
         </div>
-        <div style={{ width: "25vw", fontSize: "0.85vw" }}>
+        <div style={{ width: "22vw", fontSize: "0.85vw" }}>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when essentially unchanged.
