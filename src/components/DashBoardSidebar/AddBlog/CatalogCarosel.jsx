@@ -6,13 +6,11 @@ import img1 from "../../../assets/Web 1280 – 2/collins-lesulie-0VEDrQXxrQo-uns
 import img2 from "../../../assets/Web 1280 – 2/kaleidico-3V8xo5Gbusk-unsplash.png";
 import img3 from "../../../assets/Web 1280 – 2/studio-republic-fotKKqWNMQ4-unsplash.png";
 import img4 from "../../../assets/Web 1280 – 2/Group 10053.png";
-import { ArrowBack, ArrowForward, ArrowRightAlt } from "@mui/icons-material";
 function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
+  const { onClick } = props;
   return (
     <div
       style={{
-      
         display: "block",
         background: "#064C87",
         width: "3vw",

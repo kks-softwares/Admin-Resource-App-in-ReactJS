@@ -10,7 +10,10 @@ import Cataloguecarosel from "./CatalogCarosel";
 import img from "../../../assets/Web 1280 – 14/Icon.svg";
 import img1 from "../../../assets/Web 1280 – 14/Group 9831.svg";
 import img21 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg";
-
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { makeStyles } from "@material-ui/core";
 const style = {
   position: "absolute",
   top: "50%",
@@ -26,16 +29,69 @@ const style = {
   p: 4,
 };
 
+const useStyles = makeStyles((theme) => ({
+    select: {
+      height: "2.5vw",
+      width: "100%",
+      marginTop: "0.2vw",
+      padding: "1vw",
+      marginLeft: "0vw",
+      fontFamily: "Poppins",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: "1vw",
+      lineHeight: "120%",
+      color: "black",
+    },
+    select2: {
+      height: "1vw",
+      width: "100%",
+      marginTop: "0.1vw",
+      padding: "0.9vw 0.5vw",
+      marginLeft: "0vw",
+      fontFamily: "Poppins",
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontSize: "0.51vw",
+      lineHeight: "100%",
+    },
+    select3: {
+      height: "1vw",
+      width: "100%",
+      marginTop: "0.1vw",
+      padding: "0vw 0vw",
+      marginLeft: "0vw",
+      fontFamily: "Poppins",
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontSize: "0.51vw",
+      lineHeight: "100%",
+  
+      position: "relative",
+      top: "0.81vw",
+      left: "0.2vw",
+    },
+    icon: {
+      fill: "white",
+    },
+  }));
+  
+
 export default function Addblog() {
-  const [arrayofblogs, setArrayofblogs] = useState([1, 2]);
+    const classes = useStyles();
+  const [arrayofblogs, setArrayofblogs] = useState([1]);
   const navigate = useNavigate();
   const [erroeshow, setErroeshow] = useState(false);
   const [title, setTitle] = useState("");
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const [age3, setAge3] = React.useState(0);
+  const handleChange3 = (event) => {
+    setAge3(event.target.value);
+  };
   const [arrayoffiles, setArrayoffiles] = useState([]);
+  const [scate, setsCate] = useState("");
   return (
     <div>
       <div
@@ -58,6 +114,99 @@ export default function Addblog() {
         >
           <div className="jobpostedformheading">Add Blogs</div>
 
+
+          <div className="jobpodtedfieldtitile">sub Category</div>
+          <div className="">
+            <Box
+              sx={{
+                background: "white",
+                border: "1px solid #7070705b",
+                height: "3.0vw",
+                width: "29vw",
+                borderRadius: "5px",
+                margin: "0.5vw 0vw",
+              }}
+              className="setting-toggler"
+            >
+              <FormControl variant="standard" fullWidth>
+                <Select
+                  className={classes.select}
+                  labelId="demo-simple-select-standard-label"
+                  id="demo-simple-select-standard"
+                  value={age3}
+                  disableUnderline
+                  inputProps={{
+                    classes: {
+                      // root: classes.border,
+                      icon: classes.icon,
+                    },
+                  }}
+                  onChange={handleChange3}
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        bgcolor: "white",
+
+                        "& .MuiMenuItem-root": {
+                          padding: "0.1vw 2vw",
+                          width: "29vw",
+                          height: "3vw",
+                          fontFamily: "Poppins",
+                          fontStyle: "normal",
+                          fontWeight: "500",
+                          fontSize: "1vw",
+                          lineHeight: "24px",
+                          color: "#6b6b6b",
+                        },
+                      },
+                    },
+                  }}
+                >
+                  <MenuItem onClick={() => {}} value={0} hidden>
+                    Select
+                  </MenuItem>
+
+                  
+                        <MenuItem
+                          onClick={() => {
+                            setsCate("Business Ideas");
+                          }}
+                          value={ 1}
+                        >
+                          Business Ideas
+                        </MenuItem>
+                      
+                        <MenuItem
+                          onClick={() => {
+                            setsCate("Business Plans");
+                          }}
+                          value={ 2}
+                        >
+                       Business Plans
+                        </MenuItem>
+                        <MenuItem
+                          onClick={() => {
+                            setsCate("Business Plans");
+                          }}
+                          value={ 3}
+                        >
+                     Business Problems
+                        </MenuItem>
+                        <MenuItem
+                          onClick={() => {
+                            setsCate("Business Plans");
+                          }}
+                          value={ 4}
+                        >
+                      Others
+                        </MenuItem>
+                      
+                 
+                </Select>
+              </FormControl>
+            </Box>
+          </div>
+  
           <div>
             <div className="jobpodtedfieldtitile"> Title</div>
             <div className="jobpostfieldinputbox">
@@ -92,7 +241,12 @@ export default function Addblog() {
               Cover Images
             </div>
             <div
-              style={{ background: "white", padding: "0.51vw", marginTop: "0vw",paddingRight:"3vw" }}
+              style={{
+                background: "white",
+                padding: "0.51vw",
+                marginTop: "0vw",
+                paddingRight: "3vw",
+              }}
             >
               <div className="inputfilebox">
                 <div>
@@ -115,7 +269,11 @@ export default function Addblog() {
                 </div>
               </div>
             </div>
-           <div className=     {arrayoffiles?.length > 0 ?"inputfilesshowncatebox":""}>
+            <div
+              className={
+                arrayoffiles?.length > 0 ? "inputfilesshowncatebox" : ""
+              }
+            >
               {arrayoffiles?.length > 0 &&
                 arrayoffiles?.map((file, index) => {
                   return (
@@ -168,7 +326,7 @@ export default function Addblog() {
               <span>
                 <AddIcon style={{ fontSize: "1.3vw" }} />
               </span>{" "}
-              Add More Milestones
+              Add More Sections
             </div>
             {erroeshow ? (
               <div style={{ color: "red" }} className="jobpodtedfieldtitile">
