@@ -1,7 +1,6 @@
 import React from "react";
-import img from "../../../assets/Landing page/apple (1)@2x.png";
-import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
-import { Navigate, useNavigate } from "react-router";
+
+import { useNavigate } from "react-router";
 import { DeleteForeverOutlined } from "@mui/icons-material";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import axios from "axios";
@@ -12,7 +11,7 @@ export default function Skillpopup1({
   page,
   setAllusers,
   settotalpages,
-  setSelectedCategory
+  setSelectedCategory,
 }) {
   const navigate = useNavigate();
   const handledeleteBlog = () => {
@@ -84,7 +83,7 @@ export default function Skillpopup1({
           }}
           style={{ width: "14vw", cursor: "pointer" }}
         >
-         {data?.contentName}
+          {data?.contentName}
         </div>
         <div
           onClick={() => {
@@ -95,9 +94,7 @@ export default function Skillpopup1({
           {data?.category}
         </div>
 
-        <div style={{ width: "14vw", fontWeight: "400" }}>
-         {data?.author}
-        </div>
+        <div style={{ width: "14vw", fontWeight: "400" }}>{data?.author}</div>
         <div style={{ width: "22vw", fontSize: "0.85vw" }}>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
@@ -107,9 +104,9 @@ export default function Skillpopup1({
           style={{
             width: "10vw",
             color:
-              data?.workStatus === "pending"
+              data?.status === "unpulblis"
                 ? "#F39600"
-                : data?.workStatus === "accepted"
+                : data?.status === "publish"
                 ? "#2AC96A"
                 : "red",
             fontWeight: "500",

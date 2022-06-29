@@ -11,8 +11,8 @@ import { userActions } from "../../store/userSlice";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import API_HOST from "../../env";
-import './Addcatalog.css'
-import './BlogDetail.css'
+import "./Addcatalog.css";
+import "./BlogDetail.css";
 const useStyles = makeStyles((theme) => ({
   input: {
     fontFamily: "Poppins",
@@ -41,23 +41,23 @@ export default function Login() {
     axios
       .post(`${API_HOST}/adminLogin`, data)
       .then((res) => {
-     
-          setWrongid(false);
-          setWrongidp(false);
+        setWrongid(false);
+        setWrongidp(false);
 
-          dispatch(
-            userActions.setUser({
-              user: { ...res.data.success.data },
-            })
-          );
-          navigate("/dashbaord/users");
-        
+        dispatch(
+          userActions.setUser({
+            user: { ...res.data.success.data },
+          })
+        );
+
+        localStorage.setItem("token", JSON.stringify(res.data.success.Tokens));
+        navigate("/dashbaord/users");
       })
       .catch((e) => {
         console.log(e.response);
-        if (e.response.status === 404 || e.response.status === 406 ) {
-            setWrongidp(true);
-            setWrongid(false);
+        if (e.response.status === 404 || e.response.status === 406) {
+          setWrongidp(true);
+          setWrongid(false);
         } else {
           setWrongidp(false);
           setWrongid(true);

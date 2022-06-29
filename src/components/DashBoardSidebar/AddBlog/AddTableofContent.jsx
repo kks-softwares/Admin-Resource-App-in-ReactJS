@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -10,6 +10,8 @@ import img from "../../../assets/Web 1280 – 14/Icon.svg";
 import img1 from "../../../assets/Web 1280 – 14/Group 9831.svg";
 import img22 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg";
 import { TextEditor } from "../BiddingForm/Texteditor";
+import axios from "axios";
+import API_HOST from "../../../env";
 
 const useStyles = makeStyles((theme) => ({
   select: {
@@ -58,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
 export default function AddTableofContent({
   setArrayofblogs,
   arrayofblogs,
+  data,
   index,
 }) {
   const [description1, setDescription1] = useState("");
@@ -77,6 +80,46 @@ export default function AddTableofContent({
   const [desc, setDesc] = useState("");
   const [minBudegt, setMinBudegt] = useState();
   const [maxBudegt, setMaxBudegt] = useState();
+
+  useEffect(() => {
+    setArrayofblogs([
+      ...arrayofblogs.slice(0, index),
+      {
+        toc: description1,
+        file: data?.file,
+        desc: data?.desc,
+        title: data?.title,
+        button: data?.button,
+      },
+      ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+    ]);
+  }, [description1]);
+
+  const handleuploadimage = (file) => {
+    const formdata = new FormData();
+    formdata.append("fileName", file);
+
+    axios
+      .post(`${API_HOST}/contentManagement/tableContent`, formdata, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        setArrayofblogs([
+          ...arrayofblogs.slice(0, index),
+          {
+            toc: data?.toc,
+            file: res?.data?.success?.data?.file,
+            desc: data?.desc,
+            title: data?.title,
+            button: data?.button,
+          },
+          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+        ]);
+      });
+  };
+
   return (
     <>
       {
@@ -152,7 +195,7 @@ export default function AddTableofContent({
                     type="file"
                     id={`inputctaelogfile${index}`}
                     onChange={(e) => {
-                      console.log("hello");
+                      handleuploadimage(e.target.files[0]);
                       setArrayoffile(e.target.files[0]);
                     }}
                     hidden
@@ -162,9 +205,12 @@ export default function AddTableofContent({
             </div>
           </div>
           {arrayoffile && (
-            <div style={{marginTop:"0.3vw"}} className="inputfilesshowncatebox">
+            <div
+              style={{ marginTop: "0.3vw" }}
+              className="inputfilesshowncatebox"
+            >
               <div className="inputfilesshowncatboxsingle">
-                {console.log(arrayoffile)}
+                {console.log(arrayofblogs)}
                 <div className="inputfilesshowncatboxsingleimg">
                   <img src={img1} alt="" />
                 </div>
@@ -235,17 +281,22 @@ export default function AddTableofContent({
                       },
                     }}
                   >
-                    <MenuItem
-                      onClick={() => {
-                        setMinBudegt(10);
-                      }}
-                      value={10}
-                    >
-                      Mobile app Development Tips
+                    <MenuItem hidden value={10}>
+                      Select
                     </MenuItem>
                     <MenuItem
                       onClick={() => {
-                        setMinBudegt(20);
+                        setArrayofblogs([
+                          ...arrayofblogs.slice(0, index),
+                          {
+                            toc: data?.toc,
+                            file: data?.file,
+                            desc: data?.desc,
+                            title: "Mobile app Development Tips",
+                            button: data?.button,
+                          },
+                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+                        ]);
                       }}
                       value={20}
                     >
@@ -253,9 +304,39 @@ export default function AddTableofContent({
                     </MenuItem>
                     <MenuItem
                       onClick={() => {
-                        setMinBudegt(50);
+                        setMinBudegt(20);
+                        setArrayofblogs([
+                          ...arrayofblogs.slice(0, index),
+                          {
+                            toc: data?.toc,
+                            file: data?.file,
+                            desc: data?.desc,
+                            title: "Mobile app Development Tips",
+                            button: data?.button,
+                          },
+                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+                        ]);
                       }}
                       value={30}
+                    >
+                      Mobile app Development Tips
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        setMinBudegt(50);
+                        setArrayofblogs([
+                          ...arrayofblogs.slice(0, index),
+                          {
+                            toc: data?.toc,
+                            file: data?.file,
+                            desc: data?.desc,
+                            title: "Mobile app Development Tips",
+                            button: data?.button,
+                          },
+                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+                        ]);
+                      }}
+                      value={40}
                     >
                       Mobile app Development Tips
                     </MenuItem>
@@ -312,16 +393,39 @@ export default function AddTableofContent({
                     }}
                   >
                     <MenuItem
+                      hidden
                       onClick={() => {
                         setMaxBudegt(100);
+                        setArrayofblogs([
+                          ...arrayofblogs.slice(0, index),
+                          {
+                            toc: data?.toc,
+                            file: data?.file,
+                            desc: data?.desc,
+                            title: data?.title,
+                            button: "Join Now",
+                          },
+                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+                        ]);
                       }}
                       value={10}
                     >
-                      Join Now
+                      Select
                     </MenuItem>
                     <MenuItem
                       onClick={() => {
-                        setMaxBudegt(200);
+                        setMaxBudegt(100);
+                        setArrayofblogs([
+                          ...arrayofblogs.slice(0, index),
+                          {
+                            toc: data?.toc,
+                            file: data?.file,
+                            desc: data?.desc,
+                            title: data?.title,
+                            button: "Join Now",
+                          },
+                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+                        ]);
                       }}
                       value={20}
                     >
@@ -329,9 +433,39 @@ export default function AddTableofContent({
                     </MenuItem>
                     <MenuItem
                       onClick={() => {
-                        setMaxBudegt(500);
+                        setMaxBudegt(200);
+                        setArrayofblogs([
+                          ...arrayofblogs.slice(0, index),
+                          {
+                            toc: data?.toc,
+                            file: data?.file,
+                            desc: data?.desc,
+                            title: data?.title,
+                            button: "Join Now",
+                          },
+                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+                        ]);
                       }}
                       value={30}
+                    >
+                      Join Now
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        setMaxBudegt(500);
+                        setArrayofblogs([
+                          ...arrayofblogs.slice(0, index),
+                          {
+                            toc: data?.toc,
+                            file: data?.file,
+                            desc: data?.desc,
+                            title: data?.title,
+                            button: "Join Now",
+                          },
+                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+                        ]);
+                      }}
+                      value={40}
                     >
                       Join Now
                     </MenuItem>
@@ -342,14 +476,23 @@ export default function AddTableofContent({
           </div>
           <div className="jobpodtedfieldtitile">Description</div>
           <div className="jobpostfieldinputbox">
+            {console.log(arrayofblogs)}
             <textarea
               type="text"
-              placeholder="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit debitis eaque totam. Impedit ad et, dolor explicabo sequi distinctio debitis est neque dolore ipsum ut amet pariatur laboriosam nisi ipsam?
-                "
-              value={desc}
+              placeholder="  distinctio debitis est neque dolore ipsum ut amet pariatur laboriosam nisi ipsam?"
               style={{ padding: "0.5vw" }}
               onChange={(e) => {
-                setDesc(e.target.value);
+                setArrayofblogs([
+                  ...arrayofblogs.slice(0, index),
+                  {
+                    toc: data?.toc,
+                    file: data?.file,
+                    desc: e.target.value,
+                    title: data?.title,
+                    button: data?.button,
+                  },
+                  ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+                ]);
               }}
             />
           </div>
