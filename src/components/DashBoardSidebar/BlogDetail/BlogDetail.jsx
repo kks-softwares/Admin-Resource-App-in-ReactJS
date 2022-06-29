@@ -268,8 +268,12 @@ export default function BlogDetail() {
               demand in the same field, expertise, and experience, choose the
               viable option that matches all your needs.
             </div>
-            <div style={{width:"63vw"}} className="blogcontentimagebanner">
-              <img style={{ width: "63vw",textAlign:"center",margin:"auto" }} src={img2} alt="" />
+            <div style={{ width: "63vw" }} className="blogcontentimagebanner">
+              <img
+                style={{ width: "63vw", textAlign: "center", margin: "auto" }}
+                src={img2}
+                alt=""
+              />
             </div>
             <div style={{ width: "63vw" }} className="Joinwithusblogbox">
               <div style={{ width: "60%", textAlign: "center" }}>
@@ -289,6 +293,7 @@ export default function BlogDetail() {
           </div>
           <div style={{ marginTop: "0.31vw" }} className="handlemoreaboutskill">
             <div
+              onClick={() => navigate("/dashbaord/editBlog")}
               style={{
                 background: "white",
                 color: "black",
@@ -298,7 +303,7 @@ export default function BlogDetail() {
               }}
               className="handlecirclieaboutsave"
             >
-              Cancel
+              Edit
             </div>
             <div
               style={{

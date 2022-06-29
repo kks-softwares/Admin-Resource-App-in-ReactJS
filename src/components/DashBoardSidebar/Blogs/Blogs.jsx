@@ -51,7 +51,7 @@ export default function Blogs() {
     if (!setSelectedCategory) {
       axios
         .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&page=${page}`
+          `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&page=${page}`
         )
         .then((res) => {
           setAllusers(res?.data?.success?.data?.docs);
@@ -59,7 +59,7 @@ export default function Blogs() {
         });
       axios
         .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&page=${
+          `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&page=${
             page + 1
           }`
         )
@@ -71,7 +71,7 @@ export default function Blogs() {
     } else {
       axios
         .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
+          `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
         )
         .then((res) => {
           setAllusers(res?.data?.success?.data);
@@ -79,7 +79,7 @@ export default function Blogs() {
         });
       axios
         .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&pageNumber=${
+          `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&pageNumber=${
             page + 1
           }&pageSize=10`
         )

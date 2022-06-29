@@ -3,7 +3,7 @@ import img from "../../../assets/Landing page/apple (1)@2x.png";
 import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
 import { Navigate, useNavigate } from "react-router";
 import { DeleteForeverOutlined } from "@mui/icons-material";
-
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 export default function Skillpopup1({ data, index, page }) {
   const navigate = useNavigate();
   return (
@@ -54,12 +54,12 @@ export default function Skillpopup1({ data, index, page }) {
                 : "red", fontWeight:"500"
           }}
         >
-          Un Publish
+          {data?.status}
         </div>
         <div style={{ width: "4vw" }}>
           {" "}
-          <img
-          onClick={()=>navigate('/dashbaord/editBlog')}
+          <RemoveRedEyeIcon
+          onClick={()=>navigate('/dashbaord/blog')}
             style={{
               margin: "0 0.5vw",
               width: "2vw ",
@@ -68,8 +68,6 @@ export default function Skillpopup1({ data, index, page }) {
               cursor: "pointer",
               objectFit: "cover",
             }}
-            src={img2}
-            alt=""
           />{" "}
         </div>
         <div style={{ width: "3vw" }}>

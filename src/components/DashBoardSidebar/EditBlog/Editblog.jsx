@@ -4,9 +4,7 @@ import { useNavigate } from "react-router";
 import AddIcon from "@mui/icons-material/Add";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-
 import img2 from "../../../assets/Web 1280 – 2/kaleidico-3V8xo5Gbusk-unsplash.png";
-
 import img from "../../../assets/Web 1280 – 14/Icon.svg";
 import img1 from "../../../assets/Web 1280 – 14/Group 9831.svg";
 import img21 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg";
@@ -110,7 +108,7 @@ export default function Addblog() {
           }}
           className="homepostjob-right"
         >
-          <div className="jobpostedformheading">Add Blogs</div>
+          <div className="jobpostedformheading">Edit Blogs</div>
 
           <div className="jobpodtedfieldtitile">Category</div>
           <div className="">
@@ -129,7 +127,7 @@ export default function Addblog() {
             >
               <FormControl variant="standard" fullWidth>
                 <Select
-                className={classes.select2}
+                  className={classes.select2}
                   labelId="demo-simple-select-standard-label"
                   id="demo-simple-select-standard"
                   value={age3}
