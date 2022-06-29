@@ -319,7 +319,16 @@ export default function Blogs() {
         </div>
         {allusers?.length > 0 &&
           allusers?.map((data, index) => {
-            return <Skillpopup1 data={data} index={index} page={page} />;
+            return (
+              <Skillpopup1
+                data={data}
+                index={index}
+                page={page}
+                setAllusers={setAllusers}
+                settotalpages={settotalpages}
+                setSelectedCategory={setSelectedCategory}
+              />
+            );
           })}
 
         {totalpages !== 1 ? (

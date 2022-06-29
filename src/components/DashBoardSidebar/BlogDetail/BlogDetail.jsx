@@ -1,12 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import img2 from "../../../assets/Web 1280 – 2/kaleidico-3V8xo5Gbusk-unsplash.png";
 import Cataloguecarosel from "./CatalogCarosel";
 import "./BlogDetail.css";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { ArrowBackIosNewOutlined } from "@mui/icons-material";
+import axios from "axios";
+import API_HOST from "../../../env";
 export default function BlogDetail() {
   const [title, setTitle] = useState("");
   const navigate = useNavigate();
+  const { Id } = useParams();
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      ?.get(`${API_HOST}/contentManagement/viewcontent?contentId=${Id}`)
+      .then((res) => {
+        setData(res?.data?.success?.data[0]);
+      });
+  }, [Id]);
+
+  const handlePublishBlog = () => {
+    axios
+      .post(`${API_HOST}/contentManagement/approveBlog`, {
+        aproved: true,
+        contentId: Id,
+      })
+      .then((res) => {
+        navigate(-1);
+      });
+  };
+
+  const handleRejectBlog = () => {
+    axios
+      .post(`${API_HOST}/contentManagement/editcontent`, {
+        status: "Reject",
+        contentId: Id,
+      })
+      .then((res) => {
+        navigate(-1);
+      });
+  };
+
   return (
     <div>
       <div
@@ -38,10 +73,7 @@ export default function BlogDetail() {
             >
               Design
             </button>
-            <div className="textofcontainercatalgue">
-              You will get a professional Facebook cover photo banner design in
-              24 hrs
-            </div>
+            <div className="textofcontainercatalgue">{data?.contentName}</div>
           </div>
           <div style={{ position: "relative", bottom: "2.2vw" }}>
             <Cataloguecarosel />
@@ -291,7 +323,7 @@ export default function BlogDetail() {
               </div>
             </div>
           </div>
-          <div style={{ marginTop: "0.31vw" }} className="handlemoreaboutskill">
+   {  data?.status==="unpulblis" &&     <div style={{ marginTop: "0.31vw" }} className="handlemoreaboutskill">
             <div
               onClick={() => navigate("/dashbaord/editBlog")}
               style={{
@@ -306,6 +338,9 @@ export default function BlogDetail() {
               Edit
             </div>
             <div
+              onClick={() => {
+                handleRejectBlog();
+              }}
               style={{
                 background: "white",
                 color: "black",
@@ -318,13 +353,16 @@ export default function BlogDetail() {
               Reject
             </div>
             <div
+              onClick={() => {
+                handlePublishBlog();
+              }}
               style={{ cursor: "pointer" }}
               className="handlecirclieaboutsave"
             >
-              Submit
+              Publish
             </div>
           </div>
-        </div>
+   }     </div>
       </div>
     </div>
   );
