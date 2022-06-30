@@ -70,7 +70,7 @@ export default function Skillpopup1({
       <div style={{ alignItems: "center" }} className="navoftableblogsdata">
         <div
           onClick={() => {
-            navigate(`/dashbaord/blog`);
+            navigate(`/dashbaord/blog/${data?.contentId}`);
           }}
           style={{ width: "5vw", cursor: "pointer" }}
         >
@@ -79,7 +79,7 @@ export default function Skillpopup1({
 
         <div
           onClick={() => {
-            navigate(`/dashbaord/blog`);
+            navigate(`/dashbaord/blog/${data?.contentId}`);
           }}
           style={{ width: "14vw", cursor: "pointer" }}
         >
@@ -87,7 +87,7 @@ export default function Skillpopup1({
         </div>
         <div
           onClick={() => {
-            navigate(`/dashbaord/blog`);
+            navigate(`/dashbaord/blog/${data?.contentId}`);
           }}
           style={{ width: "10vw", cursor: "pointer" }}
         >
@@ -115,7 +115,6 @@ export default function Skillpopup1({
           {data?.status}
         </div>
         <div style={{ width: "4vw" }}>
-          {" "}
           <RemoveRedEyeIcon
             onClick={() => navigate(`/dashbaord/blog/${data?.contentId}`)}
             style={{
@@ -126,7 +125,7 @@ export default function Skillpopup1({
               cursor: "pointer",
               objectFit: "cover",
             }}
-          />{" "}
+          />
         </div>
         <div style={{ width: "3vw" }}>
           <DeleteForeverOutlined
@@ -141,7 +140,7 @@ export default function Skillpopup1({
               cursor: "pointer",
               objectFit: "cover",
             }}
-          />{" "}
+          />
         </div>
       </div>
     </div>
