@@ -151,16 +151,16 @@ export default class Cataloguecarosel1 extends Component {
         <Slider {...settings}>
           {console.log(this?.props?.img1)}
           <div className="catalogimages">
-            <img src={URL.createObjectURL(this?.props?.img1)} />
+            <img src={this?.props?.img1} />
           </div>
           <div className="catalogimages">
-            <img src={URL.createObjectURL(this?.props?.img2)} />
+            <img src={this?.props?.img2} />
           </div>
           <div className="catalogimages">
-            <img src={URL.createObjectURL(this?.props?.img3)} />
+            <img src={this?.props?.img3} />
           </div>
           <div className="catalogimages">
-            <img src={URL.createObjectURL(this?.props?.img4)} />
+            <img src={this?.props?.img4} />
           </div>
         </Slider>
       </div>

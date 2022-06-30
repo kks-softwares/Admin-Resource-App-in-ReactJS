@@ -109,7 +109,7 @@ export default function Addblog() {
         setData(res?.data?.success?.data[0]);
         setTitle(res?.data?.success?.data[0]?.contentName);
         setArrayofblogs(res?.data?.success?.data[0]?.toC);
-        setsCate(
+        setAge3(
           res?.data?.success?.data[0]?.category === "Business Ideas"
             ? 1
             : res?.data?.success?.data[0]?.category === "Business Plans"
@@ -313,7 +313,7 @@ export default function Addblog() {
               }}
               className="jobpodtedfieldtitile"
             >
-              Cover Images *
+              Cover Images *(upload images changes permanent )
             </div>
             <div
               style={{
@@ -491,23 +491,25 @@ export default function Addblog() {
               </div>
               <div style={{ position: "relative", bottom: "2.2vw" }}>
                 <Cataloguecarosel1
-                  img1={arrayoffiles[0]}
-                  img2={arrayoffiles[1] ? arrayoffiles[1] : arrayoffiles[0]}
+                  img1={data?.icon[0]?.file}
+                  img2={
+                    data?.icon[1]?.file ? data?.icon[1]?.file : data?.icon[0]?.file
+                  }
                   img3={
-                    arrayoffiles[2]
-                      ? arrayoffiles[2]
-                      : arrayoffiles[0]
-                      ? arrayoffiles[0]
-                      : arrayoffiles[1]
+                    data?.icon[2]?.file
+                      ? data?.icon[2]?.file
+                      : data?.icon[0]?.file
+                      ? data?.icon[0]?.file
+                      : data?.icon[1]?.file
                   }
                   img4={
-                    arrayoffiles[3]
-                      ? arrayoffiles[3]
-                      : arrayoffiles[1]
-                      ? arrayoffiles[1]
-                      : arrayoffiles[2]
-                      ? arrayoffiles[2]
-                      : arrayoffiles[0]
+                    data?.icon[3]?.file
+                      ? data?.icon[3]?.file
+                      : data?.icon[1]?.file
+                      ? data?.icon[1]?.file
+                      : data?.icon[0]?.file
+                      ? data?.icon[0]?.file
+                      : data?.icon[2]?.file
                   }
                 />
               </div>
