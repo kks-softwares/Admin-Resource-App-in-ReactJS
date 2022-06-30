@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "react-router";
 import AddIcon from "@mui/icons-material/Add";
@@ -121,9 +121,33 @@ export default function Addblog() {
         },
       })
       .then((res) => {
-        console.log(res?.data);
+           navigate(-1)
       });
   };
+
+  const [erroraddblog, setErroraddblog] = useState(false);
+
+  const handlecheck = () => {
+    if (title && scate && arrayoffiles?.length > 0 && !erroraddblog) {
+      handleOpen();
+    } else {
+      setErroraddblog(true);
+    }
+  };
+
+  useEffect(() => {
+      if (arrayofblogs?.length>0) {
+          
+      }
+      else{
+        if (title && scate && arrayoffiles?.length > 0 ) {
+            setErroraddblog(false);
+          } else {
+            setErroraddblog(true);
+          }
+      }
+   
+  }, [title, scate, arrayoffiles,arrayofblogs]);
 
   return (
     <div>
@@ -147,7 +171,7 @@ export default function Addblog() {
         >
           <div className="jobpostedformheading">Add Blogs</div>
 
-          <div className="jobpodtedfieldtitile"> Category</div>
+          <div className="jobpodtedfieldtitile"> Category *</div>
           <div className="">
             <Box
               sx={{
@@ -239,7 +263,7 @@ export default function Addblog() {
           </div>
 
           <div>
-            <div className="jobpodtedfieldtitile"> Title</div>
+            <div className="jobpodtedfieldtitile"> Title *</div>
             <div className="jobpostfieldinputbox">
               <input
                 type="text"
@@ -269,7 +293,7 @@ export default function Addblog() {
               }}
               className="jobpodtedfieldtitile"
             >
-              Cover Images
+              Cover Images *
             </div>
             <div
               style={{
@@ -345,6 +369,11 @@ export default function Addblog() {
                     arrayofblogs={arrayofblogs}
                     data={data}
                     index={index}
+                    setErroraddblog={setErroraddblog}
+                    erroraddblog={erroraddblog}
+                    title={title}
+                    scate={scate}
+                    arrayoffiles={arrayoffiles}
                   />
                 );
               })}
@@ -377,6 +406,14 @@ export default function Addblog() {
             ) : (
               ""
             )}{" "}
+            {erroraddblog && (
+              <div
+                style={{ marginLeft: "1vw", color: "red" }}
+                className="min-maxhomejob"
+              >
+                fill all field are cumpulsary these are marked as *
+              </div>
+            )}
             <div style={{ marginBottom: "4vw" }} className="homejobbuttons">
               <button
                 style={{ background: "white" }}
@@ -387,7 +424,7 @@ export default function Addblog() {
                 Cancel
               </button>
 
-              <button onClick={handleOpen} style={{ color: "white" }}>
+              <button onClick={handlecheck} style={{ color: "white" }}>
                 Preview
               </button>
             </div>
@@ -522,6 +559,7 @@ export default function Addblog() {
                   );
                 })}
             </div>
+
             <div
               style={{ marginTop: "0.31vw" }}
               className="handlemoreaboutskill"

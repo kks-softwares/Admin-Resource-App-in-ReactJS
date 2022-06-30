@@ -209,7 +209,7 @@ export default function BlogDetail() {
                 Publish
               </div>
             </div>
-          ) : data?.status === "pulblish" ? (
+          ) : data?.status === "publish" ? (
             <div
               style={{ marginTop: "0.31vw" }}
               className="handlemoreaboutskill"

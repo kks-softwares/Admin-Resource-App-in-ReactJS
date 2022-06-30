@@ -62,6 +62,11 @@ export default function AddTableofContent({
   arrayofblogs,
   data,
   index,
+  setErroraddblog,
+  erroraddblog,
+  title,
+  scate,
+  arrayoffiles,
 }) {
   const [description1, setDescription1] = useState("");
   const navigate = useNavigate();
@@ -77,9 +82,7 @@ export default function AddTableofContent({
   const handleChange5x = (event) => {
     setAge5(event.target.value);
   };
-  const [desc, setDesc] = useState("");
-  const [minBudegt, setMinBudegt] = useState();
-  const [maxBudegt, setMaxBudegt] = useState();
+  const [wrongsec, setwrongsec] = useState(false);
 
   useEffect(() => {
     setArrayofblogs([
@@ -94,6 +97,20 @@ export default function AddTableofContent({
       ...arrayofblogs.slice(index + 1, arrayofblogs.length),
     ]);
   }, [description1]);
+
+  useEffect(() => {
+    if (data?.toc && data?.desc && data?.title && data?.button) {
+      setwrongsec(false);
+      if (title && scate && arrayoffiles?.length > 0) {
+        setErroraddblog(false);
+      } else {
+        setErroraddblog(true);
+      }
+    } else {
+      setwrongsec(true);
+      setErroraddblog(true);
+    }
+  }, [data,title,scate,arrayoffiles]);
 
   const handleuploadimage = (file) => {
     const formdata = new FormData();
@@ -141,23 +158,25 @@ export default function AddTableofContent({
               }}
               className="jobpodtedfieldtitile"
             >
-              <div>Table of Content </div>
-              <div>
-                <CloseIcon
-                  style={{
-                    position: "relative",
-                    right: "1vw",
-                    fontSize: "2vw",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    setArrayofblogs([
-                      ...arrayofblogs.slice(0, index),
-                      ...arrayofblogs.slice(index + 1, arrayofblogs.length),
-                    ]);
-                  }}
-                />
-              </div>
+              <div>Table of Content (Minimum 1 section)*</div>
+              {arrayofblogs?.length > 1 && (
+                <div>
+                  <CloseIcon
+                    style={{
+                      position: "relative",
+                      right: "1vw",
+                      fontSize: "2vw",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      setArrayofblogs([
+                        ...arrayofblogs.slice(0, index),
+                        ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+                      ]);
+                    }}
+                  />
+                </div>
+              )}
             </div>
             <div style={{ marginBottom: "2vw" }}>
               <TextEditor width={"65vw"} setDescription1={setDescription1} />
@@ -304,7 +323,6 @@ export default function AddTableofContent({
                     </MenuItem>
                     <MenuItem
                       onClick={() => {
-                        setMinBudegt(20);
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
@@ -323,7 +341,6 @@ export default function AddTableofContent({
                     </MenuItem>
                     <MenuItem
                       onClick={() => {
-                        setMinBudegt(50);
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
@@ -395,7 +412,6 @@ export default function AddTableofContent({
                     <MenuItem
                       hidden
                       onClick={() => {
-                        setMaxBudegt(100);
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
@@ -414,7 +430,6 @@ export default function AddTableofContent({
                     </MenuItem>
                     <MenuItem
                       onClick={() => {
-                        setMaxBudegt(100);
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
@@ -433,7 +448,6 @@ export default function AddTableofContent({
                     </MenuItem>
                     <MenuItem
                       onClick={() => {
-                        setMaxBudegt(200);
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
@@ -452,7 +466,6 @@ export default function AddTableofContent({
                     </MenuItem>
                     <MenuItem
                       onClick={() => {
-                        setMaxBudegt(500);
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
@@ -475,6 +488,7 @@ export default function AddTableofContent({
             </div>
           </div>
           <div className="jobpodtedfieldtitile">Description</div>
+
           <div className="jobpostfieldinputbox">
             {console.log(arrayofblogs)}
             <textarea
@@ -496,6 +510,16 @@ export default function AddTableofContent({
               }}
             />
           </div>
+
+          {wrongsec && (
+            <div
+              style={{ marginLeft: "1vw", color: "red" }}
+              className="min-maxhomejob"
+            >
+              fill all field are cumpulsary these are marked as * of this
+              section
+            </div>
+          )}
         </div>
       }
     </>
