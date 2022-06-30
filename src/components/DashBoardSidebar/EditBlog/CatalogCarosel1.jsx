@@ -2,17 +2,15 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import imgla from "../../../assets/Web 1280 – 2/Group 9969.svg";
 import imgra from "../../../assets/Web 1280 – 2/Group 9970.svg";
-import img1 from "../../../assets/Web 1280 – 2/collins-lesulie-0VEDrQXxrQo-unsplash.png";
-import img2 from "../../../assets/Web 1280 – 2/kaleidico-3V8xo5Gbusk-unsplash.png";
-import img3 from "../../../assets/Web 1280 – 2/studio-republic-fotKKqWNMQ4-unsplash.png";
-import img4 from "../../../assets/Web 1280 – 2/Group 10053.png";
-import { ArrowBack, ArrowForward, ArrowRightAlt } from "@mui/icons-material";
+import img11 from "../../../assets/Web 1280 – 2/collins-lesulie-0VEDrQXxrQo-unsplash.png";
+import img21 from "../../../assets/Web 1280 – 2/kaleidico-3V8xo5Gbusk-unsplash.png";
+import img31 from "../../../assets/Web 1280 – 2/studio-republic-fotKKqWNMQ4-unsplash.png";
+import img41 from "../../../assets/Web 1280 – 2/Group 10053.png";
 function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
+  const { onClick } = props;
   return (
     <div
       style={{
-      
         display: "block",
         background: "#064C87",
         width: "3vw",
@@ -70,16 +68,24 @@ export default class Cataloguecarosel1 extends Component {
         return (
           <a style={{ width: "5vw", height: "5vw" }}>
             {i === 0 ? (
-              <img
+             <div  style={{
+                width: "5.5vw",
+                height: "5.5vw",
+                objectFit: "cover",
+                borderRadius: "50%",
+              }}>
+                  <img
                 style={{
                   width: "5.5vw",
                   height: "5.5vw",
                   objectFit: "cover",
                   borderRadius: "50%",
                 }}
-                src={img1}
+                src={img11}
                 alt=""
               />
+             </div>
+
             ) : (
               ""
             )}
@@ -91,7 +97,7 @@ export default class Cataloguecarosel1 extends Component {
                   objectFit: "cover",
                   borderRadius: "50%",
                 }}
-                src={img2}
+                src={img21}
                 alt=""
               />
             ) : (
@@ -105,7 +111,7 @@ export default class Cataloguecarosel1 extends Component {
                   objectFit: "cover",
                   borderRadius: "50%",
                 }}
-                src={img3}
+                src={img31}
                 alt=""
               />
             ) : (
@@ -119,7 +125,7 @@ export default class Cataloguecarosel1 extends Component {
                   objectFit: "cover",
                   borderRadius: "50%",
                 }}
-                src={img4}
+                src={img41}
                 alt=""
               />
             ) : (
@@ -143,17 +149,18 @@ export default class Cataloguecarosel1 extends Component {
     return (
       <div>
         <Slider {...settings}>
+          {console.log(this?.props?.img1)}
           <div className="catalogimages">
-            <img src={img1} />
+            <img src={URL.createObjectURL(this?.props?.img1)} />
           </div>
           <div className="catalogimages">
-            <img src={img2} />
+            <img src={URL.createObjectURL(this?.props?.img2)} />
           </div>
           <div className="catalogimages">
-            <img src={img3} />
+            <img src={URL.createObjectURL(this?.props?.img3)} />
           </div>
           <div className="catalogimages">
-            <img src={img4} />
+            <img src={URL.createObjectURL(this?.props?.img4)} />
           </div>
         </Slider>
       </div>

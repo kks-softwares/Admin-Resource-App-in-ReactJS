@@ -122,16 +122,7 @@ export default function BlogDetail() {
                         style={{ color: "black" }}
                         dangerouslySetInnerHTML={{ __html: data?.toc }}
                       ></div>
-                      {/* <div className="dataeofblogcontnet1">
-                        Who does not want to own a business? No matter if it is
-                        commenced as a small scale or done through huge capital
-                        investment, it is still considered a business. Even if
-                        you do not want to invest ample amount into a business
-                        you can still run a profitable small scale business. We
-                        will brief you about all the best small business ideas
-                        in India for the upcoming year that is 2022.
-                      </div> */}
-
+                     
                       {data?.file && (
                         <div className="blogcontentimagebanner">
                           <img
@@ -172,7 +163,7 @@ export default function BlogDetail() {
               className="handlemoreaboutskill"
             >
               <div
-                onClick={() => navigate("/dashbaord/editBlog")}
+              onClick={() => navigate(`/dashbaord/editBlog/${Id}`)}
                 style={{
                   background: "white",
                   color: "black",
@@ -215,7 +206,7 @@ export default function BlogDetail() {
               className="handlemoreaboutskill"
             >
               <div
-                onClick={() => navigate("/dashbaord/editBlog")}
+                onClick={() => navigate(`/dashbaord/editBlog/${Id}`)}
                 style={{
                   background: "white",
                   color: "black",

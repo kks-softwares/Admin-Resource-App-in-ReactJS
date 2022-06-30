@@ -1,11 +1,11 @@
 import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import './BiddingFormDashboard.css'
+import "./BiddingFormDashboard.css";
 export class TextEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { text: "" };
+    this.state = { text: this?.props?.description1 };
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(value) {

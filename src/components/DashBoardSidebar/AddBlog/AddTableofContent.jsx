@@ -110,7 +110,7 @@ export default function AddTableofContent({
       setwrongsec(true);
       setErroraddblog(true);
     }
-  }, [data,title,scate,arrayoffiles]);
+  }, [data, title, scate, arrayoffiles]);
 
   const handleuploadimage = (file) => {
     const formdata = new FormData();
@@ -179,7 +179,11 @@ export default function AddTableofContent({
               )}
             </div>
             <div style={{ marginBottom: "2vw" }}>
-              <TextEditor width={"65vw"} setDescription1={setDescription1} />
+              <TextEditor
+                width={"65vw"}
+                setDescription1={setDescription1}
+                description1={description1}
+              />
             </div>
           </div>
           <div

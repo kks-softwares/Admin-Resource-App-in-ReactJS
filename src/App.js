@@ -64,7 +64,7 @@ function App() {
             <Route path="/dashbaord/users" element={<Users />} />
             <Route path="/dashbaord/blogs" element={<Blogs />} />
             <Route path="/dashbaord/addBlog" element={<Addblog />} />
-            <Route path="/dashbaord/editBlog" element={<Editblog />} />
+            <Route path="/dashbaord/editBlog/:Id" element={<Editblog />} />
             <Route path="/dashbaord/blog/:Id" element={<BlogDetail />} />
             <Route path="/dashbaord/:userName/:type" element={<UserFullDetails />} />
            
