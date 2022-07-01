@@ -102,9 +102,10 @@ export default function Skillpopup1({
         </div>
         <div
           style={{
+              
             width: "10vw",
             color:
-              data?.status === "unpulblis"
+              data?.status === "unpublish"
                 ? "#F39600"
                 : data?.status === "publish"
                 ? "#2AC96A"

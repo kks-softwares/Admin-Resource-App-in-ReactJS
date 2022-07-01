@@ -58,104 +58,110 @@ export default function BlogDetail() {
         <ArrowBackIosNewOutlined />
       </div>
       <div style={{ margin: "2vw" }}>
-      {data?.icon &&  <div style={{ padding: "0vw" }} className="Blogdbannercontainer">
-          <div className="ctatlogcarouseltitle">
-            <button
-              style={{
-                marginLeft: "1vw",
-                width: "10vw",
-                cursor: "auto",
-                position: "relative",
-                top: "4vw",
-                zIndex: "100",
-              }}
-              className="hb-button"
-            >
-              {data?.category}
-            </button>
-            <div className="textofcontainercatalgue">{data?.contentName}</div>
-          </div>
-          <div style={{ position: "relative", bottom: "2.2vw" }}>
-            <Cataloguecarosel
-              img1={data?.icon[0]?.file}
-              img2={
-                data?.icon[1]?.file ? data?.icon[1]?.file : data?.icon[0]?.file
-              }
-              img3={
-                data?.icon[2]?.file
-                  ? data?.icon[2]?.file
-                  : data?.icon[0]?.file
-                  ? data?.icon[0]?.file
-                  : data?.icon[1]?.file
-              }
-              img4={
-                data?.icon[3]?.file
-                  ? data?.icon[3]?.file
-                  : data?.icon[1]?.file
-                  ? data?.icon[1]?.file
-                  : data?.icon[0]?.file
-                  ? data?.icon[0]?.file
-                  : data?.icon[2]?.file
-              }
-            />
-          </div>
-        </div>
-        }
-        <div style={{ position: "relative", bottom:data?.icon?"3vw":"0vw" }}>
-        <div className="jobpodtedfieldtitile"> Title</div>
-            <div className="jobpostfieldinputbox">
-              <input type="text" value={data?.contentName} disabled />
+        {data?.icon && (
+          <div style={{ padding: "0vw" }} className="Blogdbannercontainer">
+            <div className="ctatlogcarouseltitle">
+              <button
+                style={{
+                  marginLeft: "1vw",
+                  width: "10vw",
+                  cursor: "auto",
+                  position: "relative",
+                  top: "4vw",
+                  zIndex: "100",
+                }}
+                className="hb-button"
+              >
+                {data?.category}
+              </button>
+              <div className="textofcontainercatalgue">{data?.contentName}</div>
             </div>
-            <div className="jobpodtedfieldtitile"> Category</div>
-            <div className="jobpostfieldinputbox">
-              <input type="text" value={data?.category} disabled />
+            <div style={{ position: "relative", bottom: "2.2vw" }}>
+              <Cataloguecarosel
+                img1={data?.icon[0]?.file}
+                img2={
+                  data?.icon[1]?.file
+                    ? data?.icon[1]?.file
+                    : data?.icon[0]?.file
+                }
+                img3={
+                  data?.icon[2]?.file
+                    ? data?.icon[2]?.file
+                    : data?.icon[0]?.file
+                    ? data?.icon[0]?.file
+                    : data?.icon[1]?.file
+                }
+                img4={
+                  data?.icon[3]?.file
+                    ? data?.icon[3]?.file
+                    : data?.icon[1]?.file
+                    ? data?.icon[1]?.file
+                    : data?.icon[0]?.file
+                    ? data?.icon[0]?.file
+                    : data?.icon[2]?.file
+                }
+              />
             </div>
+          </div>
+        )}
+        <div
+          style={{ position: "relative", bottom: data?.icon ? "3vw" : "0vw" }}
+        >
+          <div className="jobpodtedfieldtitile"> Title</div>
+          <div className="jobpostfieldinputbox">
+            <input type="text" value={data?.contentName} disabled />
+          </div>
+          <div className="jobpodtedfieldtitile"> Category</div>
+          <div className="jobpostfieldinputbox">
+            <input type="text" value={data?.category} disabled />
+          </div>
           <div className="jobpodtedfieldtitile"> Table of Content</div>
           <div className="widthfullblofpreview">
-         
-              {data?.toC?.length > 0 &&
-                data?.toC?.map((data, index) => {
-                  return (
-                    <div>
-                      <div
-                        className="dataeofblogcontnet1"
-                        style={{ color: "black" }}
-                        dangerouslySetInnerHTML={{ __html: data?.toc }}
-                      ></div>
-                     
-                      {data?.file && (
-                        <div className="blogcontentimagebanner">
-                          <img
-                            style={{ width: "63vw", objectFit: "contain" }}
-                            src={data?.file}
-                            alt=""
-                          />
+            {data?.toC?.length > 0 &&
+              data?.toC?.map((data, index) => {
+                return (
+                  <div>
+                    <div
+                      className=""
+                      style={{ color: "black", fontWeight: "500" }}
+                    >
+                      {data?.heading}
+                    </div>
+                    <div
+                      className="dataeofblogcontnet1"
+                      style={{ color: "black", fontSize: "0.9vw" }}
+                      dangerouslySetInnerHTML={{ __html: data?.toc }}
+                    ></div>
+
+                    {data?.file && (
+                      <div className="blogcontentimagebanner">
+                        <img
+                          style={{ width: "63vw", objectFit: "contain" }}
+                          src={data?.file}
+                          alt=""
+                        />
+                      </div>
+                    )}
+                    <div
+                      style={{ width: "63vw" }}
+                      className="Joinwithusblogbox"
+                    >
+                      <div style={{ width: "60%", textAlign: "center" }}>
+                        <div className="Joinwithusblogboxtitle">
+                          {data?.title}
                         </div>
-                      )}
-                      <div
-                        style={{ width: "63vw" }}
-                        className="Joinwithusblogbox"
-                      >
-                        <div style={{ width: "60%", textAlign: "center" }}>
-                          <div className="Joinwithusblogboxtitle">
-                            {data?.title}
-                          </div>
-                          <div className="Joinwithusblogboxdetail">
-                            {/* Join our community of 300+ Resources of all sizes
-                            who use 44 resources Latest Technology and Products
-                            make with our experts candidate and easy to
-                            delightful Customer and Employees */}
-                            {data?.desc}
-                          </div>
-                        </div>
-                        <div style={{ width: "40%", textAlign: "center" }}>
-                          <button> {data?.button}</button>
+                        <div className="Joinwithusblogboxdetail">
+                       
+                          {data?.desc}
                         </div>
                       </div>
+                      <div style={{ width: "40%", textAlign: "center" }}>
+                        <button> {data?.button}</button>
+                      </div>
                     </div>
-                  );
-                })}
-       
+                  </div>
+                );
+              })}
           </div>
           {data?.status === "unpulblis" ? (
             <div
@@ -163,7 +169,7 @@ export default function BlogDetail() {
               className="handlemoreaboutskill"
             >
               <div
-              onClick={() => navigate(`/dashbaord/editBlog/${Id}`)}
+                onClick={() => navigate(`/dashbaord/editBlog/${Id}`)}
                 style={{
                   background: "white",
                   color: "black",
@@ -223,9 +229,7 @@ export default function BlogDetail() {
             <div
               style={{ marginTop: "0.31vw" }}
               className="handlemoreaboutskill"
-            >
-             
-            </div>
+            ></div>
           )}
         </div>
       </div>

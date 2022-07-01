@@ -73,7 +73,7 @@ export default function AddTableofContent({
   const classes = useStyles();
   const [age4, setAge4] = React.useState(10);
   const [age5, setAge5] = React.useState(10);
-
+  
   const [arrayoffile, setArrayoffile] = useState();
 
   const handleChange4x = (event) => {
@@ -88,6 +88,7 @@ export default function AddTableofContent({
     setArrayofblogs([
       ...arrayofblogs.slice(0, index),
       {
+        heading: data?.heading,
         toc: description1,
         file: data?.file,
         desc: data?.desc,
@@ -99,7 +100,13 @@ export default function AddTableofContent({
   }, [description1]);
 
   useEffect(() => {
-    if (data?.toc && data?.desc && data?.title && data?.button) {
+    if (
+      data?.toc &&
+      data?.desc &&
+      data?.title &&
+      data?.button &&
+      data?.heading
+    ) {
       setwrongsec(false);
       if (title && scate && arrayoffiles?.length > 0) {
         setErroraddblog(false);
@@ -126,6 +133,7 @@ export default function AddTableofContent({
         setArrayofblogs([
           ...arrayofblogs.slice(0, index),
           {
+            heading: data?.heading,
             toc: data?.toc,
             file: res?.data?.success?.data?.file,
             desc: data?.desc,
@@ -178,6 +186,29 @@ export default function AddTableofContent({
                 </div>
               )}
             </div>
+
+            <div className="jobpodtedfieldtitile"> Heading *</div>
+            <div style={{width:"69vw"}} className="jobpostfieldinputbox">
+              <input
+                type="text"
+                
+                onChange={(e) => {
+                  setArrayofblogs([
+                    ...arrayofblogs.slice(0, index),
+                    {
+                      heading: e.target.value,
+                      toc: data?.toc,
+                      file: data?.file,
+                      desc: data?.desc,
+                      title: data?.title,
+                      button: data?.button,
+                    },
+                    ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+                  ]);
+                }}
+              />
+            </div>
+            <div className="jobpodtedfieldtitile"> Explaination *  </div>
             <div style={{ marginBottom: "2vw" }}>
               <TextEditor
                 width={"65vw"}
@@ -257,7 +288,7 @@ export default function AddTableofContent({
           )}
           <div className="jobpodtedfieldtitile">Call to Action</div>
           <div className="homjobpost-popbudegt">
-            <div className="min-maxhomejob">Title</div>
+            <div className="min-maxhomejob">Title *</div>
             <div className="">
               <Box
                 sx={{
@@ -312,6 +343,7 @@ export default function AddTableofContent({
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
+                            heading:data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -330,6 +362,7 @@ export default function AddTableofContent({
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
+                            heading:data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -348,6 +381,7 @@ export default function AddTableofContent({
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
+                            heading:data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -366,7 +400,7 @@ export default function AddTableofContent({
               </Box>
             </div>
             <div style={{ marginLeft: "1vw" }} className="min-maxhomejob">
-              Button Name
+              Button Name *
             </div>
             <div className="">
               <Box
@@ -436,7 +470,7 @@ export default function AddTableofContent({
                       onClick={() => {
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
-                          {
+                          {heading:data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -454,7 +488,7 @@ export default function AddTableofContent({
                       onClick={() => {
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
-                          {
+                          {heading:data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -472,7 +506,7 @@ export default function AddTableofContent({
                       onClick={() => {
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
-                          {
+                          {heading:data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -491,7 +525,7 @@ export default function AddTableofContent({
               </Box>
             </div>
           </div>
-          <div className="jobpodtedfieldtitile">Description</div>
+          <div className="jobpodtedfieldtitile">Description *</div>
 
           <div className="jobpostfieldinputbox">
             {console.log(arrayofblogs)}
@@ -503,6 +537,7 @@ export default function AddTableofContent({
                 setArrayofblogs([
                   ...arrayofblogs.slice(0, index),
                   {
+                    heading:data?.heading,
                     toc: data?.toc,
                     file: data?.file,
                     desc: e.target.value,
@@ -514,16 +549,6 @@ export default function AddTableofContent({
               }}
             />
           </div>
-
-          {/* {wrongsec && (
-            <div
-              style={{ marginLeft: "1vw", color: "red" }}
-              className="min-maxhomejob"
-            >
-              fill all field are cumpulsary these are marked as * of this
-              section
-            </div>
-          )} */}
         </div>
       }
     </>

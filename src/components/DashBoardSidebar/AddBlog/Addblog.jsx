@@ -79,6 +79,7 @@ export default function Addblog() {
 
   const [arrayofblogs, setArrayofblogs] = useState([
     {
+      heading: "",
       toc: "",
       file: "",
       desc: "",
@@ -381,6 +382,7 @@ export default function Addblog() {
                 setArrayofblogs([
                   ...arrayofblogs,
                   {
+                    heading: "",
                     toc: "",
                     file: "",
                     desc: "",
@@ -509,19 +511,16 @@ export default function Addblog() {
                   return (
                     <div>
                       <div
+                        className=""
+                        style={{ color: "black", fontWeight: "500" }}
+                      >
+                        {data?.heading}
+                      </div>
+                      <div
                         className="dataeofblogcontnet1"
-                        style={{ color: "black" }}
+                        style={{ color: "black", fontSize: "0.9vw" }}
                         dangerouslySetInnerHTML={{ __html: data?.toc }}
                       ></div>
-                      {/* <div className="dataeofblogcontnet1">
-                        Who does not want to own a business? No matter if it is
-                        commenced as a small scale or done through huge capital
-                        investment, it is still considered a business. Even if
-                        you do not want to invest ample amount into a business
-                        you can still run a profitable small scale business. We
-                        will brief you about all the best small business ideas
-                        in India for the upcoming year that is 2022.
-                      </div> */}
 
                       {data?.file && (
                         <div className="blogcontentimagebanner">
@@ -541,10 +540,6 @@ export default function Addblog() {
                             {data?.title}
                           </div>
                           <div className="Joinwithusblogboxdetail">
-                            {/* Join our community of 300+ Resources of all sizes
-                            who use 44 resources Latest Technology and Products
-                            make with our experts candidate and easy to
-                            delightful Customer and Employees */}
                             {data?.desc}
                           </div>
                         </div>

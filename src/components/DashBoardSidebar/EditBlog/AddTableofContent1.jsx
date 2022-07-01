@@ -100,7 +100,7 @@ export default function AddTableofContent1({
   }, [description1]);
 
   useEffect(() => {
-    if (data?.toc && data?.desc && data?.title && data?.button) {
+    if (data?.toc && data?.desc && data?.title && data?.button && data?.heading) {
       setwrongsec(false);
       if (title && scate && arrayoffiles?.length > 0) {
         setErroraddblog(false);
@@ -116,8 +116,25 @@ export default function AddTableofContent1({
   useEffect(() => {
     setDescription2(data?.desc);
     setDescription1(data?.toc);
-    setAge4(data?.title==="Mobile app Development Tips"?20:data?.title==="Mobile app Development Tips"?30:data?.title==="Mobile app Development Tips"?40:"10")
-    setAge5(data?.button==="Join Now"?20:data?.title==="Join Now"?30:data?.title==="Join Now"?40:"10")
+    setAge4(
+      data?.title === "Mobile app Development Tips"
+        ? 20
+        : data?.title === "Mobile app Development Tips"
+        ? 30
+        : data?.title === "Mobile app Development Tips"
+        ? 40
+        : "10"
+    );
+    setAge5(
+      data?.button === "Join Now"
+        ? 20
+        : data?.title === "Join Now"
+        ? 30
+        : data?.title === "Join Now"
+        ? 40
+        : "10"
+    );
+    
   }, [data]);
 
   const handleuploadimage = (file) => {
@@ -186,12 +203,37 @@ export default function AddTableofContent1({
                 </div>
               )}
             </div>
+            <div className="jobpodtedfieldtitile"> Heading *</div>
+            <div style={{width:"69vw"}} className="jobpostfieldinputbox">
+              <input
+                type="text"
+                style={{width:"100vw"}}
+                value={data?.heading}
+                onChange={(e) => {
+                  setArrayofblogs([
+                    ...arrayofblogs.slice(0, index),
+                    {
+                      heading: e.target.value,
+                      toc: data?.toc,
+                      file: data?.file,
+                      desc: data?.desc,
+                      title: data?.title,
+                      button: data?.button,
+                    },
+                    ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+                  ]);
+                }}
+              />
+            </div>
+            <div className="jobpodtedfieldtitile"> Explaination*  </div>
             <div style={{ marginBottom: "2vw" }}>
-              {description1 && <TextEditor
-                width={"65vw"}
-                setDescription1={setDescription1}
-                description1={description1}
-              />}
+              {description1 && (
+                <TextEditor
+                  width={"65vw"}
+                  setDescription1={setDescription1}
+                  description1={description1}
+                />
+              )}
             </div>
           </div>
           <div
@@ -265,7 +307,7 @@ export default function AddTableofContent1({
           )}
           <div className="jobpodtedfieldtitile">Call to Action</div>
           <div className="homjobpost-popbudegt">
-            <div className="min-maxhomejob">Title</div>
+            <div className="min-maxhomejob">Title *</div>
             <div className="">
               <Box
                 sx={{
@@ -374,7 +416,7 @@ export default function AddTableofContent1({
               </Box>
             </div>
             <div style={{ marginLeft: "1vw" }} className="min-maxhomejob">
-              Button Name
+              Button Name *
             </div>
             <div className="">
               <Box
@@ -499,7 +541,7 @@ export default function AddTableofContent1({
               </Box>
             </div>
           </div>
-          <div className="jobpodtedfieldtitile">Description</div>
+          <div className="jobpodtedfieldtitile">Description *</div>
 
           <div className="jobpostfieldinputbox">
             {console.log(data)}
@@ -524,16 +566,6 @@ export default function AddTableofContent1({
               }}
             />
           </div>
-
-          {/* {wrongsec && (
-            <div
-              style={{ marginLeft: "1vw", color: "red" }}
-              className="min-maxhomejob"
-            >
-              fill all field are cumpulsary these are marked as * of this
-              section
-            </div>
-          )} */}
         </div>
       }
     </>

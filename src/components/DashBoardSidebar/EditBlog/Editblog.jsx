@@ -553,8 +553,14 @@ export default function Addblog() {
                   return (
                     <div>
                       <div
+                        className=""
+                        style={{ color: "black", fontWeight: "500" }}
+                      >
+                        {data?.heading}
+                      </div>
+                      <div
                         className="dataeofblogcontnet1"
-                        style={{ color: "black" }}
+                        style={{ color: "black", fontSize: "0.9vw" }}
                         dangerouslySetInnerHTML={{ __html: data?.toc }}
                       ></div>
 
