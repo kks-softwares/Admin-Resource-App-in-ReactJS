@@ -71,7 +71,7 @@ export default function BlogDetail() {
               }}
               className="hb-button"
             >
-              Design
+              {data?.category}
             </button>
             <div className="textofcontainercatalgue">{data?.contentName}</div>
           </div>

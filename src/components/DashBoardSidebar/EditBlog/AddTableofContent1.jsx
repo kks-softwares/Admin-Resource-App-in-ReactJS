@@ -116,8 +116,8 @@ export default function AddTableofContent1({
   useEffect(() => {
     setDescription2(data?.desc);
     setDescription1(data?.toc);
-    setAge4(data?.title==="Mobile app Development Tips"?20:data?.title==="Mobile app Development Tips"?30:data?.title==="Mobile app Development Tips"?40:"50")
-    setAge5(data?.button==="Join Now"?20:data?.title==="Join Now"?30:data?.title==="Join Now"?40:"50")
+    setAge4(data?.title==="Mobile app Development Tips"?20:data?.title==="Mobile app Development Tips"?30:data?.title==="Mobile app Development Tips"?40:"10")
+    setAge5(data?.button==="Join Now"?20:data?.title==="Join Now"?30:data?.title==="Join Now"?40:"10")
   }, [data]);
 
   const handleuploadimage = (file) => {

@@ -118,33 +118,50 @@ export default function Addblog() {
             ? 3
             : 4
         );
-        setArrayoffiles(res?.data?.success?.data[0]?.icon)
+        setsCate(
+          res?.data?.success?.data[0]?.category === "Business Ideas"
+            ? "Business Ideas"
+            : res?.data?.success?.data[0]?.category === "Business Plans"
+            ? "Business Plans"
+            : res?.data?.success?.data[0]?.category === "Business Problems"
+            ? "Business Problems"
+            : "Others"
+        );
+        setArrayoffiles(res?.data?.success?.data[0]?.icon);
       });
   }, [Id]);
 
   const handlesumbitBlog = () => {
     const formdata = new FormData();
-    if (arrayoffiles?.length > 0) {
-      arrayoffiles?.map((data) => {
-        formdata.append("fileName", data);
-      });
-    }
-    formdata.append("status", "publish");
+
     formdata.append("contentName", title);
-    formdata.append("author", user?.fullName);
-    formdata.append("shareDisable", false);
-    formdata.append("toC", JSON.stringify(arrayofblogs));
     formdata.append("category", scate);
+    formdata.append("contentId", Id);
 
     axios
-      .post(`${API_HOST}/contentManagement/addByAdmin`, formdata, {
+      .post(`${API_HOST}/contentManagement/editcontent`, formdata, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
       })
       .then((res) => {
-        navigate(-1);
+        const formdata = new FormData();
+
+        formdata.append("toC", JSON.stringify(arrayofblogs));
+        formdata.append("contentId", Id);
+
+        axios
+          .post(`${API_HOST}/contentManagement/editToC`, formdata, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization:
+                "Bearer " + JSON.parse(localStorage.getItem("token")),
+            },
+          })
+          .then((res) => {
+            navigate(-1);
+          });
       });
   };
 
@@ -438,7 +455,7 @@ export default function Addblog() {
               <button
                 style={{ background: "white" }}
                 onClick={() => {
-                  navigate("/dashbaord/blog");
+                  navigate(-1);
                 }}
               >
                 Cancel
@@ -485,7 +502,7 @@ export default function Addblog() {
                   }}
                   className="hb-button"
                 >
-                  Design
+                  {scate}
                 </button>
                 <div className="textofcontainercatalgue">{title}</div>
               </div>
@@ -493,7 +510,9 @@ export default function Addblog() {
                 <Cataloguecarosel1
                   img1={data?.icon[0]?.file}
                   img2={
-                    data?.icon[1]?.file ? data?.icon[1]?.file : data?.icon[0]?.file
+                    data?.icon[1]?.file
+                      ? data?.icon[1]?.file
+                      : data?.icon[0]?.file
                   }
                   img3={
                     data?.icon[2]?.file
@@ -538,7 +557,6 @@ export default function Addblog() {
                         style={{ color: "black" }}
                         dangerouslySetInnerHTML={{ __html: data?.toc }}
                       ></div>
-                     
 
                       {data?.file && (
                         <div className="blogcontentimagebanner">
@@ -590,13 +608,12 @@ export default function Addblog() {
               </div>
               <div
                 onClick={() => {
-                  console.log("jiji");
                   handlesumbitBlog();
                 }}
                 style={{ cursor: "pointer" }}
                 className="handlecirclieaboutsave"
               >
-                Submit
+                Update
               </div>
             </div>
           </div>

@@ -121,7 +121,7 @@ export default function Addblog() {
         },
       })
       .then((res) => {
-           navigate(-1)
+        navigate(-1);
       });
   };
 
@@ -136,18 +136,15 @@ export default function Addblog() {
   };
 
   useEffect(() => {
-      if (arrayofblogs?.length>0) {
-          
+    if (arrayofblogs?.length > 0) {
+    } else {
+      if (title && scate && arrayoffiles?.length > 0) {
+        setErroraddblog(false);
+      } else {
+        setErroraddblog(true);
       }
-      else{
-        if (title && scate && arrayoffiles?.length > 0 ) {
-            setErroraddblog(false);
-          } else {
-            setErroraddblog(true);
-          }
-      }
-   
-  }, [title, scate, arrayoffiles,arrayofblogs]);
+    }
+  }, [title, scate, arrayoffiles, arrayofblogs]);
 
   return (
     <div>
@@ -418,7 +415,7 @@ export default function Addblog() {
               <button
                 style={{ background: "white" }}
                 onClick={() => {
-                  navigate("/dashbaord/blog");
+                  navigate(-1);
                 }}
               >
                 Cancel
@@ -465,7 +462,7 @@ export default function Addblog() {
                   }}
                   className="hb-button"
                 >
-                  Design
+                  {scate}
                 </button>
                 <div className="textofcontainercatalgue">{title}</div>
               </div>
