@@ -89,11 +89,13 @@ export default function AddTableofContent1({
     setArrayofblogs([
       ...arrayofblogs.slice(0, index),
       {
+          heading:data?.heading,
         toc: description1,
         file: data?.file,
         desc: data?.desc,
         title: data?.title,
         button: data?.button,
+
       },
       ...arrayofblogs.slice(index + 1, arrayofblogs.length),
     ]);
@@ -150,7 +152,7 @@ export default function AddTableofContent1({
       .then((res) => {
         setArrayofblogs([
           ...arrayofblogs.slice(0, index),
-          {
+          { heading:data?.heading,
             toc: data?.toc,
             file: res?.data?.success?.data?.file,
             desc: data?.desc,
@@ -361,7 +363,7 @@ export default function AddTableofContent1({
                       onClick={() => {
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
-                          {
+                          {heading:data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -379,7 +381,7 @@ export default function AddTableofContent1({
                       onClick={() => {
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
-                          {
+                          {heading:data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -397,7 +399,7 @@ export default function AddTableofContent1({
                       onClick={() => {
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
-                          {
+                          {heading:data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -469,6 +471,7 @@ export default function AddTableofContent1({
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
+                            heading:data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -487,6 +490,7 @@ export default function AddTableofContent1({
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
+                            heading:data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -505,6 +509,7 @@ export default function AddTableofContent1({
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
+                            heading:data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -523,6 +528,7 @@ export default function AddTableofContent1({
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
+                            heading:data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -555,6 +561,7 @@ export default function AddTableofContent1({
                 setArrayofblogs([
                   ...arrayofblogs.slice(0, index),
                   {
+                    heading:data?.heading,
                     toc: data?.toc,
                     file: data?.file,
                     desc: e.target.value,

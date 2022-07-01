@@ -20,27 +20,7 @@ export default function Skillpopup1({
         contentId: data?.contentId,
       })
       .then(() => {
-        if (!setSelectedCategory) {
-          axios
-            .get(
-              `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&page=${page}`
-            )
-            .then((res) => {
-              setAllusers(res?.data?.success?.data?.docs);
-              window.scrollTo(0, 0, { behavior: "smooth" });
-            });
-          axios
-            .get(
-              `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&page=${
-                page + 1
-              }`
-            )
-            .then((res) => {
-              if (res?.data?.success?.data?.docs?.length > 0) {
-                settotalpages(page + 1);
-              }
-            });
-        } else {
+      
           axios
             .get(
               `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
@@ -62,7 +42,7 @@ export default function Skillpopup1({
                 settotalpages(page);
               }
             });
-        }
+        
       });
   };
   return (
@@ -102,7 +82,7 @@ export default function Skillpopup1({
         </div>
         <div
           style={{
-              
+
             width: "10vw",
             color:
               data?.status === "unpublish"
