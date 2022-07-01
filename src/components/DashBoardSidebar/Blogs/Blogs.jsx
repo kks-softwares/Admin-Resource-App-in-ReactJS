@@ -48,9 +48,31 @@ export default function Blogs() {
   const [allusers, setAllusers] = useState([]);
 
   useEffect(() => {
-    
-    
+     if (!setSelectedCategory) {
+        axios
+        .get(
+          `${API_HOST}/contentManagement/allcontent?&pageNumber=${page}&pageSize=10`
+        )
+        .then((res) => {
+          setAllusers(res?.data?.success?.data);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
       axios
+        .get(
+          `${API_HOST}/contentManagement/allcontent?&pageNumber=${
+            page + 1
+          }&pageSize=10&category=${setSelectedCategory}`
+        )
+        .then((res) => {
+          if (res?.data?.success?.data?.length > 0) {
+            settotalpages(page + 1);
+          } else {
+            settotalpages(page);
+          }
+        });  
+     }
+     else{
+        axios
         .get(
           `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
         )
@@ -72,6 +94,9 @@ export default function Blogs() {
           }
         });
     
+     }
+    
+     
   }, [page, setSelectedCategory]);
 
   return (
