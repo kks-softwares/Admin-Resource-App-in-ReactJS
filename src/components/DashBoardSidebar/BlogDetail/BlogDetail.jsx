@@ -78,27 +78,23 @@ export default function BlogDetail() {
             </div>
             <div style={{ position: "relative", bottom: "2.2vw" }}>
               <Cataloguecarosel
-                img1={data?.icon[0]?.file}
-                img2={
-                  data?.icon[1]?.file
-                    ? data?.icon[1]?.file
-                    : data?.icon[0]?.file
-                }
+                img1={data?.icon[0]}
+                img2={data?.icon[1] ? data?.icon[1] : data?.icon[0]}
                 img3={
-                  data?.icon[2]?.file
-                    ? data?.icon[2]?.file
-                    : data?.icon[0]?.file
-                    ? data?.icon[0]?.file
-                    : data?.icon[1]?.file
+                  data?.icon[2]
+                    ? data?.icon[2]
+                    : data?.icon[0]
+                    ? data?.icon[0]
+                    : data?.icon[1]
                 }
                 img4={
                   data?.icon[3]?.file
-                    ? data?.icon[3]?.file
-                    : data?.icon[1]?.file
-                    ? data?.icon[1]?.file
-                    : data?.icon[0]?.file
-                    ? data?.icon[0]?.file
-                    : data?.icon[2]?.file
+                    ? data?.icon[3]
+                    : data?.icon[1]
+                    ? data?.icon[1]
+                    : data?.icon[0]
+                    ? data?.icon[0]
+                    : data?.icon[2]
                 }
               />
             </div>
@@ -151,7 +147,6 @@ export default function BlogDetail() {
                           {data?.title}
                         </div>
                         <div className="Joinwithusblogboxdetail">
-                       
                           {data?.desc}
                         </div>
                       </div>
@@ -163,7 +158,7 @@ export default function BlogDetail() {
                 );
               })}
           </div>
-          {data?.status === "unpulblis" ? (
+          {data?.status === "unpublish" ? (
             <div
               style={{ marginTop: "0.31vw" }}
               className="handlemoreaboutskill"

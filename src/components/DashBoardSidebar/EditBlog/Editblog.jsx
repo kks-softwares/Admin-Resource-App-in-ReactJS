@@ -160,7 +160,22 @@ export default function Addblog() {
             },
           })
           .then((res) => {
-            navigate(-1);
+            const formdata = new FormData();
+
+            formdata.append("icon", JSON.stringify(arrayoffiles));
+            formdata.append("contentId", Id);
+    
+            axios
+              .post(`${API_HOST}/contentManagement/updateFile`, formdata, {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                  Authorization:
+                    "Bearer " + JSON.parse(localStorage.getItem("token")),
+                },
+              })
+              .then((res) => {
+                navigate(-1);
+              });
           });
       });
   };
@@ -185,6 +200,23 @@ export default function Addblog() {
       }
     }
   }, [title, scate, arrayoffiles, arrayofblogs]);
+
+
+
+  const handleuploadimage = (file) => {
+    const formdata = new FormData();
+    formdata.append("fileName", file);
+
+    axios
+      .post(`${API_HOST}/contentManagement/tableContent`, formdata, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+          setArrayoffiles([...arrayoffiles,res?.data?.success?.data?.file])
+      });
+  };
 
   return (
     <div>
@@ -353,7 +385,7 @@ export default function Addblog() {
                       type="file"
                       id="inputctaelogfile"
                       onChange={(e) => {
-                        setArrayoffiles([...arrayoffiles, e.target.files[0]]);
+                        handleuploadimage(e.target.files[0])
                       }}
                       hidden
                     />
@@ -373,7 +405,7 @@ export default function Addblog() {
                       <div className="inputfilesshowncatboxsingleimg">
                         <img src={img1} alt="" />
                       </div>
-                      <div className="fileselctednamecate">{file?.file}</div>
+                      <div className="fileselctednamecate">{file}</div>
                       <div className="inputfilesshowncatboxsingleimg">
                         <img
                           style={{
@@ -508,27 +540,27 @@ export default function Addblog() {
               </div>
               <div style={{ position: "relative", bottom: "2.2vw" }}>
                 <Cataloguecarosel1
-                  img1={data?.icon[0]?.file}
+                  img1={arrayoffiles[0]}
                   img2={
-                    data?.icon[1]?.file
-                      ? data?.icon[1]?.file
-                      : data?.icon[0]?.file
+                    arrayoffiles[1]
+                      ? arrayoffiles[1]
+                      : arrayoffiles[1]
                   }
                   img3={
-                    data?.icon[2]?.file
-                      ? data?.icon[2]?.file
-                      : data?.icon[0]?.file
-                      ? data?.icon[0]?.file
-                      : data?.icon[1]?.file
+                    arrayoffiles[2]
+                    ? arrayoffiles[2]
+                    : arrayoffiles[0]
+                      ? arrayoffiles[0]
+                      : arrayoffiles[1]
                   }
                   img4={
-                    data?.icon[3]?.file
-                      ? data?.icon[3]?.file
-                      : data?.icon[1]?.file
-                      ? data?.icon[1]?.file
-                      : data?.icon[0]?.file
-                      ? data?.icon[0]?.file
-                      : data?.icon[2]?.file
+                    arrayoffiles[3]
+                      ? arrayoffiles[3]
+                      : arrayoffiles[1]
+                      ? arrayoffiles[1]
+                      : arrayoffiles[0]
+                        ? arrayoffiles[0]
+                        : arrayoffiles[2]
                   }
                 />
               </div>
