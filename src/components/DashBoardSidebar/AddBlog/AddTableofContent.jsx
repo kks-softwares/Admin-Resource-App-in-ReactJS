@@ -515,7 +515,7 @@ export default function AddTableofContent({
             />
           </div>
 
-          {wrongsec && (
+          {/* {wrongsec && (
             <div
               style={{ marginLeft: "1vw", color: "red" }}
               className="min-maxhomejob"
@@ -523,7 +523,7 @@ export default function AddTableofContent({
               fill all field are cumpulsary these are marked as * of this
               section
             </div>
-          )}
+          )} */}
         </div>
       }
     </>
