@@ -44,10 +44,10 @@ export default function Skillpopup({data,index,page}) {
         </div>
 
         <div style={{ width: "15vw", fontWeight: "400" }}>
-          Development
+        {data?.category}
         </div>
-        <div style={{ width: "15vw" }}>Front End Developer</div>
-        <div style={{ width: "12vw" }}>12 June 2022</div>
+        <div style={{ width: "15vw" }}>{data?.designation}</div>
+        <div style={{ width: "12vw" }}>{data?.userCreateTime?.slice(0,10)}</div>
         <div style={{ width: "6vw" }}>
           {" "}
           <img
