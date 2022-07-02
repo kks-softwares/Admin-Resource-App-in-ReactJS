@@ -32,10 +32,10 @@ export default function Blogs() {
     {
       filternameName: "Categories",
       filters: [
-        "Digital Marketing",
-        "Graphic Design",
-        "Data Analystics",
-        "Communication",
+        "Business Ideas",
+        "Business Plans",
+        "Business Problems",
+        "Others",
       ],
     },
   ]);
@@ -48,10 +48,10 @@ export default function Blogs() {
   const [allusers, setAllusers] = useState([]);
 
   useEffect(() => {
-     if (!setSelectedCategory) {
-        axios
+    if (!setSelectedCategory) {
+      axios
         .get(
-          `${API_HOST}/contentManagement/allcontent?&pageNumber=${page}&pageSize=10`
+          `${API_HOST}/contentManagement/forAdminContent?&pageNumber=${page}&pageSize=10`
         )
         .then((res) => {
           setAllusers(res?.data?.success?.data);
@@ -59,7 +59,7 @@ export default function Blogs() {
         });
       axios
         .get(
-          `${API_HOST}/contentManagement/allcontent?&pageNumber=${
+          `${API_HOST}/contentManagement/forAdminContent?&pageNumber=${
             page + 1
           }&pageSize=10&category=${setSelectedCategory}`
         )
@@ -69,12 +69,11 @@ export default function Blogs() {
           } else {
             settotalpages(page);
           }
-        });  
-     }
-     else{
-        axios
+        });
+    } else {
+      axios
         .get(
-          `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
+          `${API_HOST}/contentManagement/forAdminContent?contentName=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
         )
         .then((res) => {
           setAllusers(res?.data?.success?.data);
@@ -82,7 +81,7 @@ export default function Blogs() {
         });
       axios
         .get(
-          `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&pageNumber=${
+          `${API_HOST}/contentManagement/forAdminContent?contentName=${setSelectedCategory}&pageNumber=${
             page + 1
           }&pageSize=10`
         )
@@ -93,10 +92,7 @@ export default function Blogs() {
             settotalpages(page);
           }
         });
-    
-     }
-    
-     
+    }
   }, [page, setSelectedCategory]);
 
   return (
