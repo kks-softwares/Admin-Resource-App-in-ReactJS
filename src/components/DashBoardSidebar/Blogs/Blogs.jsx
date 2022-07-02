@@ -61,7 +61,7 @@ export default function Blogs() {
         .get(
           `${API_HOST}/contentManagement/forAdminContent?&pageNumber=${
             page + 1
-          }&pageSize=10&category=${setSelectedCategory}`
+          }&pageSize=10`
         )
         .then((res) => {
           if (res?.data?.success?.data?.length > 0) {
