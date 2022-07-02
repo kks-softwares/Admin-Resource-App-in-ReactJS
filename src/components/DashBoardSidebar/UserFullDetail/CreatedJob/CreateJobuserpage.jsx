@@ -43,7 +43,7 @@ export default function CreateJobuserpage({user}) {
         {alluserjob?.length > 0 &&
           alluserjob?.map((data) => {
             return (
-              <div style={{ overflow: "hidden" }} className="activejobpostbox">
+              <div style={{ overflow: "hidden",display:"block" }} className="activejobpostbox">
                 <div
                   style={{
                     display: "flex",

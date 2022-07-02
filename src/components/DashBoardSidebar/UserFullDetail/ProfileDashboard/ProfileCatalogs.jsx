@@ -6,7 +6,6 @@ import axios from "axios";
 import img5 from "../../../../assets/My profile – 28/local_police_black_24dp.svg";
 import img46 from "../../../../assets/My profile – 28/Landing page – 19.png";
 import API_HOST from "../../../../env";
-
 import { LockClockOutlined } from "@mui/icons-material";
 import StarRatings from "react-star-ratings";
 export default function ProfileCatalogs({ user }) {
@@ -57,12 +56,12 @@ export default function ProfileCatalogs({ user }) {
                 <div className="pcatelog-title">{catalogue?.title}</div>
                 <div className="pcatelogdate">
                   <div>
-                    From <span>$30</span>
+                    From <span>${parseInt(catalogue?.servicePrice1)}</span>
                   </div>
                   <div>
                     <span>
                       <LockClockOutlined style={{ fontSize: "1vw" }} />
-                    </span>{" "}
+                    </span>
                     {catalogue?.deliveryDate}
                   </div>
                 </div>
@@ -71,9 +70,9 @@ export default function ProfileCatalogs({ user }) {
                     <img src={user?.media} alt="" />
                   </div>
                   <div className="pcatelogpersonname">
-                    <div className="pcatelogpersonname1">Rahul Rajput</div>
+                    <div className="pcatelogpersonname1">{user?.fullName}</div>
                     <div className="pcatelogpersonname2">
-                      {" "}
+            
                       <span>
                         <img src={img5} alt="" />
                       </span>{" "}

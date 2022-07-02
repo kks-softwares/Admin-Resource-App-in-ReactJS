@@ -11,7 +11,7 @@ const style = {
   width: "45vw",
   bgcolor: "background.paper",
   boxShadow: 24,
-  height: "45vw",
+  height: "fit-content",
   overflow: "scroll",
 };
 
@@ -184,15 +184,15 @@ export default function AppliedPopup({ data }) {
                     </div>
                   </div>
                 </div>
-                {data?.workStatus === null || data?.workStatus === "pending" ? (
+                {/* {data?.workStatus === null || data?.workStatus === "pending" ? (
                   <div className="descriptionappliedpopup">
                     Are you ready to Reject Proposal before Get Accepted?
                   </div>
                 ) : (
                   ""
-                )}
+                )} */}
 
-                {data?.workStatus === null || data?.workStatus === "pending" ? (
+                {/* {data?.workStatus === null || data?.workStatus === "pending" ? (
                   <div className="homejobbuttons">
                     <button
                       style={{ background: "white" }}
@@ -209,7 +209,7 @@ export default function AppliedPopup({ data }) {
                   </div>
                 ) : (
                   ""
-                )}
+                )} */}
               </div>
             </Box>
           </Modal>
