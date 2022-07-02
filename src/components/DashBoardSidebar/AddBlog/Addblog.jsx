@@ -540,7 +540,7 @@ export default function Addblog() {
                             {data?.title}
                           </div>
                           <div className="Joinwithusblogboxdetail">
-                            {data?.desc}
+                            {data?.desc?.slice(0,200)}
                           </div>
                         </div>
                         <div style={{ width: "40%", textAlign: "center" }}>
@@ -557,6 +557,7 @@ export default function Addblog() {
               className="handlemoreaboutskill"
             >
               <div
+                  onClick={()=>{handleClose()}}
                 style={{
                   background: "white",
                   color: "black",

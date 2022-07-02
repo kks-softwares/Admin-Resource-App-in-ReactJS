@@ -635,6 +635,7 @@ export default function Addblog() {
               className="handlemoreaboutskill"
             >
               <div
+                onClick={()=>{handleClose()}}
                 style={{
                   background: "white",
                   color: "black",

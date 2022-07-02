@@ -6,7 +6,7 @@ import { ArrowBackIosNewOutlined } from "@mui/icons-material";
 import axios from "axios";
 import API_HOST from "../../../env";
 export default function BlogDetail() {
-  const [title, setTitle] = useState("");
+  
   const navigate = useNavigate();
   const { Id } = useParams();
   const [data, setData] = useState();
@@ -147,7 +147,7 @@ export default function BlogDetail() {
                           {data?.title}
                         </div>
                         <div className="Joinwithusblogboxdetail">
-                          {data?.desc}
+                          {data?.desc?.slice(0, 200)}
                         </div>
                       </div>
                       <div style={{ width: "40%", textAlign: "center" }}>

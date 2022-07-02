@@ -20,29 +20,27 @@ export default function Skillpopup1({
         contentId: data?.contentId,
       })
       .then(() => {
-      
-          axios
-            .get(
-              `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
-            )
-            .then((res) => {
-              setAllusers(res?.data?.success?.data);
-              window.scrollTo(0, 0, { behavior: "smooth" });
-            });
-          axios
-            .get(
-              `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&pageNumber=${
-                page + 1
-              }&pageSize=10`
-            )
-            .then((res) => {
-              if (res?.data?.success?.data?.length > 0) {
-                settotalpages(page + 1);
-              } else {
-                settotalpages(page);
-              }
-            });
-        
+        axios
+          .get(
+            `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
+          )
+          .then((res) => {
+            setAllusers(res?.data?.success?.data);
+            window.scrollTo(0, 0, { behavior: "smooth" });
+          });
+        axios
+          .get(
+            `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&pageNumber=${
+              page + 1
+            }&pageSize=10`
+          )
+          .then((res) => {
+            if (res?.data?.success?.data?.length > 0) {
+              settotalpages(page + 1);
+            } else {
+              settotalpages(page);
+            }
+          });
       });
   };
   return (
@@ -63,7 +61,7 @@ export default function Skillpopup1({
           }}
           style={{ width: "14vw", cursor: "pointer" }}
         >
-          {data?.contentName}
+          {data?.contentName?.slice(0, 50)}
         </div>
         <div
           onClick={() => {
@@ -76,13 +74,10 @@ export default function Skillpopup1({
 
         <div style={{ width: "14vw", fontWeight: "400" }}>{data?.author}</div>
         <div style={{ width: "22vw", fontSize: "0.85vw" }}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when essentially unchanged.
+          {data?.toC[0]?.desc?.slice(0, 200)}
         </div>
         <div
           style={{
-
             width: "10vw",
             color:
               data?.status === "unpublish"
