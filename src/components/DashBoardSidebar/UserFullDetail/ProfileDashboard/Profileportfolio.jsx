@@ -18,10 +18,10 @@ const useStyles = makeStyles((theme) => ({
     border: "yellow !important",
   },
 }));
-export default function Profileportfolio() {
+export default function Profileportfolio({user}) {
   const classes = useStyles();
   const [allprotfolio, setAllprotfoilio] = useState([]);
-  const { user, loggedInStatus } = useSelector((state) => state.user);
+  
 
   useEffect(() => {
     if (user) {
@@ -66,7 +66,7 @@ export default function Profileportfolio() {
                     className="pportimg"
                   ></div>
                   <div className="pportfoliotext">
-                    {portfolio?.projectTitle}
+                    {portfolio?.projectTitle.slice(0,50)}
                   </div>
                 </div>
               </div>

@@ -70,7 +70,7 @@ export default function AddTableofContent1({
 }) {
   const [description1, setDescription1] = useState(data.toc);
   const [description2, setDescription2] = useState(data.desc);
-  const navigate = useNavigate();
+
   const classes = useStyles();
   const [age4, setAge4] = React.useState(10);
   const [age5, setAge5] = React.useState(10);
@@ -137,7 +137,7 @@ export default function AddTableofContent1({
         : "10"
     );
     
-  }, [data]);
+  }, []);
 
   const handleuploadimage = (file) => {
     const formdata = new FormData();
@@ -197,8 +197,8 @@ export default function AddTableofContent1({
                     }}
                     onClick={() => {
                       setArrayofblogs([
-                        ...arrayofblogs.slice(0, index),
-                        ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+                        ...arrayofblogs?.slice(0, index),
+                        ...arrayofblogs?.slice(index + 1, arrayofblogs?.length),
                       ]);
                     }}
                   />

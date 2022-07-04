@@ -75,10 +75,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function Addblog() {
   const classes = useStyles();
-  const { user } = useSelector((state) => state.user);
+ 
 
   const [arrayofblogs, setArrayofblogs] = useState([
-    {
+    { heading:"",
       toc: "",
       file: "",
       desc: "",
@@ -164,7 +164,7 @@ export default function Addblog() {
 
             formdata.append("icon", JSON.stringify(arrayoffiles));
             formdata.append("contentId", Id);
-    
+
             axios
               .post(`${API_HOST}/contentManagement/updateFile`, formdata, {
                 headers: {
@@ -201,8 +201,6 @@ export default function Addblog() {
     }
   }, [title, scate, arrayoffiles, arrayofblogs]);
 
-
-
   const handleuploadimage = (file) => {
     const formdata = new FormData();
     formdata.append("fileName", file);
@@ -214,7 +212,7 @@ export default function Addblog() {
         },
       })
       .then((res) => {
-          setArrayoffiles([...arrayoffiles,res?.data?.success?.data?.file])
+        setArrayoffiles([...arrayoffiles, res?.data?.success?.data?.file]);
       });
   };
 
@@ -385,7 +383,7 @@ export default function Addblog() {
                       type="file"
                       id="inputctaelogfile"
                       onChange={(e) => {
-                        handleuploadimage(e.target.files[0])
+                        handleuploadimage(e.target.files[0]);
                       }}
                       hidden
                     />
@@ -541,15 +539,11 @@ export default function Addblog() {
               <div style={{ position: "relative", bottom: "2.2vw" }}>
                 <Cataloguecarosel1
                   img1={arrayoffiles[0]}
-                  img2={
-                    arrayoffiles[1]
-                      ? arrayoffiles[1]
-                      : arrayoffiles[1]
-                  }
+                  img2={arrayoffiles[1] ? arrayoffiles[1] : arrayoffiles[1]}
                   img3={
                     arrayoffiles[2]
-                    ? arrayoffiles[2]
-                    : arrayoffiles[0]
+                      ? arrayoffiles[2]
+                      : arrayoffiles[0]
                       ? arrayoffiles[0]
                       : arrayoffiles[1]
                   }
@@ -559,8 +553,8 @@ export default function Addblog() {
                       : arrayoffiles[1]
                       ? arrayoffiles[1]
                       : arrayoffiles[0]
-                        ? arrayoffiles[0]
-                        : arrayoffiles[2]
+                      ? arrayoffiles[0]
+                      : arrayoffiles[2]
                   }
                 />
               </div>
@@ -611,14 +605,10 @@ export default function Addblog() {
                       >
                         <div style={{ width: "60%", textAlign: "center" }}>
                           <div className="Joinwithusblogboxtitle">
-                            {data?.title}
+                            {data?.title.slice(0, 100)}
                           </div>
                           <div className="Joinwithusblogboxdetail">
-                            {/* Join our community of 300+ Resources of all sizes
-                            who use 44 resources Latest Technology and Products
-                            make with our experts candidate and easy to
-                            delightful Customer and Employees */}
-                            {data?.desc}
+                            {data?.desc?.slice(0, 150)}
                           </div>
                         </div>
                         <div style={{ width: "40%", textAlign: "center" }}>
@@ -635,7 +625,9 @@ export default function Addblog() {
               className="handlemoreaboutskill"
             >
               <div
-                onClick={()=>{handleClose()}}
+                onClick={() => {
+                  handleClose();
+                }}
                 style={{
                   background: "white",
                   color: "black",

@@ -53,7 +53,7 @@ export default function ProfileCatalogs({ user }) {
                   }}
                   className="pcatelogimg"
                 ></div>
-                <div className="pcatelog-title">{catalogue?.title}</div>
+                <div className="pcatelog-title">{catalogue?.title.slice(0,40)}</div>
                 <div className="pcatelogdate">
                   <div>
                     From <span>${parseInt(catalogue?.servicePrice1)}</span>
@@ -70,7 +70,7 @@ export default function ProfileCatalogs({ user }) {
                     <img src={user?.media} alt="" />
                   </div>
                   <div className="pcatelogpersonname">
-                    <div className="pcatelogpersonname1">{user?.fullName}</div>
+                    <div className="pcatelogpersonname1">{user?.fullName.slice(0,20)}</div>
                     <div className="pcatelogpersonname2">
             
                       <span>
