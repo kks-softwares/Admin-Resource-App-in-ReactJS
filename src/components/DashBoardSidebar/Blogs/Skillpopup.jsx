@@ -12,6 +12,7 @@ export default function Skillpopup1({
   setAllusers,
   settotalpages,
   setSelectedCategory,
+  arrayoffilterselected
 }) {
   const navigate = useNavigate();
   const handledeleteBlog = () => {
@@ -21,26 +22,26 @@ export default function Skillpopup1({
       })
       .then(() => {
         axios
-          .get(
-            `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
-          )
-          .then((res) => {
-            setAllusers(res?.data?.success?.data);
-            window.scrollTo(0, 0, { behavior: "smooth" });
-          });
-        axios
-          .get(
-            `${API_HOST}/contentManagement/viewcontent?contentName=${setSelectedCategory}&pageNumber=${
-              page + 1
-            }&pageSize=10`
-          )
-          .then((res) => {
-            if (res?.data?.success?.data?.length > 0) {
-              settotalpages(page + 1);
-            } else {
-              settotalpages(page);
-            }
-          });
+        .get(
+          `${API_HOST}/contentManagement/forAdminContent?contentName=${setSelectedCategory}&pageNumber=${page}&pageSize=10&category=${JSON.stringify(arrayoffilterselected)}`
+        )
+        .then((res) => {
+          setAllusers(res?.data?.success?.data);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
+      axios
+        .get(
+          `${API_HOST}/contentManagement/forAdminContent?contentName=${setSelectedCategory}&pageNumber=${
+            page + 1
+          }&pageSize=10&category=${JSON.stringify(arrayoffilterselected) }`
+        )
+        .then((res) => {
+          if (res?.data?.success?.data?.length > 0) {
+            settotalpages(page + 1);
+          } else {
+            settotalpages(page);
+          }
+        });
       });
   };
   return (

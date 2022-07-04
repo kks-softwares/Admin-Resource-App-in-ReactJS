@@ -313,6 +313,7 @@ export default function Blogs() {
                 setAllusers={setAllusers}
                 settotalpages={settotalpages}
                 setSelectedCategory={setSelectedCategory}
+                arrayoffilterselected={arrayoffilterselected}
               />
             );
           })}

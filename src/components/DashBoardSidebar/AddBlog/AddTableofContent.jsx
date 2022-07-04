@@ -73,7 +73,7 @@ export default function AddTableofContent({
   const classes = useStyles();
   const [age4, setAge4] = React.useState(10);
   const [age5, setAge5] = React.useState(10);
-  
+
   const [arrayoffile, setArrayoffile] = useState();
 
   const handleChange4x = (event) => {
@@ -188,10 +188,9 @@ export default function AddTableofContent({
             </div>
 
             <div className="jobpodtedfieldtitile"> Heading *</div>
-            <div style={{width:"69vw"}} className="jobpostfieldinputbox">
+            <div style={{ width: "69vw" }} className="jobpostfieldinputbox">
               <input
                 type="text"
-                
                 onChange={(e) => {
                   setArrayofblogs([
                     ...arrayofblogs.slice(0, index),
@@ -208,7 +207,7 @@ export default function AddTableofContent({
                 }}
               />
             </div>
-            <div className="jobpodtedfieldtitile"> Explaination *  </div>
+            <div className="jobpodtedfieldtitile"> Explaination * </div>
             <div style={{ marginBottom: "2vw" }}>
               <TextEditor
                 width={"65vw"}
@@ -343,7 +342,7 @@ export default function AddTableofContent({
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
-                            heading:data?.heading,
+                            heading: data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -362,7 +361,7 @@ export default function AddTableofContent({
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
-                            heading:data?.heading,
+                            heading: data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -381,7 +380,7 @@ export default function AddTableofContent({
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
-                            heading:data?.heading,
+                            heading: data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -470,7 +469,8 @@ export default function AddTableofContent({
                       onClick={() => {
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
-                          {heading:data?.heading,
+                          {
+                            heading: data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -488,7 +488,8 @@ export default function AddTableofContent({
                       onClick={() => {
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
-                          {heading:data?.heading,
+                          {
+                            heading: data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -506,7 +507,8 @@ export default function AddTableofContent({
                       onClick={() => {
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
-                          {heading:data?.heading,
+                          {
+                            heading: data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -537,7 +539,7 @@ export default function AddTableofContent({
                 setArrayofblogs([
                   ...arrayofblogs.slice(0, index),
                   {
-                    heading:data?.heading,
+                    heading: data?.heading,
                     toc: data?.toc,
                     file: data?.file,
                     desc: e.target.value,
