@@ -40,60 +40,42 @@ export default function Blogs() {
     },
   ]);
 
-  const [arrayoffilterselected, setarrayoffilterselected] = useState([]);
+  const [arrayoffilterselected, setarrayoffilterselected] = useState([
+    "Business Ideas",
+    "Business Plans",
+    "Business Problems",
+    "Others",
+  ]);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [previosfilter, setPreviosfilter] = useState([]);
+  const [previosfilter1, setPreviosfilter1] = useState([]);
   const [allusers, setAllusers] = useState([]);
 
   useEffect(() => {
-    if (!setSelectedCategory) {
-      axios
-        .get(
-          `${API_HOST}/contentManagement/forAdminContent?&pageNumber=${page}&pageSize=10`
-        )
-        .then((res) => {
-          setAllusers(res?.data?.success?.data);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(
-          `${API_HOST}/contentManagement/forAdminContent?&pageNumber=${
-            page + 1
-          }&pageSize=10`
-        )
-        .then((res) => {
-          if (res?.data?.success?.data?.length > 0) {
-            settotalpages(page + 1);
-          } else {
-            settotalpages(page);
-          }
-        });
-    } else {
-      axios
-        .get(
-          `${API_HOST}/contentManagement/forAdminContent?contentName=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
-        )
-        .then((res) => {
-          setAllusers(res?.data?.success?.data);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(
-          `${API_HOST}/contentManagement/forAdminContent?contentName=${setSelectedCategory}&pageNumber=${
-            page + 1
-          }&pageSize=10`
-        )
-        .then((res) => {
-          if (res?.data?.success?.data?.length > 0) {
-            settotalpages(page + 1);
-          } else {
-            settotalpages(page);
-          }
-        });
-    }
-  }, [page, setSelectedCategory]);
+    axios
+      .get(
+        `${API_HOST}/contentManagement/forAdminContent?contentName=${setSelectedCategory}&pageNumber=${page}&pageSize=10&category=${JSON.stringify(arrayoffilterselected)}`
+      )
+      .then((res) => {
+        setAllusers(res?.data?.success?.data);
+        window.scrollTo(0, 0, { behavior: "smooth" });
+      });
+    axios
+      .get(
+        `${API_HOST}/contentManagement/forAdminContent?contentName=${setSelectedCategory}&pageNumber=${
+          page + 1
+        }&pageSize=10&category=${JSON.stringify(arrayoffilterselected) }`
+      )
+      .then((res) => {
+        if (res?.data?.success?.data?.length > 0) {
+          settotalpages(page + 1);
+        } else {
+          settotalpages(page);
+        }
+      });
+  }, [page, setSelectedCategory,arrayoffilterselected]);
 
   return (
     <div className="BrowseWorkMain-cntainer">
@@ -169,6 +151,7 @@ export default function Blogs() {
               onClick={() => {
                 handleOpen();
                 setPreviosfilter([...arrayoffilterselected]);
+                setPreviosfilter1([...arrayoffilterselected]);
               }}
               className="filtericonbox"
             >
@@ -215,29 +198,27 @@ export default function Blogs() {
                           return (
                             <div
                               onClick={() => {
-                                console.log(
-                                  arrayoffilterselected.indexOf(data1)
-                                );
-                                if (arrayoffilterselected.indexOf(data1) > -1) {
-                                  setarrayoffilterselected([
-                                    ...arrayoffilterselected.slice(
+                                
+                                if (previosfilter1.indexOf(data1) > -1) {
+                                  setPreviosfilter1([
+                                    ...previosfilter1.slice(
                                       0,
-                                      arrayoffilterselected.indexOf(data1)
+                                      previosfilter1.indexOf(data1)
                                     ),
-                                    ...arrayoffilterselected.slice(
-                                      arrayoffilterselected.indexOf(data1) + 1,
-                                      arrayoffilterselected.length
+                                    ...previosfilter1.slice(
+                                      previosfilter1.indexOf(data1) + 1,
+                                      previosfilter1.length
                                     ),
                                   ]);
                                 } else {
-                                  setarrayoffilterselected([
-                                    ...arrayoffilterselected,
+                                  setPreviosfilter1([
+                                    ...previosfilter1,
                                     data1,
                                   ]);
                                 }
                               }}
                               style={{
-                                background: arrayoffilterselected.includes(
+                                background: previosfilter1.includes(
                                   data1
                                 )
                                   ? "#064C8720"
@@ -277,7 +258,10 @@ export default function Blogs() {
                   <div
                     style={{ cursor: "pointer" }}
                     className="handlecirclieaboutsave"
-                    // onClick={handleeducationdelete}
+                    onClick={()=>{
+                        setarrayoffilterselected(previosfilter1);
+                        handleClose();
+                    }}
                   >
                     Submit
                   </div>
