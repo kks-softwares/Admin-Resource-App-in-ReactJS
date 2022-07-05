@@ -24,6 +24,7 @@ import SkillPreview from "./components/DashBoardSidebar/SkillCenter/SkillPreview
 import AddSkill from "./components/DashBoardSidebar/SkillCenter/AddSkill/AddSkill";
 import AddExam from "./components/DashBoardSidebar/SkillCenter/AddExam/AddExam";
 import ExamPage from "./components/DashBoardSidebar/SkillCenter/ExamCPage/ExamPage";
+import EditCondidateDetail from "./components/DashBoardSidebar/SkillCenter/EditConsidateDetail/EditCondidateDetail";
 
 function LayoutsWithNavbar() {
   return (
@@ -82,6 +83,7 @@ function App() {
             />
             <Route path="/dashbaord/addSkill" element={<AddSkill />} />
             <Route path="/dashbaord/addExam" element={<AddExam />} />
+            <Route path="/dashbaord/examCondidates/:id" element={<EditCondidateDetail />} />
           </Route>
         </Routes>
       </Router>

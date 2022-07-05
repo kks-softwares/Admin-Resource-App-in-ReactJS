@@ -59,49 +59,50 @@ export default function Users() {
   const [allusers, setAllusers] = useState([]);
 
   useEffect(() => {
-   if (!setSelectedCategory) {
-    axios
-    .get(
-      `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&page=${page}`
-    )
-    .then((res) => {
-      setAllusers(res?.data?.success?.data?.docs);
-      window.scrollTo(0, 0, { behavior: "smooth" });
-    });
-  axios
-    .get(
-      `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&page=${
-        page + 1
-      }`
-    )
-    .then((res) => {
-      if (res?.data?.success?.data?.docs?.length > 0) {
-        settotalpages(page + 1);
-      }
-    }); 
-   }else{
-    axios
-    .get(
-      `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
-    )
-    .then((res) => {
-      setAllusers(res?.data?.success?.data);
-      window.scrollTo(0, 0, { behavior: "smooth" });
-    });
-  axios
-    .get(
-      `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&pageNumber=${page+1}&pageSize=10`
-    )
-    .then((res) => {
-      if (res?.data?.success?.data?.length > 0) {
-        settotalpages(page + 1);
-      }
-      else{
-        settotalpages(page ); 
-      }
-    });
-   }
-  }, [page,setSelectedCategory]);
+    if (!setSelectedCategory) {
+      axios
+        .get(
+          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&page=${page}`
+        )
+        .then((res) => {
+          setAllusers(res?.data?.success?.data?.docs);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
+      axios
+        .get(
+          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&page=${
+            page + 1
+          }`
+        )
+        .then((res) => {
+          if (res?.data?.success?.data?.docs?.length > 0) {
+            settotalpages(page + 1);
+          }
+        });
+    } else {
+      axios
+        .get(
+          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
+        )
+        .then((res) => {
+          setAllusers(res?.data?.success?.data);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
+      axios
+        .get(
+          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&pageNumber=${
+            page + 1
+          }&pageSize=10`
+        )
+        .then((res) => {
+          if (res?.data?.success?.data?.length > 0) {
+            settotalpages(page + 1);
+          } else {
+            settotalpages(page);
+          }
+        });
+    }
+  }, [page, setSelectedCategory]);
 
   return (
     <div className="BrowseWorkMain-cntainer">
@@ -319,8 +320,8 @@ export default function Users() {
           <div style={{ width: "6vw" }}></div>
         </div>
         {allusers?.length > 0 &&
-          allusers?.map((data,index) => {
-            return <Skillpopup data={data}  index={index} page={page}/>;
+          allusers?.map((data, index) => {
+            return <Skillpopup data={data} index={index} page={page} />;
           })}
 
         {totalpages !== 1 ? (

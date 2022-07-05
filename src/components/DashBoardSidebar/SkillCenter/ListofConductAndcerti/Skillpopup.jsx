@@ -36,7 +36,7 @@ export default function Skillpopup1({ data }) {
         </div>
 
         <div
-          style={{ width: "8vw" }}
+          style={{ width: "8vw", cursor: "pointer" }}
           onClick={() => {
             navigate("/dashbaord/examConduct/1");
           }}

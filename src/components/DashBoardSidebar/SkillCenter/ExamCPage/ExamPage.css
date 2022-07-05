@@ -1,0 +1,20 @@
+.whiteboxofskillexamc{
+    background-color: white;
+    width: 100% ;
+    height: fit-content;
+    padding: 1vw;
+}
+
+.cardofexamcunductpage{
+   width: 12vw; 
+   margin: 1.5vw; 
+}
+.valueofcardsexams{
+    background: #FBFBFB 0% 0% no-repeat padding-box;
+border-radius: 0.4vw;
+opacity: 1;
+width: 11vw;
+height: 3vw;
+display: flex;
+align-items: center;
+}
