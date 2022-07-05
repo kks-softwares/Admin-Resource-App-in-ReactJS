@@ -6,7 +6,9 @@ import img27 from "../../../../assets/experts/Iconly-Light-Bookmark.svg";
 import img37 from "../../../../assets/experts/Iconly-Light-Time Circle.svg";
 import Skillcard2 from "./Skillcard2";
 import "./Course.css";
+import { useNavigate } from "react-router";
 export default function SkillPage() {
+    const navigate=useNavigate()
   return (
     <div>
       <div style={{ padding: "1.5vw" }}>
@@ -70,10 +72,13 @@ export default function SkillPage() {
         </div>
         <div style={{ display: "flex", justifyContent: "end" }}>
           <button
+            onClick={()=>{
+               navigate('/dashbaord/skillPreview/1') 
+            }}
             style={{ width: "12vw", marginRight: "2vw", marginTop: "2vw" }}
             className="hb-button"
           >
-            Start Free Cource
+             Cource Preview
           </button>
         </div>
       </div>

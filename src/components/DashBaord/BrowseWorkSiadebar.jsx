@@ -45,7 +45,7 @@ export default function BrowseWorkSiadebar() {
         </div>
       </Link>
 
-      <Link to="/dashbaord/skillCenter/Lists of Skills">
+      <Link to="/dashbaord/skillCenter/List of Skills">
         <div className="firstsidebarmenu">
           <img src={img3} alt="" />
           Skill Center
