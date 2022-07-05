@@ -1,0 +1,96 @@
+.filterboxflex {
+  display: flex;
+  margin: 1vw;
+  padding: 1vw;
+}
+.cardofexamstype {
+  width: 13vw;
+  height: 10vw;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border-radius: 16px;
+  display: flex;
+  margin: 1.5vw;
+  flex-direction: column;
+  box-shadow: 0px 2px 4px #00000029;
+}
+.titileofcardofexamstype {
+  font-size: 1vw;
+  font-weight: 500;
+  font-family: Poppins;
+  margin: 0.7vw auto;
+}
+.valueofcardofexamstype {
+  font-size: 0.91vw;
+  font-weight: 400;
+  font-family: Poppins;
+  margin: 0.7vw auto;
+}
+.imgsamllexamtype {
+  width: 3.5vw;
+  height: 3.5vw;
+  background: #5243aa34 0% 0% no-repeat padding-box;
+  border-radius: 0.9vw;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.imgsamllexamtype img {
+  width: 2vw;
+  height: 2vw;
+  object-fit: contain;
+}
+
+.filtericonbox {
+  background: #064c87 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  width: 3vw;
+  height: 3vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 00.5vw 1vw;
+  cursor: pointer;
+}
+.filtericonboxname {
+  border-radius: 4px;
+  width: fit-content;
+  height: 3vw;
+  box-shadow: 0px 2px 4px gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 00.5vw 1vw;
+  padding: 0 1vw;
+  font-size: 1vw;
+  font-weight: 500;
+  font-family: Poppins;
+}
+.filtericonbox img {
+  height: 2vw;
+  width: 2vw;
+  object-fit: contain;
+}
+.filterboxnameskill {
+  border-radius: 1vw;
+  padding: 00.81vw;
+  height: 3vw;
+  width: fit-content;
+  font-size: 1vw;
+  font-weight: 500;
+  box-shadow: 1px 2px 6px rgba(128, 128, 128, 0.418);
+  margin: 1vw;
+}
+.imgbocofcerti {
+  
+  width: 60vw;
+}
+.imgbocofcerti img{
+ 
+  width: 60vw;
+  object-fit: contain;
+}

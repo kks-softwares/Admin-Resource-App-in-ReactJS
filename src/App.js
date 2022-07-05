@@ -19,6 +19,9 @@ import Addblog from "./components/DashBoardSidebar/AddBlog/Addblog";
 import BlogDetail from "./components/DashBoardSidebar/BlogDetail/BlogDetail";
 import Editblog from "./components/DashBoardSidebar/EditBlog/Editblog";
 
+import SkillCenter from "./components/DashBoardSidebar/SkillCenter/SkillCenter";
+import SkillPage from "./components/DashBoardSidebar/SkillCenter/SkillPage/SkillPage";
+
 function LayoutsWithNavbar() {
   return (
     <>
@@ -28,10 +31,7 @@ function LayoutsWithNavbar() {
 }
 
 function App() {
- 
-
- const { user } = useSelector((state) => state.user);
- 
+  const { user } = useSelector((state) => state.user);
 
   return (
     <div className="App">
@@ -40,9 +40,7 @@ function App() {
           <Route
             path="/"
             element={
-              <ProtectedRoute
-                auth={ user?.fullName ? true : false}
-              >
+              <ProtectedRoute auth={user?.fullName ? true : false}>
                 <LayoutsWithNavbar />
               </ProtectedRoute>
             }
@@ -53,21 +51,29 @@ function App() {
           <Route
             path="/dashbaord"
             element={
-              <ProtectedRoute2
-                auth={  user?.fullName ? true : false}
-              >
+              <ProtectedRoute2 auth={user?.fullName ? true : false}>
                 <Dashbaord />
               </ProtectedRoute2>
             }
           >
-        
             <Route path="/dashbaord/users" element={<Users />} />
             <Route path="/dashbaord/blogs" element={<Blogs />} />
             <Route path="/dashbaord/addBlog" element={<Addblog />} />
             <Route path="/dashbaord/editBlog/:Id" element={<Editblog />} />
             <Route path="/dashbaord/blog/:Id" element={<BlogDetail />} />
-            <Route path="/dashbaord/:userName/:type" element={<UserFullDetails />} />
-           
+            <Route
+              path="/dashbaord/:userName/:type"
+              element={<UserFullDetails />}
+            />
+
+            <Route
+              path="/dashbaord/skillCenter/:type"
+              element={<SkillCenter />}
+            />
+            <Route
+              path="/dashbaord/skill/:Id"
+              element={<SkillPage />}
+            />
           </Route>
         </Routes>
       </Router>

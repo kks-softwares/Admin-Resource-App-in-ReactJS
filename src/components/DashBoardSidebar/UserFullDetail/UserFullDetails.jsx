@@ -89,11 +89,19 @@ export default function SkillCenter() {
           width: "78vw",
           margin: "1vw 1vw",
           alignItems: "center",
-          height:"3vw"
+          height: "3vw",
         }}
       >
-        <div style={{color:"#064C87",fontSize:"2.1vw",textTransform:"capitalize"}}>{user?.fullName}</div>
-        <button  className="hb-buttonx">Chat us</button>
+        <div
+          style={{
+            color: "#064C87",
+            fontSize: "2.1vw",
+            textTransform: "capitalize",
+          }}
+        >
+          {user?.fullName}
+        </div>
+        <button className="hb-buttonx">Chat us</button>
       </div>
 
       <div
@@ -302,51 +310,6 @@ export default function SkillCenter() {
             </div>
           </div>
           <AppliedJobpage />
-          {/* {totalpages !== 1 ? (
-            <div style={{ width: "25vw" }} className="paginationbox">
-              <div>
-                <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-
-              <div
-                hidden={page - 4 > 0 ? false : true}
-                onClick={() => setPage(page - 4)}
-              >
-                {page - 4}
-              </div>
-              <div
-                hidden={page - 3 > 0 ? false : true}
-                onClick={() => setPage(page - 3)}
-              >
-                {page - 3}
-              </div>
-              <div
-                hidden={page - 2 > 0 ? false : true}
-                onClick={() => setPage(page - 2)}
-              >
-                {page - 2}
-              </div>
-              <div
-                hidden={page - 1 > 0 ? false : true}
-                onClick={() => setPage(page - 1)}
-              >
-                {page - 1}
-              </div>
-              <div style={{ color: "#2A6599" }}>{page}</div>
-              <div
-                hidden={page + 1 > totalpages ? true : false}
-                onClick={() => setPage(page + 1)}
-              >
-                {page + 1}
-              </div>
-
-              <div>
-                <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-            </div>
-          ) : (
-            ""
-          )} */}
         </>
       ) : (
         ""
