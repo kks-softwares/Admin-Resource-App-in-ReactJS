@@ -6,6 +6,8 @@ import './Expert.css'
 import axios from "axios";
 import API_HOST from "../../../env";
 import Allskills from "./Allskills/Allskills";
+import ListofExams from "./ListOfExams/ListofExams";
+import ListOfExamsCerti from "./ListofConductAndcerti/ListOfExamsCerti";
 
 export default function SkillCenter() {
   const navigate = useNavigate();
@@ -174,6 +176,20 @@ export default function SkillCenter() {
       {workhistorytoggle1 === 1 ? (
         <div>
           <Allskills/>
+        </div>
+      ) : (
+        ""
+      )}
+      {workhistorytoggle1 === 2 ? (
+        <div>
+          <ListofExams/>
+        </div>
+      ) : (
+        ""
+      )}
+      {workhistorytoggle1 === 3 ? (
+        <div>
+          <ListOfExamsCerti/>
         </div>
       ) : (
         ""
