@@ -1,8 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router";
 
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-
 import img23 from "../../../../assets/Dashboard/Skill center – 2/wepik--2022426-10102.png";
 import img2 from "../../../../assets/dashbaordskill/Iconly-Light-outline-Edit.svg";
 
@@ -10,17 +8,15 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 
 const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: "60vw",
-    bgcolor: 'background.paper',
-    border: '2px solid white',
-    boxShadow: 24,
- 
-  };
-  
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "60vw",
+  bgcolor: "background.paper",
+  border: "2px solid white",
+  boxShadow: 24,
+};
 
 export default function Examstudentdata({ data, index, page }) {
   const navigate = useNavigate();
@@ -59,12 +55,17 @@ export default function Examstudentdata({ data, index, page }) {
         >
           {data?.status} Completed
         </div>
-        <div style={{ width: "10vw", fontSize: "0.85vw" }} onClick={()=>handleOpenx()}>View More</div>
+        <div
+          style={{ width: "10vw", fontSize: "1vw" }}
+          onClick={() => handleOpenx()}
+        >
+          View More
+        </div>
         <div style={{ width: "5vw" }}>
           <img
             src={img2}
             alt=""
-            onClick={() => navigate('/dashbaord/examCondidates/:id')}
+            onClick={() => navigate("/dashbaord/examCondidates/:id")}
             style={{
               margin: "0 0.5vw",
               width: "2vw ",

@@ -44,7 +44,7 @@ export default function ExamPage() {
             <div className="valueofcardsexams">
               <img
                 src={img3}
-                style={{ width: "1.82vw", objectFit: "contain" }}
+                style={{ width: "1.82vw", objectFit: "contain" ,margin:"0 0.5vw"}}
                 alt=""
               />
               <span
@@ -66,7 +66,7 @@ export default function ExamPage() {
             <div className="valueofcardsexams">
               <img
                 src={img}
-                style={{ width: "1.82vw", objectFit: "contain" }}
+                style={{ width: "1.82vw", objectFit: "contain" ,margin:"0 0.5vw" }}
                 alt=""
               />
               <span
@@ -88,7 +88,7 @@ export default function ExamPage() {
             <div className="valueofcardsexams">
               <img
                 src={img4}
-                style={{ width: "1.82vw", objectFit: "contain" }}
+                style={{ width: "1.82vw", objectFit: "contain" ,margin:"0 0.5vw" }}
                 alt=""
               />
               <span
@@ -109,7 +109,7 @@ export default function ExamPage() {
             <div className="valueofcardsexams">
               <img
                 src={img1}
-                style={{ width: "1.82vw", objectFit: "contain" }}
+                style={{ width: "1.82vw", objectFit: "contain" ,margin:"0 0.5vw" }}
                 alt=""
               />
               <span
