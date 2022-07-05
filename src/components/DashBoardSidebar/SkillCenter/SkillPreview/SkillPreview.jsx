@@ -20,7 +20,6 @@ function CircularProgressWithLabel(props) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-   
         }}
       >
         <Typography variant="caption" component="div" color="text.secondary">
@@ -76,7 +75,7 @@ export default function SkillPreview() {
           <div style={{ width: "4%" }}>0/1</div>
           <div style={{ width: "2%" }}>/</div>
           <div style={{ width: "10%" }}>00:20:00</div>
-          <div style={{ width: "5%" ,position:"relative" ,top:"0.2vw"}}>
+          <div style={{ width: "5%", position: "relative", top: "0.2vw" }}>
             <CircularProgressWithLabel value={60} />
           </div>
         </div>
@@ -85,7 +84,7 @@ export default function SkillPreview() {
           <div style={{ width: "4%" }}>0/1</div>
           <div style={{ width: "2%" }}>/</div>
           <div style={{ width: "10%" }}>00:20:00</div>
-          <div style={{ width: "5%" ,position:"relative" ,top:"0.2vw"}}>
+          <div style={{ width: "5%", position: "relative", top: "0.2vw" }}>
             <CircularProgressWithLabel value={60} />
           </div>
         </div>
@@ -94,7 +93,7 @@ export default function SkillPreview() {
           <div style={{ width: "4%" }}>0/1</div>
           <div style={{ width: "2%" }}>/</div>
           <div style={{ width: "10%" }}>00:20:00</div>
-          <div style={{ width: "5%" ,position:"relative" ,top:"0.2vw"}}>
+          <div style={{ width: "5%", position: "relative", top: "0.2vw" }}>
             <CircularProgressWithLabel value={60} />
           </div>
         </div>
@@ -103,7 +102,7 @@ export default function SkillPreview() {
           <div style={{ width: "4%" }}>0/1</div>
           <div style={{ width: "2%" }}>/</div>
           <div style={{ width: "10%" }}>00:20:00</div>
-          <div style={{ width: "5%" ,position:"relative" ,top:"0.2vw"}}>
+          <div style={{ width: "5%", position: "relative", top: "0.2vw" }}>
             <CircularProgressWithLabel value={60} />
           </div>
         </div>

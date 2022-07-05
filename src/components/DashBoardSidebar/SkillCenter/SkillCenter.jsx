@@ -78,13 +78,19 @@ export default function SkillCenter() {
         >
           {user?.fullName}
         </div>
-        <button className="hb-buttonx">
+        <button onClick={()=>{
+            navigate(workhistorytoggle === 1
+                ? "/dashbaord/addSkill"
+                : workhistorytoggle === 2
+                ? "/dashbaord/addExam"
+                : "/dashbaord/addExam")
+        }} className="hb-buttonx">
           {" "}
           {workhistorytoggle === 1
             ? "Add Skills"
             : workhistorytoggle === 2
             ? "Add Exams"
-            : "Add Exams"}{" "}
+            : "Add Exams"}
         </button>
       </div>
 
@@ -172,13 +178,7 @@ export default function SkillCenter() {
       ) : (
         ""
       )}
-      {/* {workhistorytoggle1 === 3 ? (
-        <div>
-          <CreateJobuserpage user={user} />
-        </div>
-      ) : (
-        ""
-      )} */}
+      
     </div>
   );
 }

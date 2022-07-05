@@ -185,7 +185,7 @@ export default function AddTableofContent1({
               }}
               className="jobpodtedfieldtitile"
             >
-              <div>Table of Content (Minimum 1 section)*</div>
+              <div>Table of Content {arrayofblogs?.length<2?"(Minimum 1 section)":""}*</div>
               {arrayofblogs?.length > 1 && (
                 <div>
                   <CloseIcon

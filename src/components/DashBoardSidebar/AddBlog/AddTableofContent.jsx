@@ -166,7 +166,7 @@ export default function AddTableofContent({
               }}
               className="jobpodtedfieldtitile"
             >
-              <div>Table of Content (Minimum 1 section)*</div>
+              <div>Table of Content {arrayofblogs?.length<2?"(Minimum 1 section)":""}*</div>
               {arrayofblogs?.length > 1 && (
                 <div>
                   <CloseIcon
@@ -534,7 +534,7 @@ export default function AddTableofContent({
             <textarea
               type="text"
               placeholder="  distinctio debitis est neque dolore ipsum ut amet pariatur laboriosam nisi ipsam?"
-              style={{ padding: "0.5vw" }}
+              style={{ padding: "0.5vw",fontSize:"1vw" }}
               onChange={(e) => {
                 setArrayofblogs([
                   ...arrayofblogs.slice(0, index),
