@@ -1,5 +1,6 @@
 import React from 'react'
 import './Bank.css'
+import BankCard from './BankCard'
 export default function BankDetail() {
   return (
     <div>
@@ -9,6 +10,12 @@ export default function BankDetail() {
       >
         List Of Bank Details
       </div>
+        <div style={{ display: "flex", alignItems: "center" , flexWrap: "wrap" }}>
+            <BankCard/>
+            <BankCard/>
+            <BankCard/>
+            <BankCard/>
+        </div>
     </div>
   )
 }
