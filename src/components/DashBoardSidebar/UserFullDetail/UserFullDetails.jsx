@@ -19,6 +19,11 @@ import CreateJobuserpage from "./CreatedJob/CreateJobuserpage";
 import AppliedJobpage from "./AppliedJiob/AppliedJobpage";
 import Skillcenteruser from "./SkillCenter/Skillcenteruser";
 import Skillfirstuser from "./SkillCenter/Skillfirstuser";
+import Refrences from "./Refrences/Refrences";
+import Wallet from "./Wallet/Wallet";
+import FileManager from "./FileManager/FileManager";
+import Documents from "./DocumentsPage/Documents";
+import BankDetail from "./BankDetails/BankDetail";
 
 export default function SkillCenter() {
   const navigate = useNavigate();
@@ -291,6 +296,13 @@ export default function SkillCenter() {
       ) : (
         ""
       )}
+      {workhistorytoggle1 === 2 ? (
+        <div>
+          <Wallet />
+        </div>
+      ) : (
+        ""
+      )}
       {workhistorytoggle1 === 3 ? (
         <div>
           <CreateJobuserpage user={user} />
@@ -319,10 +331,37 @@ export default function SkillCenter() {
 
       {workhistorytoggle === 5 ? (
         <>
-           <Skillfirstuser/>
-            
+          <Skillfirstuser />
 
-          <Skillcenteruser/>
+          <Skillcenteruser />
+        </>
+      ) : (
+        ""
+      )}
+      {workhistorytoggle === 6 ? (
+        <>
+          <Refrences />
+        </>
+      ) : (
+        ""
+      )}
+      {workhistorytoggle === 7 ? (
+        <>
+          <FileManager />
+        </>
+      ) : (
+        ""
+      )}
+      {workhistorytoggle === 8 ? (
+        <>
+          <BankDetail />
+        </>
+      ) : (
+        ""
+      )}
+      {workhistorytoggle === 9 ? (
+        <>
+          <Documents />
         </>
       ) : (
         ""

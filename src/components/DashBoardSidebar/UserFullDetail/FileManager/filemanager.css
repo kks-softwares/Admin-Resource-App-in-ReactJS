@@ -1,0 +1,411 @@
+.files-main-container {
+  width: 84vw;
+  margin: auto;
+  display: flex;
+  height: fit-content;
+}
+
+.files-leftcontainer {
+  width: 61vw;
+
+  height: 41rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.files-rightcontainer {
+  width: 22vw;
+  background-color: white;
+  height: fit-content;
+  padding: 1vw;
+}
+
+.termandc-part {
+  width: 65vw;
+  position: fixed;
+  background-color: white;
+  bottom: 0vw;
+  height: 3vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1vw;
+  padding-right: 2vw;
+}
+.termandc-part span {
+  font: var(--unnamed-font-style-normal) normal normal 12px/36px Poppins;
+  color: var(--unnamed-color-000000);
+  text-align: center;
+  font: normal normal normal 12px/36px Poppins;
+  letter-spacing: -0.16px;
+  color: #000000;
+  opacity: 1;
+  font-size: 0.91vw !important;
+  font-family: Poppins;
+  font-weight: 400;
+}
+
+.fles-container {
+  height: 40rem;
+}
+.file-searchandcreate {
+  margin: 2vw;
+  display: flex;
+  justify-content: space-between;
+}
+.files-searchbox {
+  width: 30vw;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  border: 1px solid var(--unnamed-color-707070);
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #70707059;
+  border-radius: 50px;
+
+  height: 3vw;
+  align-items: center;
+  display: flex;
+  padding: 1vw 1vw;
+}
+.files-searchbox input {
+  border: none;
+  width: 100%;
+  outline: none;
+  font: var(--unnamed-font-style-normal) normal normal 12px /
+    var(--unnamed-line-spacing-18) Poppins;
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-000000);
+  text-align: left;
+  font: normal normal normal 12px/18px Poppins;
+  letter-spacing: 0px;
+  color: #000000;
+  font-size: 0.9vw !important;
+  font-family: Poppins;
+  font-weight: 500;
+}
+.files-searchbox span {
+  opacity: 0.4;
+}
+.create-box {
+  width: 10vw;
+  height: 3vw;
+}
+.create-box button {
+  background: #0052cc 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-14) / 21px Poppins;
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-ffffff);
+
+  font: normal normal medium 14px/21px Poppins;
+  letter-spacing: 0px;
+  font-size: 1vw !important;
+  font-family: Poppins;
+  font-weight: 500;
+  color: #ffffff;
+  opacity: 1;
+  line-height: 0.61vw;
+}
+
+.create-box button span {
+  margin: 0.21vw;
+}
+
+.filessamllbox {
+  width: 10vw;
+  height: 2.5vw;
+  background-color: white;
+  margin: 0.5vw;
+  align-items: center;
+  display: flex;
+  border-radius: 2px;
+
+  text-align: center;
+  justify-content: center;
+}
+.filessamllbox span {
+  margin: 0.3vw;
+}
+
+.filessamllbox span img {
+  width: 1.7vw;
+  object-fit: contain;
+}
+.filessamllbox span span {
+  font: var(--unnamed-font-style-normal) normal normal
+    var(--unnamed-font-size-14) / 21px Poppins;
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-000000);
+  text-align: left;
+  font: normal normal normal 14px/21px Poppins;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  font-size: 0.961vw !important;
+  font-family: Poppins;
+  font-weight: 400;
+}
+
+.myfoldertitile {
+  font: var(--unnamed-font-style-normal) normal 600 16px/25px Poppins;
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-000000);
+  text-align: left;
+  font: normal normal 600 16px/25px Poppins;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  font-size: 1.1vw !important;
+  font-family: Poppins !important;
+  font-weight: 600 !important;
+  margin: 0 2vw;
+}
+
+.folderbox-files {
+  width: 17%;
+  height: 8.5vw;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  opacity: 1;
+  padding: 1vw;
+}
+
+.folderbox-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1vw;
+}
+.folderbox-nav img {
+  width: 2.8vw;
+  object-fit: contain;
+}
+
+.folderbox-title {
+  font: var(--unnamed-font-style-normal) normal normal 12px /
+    var(--unnamed-line-spacing-18) Poppins;
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-000000);
+  text-align: left;
+  font: normal normal normal 12px/18px Poppins;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  font-size: 1vw !important;
+  font-family: poppins !important;
+  font-weight: 500;
+}
+.folderbox-subtitle {
+  font: var(--unnamed-font-style-normal) normal normal 12px /
+    var(--unnamed-line-spacing-18) Poppins;
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-000000);
+  text-align: left;
+  font: normal normal normal 12px/18px Poppins;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  font-size: 0.91vw !important;
+  font-family: poppins !important;
+  font-weight: 400;
+  margin-top: 0.5vw;
+}
+
+.navoffilestable {
+  display: flex;
+  justify-content: space-between;
+  margin: 1vw 2vw;
+  align-items: center;
+}
+.tablehaedtitile-name {
+  /* display: flex; */
+
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-14) / 21px Poppins;
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-000000);
+
+  font: normal normal medium 14px/21px Poppins;
+  letter-spacing: 0px;
+  color: #000000;
+  font-size: 0.95vw !important;
+  font-family: Poppins !important;
+  font-weight: 500 !important;
+  opacity: 0.8;
+}
+.tablehaedtitile-namex {
+  /* display: flex; */
+
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-14) / 21px Poppins;
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-000000);
+
+  font: normal normal medium 14px/21px Poppins;
+  letter-spacing: 0px;
+  color: #000000;
+  font-size: 1vw !important;
+  font-family: Poppins !important;
+  font-weight: 400 !important;
+  opacity: 0.5;
+}
+
+.table-box-main {
+  width: 100%;
+  height: 25rem;
+  overflow: scroll;
+}
+
+.circle-files {
+  margin: auto;
+  margin-top: 1vw;
+}
+
+.capacitytitile {
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) 16px/25px Poppins;
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-000000);
+  text-align: left;
+  font: normal normal medium 16px/25px Poppins;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  font-size: 1.3vw;
+  font-weight: 500;
+  font-family: Poppins;
+}
+
+.filesttyprmainboxxstorage {
+  margin: 1vw 0vw;
+}
+.filestypestorage {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.7vw;
+}
+
+.files-detailst {
+  display: flex;
+}
+.files-detailstimg {
+  width: 2vw;
+  height: 2vw;
+  background: #e4e4e475 0% 0% no-repeat padding-box;
+  border-radius: 2px;
+  margin-right: 0.5vw;
+  display: flex;
+  align-items: center;
+  margin-top: 0.31vw;
+  text-align: center;
+}
+.files-detailstimg img {
+  width: 1.5vw;
+  object-fit: contain;
+  margin: auto;
+}
+.files-detailst-name {
+}
+
+.files-detailst-title {
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-14) / 21px Poppins;
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-000000);
+  text-align: left;
+  font: normal normal medium 14px/21px Poppins;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  font-size: 1vw !important;
+  font-weight: 500;
+  font-family: Poppins !important;
+}
+.files-detailst-no {
+  font: var(--unnamed-font-style-normal) normal normal 10px/16px Poppins;
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-000000);
+  text-align: left;
+  font: normal normal normal 10px/16px Poppins;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  font-size: 0.81vw !important;
+  font-weight: 400;
+  font-family: Poppins !important;
+}
+
+.files-detailstst {
+  font: var(--unnamed-font-style-normal) normal normal 10px/16px Poppins;
+  letter-spacing: var(--unnamed-character-spacing-0);
+  text-align: left;
+  font: normal normal normal 10px/16px Poppins;
+  letter-spacing: 0px;
+  color: #0052cc;
+  opacity: 1;
+  font-size: 0.81vw !important;
+  font-weight: 400;
+  font-family: Poppins !important;
+  margin-top: 0.5vw;
+}
+
+.fileinputbox {
+  width: 85%;
+  margin: 3vw auto;
+  background: #6423c705 0% 0% no-repeat padding-box;
+  border: 2px dashed #8f92a18f;
+  border-radius: 16px;
+  opacity: 1;
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.importfiletxt {
+  cursor: pointer;
+  font: var(--unnamed-font-style-normal) normal normal 10px/20px Poppins;
+  text-align: center;
+  font: normal normal normal 10px/20px Poppins;
+  letter-spacing: -0.29px;
+  color: #8f92a1;
+  opacity: 1;
+  font-size: 0.865vw !important;
+  font-family: Poppins;
+  font-weight: 400;
+}
+
+.createfilenew-type {
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) 12px/20px Poppins;
+  text-align: center;
+  font: normal normal medium 12px/20px Poppins;
+  letter-spacing: -0.34px;
+  color: #828592;
+  opacity: 1;
+  font-size: 0.865vw !important;
+  font-family: Poppins;
+  font-weight: 400;
+  margin-left: 1vw;
+}
+.createfilenew-typex {
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) 12px/20px Poppins;
+  text-align: center;
+  font: normal normal medium 12px/20px Poppins;
+  letter-spacing: -0.34px;
+  color: #17181a;
+  opacity: 1;
+  font-size: 0.9vw !important;
+  font-family: Poppins;
+  font-weight: 400;
+  margin-left: 1vw;
+}

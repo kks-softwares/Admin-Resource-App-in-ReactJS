@@ -4,7 +4,7 @@ export default function Skillfirstuser() {
   return (
     <div>
         <div
-        style={{ margin: "1vw 0vw", padding: "0", marginBottom: "1vw" }}
+        style={{ margin: "1vw 0vw", padding: "0" }}
         className="navoftableblogs"
       >
         Exam Overview

@@ -1,0 +1,54 @@
+.redeamCardoftranctionwallet {
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 6px;
+  height: 6vw;
+  padding: 0.51vw;
+  width: 12vw;
+  margin: 1.5vw 1vw;
+}
+.redeamCardoftranctionwallet img {
+  width: 11vw;
+  height: 5vw;
+  object-fit: contain;
+}
+
+.Redeamlistboxes {
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  opacity: 1;
+  height: 3vw;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  font-size: 1vw;
+  font-weight: 500;
+  font-family: Poppins;
+  margin: 0.6vw 1vw;
+  margin-left: 0vw;
+  padding: 0 1vw;
+}
+.Redeamlistboxes1 {
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  opacity: 1;
+  justify-content: space-between;
+  font-size: 1vw;
+  font-weight: 500;
+  font-family: Poppins;
+  margin: 0.6vw 1vw;
+  margin-left: 0vw;
+  padding: 1vw;
+}
+
+.flexofredeamname {
+  display: flex;
+  align-items: center;
+  font-size: 1vw;
+  font-weight: 400;
+  font-family: Poppins;
+}
+.flexofredeamtag {
+  margin-left: 4vw;
+}
