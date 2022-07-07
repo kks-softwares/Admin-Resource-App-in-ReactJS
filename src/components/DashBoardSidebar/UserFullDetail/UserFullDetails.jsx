@@ -17,6 +17,8 @@ import axios from "axios";
 import API_HOST from "../../../env";
 import CreateJobuserpage from "./CreatedJob/CreateJobuserpage";
 import AppliedJobpage from "./AppliedJiob/AppliedJobpage";
+import Skillcenteruser from "./SkillCenter/Skillcenteruser";
+import Skillfirstuser from "./SkillCenter/Skillfirstuser";
 
 export default function SkillCenter() {
   const navigate = useNavigate();
@@ -310,6 +312,17 @@ export default function SkillCenter() {
             </div>
           </div>
           <AppliedJobpage />
+        </>
+      ) : (
+        ""
+      )}
+
+      {workhistorytoggle === 5 ? (
+        <>
+           <Skillfirstuser/>
+            
+
+          <Skillcenteruser/>
         </>
       ) : (
         ""
