@@ -45,31 +45,34 @@ export default function BankCard() {
       <div style={{ display: "flex", alignItems: "center" }}>
         <div style={{ width: "70%" }}>
           <div
-            style={{ fontSize: "400" , width:"100%" }}
+            style={{ fontSize: "400", width: "100%" }}
             className="Headingdocuments"
           >
             SB *********8473
           </div>
-          <div style={{ fontSize: "400" , width:"100%" }} className="Headingdocuments">
+          <div
+            style={{ fontSize: "400", width: "100%" }}
+            className="Headingdocuments"
+          >
             IFSC code - IDIB000667
           </div>
-          <div style={{ fontSize: "400", width:"100%" }} className="Headingdocuments">
-            Status - 
+          <div
+            style={{ fontSize: "400", width: "100%" }}
+            className="Headingdocuments"
+          >
+            Status -
             <span>
               <img
                 style={{
                   width: "1vw",
                   margin: "0.4vw",
                   position: "relative",
-               
                 }}
                 src={img2}
                 alt=""
               />
             </span>
-           <span style={{fontSize:"0.8vw"}}>
-           Verified by 44 resources.
-           </span>
+            <span style={{ fontSize: "0.8vw" }}>Verified by 44 resources.</span>
           </div>
         </div>
         <div style={{ width: "30%" }}>

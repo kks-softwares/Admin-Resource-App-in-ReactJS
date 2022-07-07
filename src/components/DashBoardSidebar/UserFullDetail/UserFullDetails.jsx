@@ -108,7 +108,7 @@ export default function SkillCenter() {
         >
           {user?.fullName}
         </div>
-        <button className="hb-buttonx">Chat us</button>
+        <button className="hb-buttonx" onClick={()=>navigate('/dashbaord/chat')}>Chat us</button>
       </div>
 
       <div
