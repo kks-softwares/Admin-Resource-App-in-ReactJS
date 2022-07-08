@@ -52,14 +52,14 @@ export default function CreateJobuserpage({user}) {
                   }}
                 >
                   <div style={{ marginLeft: "0vw" }} className="taggreen">
-                    SDE
+                    {data?.category}
                   </div>
                   <div style={{ marginLeft: "1vw" }} className="taggreen1">
-                    database
+                    {data?.subCategory}
                   </div>
                 </div>
                 <div style={{ height: "1.1vw" }} className="activejobpostname">
-                  sde-2
+                  {data?.workTitle}
                 </div>
                 <div
                   style={{ lineHeight: "1.2vw !important" }}
@@ -74,7 +74,7 @@ export default function CreateJobuserpage({user}) {
                         bottom: "0.3vw",
                       }}
                     >
-                      $10- $50
+                      ${data?.minimumBudget}- ${data?.maximuBudget}
                     </span>
                   </div>
                   <div style={{ marginRight: "1vw" }}>
@@ -86,7 +86,7 @@ export default function CreateJobuserpage({user}) {
                         bottom: "0.3vw",
                       }}
                     >
-                      Remote
+                      {data?.remote?"remote":data?.onSite}
                     </span>
                   </div>
                   <div style={{ marginRight: "1vw" }}>
@@ -98,7 +98,7 @@ export default function CreateJobuserpage({user}) {
                         bottom: "0.3vw",
                       }}
                     >
-                      07 Days
+                      {data?.expiry} Days
                     </span>
                   </div>
                 </div>
@@ -107,9 +107,7 @@ export default function CreateJobuserpage({user}) {
                   className="descriptionactibeobbox"
                 >
                   <div style={{ height: "2.8vw" }}>
-                    there https://xd.adobe.co m/view/a0b2e6f4-d68 6-48d5-8ac
-                    7-390d38af4f74 -f5e1/screen/7b684228 -76c1-4c54
-                    -9362-ca7aaef4d872/specs/
+                   {data?.shortDescription?.slice(0,150)}
                   </div>
 
                   <br />
@@ -126,7 +124,7 @@ export default function CreateJobuserpage({user}) {
 
                 <hr />
                 <div style={{ paddingLeft: "0vw" }} className="flexlastactiveb">
-                  <div>Posted on - 10/10/2020</div>
+                  <div>Posted on - {data?.jobPostingDate}</div>
 
                   <div style={{ color: "#00000090" }}> See More</div>
                 </div>
