@@ -280,7 +280,7 @@ export default function AddTableofContent({
               </div>
             </div>
           )}
-            <div className="jobpodtedfieldtitile"> Paragraph Description * </div>
+            <div className="jobpodtedfieldtitile"> Paragraph Description  </div>
             <div style={{ marginBottom: "2vw" }}>
               <TextEditor
                 width={"65vw"}
