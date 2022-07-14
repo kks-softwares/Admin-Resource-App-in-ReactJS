@@ -131,7 +131,13 @@ export default function Addblog() {
   const [erroraddblog, setErroraddblog] = useState(false);
 
   const handlecheck = () => {
-    if (title && imagetitle && scate && arrayoffiles?.length > 0 && !erroraddblog) {
+    if (
+      title &&
+      imagetitle &&
+      scate &&
+      arrayoffiles?.length > 0 &&
+      !erroraddblog
+    ) {
       handleOpen();
     } else {
       setErroraddblog(true);
@@ -141,13 +147,15 @@ export default function Addblog() {
   useEffect(() => {
     if (arrayofblogs?.length > 0) {
     } else {
-      if (title &&imagetitle && scate && arrayoffiles?.length > 0) {
+      if (title && imagetitle && scate && arrayoffiles?.length > 0) {
         setErroraddblog(false);
       } else {
         setErroraddblog(true);
       }
     }
-  }, [title, scate, arrayoffiles, arrayofblogs,imagetitle]);
+  }, [title, scate, arrayoffiles, arrayofblogs, imagetitle]);
+
+  const [firstsumbitblog, setFirstsumbitblog] = useState(false);
 
   return (
     <div>
@@ -285,8 +293,6 @@ export default function Addblog() {
                 }}
               />
             </div>
-           
-           
             <div
               style={{
                 marginBottom: "0.0vw",
@@ -325,11 +331,19 @@ export default function Addblog() {
                   </label>
                 </div>
               </div>
-              <div style={{width:"100%",textAlign:"right",fontSize:"0.9vw",fontWeight:"400"}}>
-    Image should be less then 200 kb and Dimension should be in ratio (3:5)
+              <div
+                style={{
+                  width: "100%",
+                  textAlign: "right",
+                  fontSize: "0.9vw",
+                  fontWeight: "400",
+                }}
+              >
+                Image should be less then 200 kb and Dimension should be in
+                ratio (3:5)
               </div>
             </div>
-            <div 
+            <div
               className={
                 arrayoffiles?.length > 0 ? "inputfilesshowncatebox" : ""
               }
@@ -366,9 +380,8 @@ export default function Addblog() {
                   );
                 })}
             </div>
-           
             <div className="jobpodtedfieldtitile"> Image Title *</div>
-            <div  className="jobpostfieldinputbox">
+            <div className="jobpostfieldinputbox">
               <input
                 type="text"
                 value={imagetitle}
@@ -389,11 +402,12 @@ export default function Addblog() {
                 }}
               />
             </div>
-             
-             <div style={{textAlign:"left",fontSize:"1.4vw",marginTop:"1vw"}} className="jobpodtedfieldtitile">
-                 Table of Content
-             </div>
-            
+            <div
+              style={{ textAlign: "left", fontSize: "1.4vw", marginTop: "1vw" }}
+              className="jobpodtedfieldtitile"
+            >
+              Table of Content
+            </div>
             {arrayofblogs.length > 0 &&
               arrayofblogs?.map((data, index) => {
                 return (
@@ -576,7 +590,7 @@ export default function Addblog() {
                             {data?.title}
                           </div>
                           <div className="Joinwithusblogboxdetail">
-                            {data?.desc?.slice(0,200)}
+                            {data?.desc?.slice(0, 200)}
                           </div>
                         </div>
                         <div style={{ width: "40%", textAlign: "center" }}>
@@ -593,7 +607,9 @@ export default function Addblog() {
               className="handlemoreaboutskill"
             >
               <div
-                  onClick={()=>{handleClose()}}
+                onClick={() => {
+                  handleClose();
+                }}
                 style={{
                   background: "white",
                   color: "black",
@@ -605,8 +621,10 @@ export default function Addblog() {
               </div>
               <div
                 onClick={() => {
-                  console.log("jiji");
-                  handlesumbitBlog();
+                  if (!firstsumbitblog) {
+                    setFirstsumbitblog(true)  
+                    handlesumbitBlog();
+                }
                 }}
                 style={{ cursor: "pointer" }}
                 className="handlecirclieaboutsave"
