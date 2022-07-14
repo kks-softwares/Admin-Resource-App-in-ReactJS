@@ -268,11 +268,7 @@ a {
   fill: black;
 }
 
-.css-1cccqvr.css-1cccqvr.css-1cccqvr {
-  padding-right: 24px;
-  min-width: 16px;
-  padding-top: 1.5vw;
-}
+
 
 .recentnamesearc {
   cursor: pointer;
@@ -280,4 +276,8 @@ a {
 
 .jobpostfieldinputbox input {
   font-size: 1.1vw;
+}
+
+.css-1rrlcb9{
+ line-height: 0.5vw;
 }
