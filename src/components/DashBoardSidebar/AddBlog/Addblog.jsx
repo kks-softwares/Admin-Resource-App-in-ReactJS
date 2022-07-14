@@ -169,7 +169,7 @@ export default function Addblog() {
         >
           <div className="jobpostedformheading">Add Blogs</div>
 
-          <div className="jobpodtedfieldtitile"> Category *</div>
+          <div className="jobpodtedfieldtitile"> Blog Category *</div>
           <div className="">
             <Box
               sx={{
@@ -261,7 +261,7 @@ export default function Addblog() {
           </div>
 
           <div>
-            <div className="jobpodtedfieldtitile"> Title *</div>
+            <div className="jobpodtedfieldtitile"> Blog Title *</div>
             <div className="jobpostfieldinputbox">
               <input
                 type="text"
@@ -283,11 +283,13 @@ export default function Addblog() {
                 }}
               />
             </div>
+           
+           
             <div
               style={{
                 marginBottom: "0.0vw",
                 marginLeft: "0.01vw",
-                marginTop: "2vw",
+                marginTop: "1vw",
               }}
               className="jobpodtedfieldtitile"
             >
@@ -321,8 +323,11 @@ export default function Addblog() {
                   </label>
                 </div>
               </div>
+              <div style={{width:"100%",textAlign:"right",fontSize:"0.9vw",fontWeight:"400"}}>
+    Image should be less then 200 kb and Dimension should be 
+              </div>
             </div>
-            <div
+            <div 
               className={
                 arrayoffiles?.length > 0 ? "inputfilesshowncatebox" : ""
               }
@@ -359,6 +364,34 @@ export default function Addblog() {
                   );
                 })}
             </div>
+           
+            <div className="jobpodtedfieldtitile"> Image Title *</div>
+            <div  className="jobpostfieldinputbox">
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                }}
+              />
+              <CloseIcon
+                style={{
+                  position: "relative",
+                  right: "2vw",
+                  top: "1.1vw",
+                  fontSize: "1.5vw",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  setTitle("");
+                }}
+              />
+            </div>
+             
+             <div style={{textAlign:"left",fontSize:"1.3vw",margin:"1vw 0"}} className="jobpodtedfieldtitile">
+                 Table of Content
+             </div>
+            
             {arrayofblogs.length > 0 &&
               arrayofblogs?.map((data, index) => {
                 return (
@@ -395,7 +428,7 @@ export default function Addblog() {
               <span>
                 <AddIcon style={{ fontSize: "1.3vw" }} />
               </span>{" "}
-              Add More Sections
+              Add Paragraph
             </div>
             {erroeshow ? (
               <div style={{ color: "red" }} className="jobpodtedfieldtitile">

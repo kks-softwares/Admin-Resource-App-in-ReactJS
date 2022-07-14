@@ -166,7 +166,7 @@ export default function AddTableofContent({
               }}
               className="jobpodtedfieldtitile"
             >
-              <div>Table of Content {arrayofblogs?.length<2?"(Minimum 1 section)":""}*</div>
+              <div> Paragraph {index+1} </div>
               {arrayofblogs?.length > 1 && (
                 <div>
                   <CloseIcon
@@ -187,7 +187,7 @@ export default function AddTableofContent({
               )}
             </div>
 
-            <div className="jobpodtedfieldtitile"> Heading *</div>
+            <div className="jobpodtedfieldtitile"> Paragraph heading *</div>
             <div style={{ width: "69vw" }} className="jobpostfieldinputbox">
               <input
                 type="text"
@@ -207,16 +207,7 @@ export default function AddTableofContent({
                 }}
               />
             </div>
-            <div className="jobpodtedfieldtitile"> Explaination * </div>
-            <div style={{ marginBottom: "2vw" }}>
-              <TextEditor
-                width={"65vw"}
-                setDescription1={setDescription1}
-                description1={description1}
-              />
-            </div>
-          </div>
-          <div
+            <div
             style={{
               marginBottom: "0.0vw",
 
@@ -224,7 +215,7 @@ export default function AddTableofContent({
             }}
             className="jobpodtedfieldtitile"
           >
-            Image/Documents
+         Paragraph   Image
           </div>
           <div
             style={{
@@ -285,6 +276,16 @@ export default function AddTableofContent({
               </div>
             </div>
           )}
+            <div className="jobpodtedfieldtitile"> Paragraph Description * </div>
+            <div style={{ marginBottom: "2vw" }}>
+              <TextEditor
+                width={"65vw"}
+                setDescription1={setDescription1}
+                description1={description1}
+              />
+            </div>
+          </div>
+         
           <div className="jobpodtedfieldtitile">Call to Action</div>
           <div className="homjobpost-popbudegt">
             <div className="min-maxhomejob">Title *</div>
@@ -527,7 +528,7 @@ export default function AddTableofContent({
               </Box>
             </div>
           </div>
-          <div className="jobpodtedfieldtitile">Description *</div>
+          <div className="jobpodtedfieldtitile">Button Description *</div>
 
           <div className="jobpostfieldinputbox">
             {console.log(arrayofblogs)}
