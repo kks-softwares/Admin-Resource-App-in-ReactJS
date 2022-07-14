@@ -137,7 +137,7 @@ export default function AddTableofContent1({
         : "10"
     );
     
-  }, []);
+  }, [data]);
 
   const handleuploadimage = (file) => {
     const formdata = new FormData();
