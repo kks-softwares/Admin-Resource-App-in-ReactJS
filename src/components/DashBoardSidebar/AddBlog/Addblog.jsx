@@ -114,6 +114,7 @@ export default function Addblog() {
     formdata.append("shareDisable", false);
     formdata.append("toC", JSON.stringify(arrayofblogs));
     formdata.append("category", scate);
+    formdata.append("iconTitle", imagetitle);
 
     axios
       .post(`${API_HOST}/contentManagement/addByAdmin`, formdata, {

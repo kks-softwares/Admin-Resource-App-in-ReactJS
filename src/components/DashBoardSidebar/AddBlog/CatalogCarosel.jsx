@@ -74,7 +74,16 @@ export default class Cataloguecarosel extends Component {
                 objectFit: "cover",
                 borderRadius: "50%",
               }}>
-                 <img src={URL.createObjectURL(this?.props?.img1)} />
+                  <img
+                style={{
+                  width: "5.5vw",
+                  height: "5.5vw",
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                }}
+                src={img11}
+                alt=""
+              />
              </div>
 
             ) : (

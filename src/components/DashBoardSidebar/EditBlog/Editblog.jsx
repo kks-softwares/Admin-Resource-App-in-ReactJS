@@ -140,6 +140,7 @@ export default function Addblog() {
     formdata.append("contentName", title);
     formdata.append("category", scate);
     formdata.append("contentId", Id);
+    formdata.append("iconTitle", imagetitle);
 
     axios
       .post(`${API_HOST}/contentManagement/editcontent`, formdata, {

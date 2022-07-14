@@ -12,7 +12,7 @@ import {
 import Login from "./pages/Login/Login";
 import Dashbaord from "./pages/Dashbaord/Dashbaord";
 import Users from "./components/DashBoardSidebar/Users/Users";
-
+import { useDispatch, useSelector } from "react-redux";
 import UserFullDetails from "./components/DashBoardSidebar/UserFullDetail/UserFullDetails";
 import Blogs from "./components/DashBoardSidebar/Blogs/Blogs";
 import Addblog from "./components/DashBoardSidebar/AddBlog/Addblog";
@@ -38,9 +38,16 @@ function LayoutsWithNavbar() {
 }
 
 function App() {
-   
-      const user = JSON.parse(localStorage.getItem("user"));
-     
+    const dispatch = useDispatch();
+    const { user, loggedInStatus } = useSelector((state) => state.user);
+  
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        console.log(user);
+      if (user) {
+        dispatch(userActions.setUser({ user }));
+      }
+    }, [loggedInStatus]);
 
   return (
     <div className="App">
@@ -49,7 +56,7 @@ function App() {
           <Route
             path="/"
             element={
-              <ProtectedRoute auth={user?.fullName ? true : false}>
+              <ProtectedRoute auth={ JSON.parse(localStorage.getItem("user"))?.fullName ? true : false}>
                 <LayoutsWithNavbar />
               </ProtectedRoute>
             }
@@ -60,7 +67,7 @@ function App() {
           <Route
             path="/dashbaord"
             element={
-              <ProtectedRoute2 auth={user?.fullName ? true : false}>
+              <ProtectedRoute2 auth={JSON.parse(localStorage.getItem("user"))?.fullName ? true : false}>
                 <Dashbaord />
               </ProtectedRoute2>
             }

@@ -74,7 +74,7 @@ export default function BlogDetail() {
               >
                 {data?.category}
               </button>
-              <div className="textofcontainercatalgue">{data?.contentName}</div>
+              <div className="textofcontainercatalgue">{data?.iconTitle}</div>
             </div>
             <div style={{ position: "relative", bottom: "2.2vw" }}>
               <Cataloguecarosel
