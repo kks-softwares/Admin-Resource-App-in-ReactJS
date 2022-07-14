@@ -119,7 +119,7 @@ export default function AddTableofContent1({
       setwrongsec(true);
       setErroraddblog(true);
     }
-  }, [data, title, scate, arrayoffiles, imagetitle]);
+  }, [data, title, scate, arrayoffiles, imagetitle,arrayofblogs]);
 
   useEffect(() => {
     setDescription2(data?.desc);
@@ -306,18 +306,18 @@ export default function AddTableofContent1({
                     src={img22}
                     alt=""
                     onClick={() => {
-                        setArrayofblogs([
-                            ...arrayofblogs.slice(0, index),
-                            {
-                              heading: data?.heading,
-                              toc: data?.toc,
-                              file: "",
-                              desc: data?.desc,
-                              title: data?.title,
-                              button: data?.button,
-                            },
-                            ...arrayofblogs.slice(index + 1, arrayofblogs.length),
-                          ]);
+                      setArrayofblogs([
+                        ...arrayofblogs.slice(0, index),
+                        {
+                          heading: data?.heading,
+                          toc: data?.toc,
+                          file: "",
+                          desc: data?.desc,
+                          title: data?.title,
+                          button: data?.button,
+                        },
+                        ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+                      ]);
                     }}
                   />
                 </div>

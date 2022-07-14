@@ -118,7 +118,7 @@ export default function AddTableofContent({
       setwrongsec(true);
       setErroraddblog(true);
     }
-  }, [data, title, scate, arrayoffiles,imagetitle]);
+  }, [data, title, scate, arrayoffiles,imagetitle,arrayofblogs]);
 
   const handleuploadimage = (file) => {
     const formdata = new FormData();
