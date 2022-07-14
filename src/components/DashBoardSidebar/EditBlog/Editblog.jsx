@@ -89,6 +89,8 @@ export default function Addblog() {
   const navigate = useNavigate();
   const [erroeshow, setErroeshow] = useState(false);
   const [title, setTitle] = useState("");
+  const [imagetitle, setimagetitle] = useState("");
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -108,6 +110,7 @@ export default function Addblog() {
       .then((res) => {
         setData(res?.data?.success?.data[0]);
         setTitle(res?.data?.success?.data[0]?.contentName);
+        setimagetitle(res?.data?.success?.data[0]?.iconTitle);
         setArrayofblogs(res?.data?.success?.data[0]?.toC);
         setAge3(
           res?.data?.success?.data[0]?.category === "Business Ideas"
@@ -183,7 +186,7 @@ export default function Addblog() {
   const [erroraddblog, setErroraddblog] = useState(false);
 
   const handlecheck = () => {
-    if (title && scate && arrayoffiles?.length > 0 && !erroraddblog) {
+    if (title&& imagetitle && scate && arrayoffiles?.length > 0 && !erroraddblog) {
       handleOpen();
     } else {
       setErroraddblog(true);
@@ -193,13 +196,13 @@ export default function Addblog() {
   useEffect(() => {
     if (arrayofblogs?.length > 0) {
     } else {
-      if (title && scate && arrayoffiles?.length > 0) {
+      if (title && imagetitle && scate && arrayoffiles?.length > 0) {
         setErroraddblog(false);
       } else {
         setErroraddblog(true);
       }
     }
-  }, [title, scate, arrayoffiles, arrayofblogs]);
+  }, [title,imagetitle ,scate, arrayoffiles, arrayofblogs]);
 
   const handleuploadimage = (file) => {
     const formdata = new FormData();
@@ -238,7 +241,7 @@ export default function Addblog() {
         >
           <div className="jobpostedformheading">Edit Blogs</div>
 
-          <div className="jobpodtedfieldtitile"> Category *</div>
+          <div className="jobpodtedfieldtitile">Blog Category *</div>
           <div className="">
             <Box
               sx={{
@@ -330,7 +333,7 @@ export default function Addblog() {
           </div>
 
           <div>
-            <div className="jobpodtedfieldtitile"> Title *</div>
+            <div className="jobpodtedfieldtitile">Blog Title *</div>
             <div className="jobpostfieldinputbox">
               <input
                 type="text"
@@ -390,6 +393,9 @@ export default function Addblog() {
                   </label>
                 </div>
               </div>
+              <div style={{width:"100%",textAlign:"right",fontSize:"0.9vw",fontWeight:"400"}}>
+    Image should be less then 200 kb and Dimension should be in ratio (3:5)
+              </div>
             </div>
             <div
               className={
@@ -428,6 +434,34 @@ export default function Addblog() {
                   );
                 })}
             </div>
+         
+         
+            <div className="jobpodtedfieldtitile"> Image Title *</div>
+            <div  className="jobpostfieldinputbox">
+              <input
+                type="text"
+                value={imagetitle}
+                onChange={(e) => {
+                  setimagetitle(e.target.value);
+                }}
+              />
+              <CloseIcon
+                style={{
+                  position: "relative",
+                  right: "2vw",
+                  top: "1.1vw",
+                  fontSize: "1.5vw",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  setimagetitle("");
+                }}
+              />
+            </div>
+             
+             <div style={{textAlign:"left",fontSize:"1.4vw",marginTop:"1vw"}} className="jobpodtedfieldtitile">
+                 Table of Content
+             </div>
             {arrayofblogs?.length > 0 &&
               arrayofblogs?.map((data, index) => {
                 return (
@@ -441,6 +475,7 @@ export default function Addblog() {
                     title={title}
                     scate={scate}
                     arrayoffiles={arrayoffiles}
+                    imagetitle={imagetitle}
                   />
                 );
               })}
@@ -534,7 +569,7 @@ export default function Addblog() {
                 >
                   {scate}
                 </button>
-                <div className="textofcontainercatalgue">{title}</div>
+                <div className="textofcontainercatalgue">{imagetitle}</div>
               </div>
               <div style={{ position: "relative", bottom: "2.2vw" }}>
                 <Cataloguecarosel1

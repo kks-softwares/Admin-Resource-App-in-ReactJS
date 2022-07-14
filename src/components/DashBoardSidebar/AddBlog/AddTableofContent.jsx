@@ -67,6 +67,7 @@ export default function AddTableofContent({
   title,
   scate,
   arrayoffiles,
+  imagetitle
 }) {
   const [description1, setDescription1] = useState("");
   const navigate = useNavigate();
@@ -108,7 +109,7 @@ export default function AddTableofContent({
       data?.heading
     ) {
       setwrongsec(false);
-      if (title && scate && arrayoffiles?.length > 0) {
+      if (title&& imagetitle && scate && arrayoffiles?.length > 0) {
         setErroraddblog(false);
       } else {
         setErroraddblog(true);
@@ -117,7 +118,7 @@ export default function AddTableofContent({
       setwrongsec(true);
       setErroraddblog(true);
     }
-  }, [data, title, scate, arrayoffiles]);
+  }, [data, title, scate, arrayoffiles,imagetitle]);
 
   const handleuploadimage = (file) => {
     const formdata = new FormData();
@@ -153,7 +154,7 @@ export default function AddTableofContent({
             style={{
               left: "0vw",
               width: "96%",
-              margin: "2vw 0vw 2vw 0vw",
+              margin: "1vw 0",
               display: "block",
             }}
             className="loginfield"
@@ -166,7 +167,7 @@ export default function AddTableofContent({
               }}
               className="jobpodtedfieldtitile"
             >
-              <div> Paragraph {index+1} </div>
+              <div style={{fontSize:"1.2vw"}}> Paragraph {index+1} </div>
               {arrayofblogs?.length > 1 && (
                 <div>
                   <CloseIcon
@@ -222,7 +223,7 @@ export default function AddTableofContent({
               background: "white",
               padding: "1vw",
               marginTop: "0vw",
-              paddingRight: "2.5vw",
+              paddingRight: "0.5vw",
               paddingLeft: "0vw",
             }}
           >
@@ -247,6 +248,9 @@ export default function AddTableofContent({
                 </label>
               </div>
             </div>
+            <div style={{width:"100%",textAlign:"right",fontSize:"0.9vw",fontWeight:"400"}}>
+    Image should be less then 200 kb 
+              </div>
           </div>
           {arrayoffile && (
             <div

@@ -90,6 +90,7 @@ export default function Addblog() {
   const navigate = useNavigate();
   const [erroeshow, setErroeshow] = useState(false);
   const [title, setTitle] = useState("");
+  const [imagetitle, setimagetitle] = useState("");
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -129,7 +130,7 @@ export default function Addblog() {
   const [erroraddblog, setErroraddblog] = useState(false);
 
   const handlecheck = () => {
-    if (title && scate && arrayoffiles?.length > 0 && !erroraddblog) {
+    if (title && imagetitle && scate && arrayoffiles?.length > 0 && !erroraddblog) {
       handleOpen();
     } else {
       setErroraddblog(true);
@@ -139,13 +140,13 @@ export default function Addblog() {
   useEffect(() => {
     if (arrayofblogs?.length > 0) {
     } else {
-      if (title && scate && arrayoffiles?.length > 0) {
+      if (title &&imagetitle && scate && arrayoffiles?.length > 0) {
         setErroraddblog(false);
       } else {
         setErroraddblog(true);
       }
     }
-  }, [title, scate, arrayoffiles, arrayofblogs]);
+  }, [title, scate, arrayoffiles, arrayofblogs,imagetitle]);
 
   return (
     <div>
@@ -324,7 +325,7 @@ export default function Addblog() {
                 </div>
               </div>
               <div style={{width:"100%",textAlign:"right",fontSize:"0.9vw",fontWeight:"400"}}>
-    Image should be less then 200 kb and Dimension should be 
+    Image should be less then 200 kb and Dimension should be in ratio (3:5)
               </div>
             </div>
             <div 
@@ -369,9 +370,9 @@ export default function Addblog() {
             <div  className="jobpostfieldinputbox">
               <input
                 type="text"
-                value={title}
+                value={imagetitle}
                 onChange={(e) => {
-                  setTitle(e.target.value);
+                  setimagetitle(e.target.value);
                 }}
               />
               <CloseIcon
@@ -383,12 +384,12 @@ export default function Addblog() {
                   cursor: "pointer",
                 }}
                 onClick={() => {
-                  setTitle("");
+                  setimagetitle("");
                 }}
               />
             </div>
              
-             <div style={{textAlign:"left",fontSize:"1.3vw",margin:"1vw 0"}} className="jobpodtedfieldtitile">
+             <div style={{textAlign:"left",fontSize:"1.4vw",marginTop:"1vw"}} className="jobpodtedfieldtitile">
                  Table of Content
              </div>
             
@@ -405,6 +406,7 @@ export default function Addblog() {
                     title={title}
                     scate={scate}
                     arrayoffiles={arrayoffiles}
+                    imagetitle={imagetitle}
                   />
                 );
               })}
@@ -499,7 +501,7 @@ export default function Addblog() {
                 >
                   {scate}
                 </button>
-                <div className="textofcontainercatalgue">{title}</div>
+                <div className="textofcontainercatalgue">{imagetitle}</div>
               </div>
               <div style={{ position: "relative", bottom: "2.2vw" }}>
                 <Cataloguecarosel

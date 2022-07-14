@@ -67,6 +67,7 @@ export default function AddTableofContent1({
   title,
   scate,
   arrayoffiles,
+  imagetitle
 }) {
   const [description1, setDescription1] = useState(data.toc);
   const [description2, setDescription2] = useState(data.desc);
@@ -104,7 +105,7 @@ export default function AddTableofContent1({
   useEffect(() => {
     if (data?.toc && data?.desc && data?.title && data?.button && data?.heading) {
       setwrongsec(false);
-      if (title && scate && arrayoffiles?.length > 0) {
+      if (title &&  imagetitle && scate && arrayoffiles?.length > 0) {
         setErroraddblog(false);
       } else {
         setErroraddblog(true);
@@ -113,7 +114,7 @@ export default function AddTableofContent1({
       setwrongsec(true);
       setErroraddblog(true);
     }
-  }, [data, title, scate, arrayoffiles]);
+  }, [data, title, scate, arrayoffiles,  imagetitle]);
 
   useEffect(() => {
     setDescription2(data?.desc);
@@ -172,7 +173,7 @@ export default function AddTableofContent1({
             style={{
               left: "0vw",
               width: "96%",
-              margin: "2vw 0vw 2vw 0vw",
+              margin: "1vw 0vw 1vw 0vw",
               display: "block",
             }}
             className="loginfield"
@@ -185,7 +186,7 @@ export default function AddTableofContent1({
               }}
               className="jobpodtedfieldtitile"
             >
-              <div>Table of Content {arrayofblogs?.length<2?"(Minimum 1 section)":""}*</div>
+              <div style={{fontSize:"1.2vw"}}> Paragraph {index+1} </div>
               {arrayofblogs?.length > 1 && (
                 <div>
                   <CloseIcon
@@ -205,7 +206,7 @@ export default function AddTableofContent1({
                 </div>
               )}
             </div>
-            <div className="jobpodtedfieldtitile"> Heading *</div>
+            <div className="jobpodtedfieldtitile"> Paragraph heading *</div>
             <div style={{width:"69vw"}} className="jobpostfieldinputbox">
               <input
                 type="text"
@@ -227,17 +228,7 @@ export default function AddTableofContent1({
                 }}
               />
             </div>
-            <div className="jobpodtedfieldtitile"> Explaination*  </div>
-            <div style={{ marginBottom: "2vw" }}>
-              {description1 && (
-                <TextEditor
-                  width={"65vw"}
-                  setDescription1={setDescription1}
-                  description1={description1}
-                />
-              )}
             </div>
-          </div>
           <div
             style={{
               marginBottom: "0.0vw",
@@ -246,7 +237,7 @@ export default function AddTableofContent1({
             }}
             className="jobpodtedfieldtitile"
           >
-            Image/Documents
+                  Paragraph   Image
           </div>
           <div
             style={{
@@ -278,6 +269,9 @@ export default function AddTableofContent1({
                 </label>
               </div>
             </div>
+            <div style={{width:"100%",textAlign:"right",fontSize:"0.9vw",fontWeight:"400"}}>
+    Image should be less then 200 kb 
+              </div>
           </div>
           {arrayoffile && (
             <div
@@ -307,6 +301,17 @@ export default function AddTableofContent1({
               </div>
             </div>
           )}
+            <div className="jobpodtedfieldtitile"> Paragraph Description *  </div>
+            <div style={{ marginBottom: "2vw" }}>
+              {description1 && (
+                <TextEditor
+                  width={"65vw"}
+                  setDescription1={setDescription1}
+                  description1={description1}
+                />
+              )}
+            </div>
+         
           <div className="jobpodtedfieldtitile">Call to Action</div>
           <div className="homjobpost-popbudegt">
             <div className="min-maxhomejob">Title *</div>
@@ -547,7 +552,7 @@ export default function AddTableofContent1({
               </Box>
             </div>
           </div>
-          <div className="jobpodtedfieldtitile">Description *</div>
+          <div className="jobpodtedfieldtitile">Button Description  *</div>
 
           <div className="jobpostfieldinputbox">
             {console.log(data)}
