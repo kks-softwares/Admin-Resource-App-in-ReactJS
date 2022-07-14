@@ -506,7 +506,7 @@ export default function Addblog() {
               <span>
                 <AddIcon style={{ fontSize: "1.3vw" }} />
               </span>{" "}
-              Add More Sections
+              Add Paragraph
             </div>
             {erroeshow ? (
               <div style={{ color: "red" }} className="jobpodtedfieldtitile">
