@@ -5,7 +5,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { makeStyles } from "@material-ui/core";
 import Box from "@mui/material/Box";
-import { useNavigate } from "react-router";
+
 import img from "../../../assets/Web 1280 – 14/Icon.svg";
 import img1 from "../../../assets/Web 1280 – 14/Group 9831.svg";
 import img22 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg";
@@ -67,7 +67,7 @@ export default function AddTableofContent1({
   title,
   scate,
   arrayoffiles,
-  imagetitle
+  imagetitle,
 }) {
   const [description1, setDescription1] = useState(data.toc);
   const [description2, setDescription2] = useState(data.desc);
@@ -90,22 +90,27 @@ export default function AddTableofContent1({
     setArrayofblogs([
       ...arrayofblogs.slice(0, index),
       {
-          heading:data?.heading,
+        heading: data?.heading,
         toc: description1,
         file: data?.file,
         desc: data?.desc,
         title: data?.title,
         button: data?.button,
-
       },
       ...arrayofblogs.slice(index + 1, arrayofblogs.length),
     ]);
   }, [description1]);
 
   useEffect(() => {
-    if (data?.toc && data?.desc && data?.title && data?.button && data?.heading) {
+    if (
+      data?.toc &&
+      data?.desc &&
+      data?.title &&
+      data?.button &&
+      data?.heading
+    ) {
       setwrongsec(false);
-      if (title &&  imagetitle && scate && arrayoffiles?.length > 0) {
+      if (title && imagetitle && scate && arrayoffiles?.length > 0) {
         setErroraddblog(false);
       } else {
         setErroraddblog(true);
@@ -114,7 +119,7 @@ export default function AddTableofContent1({
       setwrongsec(true);
       setErroraddblog(true);
     }
-  }, [data, title, scate, arrayoffiles,  imagetitle]);
+  }, [data, title, scate, arrayoffiles, imagetitle]);
 
   useEffect(() => {
     setDescription2(data?.desc);
@@ -137,7 +142,6 @@ export default function AddTableofContent1({
         ? 40
         : "10"
     );
-    
   }, [data]);
 
   const handleuploadimage = (file) => {
@@ -153,7 +157,8 @@ export default function AddTableofContent1({
       .then((res) => {
         setArrayofblogs([
           ...arrayofblogs.slice(0, index),
-          { heading:data?.heading,
+          {
+            heading: data?.heading,
             toc: data?.toc,
             file: res?.data?.success?.data?.file,
             desc: data?.desc,
@@ -186,7 +191,7 @@ export default function AddTableofContent1({
               }}
               className="jobpodtedfieldtitile"
             >
-              <div style={{fontSize:"1.2vw"}}> Paragraph {index+1} </div>
+              <div style={{ fontSize: "1.2vw" }}> Paragraph {index + 1} </div>
               {arrayofblogs?.length > 1 && (
                 <div>
                   <CloseIcon
@@ -207,10 +212,10 @@ export default function AddTableofContent1({
               )}
             </div>
             <div className="jobpodtedfieldtitile"> Paragraph heading *</div>
-            <div style={{width:"69vw"}} className="jobpostfieldinputbox">
+            <div style={{ width: "69vw" }} className="jobpostfieldinputbox">
               <input
                 type="text"
-                style={{width:"100vw"}}
+                style={{ width: "100vw" }}
                 value={data?.heading}
                 onChange={(e) => {
                   setArrayofblogs([
@@ -228,7 +233,7 @@ export default function AddTableofContent1({
                 }}
               />
             </div>
-            </div>
+          </div>
           <div
             style={{
               marginBottom: "0.0vw",
@@ -237,7 +242,7 @@ export default function AddTableofContent1({
             }}
             className="jobpodtedfieldtitile"
           >
-                  Paragraph   Image
+            Paragraph Image
           </div>
           <div
             style={{
@@ -269,11 +274,18 @@ export default function AddTableofContent1({
                 </label>
               </div>
             </div>
-            <div style={{width:"100%",textAlign:"right",fontSize:"0.9vw",fontWeight:"400"}}>
-    Image should be less then 200 kb 
-              </div>
+            <div
+              style={{
+                width: "100%",
+                textAlign: "right",
+                fontSize: "0.9vw",
+                fontWeight: "400",
+              }}
+            >
+              Image should be less then 200 kb
+            </div>
           </div>
-          {arrayoffile && (
+          {data?.file && (
             <div
               style={{ marginTop: "0.3vw" }}
               className="inputfilesshowncatebox"
@@ -283,7 +295,7 @@ export default function AddTableofContent1({
                 <div className="inputfilesshowncatboxsingleimg">
                   <img src={img1} alt="" />
                 </div>
-                <div className="fileselctednamecate">{arrayoffile?.name}</div>
+                <div className="fileselctednamecate">{data?.file}</div>
                 <div className="inputfilesshowncatboxsingleimg">
                   <img
                     style={{
@@ -294,24 +306,35 @@ export default function AddTableofContent1({
                     src={img22}
                     alt=""
                     onClick={() => {
-                      setArrayoffile();
+                        setArrayofblogs([
+                            ...arrayofblogs.slice(0, index),
+                            {
+                              heading: data?.heading,
+                              toc: data?.toc,
+                              file: "",
+                              desc: data?.desc,
+                              title: data?.title,
+                              button: data?.button,
+                            },
+                            ...arrayofblogs.slice(index + 1, arrayofblogs.length),
+                          ]);
                     }}
                   />
                 </div>
               </div>
             </div>
           )}
-            <div className="jobpodtedfieldtitile"> Paragraph Description *  </div>
-            <div style={{ marginBottom: "2vw" }}>
-              {description1 && (
-                <TextEditor
-                  width={"65vw"}
-                  setDescription1={setDescription1}
-                  description1={description1}
-                />
-              )}
-            </div>
-         
+          <div className="jobpodtedfieldtitile"> Paragraph Description * </div>
+          <div style={{ marginBottom: "2vw" }}>
+            {description1 && (
+              <TextEditor
+                width={"65vw"}
+                setDescription1={setDescription1}
+                description1={description1}
+              />
+            )}
+          </div>
+
           <div className="jobpodtedfieldtitile">Call to Action</div>
           <div className="homjobpost-popbudegt">
             <div className="min-maxhomejob">Title *</div>
@@ -368,7 +391,8 @@ export default function AddTableofContent1({
                       onClick={() => {
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
-                          {heading:data?.heading,
+                          {
+                            heading: data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -386,7 +410,8 @@ export default function AddTableofContent1({
                       onClick={() => {
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
-                          {heading:data?.heading,
+                          {
+                            heading: data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -404,7 +429,8 @@ export default function AddTableofContent1({
                       onClick={() => {
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
-                          {heading:data?.heading,
+                          {
+                            heading: data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -476,7 +502,7 @@ export default function AddTableofContent1({
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
-                            heading:data?.heading,
+                            heading: data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -495,7 +521,7 @@ export default function AddTableofContent1({
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
-                            heading:data?.heading,
+                            heading: data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -514,7 +540,7 @@ export default function AddTableofContent1({
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
-                            heading:data?.heading,
+                            heading: data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -533,7 +559,7 @@ export default function AddTableofContent1({
                         setArrayofblogs([
                           ...arrayofblogs.slice(0, index),
                           {
-                            heading:data?.heading,
+                            heading: data?.heading,
                             toc: data?.toc,
                             file: data?.file,
                             desc: data?.desc,
@@ -552,7 +578,7 @@ export default function AddTableofContent1({
               </Box>
             </div>
           </div>
-          <div className="jobpodtedfieldtitile">Button Description  *</div>
+          <div className="jobpodtedfieldtitile">Button Description *</div>
 
           <div className="jobpostfieldinputbox">
             {console.log(data)}
@@ -566,7 +592,7 @@ export default function AddTableofContent1({
                 setArrayofblogs([
                   ...arrayofblogs.slice(0, index),
                   {
-                    heading:data?.heading,
+                    heading: data?.heading,
                     toc: data?.toc,
                     file: data?.file,
                     desc: e.target.value,
