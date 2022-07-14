@@ -5,7 +5,7 @@ import img2 from "../../../../assets/My profile – 28/Component 71 – 6.svg";
 import "./profile.css";
 import API_HOST from "../../../../env";
 import StarRatings from "react-star-ratings";
-import { useSelector } from "react-redux";
+
 import axios from "axios";
 import { useParams } from "react-router";
 
