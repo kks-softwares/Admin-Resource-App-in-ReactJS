@@ -268,8 +268,6 @@ a {
   fill: black;
 }
 
-
-
 .recentnamesearc {
   cursor: pointer;
 }
@@ -278,6 +276,7 @@ a {
   font-size: 1.1vw;
 }
 
-.css-1rrlcb9{
- line-height: 0.5vw;
+
+.fileselctednamecate {
+  max-width: 90% !important;
 }
