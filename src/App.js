@@ -12,7 +12,7 @@ import {
 import Login from "./pages/Login/Login";
 import Dashbaord from "./pages/Dashbaord/Dashbaord";
 import Users from "./components/DashBoardSidebar/Users/Users";
-import { useSelector } from "react-redux";
+
 import UserFullDetails from "./components/DashBoardSidebar/UserFullDetail/UserFullDetails";
 import Blogs from "./components/DashBoardSidebar/Blogs/Blogs";
 import Addblog from "./components/DashBoardSidebar/AddBlog/Addblog";
@@ -26,6 +26,8 @@ import AddExam from "./components/DashBoardSidebar/SkillCenter/AddExam/AddExam";
 import ExamPage from "./components/DashBoardSidebar/SkillCenter/ExamCPage/ExamPage";
 import EditCondidateDetail from "./components/DashBoardSidebar/SkillCenter/EditConsidateDetail/EditCondidateDetail";
 import Chat from "./components/DashBoardSidebar/UserFullDetail/Chat/Chat";
+import { useEffect } from "react";
+import { userActions } from "./store/userSlice";
 
 function LayoutsWithNavbar() {
   return (
@@ -36,7 +38,9 @@ function LayoutsWithNavbar() {
 }
 
 function App() {
-  const { user } = useSelector((state) => state.user);
+   
+      const user = JSON.parse(localStorage.getItem("user"));
+     
 
   return (
     <div className="App">
