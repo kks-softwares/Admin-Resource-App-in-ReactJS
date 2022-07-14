@@ -29,7 +29,7 @@ export default function Profileworkhistroy() {
         `${API_HOST}/jobPost/onGoingWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${page}&userName=${userName}`
       )
       .then((res) => {
-        setAlljobongoing([alljobingoing, ...res?.data?.success?.data]);
+        setAlljobongoing([...alljobingoing, ...res?.data?.success?.data]);
         if (res?.data?.success?.data < 9) {
           setPages(false);
         } else {
@@ -42,7 +42,7 @@ export default function Profileworkhistroy() {
         `${API_HOST}/jobPost/completedWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${page1}&userName=${userName}`
       )
       .then((res) => {
-        setAlljobondone([alljobindone, ...res?.data?.success?.data]);
+        setAlljobondone([...alljobindone, ...res?.data?.success?.data]);
         if (res?.data?.success?.data < 9) {
           setPage1s(false);
         } else {
