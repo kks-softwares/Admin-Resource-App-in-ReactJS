@@ -119,7 +119,7 @@ export default function AddTableofContent1({
       setwrongsec(true);
       setErroraddblog(true);
     }
-  }, [data, title, scate, arrayoffiles, imagetitle,arrayofblogs]);
+  }, [data, title, scate, arrayoffiles, imagetitle]);
 
   useEffect(() => {
     setDescription2(data?.desc);

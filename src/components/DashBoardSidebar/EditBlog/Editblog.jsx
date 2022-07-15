@@ -127,6 +127,8 @@ export default function Addblog() {
       });
   }, [Id]);
 
+  
+
   const handlesumbitBlog = () => {
     const formdata = new FormData();
 
