@@ -494,6 +494,7 @@ export default function Addblog() {
                 setArrayofblogs([
                   ...arrayofblogs,
                   {
+                    heading: "",
                     toc: " ",
                     file: "",
                     desc: "",
