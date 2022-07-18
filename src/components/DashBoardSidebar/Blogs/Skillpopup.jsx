@@ -116,7 +116,7 @@ export default function Skillpopup1({
         </div>
         <div style={{ width: "13vw", padding: "0vw 1vw",paddingLeft:"0.5vw" }}>
           <div
-            style={{  marginBottom: "1vw" }}
+            style={{  marginBottom: "0.5vw" }}
             className="inputtypeformfield"
           >
             <TextField

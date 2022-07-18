@@ -40,12 +40,12 @@
   font-family: Poppins;
 }
 .css-1vv4lmi ::after {
-  border-bottom: 2px solid white !important;
+  border-bottom: 2px solid transparent !important;
 }
 .css-1vv4lmi:after {
-  border-bottom: 2px solid white !important;
+  border-bottom: 2px solid transparent !important;
 }
 .css-1vv4lmi:before {
-  border-bottom: 2px solid white !important;
+  border-bottom: 2px solid transparent !important;
 }
 
