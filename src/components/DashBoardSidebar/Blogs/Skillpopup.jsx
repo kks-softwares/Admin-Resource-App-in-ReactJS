@@ -19,7 +19,6 @@ const currencies = [
   {
     value: "None",
   },
-
 ];
 
 export default function Skillpopup1({
@@ -63,10 +62,37 @@ export default function Skillpopup1({
           });
       });
   };
-  const [currency, setCurrency] = React.useState("None");
+  const [currency, setCurrency] = React.useState(
+    data?.trendingContent ? "Trending" : data?.recentContent ? "Recent" : "None"
+  );
   const handleChange = (event) => {
     setCurrency(event.target.value);
   };
+
+  const handleUpdateblog = (data1) => {
+    if (data1 === "Trending") {
+      axios.post(`${API_HOST}/contentManagement/editContent`, {
+        contentId: data?.contentId,
+        trendingContent: true,
+        recentContent: false,
+      });
+    }
+    if (data1 === "Recent") {
+        axios.post(`${API_HOST}/contentManagement/editContent`, {
+            contentId: data?.contentId,
+            trendingContent: false,
+            recentContent: true,
+          });
+    }
+    if (data1 === "None") {
+        axios.post(`${API_HOST}/contentManagement/editContent`, {
+            contentId: data?.contentId,
+            trendingContent: false,
+            recentContent: false,
+          });
+    }
+  };
+
   return (
     <div>
       <div style={{ alignItems: "center" }} className="navoftableblogsdata">
@@ -114,18 +140,17 @@ export default function Skillpopup1({
         >
           {data?.status}
         </div>
-        <div style={{ width: "13vw", padding: "0vw 1vw",paddingLeft:"0.5vw" }}>
-          <div
-            style={{  marginBottom: "0.5vw" }}
-            className="inputtypeformfield"
-          >
+        <div
+          style={{ width: "13vw", padding: "0vw 1vw", paddingLeft: "0.5vw" }}
+        >
+         {data?.status==="publish" && <div style={{ marginBottom: "0.5vw" }} className="inputtypeformfield">
             <TextField
               id="standard-select-currency"
               select
               style={{
                 width: "100%",
                 textAlign: "left",
-                borderBottom:"0.11px solid white", 
+                borderBottom: "0.11px solid white",
                 color: "black !important",
               }}
               value={currency}
@@ -137,12 +162,14 @@ export default function Skillpopup1({
                   hidden={option.value === "Select Category" ? true : false}
                   key={option.value}
                   value={option.value}
+                  onClick={() => handleUpdateblog(option.value)}
                 >
                   {option.value}
                 </MenuItem>
               ))}
             </TextField>
           </div>
+     }
         </div>
         <div style={{ width: "3vw" }}>
           <RemoveRedEyeIcon
