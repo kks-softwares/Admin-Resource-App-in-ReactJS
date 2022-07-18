@@ -294,13 +294,14 @@ export default function Blogs() {
           style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
           className="navoftableblogs"
         >
-          <div style={{ width: "5vw" }}>Id</div>
-          <div style={{ width: "14vw" }}>Title</div>
-          <div style={{ width: "10vw" }}>Category</div>
-          <div style={{ width: "14vw" }}>Created by</div>
-          <div style={{ width: "22vw" }}>Description</div>
-          <div style={{ width: "10vw" }}>Status</div>
-          <div style={{ width: "4vw" }}></div>
+          <div style={{ width: "4vw" }}>Id</div>
+          <div style={{ width: "13vw" }}>Title</div>
+          <div style={{ width: "11vw" }}>Category</div>
+          <div style={{ width: "10vw" }}>Created by</div>
+          <div style={{ width: "18vw" }}>Description</div>
+          <div style={{ width: "8vw" }}>Status</div>
+          <div style={{ width: "12vw" }}></div>
+          <div style={{ width: "3vw" }}></div>
           <div style={{ width: "3vw" }}></div>
         </div>
         {allusers?.length > 0 &&

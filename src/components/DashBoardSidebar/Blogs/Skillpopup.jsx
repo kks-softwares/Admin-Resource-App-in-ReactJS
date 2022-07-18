@@ -5,6 +5,23 @@ import { DeleteForeverOutlined } from "@mui/icons-material";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import axios from "axios";
 import API_HOST from "../../../env";
+
+import { TextField } from "@mui/material";
+import MenuItem from "@mui/material/MenuItem";
+
+const currencies = [
+  {
+    value: "Trending",
+  },
+  {
+    value: "Recent",
+  },
+  {
+    value: "None",
+  },
+
+];
+
 export default function Skillpopup1({
   data,
   index,
@@ -12,7 +29,7 @@ export default function Skillpopup1({
   setAllusers,
   settotalpages,
   setSelectedCategory,
-  arrayoffilterselected
+  arrayoffilterselected,
 }) {
   const navigate = useNavigate();
   const handledeleteBlog = () => {
@@ -22,27 +39,33 @@ export default function Skillpopup1({
       })
       .then(() => {
         axios
-        .get(
-          `${API_HOST}/contentManagement/forAdminContent?contentName=${setSelectedCategory}&pageNumber=${page}&pageSize=10&category=${JSON.stringify(arrayoffilterselected)}`
-        )
-        .then((res) => {
-          setAllusers(res?.data?.success?.data);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(
-          `${API_HOST}/contentManagement/forAdminContent?contentName=${setSelectedCategory}&pageNumber=${
-            page + 1
-          }&pageSize=10&category=${JSON.stringify(arrayoffilterselected) }`
-        )
-        .then((res) => {
-          if (res?.data?.success?.data?.length > 0) {
-            settotalpages(page + 1);
-          } else {
-            settotalpages(page);
-          }
-        });
+          .get(
+            `${API_HOST}/contentManagement/forAdminContent?contentName=${setSelectedCategory}&pageNumber=${page}&pageSize=10&category=${JSON.stringify(
+              arrayoffilterselected
+            )}`
+          )
+          .then((res) => {
+            setAllusers(res?.data?.success?.data);
+            window.scrollTo(0, 0, { behavior: "smooth" });
+          });
+        axios
+          .get(
+            `${API_HOST}/contentManagement/forAdminContent?contentName=${setSelectedCategory}&pageNumber=${
+              page + 1
+            }&pageSize=10&category=${JSON.stringify(arrayoffilterselected)}`
+          )
+          .then((res) => {
+            if (res?.data?.success?.data?.length > 0) {
+              settotalpages(page + 1);
+            } else {
+              settotalpages(page);
+            }
+          });
       });
+  };
+  const [currency, setCurrency] = React.useState("None");
+  const handleChange = (event) => {
+    setCurrency(event.target.value);
   };
   return (
     <div>
@@ -51,7 +74,7 @@ export default function Skillpopup1({
           onClick={() => {
             navigate(`/dashbaord/blog/${data?.contentId}`);
           }}
-          style={{ width: "5vw", cursor: "pointer" }}
+          style={{ width: "4vw", cursor: "pointer" }}
         >
           #{(page - 1) * 10 + (index + 1)}
         </div>
@@ -60,7 +83,7 @@ export default function Skillpopup1({
           onClick={() => {
             navigate(`/dashbaord/blog/${data?.contentId}`);
           }}
-          style={{ width: "14vw", cursor: "pointer" }}
+          style={{ width: "13vw", cursor: "pointer" }}
         >
           {data?.contentName?.slice(0, 50)}
         </div>
@@ -68,18 +91,18 @@ export default function Skillpopup1({
           onClick={() => {
             navigate(`/dashbaord/blog/${data?.contentId}`);
           }}
-          style={{ width: "10vw", cursor: "pointer" }}
+          style={{ width: "11vw", cursor: "pointer" }}
         >
           {data?.category}
         </div>
 
-        <div style={{ width: "14vw", fontWeight: "400" }}>{data?.author}</div>
-        <div style={{ width: "22vw", fontSize: "0.85vw" }}>
+        <div style={{ width: "10vw", fontWeight: "400" }}>{data?.author}</div>
+        <div style={{ width: "18vw", fontSize: "0.85vw" }}>
           {data?.toC[0]?.desc?.slice(0, 200)}
         </div>
         <div
           style={{
-            width: "10vw",
+            width: "7vw",
             color:
               data?.status === "unpublish"
                 ? "#F39600"
@@ -91,7 +114,37 @@ export default function Skillpopup1({
         >
           {data?.status}
         </div>
-        <div style={{ width: "4vw" }}>
+        <div style={{ width: "13vw", padding: "0vw 1vw",paddingLeft:"0.5vw" }}>
+          <div
+            style={{  marginBottom: "1vw" }}
+            className="inputtypeformfield"
+          >
+            <TextField
+              id="standard-select-currency"
+              select
+              style={{
+                width: "100%",
+                textAlign: "left",
+                borderBottom:"0.11px solid white", 
+                color: "black !important",
+              }}
+              value={currency}
+              onChange={handleChange}
+              variant="standard"
+            >
+              {currencies.map((option) => (
+                <MenuItem
+                  hidden={option.value === "Select Category" ? true : false}
+                  key={option.value}
+                  value={option.value}
+                >
+                  {option.value}
+                </MenuItem>
+              ))}
+            </TextField>
+          </div>
+        </div>
+        <div style={{ width: "3vw" }}>
           <RemoveRedEyeIcon
             onClick={() => navigate(`/dashbaord/blog/${data?.contentId}`)}
             style={{
