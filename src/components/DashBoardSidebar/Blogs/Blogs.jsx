@@ -12,7 +12,6 @@ import Modal from "@mui/material/Modal";
 import Skillpopup1 from "./Skillpopup";
 import BlogButtonName from "./BlogButtonName";
 import BlogTitleNAme from "./BlogTitleNAme";
-
 import {  TextField,  } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 
