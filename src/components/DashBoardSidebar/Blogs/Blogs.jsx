@@ -113,8 +113,8 @@ export default function Blogs() {
   const handleClose2 = () => setOpen2(false);
 
   const [open3, setOpen3] = React.useState(false);
-  const handleOpen3 = () => setOpen2(true);
-  const handleClose3 = () => setOpen2(false);
+  const handleOpen3 = () => setOpen3(true);
+  const handleClose3 = () => setOpen3(false);
 
   const [titleuser, setTitleuser] = useState("");
   const classes = useStyles();
@@ -251,7 +251,7 @@ export default function Blogs() {
               <div className="profiledetailnavmanu">
                 <div>
                   <CloseIcon
-                    onClick={handleClose2}
+                    onClick={handleClose3}
                     style={{ fontSize: "1.5vw", cursor: "pointer" }}
                   />
                 </div>
