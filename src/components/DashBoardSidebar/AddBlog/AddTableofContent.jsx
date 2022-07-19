@@ -67,7 +67,9 @@ export default function AddTableofContent({
   title,
   scate,
   arrayoffiles,
-  imagetitle
+  imagetitle,
+  allCbutton,
+  allCtitle,
 }) {
   const [description1, setDescription1] = useState("");
   const navigate = useNavigate();
@@ -109,7 +111,7 @@ export default function AddTableofContent({
       data?.heading
     ) {
       setwrongsec(false);
-      if (title&& imagetitle && scate && arrayoffiles?.length > 0) {
+      if (title && imagetitle && scate && arrayoffiles?.length > 0) {
         setErroraddblog(false);
       } else {
         setErroraddblog(true);
@@ -118,7 +120,7 @@ export default function AddTableofContent({
       setwrongsec(true);
       setErroraddblog(true);
     }
-  }, [data, title, scate, arrayoffiles,imagetitle,arrayofblogs]);
+  }, [data, title, scate, arrayoffiles, imagetitle, arrayofblogs]);
 
   const handleuploadimage = (file) => {
     const formdata = new FormData();
@@ -167,7 +169,7 @@ export default function AddTableofContent({
               }}
               className="jobpodtedfieldtitile"
             >
-              <div style={{fontSize:"1.2vw"}}> Paragraph {index+1} </div>
+              <div style={{ fontSize: "1.2vw" }}> Paragraph {index + 1} </div>
               {arrayofblogs?.length > 1 && (
                 <div>
                   <CloseIcon
@@ -209,78 +211,85 @@ export default function AddTableofContent({
               />
             </div>
             <div
-            style={{
-              marginBottom: "0.0vw",
+              style={{
+                marginBottom: "0.0vw",
 
-              marginTop: "2vw",
-            }}
-            className="jobpodtedfieldtitile"
-          >
-         Paragraph   Image
-          </div>
-          <div
-            style={{
-              background: "white",
-              padding: "1vw",
-              marginTop: "0vw",
-              paddingRight: "0.5vw",
-              paddingLeft: "0vw",
-            }}
-          >
-            <div className="inputfilebox">
-              <div>
-                <label htmlFor={`inputctaelogfile${index}`}>
-                  <div className="inputicon">
-                    <img src={img} alt="" />
-                  </div>
-                  <div className="inputcateaddformfile">
-                    Drag and Drop ,Browse to upload
-                  </div>
-                  <input
-                    type="file"
-                    id={`inputctaelogfile${index}`}
-                    onChange={(e) => {
-                      handleuploadimage(e.target.files[0]);
-                      setArrayoffile(e.target.files[0]);
-                    }}
-                    hidden
-                  />
-                </label>
-              </div>
-            </div>
-            <div style={{width:"100%",textAlign:"right",fontSize:"0.9vw",fontWeight:"400"}}>
-    Image should be less then 200 kb 
-              </div>
-          </div>
-          {arrayoffile && (
-            <div
-              style={{ marginTop: "0.3vw" }}
-              className="inputfilesshowncatebox"
+                marginTop: "2vw",
+              }}
+              className="jobpodtedfieldtitile"
             >
-              <div className="inputfilesshowncatboxsingle">
-                {console.log(arrayofblogs)}
-                <div className="inputfilesshowncatboxsingleimg">
-                  <img src={img1} alt="" />
-                </div>
-                <div className="fileselctednamecate">{arrayoffile?.name}</div>
-                <div className="inputfilesshowncatboxsingleimg">
-                  <img
-                    style={{
-                      width: "1.5vw",
-                      marginLeft: "1vw",
-                      cursor: "pointer",
-                    }}
-                    src={img22}
-                    alt=""
-                    onClick={() => {
-                      setArrayoffile();
-                    }}
-                  />
+              Paragraph Image
+            </div>
+            <div
+              style={{
+                background: "white",
+                padding: "1vw",
+                marginTop: "0vw",
+                paddingRight: "0.5vw",
+                paddingLeft: "0vw",
+              }}
+            >
+              <div className="inputfilebox">
+                <div>
+                  <label htmlFor={`inputctaelogfile${index}`}>
+                    <div className="inputicon">
+                      <img src={img} alt="" />
+                    </div>
+                    <div className="inputcateaddformfile">
+                      Drag and Drop ,Browse to upload
+                    </div>
+                    <input
+                      type="file"
+                      id={`inputctaelogfile${index}`}
+                      onChange={(e) => {
+                        handleuploadimage(e.target.files[0]);
+                        setArrayoffile(e.target.files[0]);
+                      }}
+                      hidden
+                    />
+                  </label>
                 </div>
               </div>
+              <div
+                style={{
+                  width: "100%",
+                  textAlign: "right",
+                  fontSize: "0.9vw",
+                  fontWeight: "400",
+                }}
+              >
+                Image should be less then 200 kb
+              </div>
             </div>
-          )}
-            <div className="jobpodtedfieldtitile"> Paragraph Description  </div>
+            {arrayoffile && (
+              <div
+                style={{ marginTop: "0.3vw" }}
+                className="inputfilesshowncatebox"
+              >
+                <div className="inputfilesshowncatboxsingle">
+                  {console.log(arrayofblogs)}
+                  <div className="inputfilesshowncatboxsingleimg">
+                    <img src={img1} alt="" />
+                  </div>
+                  <div className="fileselctednamecate">{arrayoffile?.name}</div>
+                  <div className="inputfilesshowncatboxsingleimg">
+                    <img
+                      style={{
+                        width: "1.5vw",
+                        marginLeft: "1vw",
+                        cursor: "pointer",
+                      }}
+                      src={img22}
+                      alt=""
+                      onClick={() => {
+                        setArrayoffile();
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+            <div className="jobpodtedfieldtitile"> Paragraph Description </div>
             <div style={{ marginBottom: "2vw" }}>
               <TextEditor
                 width={"65vw"}
@@ -289,7 +298,7 @@ export default function AddTableofContent({
               />
             </div>
           </div>
-         
+
           <div className="jobpodtedfieldtitile">Call to Action</div>
           <div className="homjobpost-popbudegt">
             <div className="min-maxhomejob">Title *</div>
@@ -342,63 +351,33 @@ export default function AddTableofContent({
                     <MenuItem hidden value={10}>
                       Select
                     </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setArrayofblogs([
-                          ...arrayofblogs.slice(0, index),
-                          {
-                            heading: data?.heading,
-                            toc: data?.toc,
-                            file: data?.file,
-                            desc: data?.desc,
-                            title: "Mobile app Development Tips",
-                            button: data?.button,
-                          },
-                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
-                        ]);
-                      }}
-                      value={20}
-                    >
-                      Mobile app Development Tips
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setArrayofblogs([
-                          ...arrayofblogs.slice(0, index),
-                          {
-                            heading: data?.heading,
-                            toc: data?.toc,
-                            file: data?.file,
-                            desc: data?.desc,
-                            title: "Mobile app Development Tips",
-                            button: data?.button,
-                          },
-                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
-                        ]);
-                      }}
-                      value={30}
-                    >
-                      Mobile app Development Tips
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setArrayofblogs([
-                          ...arrayofblogs.slice(0, index),
-                          {
-                            heading: data?.heading,
-                            toc: data?.toc,
-                            file: data?.file,
-                            desc: data?.desc,
-                            title: "Mobile app Development Tips",
-                            button: data?.button,
-                          },
-                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
-                        ]);
-                      }}
-                      value={40}
-                    >
-                      Mobile app Development Tips
-                    </MenuItem>
+                    {allCtitle?.length > 0 &&
+                      allCtitle?.map((data1) => {
+                        return (
+                          <MenuItem
+                            onClick={() => {
+                              setArrayofblogs([
+                                ...arrayofblogs.slice(0, index),
+                                {
+                                  heading: data?.heading,
+                                  toc: data?.toc,
+                                  file: data?.file,
+                                  desc: data?.desc,
+                                  title: data1?.callToActionTitle,
+                                  button: data?.button,
+                                },
+                                ...arrayofblogs.slice(
+                                  index + 1,
+                                  arrayofblogs.length
+                                ),
+                              ]);
+                            }}
+                            value={data1?.callToActionTitle}
+                          >
+                            {data1?.callToActionTitle}
+                          </MenuItem>
+                        );
+                      })}
                   </Select>
                 </FormControl>
               </Box>
@@ -470,25 +449,33 @@ export default function AddTableofContent({
                     >
                       Select
                     </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setArrayofblogs([
-                          ...arrayofblogs.slice(0, index),
-                          {
-                            heading: data?.heading,
-                            toc: data?.toc,
-                            file: data?.file,
-                            desc: data?.desc,
-                            title: data?.title,
-                            button: "Join Now",
-                          },
-                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
-                        ]);
-                      }}
-                      value={20}
-                    >
-                      Join Now
-                    </MenuItem>
+                    {allCbutton?.length &&
+                      allCbutton?.map((data1) => {
+                        return (
+                          <MenuItem
+                            onClick={() => {
+                              setArrayofblogs([
+                                ...arrayofblogs.slice(0, index),
+                                {
+                                  heading: data?.heading,
+                                  toc: data?.toc,
+                                  file: data?.file,
+                                  desc: data?.desc,
+                                  title: data?.title,
+                                  button: data1?.callToActionButton,
+                                },
+                                ...arrayofblogs.slice(
+                                  index + 1,
+                                  arrayofblogs.length
+                                ),
+                              ]);
+                            }}
+                            value={data1?.callToActionButton}
+                          >
+                            {data1?.callToActionButton}
+                          </MenuItem>
+                        );
+                      })}
                     <MenuItem
                       onClick={() => {
                         setArrayofblogs([
@@ -539,7 +526,7 @@ export default function AddTableofContent({
             <textarea
               type="text"
               placeholder="  distinctio debitis est neque dolore ipsum ut amet pariatur laboriosam nisi ipsam?"
-              style={{ padding: "0.5vw",fontSize:"1vw" }}
+              style={{ padding: "0.5vw", fontSize: "1vw" }}
               onChange={(e) => {
                 setArrayofblogs([
                   ...arrayofblogs.slice(0, index),
