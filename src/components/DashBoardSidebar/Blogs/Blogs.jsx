@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { SearchSharp } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import CloseIcon from "@mui/icons-material/Close";
-import axios from "axios";
+import axios, { Axios } from "axios";
 import API_HOST from "../../../env";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -117,6 +117,7 @@ export default function Blogs() {
   const handleClose3 = () => setOpen3(false);
 
   const [titleuser, setTitleuser] = useState("");
+  const [titleuser1, setTitleuser1] = useState("");
   const classes = useStyles();
   const [allCtitle, setAllCtitle] = useState([]);
   const [allCbutton, setAllCbutton] = useState([]);
@@ -132,6 +133,35 @@ export default function Blogs() {
       setAllCbutton(res?.data?.success?.data);
     });
   }, []);
+
+  const handleaddButtonName = () => {
+    axios
+      .post(`${API_HOST}/callToActionButton/addButton`, {
+        callToActionButton: titleuser1,
+      })
+      .then(() => {
+        axios.get(`${API_HOST}/callToActionButton/viewButton`).then((res) => {
+          setAllCbutton(res?.data?.success?.data);
+          handleClose3()
+          setTitleuser1("")
+        });
+      });
+  };
+  const handleaddTitleName = () => {
+    if (titleuser) {
+      axios
+        .post(`${API_HOST}/callToActionTitle/addTitle`, {
+          callToActionTitle: titleuser,
+        })
+        .then(() => {
+          axios.get(`${API_HOST}/callToActionTitle/viewTitle`).then((res) => {
+            setAllCtitle(res?.data?.success?.data);
+            handleClose2()
+            setTitleuser("")
+          });
+        });
+    }
+  };
 
   return (
     <div className="BrowseWorkMain-cntainer">
@@ -248,6 +278,7 @@ export default function Blogs() {
               <div
                 style={{ cursor: "pointer" }}
                 className="handlecirclieaboutsave"
+                onClick={()=>{handleaddTitleName()}}
               >
                 Add
               </div>
@@ -277,8 +308,8 @@ export default function Blogs() {
             <div style={{ left: "0vw", width: "100%" }} className="loginfield">
               <TextField
                 id="outlined-basic"
-                label="Title Name"
-                value={titleuser}
+                label="Button Name"
+                value={titleuser1}
                 variant="outlined"
                 style={{ width: "100%" }}
                 InputLabelProps={{
@@ -292,7 +323,7 @@ export default function Blogs() {
                 }}
                 inputProps={{ className: classes.input }}
                 onChange={(e) => {
-                  setTitleuser(e.target.value);
+                  setTitleuser1(e.target.value);
                 }}
               />
             </div>
@@ -316,6 +347,7 @@ export default function Blogs() {
               <div
                 style={{ cursor: "pointer" }}
                 className="handlecirclieaboutsave"
+                onClick={()=>{handleaddButtonName()}}
               >
                 Add
               </div>
