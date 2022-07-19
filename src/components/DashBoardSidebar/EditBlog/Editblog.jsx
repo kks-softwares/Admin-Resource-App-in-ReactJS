@@ -94,7 +94,8 @@ export default function Addblog() {
   const { Id } = useParams();
   const [arrayoffiles, setArrayoffiles] = useState([]);
   const [scate, setsCate] = useState("");
-
+  const [allCtitle, setAllCtitle] = useState([]);
+  const [allCbutton, setAllCbutton] = useState([]);
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -220,6 +221,21 @@ export default function Addblog() {
         setArrayoffiles([...arrayoffiles, res?.data?.success?.data?.file]);
       });
   };
+
+
+
+
+  useEffect(() => {
+    axios.get(`${API_HOST}/callToActionTitle/viewTitle`).then((res) => {
+      setAllCtitle(res?.data?.success?.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get(`${API_HOST}/callToActionButton/viewButton`).then((res) => {
+      setAllCbutton(res?.data?.success?.data);
+    });
+  }, []);
 
   return (
     <div>
@@ -486,6 +502,8 @@ export default function Addblog() {
                     scate={scate}
                     arrayoffiles={arrayoffiles}
                     imagetitle={imagetitle}
+                    allCbutton={allCbutton}
+                    allCtitle={allCtitle}
                   />
                 );
               })}

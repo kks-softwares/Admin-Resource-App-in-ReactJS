@@ -476,45 +476,7 @@ export default function AddTableofContent({
                           </MenuItem>
                         );
                       })}
-                    <MenuItem
-                      onClick={() => {
-                        setArrayofblogs([
-                          ...arrayofblogs.slice(0, index),
-                          {
-                            heading: data?.heading,
-                            toc: data?.toc,
-                            file: data?.file,
-                            desc: data?.desc,
-                            title: data?.title,
-                            button: "Join Now",
-                          },
-                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
-                        ]);
-                      }}
-                      value={30}
-                    >
-                      Join Now
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setArrayofblogs([
-                          ...arrayofblogs.slice(0, index),
-                          {
-                            heading: data?.heading,
-                            toc: data?.toc,
-                            file: data?.file,
-                            desc: data?.desc,
-                            title: data?.title,
-                            button: "Join Now",
-                          },
-                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
-                        ]);
-                      }}
-                      value={40}
-                    >
-                      Join Now
-                    </MenuItem>
-                  </Select>
+                </Select>
                 </FormControl>
               </Box>
             </div>

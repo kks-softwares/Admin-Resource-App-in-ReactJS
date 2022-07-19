@@ -68,6 +68,8 @@ export default function AddTableofContent1({
   scate,
   arrayoffiles,
   imagetitle,
+  allCbutton,
+  allCtitle,
 }) {
   const [description1, setDescription1] = useState(data.toc);
   const [description2, setDescription2] = useState(data.desc);
@@ -124,24 +126,9 @@ export default function AddTableofContent1({
   useEffect(() => {
     setDescription2(data?.desc);
     setDescription1(data?.toc);
-    setAge4(
-      data?.title === "Mobile app Development Tips"
-        ? 20
-        : data?.title === "Mobile app Development Tips"
-        ? 30
-        : data?.title === "Mobile app Development Tips"
-        ? 40
-        : "10"
-    );
-    setAge5(
-      data?.button === "Join Now"
-        ? 20
-        : data?.title === "Join Now"
-        ? 30
-        : data?.title === "Join Now"
-        ? 40
-        : "10"
-    );
+    setAge4(data?.title ? data?.title : 10);
+    setAge5(data?.button ? data?.button : 10);
+    console.log(data?.title ? data?.title : 10);
   }, [data]);
 
   const handleuploadimage = (file) => {
@@ -324,7 +311,7 @@ export default function AddTableofContent1({
               </div>
             </div>
           )}
-          <div className="jobpodtedfieldtitile"> Paragraph Description  </div>
+          <div className="jobpodtedfieldtitile"> Paragraph Description </div>
           <div style={{ marginBottom: "2vw" }}>
             {description1 && (
               <TextEditor
@@ -356,7 +343,7 @@ export default function AddTableofContent1({
                     className={classes.select2}
                     labelId="demo-simple-select-standard-label"
                     id="demo-simple-select-standard"
-                    value={age4}
+                    value={allCtitle?.length > 0 ? age4 : 10}
                     disableUnderline
                     inputProps={{
                       classes: {
@@ -387,63 +374,33 @@ export default function AddTableofContent1({
                     <MenuItem hidden value={10}>
                       Select
                     </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setArrayofblogs([
-                          ...arrayofblogs.slice(0, index),
-                          {
-                            heading: data?.heading,
-                            toc: data?.toc,
-                            file: data?.file,
-                            desc: data?.desc,
-                            title: "Mobile app Development Tips",
-                            button: data?.button,
-                          },
-                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
-                        ]);
-                      }}
-                      value={20}
-                    >
-                      Mobile app Development Tips
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setArrayofblogs([
-                          ...arrayofblogs.slice(0, index),
-                          {
-                            heading: data?.heading,
-                            toc: data?.toc,
-                            file: data?.file,
-                            desc: data?.desc,
-                            title: "Mobile app Development Tips",
-                            button: data?.button,
-                          },
-                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
-                        ]);
-                      }}
-                      value={30}
-                    >
-                      Mobile app Development Tips
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setArrayofblogs([
-                          ...arrayofblogs.slice(0, index),
-                          {
-                            heading: data?.heading,
-                            toc: data?.toc,
-                            file: data?.file,
-                            desc: data?.desc,
-                            title: "Mobile app Development Tips",
-                            button: data?.button,
-                          },
-                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
-                        ]);
-                      }}
-                      value={40}
-                    >
-                      Mobile app Development Tips
-                    </MenuItem>
+                    {allCtitle?.length > 0 &&
+                      allCtitle?.map((data1) => {
+                        return (
+                          <MenuItem
+                            onClick={() => {
+                              setArrayofblogs([
+                                ...arrayofblogs.slice(0, index),
+                                {
+                                  heading: data?.heading,
+                                  toc: data?.toc,
+                                  file: data?.file,
+                                  desc: data?.desc,
+                                  title: data1?.callToActionTitle,
+                                  button: data?.button,
+                                },
+                                ...arrayofblogs.slice(
+                                  index + 1,
+                                  arrayofblogs.length
+                                ),
+                              ]);
+                            }}
+                            value={data1?.callToActionTitle}
+                          >
+                            {data1?.callToActionTitle}
+                          </MenuItem>
+                        );
+                      })}{" "}
                   </Select>
                 </FormControl>
               </Box>
@@ -469,7 +426,7 @@ export default function AddTableofContent1({
                     className={classes.select2}
                     labelId="demo-simple-select-standard-label"
                     id="demo-simple-select-standard"
-                    value={age5}
+                    value={allCbutton?.length > 0 ? age5 : 10}
                     disableUnderline
                     inputProps={{
                       classes: {
@@ -516,63 +473,34 @@ export default function AddTableofContent1({
                     >
                       Select
                     </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setArrayofblogs([
-                          ...arrayofblogs.slice(0, index),
-                          {
-                            heading: data?.heading,
-                            toc: data?.toc,
-                            file: data?.file,
-                            desc: data?.desc,
-                            title: data?.title,
-                            button: "Join Now",
-                          },
-                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
-                        ]);
-                      }}
-                      value={20}
-                    >
-                      Join Now
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setArrayofblogs([
-                          ...arrayofblogs.slice(0, index),
-                          {
-                            heading: data?.heading,
-                            toc: data?.toc,
-                            file: data?.file,
-                            desc: data?.desc,
-                            title: data?.title,
-                            button: "Join Now",
-                          },
-                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
-                        ]);
-                      }}
-                      value={30}
-                    >
-                      Join Now
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setArrayofblogs([
-                          ...arrayofblogs.slice(0, index),
-                          {
-                            heading: data?.heading,
-                            toc: data?.toc,
-                            file: data?.file,
-                            desc: data?.desc,
-                            title: data?.title,
-                            button: "Join Now",
-                          },
-                          ...arrayofblogs.slice(index + 1, arrayofblogs.length),
-                        ]);
-                      }}
-                      value={40}
-                    >
-                      Join Now
-                    </MenuItem>
+                    {allCbutton?.length > 0 &&
+                      age4 &&
+                      allCbutton?.map((data1) => {
+                        return (
+                          <MenuItem
+                            onClick={() => {
+                              setArrayofblogs([
+                                ...arrayofblogs.slice(0, index),
+                                {
+                                  heading: data?.heading,
+                                  toc: data?.toc,
+                                  file: data?.file,
+                                  desc: data?.desc,
+                                  title: data?.title,
+                                  button: data1?.callToActionButton,
+                                },
+                                ...arrayofblogs.slice(
+                                  index + 1,
+                                  arrayofblogs.length
+                                ),
+                              ]);
+                            }}
+                            value={data1?.callToActionButton}
+                          >
+                            {data1?.callToActionButton}
+                          </MenuItem>
+                        );
+                      })}{" "}
                   </Select>
                 </FormControl>
               </Box>
