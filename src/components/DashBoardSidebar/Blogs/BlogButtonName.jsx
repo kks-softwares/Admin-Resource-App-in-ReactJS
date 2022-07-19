@@ -36,6 +36,11 @@ export default function BlogButtonName({ data, index, setAllCbutton }) {
   const [open2, setOpen2] = React.useState(false);
   const handleOpen2 = () => setOpen2(true);
   const handleClose2 = () => setOpen2(false);
+
+  const [open3, setOpen3] = React.useState(false);
+  const handleOpen3 = () => setOpen3(true);
+  const handleClose3 = () => setOpen3(false);
+
   const navigate = useNavigate();
   const [titleuser, setTitleuser] = useState(data?.callToActionButton);
 
@@ -47,6 +52,7 @@ export default function BlogButtonName({ data, index, setAllCbutton }) {
       .then(() => {
         axios.get(`${API_HOST}/callToActionButton/viewButton`).then((res) => {
             setAllCbutton(res?.data?.success?.data);
+            handleClose3()
         });
       });
   };
@@ -89,7 +95,7 @@ export default function BlogButtonName({ data, index, setAllCbutton }) {
         <div style={{ width: "4vw" }}>
           <DeleteForeverOutlined
             onClick={() => {
-              handledeleteBlog();
+             handleOpen3()
             }}
             style={{
               margin: "0 0.5vw",
@@ -170,6 +176,57 @@ export default function BlogButtonName({ data, index, setAllCbutton }) {
             </div>
           </Box>
         </Modal>
+        <Modal
+          open={open3}
+          onClose={handleClose3}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <div className="profiletitleandmenunav">
+              <div className="profiledetailstitle">Delete Button Name</div>
+              <div className="profiledetailnavmanu">
+                <div>
+                  <CloseIcon
+                    onClick={handleClose3}
+                    style={{ fontSize: "1.5vw", cursor: "pointer" }}
+                  />
+                </div>
+              </div>
+            </div>
+            <hr style={{ color: "#00000090" }} />
+
+            <div style={{ left: "0vw", width: "100%" }} className="loginfield">
+                Are you really want to delete '{data?.callToActionButton}'
+            </div>
+
+            <hr style={{ color: "#00000090" }} />
+            <div
+              style={{ marginTop: "0.31vw" }}
+              className="handlemoreaboutskill"
+            >
+              <div
+                style={{
+                  background: "white",
+                  color: "black",
+                  cursor: "pointer",
+                }}
+                className="handlecirclieaboutsave"
+                onClick={handleClose3}
+              >
+                Cancel
+              </div>
+              <div
+                onClick={() => handledeleteBlog()}
+                style={{ cursor: "pointer" }}
+                className="handlecirclieaboutsave"
+              >
+                Delete
+              </div>
+            </div>
+          </Box>
+        </Modal>
+    
       </div>
     </div>
   );

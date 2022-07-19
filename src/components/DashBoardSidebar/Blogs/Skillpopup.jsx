@@ -5,10 +5,24 @@ import { DeleteForeverOutlined } from "@mui/icons-material";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import axios from "axios";
 import API_HOST from "../../../env";
-
+import Box from "@mui/material/Box";
 import { TextField } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
-
+import Modal from "@mui/material/Modal";
+import CloseIcon from "@mui/icons-material/Close";
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 700,
+  maxHeight: "95vh",
+  overflow: "scroll",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 const currencies = [
   {
     value: "Trending",
@@ -31,6 +45,9 @@ export default function Skillpopup1({
   arrayoffilterselected,
 }) {
   const navigate = useNavigate();
+  const [open3, setOpen3] = React.useState(false);
+  const handleOpen3 = () => setOpen3(true);
+  const handleClose3 = () => setOpen3(false);
   const handledeleteBlog = () => {
     axios
       .post(`${API_HOST}/contentManagement/removecontent`, {
@@ -46,6 +63,7 @@ export default function Skillpopup1({
           .then((res) => {
             setAllusers(res?.data?.success?.data);
             window.scrollTo(0, 0, { behavior: "smooth" });
+            handleClose3()
           });
         axios
           .get(
@@ -187,7 +205,7 @@ export default function Skillpopup1({
         <div style={{ width: "3vw" }}>
           <DeleteForeverOutlined
             onClick={() => {
-              handledeleteBlog();
+              handleOpen3();
             }}
             style={{
               margin: "0 0.5vw",
@@ -199,6 +217,57 @@ export default function Skillpopup1({
             }}
           />
         </div>
+        <Modal
+          open={open3}
+          onClose={handleClose3}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <div className="profiletitleandmenunav">
+              <div className="profiledetailstitle">Delete Title Name</div>
+              <div className="profiledetailnavmanu">
+                <div>
+                  <CloseIcon
+                    onClick={handleClose3}
+                    style={{ fontSize: "1.5vw", cursor: "pointer" }}
+                  />
+                </div>
+              </div>
+            </div>
+            <hr style={{ color: "#00000090" }} />
+
+            <div style={{ left: "0vw", width: "100%" }} className="loginfield">
+                Are you really want to delete '{data?.contentName}'
+            </div>
+
+            <hr style={{ color: "#00000090" }} />
+            <div
+              style={{ marginTop: "0.31vw" }}
+              className="handlemoreaboutskill"
+            >
+              <div
+                style={{
+                  background: "white",
+                  color: "black",
+                  cursor: "pointer",
+                }}
+                className="handlecirclieaboutsave"
+                onClick={handleClose3}
+              >
+                Cancel
+              </div>
+              <div
+                onClick={() => handledeleteBlog()}
+                style={{ cursor: "pointer" }}
+                className="handlecirclieaboutsave"
+              >
+                Delete
+              </div>
+            </div>
+          </Box>
+        </Modal>
+      
       </div>
     </div>
   );
