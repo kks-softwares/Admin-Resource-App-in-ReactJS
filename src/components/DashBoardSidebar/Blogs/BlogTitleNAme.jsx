@@ -32,54 +32,52 @@ const useStyles = makeStyles((theme) => ({
     border: "yellow !important",
   },
 }));
-export default function BlogTitleNAme() {
+export default function BlogTitleNAme({
+    data,index,setAllCtitle
+}) {
   const classes = useStyles();
   const [open2, setOpen2] = React.useState(false);
   const handleOpen2 = () => setOpen2(true);
   const handleClose2 = () => setOpen2(false);
   const navigate = useNavigate();
-  const [titleuser, setTitleuser] = useState("");
-  //   const handledeleteBlog = () => {
-  //     axios
-  //       .post(`${API_HOST}/contentManagement/removecontent`, {
-  //         contentId: data?.contentId,
-  //       })
-  //       .then(() => {
-  //         axios
-  //           .get(
-  //             `${API_HOST}/contentManagement/forAdminContent?contentName=${setSelectedCategory}&pageNumber=${page}&pageSize=10&category=${JSON.stringify(
-  //               arrayoffilterselected
-  //             )}`
-  //           )
-  //           .then((res) => {
-  //             setAllusers(res?.data?.success?.data);
-  //             window.scrollTo(0, 0, { behavior: "smooth" });
-  //           });
-  //         axios
-  //           .get(
-  //             `${API_HOST}/contentManagement/forAdminContent?contentName=${setSelectedCategory}&pageNumber=${
-  //               page + 1
-  //             }&pageSize=10&category=${JSON.stringify(arrayoffilterselected)}`
-  //           )
-  //           .then((res) => {
-  //             if (res?.data?.success?.data?.length > 0) {
-  //               settotalpages(page + 1);
-  //             } else {
-  //               settotalpages(page);
-  //             }
-  //           });
-  //       });
-  //   };
+  const [titleuser, setTitleuser] = useState(data?.callToActionTitle);
+    const handledeleteBlog = () => {
+      axios
+        .post(`${API_HOST}/callToActionTitle/removeTitle`, {
+            titleId: data?.titleId,
+        })
+        .then(() => {
+            axios.get(`${API_HOST}/callToActionTitle/viewTitle`).then((res) => {
+                setAllCtitle(res?.data?.success?.data);
+              });
+         
+        });
+    };
+    const handleeditBlog = () => {
+      axios
+        .post(`${API_HOST}/callToActionTitle/editTitle`, {
+            titleId: data?.titleId,
+            callToActionTitle:titleuser
+        })
+        .then(() => {
+            axios.get(`${API_HOST}/callToActionTitle/viewTitle`).then((res) => {
+                setAllCtitle(res?.data?.success?.data);
+                handleClose2()
+              });
+         
+        });
+    };
+
+
+
   return (
     <div>
       <div style={{ alignItems: "center" }} className="navoftableblogsdata">
-        <div style={{ width: "5vw", cursor: "pointer" }}># 120</div>
+        <div style={{ width: "5vw", cursor: "pointer" }}># {index+1}</div>
 
         <div style={{ width: "70vw" }}>
-          {/* {data?.contentName?.slice(0, 50)} */}
-          navoftableblogsdata navoftableblogsdata navoftableblogsdata
-          navoftableblogsdata navoftableblogsdata navoftableblogsdata
-          navoftableblogsdata navoftableblogsdata
+          {data?.callToActionTitle}
+          
         </div>
 
         <div style={{ width: "4vw" }}>
@@ -99,9 +97,9 @@ export default function BlogTitleNAme() {
         </div>
         <div style={{ width: "4vw" }}>
           <DeleteForeverOutlined
-            // onClick={() => {
-            //   handledeleteBlog();
-            // }}
+            onClick={() => {
+              handledeleteBlog();
+            }}
             style={{
               margin: "0 0.5vw",
               width: "2vw ",
@@ -172,6 +170,7 @@ export default function BlogTitleNAme() {
                 Cancel
               </div>
               <div
+                onClick={()=>handleeditBlog()}
                 style={{ cursor: "pointer" }}
                 className="handlecirclieaboutsave"
               >

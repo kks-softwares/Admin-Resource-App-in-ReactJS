@@ -12,7 +12,7 @@ import Modal from "@mui/material/Modal";
 import Skillpopup1 from "./Skillpopup";
 import BlogButtonName from "./BlogButtonName";
 import BlogTitleNAme from "./BlogTitleNAme";
-import {  TextField,  } from "@mui/material";
+import { TextField } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 
 const style1 = {
@@ -28,28 +28,28 @@ const style1 = {
 };
 
 const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 700,
-    maxHeight: "95vh",
-    overflow: "scroll",
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
-  const useStyles = makeStyles((theme) => ({
-    input: {
-      fontFamily: "Poppins",
-      fontStyle: "normal",
-      fontWeight: "500",
-      fontSize: "0.91vw",
-      color: "#263238",
-      border: "yellow !important",
-    },
-  }));
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 700,
+  maxHeight: "95vh",
+  overflow: "scroll",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+const useStyles = makeStyles((theme) => ({
+  input: {
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "500",
+    fontSize: "0.91vw",
+    color: "#263238",
+    border: "yellow !important",
+  },
+}));
 
 export default function Blogs() {
   const navigate = useNavigate();
@@ -118,6 +118,21 @@ export default function Blogs() {
 
   const [titleuser, setTitleuser] = useState("");
   const classes = useStyles();
+  const [allCtitle, setAllCtitle] = useState([]);
+  const [allCbutton, setAllCbutton] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${API_HOST}/callToActionTitle/viewTitle`).then((res) => {
+      setAllCtitle(res?.data?.success?.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get(`${API_HOST}/callToActionButton/viewButton`).then((res) => {
+      setAllCbutton(res?.data?.success?.data);
+    });
+  }, []);
+
   return (
     <div className="BrowseWorkMain-cntainer">
       <div className="searchboxcontainer">
@@ -154,7 +169,7 @@ export default function Blogs() {
         {togglrbar === 2 && (
           <div
             onClick={() => {
-              handleOpen2()
+              handleOpen2();
             }}
             className="digitalwallate"
           >
@@ -164,14 +179,14 @@ export default function Blogs() {
         {togglrbar === 3 && (
           <div
             onClick={() => {
-              handleOpen3()
+              handleOpen3();
             }}
             className="digitalwallate"
           >
             <span style={{ color: "#064C87" }}>Add New Button</span>
           </div>
         )}
-           <Modal
+        <Modal
           open={open2}
           onClose={handleClose2}
           aria-labelledby="modal-modal-title"
@@ -307,7 +322,6 @@ export default function Blogs() {
             </div>
           </Box>
         </Modal>
-     
       </div>
 
       <div
@@ -608,17 +622,13 @@ export default function Blogs() {
             <div style={{ width: "4vw" }}></div>
             <div style={{ width: "4vw" }}></div>
           </div>
-          {allusers?.length > 0 &&
-            allusers?.map((data, index) => {
+          {allCtitle?.length > 0 &&
+            allCtitle?.map((data, index) => {
               return (
                 <BlogTitleNAme
                   data={data}
                   index={index}
-                  page={page}
-                  setAllusers={setAllusers}
-                  settotalpages={settotalpages}
-                  setSelectedCategory={setSelectedCategory}
-                  arrayoffilterselected={arrayoffilterselected}
+                  setAllCtitle={setAllCtitle}
                 />
               );
             })}
@@ -637,17 +647,13 @@ export default function Blogs() {
             <div style={{ width: "4vw" }}></div>
             <div style={{ width: "4vw" }}></div>
           </div>
-          {allusers?.length > 0 &&
-            allusers?.map((data, index) => {
+          {allCbutton?.length > 0 &&
+            allCbutton?.map((data, index) => {
               return (
                 <BlogButtonName
                   data={data}
                   index={index}
-                  page={page}
-                  setAllusers={setAllusers}
-                  settotalpages={settotalpages}
-                  setSelectedCategory={setSelectedCategory}
-                  arrayoffilterselected={arrayoffilterselected}
+                  setAllCbutton={setAllCbutton}
                 />
               );
             })}
