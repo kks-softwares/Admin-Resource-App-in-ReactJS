@@ -312,7 +312,37 @@ export default function Jobs() {
   const handleClose = () => setOpen(false);
   const [previosfilter, setPreviosfilter] = useState([]);
   const [previosfilter1, setPreviosfilter1] = useState([]);
-  const [allusers, setAllusers] = useState([]);
+
+  const [arrayoffiltersxx, setArrayoffiltersxx] = useState([
+    {
+      filternameName: "Categories",
+      filters: [
+        "Digital Marketing",
+        "Data Analystics",
+        "Graphic Design",
+        "Communication",
+      ],
+    },
+    {
+      filternameName: "Location",
+      filters: ["Onsite", "Remote"],
+    },
+    {
+      filternameName: "Bidding Amount",
+      filters: ["$10-$100", "$100-$500", "$500-$1000", "$1000+"],
+    },
+    {
+      filternameName: "Duration",
+      filters: ["1 Month", "2 Month", "3 Month", "4 Month"],
+    },
+  ]);
+
+  const [arrayoffilterselectedxx, setarrayoffilterselectedxx] = useState([]);
+  const [openxx, setOpenxx] = React.useState(false);
+  const handleOpenxx = () => setOpenxx(true);
+  const handleClosexx = () => setOpenxx(false);
+  const [previosfilterxx, setPreviosfilterxx] = useState([]);
+  const [previosfilter1xx, setPreviosfilter1xx] = useState([]);
 
   return (
     <div className="BrowseWorkMain-cntainer">
@@ -642,15 +672,19 @@ export default function Jobs() {
                     style={{
                       fontSize: "1.5vw",
                       fontWeight: "400",
-                      margin: "0vw 1vw",
+                      margin: "0.5vw 1vw",
                     }}
                   />
                 </span>
                 <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
-                  {"Remote Kanpur"}
+                  {"Remote Kanpur"}  
                 </span>
+                <span style={{ fontSize: "0.8vw", fontWeight: "400",margin:"0 1vw" }}>
+                Posted on Sep 12 2022
+                </span>
+
               </div>
-              <div
+               <div
                 style={{
                   width: "100%",
                   margin: "0.8vw 1vw",
@@ -766,14 +800,19 @@ export default function Jobs() {
                     style={{
                       fontSize: "1.5vw",
                       fontWeight: "400",
-                      margin: "0vw 1vw",
+                      margin: "0.5vw 1vw",
                     }}
                   />
                 </span>
                 <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
-                  {"Remote Kanpur"}
+                  {"Remote Kanpur"}  
                 </span>
+                <span style={{ fontSize: "0.8vw", fontWeight: "400",margin:"0 1vw" }}>
+                Posted on Sep 12 2022
+                </span>
+
               </div>
+             
               <div
                 style={{
                   width: "100%",
@@ -881,14 +920,19 @@ export default function Jobs() {
                     style={{
                       fontSize: "1.5vw",
                       fontWeight: "400",
-                      margin: "0vw 1vw",
+                      margin: "0.5vw 1vw",
                     }}
                   />
                 </span>
                 <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
-                  {"Remote Kanpur"}
+                  {"Remote Kanpur"}  
                 </span>
+                <span style={{ fontSize: "0.8vw", fontWeight: "400",margin:"0 1vw" }}>
+                Posted on Sep 12 2022
+                </span>
+
               </div>
+             
               <div
                 style={{
                   width: "100%",
@@ -1263,8 +1307,10 @@ export default function Jobs() {
                   marginLeft: "1vw",
                 }}
                 onClick={() =>
-                    navigate(`/dashbaord/contractJob/29835f5f-ce82-4026-9886-23501654078e`)
-                  }
+                  navigate(
+                    `/dashbaord/contractJob/29835f5f-ce82-4026-9886-23501654078e`
+                  )
+                }
               >
                 Senior Product Designer (#34793)
               </div>
@@ -1409,7 +1455,7 @@ export default function Jobs() {
                 Lorem Ipsum.
               </div>
             </div>
-         </div>
+          </div>
           {totalpages !== 1 ? (
             <div style={{ width: "25vw" }} className="paginationbox">
               <div>
@@ -1461,29 +1507,218 @@ export default function Jobs() {
       )}
       {workhistorytoggle === 3 ? (
         <>
-          <div style={{ padding: "1vw" }} className="catalogcontainerdashbaord">
-            {alljobindone?.length > 0 &&
-              alljobindone?.map((data, index) => {
-                return (
-                  <div
-                    style={{ padding: "1vw", background: "white" }}
-                    className="workhistrybox"
-                  >
-                    <div
-                      onClick={() =>
-                        navigate(`/dashbaord/completedJob/${data?.jobDoerId}`)
-                      }
-                      style={{ cursor: "pointer" }}
-                      className="workhistryboxtitle"
-                    >
-                      {data?.workTitle}
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <div>
+              <div style={{ flexWrap: "wrap" }} className="filterboxflex">
+                <div
+                  onClick={() => {
+                    handleOpenxx();
+                    setPreviosfilterxx([...arrayoffilterselectedxx]);
+                    setPreviosfilter1xx([...arrayoffilterselectedxx]);
+                  }}
+                  className="filtericonbox"
+                >
+                  <img src={imgfilter} alt="" />
+                </div>
+
+                <Modal
+                  open={openxx}
+                  onClose={handleClosexx}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style1}>
+                    <div className="profiletitleandmenunav">
+                      <div className="profiledetailstitle">Add Filters</div>
+                      <div className="profiledetailnavmanu">
+                        <div>
+                          <CloseIcon
+                            onClick={handleClosexx}
+                            style={{ fontSize: "1.5vw" }}
+                          />
+                        </div>
+                      </div>
                     </div>
-                    <div className="workhistryboxdate">
+                    <hr style={{ color: "#00000090" }} />
+
+                    {arrayoffiltersxx?.map((data, index) => {
+                      return (
+                        <div>
+                          <div
+                            style={{ fontSize: "1.2vw" }}
+                            className="profiledetailstitle"
+                          >
+                            {data?.filternameName}
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              flexWrap: "wrap",
+                            }}
+                          >
+                            {data?.filters?.map((data1, index) => {
+                              return (
+                                <div
+                                  onClick={() => {
+                                    if (previosfilter1xx.indexOf(data1) > -1) {
+                                      setPreviosfilter1xx([
+                                        ...previosfilter1xx.slice(
+                                          0,
+                                          previosfilter1xx.indexOf(data1)
+                                        ),
+                                        ...previosfilter1xx.slice(
+                                          previosfilter1xx.indexOf(data1) + 1,
+                                          previosfilter1xx.length
+                                        ),
+                                      ]);
+                                    } else {
+                                      setPreviosfilter1xx([
+                                        ...previosfilter1xx,
+                                        data1,
+                                      ]);
+                                    }
+                                  }}
+                                  style={{
+                                    background: previosfilter1xx.includes(data1)
+                                      ? "#064C8720"
+                                      : "",
+                                    cursor: "pointer",
+                                  }}
+                                  className="filterboxnameskill"
+                                >
+                                  {data1}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+
+                    <hr style={{ color: "#00000090" }} />
+                    <div
+                      style={{ marginTop: "0.31vw" }}
+                      className="handlemoreaboutskill"
+                    >
+                      <div
+                        style={{
+                          background: "white",
+                          color: "black",
+                          cursor: "pointer",
+                        }}
+                        className="handlecirclieaboutsave"
+                        onClick={() => {
+                          setarrayoffilterselectedxx(previosfilterxx);
+                          handleClosexx();
+                        }}
+                      >
+                        Cancel
+                      </div>
+                      <div
+                        style={{ cursor: "pointer" }}
+                        className="handlecirclieaboutsave"
+                        onClick={() => {
+                          setarrayoffilterselectedxx(previosfilter1xx);
+                          handleClosexx();
+                        }}
+                      >
+                        Submit
+                      </div>
+                    </div>
+                  </Box>
+                </Modal>
+
+                {arrayoffilterselectedxx?.length > 0 &&
+                  arrayoffilterselectedxx?.map((filtername) => {
+                    return (
+                      <div className="filtericonboxname">{filtername}</div>
+                    );
+                  })}
+
+                <div
+                  onClick={() => setarrayoffilterselectedxx([])}
+                  style={{ cursor: "pointer" }}
+                  className="filtericonboxname"
+                >
+                  Clear all
+                </div>
+              </div>
+            </div>
+
+            <div style={{ width: "10vw" }} className="digitalwallate"></div>
+          </div>
+          <div className="catalogcontainerdashbaord">
+            <div
+              style={{
+                width: "100%",
+                background: "white",
+                padding: "2vw 1vw",
+                margin: "1vw 0vw",
+              }}
+            >
+              {" "}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ display: "flex" }}>
+                  <div className="taggreen">Mobile Application</div>
+                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
+                    Mobile Application
+                  </div>
+                </div>
+                <div
+                  style={{ margin: "0", height: "2.2vw" }}
+                  className="digitalwallate"
+                >
+                  <span style={{ padding: "0.6vw 1vw" }}>Chat Us</span>
+                </div>
+              </div>{" "}
+              <div
+                style={{
+                  fontWeight: "600",
+                  fontSize: "1.3vw",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginTop: "1vw",
+                  marginLeft: "1vw",
+                }}
+              >
+                Senior Product Designer (#34793)
+              </div>
+              <div style={{ display: "flex", alignItems: "center",  margin:"0.51vw 0"}}>
+                <span>
+                  <LocationOnOutlinedIcon
+                    style={{
+                      fontSize: "1.5vw",
+                      fontWeight: "400",
+                      margin: "0vw 1vw",
+                    }}
+                  />
+                </span>
+                <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
+                  {"Remote Kanpur"}
+                </span>
+              </div>
+              <div  className="workhistryboxdate">
+                      {" "}
                       <span
                         style={{
                           width: "10vw",
                           position: "relative",
                           bottom: "0.2vw",
+                          marginLeft:"1vw"
                         }}
                       >
                         <StarRatings
@@ -1494,84 +1729,271 @@ export default function Jobs() {
                           numberOfStars={5}
                           name="rating"
                         />
-                      </span>
+                      </span>{" "}
                       Oct 4, 2020 - Nov 5, 2020
                     </div>
-                    <div
-                      style={{ width: "78vw" }}
-                      className="workhistryboxdata"
-                    >
-                      <div
-                        style={{ width: "100%" }}
-                        className="descriptionactibeobbox"
-                      >
-                        <div style={{ height: "1.8vw" }}>
-                          {data?.shortDescription?.slice(0, 100)}
-                        </div>
-                        <br />
-                        <span>more</span>
-                      </div>
-                    </div>
-                    <div style={{ width: "60%" }}>
-                      <div className="profileuserdfirst">
-                        <div className="profileuserfirstone">
-                          <div
-                            style={{ color: "#41404077" }}
-                            className="profileuserfirstonetitle"
-                          >
-                            Earnings
-                          </div>
-                          <div className="profileuserfirstonedata">$60k+</div>
-                        </div>
-                        <div className="profileuserfirstone">
-                          <div
-                            style={{ color: "#41404077" }}
-                            className="profileuserfirstonetitle"
-                          >
-                            Completed
-                          </div>
-                          <div className="profileuserfirstonedata">30</div>
-                        </div>
-                        <div className="profileuserfirstone">
-                          <div
-                            style={{ color: "#41404077" }}
-                            className="profileuserfirstonetitle"
-                          >
-                            Success
-                          </div>
-                          <div className="profileuserfirstonedata">90%</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "left",
-                        marginBottom: "0.6vw",
-                        fontWeight: "500",
-                        fontSize: "1.15vw",
-                      }}
-                      className="workhistryboxdate"
-                    >
-                      <span style={{ color: "#064C87", marginRight: "6px" }}>
-                        Client:{" "}
-                      </span>{" "}
-                      {data?.workAssignedTo}
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "right",
-                        marginBottom: "0.6vw",
-                      }}
-                      className="workhistryboxdate"
-                    >
-                      Sep 22, 2021 - Dec 10, 2021
-                    </div>
+              <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
+                <div style={{ marginRight: "1vw" }}>
+                  Free launcher <br /> Vasaanth David.H
+                </div>
+                <div>
+                  Contract Value <br /> $1200
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Duration <br /> 3 months
+                </div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}>Feb 12-Onwards</div>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  margin: "0.8vw 1vw",
+                  fontSize: "0.85vw",
+                  marginBottom: "0.0vw",
+                  marginRight: "2vw",
+                }}
+                className="dashboardtitilemainparabid"
+              >
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                background: "white",
+                padding: "2vw 1vw",
+                margin: "1vw 0vw",
+              }}
+            >
+              {" "}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ display: "flex" }}>
+                  <div className="taggreen">Mobile Application</div>
+                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
+                    Mobile Application
                   </div>
-                );
-              })}
-          </div>
+                </div>
+                <div
+                  style={{ margin: "0", height: "2.2vw" }}
+                  className="digitalwallate"
+                >
+                  <span style={{ padding: "0.6vw 1vw" }}>Chat Us</span>
+                </div>
+              </div>{" "}
+              <div
+                style={{
+                  fontWeight: "600",
+                  fontSize: "1.3vw",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginTop: "1vw",
+                  marginLeft: "1vw",
+                }}
+              >
+                Senior Product Designer (#34793)
+              </div>
+              <div style={{ display: "flex", alignItems: "center",  margin:"0.51vw 0"}}>
+                <span>
+                  <LocationOnOutlinedIcon
+                    style={{
+                      fontSize: "1.5vw",
+                      fontWeight: "400",
+                      margin: "0vw 1vw",
+                    }}
+                  />
+                </span>
+                <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
+                  {"Remote Kanpur"}
+                </span>
+              </div>
+              <div  className="workhistryboxdate">
+                      {" "}
+                      <span
+                        style={{
+                          width: "10vw",
+                          position: "relative",
+                          bottom: "0.2vw",
+                          marginLeft:"1vw"
+                        }}
+                      >
+                        <StarRatings
+                          rating={4.5}
+                          starRatedColor="#064C87"
+                          starDimension="1.2vw  "
+                          starSpacing="0.15vw"
+                          numberOfStars={5}
+                          name="rating"
+                        />
+                      </span>{" "}
+                      Oct 4, 2020 - Nov 5, 2020
+                    </div>
+              <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
+                <div style={{ marginRight: "1vw" }}>
+                  Free launcher <br /> Vasaanth David.H
+                </div>
+                <div>
+                  Contract Value <br /> $1200
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Duration <br /> 3 months
+                </div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}>Feb 12-Onwards</div>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  margin: "0.8vw 1vw",
+                  fontSize: "0.85vw",
+                  marginBottom: "0.0vw",
+                  marginRight: "2vw",
+                }}
+                className="dashboardtitilemainparabid"
+              >
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                background: "white",
+                padding: "2vw 1vw",
+                margin: "1vw 0vw",
+              }}
+            >
+              {" "}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ display: "flex" }}>
+                  <div className="taggreen">Mobile Application</div>
+                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
+                    Mobile Application
+                  </div>
+                </div>
+                <div
+                  style={{ margin: "0", height: "2.2vw" }}
+                  className="digitalwallate"
+                >
+                  <span style={{ padding: "0.6vw 1vw" }}>Chat Us</span>
+                </div>
+              </div>{" "}
+              <div
+                style={{
+                  fontWeight: "600",
+                  fontSize: "1.3vw",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginTop: "1vw",
+                  marginLeft: "1vw",
+                }}
+              >
+                Senior Product Designer (#34793)
+              </div>
+              <div style={{ display: "flex", alignItems: "center",  margin:"0.51vw 0"}}>
+                <span>
+                  <LocationOnOutlinedIcon
+                    style={{
+                      fontSize: "1.5vw",
+                      fontWeight: "400",
+                      margin: "0vw 1vw",
+                    }}
+                  />
+                </span>
+                <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
+                  {"Remote Kanpur"}
+                </span>
+              </div>
+              <div  className="workhistryboxdate">
+                      {" "}
+                      <span
+                        style={{
+                          width: "10vw",
+                          position: "relative",
+                          bottom: "0.2vw",
+                          marginLeft:"1vw"
+                        }}
+                      >
+                        <StarRatings
+                          rating={4.5}
+                          starRatedColor="#064C87"
+                          starDimension="1.2vw  "
+                          starSpacing="0.15vw"
+                          numberOfStars={5}
+                          name="rating"
+                        />
+                      </span>{" "}
+                      Oct 4, 2020 - Nov 5, 2020
+                    </div>
+              <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
+                <div style={{ marginRight: "1vw" }}>
+                  Free launcher <br /> Vasaanth David.H
+                </div>
+                <div>
+                  Contract Value <br /> $1200
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Duration <br /> 3 months
+                </div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}>Feb 12-Onwards</div>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  margin: "0.8vw 1vw",
+                  fontSize: "0.85vw",
+                  marginBottom: "0.0vw",
+                  marginRight: "2vw",
+                }}
+                className="dashboardtitilemainparabid"
+              >
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </div>
+            </div>
+        </div>
+
           {totalpages3 !== 1 ? (
             <div style={{ width: "25vw" }} className="paginationbox">
               <div>
@@ -1624,77 +2046,484 @@ export default function Jobs() {
 
       {workhistorytoggle === 4 ? (
         <>
-          <div className="catalogcontainerdashbaord">
-            {alljobindone4?.length > 0 &&
-              alljobindone4?.map((data, index) => {
-                return (
-                  <div className="activejobpostbox">
-                    <div className="activejobposttag">{data?.category}</div>
-                    <div
-                      style={{ height: "1.2vw" }}
-                      className="activejobpostname"
-                    >
-                      {data?.workTitle}
-                    </div>
-                    <div className="activejobpistbudgetbox">
-                      <div>
-                        Budget <br /> ${data?.minimumBudget} - $
-                        {data?.maximuBudget}
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <div>
+              <div style={{ flexWrap: "wrap" }} className="filterboxflex">
+                <div
+                  onClick={() => {
+                    handleOpenxx();
+                    setPreviosfilterxx([...arrayoffilterselectedxx]);
+                    setPreviosfilter1xx([...arrayoffilterselectedxx]);
+                  }}
+                  className="filtericonbox"
+                >
+                  <img src={imgfilter} alt="" />
+                </div>
+
+                <Modal
+                  open={openxx}
+                  onClose={handleClosexx}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style1}>
+                    <div className="profiletitleandmenunav">
+                      <div className="profiledetailstitle">Add Filters</div>
+                      <div className="profiledetailnavmanu">
+                        <div>
+                          <CloseIcon
+                            onClick={handleClosexx}
+                            style={{ fontSize: "1.5vw" }}
+                          />
+                        </div>
                       </div>
-                      <div style={{ marginRight: "1vw" }}>
-                        Duration <br /> 3 month
-                      </div>
                     </div>
+                    <hr style={{ color: "#00000090" }} />
+
+                    {arrayoffiltersxx?.map((data, index) => {
+                      return (
+                        <div>
+                          <div
+                            style={{ fontSize: "1.2vw" }}
+                            className="profiledetailstitle"
+                          >
+                            {data?.filternameName}
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              flexWrap: "wrap",
+                            }}
+                          >
+                            {data?.filters?.map((data1, index) => {
+                              return (
+                                <div
+                                  onClick={() => {
+                                    if (previosfilter1xx.indexOf(data1) > -1) {
+                                      setPreviosfilter1xx([
+                                        ...previosfilter1xx.slice(
+                                          0,
+                                          previosfilter1xx.indexOf(data1)
+                                        ),
+                                        ...previosfilter1xx.slice(
+                                          previosfilter1xx.indexOf(data1) + 1,
+                                          previosfilter1xx.length
+                                        ),
+                                      ]);
+                                    } else {
+                                      setPreviosfilter1xx([
+                                        ...previosfilter1xx,
+                                        data1,
+                                      ]);
+                                    }
+                                  }}
+                                  style={{
+                                    background: previosfilter1xx.includes(data1)
+                                      ? "#064C8720"
+                                      : "",
+                                    cursor: "pointer",
+                                  }}
+                                  className="filterboxnameskill"
+                                >
+                                  {data1}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+
+                    <hr style={{ color: "#00000090" }} />
                     <div
-                      style={{ height: "3.3vw" }}
-                      className="descriptionactibeobbox"
+                      style={{ marginTop: "0.31vw" }}
+                      className="handlemoreaboutskill"
                     >
                       <div
                         style={{
-                          height: "1.8vw",
-                          width: "23vw",
-                          overflow: "hidden",
-                          height: "2.3vw",
+                          background: "white",
+                          color: "black",
+                          cursor: "pointer",
+                        }}
+                        className="handlecirclieaboutsave"
+                        onClick={() => {
+                          setarrayoffilterselectedxx(previosfilterxx);
+                          handleClosexx();
                         }}
                       >
-                        {data?.shortDescription?.slice(0, 80)}
-                      </div>
-                      <br />
-                      <span
-                        onClick={() =>
-                          navigate(
-                            `/dashbaord/jobdetailfornobid/${data?.jobPostId}`
-                          )
-                        }
-                      >
-                        more
-                      </span>
-                    </div>
-
-                    <hr />
-                    <div className="flexlastactiveb">
-                      <div>
-                        <img
-                          style={{ width: "1vw", objectFit: "contain" }}
-                          src={imgx}
-                          alt=""
-                        />{" "}
-                        Published
+                        Cancel
                       </div>
                       <div
-                        style={{ color: "#00000090", cursor: "pointer" }}
-                        onClick={() =>
-                          navigate(
-                            `/dashbaord/jobdetailfornobid/${data?.jobPostId}`
-                          )
-                        }
+                        style={{ cursor: "pointer" }}
+                        className="handlecirclieaboutsave"
+                        onClick={() => {
+                          setarrayoffilterselectedxx(previosfilter1xx);
+                          handleClosexx();
+                        }}
                       >
-                        See More
+                        Submit
                       </div>
                     </div>
+                  </Box>
+                </Modal>
+
+                {arrayoffilterselectedxx?.length > 0 &&
+                  arrayoffilterselectedxx?.map((filtername) => {
+                    return (
+                      <div className="filtericonboxname">{filtername}</div>
+                    );
+                  })}
+
+                <div
+                  onClick={() => setarrayoffilterselectedxx([])}
+                  style={{ cursor: "pointer" }}
+                  className="filtericonboxname"
+                >
+                  Clear all
+                </div>
+              </div>
+            </div>
+
+            <div style={{ width: "10vw" }} className="digitalwallate"></div>
+          </div>
+          <div className="catalogcontainerdashbaord">
+            <div
+              style={{
+                width: "100%",
+                background: "white",
+                padding: "2vw 1vw",
+                margin: "1vw 0vw",
+              }}
+            >
+              {" "}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ display: "flex" }}>
+                  <div className="taggreen">Mobile Application</div>
+                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
+                    Mobile Application
                   </div>
-                );
-              })}
+                </div>
+                <div style={{ display: "flex" }}>
+                
+                  <div>
+                    <img
+                      src={img3}
+                      alt=""
+                      style={{ fontSize: "2vw", marginRight: "2vw" }}
+                    />{" "}
+                  </div>
+                </div>
+              </div>{" "}
+              <div
+                style={{
+                  fontWeight: "600",
+                  fontSize: "1.3vw",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginTop: "1vw",
+                  marginLeft: "1vw",
+                }}
+              >
+                Senior Product Designer (#34793)
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <span>
+                  <LocationOnOutlinedIcon
+                    style={{
+                      fontSize: "1.5vw",
+                      fontWeight: "400",
+                      margin: "0.5vw 1vw",
+                    }}
+                  />
+                </span>
+                <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
+                  {"Remote Kanpur"}  
+                </span>
+                <span style={{ fontSize: "0.8vw", fontWeight: "400",margin:"0 1vw" }}>
+                Posted on Sep 12 2022
+                </span>
+
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  margin: "0.8vw 1vw",
+                  fontSize: "0.85vw",
+                  marginBottom: "0.0vw",
+                  marginRight: "2vw",
+                }}
+                className="dashboardtitilemainparabid"
+              >
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </div>
+              <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
+                <div>
+                  Budget <br /> $100 - $ 200
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Duration <br /> 3 month
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Status <br /> Upcoming
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  {" "}
+                  
+                </div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}></div>
+              </div>
+              <div className="flexlastactiveb">
+                <div style={{ color: "#00000090" }}>posted By 44 Resources</div>
+                <div
+                  style={{ color: "#00000090", cursor: "pointer" }}
+                  onClick={() =>
+                    navigate(
+                      `/dashbaord/jobdetail/eb2d6c1b-3a38-4018-99c2-169668fca15e`
+                    )
+                  }
+                >
+                  View More
+                </div>
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                background: "white",
+                padding: "2vw 1vw",
+                margin: "1vw 0vw",
+              }}
+            >
+              {" "}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ display: "flex" }}>
+                  <div className="taggreen">Mobile Application</div>
+                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
+                    Mobile Application
+                  </div>
+                </div>
+                <div style={{ display: "flex" }}>
+                 
+                  <div>
+                    <img
+                      src={img3}
+                      alt=""
+                      style={{ fontSize: "2vw", marginRight: "2vw" }}
+                    />{" "}
+                  </div>
+                </div>
+              </div>{" "}
+              <div
+                style={{
+                  fontWeight: "600",
+                  fontSize: "1.3vw",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginTop: "1vw",
+                  marginLeft: "1vw",
+                }}
+              >
+                Senior Product Designer (#34793)
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <span>
+                  <LocationOnOutlinedIcon
+                    style={{
+                      fontSize: "1.5vw",
+                      fontWeight: "400",
+                      margin: "0.5vw 1vw",
+                    }}
+                  />
+                </span>
+                <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
+                  {"Remote Kanpur"}  
+                </span>
+                <span style={{ fontSize: "0.8vw", fontWeight: "400",margin:"0 1vw" }}>
+                Posted on Sep 12 2022
+                </span>
+
+              </div>
+             
+              <div
+                style={{
+                  width: "100%",
+                  margin: "0.8vw 1vw",
+                  fontSize: "0.85vw",
+                  marginBottom: "0.0vw",
+                  marginRight: "2vw",
+                }}
+                className="dashboardtitilemainparabid"
+              >
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </div>
+              <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
+                <div>
+                  Budget <br /> $100 - $ 200
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Duration <br /> 3 month
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Status <br /> Upcoming
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  {" "}
+             
+                </div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}></div>
+              </div>
+              <div className="flexlastactiveb">
+                <div style={{ color: "#00000090" }}>posted By 44 Resources</div>
+                <div style={{ color: "#00000090" }}>View More</div>
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                background: "white",
+                padding: "2vw 1vw",
+                margin: "1vw 0vw",
+              }}
+            >
+              {" "}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ display: "flex" }}>
+                  <div className="taggreen">Mobile Application</div>
+                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
+                    Mobile Application
+                  </div>
+                </div>
+                <div style={{ display: "flex" }}>
+                 
+                  <div>
+                    <img
+                      src={img3}
+                      alt=""
+                      style={{ fontSize: "2vw", marginRight: "2vw" }}
+                    />{" "}
+                  </div>
+                </div>
+              </div>{" "}
+              <div
+                style={{
+                  fontWeight: "600",
+                  fontSize: "1.3vw",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginTop: "1vw",
+                  marginLeft: "1vw",
+                }}
+              >
+                Senior Product Designer (#34793)
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <span>
+                  <LocationOnOutlinedIcon
+                    style={{
+                      fontSize: "1.5vw",
+                      fontWeight: "400",
+                      margin: "0.5vw 1vw",
+                    }}
+                  />
+                </span>
+                <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
+                  {"Remote Kanpur"}  
+                </span>
+                <span style={{ fontSize: "0.8vw", fontWeight: "400",margin:"0 1vw" }}>
+                Posted on Sep 12 2022
+                </span>
+
+              </div>
+              
+             
+              <div
+                style={{
+                  width: "100%",
+                  margin: "0.8vw 1vw",
+                  fontSize: "0.85vw",
+                  marginBottom: "0.0vw",
+                  marginRight: "2vw",
+                }}
+                className="dashboardtitilemainparabid"
+              >
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </div>
+              <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
+                <div>
+                  Budget <br /> $100 - $ 200
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Duration <br /> 3 month
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Status <br /> Upcoming
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                 
+                </div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}></div>
+              </div>
+              <div className="flexlastactiveb">
+                <div style={{ color: "#00000090" }}>posted By 44 Resources</div>
+                <div style={{ color: "#00000090" }}>View More</div>
+              </div>
+            </div>
           </div>
           {totalpages4 !== 1 ? (
             <div style={{ width: "25vw" }} className="paginationbox">

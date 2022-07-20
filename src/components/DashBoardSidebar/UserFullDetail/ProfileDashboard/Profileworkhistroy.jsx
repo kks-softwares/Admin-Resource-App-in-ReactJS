@@ -110,7 +110,7 @@ export default function Profileworkhistroy() {
       {workhistorytoggle === 1 ? (
         <>
           <div style={{ margin: "2vw 2vw" }}>
-            {alljobindone?.length > 0 ?
+            {alljobindone?.length > 0 ? (
               alljobindone?.map((data, index) => {
                 return (
                   <div className="workhistrybox">
@@ -182,12 +182,21 @@ export default function Profileworkhistroy() {
                     </div>
                   </div>
                 );
-              }):<div  className="profileworkhistruytoggleervalue" style={{width:"100%",fontSize:"1vw"}}>
-            This user does not have any Completed jobs        </div>}
+              })
+            ) : (
+              <div
+                className="profileworkhistruytoggleervalue"
+                style={{ width: "100%", fontSize: "1vw" }}
+              >
+                This user does not have any Completed jobs{" "}
+              </div>
+            )}
           </div>
-        { page1s && <div onClick={() => setPage1(page1 + 1)} className="ViewMorebutton">
-            View More
-          </div>}
+          {page1s && (
+            <div onClick={() => setPage1(page1 + 1)} className="ViewMorebutton">
+              View More
+            </div>
+          )}
         </>
       ) : (
         ""
@@ -195,7 +204,7 @@ export default function Profileworkhistroy() {
       {workhistorytoggle === 2 ? (
         <>
           <div style={{ margin: "2vw 2vw" }}>
-            {alljobingoing?.length > 0 ?
+            {alljobingoing?.length > 0 ? (
               alljobingoing?.map((data, index) => {
                 return (
                   <div className="workhistrybox">
@@ -267,12 +276,21 @@ export default function Profileworkhistroy() {
                     </div>
                   </div>
                 );
-              }):<div  className="profileworkhistruytoggleervalue" style={{width:"100%",fontSize:"1vw"}}>
-              This user does not have any ongoing/progress jobs        </div>}
+              })
+            ) : (
+              <div
+                className="profileworkhistruytoggleervalue"
+                style={{ width: "100%", fontSize: "1vw" }}
+              >
+                This user does not have any ongoing/progress jobs{" "}
+              </div>
+            )}
           </div>
-        { pages &&  <div onClick={() => setPage(page + 1)} className="ViewMorebutton">
-            View More
-          </div>}
+          {pages && (
+            <div onClick={() => setPage(page + 1)} className="ViewMorebutton">
+              View More
+            </div>
+          )}
         </>
       ) : (
         ""
