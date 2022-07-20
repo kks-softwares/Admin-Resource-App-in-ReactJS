@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import { SearchSharp } from "@mui/icons-material";
 import Box from "@mui/material/Box";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import Popper from "@mui/material/Popper";
-import Fade from "@mui/material/Fade";
 import StarRatings from "react-star-ratings";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import API_HOST from "../../../env";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import imgx from "../../../assets/Dashboard/Iconly-Light-Discovery.svg";
 import img1 from "../../../assets/Jobs/Iconly-Light-Delete.svg";
 import img2 from "../../../assets/Jobs/Iconly-Light-Edit.svg";
 import img3 from "../../../assets/Jobs/Iconly-Light-Paper Upload.svg";
@@ -22,7 +16,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
 import Modal from "@mui/material/Modal";
 import { makeStyles } from "@material-ui/core";
-
 const style1 = {
   position: "absolute",
   top: "50%",
@@ -677,14 +670,19 @@ export default function Jobs() {
                   />
                 </span>
                 <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
-                  {"Remote Kanpur"}  
+                  {"Remote Kanpur"}
                 </span>
-                <span style={{ fontSize: "0.8vw", fontWeight: "400",margin:"0 1vw" }}>
-                Posted on Sep 12 2022
+                <span
+                  style={{
+                    fontSize: "0.8vw",
+                    fontWeight: "400",
+                    margin: "0 1vw",
+                  }}
+                >
+                  Posted on Sep 12 2022
                 </span>
-
               </div>
-               <div
+              <div
                 style={{
                   width: "100%",
                   margin: "0.8vw 1vw",
@@ -805,14 +803,18 @@ export default function Jobs() {
                   />
                 </span>
                 <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
-                  {"Remote Kanpur"}  
+                  {"Remote Kanpur"}
                 </span>
-                <span style={{ fontSize: "0.8vw", fontWeight: "400",margin:"0 1vw" }}>
-                Posted on Sep 12 2022
+                <span
+                  style={{
+                    fontSize: "0.8vw",
+                    fontWeight: "400",
+                    margin: "0 1vw",
+                  }}
+                >
+                  Posted on Sep 12 2022
                 </span>
-
               </div>
-             
               <div
                 style={{
                   width: "100%",
@@ -925,14 +927,18 @@ export default function Jobs() {
                   />
                 </span>
                 <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
-                  {"Remote Kanpur"}  
+                  {"Remote Kanpur"}
                 </span>
-                <span style={{ fontSize: "0.8vw", fontWeight: "400",margin:"0 1vw" }}>
-                Posted on Sep 12 2022
+                <span
+                  style={{
+                    fontSize: "0.8vw",
+                    fontWeight: "400",
+                    margin: "0 1vw",
+                  }}
+                >
+                  Posted on Sep 12 2022
                 </span>
-
               </div>
-             
               <div
                 style={{
                   width: "100%",
@@ -1681,9 +1687,7 @@ export default function Jobs() {
                 <div
                   style={{ margin: "0", height: "2.2vw" }}
                   className="digitalwallate"
-                >
-                  <span style={{ padding: "0.6vw 1vw" }}>Chat Us</span>
-                </div>
+                ></div>
               </div>{" "}
               <div
                 style={{
@@ -1694,10 +1698,21 @@ export default function Jobs() {
                   marginTop: "1vw",
                   marginLeft: "1vw",
                 }}
+                onClick={() =>
+                  navigate(
+                    `/dashbaord/completedJob/eb2d6c1b-3a38-4018-99c2-169668fca15e`
+                  )
+                }
               >
                 Senior Product Designer (#34793)
               </div>
-              <div style={{ display: "flex", alignItems: "center",  margin:"0.51vw 0"}}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  margin: "0.51vw 0",
+                }}
+              >
                 <span>
                   <LocationOnOutlinedIcon
                     style={{
@@ -1711,27 +1726,27 @@ export default function Jobs() {
                   {"Remote Kanpur"}
                 </span>
               </div>
-              <div  className="workhistryboxdate">
-                      {" "}
-                      <span
-                        style={{
-                          width: "10vw",
-                          position: "relative",
-                          bottom: "0.2vw",
-                          marginLeft:"1vw"
-                        }}
-                      >
-                        <StarRatings
-                          rating={4.5}
-                          starRatedColor="#064C87"
-                          starDimension="1.2vw  "
-                          starSpacing="0.15vw"
-                          numberOfStars={5}
-                          name="rating"
-                        />
-                      </span>{" "}
-                      Oct 4, 2020 - Nov 5, 2020
-                    </div>
+              <div className="workhistryboxdate">
+                {" "}
+                <span
+                  style={{
+                    width: "10vw",
+                    position: "relative",
+                    bottom: "0.2vw",
+                    marginLeft: "1vw",
+                  }}
+                >
+                  <StarRatings
+                    rating={4.5}
+                    starRatedColor="#064C87"
+                    starDimension="1.2vw  "
+                    starSpacing="0.15vw"
+                    numberOfStars={5}
+                    name="rating"
+                  />
+                </span>{" "}
+                Oct 4, 2020 - Nov 5, 2020
+              </div>
               <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
                 <div style={{ marginRight: "1vw" }}>
                   Free launcher <br /> Vasaanth David.H
@@ -1793,9 +1808,7 @@ export default function Jobs() {
                 <div
                   style={{ margin: "0", height: "2.2vw" }}
                   className="digitalwallate"
-                >
-                  <span style={{ padding: "0.6vw 1vw" }}>Chat Us</span>
-                </div>
+                ></div>
               </div>{" "}
               <div
                 style={{
@@ -1809,7 +1822,13 @@ export default function Jobs() {
               >
                 Senior Product Designer (#34793)
               </div>
-              <div style={{ display: "flex", alignItems: "center",  margin:"0.51vw 0"}}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  margin: "0.51vw 0",
+                }}
+              >
                 <span>
                   <LocationOnOutlinedIcon
                     style={{
@@ -1823,27 +1842,27 @@ export default function Jobs() {
                   {"Remote Kanpur"}
                 </span>
               </div>
-              <div  className="workhistryboxdate">
-                      {" "}
-                      <span
-                        style={{
-                          width: "10vw",
-                          position: "relative",
-                          bottom: "0.2vw",
-                          marginLeft:"1vw"
-                        }}
-                      >
-                        <StarRatings
-                          rating={4.5}
-                          starRatedColor="#064C87"
-                          starDimension="1.2vw  "
-                          starSpacing="0.15vw"
-                          numberOfStars={5}
-                          name="rating"
-                        />
-                      </span>{" "}
-                      Oct 4, 2020 - Nov 5, 2020
-                    </div>
+              <div className="workhistryboxdate">
+                {" "}
+                <span
+                  style={{
+                    width: "10vw",
+                    position: "relative",
+                    bottom: "0.2vw",
+                    marginLeft: "1vw",
+                  }}
+                >
+                  <StarRatings
+                    rating={4.5}
+                    starRatedColor="#064C87"
+                    starDimension="1.2vw  "
+                    starSpacing="0.15vw"
+                    numberOfStars={5}
+                    name="rating"
+                  />
+                </span>{" "}
+                Oct 4, 2020 - Nov 5, 2020
+              </div>
               <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
                 <div style={{ marginRight: "1vw" }}>
                   Free launcher <br /> Vasaanth David.H
@@ -1905,9 +1924,7 @@ export default function Jobs() {
                 <div
                   style={{ margin: "0", height: "2.2vw" }}
                   className="digitalwallate"
-                >
-                  <span style={{ padding: "0.6vw 1vw" }}>Chat Us</span>
-                </div>
+                ></div>
               </div>{" "}
               <div
                 style={{
@@ -1921,7 +1938,13 @@ export default function Jobs() {
               >
                 Senior Product Designer (#34793)
               </div>
-              <div style={{ display: "flex", alignItems: "center",  margin:"0.51vw 0"}}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  margin: "0.51vw 0",
+                }}
+              >
                 <span>
                   <LocationOnOutlinedIcon
                     style={{
@@ -1935,27 +1958,27 @@ export default function Jobs() {
                   {"Remote Kanpur"}
                 </span>
               </div>
-              <div  className="workhistryboxdate">
-                      {" "}
-                      <span
-                        style={{
-                          width: "10vw",
-                          position: "relative",
-                          bottom: "0.2vw",
-                          marginLeft:"1vw"
-                        }}
-                      >
-                        <StarRatings
-                          rating={4.5}
-                          starRatedColor="#064C87"
-                          starDimension="1.2vw  "
-                          starSpacing="0.15vw"
-                          numberOfStars={5}
-                          name="rating"
-                        />
-                      </span>{" "}
-                      Oct 4, 2020 - Nov 5, 2020
-                    </div>
+              <div className="workhistryboxdate">
+                {" "}
+                <span
+                  style={{
+                    width: "10vw",
+                    position: "relative",
+                    bottom: "0.2vw",
+                    marginLeft: "1vw",
+                  }}
+                >
+                  <StarRatings
+                    rating={4.5}
+                    starRatedColor="#064C87"
+                    starDimension="1.2vw  "
+                    starSpacing="0.15vw"
+                    numberOfStars={5}
+                    name="rating"
+                  />
+                </span>{" "}
+                Oct 4, 2020 - Nov 5, 2020
+              </div>
               <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
                 <div style={{ marginRight: "1vw" }}>
                   Free launcher <br /> Vasaanth David.H
@@ -1992,7 +2015,7 @@ export default function Jobs() {
                 Lorem Ipsum.
               </div>
             </div>
-        </div>
+          </div>
 
           {totalpages3 !== 1 ? (
             <div style={{ width: "25vw" }} className="paginationbox">
@@ -2218,7 +2241,6 @@ export default function Jobs() {
                   </div>
                 </div>
                 <div style={{ display: "flex" }}>
-                
                   <div>
                     <img
                       src={img3}
@@ -2251,12 +2273,17 @@ export default function Jobs() {
                   />
                 </span>
                 <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
-                  {"Remote Kanpur"}  
+                  {"Remote Kanpur"}
                 </span>
-                <span style={{ fontSize: "0.8vw", fontWeight: "400",margin:"0 1vw" }}>
-                Posted on Sep 12 2022
+                <span
+                  style={{
+                    fontSize: "0.8vw",
+                    fontWeight: "400",
+                    margin: "0 1vw",
+                  }}
+                >
+                  Posted on Sep 12 2022
                 </span>
-
               </div>
               <div
                 style={{
@@ -2289,10 +2316,7 @@ export default function Jobs() {
                 <div style={{ marginRight: "1vw" }}>
                   Status <br /> Upcoming
                 </div>
-                <div style={{ marginRight: "1vw" }}>
-                  {" "}
-                  
-                </div>
+                <div style={{ marginRight: "1vw" }}> </div>
                 <div style={{ marginRight: "1vw" }}></div>
                 <div style={{ marginRight: "1vw" }}></div>
               </div>
@@ -2333,7 +2357,6 @@ export default function Jobs() {
                   </div>
                 </div>
                 <div style={{ display: "flex" }}>
-                 
                   <div>
                     <img
                       src={img3}
@@ -2366,14 +2389,18 @@ export default function Jobs() {
                   />
                 </span>
                 <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
-                  {"Remote Kanpur"}  
+                  {"Remote Kanpur"}
                 </span>
-                <span style={{ fontSize: "0.8vw", fontWeight: "400",margin:"0 1vw" }}>
-                Posted on Sep 12 2022
+                <span
+                  style={{
+                    fontSize: "0.8vw",
+                    fontWeight: "400",
+                    margin: "0 1vw",
+                  }}
+                >
+                  Posted on Sep 12 2022
                 </span>
-
               </div>
-             
               <div
                 style={{
                   width: "100%",
@@ -2405,10 +2432,7 @@ export default function Jobs() {
                 <div style={{ marginRight: "1vw" }}>
                   Status <br /> Upcoming
                 </div>
-                <div style={{ marginRight: "1vw" }}>
-                  {" "}
-             
-                </div>
+                <div style={{ marginRight: "1vw" }}> </div>
                 <div style={{ marginRight: "1vw" }}></div>
                 <div style={{ marginRight: "1vw" }}></div>
               </div>
@@ -2440,7 +2464,6 @@ export default function Jobs() {
                   </div>
                 </div>
                 <div style={{ display: "flex" }}>
-                 
                   <div>
                     <img
                       src={img3}
@@ -2473,15 +2496,18 @@ export default function Jobs() {
                   />
                 </span>
                 <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
-                  {"Remote Kanpur"}  
+                  {"Remote Kanpur"}
                 </span>
-                <span style={{ fontSize: "0.8vw", fontWeight: "400",margin:"0 1vw" }}>
-                Posted on Sep 12 2022
+                <span
+                  style={{
+                    fontSize: "0.8vw",
+                    fontWeight: "400",
+                    margin: "0 1vw",
+                  }}
+                >
+                  Posted on Sep 12 2022
                 </span>
-
               </div>
-              
-             
               <div
                 style={{
                   width: "100%",
@@ -2513,9 +2539,7 @@ export default function Jobs() {
                 <div style={{ marginRight: "1vw" }}>
                   Status <br /> Upcoming
                 </div>
-                <div style={{ marginRight: "1vw" }}>
-                 
-                </div>
+                <div style={{ marginRight: "1vw" }}></div>
                 <div style={{ marginRight: "1vw" }}></div>
                 <div style={{ marginRight: "1vw" }}></div>
               </div>

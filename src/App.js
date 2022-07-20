@@ -34,6 +34,7 @@ import Jobs from "./components/DashBoardSidebar/Jobs/Jobs";
 import AddJob from "./components/DashBoardSidebar/AddJob/AddJob";
 import Jobdetils from "./components/DashBoardSidebar/biddingproposallist/Jobdetils";
 import ContractJobdetail from "./components/DashBoardSidebar/FullContractJobdetail/ContractJobdetail";
+import CompletedJobPage from "./components/DashBoardSidebar/CompletedJobPage/CompletedJobPage";
 
 function LayoutsWithNavbar() {
   return (
@@ -130,6 +131,10 @@ function App() {
             <Route
               path="/dashbaord/contractJob/:bidingId"
               element={<ContractJobdetail />}
+            />
+            <Route
+              path="/dashbaord/completedJob/:postid"
+              element={<CompletedJobPage />}
             />
           </Route>
         </Routes>

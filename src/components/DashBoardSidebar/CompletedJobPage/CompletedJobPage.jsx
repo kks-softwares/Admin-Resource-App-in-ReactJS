@@ -2,14 +2,15 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import API_HOST from "../../../env";
-import BiddingPropasalList from "./BiddingPropasalList";
+
 import img12 from "../../../assets/Landing page/Group 787.svg";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import BiddingPropasalList from "../biddingproposallist/BiddingPropasalList";
 
-export default function Jobdetils() {
-    
+export default function CompletedJobPage() {
   const { postid } = useParams();
   const [poststatus, setpoststatus] = useState(1);
+
   useEffect(() => {
     axios
       .get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${postid}`)
@@ -20,6 +21,7 @@ export default function Jobdetils() {
   }, [postid, poststatus]);
 
   const [postjobdetailforbid, setpostjobdetailforbid] = useState();
+  const [togglrbar, setTogglrbar] = useState(1);
 
   return (
     <div className="BrowseWorkMain-cntainer">
@@ -306,8 +308,48 @@ export default function Jobdetils() {
           ""
         )}
       </div>
-      <div style={{ marginBottom: "0vw" }} className="dashboardtitilemain">
-        List of Proposals
+      
+      <div
+        style={{ position: "relative", right: "1vw", top: "1vw" }}
+        className="profileworkhistruytoggleer"
+      >
+        <div
+          onClick={() => {
+            setTogglrbar(1);
+          }}
+          className="profileworkhistruytoggleervalue"
+          style={{
+            textAlign: "center",
+            width: "8vw",
+          }}
+        >
+   Bid winner
+        </div>
+        <div
+          onClick={() => {
+            setTogglrbar(2);
+          }}
+          className="profileworkhistruytoggleervalue"
+          style={{
+            textAlign: "center",
+            width: "11vw",
+          }}
+        >
+         Rejected Bidders
+        </div>
+
+        <div
+          style={{
+            color: "#064C87",
+            borderBottom: "0.3vw solid #064C87",
+            width: "9vw",
+            position: "relative",
+            right: togglrbar === 1 ? "22.5vw" : "10.5vw",
+            bottom: "0.0vw",
+            transitionDuration: "1s",
+            borderRadius: "0.2vw",
+          }}
+        ></div>
       </div>
       <BiddingPropasalList
         setpoststatus={setpoststatus}
