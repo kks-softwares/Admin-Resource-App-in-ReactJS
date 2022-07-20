@@ -28,6 +28,8 @@ import EditCondidateDetail from "./components/DashBoardSidebar/SkillCenter/EditC
 import Chat from "./components/DashBoardSidebar/UserFullDetail/Chat/Chat";
 import { useEffect } from "react";
 import { userActions } from "./store/userSlice";
+import AddUser from "./components/DashBoardSidebar/AddUser/AddUser";
+import EditUser from "./components/DashBoardSidebar/EditUser/EditUser";
 
 function LayoutsWithNavbar() {
   return (
@@ -75,6 +77,8 @@ function App() {
             <Route path="/dashbaord/users" element={<Users />} />
             <Route path="/dashbaord/blogs" element={<Blogs />} />
             <Route path="/dashbaord/addBlog" element={<Addblog />} />
+            <Route path="/dashbaord/adduser" element={<AddUser/>} />
+            <Route path="/dashbaord/edituser/:userName" element={<EditUser/>} />
             <Route path="/dashbaord/editBlog/:Id" element={<Editblog />} />
             <Route path="/dashbaord/blog/:Id" element={<BlogDetail />} />
 

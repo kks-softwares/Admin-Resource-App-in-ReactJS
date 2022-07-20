@@ -50,7 +50,8 @@ export default function Skillpopup({data,index,page}) {
         <div style={{ width: "12vw" }}>{data?.userCreateTime?.slice(0,10)}</div>
         <div style={{ width: "6vw" }}>
           {" "}
-          <img
+          <img 
+             onClick={()=>{navigate(`/dashbaord/edituser/${data?.userName}`)}}
             style={{
               margin: "0 0.5vw",
               width: "2vw ",
