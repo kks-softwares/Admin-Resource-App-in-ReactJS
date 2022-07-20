@@ -575,9 +575,7 @@ export default function Jobs() {
               </div>
             </div>
 
-            <div style={{ width: "10vw" }} className="digitalwallate">
-             
-            </div>
+            <div style={{ width: "10vw" }} className="digitalwallate"></div>
           </div>
           <div className="catalogcontainerdashbaord">
             <div
@@ -692,7 +690,16 @@ export default function Jobs() {
               </div>
               <div className="flexlastactiveb">
                 <div style={{ color: "#00000090" }}>posted By 44 Resources</div>
-                <div style={{ color: "#00000090" }}>View More</div>
+                <div
+                  style={{ color: "#00000090", cursor: "pointer" }}
+                  onClick={() =>
+                    navigate(
+                      `/dashbaord/jobdetail/eb2d6c1b-3a38-4018-99c2-169668fca15e`
+                    )
+                  }
+                >
+                  View More
+                </div>
               </div>
             </div>
             <div
@@ -977,112 +984,468 @@ export default function Jobs() {
       )}
       {workhistorytoggle === 2 ? (
         <>
-          <div className="catalogcontainerdashbaord">
-            {alljobingoing?.length > 0 &&
-              alljobingoing?.map((data, index) => {
-                return (
-                  <div style={{ width: "100%" }} className="activejobpostbox">
-                    <div
-                      style={{
-                        width: "100%",
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                      className="activejobposttag"
-                    >
-                      <div>{data.category}</div>
-                      <div>
-                        <FavoriteBorderIcon
-                          style={{ fontSize: "2vw", marginRight: "2vw" }}
-                        />{" "}
-                      </div>
-                    </div>
-                    <div
-                      onClick={() =>
-                        navigate(`/dashbaord/contractJob/${data?.jobDoerId}`)
-                      }
-                      className="activejobpostname"
-                    >
-                      {data.workTitle}
-                    </div>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <div>
+              <div style={{ flexWrap: "wrap" }} className="filterboxflex">
+                <div
+                  onClick={() => {
+                    handleOpen();
+                    setPreviosfilter([...arrayoffilterselected]);
+                    setPreviosfilter1([...arrayoffilterselected]);
+                  }}
+                  className="filtericonbox"
+                >
+                  <img src={imgfilter} alt="" />
+                </div>
 
-                    <div className="descriptionactibeobbox">
-                      <div style={{ height: "1.8vw" }}>
-                        {data?.shortDescription?.slice(0, 100)}
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style1}>
+                    <div className="profiletitleandmenunav">
+                      <div className="profiledetailstitle">Add Filters</div>
+                      <div className="profiledetailnavmanu">
+                        <div>
+                          <CloseIcon
+                            onClick={handleClose}
+                            style={{ fontSize: "1.5vw" }}
+                          />
+                        </div>
                       </div>
-                      <div>more</div>
                     </div>
-                    <div className="activejobpistbudgetbox">
-                      <div>
-                        Budget <br /> ${data?.minimumBudget} - $
-                        {data?.maximuBudget}
-                      </div>
-                      <div style={{ marginRight: "1vw" }}>
-                        Duration <br /> 3 month
-                      </div>
-                      <div style={{ marginRight: "1vw" }}>
-                        Status <br /> Upcoming
-                      </div>
-                      <div style={{ marginRight: "1vw" }}></div>
-                      <div style={{ marginRight: "1vw" }}></div>
-                      <div style={{ marginRight: "1vw" }}>View Proposals</div>
-                    </div>
-                    <br />
+                    <hr style={{ color: "#00000090" }} />
+
+                    {arrayoffilters?.map((data, index) => {
+                      return (
+                        <div>
+                          <div
+                            style={{ fontSize: "1.2vw" }}
+                            className="profiledetailstitle"
+                          >
+                            {data?.filternameName}
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              flexWrap: "wrap",
+                            }}
+                          >
+                            {data?.filters?.map((data1, index) => {
+                              return (
+                                <div
+                                  onClick={() => {
+                                    if (previosfilter1.indexOf(data1) > -1) {
+                                      setPreviosfilter1([
+                                        ...previosfilter1.slice(
+                                          0,
+                                          previosfilter1.indexOf(data1)
+                                        ),
+                                        ...previosfilter1.slice(
+                                          previosfilter1.indexOf(data1) + 1,
+                                          previosfilter1.length
+                                        ),
+                                      ]);
+                                    } else {
+                                      setPreviosfilter1([
+                                        ...previosfilter1,
+                                        data1,
+                                      ]);
+                                    }
+                                  }}
+                                  style={{
+                                    background: previosfilter1.includes(data1)
+                                      ? "#064C8720"
+                                      : "",
+                                    cursor: "pointer",
+                                  }}
+                                  className="filterboxnameskill"
+                                >
+                                  {data1}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+
+                    <hr style={{ color: "#00000090" }} />
                     <div
-                      style={{
-                        height: "2.8vw",
-                        fontSize: "1.2vw",
-                        color: "gray",
-                      }}
+                      style={{ marginTop: "0.31vw" }}
+                      className="handlemoreaboutskill"
                     >
-                      {data?.shortDescription?.slice(0, 90)}
-                    </div>
-                    <div className="flexlastactiveb">
-                      <div></div>
-                      <div style={{ color: "#00000090" }}>
-                        Posted on Sep 12 2022
+                      <div
+                        style={{
+                          background: "white",
+                          color: "black",
+                          cursor: "pointer",
+                        }}
+                        className="handlecirclieaboutsave"
+                        onClick={() => {
+                          setarrayoffilterselected(previosfilter);
+                          handleClose();
+                        }}
+                      >
+                        Cancel
+                      </div>
+                      <div
+                        style={{ cursor: "pointer" }}
+                        className="handlecirclieaboutsave"
+                        onClick={() => {
+                          setarrayoffilterselected(previosfilter1);
+                          handleClose();
+                        }}
+                      >
+                        Submit
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  </Box>
+                </Modal>
+
+                {arrayoffilterselected?.length > 0 &&
+                  arrayoffilterselected?.map((filtername) => {
+                    return (
+                      <div className="filtericonboxname">{filtername}</div>
+                    );
+                  })}
+
+                <div
+                  onClick={() => setarrayoffilterselected([])}
+                  style={{ cursor: "pointer" }}
+                  className="filtericonboxname"
+                >
+                  Clear all
+                </div>
+              </div>
+            </div>
+
+            <div style={{ width: "10vw" }} className="digitalwallate"></div>
           </div>
-          {totalpages1 !== 1 ? (
+          <div className="catalogcontainerdashbaord">
+            <div
+              style={{
+                width: "100%",
+                background: "white",
+                padding: "2vw 1vw",
+                margin: "1vw 0vw",
+              }}
+            >
+              {" "}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ display: "flex" }}>
+                  <div className="taggreen">Mobile Application</div>
+                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
+                    Mobile Application
+                  </div>
+                </div>
+                <div
+                  style={{ margin: "0", height: "2.2vw" }}
+                  className="digitalwallate"
+                >
+                  <span style={{ padding: "0.6vw 1vw" }}>Chat Us</span>
+                </div>
+              </div>{" "}
+              <div
+                style={{
+                  fontWeight: "600",
+                  fontSize: "1.3vw",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginTop: "1vw",
+                  marginLeft: "1vw",
+                }}
+              >
+                Senior Product Designer (#34793)
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <span>
+                  <LocationOnOutlinedIcon
+                    style={{
+                      fontSize: "1.5vw",
+                      fontWeight: "400",
+                      margin: "0vw 1vw",
+                    }}
+                  />
+                </span>
+                <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
+                  {"Remote Kanpur"}
+                </span>
+              </div>
+              <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
+                <div style={{ marginRight: "1vw" }}>
+                  Free launcher <br /> Vasaanth David.H
+                </div>
+                <div>
+                  Contract Value <br /> $1200
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Duration <br /> 3 months
+                </div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}>Feb 12-Onwards</div>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  margin: "0.8vw 1vw",
+                  fontSize: "0.85vw",
+                  marginBottom: "0.0vw",
+                  marginRight: "2vw",
+                }}
+                className="dashboardtitilemainparabid"
+              >
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                background: "white",
+                padding: "2vw 1vw",
+                margin: "1vw 0vw",
+              }}
+            >
+              {" "}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ display: "flex" }}>
+                  <div className="taggreen">Mobile Application</div>
+                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
+                    Mobile Application
+                  </div>
+                </div>
+                <div
+                  style={{ margin: "0", height: "2.2vw" }}
+                  className="digitalwallate"
+                >
+                  <span style={{ padding: "0.6vw 1vw" }}>Chat Us</span>
+                </div>
+              </div>{" "}
+              <div
+                style={{
+                  fontWeight: "600",
+                  fontSize: "1.3vw",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginTop: "1vw",
+                  marginLeft: "1vw",
+                }}
+                onClick={() =>
+                    navigate(`/dashbaord/contractJob/29835f5f-ce82-4026-9886-23501654078e`)
+                  }
+              >
+                Senior Product Designer (#34793)
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <span>
+                  <LocationOnOutlinedIcon
+                    style={{
+                      fontSize: "1.5vw",
+                      fontWeight: "400",
+                      margin: "0vw 1vw",
+                    }}
+                  />
+                </span>
+                <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
+                  {"Remote Kanpur"}
+                </span>
+              </div>
+              <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
+                <div style={{ marginRight: "1vw" }}>
+                  Free launcher <br /> Vasaanth David.H
+                </div>
+                <div>
+                  Contract Value <br /> $1200
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Duration <br /> 3 months
+                </div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}>Feb 12-Onwards</div>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  margin: "0.8vw 1vw",
+                  fontSize: "0.85vw",
+                  marginBottom: "0.0vw",
+                  marginRight: "2vw",
+                }}
+                className="dashboardtitilemainparabid"
+              >
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                background: "white",
+                padding: "2vw 1vw",
+                margin: "1vw 0vw",
+              }}
+            >
+              {" "}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ display: "flex" }}>
+                  <div className="taggreen">Mobile Application</div>
+                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
+                    Mobile Application
+                  </div>
+                </div>
+                <div
+                  style={{ margin: "0", height: "2.2vw" }}
+                  className="digitalwallate"
+                >
+                  <span style={{ padding: "0.6vw 1vw" }}>Chat Us</span>
+                </div>
+              </div>{" "}
+              <div
+                style={{
+                  fontWeight: "600",
+                  fontSize: "1.3vw",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginTop: "1vw",
+                  marginLeft: "1vw",
+                }}
+              >
+                Senior Product Designer (#34793)
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <span>
+                  <LocationOnOutlinedIcon
+                    style={{
+                      fontSize: "1.5vw",
+                      fontWeight: "400",
+                      margin: "0vw 1vw",
+                    }}
+                  />
+                </span>
+                <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
+                  {"Remote Kanpur"}
+                </span>
+              </div>
+              <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
+                <div style={{ marginRight: "1vw" }}>
+                  Free launcher <br /> Vasaanth David.H
+                </div>
+                <div>
+                  Contract Value <br /> $1200
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Duration <br /> 3 months
+                </div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}>Feb 12-Onwards</div>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  margin: "0.8vw 1vw",
+                  fontSize: "0.85vw",
+                  marginBottom: "0.0vw",
+                  marginRight: "2vw",
+                }}
+                className="dashboardtitilemainparabid"
+              >
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </div>
+            </div>
+         </div>
+          {totalpages !== 1 ? (
             <div style={{ width: "25vw" }} className="paginationbox">
               <div>
                 <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
               </div>
 
               <div
-                hidden={page1 - 4 > 0 ? false : true}
-                onClick={() => setPage1(page1 - 4)}
+                hidden={page - 4 > 0 ? false : true}
+                onClick={() => setPage(page - 4)}
               >
-                {page1 - 4}
+                {page - 4}
               </div>
               <div
-                hidden={page1 - 3 > 0 ? false : true}
-                onClick={() => setPage1(page1 - 3)}
+                hidden={page - 3 > 0 ? false : true}
+                onClick={() => setPage(page - 3)}
               >
-                {page1 - 3}
+                {page - 3}
               </div>
               <div
-                hidden={page1 - 2 > 0 ? false : true}
-                onClick={() => setPage1(page1 - 2)}
+                hidden={page - 2 > 0 ? false : true}
+                onClick={() => setPage(page - 2)}
               >
-                {page1 - 2}
+                {page - 2}
               </div>
               <div
-                hidden={page1 - 1 > 0 ? false : true}
-                onClick={() => setPage1(page1 - 1)}
+                hidden={page - 1 > 0 ? false : true}
+                onClick={() => setPage(page - 1)}
               >
-                {page1 - 1}
+                {page - 1}
               </div>
-              <div style={{ color: "#2A6599" }}>{page1}</div>
+              <div style={{ color: "#2A6599" }}>{page}</div>
               <div
-                hidden={page1 + 1 > totalpages1 ? true : false}
-                onClick={() => setPage1(page1 + 1)}
+                hidden={page + 1 > totalpages ? true : false}
+                onClick={() => setPage(page + 1)}
               >
-                {page1 + 1}
+                {page + 1}
               </div>
 
               <div>

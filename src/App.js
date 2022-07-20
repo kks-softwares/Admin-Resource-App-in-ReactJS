@@ -32,6 +32,8 @@ import AddUser from "./components/DashBoardSidebar/AddUser/AddUser";
 import EditUser from "./components/DashBoardSidebar/EditUser/EditUser";
 import Jobs from "./components/DashBoardSidebar/Jobs/Jobs";
 import AddJob from "./components/DashBoardSidebar/AddJob/AddJob";
+import Jobdetils from "./components/DashBoardSidebar/biddingproposallist/Jobdetils";
+import ContractJobdetail from "./components/DashBoardSidebar/FullContractJobdetail/ContractJobdetail";
 
 function LayoutsWithNavbar() {
   return (
@@ -42,16 +44,16 @@ function LayoutsWithNavbar() {
 }
 
 function App() {
-    const dispatch = useDispatch();
-    const { user, loggedInStatus } = useSelector((state) => state.user);
-  
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("user"));
-        console.log(user);
-      if (user) {
-        dispatch(userActions.setUser({ user }));
-      }
-    }, [loggedInStatus]);
+  const dispatch = useDispatch();
+  const { user, loggedInStatus } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    console.log(user);
+    if (user) {
+      dispatch(userActions.setUser({ user }));
+    }
+  }, [loggedInStatus]);
 
   return (
     <div className="App">
@@ -60,7 +62,13 @@ function App() {
           <Route
             path="/"
             element={
-              <ProtectedRoute auth={ JSON.parse(localStorage.getItem("user"))?.fullName ? true : false}>
+              <ProtectedRoute
+                auth={
+                  JSON.parse(localStorage.getItem("user"))?.fullName
+                    ? true
+                    : false
+                }
+              >
                 <LayoutsWithNavbar />
               </ProtectedRoute>
             }
@@ -71,7 +79,13 @@ function App() {
           <Route
             path="/dashbaord"
             element={
-              <ProtectedRoute2 auth={JSON.parse(localStorage.getItem("user"))?.fullName ? true : false}>
+              <ProtectedRoute2
+                auth={
+                  JSON.parse(localStorage.getItem("user"))?.fullName
+                    ? true
+                    : false
+                }
+              >
                 <Dashbaord />
               </ProtectedRoute2>
             }
@@ -79,8 +93,11 @@ function App() {
             <Route path="/dashbaord/users" element={<Users />} />
             <Route path="/dashbaord/blogs" element={<Blogs />} />
             <Route path="/dashbaord/addBlog" element={<Addblog />} />
-            <Route path="/dashbaord/adduser" element={<AddUser/>} />
-            <Route path="/dashbaord/edituser/:userName" element={<EditUser/>} />
+            <Route path="/dashbaord/adduser" element={<AddUser />} />
+            <Route
+              path="/dashbaord/edituser/:userName"
+              element={<EditUser />}
+            />
             <Route path="/dashbaord/editBlog/:Id" element={<Editblog />} />
             <Route path="/dashbaord/blog/:Id" element={<BlogDetail />} />
 
@@ -102,11 +119,18 @@ function App() {
             <Route path="/dashbaord/addSkill" element={<AddSkill />} />
             <Route path="/dashbaord/addExam" element={<AddExam />} />
             <Route path="/dashbaord/chat" element={<Chat />} />
-            <Route path="/dashbaord/examCondidates/:id" element={<EditCondidateDetail />} />
-              
-              <Route path="/dashbaord/jobs"   element={<Jobs/>}/>
-              <Route path="/dashbaord/addJob"   element={<AddJob/>}/>
+            <Route
+              path="/dashbaord/examCondidates/:id"
+              element={<EditCondidateDetail />}
+            />
 
+            <Route path="/dashbaord/jobs" element={<Jobs />} />
+            <Route path="/dashbaord/addJob" element={<AddJob />} />
+            <Route path="/dashbaord/jobdetail/:postid" element={<Jobdetils />} />
+            <Route
+              path="/dashbaord/contractJob/:bidingId"
+              element={<ContractJobdetail />}
+            />
           </Route>
         </Routes>
       </Router>
