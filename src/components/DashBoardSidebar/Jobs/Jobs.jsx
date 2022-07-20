@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import { SearchSharp } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
@@ -14,7 +15,9 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import imgx from "../../../assets/Dashboard/Iconly-Light-Discovery.svg";
-
+import img1 from "../../../assets/Jobs/Iconly-Light-Delete.svg";
+import img2 from "../../../assets/Jobs/Iconly-Light-Edit.svg";
+import img3 from "../../../assets/Jobs/Iconly-Light-Paper Upload.svg";
 export default function Jobs() {
   const [openx, setOpenx] = React.useState(false);
   const [anchorElx, setAnchorElx] = React.useState(null);
@@ -66,7 +69,8 @@ export default function Jobs() {
 
     axios
       .get(
-        `${API_HOST}/jobPost/newlyWorkPosted?category=${setSelectedCategory}&pageSize=3&pageNumber=${page + 1
+        `${API_HOST}/jobPost/newlyWorkPosted?category=${setSelectedCategory}&pageSize=3&pageNumber=${
+          page + 1
         }&userName=${user?.userName}`
       )
       .then((res) => {
@@ -88,7 +92,8 @@ export default function Jobs() {
 
     axios
       .get(
-        `${API_HOST}/jobPost/onGoingWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${page1 + 1
+        `${API_HOST}/jobPost/onGoingWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${
+          page1 + 1
         }&userName=${user?.userName}`
       )
       .then((res) => {
@@ -110,7 +115,8 @@ export default function Jobs() {
 
     axios
       .get(
-        `${API_HOST}/jobPost/completedWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${page3 + 1
+        `${API_HOST}/jobPost/completedWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${
+          page3 + 1
         }&userName=${user?.userName}`
       )
       .then((res) => {
@@ -132,7 +138,8 @@ export default function Jobs() {
 
     axios
       .get(
-        `${API_HOST}/jobPost/completedWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${page3 + 1
+        `${API_HOST}/jobPost/completedWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${
+          page3 + 1
         }&userName=${user?.userName}`
       )
       .then((res) => {
@@ -159,7 +166,8 @@ export default function Jobs() {
       });
     axios
       .get(
-        `${API_HOST}/jobPost/newlyWorkPosted?category=${setSelectedCategory}&pageSize=9&pageNumber=${page + 1
+        `${API_HOST}/jobPost/newlyWorkPosted?category=${setSelectedCategory}&pageSize=9&pageNumber=${
+          page + 1
         }&userName=${user?.userName}`
       )
       .then((res) => {
@@ -179,7 +187,8 @@ export default function Jobs() {
       });
     axios
       .get(
-        `${API_HOST}/jobPost/onGoingWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${page1 + 1
+        `${API_HOST}/jobPost/onGoingWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${
+          page1 + 1
         }&userName=${user?.userName}`
       )
       .then((res) => {
@@ -199,7 +208,8 @@ export default function Jobs() {
       });
     axios
       .get(
-        `${API_HOST}/jobPost/completedWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${page3 + 1
+        `${API_HOST}/jobPost/completedWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${
+          page3 + 1
         }&userName=${user?.userName}`
       )
       .then((res) => {
@@ -219,7 +229,8 @@ export default function Jobs() {
       });
     axios
       .get(
-        `${API_HOST}/jobPost/exceptionJobPost?category=${setSelectedCategory}&pageSize=9&pageNumber=${page4 + 1
+        `${API_HOST}/jobPost/exceptionJobPost?category=${setSelectedCategory}&pageSize=9&pageNumber=${
+          page4 + 1
         }&userName=${user?.userName}`
       )
       .then((res) => {
@@ -229,7 +240,7 @@ export default function Jobs() {
       });
   }, [page4, user]);
 
-  console.log("alljobingoing",alljobingoing)
+  console.log("alljobingoing", alljobingoing);
 
   return (
     <div className="BrowseWorkMain-cntainer">
@@ -240,6 +251,7 @@ export default function Jobs() {
           </span>
           <input
             type="text"
+            placeholder="Search Your Job"
             value={setSelectedCategory}
             onChange={(e) => {
               handleSearchCategory(e);
@@ -247,15 +259,15 @@ export default function Jobs() {
               setAnchorElx(e.currentTarget);
             }}
           />
-        <button
+          <button
             style={{ width: "11vw", height: "2.6vw" }}
             className="hb-button"
             onClick={() => {
               workhistorytoggle === 1
                 ? searchnewworkcreated(setSelectedCategory)
                 : workhistorytoggle === 2
-                  ? searchnewworkongoing(setSelectedCategory)
-                  : searchnewworkdone(setSelectedCategory);
+                ? searchnewworkongoing(setSelectedCategory)
+                : searchnewworkdone(setSelectedCategory);
               setOpenx(false);
               setAnchorElx(null);
             }}
@@ -270,7 +282,6 @@ export default function Jobs() {
           }}
           className="digitalwallate"
         >
-         
           <span> Add Job</span>
         </div>
       </div>
@@ -288,7 +299,7 @@ export default function Jobs() {
             setWorkhistorytoggle(1);
           }}
         >
-          New Work Created
+          Created Jobs
         </div>
         <div
           className="profileworkhistruytoggleervalue"
@@ -299,7 +310,7 @@ export default function Jobs() {
             setWorkhistorytoggle(2);
           }}
         >
-          Ongoing Work
+          Ongoing Jobs
         </div>
         <div
           className="profileworkhistruytoggleervalue"
@@ -310,7 +321,7 @@ export default function Jobs() {
             setWorkhistorytoggle(3);
           }}
         >
-          Completed work
+          Completed Jobs
         </div>
         <div
           className="profileworkhistruytoggleervalue"
@@ -321,7 +332,7 @@ export default function Jobs() {
             setWorkhistorytoggle(4);
           }}
         >
-          archive Jobs
+          archived Jobs
         </div>
         <div
           style={{
@@ -333,10 +344,10 @@ export default function Jobs() {
               workhistorytoggle === 1
                 ? "55vw"
                 : workhistorytoggle === 2
-                  ? "41vw"
-                  : workhistorytoggle === 3
-                    ? "26.5vw"
-                    : "13vw",
+                ? "41vw"
+                : workhistorytoggle === 3
+                ? "26.5vw"
+                : "13vw",
             bottom: "0.3vw",
             transitionDuration: "1s",
             borderRadius: "0.2vw",
@@ -347,94 +358,340 @@ export default function Jobs() {
       {workhistorytoggle === 1 ? (
         <>
           <div className="catalogcontainerdashbaord">
-            {alljobposted?.length > 0 &&
-              alljobposted?.map((data, index) => {
-                return (
-                  <div className="activejobpostbox">
-                    <div style={{
-                      display: "flex",
-                      alignItems: "center",
-                      marginBottom: "0.5vw",
-                    }}>
-                      <div style={{ marginLeft: "0vw" }} className="taggreen">
-                        {data?.category}{" "}
-                      </div>
-                      <div style={{ marginLeft: "1vw" }} className="taggreen1">
-                        {data?.subCategory}
-                      </div>
-                    </div>
-                    <div style={{ fontWeight:'600',fontSize:'1.3vw',display:'flex',flexWrap:'wrap'}}>
-                        {data?.workTitle}
-                      </div>
-                    <div className="activejobpistbudgetbox">
+            <div
+              style={{ width: "100%", background: "white", padding: "2vw 1vw",margin:"1vw 0vw" }}
+            >
+              {" "}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ display: "flex" }}>
+                  <div className="taggreen">Mobile Application</div>
+                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
+                    Mobile Application
+                  </div>
+                </div>
+                <div style={{ display: "flex" }}>
+                  <div>
+                    <img
+                      src={img2}
+                      alt=""
+                      style={{ fontSize: "2vw", marginRight: "2vw" }}
+                    />{" "}
+                  </div>
+                  <div>
+                    <img
+                      src={img1}
+                      alt=""
+                      style={{ fontSize: "2vw", marginRight: "2vw" }}
+                    />{" "}
+                  </div>
+                  <div>
+                    <img
+                      src={img3}
+                      alt=""
+                      style={{ fontSize: "2vw", marginRight: "2vw" }}
+                    />{" "}
+                  </div>
+                </div>
+              </div>{" "}
+              <div
+                style={{
+                  fontWeight: "600",
+                  fontSize: "1.3vw",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginTop: "1vw",
+                  marginLeft: "1vw",
+                }}
+              >
+                Senior Product Designer (#34793)
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <span>
+                  <LocationOnOutlinedIcon
+                    style={{
+                      fontSize: "1.5vw",
+                      fontWeight: "400",
+                      margin: "0vw 1vw",
+                    }}
+                  />
+                </span>
+                <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
+                  {"Remote Kanpur"}
+                </span>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  margin: "0.8vw 1vw",
+                  fontSize: "0.85vw",
+                  marginBottom: "0.0vw",
+                  marginRight:"2vw"
+                }}
+                className="dashboardtitilemainparabid"
+              >
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </div>
+              <div style={{margin:"1vw"}} className="activejobpistbudgetbox">
                       <div>
-                        <span className="createworkbox">Budget</span> 
-                        <br /> ${data?.minimumBudget} - $
-                        {data?.maximuBudget}
+                        Budget <br /> $100 - $
+                       200
                       </div>
                       <div style={{ marginRight: "1vw" }}>
-                      <span className="createworkbox">Location</span> <br />{" "}
-                        <span
-                          style={{
-                            fontSize: "0.9vw",
-                            position: "relative",
-                            bottom: "0.3vw",
-                          }}
-                        >
-                          {data?.remote ? "Remote" : data?.onSite}
-                        </span>
+                        Duration <br /> 3 month
                       </div>
-                      <div style={{}}>
-                        <span className="createworkbox">Expired On</span> <br /> 
-                        <div>07 Days</div>
+                      <div style={{ marginRight: "1vw" }}>
+                        Status <br /> Upcoming
                       </div>
+                      <div style={{ marginRight: "1vw" }}>     Expired on <br /> 02 days</div>
+                      <div style={{ marginRight: "1vw" }}></div>
+                      <div style={{ marginRight: "1vw" }}></div>
                     </div>
                     <div
-                      style={{ height: "3.3vw" }}
-                      className="descriptionactibeobbox"
-                    >
-                      <div
-                        style={{
-                          width: "21vw",
-                          overflow: "hidden",
-                          height: "2.3vw",
-                        }}
-                      >
-                        {data?.shortDescription?.slice(0, 80)}
-                      </div>
-                      <br />
-                      <span
-                        onClick={() =>
-                          navigate(`/dashbaord/jobdetail/${data?.jobPostId}`)
-                        }
-                      >
-                        more
-                      </span>
-                    </div>
-
-                    <hr />
-                    <div className="flexlastactiveb">
-                      <div>
-                        <img
-                          style={{ width: "1vw", objectFit: "contain" }}
-                          src={imgx}
-                          alt=""
-                        />{" "}
-                        Published
-                      </div>
-                      <div
-                        style={{ color: "#00000090", cursor: "pointer" }}
-                        onClick={() =>
-                          navigate(`/dashbaord/jobdetail/${data?.jobPostId}`)
-                        }
-                      >
-                        See More
+                      className="flexlastactiveb">
+                      <div  style={{ color: "#00000090" }}>posted By 44 Resources</div>
+                      <div style={{ color: "#00000090" }}>
+                        View More
                       </div>
                     </div>
+            </div>
+            <div
+              style={{ width: "100%", background: "white", padding: "2vw 1vw",margin:"1vw 0vw" }}
+            >
+              {" "}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ display: "flex" }}>
+                  <div className="taggreen">Mobile Application</div>
+                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
+                    Mobile Application
                   </div>
-                );
-              })}
-          </div>
+                </div>
+                <div style={{ display: "flex" }}>
+                  <div>
+                    <img
+                      src={img2}
+                      alt=""
+                      style={{ fontSize: "2vw", marginRight: "2vw" }}
+                    />{" "}
+                  </div>
+                  <div>
+                    <img
+                      src={img1}
+                      alt=""
+                      style={{ fontSize: "2vw", marginRight: "2vw" }}
+                    />{" "}
+                  </div>
+                  <div>
+                    <img
+                      src={img3}
+                      alt=""
+                      style={{ fontSize: "2vw", marginRight: "2vw" }}
+                    />{" "}
+                  </div>
+                </div>
+              </div>{" "}
+              <div
+                style={{
+                  fontWeight: "600",
+                  fontSize: "1.3vw",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginTop: "1vw",
+                  marginLeft: "1vw",
+                }}
+              >
+                Senior Product Designer (#34793)
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <span>
+                  <LocationOnOutlinedIcon
+                    style={{
+                      fontSize: "1.5vw",
+                      fontWeight: "400",
+                      margin: "0vw 1vw",
+                    }}
+                  />
+                </span>
+                <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
+                  {"Remote Kanpur"}
+                </span>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  margin: "0.8vw 1vw",
+                  fontSize: "0.85vw",
+                  marginBottom: "0.0vw",
+                  marginRight:"2vw"
+                }}
+                className="dashboardtitilemainparabid"
+              >
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </div>
+              <div style={{margin:"1vw"}} className="activejobpistbudgetbox">
+                      <div>
+                        Budget <br /> $100 - $
+                       200
+                      </div>
+                      <div style={{ marginRight: "1vw" }}>
+                        Duration <br /> 3 month
+                      </div>
+                      <div style={{ marginRight: "1vw" }}>
+                        Status <br /> Upcoming
+                      </div>
+                      <div style={{ marginRight: "1vw" }}>     Expired on <br /> 02 days</div>
+                      <div style={{ marginRight: "1vw" }}></div>
+                      <div style={{ marginRight: "1vw" }}></div>
+                    </div>
+                    <div
+                      className="flexlastactiveb">
+                      <div  style={{ color: "#00000090" }}>posted By 44 Resources</div>
+                      <div style={{ color: "#00000090" }}>
+                        View More
+                      </div>
+                    </div>
+            </div>
+            <div
+              style={{ width: "100%", background: "white", padding: "2vw 1vw",margin:"1vw 0vw" }}
+            >
+              {" "}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ display: "flex" }}>
+                  <div className="taggreen">Mobile Application</div>
+                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
+                    Mobile Application
+                  </div>
+                </div>
+                <div style={{ display: "flex" }}>
+                  <div>
+                    <img
+                      src={img2}
+                      alt=""
+                      style={{ fontSize: "2vw", marginRight: "2vw" }}
+                    />{" "}
+                  </div>
+                  <div>
+                    <img
+                      src={img1}
+                      alt=""
+                      style={{ fontSize: "2vw", marginRight: "2vw" }}
+                    />{" "}
+                  </div>
+                  <div>
+                    <img
+                      src={img3}
+                      alt=""
+                      style={{ fontSize: "2vw", marginRight: "2vw" }}
+                    />{" "}
+                  </div>
+                </div>
+              </div>{" "}
+              <div
+                style={{
+                  fontWeight: "600",
+                  fontSize: "1.3vw",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginTop: "1vw",
+                  marginLeft: "1vw",
+                }}
+              >
+                Senior Product Designer (#34793)
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <span>
+                  <LocationOnOutlinedIcon
+                    style={{
+                      fontSize: "1.5vw",
+                      fontWeight: "400",
+                      margin: "0vw 1vw",
+                    }}
+                  />
+                </span>
+                <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
+                  {"Remote Kanpur"}
+                </span>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  margin: "0.8vw 1vw",
+                  fontSize: "0.85vw",
+                  marginBottom: "0.0vw",
+                  marginRight:"2vw"
+                }}
+                className="dashboardtitilemainparabid"
+              >
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </div>
+              <div style={{margin:"1vw"}} className="activejobpistbudgetbox">
+                      <div>
+                        Budget <br /> $100 - $
+                       200
+                      </div>
+                      <div style={{ marginRight: "1vw" }}>
+                        Duration <br /> 3 month
+                      </div>
+                      <div style={{ marginRight: "1vw" }}>
+                        Status <br /> Upcoming
+                      </div>
+                      <div style={{ marginRight: "1vw" }}>     Expired on <br /> 02 days</div>
+                      <div style={{ marginRight: "1vw" }}></div>
+                      <div style={{ marginRight: "1vw" }}></div>
+                    </div>
+                    <div
+                      className="flexlastactiveb">
+                      <div  style={{ color: "#00000090" }}>posted By 44 Resources</div>
+                      <div style={{ color: "#00000090" }}>
+                        View More
+                      </div>
+                    </div>
+            </div>
+         </div>
           {totalpages !== 1 ? (
             <div style={{ width: "25vw" }} className="paginationbox">
               <div>
@@ -490,7 +747,7 @@ export default function Jobs() {
             {alljobingoing?.length > 0 &&
               alljobingoing?.map((data, index) => {
                 return (
-                  <div style={{ width:'100%' }} className="activejobpostbox">
+                  <div style={{ width: "100%" }} className="activejobpostbox">
                     <div
                       style={{
                         width: "100%",
@@ -536,12 +793,17 @@ export default function Jobs() {
                       <div style={{ marginRight: "1vw" }}></div>
                       <div style={{ marginRight: "1vw" }}>View Proposals</div>
                     </div>
-                    <br/>
-                    <div style={{ height: "2.8vw", fontSize: "1.2vw", color: "gray"}}>
-                        {data?.shortDescription?.slice(0, 90)}
-                      </div>
+                    <br />
                     <div
-                      className="flexlastactiveb">
+                      style={{
+                        height: "2.8vw",
+                        fontSize: "1.2vw",
+                        color: "gray",
+                      }}
+                    >
+                      {data?.shortDescription?.slice(0, 90)}
+                    </div>
+                    <div className="flexlastactiveb">
                       <div></div>
                       <div style={{ color: "#00000090" }}>
                         Posted on Sep 12 2022
@@ -610,9 +872,15 @@ export default function Jobs() {
                     style={{ padding: "1vw", background: "white" }}
                     className="workhistrybox"
                   >
-                    <div onClick={() =>
-                      navigate(`/dashbaord/completedJob/${data?.jobDoerId}`)
-                    } style={{ cursor: "pointer" }} className="workhistryboxtitle">{data?.workTitle}</div>
+                    <div
+                      onClick={() =>
+                        navigate(`/dashbaord/completedJob/${data?.jobDoerId}`)
+                      }
+                      style={{ cursor: "pointer" }}
+                      className="workhistryboxtitle"
+                    >
+                      {data?.workTitle}
+                    </div>
                     <div className="workhistryboxdate">
                       <span
                         style={{
@@ -632,8 +900,14 @@ export default function Jobs() {
                       </span>
                       Oct 4, 2020 - Nov 5, 2020
                     </div>
-                    <div style={{ width: "78vw" }} className="workhistryboxdata">
-                      <div style={{ width: "100%" }} className="descriptionactibeobbox">
+                    <div
+                      style={{ width: "78vw" }}
+                      className="workhistryboxdata"
+                    >
+                      <div
+                        style={{ width: "100%" }}
+                        className="descriptionactibeobbox"
+                      >
                         <div style={{ height: "1.8vw" }}>
                           {data?.shortDescription?.slice(0, 100)}
                         </div>
@@ -682,7 +956,9 @@ export default function Jobs() {
                       }}
                       className="workhistryboxdate"
                     >
-                      <span style={{ color: "#064C87",marginRight:'6px' }}>Client: </span>{" "}
+                      <span style={{ color: "#064C87", marginRight: "6px" }}>
+                        Client:{" "}
+                      </span>{" "}
                       {data?.workAssignedTo}
                     </div>
                     <div
@@ -752,7 +1028,6 @@ export default function Jobs() {
       {workhistorytoggle === 4 ? (
         <>
           <div className="catalogcontainerdashbaord">
-
             {alljobindone4?.length > 0 &&
               alljobindone4?.map((data, index) => {
                 return (
@@ -790,7 +1065,9 @@ export default function Jobs() {
                       <br />
                       <span
                         onClick={() =>
-                          navigate(`/dashbaord/jobdetailfornobid/${data?.jobPostId}`)
+                          navigate(
+                            `/dashbaord/jobdetailfornobid/${data?.jobPostId}`
+                          )
                         }
                       >
                         more
@@ -810,14 +1087,15 @@ export default function Jobs() {
                       <div
                         style={{ color: "#00000090", cursor: "pointer" }}
                         onClick={() =>
-                          navigate(`/dashbaord/jobdetailfornobid/${data?.jobPostId}`)
+                          navigate(
+                            `/dashbaord/jobdetailfornobid/${data?.jobPostId}`
+                          )
                         }
                       >
                         See More
                       </div>
                     </div>
                   </div>
-
                 );
               })}
           </div>
