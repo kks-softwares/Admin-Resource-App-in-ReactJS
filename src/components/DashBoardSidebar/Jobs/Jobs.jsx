@@ -16,6 +16,25 @@ import CloseIcon from "@mui/icons-material/Close";
 import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
 import Modal from "@mui/material/Modal";
 import { makeStyles } from "@material-ui/core";
+
+
+
+
+
+const style2 = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 700,
+  maxHeight: "95vh",
+  overflow: "scroll",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
 const style1 = {
   position: "absolute",
   top: "50%",
@@ -55,10 +74,6 @@ export default function Jobs() {
   const [openx, setOpenx] = React.useState(false);
   const [anchorElx, setAnchorElx] = React.useState(null);
 
-  const handleClickx = (event) => {
-    setAnchorElx(event.currentTarget);
-    setOpenx(true);
-  };
   const { user, loggedInStatus } = useSelector((state) => state.user);
   const [workhistorytoggle, setWorkhistorytoggle] = useState(1);
   const canBeOpen = openx && Boolean(anchorElx);
@@ -88,7 +103,7 @@ export default function Jobs() {
   };
 
   const [setSelectedCategory, setSetSelectedCategory] = useState("");
-  const [setsubSelectedCategory, setsubSetSelectedCategory] = useState([]);
+
   const [allcategory, setAllcategory] = useState([0]);
 
   const searchnewworkcreated = (setSelectedCategory) => {
@@ -336,6 +351,26 @@ export default function Jobs() {
   const handleClosexx = () => setOpenxx(false);
   const [previosfilterxx, setPreviosfilterxx] = useState([]);
   const [previosfilter1xx, setPreviosfilter1xx] = useState([]);
+
+  const [open2, setOpen2] = React.useState(false);
+  const handleOpen2 = () => setOpen2(true);
+  const handleClose2 = () => setOpen2(false);
+
+  const [open3, setOpen3] = React.useState(false);
+  const handleOpen3 = () => setOpen3(true);
+  const handleClose3 = () => setOpen3(false);
+  const handledeleteBlog = () => {
+    // axios
+    //   .post(`${API_HOST}/callToActionTitle/removeTitle`, {
+    //     titleId: data?.titleId,
+    //   })
+    //   .then(() => {
+    //     axios.get(`${API_HOST}/callToActionTitle/viewTitle`).then((res) => {
+    //       setAllCtitle(res?.data?.success?.data);
+    //       handleClose3()
+    //     });
+    //   });
+  };
 
   return (
     <div className="BrowseWorkMain-cntainer">
@@ -600,6 +635,111 @@ export default function Jobs() {
 
             <div style={{ width: "10vw" }} className="digitalwallate"></div>
           </div>
+          <Modal
+          open={open3}
+          onClose={handleClose3}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <div className="profiletitleandmenunav">
+              <div className="profiledetailstitle">Delete Job </div>
+              <div className="profiledetailnavmanu">
+                <div>
+                  <CloseIcon
+                    onClick={handleClose3}
+                    style={{ fontSize: "1.5vw", cursor: "pointer" }}
+                  />
+                </div>
+              </div>
+            </div>
+            <hr style={{ color: "#00000090" }} />
+
+            <div style={{ left: "0vw", width: "100%" }} className="loginfield">
+            The action will delete "Created job " From all of your profiles. <br />
+
+            Are you sure you want to delete this Created job ?
+            </div>
+
+            <hr style={{ color: "#00000090" }} />
+            <div
+              style={{ marginTop: "0.31vw" }}
+              className="handlemoreaboutskill"
+            >
+              <div
+                style={{
+                  background: "white",
+                  color: "black",
+                  cursor: "pointer",
+                }}
+                className="handlecirclieaboutsave"
+                onClick={handleClose3}
+              >
+                Cancel
+              </div>
+              <div
+                onClick={() => handledeleteBlog()}
+                style={{ cursor: "pointer" }}
+                className="handlecirclieaboutsave"
+              >
+                Delete
+              </div>
+            </div>
+          </Box>
+        </Modal>
+       <Modal
+          open={open2}
+          onClose={handleClose2}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+         <Box sx={style}>
+            <div className="profiletitleandmenunav">
+              <div className="profiledetailstitle">Delete Job </div>
+              <div className="profiledetailnavmanu">
+                <div>
+                  <CloseIcon
+                    onClick={handleClose2}
+                    style={{ fontSize: "1.5vw", cursor: "pointer" }}
+                  />
+                </div>
+              </div>
+            </div>
+            <hr style={{ color: "#00000090" }} />
+
+            <div style={{ left: "0vw", width: "100%" }} className="loginfield">
+            The action will Hide "Created job " From all of your profiles. <br />
+
+            Are you sure you want to Hide this Created job ?
+            </div>
+
+            <hr style={{ color: "#00000090" }} />
+            <div
+              style={{ marginTop: "0.31vw" }}
+              className="handlemoreaboutskill"
+            >
+              <div
+                style={{
+                  background: "white",
+                  color: "black",
+                  cursor: "pointer",
+                }}
+                className="handlecirclieaboutsave"
+                onClick={handleClose2}
+              >
+                Cancel
+              </div>
+              <div
+                onClick={() => handledeleteBlog()}
+                style={{ cursor: "pointer" }}
+                className="handlecirclieaboutsave"
+              >
+                Delete
+              </div>
+            </div>
+          </Box>
+        </Modal>
+
           <div className="catalogcontainerdashbaord">
             <div
               style={{
@@ -765,7 +905,8 @@ export default function Jobs() {
                     />{" "}
                   </div>
                   <div>
-                    <img
+
+                    <img onClick={()=>{handleOpen3()}}
                       src={img1}
                       alt=""
                       style={{ fontSize: "2vw", marginRight: "2vw" }}
@@ -773,7 +914,7 @@ export default function Jobs() {
                   </div>
                   <div>
                     <img
-                      src={img3}
+                      src={img3} onClick={()=>{handleOpen2()}}
                       alt=""
                       style={{ fontSize: "2vw", marginRight: "2vw" }}
                     />{" "}

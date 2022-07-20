@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import API_HOST from "../../../env";
-
 import img12 from "../../../assets/Landing page/Group 787.svg";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import BiddingPropasalList from "../biddingproposallist/BiddingPropasalList";
