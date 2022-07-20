@@ -102,7 +102,7 @@ const style1 = {
 export default function AddJob({
   handleClose,
   setSelectedCategory,
-  setsubSelectedCategory,
+
 }) {
   const classes = useStyles();
   const [age, setAge] = React.useState(10);
@@ -118,7 +118,7 @@ export default function AddJob({
   const handleChange3 = (event) => {
     setAge3(event.target.value);
   };
-  const [age3x, setAge3x] = React.useState(0);
+  const [age3x, setAge3x] = React.useState("Backend Doveloper");
   const handleChange3x = (event) => {
     setAge3x(event.target.value);
   };
@@ -363,11 +363,38 @@ export default function AddJob({
     const yyyy = today.getFullYear();
     return yyyy + "-" + mm + "-" + dd;
   };
+  const [settingCategory, setsettingCategory] = useState([]);
+
+  const [Category, setCategory] = useState("");
+  const [Category1, setCategory1] = useState("Backend Doveloper");
+
+  const [setsubSelectedCategory, setsetsubcategory] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${API_HOST}/category/viewCategory?categories=${Category}`)
+      .then((res) => {
+        setsettingCategory(res?.data?.success?.data?.docs);
+
+        console.log("viewCategory", res?.data?.success?.data?.docs);
+      });
+  }, [Category]);
+
+  useEffect(() => {
+    axios
+      .get(`${API_HOST}/category/viewCategory?categories=${Category1}`)
+      .then((res) => {
+        setsetsubcategory(res.data.success.data?.docs[0]?.subCategories);
+      });
+  }, [Category1]);
+
+
+
 
   return (
     <div
       style={{
-        height: "none",
+        height: "fit-content",
         justifyContent: "center",
         width: "80vw",
         paddingLeft: "3vw",
@@ -377,7 +404,7 @@ export default function AddJob({
       <div
         style={{
           overflowX: "hidden",
-
+          paddingBottom: "3vw",
           width: "70vw",
           margin: "2vw",
         }}
@@ -411,8 +438,86 @@ export default function AddJob({
           </div>
           <p style={{ color: "red" }}>{formErrors.name}</p>
           <div className="jobpodtedfieldtitile">Job Category</div>
-          <div className="jobpostfieldinputbox">
-            <input type="text" value={setSelectedCategory} disabled />
+          <div className="">
+            <Box
+              sx={{
+                background: "white",
+                border: "1px solid #7070705b",
+                height: "3.0vw",
+                width: "29vw",
+                borderRadius: "5px",
+                margin: "0.5vw 0vw",
+              }}
+              className="setting-toggler"
+            >
+              <FormControl variant="standard" fullWidth>
+                <Select
+                  className={classes.select}
+                  labelId="demo-simple-select-standard-label"
+                  id="demo-simple-select-standard"
+                  value={age3x}
+                  disableUnderline
+                  inputProps={{
+                    classes: {
+                      // root: classes.border,
+                      icon: classes.icon,
+                    },
+                  }}
+                  onChange={handleChange3x}
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        bgcolor: "white",
+
+                        "& .MuiMenuItem-root": {
+                          padding: "0vw 1vw",
+                          width: "100%vw",
+                          height: "2.5vw",
+                          fontFamily: "Poppins",
+                          fontStyle: "normal",
+                          fontWeight: "500",
+                          fontSize: "0.81vw",
+                          lineHeight: "24px",
+                          color: "#6b6b6b",
+                        },
+                      },
+                    },
+                  }}
+                >
+                  <div style={{ width: "100%" }}>
+                    <input
+                      type="text"
+                      value={Category}
+                      style={{ width: "100%" }}
+                      onChange={(e) => {
+                        setCategory(e.target.value);
+                      }}
+                    />
+                  </div>
+
+                  {settingCategory &&
+                    settingCategory?.map((code, index) => {
+                      
+                      return (
+                        <MenuItem value={code?.categories}>
+                          <div
+                            onClick={(e) => {
+                                setCategory1(code?.categories);
+                              }}
+                            style={{
+                              textAlign: "left",
+                              marginTop: "0.5vw",
+                              paddingLeft: "10px",
+                            }}
+                          >
+                            {code?.categories}
+                          </div>
+                        </MenuItem>
+                      );
+                    })}
+                </Select>
+              </FormControl>
+            </Box>
           </div>
           <div className="jobpodtedfieldtitile">Sub Category</div>
           <div className="">
@@ -835,6 +940,7 @@ export default function AddJob({
                 className="setting-toggler"
               >
                 <input
+                  style={{ width: "100%" }}
                   type="date"
                   className="input-homejobformdate"
                   name=""
@@ -880,7 +986,7 @@ export default function AddJob({
             </div>
           </div>
           <div className="jobpodtedfieldtitile">Image/Documents </div>
-          <div style={{width:"94%"}} className="fileinputbox">
+          <div style={{ width: "94%" }} className="fileinputbox">
             <label htmlFor="fileupload">
               <div>
                 <FileUploadIcon
@@ -1143,7 +1249,7 @@ export default function AddJob({
           {cateaddcheckbox1 ? (
             <div>
               <div
-                style={{ left: "0vw", width: "40vw", marginLeft: "0" }}
+                style={{ left: "0vw", width: "41vw", marginLeft: "0" }}
                 className="loginfield"
                 onClick={handleClickx3}
               >
@@ -1195,7 +1301,7 @@ export default function AddJob({
                       p: 1,
                       pl: 1,
                       ml: 1,
-                      width: "20vw",
+                      width: "40vw",
                       position: "fixed",
                       background: "white",
                       zIndex: "10",
@@ -1224,7 +1330,7 @@ export default function AddJob({
                       p: 2.5,
                       pl: 1,
                       ml: 1,
-                      width: "20vw",
+                      width: "40vw",
                       cursor: "pointer",
                     }}
                   ></Typography>
@@ -1236,7 +1342,7 @@ export default function AddJob({
                           p: 0.51,
                           pl: 1,
                           ml: 1,
-                          width: "20vw",
+                          width: "40vw",
                           cursor: "pointer",
                         }}
                         onClick={() => {
