@@ -18,6 +18,46 @@ import imgx from "../../../assets/Dashboard/Iconly-Light-Discovery.svg";
 import img1 from "../../../assets/Jobs/Iconly-Light-Delete.svg";
 import img2 from "../../../assets/Jobs/Iconly-Light-Edit.svg";
 import img3 from "../../../assets/Jobs/Iconly-Light-Paper Upload.svg";
+import CloseIcon from "@mui/icons-material/Close";
+import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
+import Modal from "@mui/material/Modal";
+import { makeStyles } from "@material-ui/core";
+
+const style1 = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "50vw",
+  bgcolor: "background.paper",
+  border: "2px solid white",
+  boxShadow: 24,
+  p: 4,
+};
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 700,
+  maxHeight: "95vh",
+  overflow: "scroll",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+const useStyles = makeStyles((theme) => ({
+  input: {
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "500",
+    fontSize: "0.91vw",
+    color: "#263238",
+    border: "yellow !important",
+  },
+}));
 export default function Jobs() {
   const [openx, setOpenx] = React.useState(false);
   const [anchorElx, setAnchorElx] = React.useState(null);
@@ -242,6 +282,38 @@ export default function Jobs() {
 
   console.log("alljobingoing", alljobingoing);
 
+  const [arrayoffilters, setArrayoffilters] = useState([
+    {
+      filternameName: "Categories",
+      filters: [
+        "Digital Marketing",
+        "Data Analystics",
+        "Graphic Design",
+        "Communication",
+      ],
+    },
+    {
+      filternameName: "Posted on",
+      filters: ["7 days ago", "15 days ago", "30 days ago", "45 + Days ago"],
+    },
+    {
+      filternameName: "Bidding Amount",
+      filters: ["$10-$100", "$100-$500", "$500-$1000", "$1000+"],
+    },
+    {
+      filternameName: "Duration",
+      filters: ["1 Month", "2 Month", "3 Month", "4 Month"],
+    },
+  ]);
+
+  const [arrayoffilterselected, setarrayoffilterselected] = useState([]);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [previosfilter, setPreviosfilter] = useState([]);
+  const [previosfilter1, setPreviosfilter1] = useState([]);
+  const [allusers, setAllusers] = useState([]);
+
   return (
     <div className="BrowseWorkMain-cntainer">
       <div className="searchboxcontainer">
@@ -357,9 +429,164 @@ export default function Jobs() {
 
       {workhistorytoggle === 1 ? (
         <>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <div>
+              <div style={{ flexWrap: "wrap" }} className="filterboxflex">
+                <div
+                  onClick={() => {
+                    handleOpen();
+                    setPreviosfilter([...arrayoffilterselected]);
+                    setPreviosfilter1([...arrayoffilterselected]);
+                  }}
+                  className="filtericonbox"
+                >
+                  <img src={imgfilter} alt="" />
+                </div>
+
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style1}>
+                    <div className="profiletitleandmenunav">
+                      <div className="profiledetailstitle">Add Filters</div>
+                      <div className="profiledetailnavmanu">
+                        <div>
+                          <CloseIcon
+                            onClick={handleClose}
+                            style={{ fontSize: "1.5vw" }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <hr style={{ color: "#00000090" }} />
+
+                    {arrayoffilters?.map((data, index) => {
+                      return (
+                        <div>
+                          <div
+                            style={{ fontSize: "1.2vw" }}
+                            className="profiledetailstitle"
+                          >
+                            {data?.filternameName}
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              flexWrap: "wrap",
+                            }}
+                          >
+                            {data?.filters?.map((data1, index) => {
+                              return (
+                                <div
+                                  onClick={() => {
+                                    if (previosfilter1.indexOf(data1) > -1) {
+                                      setPreviosfilter1([
+                                        ...previosfilter1.slice(
+                                          0,
+                                          previosfilter1.indexOf(data1)
+                                        ),
+                                        ...previosfilter1.slice(
+                                          previosfilter1.indexOf(data1) + 1,
+                                          previosfilter1.length
+                                        ),
+                                      ]);
+                                    } else {
+                                      setPreviosfilter1([
+                                        ...previosfilter1,
+                                        data1,
+                                      ]);
+                                    }
+                                  }}
+                                  style={{
+                                    background: previosfilter1.includes(data1)
+                                      ? "#064C8720"
+                                      : "",
+                                    cursor: "pointer",
+                                  }}
+                                  className="filterboxnameskill"
+                                >
+                                  {data1}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+
+                    <hr style={{ color: "#00000090" }} />
+                    <div
+                      style={{ marginTop: "0.31vw" }}
+                      className="handlemoreaboutskill"
+                    >
+                      <div
+                        style={{
+                          background: "white",
+                          color: "black",
+                          cursor: "pointer",
+                        }}
+                        className="handlecirclieaboutsave"
+                        onClick={() => {
+                          setarrayoffilterselected(previosfilter);
+                          handleClose();
+                        }}
+                      >
+                        Cancel
+                      </div>
+                      <div
+                        style={{ cursor: "pointer" }}
+                        className="handlecirclieaboutsave"
+                        onClick={() => {
+                          setarrayoffilterselected(previosfilter1);
+                          handleClose();
+                        }}
+                      >
+                        Submit
+                      </div>
+                    </div>
+                  </Box>
+                </Modal>
+
+                {arrayoffilterselected?.length > 0 &&
+                  arrayoffilterselected?.map((filtername) => {
+                    return (
+                      <div className="filtericonboxname">{filtername}</div>
+                    );
+                  })}
+
+                <div
+                  onClick={() => setarrayoffilterselected([])}
+                  style={{ cursor: "pointer" }}
+                  className="filtericonboxname"
+                >
+                  Clear all
+                </div>
+              </div>
+            </div>
+
+            <div style={{ width: "10vw" }} className="digitalwallate">
+             
+            </div>
+          </div>
           <div className="catalogcontainerdashbaord">
             <div
-              style={{ width: "100%", background: "white", padding: "2vw 1vw",margin:"1vw 0vw" }}
+              style={{
+                width: "100%",
+                background: "white",
+                padding: "2vw 1vw",
+                margin: "1vw 0vw",
+              }}
             >
               {" "}
               <div
@@ -431,7 +658,7 @@ export default function Jobs() {
                   margin: "0.8vw 1vw",
                   fontSize: "0.85vw",
                   marginBottom: "0.0vw",
-                  marginRight:"2vw"
+                  marginRight: "2vw",
                 }}
                 className="dashboardtitilemainparabid"
               >
@@ -446,31 +673,35 @@ export default function Jobs() {
                 publishing software like Aldus PageMaker including versions of
                 Lorem Ipsum.
               </div>
-              <div style={{margin:"1vw"}} className="activejobpistbudgetbox">
-                      <div>
-                        Budget <br /> $100 - $
-                       200
-                      </div>
-                      <div style={{ marginRight: "1vw" }}>
-                        Duration <br /> 3 month
-                      </div>
-                      <div style={{ marginRight: "1vw" }}>
-                        Status <br /> Upcoming
-                      </div>
-                      <div style={{ marginRight: "1vw" }}>     Expired on <br /> 02 days</div>
-                      <div style={{ marginRight: "1vw" }}></div>
-                      <div style={{ marginRight: "1vw" }}></div>
-                    </div>
-                    <div
-                      className="flexlastactiveb">
-                      <div  style={{ color: "#00000090" }}>posted By 44 Resources</div>
-                      <div style={{ color: "#00000090" }}>
-                        View More
-                      </div>
-                    </div>
+              <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
+                <div>
+                  Budget <br /> $100 - $ 200
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Duration <br /> 3 month
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Status <br /> Upcoming
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  {" "}
+                  Expired on <br /> 02 days
+                </div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}></div>
+              </div>
+              <div className="flexlastactiveb">
+                <div style={{ color: "#00000090" }}>posted By 44 Resources</div>
+                <div style={{ color: "#00000090" }}>View More</div>
+              </div>
             </div>
             <div
-              style={{ width: "100%", background: "white", padding: "2vw 1vw",margin:"1vw 0vw" }}
+              style={{
+                width: "100%",
+                background: "white",
+                padding: "2vw 1vw",
+                margin: "1vw 0vw",
+              }}
             >
               {" "}
               <div
@@ -542,7 +773,7 @@ export default function Jobs() {
                   margin: "0.8vw 1vw",
                   fontSize: "0.85vw",
                   marginBottom: "0.0vw",
-                  marginRight:"2vw"
+                  marginRight: "2vw",
                 }}
                 className="dashboardtitilemainparabid"
               >
@@ -557,31 +788,35 @@ export default function Jobs() {
                 publishing software like Aldus PageMaker including versions of
                 Lorem Ipsum.
               </div>
-              <div style={{margin:"1vw"}} className="activejobpistbudgetbox">
-                      <div>
-                        Budget <br /> $100 - $
-                       200
-                      </div>
-                      <div style={{ marginRight: "1vw" }}>
-                        Duration <br /> 3 month
-                      </div>
-                      <div style={{ marginRight: "1vw" }}>
-                        Status <br /> Upcoming
-                      </div>
-                      <div style={{ marginRight: "1vw" }}>     Expired on <br /> 02 days</div>
-                      <div style={{ marginRight: "1vw" }}></div>
-                      <div style={{ marginRight: "1vw" }}></div>
-                    </div>
-                    <div
-                      className="flexlastactiveb">
-                      <div  style={{ color: "#00000090" }}>posted By 44 Resources</div>
-                      <div style={{ color: "#00000090" }}>
-                        View More
-                      </div>
-                    </div>
+              <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
+                <div>
+                  Budget <br /> $100 - $ 200
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Duration <br /> 3 month
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Status <br /> Upcoming
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  {" "}
+                  Expired on <br /> 02 days
+                </div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}></div>
+              </div>
+              <div className="flexlastactiveb">
+                <div style={{ color: "#00000090" }}>posted By 44 Resources</div>
+                <div style={{ color: "#00000090" }}>View More</div>
+              </div>
             </div>
             <div
-              style={{ width: "100%", background: "white", padding: "2vw 1vw",margin:"1vw 0vw" }}
+              style={{
+                width: "100%",
+                background: "white",
+                padding: "2vw 1vw",
+                margin: "1vw 0vw",
+              }}
             >
               {" "}
               <div
@@ -653,7 +888,7 @@ export default function Jobs() {
                   margin: "0.8vw 1vw",
                   fontSize: "0.85vw",
                   marginBottom: "0.0vw",
-                  marginRight:"2vw"
+                  marginRight: "2vw",
                 }}
                 className="dashboardtitilemainparabid"
               >
@@ -668,30 +903,29 @@ export default function Jobs() {
                 publishing software like Aldus PageMaker including versions of
                 Lorem Ipsum.
               </div>
-              <div style={{margin:"1vw"}} className="activejobpistbudgetbox">
-                      <div>
-                        Budget <br /> $100 - $
-                       200
-                      </div>
-                      <div style={{ marginRight: "1vw" }}>
-                        Duration <br /> 3 month
-                      </div>
-                      <div style={{ marginRight: "1vw" }}>
-                        Status <br /> Upcoming
-                      </div>
-                      <div style={{ marginRight: "1vw" }}>     Expired on <br /> 02 days</div>
-                      <div style={{ marginRight: "1vw" }}></div>
-                      <div style={{ marginRight: "1vw" }}></div>
-                    </div>
-                    <div
-                      className="flexlastactiveb">
-                      <div  style={{ color: "#00000090" }}>posted By 44 Resources</div>
-                      <div style={{ color: "#00000090" }}>
-                        View More
-                      </div>
-                    </div>
+              <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
+                <div>
+                  Budget <br /> $100 - $ 200
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Duration <br /> 3 month
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  Status <br /> Upcoming
+                </div>
+                <div style={{ marginRight: "1vw" }}>
+                  {" "}
+                  Expired on <br /> 02 days
+                </div>
+                <div style={{ marginRight: "1vw" }}></div>
+                <div style={{ marginRight: "1vw" }}></div>
+              </div>
+              <div className="flexlastactiveb">
+                <div style={{ color: "#00000090" }}>posted By 44 Resources</div>
+                <div style={{ color: "#00000090" }}>View More</div>
+              </div>
             </div>
-         </div>
+          </div>
           {totalpages !== 1 ? (
             <div style={{ width: "25vw" }} className="paginationbox">
               <div>
