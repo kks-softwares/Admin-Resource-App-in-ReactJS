@@ -1,0 +1,43 @@
+.css-1mpuel2-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper
+  .MuiMenuItem-root {
+  width: 100% !important;
+}
+.imgboxofrewardpostlogo {
+  width: 30vw;
+  height: 20vw;
+  margin: 2vw auto;
+}
+.imgboxofrewardpostlogo img {
+  width: 30vw;
+  height: 20vw;
+  object-fit: contain;
+}
+.rewardtiitle500 {
+  margin: 1vw auto;
+  font-size: 1.7vw;
+  font-family: Poppins;
+  line-height: 2.5vw;
+  font-weight: 500;
+  color: #064c87;
+}
+.rewardsubtiitle500 {
+  margin: 1vw auto;
+  font-size: 1.2vw;
+  font-family: Poppins;
+  font-weight: 500;
+}
+.buttonbox500reward {
+  height: 3.5vw;
+  width: 30vw;
+  margin: 1.5vw auto;
+  font-size: 1.4vw;
+  font-family: Poppins;
+  text-align: center;
+  font-weight: 500;
+  color: #064c87;
+  border: 1px solid #064c87;
+  border-radius: 6px;
+  line-height: 3.5vw;
+  
+
+}

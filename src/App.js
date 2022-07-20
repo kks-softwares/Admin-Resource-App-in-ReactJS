@@ -30,6 +30,8 @@ import { useEffect } from "react";
 import { userActions } from "./store/userSlice";
 import AddUser from "./components/DashBoardSidebar/AddUser/AddUser";
 import EditUser from "./components/DashBoardSidebar/EditUser/EditUser";
+import Jobs from "./components/DashBoardSidebar/Jobs/Jobs";
+import AddJob from "./components/DashBoardSidebar/AddJob/AddJob";
 
 function LayoutsWithNavbar() {
   return (
@@ -101,6 +103,10 @@ function App() {
             <Route path="/dashbaord/addExam" element={<AddExam />} />
             <Route path="/dashbaord/chat" element={<Chat />} />
             <Route path="/dashbaord/examCondidates/:id" element={<EditCondidateDetail />} />
+              
+              <Route path="/dashbaord/jobs"   element={<Jobs/>}/>
+              <Route path="/dashbaord/addJob"   element={<AddJob/>}/>
+
           </Route>
         </Routes>
       </Router>
