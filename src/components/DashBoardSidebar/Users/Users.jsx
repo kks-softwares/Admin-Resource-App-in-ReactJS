@@ -13,6 +13,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
 import Modal from "@mui/material/Modal";
 import Skillpopup from "./Skillpopup";
+import Skillpopup1 from "./Skillpopup1";
 
 const style = {
   position: "absolute",
@@ -103,6 +104,8 @@ export default function Users() {
         });
     }
   }, [page, setSelectedCategory]);
+
+  const [togglrbar, setTogglrbar] = useState(1);
 
   return (
     <div className="BrowseWorkMain-cntainer">
@@ -301,12 +304,49 @@ export default function Users() {
       </div>
 
       <div
-        style={{ margin: "0vw 0vw", padding: "0", marginBottom: "2vw" }}
-        className="navoftableblogs"
+        style={{ position: "relative", right: "1vw",bottom:"1vw" }}
+        className="profileworkhistruytoggleer"
       >
-        List of Users
+        <div
+          onClick={() => {
+            setTogglrbar(1);
+          }}
+          className="profileworkhistruytoggleervalue"
+          style={{
+            textAlign: "center",
+            width: "8vw",
+          }}
+        >
+     All  Users
+        </div>
+        <div
+          onClick={() => {
+            setTogglrbar(2);
+          }}
+          className="profileworkhistruytoggleervalue"
+          style={{
+            textAlign: "center",
+            width: "11vw",
+          }}
+        >
+         Admin Users
+        </div>
+
+        <div
+          style={{
+            color: "#064C87",
+            borderBottom: "0.3vw solid #064C87",
+            width: "9vw",
+            position: "relative",
+            right: togglrbar === 1 ? "22.5vw" : "10.5vw",
+            bottom: "0.0vw",
+            transitionDuration: "1s",
+            borderRadius: "0.2vw",
+          }}
+        ></div>
       </div>
-      <div>
+  
+  { togglrbar===1 &&   <div>
         <div
           style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
           className="navoftableblogs"
@@ -370,6 +410,73 @@ export default function Users() {
           ""
         )}
       </div>
-    </div>
+   } 
+  { togglrbar===2 &&   <div>
+        <div
+          style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
+          className="navoftableblogs"
+        >
+          <div style={{ width: "5vw" }}>Id</div>
+          <div style={{ width: "7vw" }}> </div>
+          <div style={{ width: "12vw" }}>Name</div>
+          <div style={{ width: "12vw" }}>category</div>
+          <div style={{ width: "14vw" }}>Designation</div>
+          <div style={{ width: "19vw" }}>PassWord</div>
+          <div style={{ width: "8vw" }}>Joined on</div>
+          <div style={{ width: "3vw" }}></div>
+        </div>
+        {allusers?.length > 0 &&
+          allusers?.map((data, index) => {
+            return <Skillpopup1 data={data} index={index} page={page} />;
+          })}
+
+        {totalpages !== 1 ? (
+          <div style={{ width: "25vw" }} className="paginationbox">
+            <div>
+              <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
+            </div>
+
+            <div
+              hidden={page - 4 > 0 ? false : true}
+              onClick={() => setPage(page - 4)}
+            >
+              {page - 4}
+            </div>
+            <div
+              hidden={page - 3 > 0 ? false : true}
+              onClick={() => setPage(page - 3)}
+            >
+              {page - 3}
+            </div>
+            <div
+              hidden={page - 2 > 0 ? false : true}
+              onClick={() => setPage(page - 2)}
+            >
+              {page - 2}
+            </div>
+            <div
+              hidden={page - 1 > 0 ? false : true}
+              onClick={() => setPage(page - 1)}
+            >
+              {page - 1}
+            </div>
+            <div style={{ color: "#2A6599" }}>{page}</div>
+            <div
+              hidden={page + 1 > totalpages ? true : false}
+              onClick={() => setPage(page + 1)}
+            >
+              {page + 1}
+            </div>
+
+            <div>
+              <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+   } 
+   </div>
   );
 }
