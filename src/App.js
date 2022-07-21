@@ -35,6 +35,9 @@ import AddJob from "./components/DashBoardSidebar/AddJob/AddJob";
 import Jobdetils from "./components/DashBoardSidebar/biddingproposallist/Jobdetils";
 import ContractJobdetail from "./components/DashBoardSidebar/FullContractJobdetail/ContractJobdetail";
 import CompletedJobPage from "./components/DashBoardSidebar/CompletedJobPage/CompletedJobPage";
+import Employee from "./components/DashBoardSidebar/Employee/Employee";
+import AddEmployee from "./components/DashBoardSidebar/AddEmployee/AddEmployee";
+import EmployeeDetail from "./components/DashBoardSidebar/EmployeeDetail/EmployeeDetail";
 
 function LayoutsWithNavbar() {
   return (
@@ -106,6 +109,10 @@ function App() {
               path="/dashbaord/:userName/:type"
               element={<UserFullDetails />}
             />
+            <Route
+              path="/dashbaord/employee/:employeeName/:type"
+              element={<EmployeeDetail />}
+            />
 
             <Route
               path="/dashbaord/skillCenter/:type"
@@ -127,7 +134,10 @@ function App() {
 
             <Route path="/dashbaord/jobs" element={<Jobs />} />
             <Route path="/dashbaord/addJob" element={<AddJob />} />
-            <Route path="/dashbaord/jobdetail/:postid" element={<Jobdetils />} />
+            <Route
+              path="/dashbaord/jobdetail/:postid"
+              element={<Jobdetils />}
+            />
             <Route
               path="/dashbaord/contractJob/:bidingId"
               element={<ContractJobdetail />}
@@ -136,6 +146,8 @@ function App() {
               path="/dashbaord/completedJob/:postid"
               element={<CompletedJobPage />}
             />
+            <Route path="/dashbaord/employee" element={<Employee />} />
+            <Route path="/dashbaord/addemployee" element={<AddEmployee />} />
           </Route>
         </Routes>
       </Router>

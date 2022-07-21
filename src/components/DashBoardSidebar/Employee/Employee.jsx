@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import "./appliedjob.css";
+
 import { SearchSharp } from "@mui/icons-material";
 import Box from "@mui/material/Box";
-import "./skill.css";
-import "./blog.css";
+
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import API_HOST from "../../../env";
@@ -13,7 +12,8 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
 import Modal from "@mui/material/Modal";
 import Skillpopup from "./Skillpopup";
-import Skillpopup1 from "./Skillpopup1";
+// import Skillpopup from "./Skillpopup";
+// import Skillpopup1 from "./Skillpopup1";
 
 const style = {
   position: "absolute",
@@ -26,7 +26,7 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-export default function Users() {
+export default function Employee() {
   const [openx, setOpenx] = React.useState(false);
   const [anchorElx, setAnchorElx] = React.useState(null);
   const canBeOpen = openx && Boolean(anchorElx);
@@ -116,7 +116,7 @@ export default function Users() {
           </span>
           <input
             type="text"
-            placeholder="search Users"
+            placeholder="search Employee"
             value={setSelectedCategory}
             onChange={(e) => {
               setSetSelectedCategory(e.target.value);
@@ -132,17 +132,15 @@ export default function Users() {
 
         <div
           onClick={() => {
-            navigate("/dashbaord/addUser");
+            navigate("/dashbaord/addemployee");
           }}
           className="digitalwallate"
         >
-          <span style={{ color: "#064C87" }}>Add New User</span>
+          <span style={{ color: "#064C87" }}>Add New Employee</span>
         </div>
       </div>
-
-   
       <div
-        style={{ position: "relative", right: "1vw",top:"1vw" }}
+        style={{ position: "relative", right: "1vw", top: "1vw" }}
         className="profileworkhistruytoggleer"
       >
         <div
@@ -151,39 +149,13 @@ export default function Users() {
           }}
           className="profileworkhistruytoggleervalue"
           style={{
-            textAlign: "center",
-            width: "8vw",
+            textAlign: "left",
+            width: "15vw",
           }}
         >
-     All  Users
+          List of Employee
         </div>
-        <div
-          onClick={() => {
-            setTogglrbar(2);
-          }}
-          className="profileworkhistruytoggleervalue"
-          style={{
-            textAlign: "center",
-            width: "11vw",
-          }}
-        >
-         Admin Users
-        </div>
-
-        <div
-          style={{
-            color: "#064C87",
-            borderBottom: "0.3vw solid #064C87",
-            width: "9vw",
-            position: "relative",
-            right: togglrbar === 1 ? "22.5vw" : "10.5vw",
-            bottom: "0.0vw",
-            transitionDuration: "1s",
-            borderRadius: "0.2vw",
-          }}
-        ></div>
       </div>
-  
       <div>
         <div style={{ flexWrap: "wrap" }} className="filterboxflex">
           <div
@@ -316,19 +288,20 @@ export default function Users() {
           </div>
         </div>
       </div>
- 
-  { togglrbar===1 &&   <div>
+
+      <div>
         <div
           style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
           className="navoftableblogs"
         >
-          <div style={{ width: "6vw" }}>Id</div>
+          <div style={{ width: "6vw" }}>Emp Id</div>
           <div style={{ width: "9vw" }}> </div>
-          <div style={{ width: "15vw" }}>Name</div>
-          <div style={{ width: "15vw" }}>category</div>
-          <div style={{ width: "15vw" }}>Designation</div>
+          <div style={{ width: "14vw" }}>Name</div>
+          <div style={{ width: "14vw" }}>Location</div>
+          <div style={{ width: "14vw" }}>Designation</div>
           <div style={{ width: "12vw" }}>Joined on</div>
-          <div style={{ width: "6vw" }}></div>
+          <div style={{ width: "4vw" }}></div>
+          <div style={{ width: "4vw" }}></div>
         </div>
         {allusers?.length > 0 &&
           allusers?.map((data, index) => {
@@ -381,73 +354,6 @@ export default function Users() {
           ""
         )}
       </div>
-   } 
-  { togglrbar===2 &&   <div>
-        <div
-          style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
-          className="navoftableblogs"
-        >
-          <div style={{ width: "5vw" }}>Id</div>
-          <div style={{ width: "7vw" }}> </div>
-          <div style={{ width: "12vw" }}>Name</div>
-          <div style={{ width: "12vw" }}>category</div>
-          <div style={{ width: "14vw" }}>Designation</div>
-          <div style={{ width: "19vw" }}>PassWord</div>
-          <div style={{ width: "8vw" }}>Joined on</div>
-          <div style={{ width: "3vw" }}></div>
-        </div>
-        {allusers?.length > 0 &&
-          allusers?.map((data, index) => {
-            return <Skillpopup1 data={data} index={index} page={page} />;
-          })}
-
-        {totalpages !== 1 ? (
-          <div style={{ width: "25vw" }} className="paginationbox">
-            <div>
-              <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
-            </div>
-
-            <div
-              hidden={page - 4 > 0 ? false : true}
-              onClick={() => setPage(page - 4)}
-            >
-              {page - 4}
-            </div>
-            <div
-              hidden={page - 3 > 0 ? false : true}
-              onClick={() => setPage(page - 3)}
-            >
-              {page - 3}
-            </div>
-            <div
-              hidden={page - 2 > 0 ? false : true}
-              onClick={() => setPage(page - 2)}
-            >
-              {page - 2}
-            </div>
-            <div
-              hidden={page - 1 > 0 ? false : true}
-              onClick={() => setPage(page - 1)}
-            >
-              {page - 1}
-            </div>
-            <div style={{ color: "#2A6599" }}>{page}</div>
-            <div
-              hidden={page + 1 > totalpages ? true : false}
-              onClick={() => setPage(page + 1)}
-            >
-              {page + 1}
-            </div>
-
-            <div>
-              <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
-   } 
-   </div>
+    </div>
   );
 }

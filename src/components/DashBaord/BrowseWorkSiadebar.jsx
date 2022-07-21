@@ -25,7 +25,7 @@ export default function BrowseWorkSiadebar() {
         </div>
       </Link>
 
-      <Link to="/dashbaord/Employee">
+      <Link to="/dashbaord/employee">
         <div className="firstsidebarmenu">
           <img src={img8} alt="" />
           Employee
