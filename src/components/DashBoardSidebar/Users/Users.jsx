@@ -140,36 +140,50 @@ export default function Users() {
         </div>
       </div>
 
+   
       <div
-        style={{ position: "relative", right: "1vw", top: "1vw" }}
+        style={{ position: "relative", right: "1vw",top:"1vw" }}
         className="profileworkhistruytoggleer"
       >
         <div
+          onClick={() => {
+            setTogglrbar(1);
+          }}
           className="profileworkhistruytoggleervalue"
           style={{
-            textAlign: "left",
-          }}
-          onClick={() => {
-            setWorkhistorytoggle(1);
+            textAlign: "center",
+            width: "8vw",
           }}
         >
-          List of Users
+     All  Users
+        </div>
+        <div
+          onClick={() => {
+            setTogglrbar(2);
+          }}
+          className="profileworkhistruytoggleervalue"
+          style={{
+            textAlign: "center",
+            width: "11vw",
+          }}
+        >
+         Admin Users
         </div>
 
         <div
           style={{
             color: "#064C87",
             borderBottom: "0.3vw solid #064C87",
-            width: "7vw",
+            width: "9vw",
             position: "relative",
-            right: "13vw",
+            right: togglrbar === 1 ? "22.5vw" : "10.5vw",
             bottom: "0.0vw",
             transitionDuration: "1s",
             borderRadius: "0.2vw",
           }}
         ></div>
       </div>
-
+  
       <div>
         <div style={{ flexWrap: "wrap" }} className="filterboxflex">
           <div
@@ -303,49 +317,6 @@ export default function Users() {
         </div>
       </div>
 
-      <div
-        style={{ position: "relative", right: "1vw",bottom:"1vw" }}
-        className="profileworkhistruytoggleer"
-      >
-        <div
-          onClick={() => {
-            setTogglrbar(1);
-          }}
-          className="profileworkhistruytoggleervalue"
-          style={{
-            textAlign: "center",
-            width: "8vw",
-          }}
-        >
-     All  Users
-        </div>
-        <div
-          onClick={() => {
-            setTogglrbar(2);
-          }}
-          className="profileworkhistruytoggleervalue"
-          style={{
-            textAlign: "center",
-            width: "11vw",
-          }}
-        >
-         Admin Users
-        </div>
-
-        <div
-          style={{
-            color: "#064C87",
-            borderBottom: "0.3vw solid #064C87",
-            width: "9vw",
-            position: "relative",
-            right: togglrbar === 1 ? "22.5vw" : "10.5vw",
-            bottom: "0.0vw",
-            transitionDuration: "1s",
-            borderRadius: "0.2vw",
-          }}
-        ></div>
-      </div>
-  
   { togglrbar===1 &&   <div>
         <div
           style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
