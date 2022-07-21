@@ -765,7 +765,7 @@ export default function AddJob({
 
           <div className="jobpodtedfieldtitile">Budget *</div>
           <div className="homjobpost-popbudegt">
-            <div className="min-maxhomejob">min</div>
+            <div  className="min-maxhomejob">min</div>
             <div className="">
               <Box
                 sx={{
@@ -798,13 +798,13 @@ export default function AddJob({
 
                           "& .MuiMenuItem-root": {
                             padding: "0.1vw 2vw",
-                            width: "10vw",
+                            width: "100%",
                             height: "2vw",
                             fontFamily: "Poppins",
                             fontStyle: "normal",
                             fontWeight: "500",
                             fontSize: "0.81vw",
-                            lineHeight: "24px",
+                            lineHeight: "1vw",
                             color: "#6b6b6b",
                           },
                         },
@@ -878,7 +878,7 @@ export default function AddJob({
 
                           "& .MuiMenuItem-root": {
                             padding: "0.1vw 2vw",
-                            width: "10vw",
+                            width: "100%",
                             height: "2vw",
                             fontFamily: "Poppins",
                             fontStyle: "normal",
@@ -986,7 +986,7 @@ export default function AddJob({
             </div>
           </div>
           <div className="jobpodtedfieldtitile">Image/Documents </div>
-          <div style={{ width: "94%" }} className="fileinputbox">
+          <div style={{ width: "95%",marginLeft:"0vw" }} className="fileinputbox">
             <label htmlFor="fileupload">
               <div>
                 <FileUploadIcon
@@ -1006,7 +1006,7 @@ export default function AddJob({
                   setFile(e.target.files[0]);
                 }}
               />
-              <div className="min-maxhomejob" style={{ textAlign: "center" }}>
+              <div style={{width:"20vw",textAlign: "center"}} className="min-maxhomejob" >
                 Drag and Drop or Browse to upload
               </div>
             </label>

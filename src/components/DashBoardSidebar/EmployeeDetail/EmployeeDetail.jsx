@@ -29,7 +29,7 @@ export default function EmployeeDetail() {
     } else if (type === "Bank Details") {
       setWorkhistorytoggle(5);
       setWorkhistorytoggle1(5);
-    } else if (type === "Documents") {
+    } else if (type === "Document") {
       setWorkhistorytoggle(6);
       setWorkhistorytoggle1(6);
     } else {
