@@ -149,9 +149,6 @@ export default function AddEmployee({ handleClose, setSelectedCategory }) {
 
   const [erroeshow, setErroeshow] = useState(false);
 
-
-
-
   const [studyset, setstudyset] = useState("");
 
   const [anchorElx3, setAnchorElx3] = React.useState(null);
@@ -171,11 +168,6 @@ export default function AddEmployee({ handleClose, setSelectedCategory }) {
     "Computer Science3",
   ]);
   const [arrayoflongstudy, setArrayoflongstudy] = useState(arrayofstudy);
-
-
-
-
-
 
   const disablePastDate = () => {
     const today = new Date();
@@ -225,10 +217,12 @@ export default function AddEmployee({ handleClose, setSelectedCategory }) {
           paddingBottom: "3vw",
           width: "70vw",
           margin: "2vw",
+          paddingTop:"2vw",
+          marginTop:"0vw"
         }}
         className="homepostjob-right"
       >
-        <div className="jobpostedformheading">Job Posted Form Posted</div>
+        <div className="jobpostedformheading">Add a Employee</div>
 
         <div>
           <div className="jobpodtedfieldtitile">Employee id*</div>
@@ -281,366 +275,342 @@ export default function AddEmployee({ handleClose, setSelectedCategory }) {
             />
           </div>
           <p style={{ color: "red" }}>{formErrors.title}</p>
-       
-          <div className="jobpodtedfieldtitile">Budget *</div>
-          <div className="homjobpost-popbudegt">
-            <div className="min-maxhomejob">min</div>
-            <div className="">
-              <Box
-                sx={{
-                  background: "white",
-                  border: "1px solid #7070705b",
-                  height: "2.6vw",
-                  width: "24.5vw",
-                  borderRadius: "5px",
-                  margin: "0.5vw 1.5vw",
-                }}
-                className="setting-toggler"
-              >
-                <FormControl variant="standard" fullWidth>
-                  <Select
-                    className={classes.select2}
-                    labelId="demo-simple-select-standard-label"
-                    id="demo-simple-select-standard"
-                    value={age4}
-                    disableUnderline
-                    inputProps={{
-                      classes: {
-                        icon: classes.icon,
-                      },
-                    }}
-                    onChange={handleChange4x}
-                    MenuProps={{
-                      PaperProps: {
-                        sx: {
-                          bgcolor: "white",
 
-                          "& .MuiMenuItem-root": {
-                            padding: "0.1vw 2vw",
-                            width: "100%",
-                            height: "2vw",
-                            fontFamily: "Poppins",
-                            fontStyle: "normal",
-                            fontWeight: "500",
-                            fontSize: "0.81vw",
-                            lineHeight: "1vw",
-                            color: "#6b6b6b",
+        
+                 <div style={{ display: "flex", alignItems: "center", width: "98%" }}>
+            <div style={{ width: "50%" }}>
+              <div className="jobpodtedfieldtitile">Department *</div>
+              <div className="jobpostfieldinputbox">
+                <Box
+                  sx={{
+                    background: "white",
+                    border: "1px solid #7070705b",
+                    height: "3vw",
+                    width: "94%",
+                    borderRadius: "5px",
+                    padding:"0.4vw",
+                    margin: "0.5vw 0vw",
+                  }}
+                  className="setting-toggler"
+                >
+                  <FormControl variant="standard" fullWidth>
+                    <Select
+                      className={classes.select2}
+                      labelId="demo-simple-select-standard-label"
+                      id="demo-simple-select-standard"
+                      value={age4}
+                      disableUnderline
+                      inputProps={{
+                        classes: {
+                          icon: classes.icon,
+                        },
+                      }}
+                      onChange={handleChange4x}
+                      MenuProps={{
+                        PaperProps: {
+                          sx: {
+                            bgcolor: "white",
+
+                            "& .MuiMenuItem-root": {
+                              padding: "0.1vw 2vw",
+                              width: "100%",
+                              height: "2vw",
+                              fontFamily: "Poppins",
+                              fontStyle: "normal",
+                              fontWeight: "500",
+                              fontSize: "0.81vw",
+                              lineHeight: "1vw",
+                              color: "#6b6b6b",
+                            },
                           },
                         },
-                      },
-                    }}
-                  >
-                    <MenuItem onClick={() => {}} value={0} hidden>
-                      Select
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setMinBudegt(10);
                       }}
-                      value={10}
                     >
-                      $ 10
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setMinBudegt(20);
-                      }}
-                      value={20}
-                    >
-                      $ 20
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setMinBudegt(50);
-                      }}
-                      value={30}
-                    >
-                      $ 50
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
+                      <MenuItem onClick={() => {}} value={0} hidden>
+                        Select
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setMinBudegt(10);
+                        }}
+                        value={10}
+                      >
+                        $ 10
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setMinBudegt(20);
+                        }}
+                        value={20}
+                      >
+                        $ 20
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setMinBudegt(50);
+                        }}
+                        value={30}
+                      >
+                        $ 50
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+              </div>
+              <p style={{ color: "red", fontSize: "1vw" }}>
+                {validateEmail ? validateEmail : ""}
+              </p>
+              <p style={{ color: "red" }}>{formErrors.email}</p>
             </div>
-            <div style={{ marginLeft: "1vw" }} className="min-maxhomejob">
-              max
-            </div>
-            <div className="">
-              <Box
-                sx={{
-                  background: "white",
-                  border: "1px solid #7070705b",
-                  height: "2.6vw",
-                  width: "24.5vw",
-                  borderRadius: "5px",
-                  margin: "0.5vw 1.5vw",
-                }}
-                className="setting-toggler"
-              >
-                <FormControl variant="standard" fullWidth>
-                  <Select
-                    className={classes.select2}
-                    labelId="demo-simple-select-standard-label"
-                    id="demo-simple-select-standard"
-                    value={age5}
-                    disableUnderline
-                    inputProps={{
-                      classes: {
-                        // root: classes.border,
-                        icon: classes.icon,
-                      },
-                    }}
-                    onChange={handleChange5x}
-                    MenuProps={{
-                      PaperProps: {
-                        sx: {
-                          bgcolor: "white",
 
-                          "& .MuiMenuItem-root": {
-                            padding: "0.1vw 2vw",
-                            width: "100%",
-                            height: "2vw",
-                            fontFamily: "Poppins",
-                            fontStyle: "normal",
-                            fontWeight: "500",
-                            fontSize: "0.81vw",
-                            lineHeight: "24px",
-                            color: "#6b6b6b",
+            <div style={{ width: "50%" }}>
+              <div className="jobpodtedfieldtitile">Job Title *</div>
+              <div className="jobpostfieldinputbox">
+                <input
+                  type="text"
+                  style={{ width: "29.2vw" }}
+                  name="email"
+                  // onChange={(e) => {
+                  //   setEmail(e.target.value);
+                  // }}
+                  // value={email}
+                  value={formValues.email}
+                  onChange={handleChangeFormVal}
+                />
+              </div>
+              <p style={{ color: "red", fontSize: "1vw" }}>
+                {validateEmail ? validateEmail : ""}
+              </p>
+              <p style={{ color: "red" }}>{formErrors.email}</p>
+            </div>
+          </div>
+
+          <div style={{ display: "flex", alignItems: "center", width: "98%" }}>
+            <div style={{ width: "50%" }}>
+              <div className="jobpodtedfieldtitile">Date of Birth *</div>
+              <div className="jobpostfieldinputbox">
+               
+                  <input
+                    style={{ width: "100%" }}
+                    type="date"
+                    className="input-homejobformdate"
+                    name=""
+                    id=""
+                    min={disablePastDate()}
+                    max={"2025-12-31"}
+                    maxlength="4"
+                    onChange={(e) => {
+                      setDatestart(e.target.value);
+                    }}
+                  />
+        
+              </div>
+              <p style={{ color: "red", fontSize: "1vw" }}>
+                {validateEmail ? validateEmail : ""}
+              </p>
+              <p style={{ color: "red" }}>{formErrors.email}</p>
+            </div>
+
+            <div style={{ width: "50%" }}>
+              <div className="jobpodtedfieldtitile">Gender *</div>
+              <div className="jobpostfieldinputbox">
+              <Box
+                  sx={{
+                    background: "white",
+                    border: "1px solid #7070705b",
+                    height: "3vw",
+                    width: "94%",
+                    borderRadius: "5px",
+                    padding:"0.4vw",
+                    margin: "0.5vw 0vw",
+                  }}
+                  className="setting-toggler"
+                >
+                  <FormControl variant="standard" fullWidth>
+                    <Select
+                      className={classes.select2}
+                      labelId="demo-simple-select-standard-label"
+                      id="demo-simple-select-standard"
+                      value={age4}
+                      disableUnderline
+                      inputProps={{
+                        classes: {
+                          icon: classes.icon,
+                        },
+                      }}
+                      onChange={handleChange4x}
+                      MenuProps={{
+                        PaperProps: {
+                          sx: {
+                            bgcolor: "white",
+
+                            "& .MuiMenuItem-root": {
+                              padding: "0.1vw 2vw",
+                              width: "100%",
+                              height: "2vw",
+                              fontFamily: "Poppins",
+                              fontStyle: "normal",
+                              fontWeight: "500",
+                              fontSize: "0.81vw",
+                              lineHeight: "1vw",
+                              color: "#6b6b6b",
+                            },
                           },
                         },
-                      },
+                      }}
+                    >
+                      <MenuItem onClick={() => {}} value={0} hidden>
+                        Select
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setMinBudegt(10);
+                        }}
+                        value={10}
+                      >
+                        $ 10
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setMinBudegt(20);
+                        }}
+                        value={20}
+                      >
+                        $ 20
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setMinBudegt(50);
+                        }}
+                        value={30}
+                      >
+                        $ 50
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+            
+              </div>
+              <p style={{ color: "red", fontSize: "1vw" }}>
+                {validateEmail ? validateEmail : ""}
+              </p>
+              <p style={{ color: "red" }}>{formErrors.email}</p>
+            </div>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", width: "98%" }}>
+          <div style={{ width: "50%" }}>
+              <div className="jobpodtedfieldtitile">Nationality *</div>
+              <div className="jobpostfieldinputbox">
+              <Box
+                  sx={{
+                    background: "white",
+                    border: "1px solid #7070705b",
+                    height: "3vw",
+                    width: "94%",
+                    borderRadius: "5px",
+                    padding:"0.4vw",
+                    margin: "0.5vw 0vw",
+                  }}
+                  className="setting-toggler"
+                >
+                  <FormControl variant="standard" fullWidth>
+                    <Select
+                      className={classes.select2}
+                      labelId="demo-simple-select-standard-label"
+                      id="demo-simple-select-standard"
+                      value={age4}
+                      disableUnderline
+                      inputProps={{
+                        classes: {
+                          icon: classes.icon,
+                        },
+                      }}
+                      onChange={handleChange4x}
+                      MenuProps={{
+                        PaperProps: {
+                          sx: {
+                            bgcolor: "white",
+
+                            "& .MuiMenuItem-root": {
+                              padding: "0.1vw 2vw",
+                              width: "100%",
+                              height: "2vw",
+                              fontFamily: "Poppins",
+                              fontStyle: "normal",
+                              fontWeight: "500",
+                              fontSize: "0.81vw",
+                              lineHeight: "1vw",
+                              color: "#6b6b6b",
+                            },
+                          },
+                        },
+                      }}
+                    >
+                      <MenuItem onClick={() => {}} value={0} hidden>
+                        Select
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setMinBudegt(10);
+                        }}
+                        value={10}
+                      >
+                        $ 10
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setMinBudegt(20);
+                        }}
+                        value={20}
+                      >
+                        $ 20
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setMinBudegt(50);
+                        }}
+                        value={30}
+                      >
+                        $ 50
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+            
+              </div>
+              <p style={{ color: "red", fontSize: "1vw" }}>
+                {validateEmail ? validateEmail : ""}
+              </p>
+              <p style={{ color: "red" }}>{formErrors.email}</p>
+            </div>
+           <div style={{ width: "50%" }}>
+              <div className="jobpodtedfieldtitile">Joining Date *</div>
+              <div className="jobpostfieldinputbox">
+               
+                  <input
+                    style={{ width: "100%" }}
+                    type="date"
+                    className="input-homejobformdate"
+                    name=""
+                    id=""
+                    min={disablePastDate()}
+                    max={"2025-12-31"}
+                    maxlength="4"
+                    onChange={(e) => {
+                      setDatestart(e.target.value);
                     }}
-                  >
-                    <MenuItem onClick={() => {}} value={0} hidden>
-                      Select
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setMaxBudegt(100);
-                      }}
-                      value={10}
-                    >
-                      $ 100
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setMaxBudegt(200);
-                      }}
-                      value={20}
-                    >
-                      $ 200
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setMaxBudegt(500);
-                      }}
-                      value={30}
-                    >
-                      $ 500
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </div>
-          </div>
-          <div className="jobpodtedfieldtitile">Date *</div>
-          <div className="homjobpost-popbudegt">
-            <div className="min-maxhomejob">Start</div>
-            <div className="">
-              <Box
-                sx={{
-                  background: "white",
-                  border: "1px solid #7070705b",
-                  height: "2.6vw",
-                  width: "24.5vw",
-                  borderRadius: "5px",
-                  margin: "0.5vw 1.5vw",
-                  padding: "0 0.2vw",
-                }}
-                className="setting-toggler"
-              >
-                <input
-                  style={{ width: "100%" }}
-                  type="date"
-                  className="input-homejobformdate"
-                  name=""
-                  id=""
-                  min={disablePastDate()}
-                  max={"2025-12-31"}
-                  maxlength="4"
-                  onChange={(e) => {
-                    setDatestart(e.target.value);
-                  }}
-                />
-              </Box>
-            </div>
-            <div style={{ marginLeft: "1vw" }} className="min-maxhomejob">
-              End
-            </div>
-            <div className="">
-              <Box
-                sx={{
-                  background: "white",
-                  border: "1px solid #7070705b",
-                  height: "2.6vw",
-                  width: "24.5vw",
-                  borderRadius: "5px",
-                  margin: "0.5vw 1.5vw",
-                  padding: " 0 0.2vw",
-                }}
-                className="setting-toggler"
-              >
-                <input
-                  type="date"
-                  className="input-homejobformdate"
-                  name=""
-                  id=""
-                  min={disablePastDate()}
-                  max={"2025-12-31"}
-                  maxlength="4"
-                  onChange={(e) => {
-                    setDateend(e.target.value);
-                  }}
-                />
-              </Box>
-            </div>
-          </div>
+                  />
         
-          <div style={{ display: "flex", alignItems: "center", width: "98%" }}>
-            <div style={{ width: "50%" }}>
-              <div className="jobpodtedfieldtitile">Email *</div>
-              <div className="jobpostfieldinputbox">
-                <input
-                  type="text"
-                  style={{ width: "29.2vw" }}
-                  name="email"
-                  // onChange={(e) => {
-                  //   setEmail(e.target.value);
-                  // }}
-                  // value={email}
-                  value={formValues.email}
-                  onChange={handleChangeFormVal}
-                />
               </div>
               <p style={{ color: "red", fontSize: "1vw" }}>
                 {validateEmail ? validateEmail : ""}
               </p>
               <p style={{ color: "red" }}>{formErrors.email}</p>
             </div>
-         
-            <div style={{ width: "50%" }}>
-              <div className="jobpodtedfieldtitile">Email *</div>
-              <div className="jobpostfieldinputbox">
-                <input
-                  type="text"
-                  style={{ width: "29.2vw" }}
-                  name="email"
-                  // onChange={(e) => {
-                  //   setEmail(e.target.value);
-                  // }}
-                  // value={email}
-                  value={formValues.email}
-                  onChange={handleChangeFormVal}
-                />
-              </div>
-              <p style={{ color: "red", fontSize: "1vw" }}>
-                {validateEmail ? validateEmail : ""}
-              </p>
-              <p style={{ color: "red" }}>{formErrors.email}</p>
-            </div>
-         
+
           </div>
-        
-          <div style={{ display: "flex", alignItems: "center", width: "98%" }}>
-            <div style={{ width: "50%" }}>
-              <div className="jobpodtedfieldtitile">Email *</div>
-              <div className="jobpostfieldinputbox">
-                <input
-                  type="text"
-                  style={{ width: "29.2vw" }}
-                  name="email"
-                  // onChange={(e) => {
-                  //   setEmail(e.target.value);
-                  // }}
-                  // value={email}
-                  value={formValues.email}
-                  onChange={handleChangeFormVal}
-                />
-              </div>
-              <p style={{ color: "red", fontSize: "1vw" }}>
-                {validateEmail ? validateEmail : ""}
-              </p>
-              <p style={{ color: "red" }}>{formErrors.email}</p>
-            </div>
-         
-            <div style={{ width: "50%" }}>
-              <div className="jobpodtedfieldtitile">Email *</div>
-              <div className="jobpostfieldinputbox">
-                <input
-                  type="text"
-                  style={{ width: "29.2vw" }}
-                  name="email"
-                  // onChange={(e) => {
-                  //   setEmail(e.target.value);
-                  // }}
-                  // value={email}
-                  value={formValues.email}
-                  onChange={handleChangeFormVal}
-                />
-              </div>
-              <p style={{ color: "red", fontSize: "1vw" }}>
-                {validateEmail ? validateEmail : ""}
-              </p>
-              <p style={{ color: "red" }}>{formErrors.email}</p>
-            </div>
-         
-          </div>
-        
-          <div style={{ display: "flex", alignItems: "center", width: "98%" }}>
-            <div style={{ width: "50%" }}>
-              <div className="jobpodtedfieldtitile">Email *</div>
-              <div className="jobpostfieldinputbox">
-                <input
-                  type="text"
-                  style={{ width: "29.2vw" }}
-                  name="email"
-                  // onChange={(e) => {
-                  //   setEmail(e.target.value);
-                  // }}
-                  // value={email}
-                  value={formValues.email}
-                  onChange={handleChangeFormVal}
-                />
-              </div>
-              <p style={{ color: "red", fontSize: "1vw" }}>
-                {validateEmail ? validateEmail : ""}
-              </p>
-              <p style={{ color: "red" }}>{formErrors.email}</p>
-            </div>
-         
-            <div style={{ width: "50%" }}>
-              <div className="jobpodtedfieldtitile">Email *</div>
-              <div className="jobpostfieldinputbox">
-                <input
-                  type="text"
-                  style={{ width: "29.2vw" }}
-                  name="email"
-                  // onChange={(e) => {
-                  //   setEmail(e.target.value);
-                  // }}
-                  // value={email}
-                  value={formValues.email}
-                  onChange={handleChangeFormVal}
-                />
-              </div>
-              <p style={{ color: "red", fontSize: "1vw" }}>
-                {validateEmail ? validateEmail : ""}
-              </p>
-              <p style={{ color: "red" }}>{formErrors.email}</p>
-            </div>
-         
-          </div>
-        
-       
+
+      
           <div style={{ display: "flex", alignItems: "center", width: "98%" }}>
             <div style={{ width: "50%" }}>
               <div className="jobpodtedfieldtitile mt-2">Mobile *</div>
