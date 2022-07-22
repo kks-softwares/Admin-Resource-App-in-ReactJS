@@ -1,7 +1,9 @@
 import { Timelapse } from "@mui/icons-material";
 import React from "react";
+import { useNavigate } from "react-router";
 import "./CardEmployee.css";
 export default function CardsWrokstatus() {
+    const navigate=useNavigate()
   return (
     <div className="CardBox">
       <div
@@ -20,7 +22,7 @@ export default function CardsWrokstatus() {
         <div style={{ fontSize: "1vw" }}>8</div>
       </div>
 
-      <div className="boxofsamlworkstatus">
+      <div onClick={()=>navigate('/dashbaord/workdetail')} className="boxofsamlworkstatus">
         <div style={{ color: "#064C87" }}>Task- Landing Page</div>
         <div
           style={{
