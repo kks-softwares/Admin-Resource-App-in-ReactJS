@@ -33,7 +33,9 @@ export default function Documents() {
             </span>
           </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center" , flexWrap: "wrap" }}>
+        <div
+          style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
+        >
           <div style={{ width: "50%" }} className="inputfilesshowncatboxsingle">
             <div className="inputfilesshowncatboxsingleimg">
               <img src={img1} alt="" />

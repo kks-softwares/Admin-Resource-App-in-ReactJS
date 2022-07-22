@@ -68,34 +68,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddEmployee({ handleClose, setSelectedCategory }) {
   const classes = useStyles();
-  const [age, setAge] = React.useState(10);
 
   const [age2, setAge2] = React.useState(98);
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+
   const handleChange2x = (event) => {
     setAge2(event.target.value);
   };
-  const [age3, setAge3] = React.useState(0);
-  const handleChange3 = (event) => {
-    setAge3(event.target.value);
-  };
-  const [age3x, setAge3x] = React.useState("Backend Doveloper");
-  const handleChange3x = (event) => {
-    setAge3x(event.target.value);
-  };
 
   const [age4, setAge4] = React.useState(0);
-  const [age5, setAge5] = React.useState(0);
 
   console.log("age2", age2);
 
   const handleChange4x = (event) => {
     setAge4(event.target.value);
-  };
-  const handleChange5x = (event) => {
-    setAge5(event.target.value);
   };
 
   const [countryside, setCountryside] = useState(cuntrycide);
@@ -126,15 +111,14 @@ export default function AddEmployee({ handleClose, setSelectedCategory }) {
   };
 
   const [name, setName] = useState("");
-  const [subcate, setsubcate] = useState("");
+
   const [title, settitle] = useState("");
   const [desc, setDesc] = useState("");
 
   const [minBudegt, setMinBudegt] = useState();
-  const [maxBudegt, setMaxBudegt] = useState();
-  const [projectSize, setProjectSize] = useState();
+
   const [datestart, setDatestart] = useState();
-  const [dateend, setDateend] = useState();
+
   const [file, setFile] = useState();
 
   const [countrycode, setCountrycode] = useState("+91");
@@ -217,8 +201,8 @@ export default function AddEmployee({ handleClose, setSelectedCategory }) {
           paddingBottom: "3vw",
           width: "70vw",
           margin: "2vw",
-          paddingTop:"2vw",
-          marginTop:"0vw"
+          paddingTop: "2vw",
+          marginTop: "0vw",
         }}
         className="homepostjob-right"
       >
@@ -276,8 +260,7 @@ export default function AddEmployee({ handleClose, setSelectedCategory }) {
           </div>
           <p style={{ color: "red" }}>{formErrors.title}</p>
 
-        
-                 <div style={{ display: "flex", alignItems: "center", width: "98%" }}>
+          <div style={{ display: "flex", alignItems: "center", width: "98%" }}>
             <div style={{ width: "50%" }}>
               <div className="jobpodtedfieldtitile">Department *</div>
               <div className="jobpostfieldinputbox">
@@ -288,7 +271,7 @@ export default function AddEmployee({ handleClose, setSelectedCategory }) {
                     height: "3vw",
                     width: "94%",
                     borderRadius: "5px",
-                    padding:"0.4vw",
+                    padding: "0.4vw",
                     margin: "0.5vw 0vw",
                   }}
                   className="setting-toggler"
@@ -389,21 +372,19 @@ export default function AddEmployee({ handleClose, setSelectedCategory }) {
             <div style={{ width: "50%" }}>
               <div className="jobpodtedfieldtitile">Date of Birth *</div>
               <div className="jobpostfieldinputbox">
-               
-                  <input
-                    style={{ width: "100%" }}
-                    type="date"
-                    className="input-homejobformdate"
-                    name=""
-                    id=""
-                    min={disablePastDate()}
-                    max={"2025-12-31"}
-                    maxlength="4"
-                    onChange={(e) => {
-                      setDatestart(e.target.value);
-                    }}
-                  />
-        
+                <input
+                  style={{ width: "100%" }}
+                  type="date"
+                  className="input-homejobformdate"
+                  name=""
+                  id=""
+                  min={disablePastDate()}
+                  max={"2025-12-31"}
+                  maxlength="4"
+                  onChange={(e) => {
+                    setDatestart(e.target.value);
+                  }}
+                />
               </div>
               <p style={{ color: "red", fontSize: "1vw" }}>
                 {validateEmail ? validateEmail : ""}
@@ -414,14 +395,14 @@ export default function AddEmployee({ handleClose, setSelectedCategory }) {
             <div style={{ width: "50%" }}>
               <div className="jobpodtedfieldtitile">Gender *</div>
               <div className="jobpostfieldinputbox">
-              <Box
+                <Box
                   sx={{
                     background: "white",
                     border: "1px solid #7070705b",
                     height: "3vw",
                     width: "94%",
                     borderRadius: "5px",
-                    padding:"0.4vw",
+                    padding: "0.4vw",
                     margin: "0.5vw 0vw",
                   }}
                   className="setting-toggler"
@@ -489,7 +470,6 @@ export default function AddEmployee({ handleClose, setSelectedCategory }) {
                     </Select>
                   </FormControl>
                 </Box>
-            
               </div>
               <p style={{ color: "red", fontSize: "1vw" }}>
                 {validateEmail ? validateEmail : ""}
@@ -498,17 +478,17 @@ export default function AddEmployee({ handleClose, setSelectedCategory }) {
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center", width: "98%" }}>
-          <div style={{ width: "50%" }}>
+            <div style={{ width: "50%" }}>
               <div className="jobpodtedfieldtitile">Nationality *</div>
               <div className="jobpostfieldinputbox">
-              <Box
+                <Box
                   sx={{
                     background: "white",
                     border: "1px solid #7070705b",
                     height: "3vw",
                     width: "94%",
                     borderRadius: "5px",
-                    padding:"0.4vw",
+                    padding: "0.4vw",
                     margin: "0.5vw 0vw",
                   }}
                   className="setting-toggler"
@@ -576,41 +556,36 @@ export default function AddEmployee({ handleClose, setSelectedCategory }) {
                     </Select>
                   </FormControl>
                 </Box>
-            
               </div>
               <p style={{ color: "red", fontSize: "1vw" }}>
                 {validateEmail ? validateEmail : ""}
               </p>
               <p style={{ color: "red" }}>{formErrors.email}</p>
             </div>
-           <div style={{ width: "50%" }}>
+            <div style={{ width: "50%" }}>
               <div className="jobpodtedfieldtitile">Joining Date *</div>
               <div className="jobpostfieldinputbox">
-               
-                  <input
-                    style={{ width: "100%" }}
-                    type="date"
-                    className="input-homejobformdate"
-                    name=""
-                    id=""
-                    min={disablePastDate()}
-                    max={"2025-12-31"}
-                    maxlength="4"
-                    onChange={(e) => {
-                      setDatestart(e.target.value);
-                    }}
-                  />
-        
+                <input
+                  style={{ width: "100%" }}
+                  type="date"
+                  className="input-homejobformdate"
+                  name=""
+                  id=""
+                  min={disablePastDate()}
+                  max={"2025-12-31"}
+                  maxlength="4"
+                  onChange={(e) => {
+                    setDatestart(e.target.value);
+                  }}
+                />
               </div>
               <p style={{ color: "red", fontSize: "1vw" }}>
                 {validateEmail ? validateEmail : ""}
               </p>
               <p style={{ color: "red" }}>{formErrors.email}</p>
             </div>
-
           </div>
 
-      
           <div style={{ display: "flex", alignItems: "center", width: "98%" }}>
             <div style={{ width: "50%" }}>
               <div className="jobpodtedfieldtitile mt-2">Mobile *</div>

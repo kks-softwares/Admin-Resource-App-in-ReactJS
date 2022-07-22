@@ -5,6 +5,8 @@ import API_HOST from "../../../env";
 import FileManager from "./FileManager/FileManager";
 import Documents from "./DocumentsPage/Documents";
 import BankDetail from "./BankDetails/BankDetail";
+import BasicDetail from "./BasicDetail/BasicDetail";
+import Assignedwork from "./AssingedWork/Assignedwork";
 
 export default function EmployeeDetail() {
   const navigate = useNavigate();
@@ -13,7 +15,7 @@ export default function EmployeeDetail() {
   const { type, employeeName } = useParams();
   const [user, setUser] = useState();
 
-  useEffect(() => {
+  useEffect(() => { 
     if (type === "Basic Details") {
       setWorkhistorytoggle(1);
       setWorkhistorytoggle1(1);
@@ -201,14 +203,14 @@ export default function EmployeeDetail() {
 
       {workhistorytoggle === 1 ? (
         <>
-          <FileManager />
+          <BasicDetail />
         </>
       ) : (
         ""
       )}
       {workhistorytoggle === 2 ? (
         <>
-          <BankDetail />
+          <Assignedwork />
         </>
       ) : (
         ""

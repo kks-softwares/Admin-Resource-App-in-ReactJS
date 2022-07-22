@@ -49,7 +49,7 @@ export default function Skillpopup({ data, index, page }) {
       <div style={{ alignItems: "center" }} className="navoftableblogsdata">
         <div
           onClick={() => {
-            navigate(`/dashbaord/employee/${data?.userName}/My Profile`);
+            navigate(`/dashbaord/employee/${data?.userName}/Basic Details`);
           }}
           style={{ width: "6vw", cursor: "pointer" }}
         >
@@ -58,7 +58,7 @@ export default function Skillpopup({ data, index, page }) {
         <div style={{ width: "9vw" }}>
           <img
             onClick={() => {
-              navigate(`/dashbaord/employee/${data?.userName}/My Profile`);
+              navigate(`/dashbaord/employee/${data?.userName}/Basic Details`);
             }}
             style={{
               margin: "0 0.5vw",
@@ -74,7 +74,7 @@ export default function Skillpopup({ data, index, page }) {
         </div>
         <div
           onClick={() => {
-            navigate(`/dashbaord/employee/${data?.userName}/My Profile`);
+            navigate(`/dashbaord/employee/${data?.userName}/Basic Details`);
           }}
           style={{ width: "14vw", cursor: "pointer" }}
         >
