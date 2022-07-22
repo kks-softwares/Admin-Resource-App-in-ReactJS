@@ -4,6 +4,7 @@ import imgfilter from "../../../../assets/Dashboard/Iconly-Light-Filter 2.png";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import AssingedStatusCurrent from "./AssingedStatusCurrent";
+import CardsWrokstatus from "./CardsWrokstatus";
 const style1 = {
   position: "absolute",
   top: "50%",
@@ -19,25 +20,16 @@ const style1 = {
 export default function Assignedwork() {
   const [arrayoffilters, setArrayoffilters] = useState([
     {
-      filternameName: "Categories",
-      filters: [
-        "Digital Marketing",
-        "Data Analystics",
-        "Graphic Design",
-        "Communication",
-      ],
+      filternameName: "Work Status",
+      filters: ["Completed", "Pending"],
     },
     {
-      filternameName: "Posted on",
-      filters: ["7 days ago", "15 days ago", "30 days ago", "45 + Days ago"],
+      filternameName: "Start Date",
+      filters: ["This Week", "Last 15 Days", "Last 20 Days", "Last Month"],
     },
     {
-      filternameName: "Bidding Amount",
-      filters: ["$10-$100", "$100-$500", "$500-$1000", "$1000+"],
-    },
-    {
-      filternameName: "Duration",
-      filters: ["1 Month", "2 Month", "3 Month", "4 Month"],
+      filternameName: "Due Date",
+      filters: ["This Week", "Last 15 Days", "Last 20 Days", "Last Month"],
     },
   ]);
 
@@ -58,7 +50,10 @@ export default function Assignedwork() {
         }}
       >
         <div>
-          <div style={{ flexWrap: "wrap" }} className="filterboxflex">
+          <div
+            style={{ flexWrap: "wrap", margin: "0" }}
+            className="filterboxflex"
+          >
             <div
               onClick={() => {
                 handleOpen();
@@ -193,6 +188,7 @@ export default function Assignedwork() {
       <div
         style={{
           width: "100%",
+          margin: "0 1vw",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -210,14 +206,18 @@ export default function Assignedwork() {
             padding: "1vw",
             textAlign: "center",
             color: "#064C87",
+            height: "2vw",
           }}
           className="digitalwallate"
         >
           Add a Work
         </div>
       </div>
-      <div className="catalogcontainerdashbaord">
-        <div style={{ fontSize: "1vw",textAlign:"left" }} className="tableapplidjobflex">
+      <div style={{ marginTop: "0.1vw" }} className="catalogcontainerdashbaord">
+        <div
+          style={{ fontSize: "1.1vw", textAlign: "left" }}
+          className="tableapplidjobflex"
+        >
           <div style={{ width: "7vw" }}>Index</div>
           <div style={{ width: "26vw" }}>Job Title</div>
           <div style={{ width: "14vw" }}>Start Date</div>
@@ -226,6 +226,32 @@ export default function Assignedwork() {
           <div style={{ width: "8vw" }}></div>
         </div>
         <AssingedStatusCurrent />
+      </div>
+      <div
+        style={{
+          width: "100%",
+          margin: "1vw",
+          marginTop: "2vw",
+        }}
+      >
+        <div
+          style={{ width: "fit-contnet", fontSize: "1.3vw", fontWeight: "600" }}
+        >
+          Work Status
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+        }}
+      >
+        <CardsWrokstatus />
+        <CardsWrokstatus />
+        <CardsWrokstatus />
+        <CardsWrokstatus />
       </div>
     </div>
   );

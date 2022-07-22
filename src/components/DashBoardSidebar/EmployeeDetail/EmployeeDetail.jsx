@@ -217,7 +217,7 @@ export default function EmployeeDetail() {
       )}
       {workhistorytoggle === 3 ? (
         <>
-          <Documents />
+      <Assignedwork />
         </>
       ) : (
         ""
