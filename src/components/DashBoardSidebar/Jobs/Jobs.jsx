@@ -17,10 +17,6 @@ import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
 import Modal from "@mui/material/Modal";
 import { makeStyles } from "@material-ui/core";
 
-
-
-
-
 const style2 = {
   position: "absolute",
   top: "50%",
@@ -636,109 +632,115 @@ export default function Jobs() {
             <div style={{ width: "10vw" }} className="digitalwallate"></div>
           </div>
           <Modal
-          open={open3}
-          onClose={handleClose3}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <div className="profiletitleandmenunav">
-              <div className="profiledetailstitle">Delete Job </div>
-              <div className="profiledetailnavmanu">
-                <div>
-                  <CloseIcon
-                    onClick={handleClose3}
-                    style={{ fontSize: "1.5vw", cursor: "pointer" }}
-                  />
+            open={open3}
+            onClose={handleClose3}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <div className="profiletitleandmenunav">
+                <div className="profiledetailstitle">Delete Job </div>
+                <div className="profiledetailnavmanu">
+                  <div>
+                    <CloseIcon
+                      onClick={handleClose3}
+                      style={{ fontSize: "1.5vw", cursor: "pointer" }}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <hr style={{ color: "#00000090" }} />
+              <hr style={{ color: "#00000090" }} />
 
-            <div style={{ left: "0vw", width: "100%" }} className="loginfield">
-            The action will delete "Created job " From all of your profiles. <br />
-
-            Are you sure you want to delete this Created job ?
-            </div>
-
-            <hr style={{ color: "#00000090" }} />
-            <div
-              style={{ marginTop: "0.31vw" }}
-              className="handlemoreaboutskill"
-            >
               <div
-                style={{
-                  background: "white",
-                  color: "black",
-                  cursor: "pointer",
-                }}
-                className="handlecirclieaboutsave"
-                onClick={handleClose3}
+                style={{ left: "0vw", width: "100%" }}
+                className="loginfield"
               >
-                Cancel
+                The action will delete "Created job " From all of your profiles.{" "}
+                <br />
+                Are you sure you want to delete this Created job ?
               </div>
+
+              <hr style={{ color: "#00000090" }} />
               <div
-                onClick={() => handledeleteBlog()}
-                style={{ cursor: "pointer" }}
-                className="handlecirclieaboutsave"
+                style={{ marginTop: "0.31vw" }}
+                className="handlemoreaboutskill"
               >
-                Delete
-              </div>
-            </div>
-          </Box>
-        </Modal>
-       <Modal
-          open={open2}
-          onClose={handleClose2}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-         <Box sx={style}>
-            <div className="profiletitleandmenunav">
-              <div className="profiledetailstitle">Delete Job </div>
-              <div className="profiledetailnavmanu">
-                <div>
-                  <CloseIcon
-                    onClick={handleClose2}
-                    style={{ fontSize: "1.5vw", cursor: "pointer" }}
-                  />
+                <div
+                  style={{
+                    background: "white",
+                    color: "black",
+                    cursor: "pointer",
+                  }}
+                  className="handlecirclieaboutsave"
+                  onClick={handleClose3}
+                >
+                  Cancel
+                </div>
+                <div
+                  onClick={() => handledeleteBlog()}
+                  style={{ cursor: "pointer" }}
+                  className="handlecirclieaboutsave"
+                >
+                  Delete
                 </div>
               </div>
-            </div>
-            <hr style={{ color: "#00000090" }} />
-
-            <div style={{ left: "0vw", width: "100%" }} className="loginfield">
-            The action will Hide "Created job " From all of your profiles. <br />
-
-            Are you sure you want to Hide this Created job ?
-            </div>
-
-            <hr style={{ color: "#00000090" }} />
-            <div
-              style={{ marginTop: "0.31vw" }}
-              className="handlemoreaboutskill"
-            >
-              <div
-                style={{
-                  background: "white",
-                  color: "black",
-                  cursor: "pointer",
-                }}
-                className="handlecirclieaboutsave"
-                onClick={handleClose2}
-              >
-                Cancel
+            </Box>
+          </Modal>
+          <Modal
+            open={open2}
+            onClose={handleClose2}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <div className="profiletitleandmenunav">
+                <div className="profiledetailstitle">Delete Job </div>
+                <div className="profiledetailnavmanu">
+                  <div>
+                    <CloseIcon
+                      onClick={handleClose2}
+                      style={{ fontSize: "1.5vw", cursor: "pointer" }}
+                    />
+                  </div>
+                </div>
               </div>
+              <hr style={{ color: "#00000090" }} />
+
               <div
-                onClick={() => handledeleteBlog()}
-                style={{ cursor: "pointer" }}
-                className="handlecirclieaboutsave"
+                style={{ left: "0vw", width: "100%" }}
+                className="loginfield"
               >
-                Delete
+                The action will Hide "Created job " From all of your profiles.{" "}
+                <br />
+                Are you sure you want to Hide this Created job ?
               </div>
-            </div>
-          </Box>
-        </Modal>
+
+              <hr style={{ color: "#00000090" }} />
+              <div
+                style={{ marginTop: "0.31vw" }}
+                className="handlemoreaboutskill"
+              >
+                <div
+                  style={{
+                    background: "white",
+                    color: "black",
+                    cursor: "pointer",
+                  }}
+                  className="handlecirclieaboutsave"
+                  onClick={handleClose2}
+                >
+                  Cancel
+                </div>
+                <div
+                  onClick={() => handledeleteBlog()}
+                  style={{ cursor: "pointer" }}
+                  className="handlecirclieaboutsave"
+                >
+                  Delete
+                </div>
+              </div>
+            </Box>
+          </Modal>
 
           <div className="catalogcontainerdashbaord">
             <div
@@ -905,8 +907,10 @@ export default function Jobs() {
                     />{" "}
                   </div>
                   <div>
-
-                    <img onClick={()=>{handleOpen3()}}
+                    <img
+                      onClick={() => {
+                        handleOpen3();
+                      }}
                       src={img1}
                       alt=""
                       style={{ fontSize: "2vw", marginRight: "2vw" }}
@@ -914,7 +918,10 @@ export default function Jobs() {
                   </div>
                   <div>
                     <img
-                      src={img3} onClick={()=>{handleOpen2()}}
+                      src={img3}
+                      onClick={() => {
+                        handleOpen2();
+                      }}
                       alt=""
                       style={{ fontSize: "2vw", marginRight: "2vw" }}
                     />{" "}

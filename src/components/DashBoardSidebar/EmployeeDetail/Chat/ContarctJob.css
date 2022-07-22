@@ -288,162 +288,154 @@
   width: 100%;
   opacity: 0.7vw;
 }
-.flexofdtaes{
-    display: flex;
-    margin: 2.5vw;
-    align-items: center;
+.flexofdtaes {
+  display: flex;
+  margin: 2.5vw;
+  align-items: center;
 }
-.datesofcontact{
-    font-family: Poppins;
+.datesofcontact {
+  font-family: Poppins;
   font-weight: 500;
   font-size: 1.2vw;
   line-height: 1.1vw;
   width: 50%;
-   
 }
-.datesofcontact2{
-    font-family: Poppins;
+.datesofcontact2 {
+  font-family: Poppins;
   font-weight: 400;
   font-size: 1vw;
   line-height: 1.1vw;
   width: 50%;
-  opacity: 0.8vw; 
+  opacity: 0.8vw;
 }
-.contractreview{
-    font-family: Poppins;
-    font-weight: 400;
-    font-size: 1vw;
-    line-height: 1.4vw; 
-    padding: 3vw;
-    padding-top: 0vw; 
-    color: #707070;
-}
-
-.buttonsumbitreview{
-   display: flex;
-   justify-content: end;
-   margin: 2vw;
-   width: 50%;
+.contractreview {
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 1vw;
+  line-height: 1.4vw;
+  padding: 3vw;
+  padding-top: 0vw;
+  color: #707070;
 }
 
-.detailjobposttags{
-
-    width: 18%;
-
+.buttonsumbitreview {
+  display: flex;
+  justify-content: end;
+  margin: 2vw;
+  width: 50%;
 }
-.tagvaluejobpostbox{
-    width: 100%;
-    height: 3vw;
-    background: #FBFBFB 0% 0% no-repeat padding-box;
-border-radius: 6px;
-display: flex;
-align-items: center;
-font-size: 1vw;
-color: gray;
-font-weight: 400;
 
-
-
+.detailjobposttags {
+  width: 18%;
+}
+.tagvaluejobpostbox {
+  width: 100%;
+  height: 3vw;
+  background: #e6e5e5 0% 0% no-repeat padding-box;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  font-size: 1vw;
+  color: gray;
+  font-weight: 400;
 }
 
 .chatTogglebox {
-    width: 25vw;
-    padding: 1vw;
-    height: 41.7rem;
-    min-height: 41.7rem;
-    margin-left: 0.51vw;
-    overflow-y: scroll;
-    margin-right: 1vw;
-    background-color: white;
-  }
-  .chatboxmessage {
-    width: 54.5vw;
-    height: 41.7rem;
-    background-color: white;
-  }
-  
-  .datebox {
-    font-family: Poppins;
-    font-weight: 400;
-    font-size: 1.2vw;
-    line-height: 2vw;
-  }
-  .currentchatNamebox {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    height: 5.5vw;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.753);
-  }
-  .nameimg {
-    width: 3vw;
-    margin-right: 1vw;
-    height: 3vw;
-  }
-  .nameimg img {
-    width: 3vw;
-    object-fit: cover;
-    height: 3vw;
-    border-radius: 50%;
-  }
-  .nametag {
-    width: 20vw;
-  }
-  .nameandtimemessage {
-    display: flex;
-    justify-content: space-between;
-  }
-  .titilemeaagename {
-    font-size: 1vw;
-    font-weight: 500;
-    font-family: Poppins;
-  }
-  .timemessagename {
-    font-size: 0.81vw;
-    color: gray;
-    font-weight: 400;
-    font-family: Poppins;
-  }
-  .firstmessagemessahename {
-    font-size: 0.81vw;
-    color: gray;
-    font-weight: 400;
-    font-family: Poppins;
-  }
-  .clientboctopmessage {
-    width: 100%;
-    height: 6vw;
-    padding: 1vw;
-    display: flex;
-    align-items: center;
-    background: #2a6599 0% 0% no-repeat padding-box;
-  }
-  .imageofclientmessage {
-    width: 4vw;
-    height: 4vw;
-    object-fit: cover;
-    margin-right: 2vw;
-    border-radius: 50%;
-  }
-  .imageofclientmessage img {
-    width: 4vw;
-    height: 4vw;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-  .nameofmessageclient {
-    width: fit-content;
-    font-size: 1.1vw;
-    color: white;
-    font-weight: 500;
-    font-family: Poppins;
-    line-height: 2vw;
-  }
-  .checkonlineclietmessage {
-    font-weight: 400;
-    font-family: Poppins;
-    font-size: 1vw;
-    color: white;
-  }
-  
-  
+  width: 25vw;
+  padding: 1vw;
+  height: 41.7rem;
+  min-height: 41.7rem;
+  margin-left: 0.51vw;
+  overflow-y: scroll;
+  margin-right: 1vw;
+  background-color: white;
+}
+.chatboxmessage {
+  width: 54.5vw;
+  height: 41.7rem;
+  background-color: white;
+}
+
+.datebox {
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 1.2vw;
+  line-height: 2vw;
+}
+.currentchatNamebox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 5.5vw;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.753);
+}
+.nameimg {
+  width: 3vw;
+  margin-right: 1vw;
+  height: 3vw;
+}
+.nameimg img {
+  width: 3vw;
+  object-fit: cover;
+  height: 3vw;
+  border-radius: 50%;
+}
+.nametag {
+  width: 20vw;
+}
+.nameandtimemessage {
+  display: flex;
+  justify-content: space-between;
+}
+.titilemeaagename {
+  font-size: 1vw;
+  font-weight: 500;
+  font-family: Poppins;
+}
+.timemessagename {
+  font-size: 0.81vw;
+  color: gray;
+  font-weight: 400;
+  font-family: Poppins;
+}
+.firstmessagemessahename {
+  font-size: 0.81vw;
+  color: gray;
+  font-weight: 400;
+  font-family: Poppins;
+}
+.clientboctopmessage {
+  width: 100%;
+  height: 6vw;
+  padding: 1vw;
+  display: flex;
+  align-items: center;
+  background: #2a6599 0% 0% no-repeat padding-box;
+}
+.imageofclientmessage {
+  width: 4vw;
+  height: 4vw;
+  object-fit: cover;
+  margin-right: 2vw;
+  border-radius: 50%;
+}
+.imageofclientmessage img {
+  width: 4vw;
+  height: 4vw;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.nameofmessageclient {
+  width: fit-content;
+  font-size: 1.1vw;
+  color: white;
+  font-weight: 500;
+  font-family: Poppins;
+  line-height: 2vw;
+}
+.checkonlineclietmessage {
+  font-weight: 400;
+  font-family: Poppins;
+  font-size: 1vw;
+  color: white;
+}

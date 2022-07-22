@@ -5,6 +5,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import AssingedStatusCurrent from "./AssingedStatusCurrent";
 import CardsWrokstatus from "./CardsWrokstatus";
+import { useNavigate } from "react-router";
 const style1 = {
   position: "absolute",
   top: "50%",
@@ -18,6 +19,7 @@ const style1 = {
 };
 
 export default function Assignedwork() {
+    const navigate=useNavigate()
   const [arrayoffilters, setArrayoffilters] = useState([
     {
       filternameName: "Work Status",
@@ -39,6 +41,7 @@ export default function Assignedwork() {
   const handleClose = () => setOpen(false);
   const [previosfilter, setPreviosfilter] = useState([]);
   const [previosfilter1, setPreviosfilter1] = useState([]);
+
   return (
     <div>
       <div
@@ -200,6 +203,7 @@ export default function Assignedwork() {
           Current Work
         </div>
         <div
+        onClick={()=>{navigate('/dashbaord/addwork')}}
           style={{
             width: "10vw",
             background: "white",

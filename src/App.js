@@ -38,7 +38,8 @@ import CompletedJobPage from "./components/DashBoardSidebar/CompletedJobPage/Com
 import Employee from "./components/DashBoardSidebar/Employee/Employee";
 import AddEmployee from "./components/DashBoardSidebar/AddEmployee/AddEmployee";
 import EmployeeDetail from "./components/DashBoardSidebar/EmployeeDetail/EmployeeDetail";
-
+import AddWork from './components/DashBoardSidebar/AddEmployee/AddWork'
+import WorkDetail from "./components/DashBoardSidebar/EmployeeDetail/WorkDetail/WorkDetail";
 function LayoutsWithNavbar() {
   return (
     <>
@@ -148,6 +149,8 @@ function App() {
             />
             <Route path="/dashbaord/employee" element={<Employee />} />
             <Route path="/dashbaord/addemployee" element={<AddEmployee />} />
+            <Route path="/dashbaord/addwork" element={<AddWork />} />
+            <Route path="/dashbaord/workdetail" element={<WorkDetail />} />
           </Route>
         </Routes>
       </Router>
