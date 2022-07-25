@@ -38,6 +38,9 @@ export default function Users() {
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
 
+  const [page1, setPage1] = useState(1);
+  const [totalpages1, settotalpages1] = useState(1);
+
   const [setSelectedCategory, setSetSelectedCategory] = useState("");
   const [arrayoffilters, setArrayoffilters] = useState([
     {
@@ -58,6 +61,7 @@ export default function Users() {
   const handleClose = () => setOpen(false);
   const [previosfilter, setPreviosfilter] = useState([]);
   const [allusers, setAllusers] = useState([]);
+  const [allusers1, setAllusers1] = useState([]);
 
   useEffect(() => {
     if (!setSelectedCategory) {
@@ -105,6 +109,52 @@ export default function Users() {
     }
   }, [page, setSelectedCategory]);
 
+  useEffect(() => {
+    if (!setSelectedCategory) {
+      axios
+        .get(
+          `${API_HOST}/users/admin'sUser?emailId=${setSelectedCategory}&page=${page1}`
+        )
+        .then((res) => {
+          setAllusers1(res?.data?.success?.data?.docs);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
+      axios
+        .get(
+          `${API_HOST}/users/admin'sUser?emailId=${setSelectedCategory}&page=${
+            page1 + 1
+          }`
+        )
+        .then((res) => {
+          if (res?.data?.success?.data?.docs?.length > 0) {
+            settotalpages1(page1 + 1);
+          }
+        });
+    } else {
+      axios
+        .get(
+          `${API_HOST}/users/admin'sUser?emailId=${setSelectedCategory}&pageNumber=${page1}&pageSize=10`
+        )
+        .then((res) => {
+          setAllusers1(res?.data?.success?.data);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
+      axios
+        .get(
+          `${API_HOST}/users/admin'sUser?emailId=${setSelectedCategory}&pageNumber=${
+            page1 + 1
+          }&pageSize=10`
+        )
+        .then((res) => {
+          if (res?.data?.success?.data?.length > 0) {
+            settotalpages1(page1 + 1);
+          } else {
+            settotalpages1(page1);
+          }
+        });
+    }
+  }, [page1, setSelectedCategory]);
+
   const [togglrbar, setTogglrbar] = useState(1);
 
   return (
@@ -140,9 +190,8 @@ export default function Users() {
         </div>
       </div>
 
-   
       <div
-        style={{ position: "relative", right: "1vw",top:"1vw" }}
+        style={{ position: "relative", right: "1vw", top: "1vw" }}
         className="profileworkhistruytoggleer"
       >
         <div
@@ -155,7 +204,7 @@ export default function Users() {
             width: "8vw",
           }}
         >
-     All  Users
+          All Users
         </div>
         <div
           onClick={() => {
@@ -167,7 +216,7 @@ export default function Users() {
             width: "11vw",
           }}
         >
-         Admin Users
+          Admin Users
         </div>
 
         <div
@@ -183,7 +232,7 @@ export default function Users() {
           }}
         ></div>
       </div>
-  
+
       <div>
         <div style={{ flexWrap: "wrap" }} className="filterboxflex">
           <div
@@ -316,138 +365,140 @@ export default function Users() {
           </div>
         </div>
       </div>
- 
-  { togglrbar===1 &&   <div>
-        <div
-          style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
-          className="navoftableblogs"
-        >
-          <div style={{ width: "6vw" }}>Id</div>
-          <div style={{ width: "9vw" }}> </div>
-          <div style={{ width: "15vw" }}>Name</div>
-          <div style={{ width: "15vw" }}>category</div>
-          <div style={{ width: "15vw" }}>Designation</div>
-          <div style={{ width: "12vw" }}>Joined on</div>
-          <div style={{ width: "6vw" }}></div>
-        </div>
-        {allusers?.length > 0 &&
-          allusers?.map((data, index) => {
-            return <Skillpopup data={data} index={index} page={page} />;
-          })}
 
-        {totalpages !== 1 ? (
-          <div style={{ width: "25vw" }} className="paginationbox">
-            <div>
-              <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
-            </div>
-
-            <div
-              hidden={page - 4 > 0 ? false : true}
-              onClick={() => setPage(page - 4)}
-            >
-              {page - 4}
-            </div>
-            <div
-              hidden={page - 3 > 0 ? false : true}
-              onClick={() => setPage(page - 3)}
-            >
-              {page - 3}
-            </div>
-            <div
-              hidden={page - 2 > 0 ? false : true}
-              onClick={() => setPage(page - 2)}
-            >
-              {page - 2}
-            </div>
-            <div
-              hidden={page - 1 > 0 ? false : true}
-              onClick={() => setPage(page - 1)}
-            >
-              {page - 1}
-            </div>
-            <div style={{ color: "#2A6599" }}>{page}</div>
-            <div
-              hidden={page + 1 > totalpages ? true : false}
-              onClick={() => setPage(page + 1)}
-            >
-              {page + 1}
-            </div>
-
-            <div>
-              <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
-            </div>
+      {togglrbar === 1 && (
+        <div>
+          <div
+            style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
+            className="navoftableblogs"
+          >
+            <div style={{ width: "6vw" }}>Id</div>
+            <div style={{ width: "9vw" }}> </div>
+            <div style={{ width: "15vw" }}>Name</div>
+            <div style={{ width: "15vw" }}>category</div>
+            <div style={{ width: "15vw" }}>Designation</div>
+            <div style={{ width: "12vw" }}>Joined on</div>
+            <div style={{ width: "6vw" }}></div>
           </div>
-        ) : (
-          ""
-        )}
-      </div>
-   } 
-  { togglrbar===2 &&   <div>
-        <div
-          style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
-          className="navoftableblogs"
-        >
-          <div style={{ width: "5vw" }}>Id</div>
-          <div style={{ width: "7vw" }}> </div>
-          <div style={{ width: "12vw" }}>Name</div>
-          <div style={{ width: "12vw" }}>category</div>
-          <div style={{ width: "14vw" }}>Designation</div>
-          <div style={{ width: "19vw" }}>PassWord</div>
-          <div style={{ width: "8vw" }}>Joined on</div>
-          <div style={{ width: "3vw" }}></div>
+          {allusers?.length > 0 &&
+            allusers?.map((data, index) => {
+              return <Skillpopup data={data} index={index} page={page} />;
+            })}
+
+          {totalpages !== 1 ? (
+            <div style={{ width: "25vw" }} className="paginationbox">
+              <div>
+                <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
+              </div>
+
+              <div
+                hidden={page - 4 > 0 ? false : true}
+                onClick={() => setPage(page - 4)}
+              >
+                {page - 4}
+              </div>
+              <div
+                hidden={page - 3 > 0 ? false : true}
+                onClick={() => setPage(page - 3)}
+              >
+                {page - 3}
+              </div>
+              <div
+                hidden={page - 2 > 0 ? false : true}
+                onClick={() => setPage(page - 2)}
+              >
+                {page - 2}
+              </div>
+              <div
+                hidden={page - 1 > 0 ? false : true}
+                onClick={() => setPage(page - 1)}
+              >
+                {page - 1}
+              </div>
+              <div style={{ color: "#2A6599" }}>{page}</div>
+              <div
+                hidden={page + 1 > totalpages ? true : false}
+                onClick={() => setPage(page + 1)}
+              >
+                {page + 1}
+              </div>
+
+              <div>
+                <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-        {allusers?.length > 0 &&
-          allusers?.map((data, index) => {
-            return <Skillpopup1 data={data} index={index} page={page} />;
-          })}
-
-        {totalpages !== 1 ? (
-          <div style={{ width: "25vw" }} className="paginationbox">
-            <div>
-              <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
-            </div>
-
-            <div
-              hidden={page - 4 > 0 ? false : true}
-              onClick={() => setPage(page - 4)}
-            >
-              {page - 4}
-            </div>
-            <div
-              hidden={page - 3 > 0 ? false : true}
-              onClick={() => setPage(page - 3)}
-            >
-              {page - 3}
-            </div>
-            <div
-              hidden={page - 2 > 0 ? false : true}
-              onClick={() => setPage(page - 2)}
-            >
-              {page - 2}
-            </div>
-            <div
-              hidden={page - 1 > 0 ? false : true}
-              onClick={() => setPage(page - 1)}
-            >
-              {page - 1}
-            </div>
-            <div style={{ color: "#2A6599" }}>{page}</div>
-            <div
-              hidden={page + 1 > totalpages ? true : false}
-              onClick={() => setPage(page + 1)}
-            >
-              {page + 1}
-            </div>
-
-            <div>
-              <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
-            </div>
+      )}
+      {togglrbar === 2 && (
+        <div>
+          <div
+            style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
+            className="navoftableblogs"
+          >
+            <div style={{ width: "5vw" }}>Id</div>
+            <div style={{ width: "7vw" }}> </div>
+            <div style={{ width: "12vw" }}>Name</div>
+            <div style={{ width: "12vw" }}>category</div>
+            <div style={{ width: "14vw" }}>Designation</div>
+            <div style={{ width: "19vw" }}>PassWord</div>
+            <div style={{ width: "8vw" }}>Joined on</div>
+            <div style={{ width: "3vw" }}></div>
           </div>
-        ) : (
-          ""
-        )}
-      </div>
-   } 
-   </div>
+          {allusers1?.length > 0 &&
+            allusers1?.map((data, index) => {
+              return <Skillpopup1 data={data} index={index} page={page} />;
+            })}
+
+          {totalpages1 !== 1 ? (
+            <div style={{ width: "25vw" }} className="paginationbox">
+              <div>
+                <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
+              </div>
+
+              <div
+                hidden={page1 - 4 > 0 ? false : true}
+                onClick={() => setPage1(page1 - 4)}
+              >
+                {page1 - 4}
+              </div>
+              <div
+                hidden={page1 - 3 > 0 ? false : true}
+                onClick={() => setPage1(page1 - 3)}
+              >
+                {page1 - 3}
+              </div>
+              <div
+                hidden={page1 - 2 > 0 ? false : true}
+                onClick={() => setPage1(page1 - 2)}
+              >
+                {page1 - 2}
+              </div>
+              <div
+                hidden={page1 - 1 > 0 ? false : true}
+                onClick={() => setPage1(page1 - 1)}
+              >
+                {page1 - 1}
+              </div>
+              <div style={{ color: "#2A6599" }}>{page}</div>
+              <div
+                hidden={page1 + 1 > totalpages1 ? true : false}
+                onClick={() => setPage1(page1 + 1)}
+              >
+                {page1 + 1}
+              </div>
+
+              <div>
+                <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+      )}
+    </div>
   );
 }

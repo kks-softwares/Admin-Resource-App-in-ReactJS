@@ -50,12 +50,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AddUser() {
-
-
-  
-
-
-
   const [openx, setOpenx] = React.useState(false);
   const handleOpenx = () => setOpenx(true);
   const handleClosex = () => setOpenx(false);
@@ -80,12 +74,11 @@ export default function AddUser() {
 
   useEffect(() => {
     axios.get(`${API_HOST}/category/viewCategory`).then((res) => {
-        setsettingCategory(res?.data?.success?.data?.docs);
-  
-        console.log("viewCategory", res?.data?.success?.data?.docs);
-      });
-  }, [])
-  
+      setsettingCategory(res?.data?.success?.data?.docs);
+
+      console.log("viewCategory", res?.data?.success?.data?.docs);
+    });
+  }, []);
 
   const classes = useStyles();
   const handleChange2x = (event) => {
@@ -95,8 +88,6 @@ export default function AddUser() {
     setAge5(event.target.value);
   };
 
- 
-
   const handlepost = (e) => {
     setSetSelectedCategory(e);
     console.log("handlePost", e);
@@ -105,7 +96,6 @@ export default function AddUser() {
   const [setSelectedCategory, setSetSelectedCategory] = useState("");
 
   const [settingCategory, setsettingCategory] = useState([]);
-
 
   console.log("countrycode", countrycode);
 
@@ -117,59 +107,50 @@ export default function AddUser() {
   const [color, setColor] = useState("#064c87");
   const [btnText, setbtnText] = useState("SAVE");
 
-  // Save Main Setting +++++++++++++
-//   const handlesavededitSetting = () => {
-//     const formdata = new FormData();
+  //   Save Main Setting +++++++++++++
+  const handlesavededitSetting = () => {
+    const formdata = new FormData();
 
-//     formdata.append("userId", user?.userId);
-//     formdata.append("fullName", Name);
-//     formdata.append("category", Category);
-//     formdata.append("designation", Designation);
-//     formdata.append("countryCode", countrycode);
-//     // formdata.append("emailId", email);
-//     formdata.append("contactNo", mobile);
-//     formdata.append("address", desc);
+    formdata.append("fullName", Name);
+    formdata.append("category", Category);
+    formdata.append("designation", Designation);
+    formdata.append("countryCode", countrycode);
+    formdata.append("emailId", email);
+    formdata.append("contactNo", mobile);
+    formdata.append("address", desc);
 
-//     axios
-//       .post(`${API_HOST}/users/editUser`, formdata, {
-//         headers: {
-//           "Content-Type": "multipart/form-data",
-//         },
-//       })
-//       .then((res) => {
-//         console.log(res.data.success.data);
-//         // navigate("/dashbaord/setting");
-//         window.localStorage.setItem(
-//           "user",
-//           JSON.stringify({ ...res.data.success.data })
-//         );
-
-//         dispatch(
-//           userActions.setUser({
-//             user: { ...res.data.success.data },
-//           })
-//         );
-
-//         setTimeout(() => {
-//           // Most recent value
-//           setColor("#064c87");
-//           setbtnText("SAVE");
-//         }, 2000);
-//       })
-//       .catch((err) => {
-//         console.log(err.response);
-//         setSettingAccEmail(err.response.data.message);
-//         setRestag(true);
-//       });
-//   };
+    axios
+      .post(`${API_HOST}/users/userByAdmin`, formdata, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        setColor("green");
+        setbtnText("UPDATED");
+        navigate("/dashbaord/users");
+      })
+      .catch((err) => {
+        console.log(err?.response?.data?.fails?.data?.code);
+        setSettingAccEmail(err?.response?.data?.fails?.data?.code);
+        setRestag(err?.response?.data?.fails?.data?.code);
+      });
+  };
 
   const [restag, setRestag] = useState(false);
+
+  useEffect(() => {
+    setRestag(false);
+  }, [Name, Category, Designation, countrycode, email, mobile, desc]);
 
   return (
     <div>
       <div className="settingAccountcontainer">
-        <div style={{textAlign:"center",fontSize:"1.5vw"}} className="settingAccounttitle">
-         User Details 
+        <div
+          style={{ textAlign: "center", fontSize: "1.5vw" }}
+          className="settingAccounttitle"
+        >
+          User Details
         </div>
 
         <hr style={{ margin: "1vw" }} />
@@ -261,7 +242,6 @@ export default function AddUser() {
                           }}
                         />
                       </div>
-                    
 
                       {settingCategory &&
                         settingCategory?.map((code, index) => {
@@ -315,7 +295,6 @@ export default function AddUser() {
           <div style={{ width: "40vw" }} className="settingAccounttitlevalue">
             <div className="jobpostfieldinputbox">
               <input
-             
                 type="email"
                 style={{ width: "29.2vw" }}
                 onChange={(e) => {
@@ -324,7 +303,6 @@ export default function AddUser() {
                 value={email}
               />
             </div>
-            {/* <p style={{color: 'red', fontSize:'10px'}}>{SettingAccEmail ? SettingAccEmail : ""}</p> */}
           </div>
         </div>
         <div className="accountdetailbox">
@@ -460,6 +438,10 @@ export default function AddUser() {
             </div>
           </div>
         </div>
+        <p style={{ color: "red", fontSize: "0.81vw", marginLeft: "7.5vw" }}>
+          {restag ? restag + "*" : ""}
+        </p>
+
         <div
           style={{ marginTop: "2vw" }}
           className="accountdetailbox homejobbuttons"
@@ -476,9 +458,7 @@ export default function AddUser() {
             style={{ background: color }}
             className="handlecirclieaboutsaveSetting"
             onClick={() => {
-            //   handlesavededitSetting();
-              setColor("green");
-              setbtnText("UPDATED");
+              handlesavededitSetting();
             }}
           >
             {btnText}

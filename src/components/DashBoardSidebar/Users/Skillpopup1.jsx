@@ -45,7 +45,7 @@ export default function Skillpopup1({ data, index, page }) {
 
         <div style={{ width: "12vw", fontWeight: "400" }}>{data?.category}</div>
         <div style={{ width: "14vw" }}>{data?.designation?.slice(0.30)}</div>
-        <div style={{ width: "19vw" }}>{data?.password?.slice(0,30)}</div>
+        <div style={{ width: "19vw" }}>{data?.hasedPW}</div>
         <div style={{ width: "8vw" }}>
           {data?.userCreateTime?.slice(0, 10)}
         </div>
