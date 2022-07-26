@@ -7,9 +7,9 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 
-export default function Documents() {
+export default function Documents({user}) {
   const { type, userName } = useParams();
-  const { user, loggedInStatus } = useSelector((state) => state.user);
+  // const { user, loggedInStatus } = useSelector((state) => state.user);
   // const [verifyButtonUserProfile, setVerifyButtonUserProfile] = useState("");
 
   const handleVerifyButtonUser = () => {
@@ -35,7 +35,7 @@ export default function Documents() {
             // setRestag(true);
           });
   }
-  console.log("USERS", userName)
+  // console.log("USERS", userName,"PROPS",user)
   
   return (
     <div>
@@ -147,10 +147,12 @@ export default function Documents() {
           </div>
         </div>
       </div>
+      {user?.verifiedByAdmin === false ?
         <div style={{display:'flex',paddingRight:'5vw',justifyContent:'flex-end'}}>
           <button style={{color:'#fff', backgroundColor: '#064C87', padding: '1vw',border:'none'}} 
-                  onClick={()=> {handleVerifyButtonUser()}} >Click to Verify</button>
-        </div>
+                  onClick={()=> {handleVerifyButtonUser()}} >Click to Verify Document</button>
+        </div> : <div style={{borderStyle: 'dashed', float: 'right', padding: '0.8vw', jfontWeight:'600'}}>This User is Already Verified by Admin</div>
+      }
     </div>
   );
 }

@@ -361,7 +361,7 @@ export default function SkillCenter() {
       )}
       {workhistorytoggle === 9 ? (
         <>
-          <Documents />
+          <Documents user={user}/>
         </>
       ) : (
         ""
