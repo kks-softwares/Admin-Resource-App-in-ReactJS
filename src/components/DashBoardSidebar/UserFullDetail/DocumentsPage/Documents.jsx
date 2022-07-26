@@ -1,9 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Documents.css";
 import img2 from "../../../../assets/Success stories Definition/checkmark (1).svg";
 import img1 from "../../../../assets/Web 1280 – 14/Group 9831.svg";
+import API_HOST from "../../../../env";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 
 export default function Documents() {
+  const { type, userName } = useParams();
+  const { user, loggedInStatus } = useSelector((state) => state.user);
+  // const [verifyButtonUserProfile, setVerifyButtonUserProfile] = useState("");
+
+  const handleVerifyButtonUser = () => {
+    const formdata = new FormData();
+
+    formdata.append("userId", user?.userId);
+    formdata.append("verifiedByAdmin", true);
+    
+      axios
+          .post(`${API_HOST}/users/editUser`, formdata, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((res) => {
+            console.log(res.data.success.data)
+            // setVerifyButtonUserProfile(res?.data?.success?.data);
+            // window.scrollTo(0, 0, { behavior: "smooth" });
+          })
+          .catch((err) => {
+            console.log(err.response);
+            // setSettingAccEmail(err.response.data.message)
+            // setRestag(true);
+          });
+  }
+  console.log("USERS", userName)
+  
   return (
     <div>
       <div
@@ -114,6 +147,10 @@ export default function Documents() {
           </div>
         </div>
       </div>
+        <div style={{display:'flex',paddingRight:'5vw',justifyContent:'flex-end'}}>
+          <button style={{color:'#fff', backgroundColor: '#064C87', padding: '1vw',border:'none'}} 
+                  onClick={()=> {handleVerifyButtonUser()}} >Click to Verify</button>
+        </div>
     </div>
   );
 }
