@@ -12,6 +12,7 @@ import {
 import Login from "./pages/Login/Login";
 import Dashbaord from "./pages/Dashbaord/Dashbaord";
 import Users from "./components/DashBoardSidebar/Users/Users";
+import Users1 from "./components/DashBoardSidebar/Category/Users";
 import { useDispatch, useSelector } from "react-redux";
 import UserFullDetails from "./components/DashBoardSidebar/UserFullDetail/UserFullDetails";
 import Blogs from "./components/DashBoardSidebar/Blogs/Blogs";
@@ -40,6 +41,7 @@ import AddEmployee from "./components/DashBoardSidebar/AddEmployee/AddEmployee";
 import EmployeeDetail from "./components/DashBoardSidebar/EmployeeDetail/EmployeeDetail";
 import AddWork from './components/DashBoardSidebar/AddEmployee/AddWork'
 import WorkDetail from "./components/DashBoardSidebar/EmployeeDetail/WorkDetail/WorkDetail";
+
 function LayoutsWithNavbar() {
   return (
     <>
@@ -151,6 +153,7 @@ function App() {
             <Route path="/dashbaord/addemployee" element={<AddEmployee />} />
             <Route path="/dashbaord/addwork" element={<AddWork />} />
             <Route path="/dashbaord/workdetail" element={<WorkDetail />} />
+            <Route path="/dashbaord/category" element={<Users1 />} />
           </Route>
         </Routes>
       </Router>
