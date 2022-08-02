@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-
 import { SearchSharp } from "@mui/icons-material";
 import Box from "@mui/material/Box";
-
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import API_HOST from "../../../env";
@@ -12,7 +10,6 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
 import Modal from "@mui/material/Modal";
 import Skillpopup from "./Skillpopup";
-import Skillpopup1 from "./Skillpopup1";
 import img1 from "../../../assets/Jobs/Iconly-Light-Delete.svg";
 const style = {
   position: "absolute",
@@ -129,9 +126,6 @@ export default function Users() {
         </div>
 
         <div style={{ display: "flex" }}>
-          <div className="digitalwallate">
-            <span style={{ color: "#064C87" }}>Add Category</span>
-          </div>
           <div className="digitalwallate">
             <span style={{ color: "#064C87" }}>Add Subcategory</span>
           </div>
@@ -325,7 +319,7 @@ export default function Users() {
           <img
             style={{
               margin: "0vw 0.5vw",
-              marginRight:"3vw",
+              marginRight: "3vw",
               width: "2vw ",
               height: "2vw",
               borderRadius: "50%",
@@ -347,9 +341,15 @@ export default function Users() {
             <div style={{ width: "3vw" }}></div>
             <div style={{ width: "7vw" }}>Id</div>
             <div style={{ width: "7vw" }}> </div>
-            <div style={{ width: "18vw",position:"relative",left:"1vw" }}>Category</div>
-            <div style={{ width: "18vw",position:"relative",left:"1vw" }}>Sub category</div>
-            <div style={{ width: "18vw",position:"relative",left:"1vw" }}>Skills</div>
+            <div style={{ width: "18vw", position: "relative", left: "1vw" }}>
+              Category
+            </div>
+            <div style={{ width: "18vw", position: "relative", left: "1vw" }}>
+              Sub category
+            </div>
+            <div style={{ width: "18vw", position: "relative", left: "1vw" }}>
+              Skills
+            </div>
             <div style={{ width: "9vw" }}>Created on</div>
           </div>
           {allusers?.length > 0 &&

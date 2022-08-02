@@ -8,8 +8,24 @@ import img8 from "../../assets/Dashboard/Skill center – 2/Iconly-Light-outline
 import img89 from "../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Profile.svg";
 import img9 from "../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Paper Plus.svg";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
+import AddIcon from "@mui/icons-material/Add";
 export default function BrowseWorkSiadebar() {
+  const [anchorElx, setAnchorElx] = React.useState(null);
+
+  const handleClickx = (event) => {
+    setAnchorElx(event.currentTarget);
+  };
+
+  const handleClosex = () => {
+    setAnchorElx(null);
+  };
+
+  const openx = Boolean(anchorElx);
+  const idx = openx ? "simple-popover" : undefined;
+  const navigate = useNavigate();
   return (
     <div style={{ position: "sticky" }} className="sidebardashbord-container">
       <Link to="/dashbaord/users">
@@ -59,16 +75,54 @@ export default function BrowseWorkSiadebar() {
         </div>
       </Link>
 
-      <Link to="/dashbaord/category">
-        <div className="firstsidebarmenu">
-          <img src={img9} alt="" />
-          Category
-        </div>
-      </Link>
+      <div onClick={handleClickx} className="firstsidebarmenu">
+        <img src={img9} alt="" />
+        Category
+      </div>
 
-      
-
-
-   </div>
+      <Popover
+        id={idx}
+        open={openx}
+        anchorEl={anchorElx}
+        onClose={handleClosex}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+        <Typography
+          sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/dashbaord/addcategory");
+            handleClosex();
+          }}
+        >
+          <AddIcon
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          Add Category
+        </Typography>
+        <Typography
+          onClick={() => {
+            navigate("/dashbaord/category");
+            handleClosex();
+          }}
+          sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
+        >
+          <img
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          List of Category
+        </Typography>
+      </Popover>
+    </div>
   );
 }

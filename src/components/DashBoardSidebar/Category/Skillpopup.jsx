@@ -30,26 +30,31 @@ export default function Skillpopup({ data, index, page }) {
   const [open3, setOpen3] = React.useState(false);
   const handleOpen3 = () => setOpen3(true);
   const handleClose3 = () => setOpen3(false);
- 
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [open2, setOpen2] = React.useState(false);
+  const handleOpen2 = () => setOpen2(true);
+  const handleClose2 = () => setOpen2(false);
 
   const [checkonex, setCheckonex] = useState(false);
   return (
     <div>
       <div style={{ alignItems: "center" }} className="navoftableblogsdata">
         <div style={{ width: "3vw" }}>
-        <div className="checkbox" onClick={() => setCheckonex(!checkonex)}>
-              {checkonex ? (
-                <DoneIcon
-                  style={{
-                    fontSize: "0.81vw",
-                    color: "blueviolet",
-                    fontWeight: "600",
-                  }}
-                />
-              ) : (
-                ""
-              )}{" "}
-            </div>
+          <div className="checkbox" onClick={() => setCheckonex(!checkonex)}>
+            {checkonex ? (
+              <DoneIcon
+                style={{
+                  fontSize: "0.81vw",
+                  color: "blueviolet",
+                  fontWeight: "600",
+                }}
+              />
+            ) : (
+              ""
+            )}{" "}
+          </div>
         </div>
         <div
           onClick={() => {
@@ -86,9 +91,6 @@ export default function Skillpopup({ data, index, page }) {
           />
         </div>
         <div
-          onClick={() => {
-            navigate(`/dashbaord/employee/${data?.userName}/Basic Details`);
-          }}
           style={{
             width: "18vw",
             cursor: "pointer",
@@ -111,6 +113,7 @@ export default function Skillpopup({ data, index, page }) {
           />
           Development
           <img
+            onClick={() => handleOpen()}
             style={{
               margin: "0.5vw 0.5vw",
               width: "1.4vw ",
@@ -125,6 +128,7 @@ export default function Skillpopup({ data, index, page }) {
         </div>
 
         <div
+        
           style={{
             width: "18vw",
             fontWeight: "400",
@@ -158,6 +162,7 @@ export default function Skillpopup({ data, index, page }) {
             alt=""
           />{" "}
           <img
+            onClick={() => handleOpen2()}
             style={{
               margin: "0.5vw 0.5vw",
               width: "1.4vw ",
@@ -197,6 +202,7 @@ export default function Skillpopup({ data, index, page }) {
             alt=""
           />{" "}
           <img
+            onClick={() => handleOpen3()}
             style={{
               margin: "0.5vw 0.5vw",
               width: "1.4vw ",
@@ -221,7 +227,7 @@ export default function Skillpopup({ data, index, page }) {
       >
         <Box sx={style}>
           <div className="profiletitleandmenunav">
-            <div className="profiledetailstitle">Delete Title Name</div>
+            <div className="profiledetailstitle">Skill Name </div>
             <div className="profiledetailnavmanu">
               <div>
                 <CloseIcon
@@ -231,19 +237,22 @@ export default function Skillpopup({ data, index, page }) {
               </div>
             </div>
           </div>
-          <hr style={{ color: "#00000090" }} />
-
-          <div style={{ left: "0vw", width: "100%" }} className="loginfield">
-            Are you really want to delete '{data?.callToActionTitle}'
+          <div
+            style={{ marginTop: "1vw", width: "106%" }}
+            className="jobpostfieldinputbox"
+          >
+            <input type="text" name="email" />
           </div>
 
-          <hr style={{ color: "#00000090" }} />
           <div style={{ marginTop: "0.31vw" }} className="handlemoreaboutskill">
             <div
               style={{
                 background: "white",
-                color: "black",
+                color: "#064C87",
                 cursor: "pointer",
+                border: "1px solid #064C87",
+                margin: "1vw",
+                marginBottom: "0vw",
               }}
               className="handlecirclieaboutsave"
               onClick={handleClose3}
@@ -251,11 +260,153 @@ export default function Skillpopup({ data, index, page }) {
               Cancel
             </div>
             <div
+              style={{
+                background: "white",
+                color: "#064C87",
+                cursor: "pointer",
+                border: "1px solid #064C87",
+                margin: "1vw",
+                marginBottom: "0vw",
+              }}
+              className="handlecirclieaboutsave"
+              onClick={handleClose3}
+            >
+              Reset
+            </div>
+            <div
               // onClick={() => handledeleteBlog()}
               style={{ cursor: "pointer" }}
               className="handlecirclieaboutsave"
             >
-              Delete
+              Update
+            </div>
+          </div>
+        </Box>
+      </Modal>
+      <Modal
+        open={open2}
+        onClose={handleClose2}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <div className="profiletitleandmenunav">
+            <div className="profiledetailstitle">Sub Category Name </div>
+            <div className="profiledetailnavmanu">
+              <div>
+                <CloseIcon
+                  onClick={handleClose2}
+                  style={{ fontSize: "1.5vw", cursor: "pointer" }}
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            style={{ marginTop: "1vw", width: "106%" }}
+            className="jobpostfieldinputbox"
+          >
+            <input type="text" name="email" />
+          </div>
+
+          <div style={{ marginTop: "0.31vw" }} className="handlemoreaboutskill">
+            <div
+              style={{
+                background: "white",
+                color: "#064C87",
+                cursor: "pointer",
+                border: "1px solid #064C87",
+                margin: "1vw",
+                marginBottom: "0vw",
+              }}
+              className="handlecirclieaboutsave"
+              onClick={handleClose2}
+            >
+              Cancel
+            </div>
+            <div
+              style={{
+                background: "white",
+                color: "#064C87",
+                cursor: "pointer",
+                border: "1px solid #064C87",
+                margin: "1vw",
+                marginBottom: "0vw",
+              }}
+              className="handlecirclieaboutsave"
+             
+            >
+              Reset
+            </div>
+            <div
+              // onClick={() => handledeleteBlog()}
+              style={{ cursor: "pointer" }}
+              className="handlecirclieaboutsave"
+            >
+              Update
+            </div>
+          </div>
+        </Box>
+      </Modal>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <div className="profiletitleandmenunav">
+            <div className="profiledetailstitle">Category Name </div>
+            <div className="profiledetailnavmanu">
+              <div>
+                <CloseIcon
+                  onClick={handleClose}
+                  style={{ fontSize: "1.5vw", cursor: "pointer" }}
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            style={{ marginTop: "1vw", width: "106%" }}
+            className="jobpostfieldinputbox"
+          >
+            <input type="text" name="email" />
+          </div>
+
+          <div style={{ marginTop: "0.31vw" }} className="handlemoreaboutskill">
+            <div
+              style={{
+                background: "white",
+                color: "#064C87",
+                cursor: "pointer",
+                border: "1px solid #064C87",
+                margin: "1vw",
+                marginBottom: "0vw",
+              }}
+              className="handlecirclieaboutsave"
+              onClick={handleClose}
+            >
+              Cancel
+            </div>
+            <div
+              style={{
+                background: "white",
+                color: "#064C87",
+                cursor: "pointer",
+                border: "1px solid #064C87",
+                margin: "1vw",
+                marginBottom: "0vw",
+              }}
+              className="handlecirclieaboutsave"
+            
+            >
+              Reset
+            </div>
+            <div
+              // onClick={() => handledeleteBlog()}
+              style={{ cursor: "pointer" }}
+              className="handlecirclieaboutsave"
+            >
+              Update
             </div>
           </div>
         </Box>

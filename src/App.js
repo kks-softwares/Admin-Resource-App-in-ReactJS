@@ -41,6 +41,7 @@ import AddEmployee from "./components/DashBoardSidebar/AddEmployee/AddEmployee";
 import EmployeeDetail from "./components/DashBoardSidebar/EmployeeDetail/EmployeeDetail";
 import AddWork from './components/DashBoardSidebar/AddEmployee/AddWork'
 import WorkDetail from "./components/DashBoardSidebar/EmployeeDetail/WorkDetail/WorkDetail";
+import AddCategory from "./components/DashBoardSidebar/AddCategory/AddCategory";
 
 function LayoutsWithNavbar() {
   return (
@@ -154,6 +155,7 @@ function App() {
             <Route path="/dashbaord/addwork" element={<AddWork />} />
             <Route path="/dashbaord/workdetail" element={<WorkDetail />} />
             <Route path="/dashbaord/category" element={<Users1 />} />
+            <Route path="/dashbaord/addcategory" element={<AddCategory />} />
           </Route>
         </Routes>
       </Router>
