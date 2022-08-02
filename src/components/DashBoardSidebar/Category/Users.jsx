@@ -17,6 +17,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: "50vw",
+
   bgcolor: "background.paper",
   border: "2px solid white",
   boxShadow: 24,
@@ -38,6 +39,48 @@ export default function Users() {
     {
       filternameName: "Categories",
       filters: [
+        "Digital Marketing",
+        "Graphic Design",
+        "Data Analystics",
+        "Communication",
+        "Digital Marketing",
+        "Graphic Design",
+        "Data Analystics",
+        "Communication",
+        "Digital Marketing",
+        "Graphic Design",
+        "Data Analystics",
+        "Communication",
+      ],
+    },
+    {
+      filternameName: "Sub Categories",
+      filters: [
+        "Digital Marketing",
+        "Graphic Design",
+        "Data Analystics",
+        "Communication",
+        "Digital Marketing",
+        "Graphic Design",
+        "Data Analystics",
+        "Communication",
+        "Digital Marketing",
+        "Graphic Design",
+        "Data Analystics",
+        "Communication",
+      ],
+    },
+    {
+      filternameName: "Skill Set",
+      filters: [
+        "Digital Marketing",
+        "Graphic Design",
+        "Data Analystics",
+        "Communication",
+        "Digital Marketing",
+        "Graphic Design",
+        "Data Analystics",
+        "Communication",
         "Digital Marketing",
         "Graphic Design",
         "Data Analystics",
@@ -126,10 +169,10 @@ export default function Users() {
         </div>
 
         <div style={{ display: "flex" }}>
-          <div className="digitalwallate">
+          <div className="digitalwallate" onClick={()=>navigate('/dashbaord/addsubcategory')} >
             <span style={{ color: "#064C87" }}>Add Subcategory</span>
           </div>
-          <div className="digitalwallate">
+          <div className="digitalwallate" onClick={()=>navigate('/dashbaord/addskill1')}>
             <span style={{ color: "#064C87" }}>Add Skill</span>
           </div>
         </div>
@@ -161,7 +204,8 @@ export default function Users() {
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-              <div className="profiletitleandmenunav">
+            <div style={{maxHeight:"80vh",overflow:"scroll"}}>
+              <div  className="profiletitleandmenunav">
                 <div className="profiledetailstitle">Add Filters</div>
                 <div className="profiledetailnavmanu">
                   <div>
@@ -178,10 +222,15 @@ export default function Users() {
                 return (
                   <div>
                     <div
-                      style={{ fontSize: "1.2vw" }}
+                      style={{ fontSize: "1.2vw",display:"flex",justifyContent:"space-between",alignItems:"center"}}
                       className="profiledetailstitle"
                     >
+                      <div>
                       {data?.filternameName}
+                      </div>
+                      <div style={{fontSize:"1vw",fontWeight:"400",color:"#064C87",cursor:"pointer"}}>
+                          View More
+                      </div>
                     </div>
                     <div
                       style={{
@@ -256,6 +305,7 @@ export default function Users() {
                 >
                   Submit
                 </div>
+              </div>
               </div>
             </Box>
           </Modal>

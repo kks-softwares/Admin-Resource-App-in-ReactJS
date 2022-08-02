@@ -80,14 +80,14 @@
   object-fit: contain;
 }
 .filterboxnameskill {
-  border-radius: 1vw;
+  border-radius: 0.56vw !important;
   padding: 00.81vw;
   height: 3vw;
   width: fit-content;
   font-size: 1vw;
   font-weight: 500;
-  box-shadow: 1px 2px 6px rgba(128, 128, 128, 0.418);
-  margin: 1vw;
+  box-shadow: 1px 2px 6px rgba(141, 141, 141, 0.418) !important;
+  margin: 0.5vw 1vw !important;
 }
 .imgbocofcerti {
   

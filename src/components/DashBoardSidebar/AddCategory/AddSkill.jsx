@@ -14,7 +14,7 @@ import img22 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg
 import img from "../../../assets/Web 1280 – 14/Icon.svg";
 import { useNavigate } from "react-router";
 
-export default function AddCategory({ handleClose, setSelectedCategory }) {
+export default function AddSkill1({ handleClose, setSelectedCategory }) {
   const initialValues = {
     name: "",
     title: "",
@@ -59,10 +59,10 @@ export default function AddCategory({ handleClose, setSelectedCategory }) {
         }}
         className="homepostjob-right"
       >
-        <div className="jobpostedformheading">Add Category </div>
+        <div className="jobpostedformheading">Add Skill </div>
 
         <div>
-          <div className="jobpodtedfieldtitile">Category Id *</div>
+          <div className="jobpodtedfieldtitile">Skill id *</div>
           <div className="jobpostfieldinputbox">
             <input
               type="text"
@@ -77,7 +77,7 @@ export default function AddCategory({ handleClose, setSelectedCategory }) {
           </div>
           <p style={{ color: "red" }}>{formErrors.title}</p>
 
-          <div className="jobpodtedfieldtitile">Category Name *</div>
+          <div className="jobpodtedfieldtitile">Skill Name *</div>
           <div className="jobpostfieldinputbox">
             <input
               type="text"
@@ -112,7 +112,7 @@ export default function AddCategory({ handleClose, setSelectedCategory }) {
             }}
             className="jobpodtedfieldtitile"
           >
-          Upload Files
+           Upload Files
           </div>
           <div
             style={{
