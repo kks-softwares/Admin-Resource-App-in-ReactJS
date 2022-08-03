@@ -35,59 +35,6 @@ export default function Users() {
   const [totalpages, settotalpages] = useState(1);
 
   const [setSelectedCategory, setSetSelectedCategory] = useState("");
-  const [arrayoffilters, setArrayoffilters] = useState([
-    {
-      filternameName: "Categories",
-      filters: [
-        "Digital Marketing",
-        "Graphic Design",
-        "Data Analystics",
-        "Communication",
-        "Digital Marketing",
-        "Graphic Design",
-        "Data Analystics",
-        "Communication",
-        "Digital Marketing",
-        "Graphic Design",
-        "Data Analystics",
-        "Communication",
-      ],
-    },
-    {
-      filternameName: "Sub Categories",
-      filters: [
-        "Digital Marketing",
-        "Graphic Design",
-        "Data Analystics",
-        "Communication",
-        "Digital Marketing",
-        "Graphic Design",
-        "Data Analystics",
-        "Communication",
-        "Digital Marketing",
-        "Graphic Design",
-        "Data Analystics",
-        "Communication",
-      ],
-    },
-    {
-      filternameName: "Skill Set",
-      filters: [
-        "Digital Marketing",
-        "Graphic Design",
-        "Data Analystics",
-        "Communication",
-        "Digital Marketing",
-        "Graphic Design",
-        "Data Analystics",
-        "Communication",
-        "Digital Marketing",
-        "Graphic Design",
-        "Data Analystics",
-        "Communication",
-      ],
-    },
-  ]);
 
   const [arrayoffilterselected, setarrayoffilterselected] = useState([]);
 
@@ -143,11 +90,26 @@ export default function Users() {
     }
   }, [page, setSelectedCategory]);
 
-  const [togglrbar, setTogglrbar] = useState(1);
-
+  const [togglrbar, setTogglrbar] = useState(0);
+  const [datestart1, setDatestart1] = useState();
+  const [datestart2, setDatestart2] = useState();
+  const [datestart3, setDatestart3] = useState();
+  const [datestart1x, setDatestart1x] = useState();
+  const [datestart2x, setDatestart2x] = useState();
+  const [datestart3x, setDatestart3x] = useState();
+  const disablePastDate = () => {
+    const today = new Date();
+    const dd = String(today.getDate() ).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    return yyyy + "-" + mm + "-" + dd;
+  };
   return (
     <div className="BrowseWorkMain-cntainer">
-      <div style={{alignItems:"center",justifyContent:"flex-start"}} className="searchboxcontainer">
+      <div
+        style={{ alignItems: "center", justifyContent: "flex-start" }}
+        className="searchboxcontainer"
+      >
         <div className="serachjobbox">
           <span>
             <SearchSharp style={{ fontSize: "1.7vw" }} />
@@ -168,158 +130,271 @@ export default function Users() {
           </button>
         </div>
         <div>
-        <div
-          style={{
-            flexWrap: "wrap",
-            marginTop:"0vw",
-            marginBottom: "0vw",
-            paddingBottom: "0.5vw",
-            paddingTop:"0vw"
-          }}
-          className="filterboxflex"
-        >
           <div
-            onClick={() => {
-              handleOpen();
-              setPreviosfilter([...arrayoffilterselected]);
+            style={{
+              flexWrap: "wrap",
+              marginTop: "0vw",
+              marginBottom: "0vw",
+              paddingBottom: "0.5vw",
+              paddingTop: "0vw",
             }}
-            className="filtericonbox"
+            className="filterboxflex"
           >
-            <img src={imgfilter} alt="" />
-          </div>
+            <div
+              onClick={() => {
+                handleOpen();
+                setPreviosfilter([...arrayoffilterselected]);
+              }}
+              className="filtericonbox"
+            >
+              <img src={imgfilter} alt="" />
+            </div>
 
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-            <div style={{maxHeight:"80vh",overflow:"scroll"}}>
-              <div  className="profiletitleandmenunav">
-                <div className="profiledetailstitle">Add Filters</div>
-                <div className="profiledetailnavmanu">
-                  <div>
-                    <CloseIcon
-                      onClick={handleClose}
-                      style={{ fontSize: "1.5vw" }}
-                    />
-                  </div>
-                </div>
-              </div>
-              <hr style={{ color: "#00000090" }} />
-
-              {arrayoffilters?.map((data, index) => {
-                return (
-                  <div>
-                    <div
-                      style={{ fontSize: "1.2vw",display:"flex",justifyContent:"space-between",alignItems:"center"}}
-                      className="profiledetailstitle"
-                    >
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <div style={{ maxHeight: "80vh", overflow: "scroll" }}>
+                  <div className="profiletitleandmenunav">
+                    <div className="profiledetailstitle">Add Filters</div>
+                    <div className="profiledetailnavmanu">
                       <div>
-                      {data?.filternameName}
-                      </div>
-                      <div style={{fontSize:"1vw",fontWeight:"400",color:"#064C87",cursor:"pointer"}}>
-                          View More
+                        <CloseIcon
+                          onClick={handleClose}
+                          style={{ fontSize: "1.5vw" }}
+                        />
                       </div>
                     </div>
+                  </div>
+                  <hr style={{ color: "#00000090" }} />
+
+                  <div className="jobpodtedfieldtitile">Please Select</div>
+
+                  <div style={{ display: "flex" }}>
+                    <div
+                      onClick={() => setTogglrbar(1)}
+                      className={
+                        togglrbar === 1
+                          ? "selectbuttonfilter1"
+                          : "selectbuttonfilter"
+                      }
+                    >
+                      Category
+                    </div>
+                    <div
+                      onClick={() => setTogglrbar(2)}
+                      className={
+                        togglrbar === 2
+                          ? "selectbuttonfilter1"
+                          : "selectbuttonfilter"
+                      }
+                    >
+                      Sub Category
+                    </div>
+                    <div
+                      onClick={() => setTogglrbar(3)}
+                      className={
+                        togglrbar === 3
+                          ? "selectbuttonfilter1"
+                          : "selectbuttonfilter"
+                      }
+                    >
+                      Skills
+                    </div>
+                  </div>
+
+                  { togglrbar!==0 && <div className="jobpodtedfieldtitile">Created on</div>}
+                { togglrbar===1 && <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      width: "98%",
+                    }}
+                  >
+                    <div style={{ width: "50%" }}>
+                      <div style={{fontWeight:"400"}} className="jobpodtedfieldtitile">From </div>
+                      <div className="jobpostfieldinputbox">
+                        <input
+                          style={{ width: "100%" }}
+                          type="date"
+                          className="input-homejobformdate"
+                          name=""
+                          id=""
+                          value={datestart1}
+                          max={disablePastDate()}
+                          min={"2020-01-01"}
+                          maxlength="4"
+                          onChange={(e) => {
+                            setDatestart1(e.target.value);
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div style={{ width: "50%" }}>
+                      <div style={{fontWeight:"400"}}className="jobpodtedfieldtitile">To</div>
+                      <div className="jobpostfieldinputbox">
+                        <input
+                          style={{ width: "100%" }}
+                          type="date"
+                          className="input-homejobformdate"
+                          name=""
+                          id=""
+                          value={datestart1x}
+                          max={disablePastDate()}
+                          min={"2020-01-01"}
+                          maxlength="4"
+                          onChange={(e) => {
+                            setDatestart1x(e.target.value);
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                }
+                { togglrbar===2 && <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      width: "98%",
+                    }}
+                  >
+                    <div style={{ width: "50%" }}>
+                      <div style={{fontWeight:"400"}} className="jobpodtedfieldtitile">From </div>
+                      <div className="jobpostfieldinputbox">
+                        <input
+                          style={{ width: "100%" }}
+                          type="date"
+                          className="input-homejobformdate"
+                          name=""
+                          id=""
+                          value={datestart2}
+                          max={disablePastDate()}
+                          min={"2020-01-01"}
+                          maxlength="4"
+                          onChange={(e) => {
+                            setDatestart2(e.target.value);
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div style={{ width: "50%" }}>
+                      <div style={{fontWeight:"400"}}className="jobpodtedfieldtitile">To</div>
+                      <div className="jobpostfieldinputbox">
+                        <input
+                          style={{ width: "100%" }}
+                          type="date"
+                          className="input-homejobformdate"
+                          name=""
+                          id=""
+                          value={datestart2x}
+                          max={disablePastDate()}
+                          min={"2020-01-01"}
+                          maxlength="4"
+                          onChange={(e) => {
+                            setDatestart2x(e.target.value);
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                }
+                { togglrbar===3 && <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      width: "98%",
+                    }}
+                  >
+                    <div style={{ width: "50%" }}>
+                      <div style={{fontWeight:"400"}} className="jobpodtedfieldtitile">From </div>
+                      <div className="jobpostfieldinputbox">
+                        <input
+                          style={{ width: "100%" }}
+                          type="date"
+                          value={datestart3}
+                          className="input-homejobformdate"
+                          name=""
+                          id=""
+                          max={disablePastDate()}
+                          min={"2020-01-01"}
+                          maxlength="4"
+                          onChange={(e) => {
+                            setDatestart3(e.target.value);
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div style={{ width: "50%" }}>
+                      <div style={{fontWeight:"400"}}className="jobpodtedfieldtitile">To</div>
+                      <div className="jobpostfieldinputbox">
+                        <input
+                          style={{ width: "100%" }}
+                          type="date"
+                          className="input-homejobformdate"
+                          name=""
+                          id=""
+                          value={datestart3x}
+                          max={disablePastDate()}
+                          min={"2020-01-01"}
+                          maxlength="4"
+                          onChange={(e) => {
+                            setDatestart3x(e.target.value);
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                }
+                
+                  <div
+                    style={{ marginTop: "0.31vw" }}
+                    className="handlemoreaboutskill"
+                  >
                     <div
                       style={{
-                        display: "flex",
-                        alignItems: "center",
-                        flexWrap: "wrap",
+                        background: "white",
+                        color: "black",
+                        cursor: "pointer",
+                      }}
+                      className="handlecirclieaboutsave"
+                      onClick={() => {
+                        setarrayoffilterselected(previosfilter);
+                        handleClose();
                       }}
                     >
-                      {data?.filters?.map((data1, index) => {
-                        return (
-                          <div
-                            onClick={() => {
-                              console.log(arrayoffilterselected.indexOf(data1));
-                              if (arrayoffilterselected.indexOf(data1) > -1) {
-                                setarrayoffilterselected([
-                                  ...arrayoffilterselected.slice(
-                                    0,
-                                    arrayoffilterselected.indexOf(data1)
-                                  ),
-                                  ...arrayoffilterselected.slice(
-                                    arrayoffilterselected.indexOf(data1) + 1,
-                                    arrayoffilterselected.length
-                                  ),
-                                ]);
-                              } else {
-                                setarrayoffilterselected([
-                                  ...arrayoffilterselected,
-                                  data1,
-                                ]);
-                              }
-                            }}
-                            style={{
-                              background: arrayoffilterselected.includes(data1)
-                                ? "#064C8720"
-                                : "",
-                              cursor: "pointer",
-                            }}
-                            className="filterboxnameskill"
-                          >
-                            {data1}
-                          </div>
-                        );
-                      })}
+                      Cancel
+                    </div>
+                    <div
+                      style={{ cursor: "pointer" }}
+                      className="handlecirclieaboutsave"
+                      // onClick={handleeducationdelete}
+                    >
+                      Submit
                     </div>
                   </div>
-                );
+                </div>
+              </Box>
+            </Modal>
+
+            {arrayoffilterselected?.length > 0 &&
+              arrayoffilterselected?.map((filtername) => {
+                return <div className="filtericonboxname">{filtername}</div>;
               })}
 
-              <hr style={{ color: "#00000090" }} />
-              <div
-                style={{ marginTop: "0.31vw" }}
-                className="handlemoreaboutskill"
-              >
-                <div
-                  style={{
-                    background: "white",
-                    color: "black",
-                    cursor: "pointer",
-                  }}
-                  className="handlecirclieaboutsave"
-                  onClick={() => {
-                    setarrayoffilterselected(previosfilter);
-                    handleClose();
-                  }}
-                >
-                  Cancel
-                </div>
-                <div
-                  style={{ cursor: "pointer" }}
-                  className="handlecirclieaboutsave"
-                  // onClick={handleeducationdelete}
-                >
-                  Submit
-                </div>
-              </div>
-              </div>
-            </Box>
-          </Modal>
-
-          {arrayoffilterselected?.length > 0 &&
-            arrayoffilterselected?.map((filtername) => {
-              return <div className="filtericonboxname">{filtername}</div>;
-            })}
-
-          <div
-            onClick={() => setarrayoffilterselected([])}
-            style={{ cursor: "pointer" }}
-            className="filtericonboxname"
-          >
-            Clear all
+            <div
+              onClick={() => setarrayoffilterselected([])}
+              style={{ cursor: "pointer" }}
+              className="filtericonboxname"
+            >
+              Clear all
+            </div>
           </div>
         </div>
       </div>
 
-      </div>
-       
-
-      
       <div
         style={{
           display: "flex",
@@ -334,9 +409,6 @@ export default function Users() {
             className="profileworkhistruytoggleer"
           >
             <div
-              onClick={() => {
-                setTogglrbar(1);
-              }}
               className="profileworkhistruytoggleervalue"
               style={{
                 textAlign: "center",
@@ -377,78 +449,70 @@ export default function Users() {
         </div>
       </div>
 
-      {togglrbar === 1 && (
-        <div>
-          <div
-            style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
-            className="navoftableblogs"
-          >
-            <div style={{ width: "3vw" }}></div>
-            <div style={{ width: "7vw" }}>Id</div>
-            <div style={{ width: "7vw" }}> </div>
-            <div style={{ width: "18vw",  }}>
-              Category
-            </div>
-            <div style={{ width: "18vw",  }}>
-              Sub category
-            </div>
-            <div style={{ width: "18vw",  }}>
-              Skills
-            </div>
-            <div style={{ width: "9vw" }}>Created on</div>
-          </div>
-          {allusers?.length > 0 &&
-            allusers?.map((data, index) => {
-              return <Skillpopup data={data} index={index} page={page} />;
-            })}
-
-          {totalpages !== 1 ? (
-            <div style={{ width: "25vw" }} className="paginationbox">
-              <div>
-                <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-
-              <div
-                hidden={page - 4 > 0 ? false : true}
-                onClick={() => setPage(page - 4)}
-              >
-                {page - 4}
-              </div>
-              <div
-                hidden={page - 3 > 0 ? false : true}
-                onClick={() => setPage(page - 3)}
-              >
-                {page - 3}
-              </div>
-              <div
-                hidden={page - 2 > 0 ? false : true}
-                onClick={() => setPage(page - 2)}
-              >
-                {page - 2}
-              </div>
-              <div
-                hidden={page - 1 > 0 ? false : true}
-                onClick={() => setPage(page - 1)}
-              >
-                {page - 1}
-              </div>
-              <div style={{ color: "#2A6599" }}>{page}</div>
-              <div
-                hidden={page + 1 > totalpages ? true : false}
-                onClick={() => setPage(page + 1)}
-              >
-                {page + 1}
-              </div>
-
-              <div>
-                <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
+      <div>
+        <div
+          style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
+          className="navoftableblogs"
+        >
+          <div style={{ width: "3vw" }}></div>
+          <div style={{ width: "7vw" }}>Id</div>
+          <div style={{ width: "7vw" }}> </div>
+          <div style={{ width: "18vw" }}>Category</div>
+          <div style={{ width: "18vw" }}>Sub category</div>
+          <div style={{ width: "18vw" }}>Skills</div>
+          <div style={{ width: "9vw" }}>Created on</div>
         </div>
-      )}
+        {allusers?.length > 0 &&
+          allusers?.map((data, index) => {
+            return <Skillpopup data={data} index={index} page={page} />;
+          })}
+
+        {totalpages !== 1 ? (
+          <div style={{ width: "25vw" }} className="paginationbox">
+            <div>
+              <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
+            </div>
+
+            <div
+              hidden={page - 4 > 0 ? false : true}
+              onClick={() => setPage(page - 4)}
+            >
+              {page - 4}
+            </div>
+            <div
+              hidden={page - 3 > 0 ? false : true}
+              onClick={() => setPage(page - 3)}
+            >
+              {page - 3}
+            </div>
+            <div
+              hidden={page - 2 > 0 ? false : true}
+              onClick={() => setPage(page - 2)}
+            >
+              {page - 2}
+            </div>
+            <div
+              hidden={page - 1 > 0 ? false : true}
+              onClick={() => setPage(page - 1)}
+            >
+              {page - 1}
+            </div>
+            <div style={{ color: "#2A6599" }}>{page}</div>
+            <div
+              hidden={page + 1 > totalpages ? true : false}
+              onClick={() => setPage(page + 1)}
+            >
+              {page + 1}
+            </div>
+
+            <div>
+              <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 }
