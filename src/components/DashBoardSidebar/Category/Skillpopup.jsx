@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import img from "../../../assets/Landing page/apple (1)@2x.png";
 import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 import Box from "@mui/material/Box";
 
@@ -77,7 +77,6 @@ export default function Skillpopup({ data, index, page }) {
             src={!data?.media ? img : data?.media}
             alt=""
           />{" "}
-         
         </div>
         <div
           style={{
@@ -87,7 +86,6 @@ export default function Skillpopup({ data, index, page }) {
             alignItems: "center",
           }}
         >
-          
           Development
           <img
             onClick={() => handleOpen()}
@@ -105,7 +103,6 @@ export default function Skillpopup({ data, index, page }) {
         </div>
 
         <div
-        
           style={{
             width: "18vw",
             fontWeight: "400",
@@ -113,7 +110,6 @@ export default function Skillpopup({ data, index, page }) {
             alignItems: "center",
           }}
         >
-          
           Development
           <img
             style={{
@@ -142,7 +138,6 @@ export default function Skillpopup({ data, index, page }) {
           />
         </div>
         <div style={{ width: "18vw", display: "flex", alignItems: "center" }}>
-          
           Development
           <img
             style={{
@@ -182,7 +177,7 @@ export default function Skillpopup({ data, index, page }) {
       >
         <Box sx={style}>
           <div className="profiletitleandmenunav">
-            <div className="profiledetailstitle">Skill Name </div>
+            <div className="jobpodtedfieldtitile"> Rename Skill Name </div>
             <div className="profiledetailnavmanu">
               <div>
                 <CloseIcon
@@ -206,7 +201,7 @@ export default function Skillpopup({ data, index, page }) {
             }}
             className="jobpodtedfieldtitile"
           >
-     Upload image(Optional)
+            Upload image(Optional)
           </div>
           <div
             style={{
@@ -322,15 +317,13 @@ export default function Skillpopup({ data, index, page }) {
       >
         <Box sx={style}>
           <div className="profiletitleandmenunav">
-            <div className="profiledetailstitle">Rename the Sub-Category </div>
+            <div className="jobpodtedfieldtitile">Rename the Sub-Category </div>
             <div className="profiledetailnavmanu">
-              <div>
-                
-              </div>
+              <div></div>
             </div>
           </div>
           <div
-            style={{ marginTop: "1vw", width: "106%" }}
+            style={{ marginTop: "0.31vw", width: "106%" }}
             className="jobpostfieldinputbox"
           >
             <input type="text" name="email" />
@@ -343,7 +336,7 @@ export default function Skillpopup({ data, index, page }) {
             }}
             className="jobpodtedfieldtitile"
           >
-     Upload image(Optional)
+            Upload image(Optional)
           </div>
           <div
             style={{
@@ -437,7 +430,6 @@ export default function Skillpopup({ data, index, page }) {
                 marginBottom: "0vw",
               }}
               className="handlecirclieaboutsave"
-             
             >
               Reset
             </div>
@@ -459,14 +451,11 @@ export default function Skillpopup({ data, index, page }) {
       >
         <Box sx={style}>
           <div className="profiletitleandmenunav">
-            <div className="profiledetailstitle">Rename the Category </div>
-            <div className="profiledetailnavmanu">
-              
-            </div>
-           
+            <div className="jobpodtedfieldtitile">Rename the Category </div>
+            <div className="profiledetailnavmanu"></div>
           </div>
           <div
-            style={{ marginTop: "1vw", width: "106%" }}
+            style={{ marginTop: "0.3vw", width: "106%" }}
             className="jobpostfieldinputbox"
           >
             <input type="text" name="email" />
@@ -479,7 +468,7 @@ export default function Skillpopup({ data, index, page }) {
             }}
             className="jobpodtedfieldtitile"
           >
-          Upload image(Optional)
+            Upload image(Optional)
           </div>
           <div
             style={{
@@ -573,7 +562,6 @@ export default function Skillpopup({ data, index, page }) {
                 marginBottom: "0vw",
               }}
               className="handlecirclieaboutsave"
-            
             >
               Reset
             </div>

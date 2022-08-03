@@ -147,7 +147,7 @@ export default function Users() {
 
   return (
     <div className="BrowseWorkMain-cntainer">
-      <div className="searchboxcontainer">
+      <div style={{alignItems:"center",justifyContent:"flex-start"}} className="searchboxcontainer">
         <div className="serachjobbox">
           <span>
             <SearchSharp style={{ fontSize: "1.7vw" }} />
@@ -171,8 +171,10 @@ export default function Users() {
         <div
           style={{
             flexWrap: "wrap",
+            marginTop:"0vw",
             marginBottom: "0vw",
             paddingBottom: "0.5vw",
+            paddingTop:"0vw"
           }}
           className="filterboxflex"
         >

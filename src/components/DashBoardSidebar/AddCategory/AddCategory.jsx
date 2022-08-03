@@ -35,8 +35,7 @@ export default function AddCategory({ handleClose, setSelectedCategory }) {
 
   const [title, settitle] = useState("");
 
-   const navigate=useNavigate()
-
+  const navigate = useNavigate();
 
   return (
     <div
@@ -55,28 +54,13 @@ export default function AddCategory({ handleClose, setSelectedCategory }) {
           width: "70vw",
           margin: "2vw",
           paddingTop: "2vw",
-          marginTop: "0vw",
+          marginTop: "2vw",
         }}
         className="homepostjob-right"
       >
         <div className="jobpostedformheading">Add Category </div>
 
         <div>
-          <div className="jobpodtedfieldtitile">Category Id *</div>
-          <div className="jobpostfieldinputbox">
-            <input
-              type="text"
-              name="title"
-              // value={title}
-              // onChange={(e) => {
-              //   settitle(e.target.value);
-              // }}
-              value={formValues.title}
-              onChange={handleChangeFormVal}
-            />
-          </div>
-          <p style={{ color: "red" }}>{formErrors.title}</p>
-
           <div className="jobpodtedfieldtitile">Category Name *</div>
           <div className="jobpostfieldinputbox">
             <input
@@ -112,7 +96,7 @@ export default function AddCategory({ handleClose, setSelectedCategory }) {
             }}
             className="jobpodtedfieldtitile"
           >
-          Upload Files
+            Upload Files
           </div>
           <div
             style={{
@@ -193,7 +177,7 @@ export default function AddCategory({ handleClose, setSelectedCategory }) {
                 marginBottom: "0vw",
               }}
               className="handlecirclieaboutsave"
-              onClick={()=>navigate("/dashbaord/category")}
+              onClick={() => navigate("/dashbaord/category")}
             >
               Cancel
             </div>
