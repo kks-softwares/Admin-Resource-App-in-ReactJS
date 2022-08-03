@@ -167,18 +167,7 @@ export default function Users() {
             Search
           </button>
         </div>
-
-        <div style={{ display: "flex" }}>
-          <div className="digitalwallate" onClick={()=>navigate('/dashbaord/addsubcategory')} >
-            <span style={{ color: "#064C87" }}>Add Subcategory</span>
-          </div>
-          <div className="digitalwallate" onClick={()=>navigate('/dashbaord/addskill1')}>
-            <span style={{ color: "#064C87" }}>Add Skill</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
+        <div>
         <div
           style={{
             flexWrap: "wrap",
@@ -325,6 +314,10 @@ export default function Users() {
         </div>
       </div>
 
+      </div>
+       
+
+      
       <div
         style={{
           display: "flex",
@@ -391,13 +384,13 @@ export default function Users() {
             <div style={{ width: "3vw" }}></div>
             <div style={{ width: "7vw" }}>Id</div>
             <div style={{ width: "7vw" }}> </div>
-            <div style={{ width: "18vw", position: "relative", left: "1vw" }}>
+            <div style={{ width: "18vw",  }}>
               Category
             </div>
-            <div style={{ width: "18vw", position: "relative", left: "1vw" }}>
+            <div style={{ width: "18vw",  }}>
               Sub category
             </div>
-            <div style={{ width: "18vw", position: "relative", left: "1vw" }}>
+            <div style={{ width: "18vw",  }}>
               Skills
             </div>
             <div style={{ width: "9vw" }}>Created on</div>

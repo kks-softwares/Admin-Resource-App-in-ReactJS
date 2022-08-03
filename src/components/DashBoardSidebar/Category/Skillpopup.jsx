@@ -3,15 +3,15 @@ import React, { useState } from "react";
 import img from "../../../assets/Landing page/apple (1)@2x.png";
 import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
 import { Navigate, useNavigate } from "react-router";
-import img51 from "../../../assets/Web 1280 – 14/Group 10219.svg";
-import ToggleButton from "react-toggle-button";
-import img4 from "../../../assets/Web 1280 – 14/Ellipse 1375.svg";
-import axios from "axios";
+
 import Box from "@mui/material/Box";
-import img1 from "../../../assets/Admin Panel List of Categories/change_circle_black_24dp.svg";
+
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
 import DoneIcon from "@mui/icons-material/Done";
+import img11 from "../../../assets/Web 1280 – 14/Group 9831.svg";
+import img22 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg";
+import img111 from "../../../assets/Web 1280 – 14/Icon.svg";
 const style = {
   position: "absolute",
   top: "50%",
@@ -36,7 +36,7 @@ export default function Skillpopup({ data, index, page }) {
   const [open2, setOpen2] = React.useState(false);
   const handleOpen2 = () => setOpen2(true);
   const handleClose2 = () => setOpen2(false);
-
+  const [arrayoffile, setArrayoffile] = useState();
   const [checkonex, setCheckonex] = useState(false);
   return (
     <div>
@@ -68,27 +68,16 @@ export default function Skillpopup({ data, index, page }) {
           <img
             style={{
               margin: "0 0.5vw",
-              width: "2.5vw ",
+              width: "3vw ",
               height: "2.5vw",
-              borderRadius: "50%",
+              borderRadius: "10%",
               objectFit: "cover",
               cursor: "pointer",
             }}
             src={!data?.media ? img : data?.media}
             alt=""
           />{" "}
-          <img
-            style={{
-              margin: "0.5vw 0.5vw",
-              width: "1.4vw ",
-              height: "1.4vw",
-              borderRadius: "50%",
-              cursor: "pointer",
-              objectFit: "cover",
-            }}
-            src={img2}
-            alt=""
-          />
+         
         </div>
         <div
           style={{
@@ -98,19 +87,7 @@ export default function Skillpopup({ data, index, page }) {
             alignItems: "center",
           }}
         >
-          {" "}
-          <img
-            style={{
-              margin: "0.5vw 0.5vw",
-              width: "1.4vw ",
-              height: "1.4vw",
-              borderRadius: "50%",
-              cursor: "pointer",
-              objectFit: "cover",
-            }}
-            src={img1}
-            alt=""
-          />
+          
           Development
           <img
             onClick={() => handleOpen()}
@@ -136,18 +113,7 @@ export default function Skillpopup({ data, index, page }) {
             alignItems: "center",
           }}
         >
-          <img
-            style={{
-              margin: "0.5vw 0.5vw",
-              width: "1.4vw ",
-              height: "1.4vw",
-              borderRadius: "50%",
-              cursor: "pointer",
-              objectFit: "cover",
-            }}
-            src={img1}
-            alt=""
-          />
+          
           Development
           <img
             style={{
@@ -176,18 +142,7 @@ export default function Skillpopup({ data, index, page }) {
           />
         </div>
         <div style={{ width: "18vw", display: "flex", alignItems: "center" }}>
-          <img
-            style={{
-              margin: "0.5vw 0.5vw",
-              width: "1.4vw ",
-              height: "1.4vw",
-              borderRadius: "50%",
-              cursor: "pointer",
-              objectFit: "cover",
-            }}
-            src={img1}
-            alt=""
-          />{" "}
+          
           Development
           <img
             style={{
@@ -243,7 +198,83 @@ export default function Skillpopup({ data, index, page }) {
           >
             <input type="text" name="email" />
           </div>
+          <div
+            style={{
+              marginBottom: "0.0vw",
 
+              marginTop: "1vw",
+            }}
+            className="jobpodtedfieldtitile"
+          >
+     Upload image(Optional)
+          </div>
+          <div
+            style={{
+              background: "white",
+              padding: "1vw",
+              marginTop: "0vw",
+              paddingRight: "0.5vw",
+              paddingLeft: "0vw",
+            }}
+          >
+            <div className="inputfilebox">
+              <div>
+                <label htmlFor={`inputctaelogfile`}>
+                  <div className="inputicon">
+                    <img src={img111} alt="" />
+                  </div>
+                  <div className="inputcateaddformfile">
+                    Drag and Drop ,Browse to upload
+                  </div>
+                  <input
+                    type="file"
+                    id={`inputctaelogfile`}
+                    onChange={(e) => {
+                      setArrayoffile(e.target.files[0]);
+                    }}
+                    hidden
+                  />
+                </label>
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                textAlign: "right",
+                fontSize: "0.9vw",
+                fontWeight: "400",
+              }}
+            >
+              Image should be less then 200 kb
+            </div>
+          </div>
+          {arrayoffile && (
+            <div
+              style={{ marginTop: "0.3vw" }}
+              className="inputfilesshowncatebox"
+            >
+              <div className="inputfilesshowncatboxsingle">
+                <div className="inputfilesshowncatboxsingleimg">
+                  <img src={img11} alt="" />
+                </div>
+                <div className="fileselctednamecate">{arrayoffile?.name}</div>
+                <div className="inputfilesshowncatboxsingleimg">
+                  <img
+                    style={{
+                      width: "1.5vw",
+                      marginLeft: "1vw",
+                      cursor: "pointer",
+                    }}
+                    src={img22}
+                    alt=""
+                    onClick={() => {
+                      setArrayoffile();
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
           <div style={{ marginTop: "0.31vw" }} className="handlemoreaboutskill">
             <div
               style={{
@@ -291,13 +322,10 @@ export default function Skillpopup({ data, index, page }) {
       >
         <Box sx={style}>
           <div className="profiletitleandmenunav">
-            <div className="profiledetailstitle">Sub Category Name </div>
+            <div className="profiledetailstitle">Rename the Sub-Category </div>
             <div className="profiledetailnavmanu">
               <div>
-                <CloseIcon
-                  onClick={handleClose2}
-                  style={{ fontSize: "1.5vw", cursor: "pointer" }}
-                />
+                
               </div>
             </div>
           </div>
@@ -307,7 +335,83 @@ export default function Skillpopup({ data, index, page }) {
           >
             <input type="text" name="email" />
           </div>
+          <div
+            style={{
+              marginBottom: "0.0vw",
 
+              marginTop: "1vw",
+            }}
+            className="jobpodtedfieldtitile"
+          >
+     Upload image(Optional)
+          </div>
+          <div
+            style={{
+              background: "white",
+              padding: "1vw",
+              marginTop: "0vw",
+              paddingRight: "0.5vw",
+              paddingLeft: "0vw",
+            }}
+          >
+            <div className="inputfilebox">
+              <div>
+                <label htmlFor={`inputctaelogfile`}>
+                  <div className="inputicon">
+                    <img src={img111} alt="" />
+                  </div>
+                  <div className="inputcateaddformfile">
+                    Drag and Drop ,Browse to upload
+                  </div>
+                  <input
+                    type="file"
+                    id={`inputctaelogfile`}
+                    onChange={(e) => {
+                      setArrayoffile(e.target.files[0]);
+                    }}
+                    hidden
+                  />
+                </label>
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                textAlign: "right",
+                fontSize: "0.9vw",
+                fontWeight: "400",
+              }}
+            >
+              Image should be less then 200 kb
+            </div>
+          </div>
+          {arrayoffile && (
+            <div
+              style={{ marginTop: "0.3vw" }}
+              className="inputfilesshowncatebox"
+            >
+              <div className="inputfilesshowncatboxsingle">
+                <div className="inputfilesshowncatboxsingleimg">
+                  <img src={img11} alt="" />
+                </div>
+                <div className="fileselctednamecate">{arrayoffile?.name}</div>
+                <div className="inputfilesshowncatboxsingleimg">
+                  <img
+                    style={{
+                      width: "1.5vw",
+                      marginLeft: "1vw",
+                      cursor: "pointer",
+                    }}
+                    src={img22}
+                    alt=""
+                    onClick={() => {
+                      setArrayoffile();
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
           <div style={{ marginTop: "0.31vw" }} className="handlemoreaboutskill">
             <div
               style={{
@@ -355,15 +459,11 @@ export default function Skillpopup({ data, index, page }) {
       >
         <Box sx={style}>
           <div className="profiletitleandmenunav">
-            <div className="profiledetailstitle">Category Name </div>
+            <div className="profiledetailstitle">Rename the Category </div>
             <div className="profiledetailnavmanu">
-              <div>
-                <CloseIcon
-                  onClick={handleClose}
-                  style={{ fontSize: "1.5vw", cursor: "pointer" }}
-                />
-              </div>
+              
             </div>
+           
           </div>
           <div
             style={{ marginTop: "1vw", width: "106%" }}
@@ -371,7 +471,83 @@ export default function Skillpopup({ data, index, page }) {
           >
             <input type="text" name="email" />
           </div>
+          <div
+            style={{
+              marginBottom: "0.0vw",
 
+              marginTop: "1vw",
+            }}
+            className="jobpodtedfieldtitile"
+          >
+          Upload image(Optional)
+          </div>
+          <div
+            style={{
+              background: "white",
+              padding: "1vw",
+              marginTop: "0vw",
+              paddingRight: "0.5vw",
+              paddingLeft: "0vw",
+            }}
+          >
+            <div className="inputfilebox">
+              <div>
+                <label htmlFor={`inputctaelogfile`}>
+                  <div className="inputicon">
+                    <img src={img111} alt="" />
+                  </div>
+                  <div className="inputcateaddformfile">
+                    Drag and Drop ,Browse to upload
+                  </div>
+                  <input
+                    type="file"
+                    id={`inputctaelogfile`}
+                    onChange={(e) => {
+                      setArrayoffile(e.target.files[0]);
+                    }}
+                    hidden
+                  />
+                </label>
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                textAlign: "right",
+                fontSize: "0.9vw",
+                fontWeight: "400",
+              }}
+            >
+              Image should be less then 200 kb
+            </div>
+          </div>
+          {arrayoffile && (
+            <div
+              style={{ marginTop: "0.3vw" }}
+              className="inputfilesshowncatebox"
+            >
+              <div className="inputfilesshowncatboxsingle">
+                <div className="inputfilesshowncatboxsingleimg">
+                  <img src={img11} alt="" />
+                </div>
+                <div className="fileselctednamecate">{arrayoffile?.name}</div>
+                <div className="inputfilesshowncatboxsingleimg">
+                  <img
+                    style={{
+                      width: "1.5vw",
+                      marginLeft: "1vw",
+                      cursor: "pointer",
+                    }}
+                    src={img22}
+                    alt=""
+                    onClick={() => {
+                      setArrayoffile();
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
           <div style={{ marginTop: "0.31vw" }} className="handlemoreaboutskill">
             <div
               style={{

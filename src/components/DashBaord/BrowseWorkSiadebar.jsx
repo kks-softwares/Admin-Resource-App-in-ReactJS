@@ -95,7 +95,7 @@ export default function BrowseWorkSiadebar() {
         }}
       >
         <Typography
-          sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
+          sx={{ p: 1, pr: 2, pb: 1, fontSize: "1.1vw", cursor: "pointer" }}
           onClick={() => {
             navigate("/dashbaord/addcategory");
             handleClosex();
@@ -107,6 +107,34 @@ export default function BrowseWorkSiadebar() {
             alt=""
           />
           Add Category
+        </Typography>
+        <Typography
+          sx={{ p: 1, pr: 2, pb: 1, fontSize: "1.1vw", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/dashbaord/addsubcategory");
+            handleClosex();
+          }}
+        >
+          <AddIcon
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          Add Sub Categories
+        </Typography>
+        <Typography
+          sx={{ p: 1, pr: 2, pb: 1, fontSize: "1.1vw", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/dashbaord/addskill1");
+            handleClosex();
+          }}
+        >
+          <AddIcon
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          Add Skill
         </Typography>
         <Typography
           onClick={() => {
