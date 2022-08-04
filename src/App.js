@@ -44,6 +44,12 @@ import WorkDetail from "./components/DashBoardSidebar/EmployeeDetail/WorkDetail/
 import AddCategory from "./components/DashBoardSidebar/AddCategory/AddCategory";
 import AddSubCategory from "./components/DashBoardSidebar/AddCategory/AddSubCategory";
 import AddSkill1 from "./components/DashBoardSidebar/AddCategory/AddSkill";
+import Location from "./components/DashBoardSidebar/Location/Location";
+import EditLocation from "./components/DashBoardSidebar/AddLocation/EditLocation";
+import AddLocation from "./components/DashBoardSidebar/AddLocation/AddLocation";
+import Pricing from "./components/DashBoardSidebar/Pricing/Pricing";
+import EditPricing from "./components/DashBoardSidebar/AddPricing/EditPricing";
+import AddPricing from "./components/DashBoardSidebar/AddPricing/AddPricing";
 
 function LayoutsWithNavbar() {
   return (
@@ -55,7 +61,7 @@ function LayoutsWithNavbar() {
 
 function App() {
   const dispatch = useDispatch();
-  const { user, loggedInStatus } = useSelector((state) => state.user);
+  const {  loggedInStatus } = useSelector((state) => state.user);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -63,7 +69,7 @@ function App() {
     if (user) {
       dispatch(userActions.setUser({ user }));
     }
-  }, [loggedInStatus]);
+  }, [loggedInStatus]); 
 
   return (
     <div className="App">
@@ -160,6 +166,13 @@ function App() {
             <Route path="/dashbaord/addcategory" element={<AddCategory />} />
             <Route path="/dashbaord/addsubcategory" element={<AddSubCategory />} />
             <Route path="/dashbaord/addskill1" element={<AddSkill1 />} />
+            <Route path="/dashbaord/addlocation" element={<AddLocation />} />
+            <Route path="/dashbaord/editLocation" element={<EditLocation />} />
+            <Route path="/dashbaord/location" element={<Location />} />
+            <Route path="/dashbaord/addpricing" element={<AddPricing />} />
+            <Route path="/dashbaord/editpricing" element={<EditPricing />} />
+            <Route path="/dashbaord/pricing" element={<Pricing />} />
+
           </Route>
         </Routes>
       </Router>

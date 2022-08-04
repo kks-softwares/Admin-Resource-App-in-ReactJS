@@ -13,6 +13,32 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
 export default function BrowseWorkSiadebar() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
+  const [anchorElp, setAnchorElp] = React.useState(null);
+
+  const handleClickp = (event) => {
+    setAnchorElp(event.currentTarget);
+  };
+
+  const handleClosep = () => {
+    setAnchorElp(null);
+  };
+
+  const openp = Boolean(anchorElp);
+  const idp = openp ? "simple-popover" : undefined;
+
   const [anchorElx, setAnchorElx] = React.useState(null);
 
   const handleClickx = (event) => {
@@ -79,7 +105,15 @@ export default function BrowseWorkSiadebar() {
         <img src={img9} alt="" />
         Category
       </div>
-
+      
+      <div onClick={handleClickp} className="firstsidebarmenu">
+        <img src={img9} alt="" />
+        Pricing & Budget
+      </div>
+      <div onClick={handleClick} className="firstsidebarmenu">
+        <img src={img9} alt="" />
+        Location
+      </div>
       <Popover
         id={idx}
         open={openx}
@@ -151,6 +185,101 @@ export default function BrowseWorkSiadebar() {
           List of Category
         </Typography>
       </Popover>
+  
+  
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+       
+        
+        <Typography
+          sx={{ p: 1, pr: 2, pb: 1, fontSize: "1.1vw", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/dashbaord/addlocation");
+            handleClose();
+          }}
+        >
+          <AddIcon
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          Add Location
+        </Typography>
+        <Typography
+          onClick={() => {
+            navigate("/dashbaord/location");
+            handleClosex();
+          }}
+          sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
+        >
+          <img
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          List of Location
+        </Typography>
+      </Popover>
+  
+  
+      <Popover
+        id={idp}
+        open={openp}
+        anchorEl={anchorElp}
+        onClose={handleClosep}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+        <Typography
+          sx={{ p: 1, pr: 2, pb: 1, fontSize: "1.1vw", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/dashbaord/pricingbudget");
+            handleClosep();
+          }}
+        >
+          <AddIcon
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          Add Pricing & Budget
+        </Typography>
+       
+        <Typography
+          onClick={() => {
+            navigate("/dashbaord/pricingbudget");
+            handleClosex();
+          }}
+          sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
+        >
+          <img
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          List of Pricing & Budget
+        </Typography>
+      </Popover>
+  
+  
     </div>
   );
 }
