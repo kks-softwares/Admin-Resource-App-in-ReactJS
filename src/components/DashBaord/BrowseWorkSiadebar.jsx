@@ -220,7 +220,7 @@ export default function BrowseWorkSiadebar() {
         <Typography
           onClick={() => {
             navigate("/dashbaord/location");
-            handleClosex();
+            handleClose();
           }}
           sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
         >
@@ -251,7 +251,7 @@ export default function BrowseWorkSiadebar() {
         <Typography
           sx={{ p: 1, pr: 2, pb: 1, fontSize: "1.1vw", cursor: "pointer" }}
           onClick={() => {
-            navigate("/dashbaord/pricingbudget");
+            navigate("/dashbaord/addpricing");
             handleClosep();
           }}
         >
@@ -265,8 +265,8 @@ export default function BrowseWorkSiadebar() {
        
         <Typography
           onClick={() => {
-            navigate("/dashbaord/pricingbudget");
-            handleClosex();
+            navigate("/dashbaord/pricing");
+            handleClosep();
           }}
           sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
         >

@@ -219,6 +219,7 @@ export default function AddLocation({ handleClose, setSelectedCategory }) {
           <p style={{ color: "red" }}>{formErrors.title}</p>
           <div className="jobpodtedfieldtitile">Country*</div>
           <div className="jobpostfieldinputbox">
+         
             <input
               type="text"
               name="title"
