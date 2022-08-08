@@ -43,48 +43,92 @@ export default function Location() {
   const handleClose = () => setOpen(false);
   const [previosfilter, setPreviosfilter] = useState([]);
   const [allusers, setAllusers] = useState([]);
-
+  const [togglrbar, setTogglrbar] = useState();
+  const [togglrbar1, setTogglrbar1] = useState();
   useEffect(() => {
-    if (!setSelectedCategory) {
-      axios
-        .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10`)
-        .then((res) => {
-          setAllusers(res?.data?.success?.data);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10`)
-        .then((res) => {
-          if (res?.data?.success?.data?.length > 0) {
-            settotalpages(page + 1);
-          }
-        });
-    } else {
-      axios
-        .get(
-          `${API_HOST}/location/viewLocation?search=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
-        )
-        .then((res) => {
-          setAllusers(res?.data?.success?.data);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(
-          `${API_HOST}/location/viewLocation?search=${setSelectedCategory}&pageNumber=${
-            page + 1
-          }&pageSize=10`
-        )
-        .then((res) => {
-          if (res?.data?.success?.data?.length > 0) {
-            settotalpages(page + 1);
+     if (togglrbar1) {
+        if (!setSelectedCategory) {
+            axios
+              .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10&${togglrbar1}=A`)
+              .then((res) => {
+                setAllusers(res?.data?.success?.data);
+                window.scrollTo(0, 0, { behavior: "smooth" });
+              });
+            axios
+              .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10&${togglrbar1}=A`)
+              .then((res) => {
+                if (res?.data?.success?.data?.length > 0) {
+                  settotalpages(page + 1);
+                }
+              });
           } else {
-            settotalpages(page);
+            axios
+              .get(
+                `${API_HOST}/location/viewLocation?search=${setSelectedCategory}&pageNumber=${page}&pageSize=10&${togglrbar1}=A`
+              )
+              .then((res) => {
+                setAllusers(res?.data?.success?.data);
+                window.scrollTo(0, 0, { behavior: "smooth" });
+              });
+            axios
+              .get(
+                `${API_HOST}/location/viewLocation?search=${setSelectedCategory}&pageNumber=${
+                  page + 1
+                }&pageSize=10&${togglrbar1}=A`
+              )
+              .then((res) => {
+                if (res?.data?.success?.data?.length > 0) {
+                  settotalpages(page + 1);
+                } else {
+                  settotalpages(page);
+                }
+              });
           }
-        });
-    }
-  }, [page, setSelectedCategory]);
+     }
+     else{
+        if (!setSelectedCategory) {
+            axios
+              .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10`)
+              .then((res) => {
+                setAllusers(res?.data?.success?.data);
+                window.scrollTo(0, 0, { behavior: "smooth" });
+              });
+            axios
+              .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10`)
+              .then((res) => {
+                if (res?.data?.success?.data?.length > 0) {
+                  settotalpages(page + 1);
+                }
+              });
+          } else {
+            axios
+              .get(
+                `${API_HOST}/location/viewLocation?search=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
+              )
+              .then((res) => {
+                setAllusers(res?.data?.success?.data);
+                window.scrollTo(0, 0, { behavior: "smooth" });
+              });
+            axios
+              .get(
+                `${API_HOST}/location/viewLocation?search=${setSelectedCategory}&pageNumber=${
+                  page + 1
+                }&pageSize=10`
+              )
+              .then((res) => {
+                if (res?.data?.success?.data?.length > 0) {
+                  settotalpages(page + 1);
+                } else {
+                  settotalpages(page);
+                }
+              });
+          }
+     }
 
-  const [togglrbar, setTogglrbar] = useState(0);
+   
+  }, [page, setSelectedCategory,togglrbar1]);
+
+ 
 
   const [selecteddelete, setSelecteddelete] = useState([]);
 
@@ -96,7 +140,87 @@ export default function Location() {
       .post(`${API_HOST}/location/removeLocation`, formdata, {
         headers: { "Content-Type": "multipart/form-data" },
       })
-      .then((res) => {});
+      .then((res) => {
+        if (togglrbar1) {
+            if (!setSelectedCategory) {
+                axios
+                  .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10&${togglrbar1}=A`)
+                  .then((res) => {
+                    setAllusers(res?.data?.success?.data);
+                    window.scrollTo(0, 0, { behavior: "smooth" });
+                  });
+                axios
+                  .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10&${togglrbar1}=A`)
+                  .then((res) => {
+                    if (res?.data?.success?.data?.length > 0) {
+                      settotalpages(page + 1);
+                    }
+                  });
+              } else {
+                axios
+                  .get(
+                    `${API_HOST}/location/viewLocation?search=${setSelectedCategory}&pageNumber=${page}&pageSize=10&${togglrbar1}=A`
+                  )
+                  .then((res) => {
+                    setAllusers(res?.data?.success?.data);
+                    window.scrollTo(0, 0, { behavior: "smooth" });
+                  });
+                axios
+                  .get(
+                    `${API_HOST}/location/viewLocation?search=${setSelectedCategory}&pageNumber=${
+                      page + 1
+                    }&pageSize=10&${togglrbar1}=A`
+                  )
+                  .then((res) => {
+                    if (res?.data?.success?.data?.length > 0) {
+                      settotalpages(page + 1);
+                    } else {
+                      settotalpages(page);
+                    }
+                  });
+              }
+         }
+         else{
+            if (!setSelectedCategory) {
+                axios
+                  .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10`)
+                  .then((res) => {
+                    setAllusers(res?.data?.success?.data);
+                    window.scrollTo(0, 0, { behavior: "smooth" });
+                  });
+                axios
+                  .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10`)
+                  .then((res) => {
+                    if (res?.data?.success?.data?.length > 0) {
+                      settotalpages(page + 1);
+                    }
+                  });
+              } else {
+                axios
+                  .get(
+                    `${API_HOST}/location/viewLocation?search=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
+                  )
+                  .then((res) => {
+                    setAllusers(res?.data?.success?.data);
+                    window.scrollTo(0, 0, { behavior: "smooth" });
+                  });
+                axios
+                  .get(
+                    `${API_HOST}/location/viewLocation?search=${setSelectedCategory}&pageNumber=${
+                      page + 1
+                    }&pageSize=10`
+                  )
+                  .then((res) => {
+                    if (res?.data?.success?.data?.length > 0) {
+                      settotalpages(page + 1);
+                    } else {
+                      settotalpages(page);
+                    }
+                  });
+              }
+         }
+    
+      });
   };
 
   return (
@@ -242,7 +366,10 @@ export default function Location() {
                     <div
                       style={{ cursor: "pointer" }}
                       className="handlecirclieaboutsave"
-                      // onClick={handleeducationdelete}
+                      onClick={()=>{
+                          setTogglrbar1(togglrbar)
+                          handleClose()
+                      }}
                     >
                       Submit
                     </div>
