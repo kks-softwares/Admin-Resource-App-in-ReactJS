@@ -89,7 +89,7 @@ export default function Pricing() {
           </span>
           <input
             type="text"
-            placeholder="search Category"
+            placeholder="search Pricing & budget"
             value={setSelectedCategory}
             onChange={(e) => {
               setSetSelectedCategory(e.target.value);

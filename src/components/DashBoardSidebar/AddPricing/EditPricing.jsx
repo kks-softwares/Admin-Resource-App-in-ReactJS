@@ -90,7 +90,7 @@ export default function AddPricing({ handleClose, setSelectedCategory }) {
         }}
         className="homepostjob-right"
       >
-        <div className="jobpostedformheading">Add Pricing & Budget</div>
+        <div className="jobpostedformheading">Edit Pricing & Budget</div>
 
         <div>
           <div className="jobpodtedfieldtitile">From ($) *</div>

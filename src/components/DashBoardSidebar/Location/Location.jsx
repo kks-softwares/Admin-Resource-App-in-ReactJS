@@ -105,7 +105,7 @@ export default function Location() {
           </span>
           <input
             type="text"
-            placeholder="search Category"
+            placeholder="search Location"
             value={setSelectedCategory}
             onChange={(e) => {
               setSetSelectedCategory(e.target.value);
