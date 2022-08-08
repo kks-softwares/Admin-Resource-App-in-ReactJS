@@ -5,8 +5,6 @@ import Box from "@mui/material/Box";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import API_HOST from "../../../env";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
 import Modal from "@mui/material/Modal";
 import Skillpopup from "./Skillpopup";
@@ -17,7 +15,6 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: "50vw",
-
   bgcolor: "background.paper",
   border: "2px solid white",
   boxShadow: 24,
@@ -31,9 +28,6 @@ export default function Pricing() {
 
   const navigate = useNavigate();
 
-  const [page, setPage] = useState(1);
-  const [totalpages, settotalpages] = useState(1);
-
   const [setSelectedCategory, setSetSelectedCategory] = useState("");
 
   const [arrayoffilterselected, setarrayoffilterselected] = useState([]);
@@ -42,60 +36,47 @@ export default function Pricing() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [previosfilter, setPreviosfilter] = useState([]);
-  const [allusers, setAllusers] = useState(["1", "2", "3", "4", "5", "6", "7"]);
-
-  //   useEffect(() => {
-  //     if (!setSelectedCategory) {
-  //       axios
-  //         .get(
-  //           `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&page=${page}`
-  //         )
-  //         .then((res) => {
-  //           setAllusers(res?.data?.success?.data?.docs);
-  //           window.scrollTo(0, 0, { behavior: "smooth" });
-  //         });
-  //       axios
-  //         .get(
-  //           `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&page=${
-  //             page + 1
-  //           }`
-  //         )
-  //         .then((res) => {
-  //           if (res?.data?.success?.data?.docs?.length > 0) {
-  //             settotalpages(page + 1);
-  //           }
-  //         });
-  //     } else {
-  //       axios
-  //         .get(
-  //           `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
-  //         )
-  //         .then((res) => {
-  //           setAllusers(res?.data?.success?.data);
-  //           window.scrollTo(0, 0, { behavior: "smooth" });
-  //         });
-  //       axios
-  //         .get(
-  //           `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&pageNumber=${
-  //             page + 1
-  //           }&pageSize=10`
-  //         )
-  //         .then((res) => {
-  //           if (res?.data?.success?.data?.length > 0) {
-  //             settotalpages(page + 1);
-  //           } else {
-  //             settotalpages(page);
-  //           }
-  //         });
-  //     }
-  //   }, [page, setSelectedCategory]);
-
+  const [allusers, setAllusers] = useState([]);
 
   const [datestart1, setDatestart1] = useState();
-  
+
   const [datestart1x, setDatestart1x] = useState();
-  
-  
+  useEffect(() => {
+    if (datestart1 && !datestart1x) {
+      axios
+        .get(`${API_HOST}/budget/viewBudget?minimumBudget=${datestart1}`)
+        .then((res) => {
+          setAllusers(res?.data?.success?.data);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
+    }
+    if (datestart1x && !datestart1) {
+      axios
+        .get(`${API_HOST}/budget/viewBudget?maximumBudget=${datestart1x}`)
+        .then((res) => {
+          setAllusers(res?.data?.success?.data);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
+    }
+    if (datestart1 && datestart1x) {
+      axios
+        .get(
+          `${API_HOST}/budget/viewBudget?minimumBudget=${datestart1}&maximumBudget=${datestart1x}`
+        )
+        .then((res) => {
+          setAllusers(res?.data?.success?.data);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
+    }
+    if (!datestart1x && !datestart1) {
+      axios.get(`${API_HOST}/budget/viewBudget`).then((res) => {
+        setAllusers(res?.data?.success?.data);
+        window.scrollTo(0, 0, { behavior: "smooth" });
+      });
+    }
+  }, [datestart1,datestart1x]);
+
+
   return (
     <div className="BrowseWorkMain-cntainer">
       <div
@@ -156,7 +137,7 @@ export default function Pricing() {
                       <div>
                         <CloseIcon
                           onClick={handleClose}
-                          style={{ fontSize: "1.5vw",cursor:"pointer" }}
+                          style={{ fontSize: "1.5vw", cursor: "pointer" }}
                         />
                       </div>
                     </div>
@@ -228,7 +209,8 @@ export default function Pricing() {
                       }}
                       className="handlecirclieaboutsave"
                       onClick={() => {
-                        setarrayoffilterselected(previosfilter);
+                        setDatestart1();
+                        setDatestart1x();
                         handleClose();
                       }}
                     >
@@ -237,7 +219,7 @@ export default function Pricing() {
                     <div
                       style={{ cursor: "pointer" }}
                       className="handlecirclieaboutsave"
-                      // onClick={handleeducationdelete}
+                      onClick={handleClose}
                     >
                       Submit
                     </div>
@@ -322,55 +304,9 @@ export default function Pricing() {
         >
           {allusers?.length > 0 &&
             allusers?.map((data, index) => {
-              return <Skillpopup data={data} index={index} page={page} />;
+              return <Skillpopup data={data} index={index} />;
             })}
         </div>
-
-        {totalpages !== 1 ? (
-          <div style={{ width: "25vw" }} className="paginationbox">
-            <div>
-              <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
-            </div>
-
-            <div
-              hidden={page - 4 > 0 ? false : true}
-              onClick={() => setPage(page - 4)}
-            >
-              {page - 4}
-            </div>
-            <div
-              hidden={page - 3 > 0 ? false : true}
-              onClick={() => setPage(page - 3)}
-            >
-              {page - 3}
-            </div>
-            <div
-              hidden={page - 2 > 0 ? false : true}
-              onClick={() => setPage(page - 2)}
-            >
-              {page - 2}
-            </div>
-            <div
-              hidden={page - 1 > 0 ? false : true}
-              onClick={() => setPage(page - 1)}
-            >
-              {page - 1}
-            </div>
-            <div style={{ color: "#2A6599" }}>{page}</div>
-            <div
-              hidden={page + 1 > totalpages ? true : false}
-              onClick={() => setPage(page + 1)}
-            >
-              {page + 1}
-            </div>
-
-            <div>
-              <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
       </div>
     </div>
   );

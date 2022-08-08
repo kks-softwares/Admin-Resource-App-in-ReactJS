@@ -13,9 +13,8 @@ export default function AddPricing({ handleClose, setSelectedCategory }) {
   const navigate = useNavigate();
 
   const handleSumbit = () => {
-     
-    if (! parseInt(formValues) || ! parseInt(formValues1)) {
-      if (!parseInt(formValues) && ! parseInt(formValues1)) {
+    if (!parseInt(formValues) || !parseInt(formValues1)) {
+      if (!parseInt(formValues) && !parseInt(formValues1)) {
         settitle("Please enter minimum value of budget");
         settitle1("Please enter Maximum value of budget");
         return;
@@ -24,23 +23,19 @@ export default function AddPricing({ handleClose, setSelectedCategory }) {
         settitle("Please enter minimum value of budget");
         return;
       }
-      if (! parseInt(formValues1)) {
+      if (!parseInt(formValues1)) {
         settitle1("Please enter Maximum value of budget");
         return;
       }
     } else {
-      if ( parseInt(formValues1) < parseInt(formValues)) {
-          console.log( parseInt(formValues1) < parseInt(formValues));
+      if (parseInt(formValues1) < parseInt(formValues)) {
         settitle("From value less than To value");
         settitle1("To value Greater than From value");
       } else {
-        console.log( parseInt(formValues1) < parseInt(formValues));
-        console.log( parseInt(formValues1));
-        console.log(parseInt(formValues));
         axios
           .post(`${API_HOST}/budget/addBudget`, {
             minimumBudget: parseInt(formValues),
-            maximumBudget:  parseInt(formValues1),
+            maximumBudget: parseInt(formValues1),
           })
           .then((res) => {
             if (res?.data?.success?.data?.budgetId) {
@@ -56,10 +51,10 @@ export default function AddPricing({ handleClose, setSelectedCategory }) {
           .catch((err) => {
             if (err.response.data?.success?.data?.keyPattern?.minimumBudget) {
               settitle("already exist");
-              settitle1()
+              settitle1();
             } else {
               settitle1("already exist");
-              settitle()
+              settitle();
             }
           });
       }

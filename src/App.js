@@ -170,7 +170,7 @@ function App() {
             <Route path="/dashbaord/editLocation" element={<EditLocation />} />
             <Route path="/dashbaord/location" element={<Location />} />
             <Route path="/dashbaord/addpricing" element={<AddPricing />} />
-            <Route path="/dashbaord/editpricing" element={<EditPricing />} />
+            <Route path="/dashbaord/editpricing/:id/:min/:max" element={<EditPricing />} />
             <Route path="/dashbaord/pricing" element={<Pricing />} />
 
           </Route>

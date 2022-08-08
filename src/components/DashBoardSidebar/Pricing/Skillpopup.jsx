@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 
-
 import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
 import { Navigate, useNavigate } from "react-router";
 
 import DoneIcon from "@mui/icons-material/Done";
-
 
 export default function Skillpopup({ data, index, page }) {
   const navigate = useNavigate();
@@ -40,7 +38,7 @@ export default function Skillpopup({ data, index, page }) {
         >
           From
         </div>
-        <div>$20</div>
+        <div>${data?.minimumBudget}</div>
       </div>
       <div style={{ width: "12vw" }}>
         <div
@@ -52,12 +50,16 @@ export default function Skillpopup({ data, index, page }) {
         >
           To
         </div>
-        <div>$200</div>
+        <div>${data?.maximumBudget}</div>
       </div>
 
       <div style={{ width: "3vw" }}>
         <img
-          onClick={() => navigate("/dashbaord/editpricing")}
+          onClick={() =>
+            navigate(
+              `/dashbaord/editpricing/${data?.budgetId}/${data?.minimumBudget}/${data?.maximumBudget}`
+            )
+          }
           style={{
             margin: "0.5vw 0.5vw",
             width: "1.4vw ",
