@@ -5,7 +5,12 @@ import { Navigate, useNavigate } from "react-router";
 
 import DoneIcon from "@mui/icons-material/Done";
 
-export default function Skillpopup({ data, index, page }) {
+export default function Skillpopup({
+  data,
+  index,
+  setSelecteddelete,
+  selecteddelete,
+}) {
   const navigate = useNavigate();
   const [checkonex, setCheckonex] = useState(false);
   return (
@@ -14,7 +19,26 @@ export default function Skillpopup({ data, index, page }) {
       className="navoftableblogsdata"
     >
       <div style={{ width: "3vw" }}>
-        <div className="checkbox" onClick={() => setCheckonex(!checkonex)}>
+        <div
+          className="checkbox"
+          onClick={() => {
+            setCheckonex(!checkonex);
+            if (selecteddelete?.indexOf(data?.budgetId) > -1) {
+              setSelecteddelete([
+                ...selecteddelete.slice(
+                  0,
+                  selecteddelete.indexOf(data?.budgetId)
+                ),
+                ...selecteddelete.slice(
+                  selecteddelete.indexOf(data?.budgetId) + 1,
+                  selecteddelete.length
+                ),
+              ]);
+            } else {
+              setSelecteddelete([...selecteddelete, data?.budgetId]);
+            }
+          }}
+        >
           {checkonex ? (
             <DoneIcon
               style={{

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { SearchSharp } from "@mui/icons-material";
+import { ApiSharp, SearchSharp } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
@@ -44,7 +44,7 @@ export default function Pricing() {
   useEffect(() => {
     if (datestart1 && !datestart1x) {
       axios
-        .get(`${API_HOST}/budget/viewBudget?minimumBudget=${datestart1}`)
+        .get(`${API_HOST}/budget/viewBudget?minimumBudget=${datestart1}&maximumBudget=100000000000`)
         .then((res) => {
           setAllusers(res?.data?.success?.data);
           window.scrollTo(0, 0, { behavior: "smooth" });
@@ -52,7 +52,7 @@ export default function Pricing() {
     }
     if (datestart1x && !datestart1) {
       axios
-        .get(`${API_HOST}/budget/viewBudget?maximumBudget=${datestart1x}`)
+        .get(`${API_HOST}/budget/viewBudget?maximumBudget=${datestart1x}&minimumBudget=0`)
         .then((res) => {
           setAllusers(res?.data?.success?.data);
           window.scrollTo(0, 0, { behavior: "smooth" });
@@ -74,8 +74,53 @@ export default function Pricing() {
         window.scrollTo(0, 0, { behavior: "smooth" });
       });
     }
-  }, [datestart1,datestart1x]);
+  }, [datestart1, datestart1x]);
 
+  const [selecteddelete, setSelecteddelete] = useState([]);
+
+  const handleDelete = () => {
+    const formdata = new FormData();
+    formdata.append("removable", JSON.stringify(selecteddelete));
+    console.log(JSON.stringify(selecteddelete));
+    axios
+      .post(`${API_HOST}/budget/removeBudget`,formdata, {
+        headers: { "Content-Type": "multipart/form-data" }
+      })
+      .then((res) => {
+        if (datestart1 && !datestart1x) {
+          axios
+            .get(`${API_HOST}/budget/viewBudget?minimumBudget=${datestart1}`)
+            .then((res) => {
+              setAllusers(res?.data?.success?.data);
+              window.scrollTo(0, 0, { behavior: "smooth" });
+            });
+        }
+        if (datestart1x && !datestart1) {
+          axios
+            .get(`${API_HOST}/budget/viewBudget?maximumBudget=${datestart1x}`)
+            .then((res) => {
+              setAllusers(res?.data?.success?.data);
+              window.scrollTo(0, 0, { behavior: "smooth" });
+            });
+        }
+        if (datestart1 && datestart1x) {
+          axios
+            .get(
+              `${API_HOST}/budget/viewBudget?minimumBudget=${datestart1}&maximumBudget=${datestart1x}`
+            )
+            .then((res) => {
+              setAllusers(res?.data?.success?.data);
+              window.scrollTo(0, 0, { behavior: "smooth" });
+            });
+        }
+        if (!datestart1x && !datestart1) {
+          axios.get(`${API_HOST}/budget/viewBudget`).then((res) => {
+            setAllusers(res?.data?.success?.data);
+            window.scrollTo(0, 0, { behavior: "smooth" });
+          });
+        }
+      });
+  };
 
   return (
     <div className="BrowseWorkMain-cntainer">
@@ -283,6 +328,9 @@ export default function Pricing() {
         </div>
         <div style={{ width: "5vw", height: "1vw" }}>
           <img
+            onClick={() => {
+              handleDelete();
+            }}
             style={{
               margin: "0vw 0.5vw",
               marginRight: "3vw",
@@ -304,7 +352,14 @@ export default function Pricing() {
         >
           {allusers?.length > 0 &&
             allusers?.map((data, index) => {
-              return <Skillpopup data={data} index={index} />;
+              return (
+                <Skillpopup
+                  data={data}
+                  index={index}
+                  setSelecteddelete={setSelecteddelete}
+                  selecteddelete={selecteddelete}
+                />
+              );
             })}
         </div>
       </div>
