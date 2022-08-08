@@ -39,7 +39,7 @@ import CompletedJobPage from "./components/DashBoardSidebar/CompletedJobPage/Com
 import Employee from "./components/DashBoardSidebar/Employee/Employee";
 import AddEmployee from "./components/DashBoardSidebar/AddEmployee/AddEmployee";
 import EmployeeDetail from "./components/DashBoardSidebar/EmployeeDetail/EmployeeDetail";
-import AddWork from './components/DashBoardSidebar/AddEmployee/AddWork'
+import AddWork from "./components/DashBoardSidebar/AddEmployee/AddWork";
 import WorkDetail from "./components/DashBoardSidebar/EmployeeDetail/WorkDetail/WorkDetail";
 import AddCategory from "./components/DashBoardSidebar/AddCategory/AddCategory";
 import AddSubCategory from "./components/DashBoardSidebar/AddCategory/AddSubCategory";
@@ -61,7 +61,7 @@ function LayoutsWithNavbar() {
 
 function App() {
   const dispatch = useDispatch();
-  const {  loggedInStatus } = useSelector((state) => state.user);
+  const { loggedInStatus } = useSelector((state) => state.user);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -69,7 +69,7 @@ function App() {
     if (user) {
       dispatch(userActions.setUser({ user }));
     }
-  }, [loggedInStatus]); 
+  }, [loggedInStatus]);
 
   return (
     <div className="App">
@@ -164,15 +164,23 @@ function App() {
             <Route path="/dashbaord/workdetail" element={<WorkDetail />} />
             <Route path="/dashbaord/category" element={<Users1 />} />
             <Route path="/dashbaord/addcategory" element={<AddCategory />} />
-            <Route path="/dashbaord/addsubcategory" element={<AddSubCategory />} />
+            <Route
+              path="/dashbaord/addsubcategory"
+              element={<AddSubCategory />}
+            />
             <Route path="/dashbaord/addskill1" element={<AddSkill1 />} />
             <Route path="/dashbaord/addlocation" element={<AddLocation />} />
-            <Route path="/dashbaord/editLocation" element={<EditLocation />} />
+            <Route
+              path="/dashbaord/editLocation/:id/:address/:landmark/:area/:city/:pinCode/:state/:country"
+              element={<EditLocation />}
+            />
             <Route path="/dashbaord/location" element={<Location />} />
             <Route path="/dashbaord/addpricing" element={<AddPricing />} />
-            <Route path="/dashbaord/editpricing/:id/:min/:max" element={<EditPricing />} />
+            <Route
+              path="/dashbaord/editpricing/:id/:min/:max"
+              element={<EditPricing />}
+            />
             <Route path="/dashbaord/pricing" element={<Pricing />} />
-
           </Route>
         </Routes>
       </Router>

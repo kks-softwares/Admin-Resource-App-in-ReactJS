@@ -42,33 +42,27 @@ export default function Location() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [previosfilter, setPreviosfilter] = useState([]);
-  const [allusers, setAllusers] = useState(["1", "2", "3", "4", "5", "6", "7"]);
+  const [allusers, setAllusers] = useState([]);
 
   useEffect(() => {
     if (!setSelectedCategory) {
       axios
-        .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&page=${page}`
-        )
+        .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10`)
         .then((res) => {
-          setAllusers(res?.data?.success?.data?.docs);
+          setAllusers(res?.data?.success?.data);
           window.scrollTo(0, 0, { behavior: "smooth" });
         });
       axios
-        .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&page=${
-            page + 1
-          }`
-        )
+        .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10`)
         .then((res) => {
-          if (res?.data?.success?.data?.docs?.length > 0) {
+          if (res?.data?.success?.data?.length > 0) {
             settotalpages(page + 1);
           }
         });
     } else {
       axios
         .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
+          `${API_HOST}/location/viewLocation?search=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
         )
         .then((res) => {
           setAllusers(res?.data?.success?.data);
@@ -76,7 +70,7 @@ export default function Location() {
         });
       axios
         .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&pageNumber=${
+          `${API_HOST}/location/viewLocation?search=${setSelectedCategory}&pageNumber=${
             page + 1
           }&pageSize=10`
         )
@@ -92,7 +86,19 @@ export default function Location() {
 
   const [togglrbar, setTogglrbar] = useState(0);
 
-  
+  const [selecteddelete, setSelecteddelete] = useState([]);
+
+  const handleDelete = () => {
+    const formdata = new FormData();
+    formdata.append("removable", JSON.stringify(selecteddelete));
+    console.log(JSON.stringify(selecteddelete));
+    axios
+      .post(`${API_HOST}/location/removeLocation`, formdata, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((res) => {});
+  };
+
   return (
     <div className="BrowseWorkMain-cntainer">
       <div
@@ -164,9 +170,9 @@ export default function Location() {
 
                   <div style={{ display: "flex" }}>
                     <div
-                      onClick={() => setTogglrbar(1)}
+                      onClick={() => setTogglrbar("area")}
                       className={
-                        togglrbar === 1
+                        togglrbar === "area"
                           ? "selectbuttonfilter1"
                           : "selectbuttonfilter"
                       }
@@ -174,9 +180,9 @@ export default function Location() {
                       Area
                     </div>
                     <div
-                      onClick={() => setTogglrbar(2)}
+                      onClick={() => setTogglrbar("city")}
                       className={
-                        togglrbar === 2
+                        togglrbar === "city"
                           ? "selectbuttonfilter1"
                           : "selectbuttonfilter"
                       }
@@ -184,9 +190,9 @@ export default function Location() {
                       City
                     </div>
                     <div
-                      onClick={() => setTogglrbar(3)}
+                      onClick={() => setTogglrbar("pincode")}
                       className={
-                        togglrbar === 3
+                        togglrbar === "pincode"
                           ? "selectbuttonfilter1"
                           : "selectbuttonfilter"
                       }
@@ -194,9 +200,9 @@ export default function Location() {
                       Pincode
                     </div>
                     <div
-                      onClick={() => setTogglrbar(3)}
+                      onClick={() => setTogglrbar("state")}
                       className={
-                        togglrbar === 3
+                        togglrbar === "state"
                           ? "selectbuttonfilter1"
                           : "selectbuttonfilter"
                       }
@@ -204,9 +210,9 @@ export default function Location() {
                       State
                     </div>
                     <div
-                      onClick={() => setTogglrbar(3)}
+                      onClick={() => setTogglrbar("country")}
                       className={
-                        togglrbar === 3
+                        togglrbar === "country"
                           ? "selectbuttonfilter1"
                           : "selectbuttonfilter"
                       }
@@ -214,8 +220,6 @@ export default function Location() {
                       Country
                     </div>
                   </div>
-
-                
 
                   <div
                     style={{ marginTop: "0.31vw" }}
@@ -302,6 +306,7 @@ export default function Location() {
         </div>
         <div style={{ width: "5vw", height: "1vw" }}>
           <img
+            onClick={() => handleDelete()}
             style={{
               margin: "0vw 0.5vw",
               marginRight: "3vw",
@@ -334,7 +339,15 @@ export default function Location() {
         </div>
         {allusers?.length > 0 &&
           allusers?.map((data, index) => {
-            return <Skillpopup data={data} index={index} page={page} />;
+            return (
+              <Skillpopup
+                data={data}
+                index={index}
+                page={page}
+                setSelecteddelete={setSelecteddelete}
+                selecteddelete={selecteddelete}
+              />
+            );
           })}
 
         {totalpages !== 1 ? (

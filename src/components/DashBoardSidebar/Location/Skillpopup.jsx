@@ -5,14 +5,39 @@ import { useNavigate } from "react-router";
 
 import DoneIcon from "@mui/icons-material/Done";
 
-export default function Skillpopup({ data, index, page }) {
+export default function Skillpopup({
+  data,
+  index,
+  page,
+  setSelecteddelete,
+  selecteddelete,
+}) {
   const navigate = useNavigate();
   const [checkonex, setCheckonex] = useState(false);
   return (
     <div>
       <div style={{ alignItems: "center" }} className="navoftableblogsdata">
         <div style={{ width: "3vw" }}>
-          <div className="checkbox" onClick={() => setCheckonex(!checkonex)}>
+          <div
+            className="checkbox"
+            onClick={() => {
+              setCheckonex(!checkonex);
+              if (selecteddelete?.indexOf(data?.locationId) > -1) {
+                setSelecteddelete([
+                  ...selecteddelete.slice(
+                    0,
+                    selecteddelete.indexOf(data?.locationId)
+                  ),
+                  ...selecteddelete.slice(
+                    selecteddelete.indexOf(data?.locationId) + 1,
+                    selecteddelete.length
+                  ),
+                ]);
+              } else {
+                setSelecteddelete([...selecteddelete, data?.locationId]);
+              }
+            }}
+          >
             {checkonex ? (
               <DoneIcon
                 style={{
@@ -26,16 +51,20 @@ export default function Skillpopup({ data, index, page }) {
             )}{" "}
           </div>
         </div>
-        <div style={{ width: "14vw" }}>21/A 1st floor, 7th street</div>
-        <div style={{ width: "11vw" }}>Toll Plaza</div>
-        <div style={{ width: "12vw" }}>M.G. Road</div>
-        <div style={{ width: "9vw" }}>Banaglore</div>
-        <div style={{ width: "9vw" }}>210022</div>
-        <div style={{ width: "9vw" }}>Karnataka</div>
-        <div style={{ width: "9vw" }}>India</div>
+        <div style={{ width: "14vw" }}>{data?.address}</div>
+        <div style={{ width: "11vw" }}>{data?.landMark}</div>
+        <div style={{ width: "12vw" }}>{data?.area}</div>
+        <div style={{ width: "9vw" }}>{data?.city}</div>
+        <div style={{ width: "9vw" }}>{data?.pinCode}</div>
+        <div style={{ width: "9vw" }}>{data?.state}</div>
+        <div style={{ width: "9vw" }}>{data?.country}</div>
         <div style={{ width: "3vw" }}>
           <img
-            onClick={() => navigate("/dashbaord/editlocation")}
+            onClick={() =>
+              navigate(
+                `/dashbaord/editlocation/${data?.locationId}/${data?.address}/${data?.landMark}/${data?.area}/${data?.city}/${data?.pinCode}/${data?.state}/${data?.country}`
+              )
+            }
             style={{
               margin: "0.5vw 0.5vw",
               width: "1.4vw ",
