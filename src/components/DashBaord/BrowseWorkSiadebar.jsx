@@ -4,6 +4,9 @@ import img1 from "../../assets/Dashboard/Iconly-Light-outline-Bookmark.svg";
 import img2 from "../../assets/Dashboard/Iconly-Light-outline-Buy.svg";
 import img3 from "../../assets/Dashboard/Iconly-Light-outline-Chart.svg";
 import img7 from "../../assets/Dashboard/Iconly-Light-outline-Paper.svg";
+import img12 from "../../assets/walletimage/Iconly-Light-Location.svg";
+import img13 from "../../assets/walletimage/Iconly-Light-Wallet.svg";
+import img17 from "../../assets/walletimage/Group 12656.svg";
 import img8 from "../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-3 User.svg";
 import img89 from "../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Profile.svg";
 import img9 from "../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Paper Plus.svg";
@@ -102,16 +105,16 @@ export default function BrowseWorkSiadebar() {
       </Link>
 
       <div onClick={handleClickx} className="firstsidebarmenu">
-        <img src={img9} alt="" />
+        <img src={img17} alt="" />
         Category
       </div>
       
       <div onClick={handleClickp} className="firstsidebarmenu">
-        <img src={img9} alt="" />
+        <img src={img13} alt="" />
         Pricing & Budget
       </div>
       <div onClick={handleClick} className="firstsidebarmenu">
-        <img src={img9} alt="" />
+        <img src={img12} alt="" />
         Location
       </div>
       <Popover
