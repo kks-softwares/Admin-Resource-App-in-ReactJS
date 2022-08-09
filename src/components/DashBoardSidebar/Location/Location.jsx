@@ -55,7 +55,7 @@ export default function Location() {
                 window.scrollTo(0, 0, { behavior: "smooth" });
               });
             axios
-              .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10&${togglrbar1}=A`)
+              .get(`${API_HOST}/location/viewLocation?pageNumber=${page+1}&pageSize=10&${togglrbar1}=A`)
               .then((res) => {
                 if (res?.data?.success?.data?.length > 0) {
                   settotalpages(page + 1);
@@ -94,7 +94,7 @@ export default function Location() {
                 window.scrollTo(0, 0, { behavior: "smooth" });
               });
             axios
-              .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10`)
+              .get(`${API_HOST}/location/viewLocation?pageNumber=${page+1}&pageSize=10`)
               .then((res) => {
                 if (res?.data?.success?.data?.length > 0) {
                   settotalpages(page + 1);
@@ -150,7 +150,7 @@ export default function Location() {
                     window.scrollTo(0, 0, { behavior: "smooth" });
                   });
                 axios
-                  .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10&${togglrbar1}=A`)
+                  .get(`${API_HOST}/location/viewLocation?pageNumber=${page+1}&pageSize=10&${togglrbar1}=A`)
                   .then((res) => {
                     if (res?.data?.success?.data?.length > 0) {
                       settotalpages(page + 1);
@@ -189,7 +189,7 @@ export default function Location() {
                     window.scrollTo(0, 0, { behavior: "smooth" });
                   });
                 axios
-                  .get(`${API_HOST}/location/viewLocation?pageNumber=${page}&pageSize=10`)
+                  .get(`${API_HOST}/location/viewLocation?pageNumber=${page+1}&pageSize=10`)
                   .then((res) => {
                     if (res?.data?.success?.data?.length > 0) {
                       settotalpages(page + 1);
@@ -219,7 +219,7 @@ export default function Location() {
                   });
               }
          }
-    
+       setSelecteddelete([])
       });
   };
 
