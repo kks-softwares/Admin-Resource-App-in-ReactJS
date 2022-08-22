@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "./profile.css";
 import img1 from "../../../../assets/My profile – 28/Component 70 – 6.svg";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import axios from "axios";
 import img5 from "../../../../assets/My profile – 28/local_police_black_24dp.svg";
 import img46 from "../../../../assets/My profile – 28/Landing page – 19.png";
 import API_HOST from "../../../../env";
 import { LockClockOutlined } from "@mui/icons-material";
 import StarRatings from "react-star-ratings";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 export default function ProfileCatalogs({ user }) {
   const [allCatalogs, setAllCatalogs] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get(`${API_HOST}/catalouge/viewCatalouge?userId=${user?.userId}`)
@@ -52,7 +53,28 @@ export default function ProfileCatalogs({ user }) {
                     }') center center / cover no-repeat`,
                   }}
                   className="pcatelogimg"
-                ></div>
+                >
+                       <div className="pcatelogimg2">
+            <div className="porfolioprofilemenu">
+              <RemoveRedEyeIcon
+                // onClick={() => navigate(`/dashbaord/blog/${data?.contentId}`)}
+                onClick={() => navigate(`/catalogue/${catalogue?.catalogueId}`)}
+                style={{
+                  margin: "0 0.5vw",
+                  width: "2.6vw ",
+                  height: "2.6vw",
+                  borderRadius: "50%",
+                  cursor: "pointer",
+                  objectFit: "cover",
+                  backgroundColor:'white',
+                  padding:'3px'
+                }}
+              />
+            </div>
+          
+          </div>
+       
+                </div>
                 <div className="pcatelog-title">{catalogue?.title.slice(0,40)}</div>
                 <div className="pcatelogdate">
                   <div>

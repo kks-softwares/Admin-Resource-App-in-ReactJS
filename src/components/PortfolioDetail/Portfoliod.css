@@ -1,0 +1,55 @@
+.portfcontainer {
+  width: 100vw;
+  padding: 2vw 4vw;
+}
+.bannerportfolio {
+  width: 92vw;
+  height: 40vw;
+  margin-bottom: 2vw;
+  border-radius: 0.2vw;
+}
+
+.bannerportfolio img{
+  width: 92vw;
+  height: 40vw;
+  object-fit: cover;
+  border-radius: 0.3vw;
+}
+
+.titleportfoliod{
+    font-size: 1.72vw;
+    font-family: Poppins;
+    font-weight: 500;
+line-height: 3vw;
+}
+.paraportfoliod{
+    font-size: 1.1vw;
+    font-family: Poppins;
+    font-weight: 400;
+    color: #040404;
+    margin: 1vw 0;
+}
+.paraportfoliod1{
+    font-size: 1.2vw;
+    font-family: Poppins;
+    font-weight: 400;
+    color: #202020;
+    line-height: 2vw;
+    margin: 1vw 0;
+}
+.paraportfoliod2{
+    font-size: 1.1vw;
+    font-family: Poppins;
+    font-weight: 400;
+    color: #707070;
+    margin: 1vw 0;
+}
+
+.simlarportfiliodata{
+    width: 92vw;
+    padding: 2vw;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}

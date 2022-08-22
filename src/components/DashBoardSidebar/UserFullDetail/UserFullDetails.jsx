@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { SearchSharp } from "@mui/icons-material";
+
 import ProfileBanner from "./ProfileDashboard/ProfileBanner";
 import ProfileBadges from "./ProfileDashboard/ProfileBadges";
 import Profileuserdetails from "./ProfileDashboard/Profileuserdetails";
@@ -13,6 +13,7 @@ import ProfileWorkexperince from "./ProfileDashboard/ProfileWorkexperince";
 import ProfileEducation from "./ProfileDashboard/ProfileEducation";
 import ProfileOther from "./ProfileDashboard/ProfileOther";
 import "./CreatedJob/BiddingFormDashboard.css";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import axios from "axios";
 import API_HOST from "../../../env";
 import CreateJobuserpage from "./CreatedJob/CreateJobuserpage";
@@ -74,7 +75,22 @@ export default function SkillCenter() {
 
   return (
     <div className="BrowseWorkMain-cntainer">
-    
+       <button
+            style={{
+              cursor: "pointer",
+              zIndex: "100",
+              padding: "0.5vw 0.7vw",
+              backgroundColor: "white",
+              color: "#000",
+              fontSize:"1.2vw",
+              borderRadius: "0.3vw",
+              border: "1px solid #d7d7d7",
+            }}
+            onClick={() => navigate(-1)}
+          >
+            <ArrowBackIosNewIcon />
+          </button>
+
       <div
         style={{
           display: "flex",
@@ -94,7 +110,12 @@ export default function SkillCenter() {
         >
           {user?.fullName}
         </div>
-        <button className="hb-buttonx" onClick={()=>navigate('/dashbaord/chat')}>Chat us</button>
+        <button
+          className="hb-buttonx"
+          onClick={() => navigate("/dashbaord/chat")}
+        >
+          Chat us
+        </button>
       </div>
 
       <div
@@ -114,8 +135,7 @@ export default function SkillCenter() {
           className="profileworkhistruytoggleervalue"
           style={{
             textAlign: "center",
-
-            color: "black",
+            color: workhistorytoggle === 1 ? "#064C87" : "black",
             minWidth: "7vw",
           }}
           onClick={() => {
@@ -128,7 +148,7 @@ export default function SkillCenter() {
           className="profileworkhistruytoggleervalue"
           style={{
             textAlign: "center",
-            color: "black",
+            color: workhistorytoggle === 2 ? "#064C87" : "black",
             minWidth: "7vw",
           }}
           onClick={() => {
@@ -141,7 +161,7 @@ export default function SkillCenter() {
           className="profileworkhistruytoggleervalue"
           style={{
             textAlign: "center",
-            color: "black",
+            color: workhistorytoggle === 3 ? "#064C87" : "black",
             minWidth: "8vw",
           }}
           onClick={() => {
@@ -154,7 +174,7 @@ export default function SkillCenter() {
           className="profileworkhistruytoggleervalue"
           style={{
             textAlign: "center",
-            color: "black",
+            color: workhistorytoggle === 4 ? "#064C87" : "black",
             minWidth: "8vw",
           }}
           onClick={() => {
@@ -167,7 +187,7 @@ export default function SkillCenter() {
           className="profileworkhistruytoggleervalue"
           style={{
             textAlign: "center",
-            color: "black",
+            color: workhistorytoggle === 5 ? "#064C87" : "black",
             minWidth: "12vw",
           }}
           onClick={() => {
@@ -180,7 +200,7 @@ export default function SkillCenter() {
           className="profileworkhistruytoggleervalue"
           style={{
             textAlign: "center",
-            color: "black",
+            color: workhistorytoggle === 6 ? "#064C87" : "black",
             minWidth: "9vw",
           }}
           onClick={() => {
@@ -195,7 +215,7 @@ export default function SkillCenter() {
           style={{
             textAlign: "center",
             minWidth: "8vw",
-            color: "black",
+            color: workhistorytoggle === 7 ? "#064C87" : "black",
           }}
           onClick={() => {
             navigate(`/dashbaord/${userName}/File Manager`);
@@ -207,7 +227,7 @@ export default function SkillCenter() {
           className="profileworkhistruytoggleervalue"
           style={{
             textAlign: "center",
-            color: "black",
+            color: workhistorytoggle === 8 ? "#064C87" : "black",
             minWidth: "8vw",
           }}
           onClick={() => {
@@ -220,7 +240,7 @@ export default function SkillCenter() {
           className="profileworkhistruytoggleervalue"
           style={{
             textAlign: "center",
-            color: "black",
+            color: workhistorytoggle === 9 ? "#064C87" : "black",
             minWidth: "8vw",
           }}
           onClick={() => {
@@ -347,7 +367,7 @@ export default function SkillCenter() {
       )}
       {workhistorytoggle === 9 ? (
         <>
-          <Documents user={user}/>
+          <Documents user={user} />
         </>
       ) : (
         ""

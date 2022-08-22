@@ -138,7 +138,7 @@
 .profilebadgecontainer {
   background: #e4e4e434 0% 0% no-repeat padding-box;
   border: 1px solid #7070700e;
-  margin: 3vw auto;
+  margin: 2vw auto !important;
   width: 90vw;
 
   padding: 0vw;
@@ -194,7 +194,7 @@
 .Profileuserdetails-container {
   background: #e4e4e434 0% 0% no-repeat padding-box;
   border: 1px solid #7070700e;
-  margin: 3vw auto;
+  margin: 1vw auto !important;
   width: 90vw;
   padding: 0 2vw;
   min-height: 30vw;

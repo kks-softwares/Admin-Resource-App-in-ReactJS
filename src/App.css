@@ -9,7 +9,9 @@
   align-items: center;
   margin: 0.81vw 0;
 }
-
+body {
+    overflow-x: hidden;
+  }
 .inputtypeformfield input {
   border: none;
   outline: none;
@@ -78,4 +80,17 @@
   font-family: Poppins;
   margin: 1vw;
   cursor: pointer;
+}
+.backbutton{
+    width: 3vw;
+    height: 3vw;
+    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+    opacity: 1;
+    margin-left: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }

@@ -27,7 +27,7 @@ import AddExam from "./components/DashBoardSidebar/SkillCenter/AddExam/AddExam";
 import ExamPage from "./components/DashBoardSidebar/SkillCenter/ExamCPage/ExamPage";
 import EditCondidateDetail from "./components/DashBoardSidebar/SkillCenter/EditConsidateDetail/EditCondidateDetail";
 import Chat from "./components/DashBoardSidebar/UserFullDetail/Chat/Chat";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { userActions } from "./store/userSlice";
 import AddUser from "./components/DashBoardSidebar/AddUser/AddUser";
 import EditUser from "./components/DashBoardSidebar/EditUser/EditUser";
@@ -50,6 +50,8 @@ import AddLocation from "./components/DashBoardSidebar/AddLocation/AddLocation";
 import Pricing from "./components/DashBoardSidebar/Pricing/Pricing";
 import EditPricing from "./components/DashBoardSidebar/AddPricing/EditPricing";
 import AddPricing from "./components/DashBoardSidebar/AddPricing/AddPricing";
+import Catalog from "./pages/Catalogs/Catalog";
+import PortFolioDetail from "./components/PortfolioDetail/PortFolioDetail";
 
 function LayoutsWithNavbar() {
   return (
@@ -71,10 +73,34 @@ function App() {
     }
   }, [loggedInStatus]);
 
+
+  const [width, setWidth] = useState(window.innerWidth);
+
+  //FUNCTIONS
+  useEffect(() => {
+    const updateWindowDimensions = () => {
+      const newWidth = window.innerWidth;
+      setWidth(newWidth);
+    };
+
+    window.addEventListener("resize", updateWindowDimensions);
+
+    return () => window.removeEventListener("resize", updateWindowDimensions);
+  }, []);
+
   return (
     <div className="App">
       <Router>
         <Routes>
+
+        <Route
+              path="/catalogue/:catId"
+              element={<Catalog width={width} />}
+            />
+             <Route
+              path="/portfolio/:portId"
+              element={<PortFolioDetail width={width} />}
+            />
           <Route
             path="/"
             element={
@@ -91,6 +117,7 @@ function App() {
           >
             <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
+           
           </Route>
           <Route
             path="/dashbaord"

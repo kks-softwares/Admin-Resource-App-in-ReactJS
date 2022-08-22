@@ -71,7 +71,7 @@ export default function Profileworkhistroy() {
       >
         <div
           className="profileworkhistruytoggleervalue"
-          style={{ color: workhistorytoggle ? "#064C87" : "" }}
+          style={{ color: workhistorytoggle===1 ? "#064C87" : "" }}
           onClick={() => {
             setWorkhistorytoggle(1);
           }}
@@ -80,7 +80,7 @@ export default function Profileworkhistroy() {
         </div>
         <div
           className="profileworkhistruytoggleervalue"
-          style={{ color: !workhistorytoggle ? "#064C87" : "" }}
+          style={{ color: workhistorytoggle===2 ? "#064C87" : "" }}
           onClick={() => {
             setWorkhistorytoggle(2);
           }}
