@@ -277,7 +277,7 @@ export default function SkillCenter() {
               workhistorytoggle === 1
                 ? "104vw"
                 : workhistorytoggle === 2
-                ? "93vw"
+                ? "94vw"
                 : workhistorytoggle === 3
                 ? "83.5vw"
                 : workhistorytoggle === 4

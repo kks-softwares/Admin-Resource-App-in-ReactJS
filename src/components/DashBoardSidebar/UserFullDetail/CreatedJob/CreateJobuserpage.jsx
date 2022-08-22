@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useNavigate, useParams } from "react-router";
-import { SearchSharp } from "@mui/icons-material";
-import { useSelector } from "react-redux";
+
 
 import axios from "axios";
 import API_HOST from "../../../../env";
@@ -51,10 +50,10 @@ export default function CreateJobuserpage({user}) {
                     marginBottom: "0.5vw",
                   }}
                 >
-                  <div style={{ marginLeft: "0vw" }} className="taggreen">
+                  <div style={{ marginLeft: "0vw" }} className="tagblue">
                     {data?.category}
                   </div>
-                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
+                  <div style={{ marginLeft: "1vw",fontSize:"0.8vw" }} >
                     {data?.subCategory}
                   </div>
                 </div>
@@ -62,7 +61,7 @@ export default function CreateJobuserpage({user}) {
                   {data?.workTitle}
                 </div>
                 <div
-                  style={{ lineHeight: "1.2vw !important" }}
+                  style={{ lineHeight: "1.2vw !important",color:"#064C8790" }}
                   className="activejobpistbudgetbox"
                 >
                   <div>
@@ -72,6 +71,7 @@ export default function CreateJobuserpage({user}) {
                         fontSize: "0.9vw",
                         position: "relative",
                         bottom: "0.3vw",
+                        color:"#00000040"
                       }}
                     >
                       ${data?.minimumBudget}- ${data?.maximuBudget}
@@ -84,6 +84,7 @@ export default function CreateJobuserpage({user}) {
                         fontSize: "0.9vw",
                         position: "relative",
                         bottom: "0.3vw",
+                        color:"#00000040"
                       }}
                     >
                       {data?.remote?"remote":data?.onSite}
@@ -96,6 +97,7 @@ export default function CreateJobuserpage({user}) {
                         fontSize: "0.9vw",
                         position: "relative",
                         bottom: "0.3vw",
+                        color:"#00000040"
                       }}
                     >
                       {data?.expiry} Days
@@ -124,7 +126,7 @@ export default function CreateJobuserpage({user}) {
 
                 <hr />
                 <div style={{ paddingLeft: "0vw" }} className="flexlastactiveb">
-                  <div>Posted on - {data?.jobPostingDate}</div>
+                  <div>No of Proposoals - {data?.listOfBider?.length}</div>
 
                   <div style={{ color: "#00000090" }}> See More</div>
                 </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import imge1 from "../../../../assets/Dashboard/Skill center – 2/clipboard.svg";
-import imge2 from "../../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Document.svg";
+import imge2 from "../../../../assets/walletimage/awards.svg";
 import imge3 from "../../../../assets/Dashboard/Skill center – 2/trending.svg";
 import Skillpopup from "./Skillpopup";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
