@@ -38,15 +38,18 @@ export default function SkillCenter() {
       setWorkhistorytoggle(1);
       setWorkhistorytoggle1(1);
     } else if (type === "Wallet") {
+      setWorkhistorytoggle(8);
+      setWorkhistorytoggle1(8);
+    } else if (type === "Created Job") {
       setWorkhistorytoggle(2);
       setWorkhistorytoggle1(2);
-    } else if (type === "Created Job") {
+    } else if (type === "Job Applied") {
       setWorkhistorytoggle(3);
       setWorkhistorytoggle1(3);
-    } else if (type === "Job Applied") {
+    } else if (type === "Skill Center&Exams") {
       setWorkhistorytoggle(4);
       setWorkhistorytoggle1(4);
-    } else if (type === "Skill Center&Exams") {
+    } else if (type === "Exams & Certificate") {
       setWorkhistorytoggle(5);
       setWorkhistorytoggle1(5);
     } else if (type === "Reference List") {
@@ -56,11 +59,11 @@ export default function SkillCenter() {
       setWorkhistorytoggle(7);
       setWorkhistorytoggle1(7);
     } else if (type === "Bank Details") {
-      setWorkhistorytoggle(8);
-      setWorkhistorytoggle1(8);
-    } else if (type === "Documents") {
       setWorkhistorytoggle(9);
       setWorkhistorytoggle1(9);
+    } else if (type === "Documents") {
+      setWorkhistorytoggle(10);
+      setWorkhistorytoggle1(10);
     } else {
       setWorkhistorytoggle1(9);
       setWorkhistorytoggle(9);
@@ -75,21 +78,21 @@ export default function SkillCenter() {
 
   return (
     <div className="BrowseWorkMain-cntainer">
-       <button
-            style={{
-              cursor: "pointer",
-              zIndex: "100",
-              padding: "0.5vw 0.7vw",
-              backgroundColor: "white",
-              color: "#000",
-              fontSize:"1.2vw",
-              borderRadius: "0.3vw",
-              border: "1px solid #d7d7d7",
-            }}
-            onClick={() => navigate(-1)}
-          >
-            <ArrowBackIosNewIcon />
-          </button>
+      <button
+        style={{
+          cursor: "pointer",
+          zIndex: "100",
+          padding: "0.5vw 0.7vw",
+          backgroundColor: "white",
+          color: "#000",
+          fontSize: "1.2vw",
+          borderRadius: "0.3vw",
+          border: "1px solid #d7d7d7",
+        }}
+        onClick={() => navigate(-1)}
+      >
+        <ArrowBackIosNewIcon />
+      </button>
 
       <div
         style={{
@@ -144,18 +147,19 @@ export default function SkillCenter() {
         >
           My Profile
         </div>
+
         <div
           className="profileworkhistruytoggleervalue"
           style={{
             textAlign: "center",
             color: workhistorytoggle === 2 ? "#064C87" : "black",
-            minWidth: "7vw",
+            minWidth: "9vw",
           }}
           onClick={() => {
-            navigate(`/dashbaord/${userName}/Wallet`);
+            navigate(`/dashbaord/${userName}/Created Job`);
           }}
         >
-          Wallet
+          Created Work
         </div>
         <div
           className="profileworkhistruytoggleervalue"
@@ -165,10 +169,10 @@ export default function SkillCenter() {
             minWidth: "8vw",
           }}
           onClick={() => {
-            navigate(`/dashbaord/${userName}/Created Job`);
+            navigate(`/dashbaord/${userName}/Job Applied`);
           }}
         >
-          Created Job
+          Applied Work
         </div>
         <div
           className="profileworkhistruytoggleervalue"
@@ -178,10 +182,10 @@ export default function SkillCenter() {
             minWidth: "8vw",
           }}
           onClick={() => {
-            navigate(`/dashbaord/${userName}/Job Applied`);
+            navigate(`/dashbaord/${userName}/Skill Center&Exams`);
           }}
         >
-          Job Applied
+          Skill Center
         </div>
         <div
           className="profileworkhistruytoggleervalue"
@@ -191,10 +195,10 @@ export default function SkillCenter() {
             minWidth: "12vw",
           }}
           onClick={() => {
-            navigate(`/dashbaord/${userName}/Skill Center&Exams`);
+            navigate(`/dashbaord/${userName}/Exams & Certificate`);
           }}
         >
-          Skill Center&Exams
+          Exams & Certificate
         </div>
         <div
           className="profileworkhistruytoggleervalue"
@@ -228,6 +232,19 @@ export default function SkillCenter() {
           style={{
             textAlign: "center",
             color: workhistorytoggle === 8 ? "#064C87" : "black",
+            minWidth: "7vw",
+          }}
+          onClick={() => {
+            navigate(`/dashbaord/${userName}/Wallet`);
+          }}
+        >
+          Wallet
+        </div>
+        <div
+          className="profileworkhistruytoggleervalue"
+          style={{
+            textAlign: "center",
+            color: workhistorytoggle === 9 ? "#064C87" : "black",
             minWidth: "8vw",
           }}
           onClick={() => {
@@ -240,11 +257,11 @@ export default function SkillCenter() {
           className="profileworkhistruytoggleervalue"
           style={{
             textAlign: "center",
-            color: workhistorytoggle === 9 ? "#064C87" : "black",
+            color: workhistorytoggle === 10 ? "#064C87" : "black",
             minWidth: "8vw",
           }}
           onClick={() => {
-            navigate(`/dashbaord/${userName}/Document`);
+            navigate(`/dashbaord/${userName}/Documents`);
           }}
         >
           Document
@@ -258,24 +275,24 @@ export default function SkillCenter() {
             position: "relative",
             right:
               workhistorytoggle === 1
-                ? "93vw"
+                ? "104vw"
                 : workhistorytoggle === 2
-                ? "83vw"
+                ? "93vw"
                 : workhistorytoggle === 3
-                ? "74.5vw"
+                ? "83.5vw"
                 : workhistorytoggle === 4
-                ? "64.5vw"
+                ? "73.5vw"
                 : workhistorytoggle === 5
-                ? "52.5vw"
+                ? "61.5vw"
                 : workhistorytoggle === 6
-                ? "40vw"
+                ? "49vw"
                 : workhistorytoggle === 7
-                ? "29.5vw"
+                ? "38.5vw"
                 : workhistorytoggle === 8
-                ? "19.2vw"
+                ? "29vw"
                 : workhistorytoggle === 9
-                ? "9vw"
-                : "9vw",
+                ? "19vw"
+                : workhistorytoggle === 10?"9vw":"",
 
             bottom: "0.3vw",
             transitionDuration: "1s",
@@ -302,21 +319,15 @@ export default function SkillCenter() {
       ) : (
         ""
       )}
+     
       {workhistorytoggle1 === 2 ? (
-        <div>
-          <Wallet />
-        </div>
-      ) : (
-        ""
-      )}
-      {workhistorytoggle1 === 3 ? (
         <div>
           <CreateJobuserpage user={user} />
         </div>
       ) : (
         ""
       )}
-      {workhistorytoggle === 4 ? (
+      {workhistorytoggle === 3 ? (
         <>
           <div className="catalogcontainerdashbaord">
             <div className="tableapplidjobflex">
@@ -335,9 +346,18 @@ export default function SkillCenter() {
         ""
       )}
 
-      {workhistorytoggle === 5 ? (
+      {workhistorytoggle === 4 ? (
         <>
           <Skillfirstuser />
+
+          {/* <Skillcenteruser /> */}
+        </>
+      ) : (
+        ""
+      )}
+      {workhistorytoggle === 5 ? (
+        <>
+          {/* <Skillfirstuser /> */}
 
           <Skillcenteruser />
         </>
@@ -358,14 +378,21 @@ export default function SkillCenter() {
       ) : (
         ""
       )}
-      {workhistorytoggle === 8 ? (
+      {workhistorytoggle === 9 ? (
         <>
           <BankDetail />
         </>
       ) : (
         ""
       )}
-      {workhistorytoggle === 9 ? (
+       {workhistorytoggle1 === 8 ? (
+        <div>
+          <Wallet />
+        </div>
+      ) : (
+        ""
+      )}
+      {workhistorytoggle === 10 ? (
         <>
           <Documents user={user} />
         </>

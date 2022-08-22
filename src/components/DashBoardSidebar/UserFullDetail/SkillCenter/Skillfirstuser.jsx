@@ -3,12 +3,7 @@ import SkillPopup2 from './SkillPopup2'
 export default function Skillfirstuser() {
   return (
     <div>
-        <div
-        style={{ margin: "1vw 0vw", padding: "0" }}
-        className="navoftableblogs"
-      >
-        Exam Overview
-      </div>
+        
       <div
           style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
           className="navoftableblogs"
