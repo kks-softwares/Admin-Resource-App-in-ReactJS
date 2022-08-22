@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./DashBoard.css";
 import img1 from "../../assets/Dashboard/Iconly-Light-outline-Bookmark.svg";
 import img2 from "../../assets/Dashboard/Iconly-Light-outline-Buy.svg";
@@ -11,7 +11,7 @@ import img8 from "../../assets/Dashboard/Skill center – 2/Iconly-Light-outline
 import img89 from "../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Profile.svg";
 import img9 from "../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Paper Plus.svg";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
@@ -55,65 +55,125 @@ export default function BrowseWorkSiadebar() {
   const openx = Boolean(anchorElx);
   const idx = openx ? "simple-popover" : undefined;
   const navigate = useNavigate();
+
+  const location = useLocation()
+  
+  const [colorsidebar, setColorsidebar] = useState(1)
+
+  useEffect(() => {
+   if (location.pathname==="/dashbaord") {
+       setColorsidebar(1)
+   }
+   if (location.pathname==="/dashbaord/users") {
+       setColorsidebar(2)
+   }
+   if (location.pathname==="/dashbaord/jobs") {
+       setColorsidebar(3)
+   }
+   if (location.pathname==="/dashbaord/employee") {
+       setColorsidebar(4)
+   }
+   if (location.pathname==="/dashbaord/blogs") {
+       setColorsidebar(5)
+   }
+   if (location.pathname==="/dashbaord/shop") {
+       setColorsidebar(6)
+   }
+   console.log(location.pathname);
+   if (location.pathname==="/dashbaord/skillCenter/List%20of%20Skills") {
+       setColorsidebar(7)
+
+   }
+   if (location.pathname==="/dashbaord/skillCenter/membership") {
+       setColorsidebar(8)
+   }
+   if (location.pathname==="/dashbaord/category") {
+       setColorsidebar(9)
+   }
+   if (location.pathname==="/dashbaord/catalogue") {
+       setColorsidebar(10)
+   }
+   if (location.pathname==="/dashbaord/location") {
+       setColorsidebar(12)
+   }
+   if (location.pathname==="/dashbaord/pricing") {
+       setColorsidebar(11)
+   }
+   
+
+
+  }, [location])
+  
+
   return (
     <div style={{ position: "sticky" }} className="sidebardashbord-container">
+      <Link to="/dashbaord">
+        <div className={colorsidebar===1?"firstsidebarmenu1":"firstsidebarmenu"}>
+          <img src={img89} alt="" />
+          Dashboard
+        </div>
+      </Link>
       <Link to="/dashbaord/users">
-        <div className="firstsidebarmenu">
+        <div className={colorsidebar===2?"firstsidebarmenu1":"firstsidebarmenu"}>
           <img src={img89} alt="" />
           Users
         </div>
       </Link>
       <Link to="/dashbaord/jobs">
-        <div className="firstsidebarmenu">
+        <div className={colorsidebar===3?"firstsidebarmenu1":"firstsidebarmenu"}>
           <img src={img1} alt="" />
           Jobs
         </div>
       </Link>
 
       <Link to="/dashbaord/employee">
-        <div className="firstsidebarmenu">
+        <div className={colorsidebar===4?"firstsidebarmenu1":"firstsidebarmenu"}>
           <img src={img8} alt="" />
           Employee
         </div>
       </Link>
       <Link to="/dashbaord/blogs">
-        <div className="firstsidebarmenu">
+        <div className={colorsidebar===5?"firstsidebarmenu1":"firstsidebarmenu"}>
           <img src={img7} alt="" />
           Blogs
         </div>
       </Link>
 
       <Link to="/dashbaord/shop">
-        <div className="firstsidebarmenu">
+        <div className={colorsidebar===6?"firstsidebarmenu1":"firstsidebarmenu"}>
           <img src={img2} alt="" />
           Shop & Redeem
         </div>
       </Link>
 
       <Link to="/dashbaord/skillCenter/List of Skills">
-        <div className="firstsidebarmenu">
+        <div className={colorsidebar===7?"firstsidebarmenu1":"firstsidebarmenu"}>
           <img src={img3} alt="" />
           Skill Center
         </div>
       </Link>
 
       <Link to="/dashbaord/membership">
-        <div className="firstsidebarmenu">
+        <div className={colorsidebar===8?"firstsidebarmenu1":"firstsidebarmenu"}>
           <img src={img9} alt="" />
           Membership
         </div>
       </Link>
 
-      <div onClick={handleClickx} className="firstsidebarmenu">
+      <div onClick={handleClickx} className={colorsidebar===9?"firstsidebarmenu1":"firstsidebarmenu"}>
         <img src={img17} alt="" />
         Category
       </div>
+      <div onClick={handleClickx} className={colorsidebar===10?"firstsidebarmenu1":"firstsidebarmenu"}>
+        <img src={img17} alt="" />
+        catalogue
+      </div>
       
-      <div onClick={handleClickp} className="firstsidebarmenu">
+      <div onClick={handleClickp} className={colorsidebar===11?"firstsidebarmenu1":"firstsidebarmenu"}>
         <img src={img13} alt="" />
         Pricing & Budget
       </div>
-      <div onClick={handleClick} className="firstsidebarmenu">
+      <div onClick={handleClick} className={colorsidebar===12?"firstsidebarmenu1":"firstsidebarmenu"}>
         <img src={img12} alt="" />
         Location
       </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Homebanner.css";
+
 import "./addpost.css";
 import CloseIcon from "@mui/icons-material/Close";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";

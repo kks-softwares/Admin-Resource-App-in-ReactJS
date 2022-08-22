@@ -106,6 +106,7 @@ function App() {
               </ProtectedRoute2>
             }
           >
+            <Route path="/dashbaord" element={<Users />} />
             <Route path="/dashbaord/users" element={<Users />} />
             <Route path="/dashbaord/blogs" element={<Blogs />} />
             <Route path="/dashbaord/addBlog" element={<Addblog />} />
@@ -163,6 +164,7 @@ function App() {
             <Route path="/dashbaord/addwork" element={<AddWork />} />
             <Route path="/dashbaord/workdetail" element={<WorkDetail />} />
             <Route path="/dashbaord/category" element={<Users1 />} />
+            <Route path="/dashbaord/catalogue" element={<Users1 />} />
             <Route path="/dashbaord/addcategory" element={<AddCategory />} />
             <Route
               path="/dashbaord/addsubcategory"

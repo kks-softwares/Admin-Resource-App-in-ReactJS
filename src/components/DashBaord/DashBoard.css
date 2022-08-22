@@ -22,12 +22,13 @@
 
 .worknavtogglemenu {
   width: 12vw;
+  padding-top: 1vw;
 }
 
 .sidebardashbord-container {
   width: 16vw;
   background-color: white;
-  padding: 1vw;
+  padding: 0vw;
 }
 
 .firstsidebarmenu {
@@ -42,14 +43,49 @@
   align-items: center;
   font-weight: 500;
   font-family: Poppins;
-  margin: 1vw 0;
+  height: 3.5vw;
   cursor: pointer;
+  transition: all 0.3s;
+  
+}
+.firstsidebarmenu:hover{
+    background-color: #064C87;
+    color: white;
+}
+.firstsidebarmenu:hover img{
+    filter: invert();
+
+    
+}
+.firstsidebarmenu1 {
+  display: flex;
+  letter-spacing: var(--unnamed-character-spacing-0);
+  text-align: left;
+  font: normal normal medium 14px/21px Poppins;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  font-size: 1vw;
+  align-items: center;
+  font-weight: 500;
+  font-family: Poppins;
+  height: 3vw;
+  color: white;
+  cursor: pointer;
+  background-color: #064C87;
+
 }
 
 .firstsidebarmenu img {
   width: 2vw;
   object-fit: 1vw;
   margin: 0 1vw;
+}
+.firstsidebarmenu1 img {
+  width: 2vw;
+  object-fit: 1vw;
+  margin: 0 1vw;
+  filter: invert();
 }
 
 a {

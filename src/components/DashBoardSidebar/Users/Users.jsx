@@ -5,6 +5,7 @@ import { SearchSharp } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import "./skill.css";
 import "./blog.css";
+import { KeyboardArrowDownOutlined } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import API_HOST from "../../../env";
@@ -14,7 +15,22 @@ import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
 import Modal from "@mui/material/Modal";
 import Skillpopup from "./Skillpopup";
 import Skillpopup1 from "./Skillpopup1";
+import { TextField } from "@mui/material";
+import { makeStyles } from "@material-ui/core";
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
 
+const useStyles = makeStyles((theme) => ({
+  input: {
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "500",
+    fontSize: "0.91vw",
+
+    color: "#263238",
+    border: "yellow !important",
+  },
+}));
 const style = {
   position: "absolute",
   top: "50%",
@@ -37,7 +53,7 @@ export default function Users() {
 
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
-
+  const [togglrbar1, setTogglrbar1] = useState();
   const [page1, setPage1] = useState(1);
   const [totalpages1, settotalpages1] = useState(1);
 
@@ -157,41 +173,473 @@ export default function Users() {
 
   const [togglrbar, setTogglrbar] = useState(1);
 
+  const [arrayofdegree, setArrayofdegree] = useState([
+    "Master of Computer Application (MCA)",
+    "Bachler of Computer Application (MCA)",
+  ]);
+  const [arrayoflongdegree, setArrayoflongdegree] = useState(arrayofdegree);
+  const classes = useStyles();
+  const [arrayofstudy, setArrayofstydy] = useState([
+    "Computer Science",
+    "Computer Science2",
+    "Computer Science3",
+  ]);
+  const [arrayoflongstudy, setArrayoflongstudy] = useState(arrayofstudy);
+  const [anchorElx2, setAnchorElx2] = React.useState(null);
+  const handleClickx2 = (event) => {
+    setAnchorElx2(event.currentTarget);
+  };
+
+  const handleClosex2 = () => {
+    setAnchorElx2(null);
+  };
+
+  const openx2 = Boolean(anchorElx2);
+  const idx2 = openx2 ? "simple-popover" : undefined;
+  const [anchorElx3, setAnchorElx3] = React.useState(null);
+  const handleClickx3 = (event) => {
+    setAnchorElx3(event.currentTarget);
+  };
+
+  const handleClosex3 = () => {
+    setAnchorElx3(null);
+  };
+
+  const openx3 = Boolean(anchorElx3);
+  const idx3 = openx3 ? "simple-popover" : undefined;
+
+  const [anchorElx3c, setAnchorElx3c] = React.useState(null);
+  const handleClickx3c = (event) => {
+    setAnchorElx3c(event.currentTarget);
+  };
+
+  const handleClosex3c = () => {
+    setAnchorElx3c(null);
+  };
+
+  const openx3c = Boolean(anchorElx3c);
+  const idx3c = openx3c ? "simple-popover" : undefined;
+
+  const [callagename, setCallagename] = useState("");
+
+  const [degreeset, setDegreeset] = useState("");
+  const [studyset, setstudyset] = useState("");
+
+  const [datestart1, setDatestart1] = useState();
+  const [datestart2, setDatestart2] = useState();
+  const [datestart3, setDatestart3] = useState();
+  const [datestart1x, setDatestart1x] = useState();
+  const [datestart2x, setDatestart2x] = useState();
+  const [datestart3x, setDatestart3x] = useState();
+  const disablePastDate = () => {
+    const today = new Date();
+    const dd = String(today.getDate() ).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    return yyyy + "-" + mm + "-" + dd;
+  };
   return (
     <div className="BrowseWorkMain-cntainer">
-      <div className="searchboxcontainer">
+      <div
+        style={{ alignItems: "center", justifyContent: "flex-start" }}
+        className="searchboxcontainer"
+      >
         <div className="serachjobbox">
           <span>
             <SearchSharp style={{ fontSize: "1.7vw" }} />
           </span>
           <input
             type="text"
-            placeholder="search Users"
+            placeholder="search Location"
             value={setSelectedCategory}
             onChange={(e) => {
               setSetSelectedCategory(e.target.value);
             }}
           />
           <button
-            style={{ width: "11vw", height: "2.6vw" }}
+            style={{ width: "11vw", height: "100%" }}
             className="hb-button"
           >
             Search
           </button>
         </div>
+        <div>
+          <div
+            style={{
+              flexWrap: "wrap",
+              marginTop: "0vw",
+              marginBottom: "0vw",
+              paddingBottom: "0vw",
+              paddingTop: "0vw",
+            }}
+            className="filterboxflex"
+          >
+            <div
+              onClick={() => {
+                handleOpen();
+                setPreviosfilter([...arrayoffilterselected]);
+              }}
+              className="filtericonbox"
+            >
+              <img src={imgfilter} alt="" />
+            </div>
 
-        <div
-          onClick={() => {
-            navigate("/dashbaord/addUser");
-          }}
-          className="digitalwallate"
-        >
-          <span style={{ color: "#064C87" }}>Add New User</span>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <div style={{ maxHeight: "80vh", overflow: "scroll" }}>
+                  <div className="profiletitleandmenunav">
+                    <div className="profiledetailstitle">Add Filters</div>
+                    <div className="profiledetailnavmanu">
+                      <div>
+                        <CloseIcon
+                          onClick={handleClose}
+                          style={{ fontSize: "1.5vw" }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <hr style={{ color: "#00000090" }} />
+                  <div
+                    style={{ left: "0vw", width: "99%", marginLeft: "0%" }}
+                    className="loginfield"
+                    onClick={handleClickx2}
+                  >
+                    <TextField
+                      id="outlined-basic"
+                      label="Search Category "
+                      variant="outlined"
+                      disabled
+                      value={degreeset}
+                      style={{ width: "100%" }}
+                      InputLabelProps={{
+                        style: {
+                          fontSize: "1vw",
+                          fontFamily: "Poppins",
+                          fontStyle: "500",
+                          fontWeight: "500",
+                          color: "black",
+                        },
+                      }}
+                      inputProps={{ className: classes.input }}
+                      onChange={(e) => {
+                        console.log(e.target.value);
+                      }}
+                    />
+                    <span style={{ width: "0.1vw" }}>
+                      <KeyboardArrowDownOutlined
+                        style={{
+                          fontSize: "1.5vw",
+                          position: "relative",
+                          right: "2vw",
+                          top: "1vw",
+                        }}
+                      />
+                    </span>
+                  </div>
+                  <Popover
+                    id={idx2}
+                    open={openx2}
+                    anchorEl={anchorElx2}
+                    onClose={handleClosex2}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "left",
+                    }}
+                  >
+                    <div
+                      style={{
+                        maxHeight: "18vw",
+                        overflow: "scroll",
+                        width: "36vw",
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          p: 1,
+                          pl: 1,
+                          ml: 1,
+                          pr: 0,
+                          width: "35vw",
+                          position: "fixed",
+                          background: "white",
+                          zIndex: "10",
+                        }}
+                      >
+                        <input
+                          onChange={(e) => {
+                            setArrayoflongdegree(
+                              arrayofdegree.filter((x) =>
+                                x.includes(e.target.value)
+                              )
+                            );
+                            console.log(
+                              arrayofdegree.filter((x) =>
+                                x.includes(e.target.value)
+                              )
+                            );
+                          }}
+                          style={{
+                            width: "97%",
+                            border: "1.5px solid #00000050",
+                            outline: "none",
+                            height: "2.5",
+                            borderRadius: "0.21vw",
+                          }}
+                        />
+                      </Typography>
+                      <Typography
+                        sx={{
+                          p: 2.5,
+                          pl: 1,
+                          ml: 1,
+                          width: "100%",
+                          cursor: "pointer",
+                        }}
+                      ></Typography>
+
+                      {arrayoflongdegree.map((data, index) => {
+                        return (
+                          <Typography
+                            sx={{
+                              p: 0.51,
+                              pl: 1,
+                              ml: 1,
+                              width: "100%",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => {
+                              setDegreeset(data);
+                              handleClosex2();
+                            }}
+                          >
+                            {data}
+                          </Typography>
+                        );
+                      })}
+                    </div>
+                  </Popover>
+                  <div
+                    style={{ left: "0vw", width: "99%", marginLeft: "0%" }}
+                    className="loginfield"
+                    onClick={handleClickx3}
+                  >
+                    <TextField
+                      id="outlined-basic"
+                      label="Search Designation"
+                      variant="outlined"
+                      disabled
+                      value={studyset}
+                      style={{ width: "100%" }}
+                      InputLabelProps={{
+                        style: {
+                          fontSize: "1vw",
+                          fontFamily: "Poppins",
+                          fontStyle: "500",
+                          fontWeight: "500",
+                          color: "black",
+                        },
+                      }}
+                      inputProps={{ className: classes.input }}
+                      onChange={(e) => {
+                        console.log(e.target.value);
+                      }}
+                    />
+                    <span style={{ width: "0.1vw" }}>
+                      <KeyboardArrowDownOutlined
+                        style={{
+                          fontSize: "1.5vw",
+                          position: "relative",
+                          right: "2vw",
+                          top: "1vw",
+                        }}
+                      />
+                    </span>
+                  </div>
+                  <Popover
+                    id={idx3}
+                    open={openx3}
+                    anchorEl={anchorElx3}
+                    onClose={handleClosex3}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "left",
+                    }}
+                  >
+                    <div
+                      style={{
+                        maxHeight: "18vw",
+                        overflow: "scroll",
+                        width: "36vw",
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          p: 1,
+                          pl: 1,
+                          ml: 1,
+                          width: "35vw",
+                          position: "fixed",
+                          background: "white",
+                          zIndex: "10",
+                        }}
+                      >
+                        <input
+                          onChange={(e) => {
+                            setArrayoflongstudy(
+                              arrayofstudy.filter((x) =>
+                                x.includes(e.target.value)
+                              )
+                            );
+                            console.log(
+                              arrayofstudy.filter((x) =>
+                                x.includes(e.target.value)
+                              )
+                            );
+                          }}
+                          style={{
+                            width: "97%",
+                            border: "1.5px solid #00000050",
+                            outline: "none",
+                            height: "2.5",
+                            borderRadius: "0.21vw",
+                          }}
+                        />
+                      </Typography>
+                      <Typography
+                        sx={{
+                          p: 2.5,
+                          pl: 1,
+                          ml: 1,
+                          width: "100%",
+                          cursor: "pointer",
+                        }}
+                      ></Typography>
+
+                      {arrayoflongstudy.map((data, index) => {
+                        return (
+                          <Typography
+                            sx={{
+                              p: 0.51,
+                              pl: 1,
+                              ml: 1,
+                              width: "100%",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => {
+                              setstudyset(data);
+                              handleClosex3();
+                            }}
+                          >
+                            {data}
+                          </Typography>
+                        );
+                      })}
+                    </div>
+                  </Popover>
+                <div className="jobpodtedfieldtitile">Joined  on</div>
+                 <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      width: "98%",
+                    }}
+                  >
+                    <div style={{ width: "50%" }}>
+                      <div style={{fontWeight:"400"}} className="jobpodtedfieldtitile">From </div>
+                      <div className="jobpostfieldinputbox">
+                        <input
+                          style={{ width: "100%" }}
+                          type="date"
+                          className="input-homejobformdate"
+                          name=""
+                          id=""
+                          value={datestart1}
+                          max={disablePastDate()}
+                          min={"2020-01-01"}
+                          maxlength="4"
+                          onChange={(e) => {
+                            setDatestart1(e.target.value);
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div style={{ width: "50%" }}>
+                      <div style={{fontWeight:"400"}}className="jobpodtedfieldtitile">To</div>
+                      <div className="jobpostfieldinputbox">
+                        <input
+                          style={{ width: "100%" }}
+                          type="date"
+                          className="input-homejobformdate"
+                          name=""
+                          id=""
+                          value={datestart1x}
+                          max={disablePastDate()}
+                          min={"2020-01-01"}
+                          maxlength="4"
+                          onChange={(e) => {
+                            setDatestart1x(e.target.value);
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div
+                    style={{ marginTop: "0.31vw" }}
+                    className="handlemoreaboutskill"
+                  >
+                    <div
+                      style={{
+                        background: "white",
+                        color: "black",
+                        cursor: "pointer",
+                      }}
+                      className="handlecirclieaboutsave"
+                      onClick={() => {
+                        setarrayoffilterselected(previosfilter);
+                        handleClose();
+                      }}
+                    >
+                      Cancel
+                    </div>
+                    <div
+                      style={{ cursor: "pointer" }}
+                      className="handlecirclieaboutsave"
+                      onClick={() => {
+                        setTogglrbar1(togglrbar);
+                        handleClose();
+                      }}
+                    >
+                      Submit
+                    </div>
+                  </div>
+                </div>
+              </Box>
+            </Modal>
+
+            {arrayoffilterselected?.length > 0 &&
+              arrayoffilterselected?.map((filtername) => {
+                return <div className="filtericonboxname">{filtername}</div>;
+              })}
+
+            <div
+              onClick={() => setarrayoffilterselected([])}
+              style={{ cursor: "pointer" }}
+              className="filtericonboxname"
+            >
+              Clear all
+            </div>
+          </div>
         </div>
       </div>
 
       <div
-        style={{ position: "relative", right: "1vw", top: "1vw" }}
+        style={{ position: "relative", right: "1vw", marginBottom: "1vw" }}
         className="profileworkhistruytoggleer"
       >
         <div
@@ -206,7 +654,7 @@ export default function Users() {
         >
           All Users
         </div>
-        <div
+        {/* <div
           onClick={() => {
             setTogglrbar(2);
           }}
@@ -217,7 +665,7 @@ export default function Users() {
           }}
         >
           Admin Users
-        </div>
+        </div> */}
 
         <div
           style={{
@@ -225,7 +673,7 @@ export default function Users() {
             borderBottom: "0.3vw solid #064C87",
             width: "9vw",
             position: "relative",
-            right: togglrbar === 1 ? "22.5vw" : "10.5vw",
+            right: togglrbar === 1 ? "9.5vw" : "0.5vw",
             bottom: "0.0vw",
             transitionDuration: "1s",
             borderRadius: "0.2vw",
@@ -233,138 +681,7 @@ export default function Users() {
         ></div>
       </div>
 
-      <div>
-        <div style={{ flexWrap: "wrap" }} className="filterboxflex">
-          <div
-            onClick={() => {
-              handleOpen();
-              setPreviosfilter([...arrayoffilterselected]);
-            }}
-            className="filtericonbox"
-          >
-            <img src={imgfilter} alt="" />
-          </div>
-
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <div className="profiletitleandmenunav">
-                <div className="profiledetailstitle">Add Filters</div>
-                <div className="profiledetailnavmanu">
-                  <div>
-                    <CloseIcon
-                      onClick={handleClose}
-                      style={{ fontSize: "1.5vw" }}
-                    />
-                  </div>
-                </div>
-              </div>
-              <hr style={{ color: "#00000090" }} />
-
-              {arrayoffilters?.map((data, index) => {
-                return (
-                  <div>
-                    <div
-                      style={{ fontSize: "1.2vw" }}
-                      className="profiledetailstitle"
-                    >
-                      {data?.filternameName}
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        flexWrap: "wrap",
-                      }}
-                    >
-                      {data?.filters?.map((data1, index) => {
-                        return (
-                          <div
-                            onClick={() => {
-                              console.log(arrayoffilterselected.indexOf(data1));
-                              if (arrayoffilterselected.indexOf(data1) > -1) {
-                                setarrayoffilterselected([
-                                  ...arrayoffilterselected.slice(
-                                    0,
-                                    arrayoffilterselected.indexOf(data1)
-                                  ),
-                                  ...arrayoffilterselected.slice(
-                                    arrayoffilterselected.indexOf(data1) + 1,
-                                    arrayoffilterselected.length
-                                  ),
-                                ]);
-                              } else {
-                                setarrayoffilterselected([
-                                  ...arrayoffilterselected,
-                                  data1,
-                                ]);
-                              }
-                            }}
-                            style={{
-                              background: arrayoffilterselected.includes(data1)
-                                ? "#064C8720"
-                                : "",
-                              cursor: "pointer",
-                            }}
-                            className="filterboxnameskill"
-                          >
-                            {data1}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              })}
-
-              <hr style={{ color: "#00000090" }} />
-              <div
-                style={{ marginTop: "0.31vw" }}
-                className="handlemoreaboutskill"
-              >
-                <div
-                  style={{
-                    background: "white",
-                    color: "black",
-                    cursor: "pointer",
-                  }}
-                  className="handlecirclieaboutsave"
-                  onClick={() => {
-                    setarrayoffilterselected(previosfilter);
-                    handleClose();
-                  }}
-                >
-                  Cancel
-                </div>
-                <div
-                  style={{ cursor: "pointer" }}
-                  className="handlecirclieaboutsave"
-                  // onClick={handleeducationdelete}
-                >
-                  Submit
-                </div>
-              </div>
-            </Box>
-          </Modal>
-
-          {arrayoffilterselected?.length > 0 &&
-            arrayoffilterselected?.map((filtername) => {
-              return <div className="filtericonboxname">{filtername}</div>;
-            })}
-
-          <div
-            onClick={() => setarrayoffilterselected([])}
-            style={{ cursor: "pointer" }}
-            className="filtericonboxname"
-          >
-            Clear all
-          </div>
-        </div>
-      </div>
+      
 
       {togglrbar === 1 && (
         <div>
@@ -432,7 +749,7 @@ export default function Users() {
           )}
         </div>
       )}
-      {togglrbar === 2 && (
+      {/* {togglrbar === 2 && (
         <div>
           <div
             style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
@@ -498,7 +815,7 @@ export default function Users() {
             ""
           )}
         </div>
-      )}
+      )} */}
     </div>
   );
 }

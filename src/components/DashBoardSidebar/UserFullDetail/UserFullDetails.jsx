@@ -74,21 +74,7 @@ export default function SkillCenter() {
 
   return (
     <div className="BrowseWorkMain-cntainer">
-      <div className="searchboxcontainer">
-        <div className="serachjobbox">
-          <span>
-            <SearchSharp style={{ fontSize: "1.7vw" }} />
-          </span>
-          <input type="text" placeholder="search Users" />
-          <button
-            style={{ width: "11vw", height: "2.6vw" }}
-            className="hb-button"
-          >
-            Search
-          </button>
-        </div>
-      </div>
-
+    
       <div
         style={{
           display: "flex",
