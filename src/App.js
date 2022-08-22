@@ -52,10 +52,22 @@ import EditPricing from "./components/DashBoardSidebar/AddPricing/EditPricing";
 import AddPricing from "./components/DashBoardSidebar/AddPricing/AddPricing";
 import Catalog from "./pages/Catalogs/Catalog";
 import PortFolioDetail from "./components/PortfolioDetail/PortFolioDetail";
+import Topbar from "./components/Topbar/Topbar";
+import DashbaordNav from "./components/DashBaord/DashbaordNav";
 
 function LayoutsWithNavbar() {
   return (
     <>
+      <Outlet />
+    </>
+  );
+}
+function LayoutsWithNavbar1() {
+  const { user } = useSelector((state) => state.user);
+  return (
+    <>
+      <Topbar />
+      <DashbaordNav user={user} />
       <Outlet />
     </>
   );
@@ -72,7 +84,6 @@ function App() {
       dispatch(userActions.setUser({ user }));
     }
   }, [loggedInStatus]);
-
 
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -92,15 +103,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-
-        <Route
-              path="/catalogue/:catId"
-              element={<Catalog width={width} />}
-            />
-             <Route
-              path="/portfolio/:portId"
-              element={<PortFolioDetail width={width} />}
-            />
+          
           <Route
             path="/"
             element={
@@ -117,7 +120,6 @@ function App() {
           >
             <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
-           
           </Route>
           <Route
             path="/dashbaord"
@@ -210,6 +212,30 @@ function App() {
               element={<EditPricing />}
             />
             <Route path="/dashbaord/pricing" element={<Pricing />} />
+          </Route>
+
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute2
+                auth={
+                  JSON.parse(localStorage.getItem("user"))?.fullName
+                    ? true
+                    : false
+                }
+              >
+                <LayoutsWithNavbar1 />
+              </ProtectedRoute2>
+            }
+          >
+            <Route
+              path="/catalogue/:catId"
+              element={<Catalog width={width} />}
+            />
+            <Route
+              path="/portfolio/:portId"
+              element={<PortFolioDetail width={width} />}
+            />
           </Route>
         </Routes>
       </Router>
