@@ -16,14 +16,13 @@ import imgp1 from "../../../../assets/Webfiles/Web 1366 – 9/Add User.svg";
 import imgp2 from "../../../../assets/Webfiles/Web 1366 – 9/Edit.svg";
 import imgp3 from "../../../../assets/Webfiles/Web 1366 – 9/Iconly-Light-Delete.svg";
 import imgp4 from "../../../../assets/Webfiles/Web 1366 – 9/Iconly-Light-Paper Download.svg";
-import { SearchSharp } from "@mui/icons-material";
-import Box from "@mui/material/Box";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import Popper from "@mui/material/Popper";
-import Fade from "@mui/material/Fade";
+
 import axios from "axios";
 import API_HOST from "../../../../env";
 import { useNavigate } from "react-router";
+import img from '../../../../assets/walletimage/Iconly-Light-outline-Show.svg'
+import img11 from '../../../../assets/walletimage/arrow_forward.svg'
+import img12 from "../../../../assets/Jobs/Iconly-Light-Delete.svg";
 export default function FileManager() {
   const [anchorElx, setAnchorElx] = React.useState(null);
   const handleClickx = (event) => {
@@ -186,28 +185,32 @@ export default function FileManager() {
             <div style={{ width: "35%" }} className="tablehaedtitile-name">
               <span>Name</span>
               <span>
-                <KeyboardArrowDownOutlined />
+                <img src={img11} style={{width:"1vw",objectFit:"contain",marginLeft:"0.51vw"}}/>
               </span>
             </div>
-            <div style={{ width: "19%" }} className="tablehaedtitile-name">
+            <div style={{ width: "15%" }} className="tablehaedtitile-name">
+              <span>Format</span>
+             
+            </div>
+            <div style={{ width: "12%" }} className="tablehaedtitile-name">
               <span>Size</span>
               <span>
-                <KeyboardArrowDownOutlined />
+              <img src={img11} style={{width:"1vw",objectFit:"contain",marginLeft:"0.51vw"}}/>
               </span>
             </div>
             <div style={{ width: "19%" }} className="tablehaedtitile-name">
-              <span>Last Modified</span>
+              <span>Upload on</span>
               <span>
-                <KeyboardArrowDownOutlined />
-              </span>
+                  <img src={img11} style={{width:"1vw",objectFit:"contain",marginLeft:"0.51vw"}}/>    </span>
             </div>
 
-            <div style={{ width: "19%" }} className="tablehaedtitile-name">
+            <div style={{ width: "15%" }} className="tablehaedtitile-name">
               <span>Owner</span>
               <span>
-                <KeyboardArrowDownOutlined />
+              <img src={img11} style={{width:"1vw",objectFit:"contain",marginLeft:"0.51vw"}}/>
               </span>
             </div>
+            <div style={{ width: "5%" }} className="tablehaedtitile-name"></div>
             <div style={{ width: "5%" }} className="tablehaedtitile-name"></div>
           </div>
 
@@ -227,19 +230,26 @@ export default function FileManager() {
                 </span>
                 <span>E-Commerce.jpg</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
+                <span>Image</span>
+              </div>
+              <div style={{ width: "12%" }} className="tablehaedtitile-name">
                 <span>3.6 MB</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "19%" }} className="tablehaedtitile-name">
                 <span>Sep 24, 2021</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-name">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
                 <span>Me</span>
               </div>
               <div style={{ width: "5%" }} className="tablehaedtitile-name">
-                <MoreVert style={{ fontSize: "2vw" }} />
+                <img src={img} style={{ width: "1.5vw" }} />
+              </div>
+              <div style={{ width: "5%" }} className="tablehaedtitile-name">
+              <img src={img12} style={{ width: "1.5vw" }} />
               </div>
             </div>
+      
             <div className="navoffilestable">
               <div style={{ width: "35%" }} className="tablehaedtitile-name">
                 <span>
@@ -255,19 +265,26 @@ export default function FileManager() {
                 </span>
                 <span>E-Commerce.jpg</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
+                <span>Image</span>
+              </div>
+              <div style={{ width: "12%" }} className="tablehaedtitile-name">
                 <span>3.6 MB</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "19%" }} className="tablehaedtitile-name">
                 <span>Sep 24, 2021</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-name">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
                 <span>Me</span>
               </div>
               <div style={{ width: "5%" }} className="tablehaedtitile-name">
-                <MoreVert style={{ fontSize: "2vw" }} />
+                <img src={img} style={{ width: "1.5vw" }} />
+              </div>
+              <div style={{ width: "5%" }} className="tablehaedtitile-name">
+              <img src={img12} style={{ width: "1.5vw" }} />
               </div>
             </div>
+      
             <div className="navoffilestable">
               <div style={{ width: "35%" }} className="tablehaedtitile-name">
                 <span>
@@ -283,19 +300,26 @@ export default function FileManager() {
                 </span>
                 <span>E-Commerce.jpg</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
+                <span>Image</span>
+              </div>
+              <div style={{ width: "12%" }} className="tablehaedtitile-name">
                 <span>3.6 MB</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "19%" }} className="tablehaedtitile-name">
                 <span>Sep 24, 2021</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-name">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
                 <span>Me</span>
               </div>
               <div style={{ width: "5%" }} className="tablehaedtitile-name">
-                <MoreVert style={{ fontSize: "2vw" }} />
+                <img src={img} style={{ width: "1.5vw" }} />
+              </div>
+              <div style={{ width: "5%" }} className="tablehaedtitile-name">
+              <img src={img12} style={{ width: "1.5vw" }} />
               </div>
             </div>
+      
             <div className="navoffilestable">
               <div style={{ width: "35%" }} className="tablehaedtitile-name">
                 <span>
@@ -311,19 +335,26 @@ export default function FileManager() {
                 </span>
                 <span>E-Commerce.jpg</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
+                <span>Image</span>
+              </div>
+              <div style={{ width: "12%" }} className="tablehaedtitile-name">
                 <span>3.6 MB</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "19%" }} className="tablehaedtitile-name">
                 <span>Sep 24, 2021</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-name">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
                 <span>Me</span>
               </div>
               <div style={{ width: "5%" }} className="tablehaedtitile-name">
-                <MoreVert style={{ fontSize: "2vw" }} />
+                <img src={img} style={{ width: "1.5vw" }} />
+              </div>
+              <div style={{ width: "5%" }} className="tablehaedtitile-name">
+              <img src={img12} style={{ width: "1.5vw" }} />
               </div>
             </div>
+      
             <div className="navoffilestable">
               <div style={{ width: "35%" }} className="tablehaedtitile-name">
                 <span>
@@ -339,19 +370,26 @@ export default function FileManager() {
                 </span>
                 <span>E-Commerce.jpg</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
+                <span>Image</span>
+              </div>
+              <div style={{ width: "12%" }} className="tablehaedtitile-name">
                 <span>3.6 MB</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "19%" }} className="tablehaedtitile-name">
                 <span>Sep 24, 2021</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-name">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
                 <span>Me</span>
               </div>
               <div style={{ width: "5%" }} className="tablehaedtitile-name">
-                <MoreVert style={{ fontSize: "2vw" }} />
+                <img src={img} style={{ width: "1.5vw" }} />
+              </div>
+              <div style={{ width: "5%" }} className="tablehaedtitile-name">
+              <img src={img12} style={{ width: "1.5vw" }} />
               </div>
             </div>
+      
             <div className="navoffilestable">
               <div style={{ width: "35%" }} className="tablehaedtitile-name">
                 <span>
@@ -367,19 +405,26 @@ export default function FileManager() {
                 </span>
                 <span>E-Commerce.jpg</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
+                <span>Image</span>
+              </div>
+              <div style={{ width: "12%" }} className="tablehaedtitile-name">
                 <span>3.6 MB</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "19%" }} className="tablehaedtitile-name">
                 <span>Sep 24, 2021</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-name">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
                 <span>Me</span>
               </div>
               <div style={{ width: "5%" }} className="tablehaedtitile-name">
-                <MoreVert style={{ fontSize: "2vw" }} />
+                <img src={img} style={{ width: "1.5vw" }} />
+              </div>
+              <div style={{ width: "5%" }} className="tablehaedtitile-name">
+              <img src={img12} style={{ width: "1.5vw" }} />
               </div>
             </div>
+      
             <div className="navoffilestable">
               <div style={{ width: "35%" }} className="tablehaedtitile-name">
                 <span>
@@ -395,19 +440,26 @@ export default function FileManager() {
                 </span>
                 <span>E-Commerce.jpg</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
+                <span>Image</span>
+              </div>
+              <div style={{ width: "12%" }} className="tablehaedtitile-name">
                 <span>3.6 MB</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "19%" }} className="tablehaedtitile-name">
                 <span>Sep 24, 2021</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-name">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
                 <span>Me</span>
               </div>
               <div style={{ width: "5%" }} className="tablehaedtitile-name">
-                <MoreVert style={{ fontSize: "2vw" }} />
+                <img src={img} style={{ width: "1.5vw" }} />
+              </div>
+              <div style={{ width: "5%" }} className="tablehaedtitile-name">
+              <img src={img12} style={{ width: "1.5vw" }} />
               </div>
             </div>
+      
             <div className="navoffilestable">
               <div style={{ width: "35%" }} className="tablehaedtitile-name">
                 <span>
@@ -423,19 +475,26 @@ export default function FileManager() {
                 </span>
                 <span>E-Commerce.jpg</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
+                <span>Image</span>
+              </div>
+              <div style={{ width: "12%" }} className="tablehaedtitile-name">
                 <span>3.6 MB</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "19%" }} className="tablehaedtitile-name">
                 <span>Sep 24, 2021</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-name">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
                 <span>Me</span>
               </div>
               <div style={{ width: "5%" }} className="tablehaedtitile-name">
-                <MoreVert style={{ fontSize: "2vw" }} />
+                <img src={img} style={{ width: "1.5vw" }} />
+              </div>
+              <div style={{ width: "5%" }} className="tablehaedtitile-name">
+              <img src={img12} style={{ width: "1.5vw" }} />
               </div>
             </div>
+      
             <div className="navoffilestable">
               <div style={{ width: "35%" }} className="tablehaedtitile-name">
                 <span>
@@ -451,19 +510,26 @@ export default function FileManager() {
                 </span>
                 <span>E-Commerce.jpg</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
+                <span>Image</span>
+              </div>
+              <div style={{ width: "12%" }} className="tablehaedtitile-name">
                 <span>3.6 MB</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "19%" }} className="tablehaedtitile-name">
                 <span>Sep 24, 2021</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-name">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
                 <span>Me</span>
               </div>
               <div style={{ width: "5%" }} className="tablehaedtitile-name">
-                <MoreVert style={{ fontSize: "2vw" }} />
+                <img src={img} style={{ width: "1.5vw" }} />
+              </div>
+              <div style={{ width: "5%" }} className="tablehaedtitile-name">
+              <img src={img12} style={{ width: "1.5vw" }} />
               </div>
             </div>
+      
             <div className="navoffilestable">
               <div style={{ width: "35%" }} className="tablehaedtitile-name">
                 <span>
@@ -479,19 +545,26 @@ export default function FileManager() {
                 </span>
                 <span>E-Commerce.jpg</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
+                <span>Image</span>
+              </div>
+              <div style={{ width: "12%" }} className="tablehaedtitile-name">
                 <span>3.6 MB</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "19%" }} className="tablehaedtitile-name">
                 <span>Sep 24, 2021</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-name">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
                 <span>Me</span>
               </div>
               <div style={{ width: "5%" }} className="tablehaedtitile-name">
-                <MoreVert style={{ fontSize: "2vw" }} />
+                <img src={img} style={{ width: "1.5vw" }} />
+              </div>
+              <div style={{ width: "5%" }} className="tablehaedtitile-name">
+              <img src={img12} style={{ width: "1.5vw" }} />
               </div>
             </div>
+      
             <div className="navoffilestable">
               <div style={{ width: "35%" }} className="tablehaedtitile-name">
                 <span>
@@ -507,23 +580,81 @@ export default function FileManager() {
                 </span>
                 <span>E-Commerce.jpg</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
+                <span>Image</span>
+              </div>
+              <div style={{ width: "12%" }} className="tablehaedtitile-name">
                 <span>3.6 MB</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-namex">
+              <div style={{ width: "19%" }} className="tablehaedtitile-name">
                 <span>Sep 24, 2021</span>
               </div>
-              <div style={{ width: "19%" }} className="tablehaedtitile-name">
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
                 <span>Me</span>
               </div>
               <div style={{ width: "5%" }} className="tablehaedtitile-name">
-                <MoreVert style={{ fontSize: "2vw" }} />
+                <img src={img} style={{ width: "1.5vw" }} />
+              </div>
+              <div style={{ width: "5%" }} className="tablehaedtitile-name">
+              <img src={img12} style={{ width: "1.5vw" }} />
               </div>
             </div>
-          </div>
+      
+            <div className="navoffilestable">
+              <div style={{ width: "35%" }} className="tablehaedtitile-name">
+                <span>
+                  <img
+                    style={{
+                      width: "2vw",
+                      marginRight: "1.52vw",
+                      objectFit: "contain",
+                    }}
+                    src={img3}
+                    alt=""
+                  />
+                </span>
+                <span>E-Commerce.jpg</span>
+              </div>
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
+                <span>Image</span>
+              </div>
+              <div style={{ width: "12%" }} className="tablehaedtitile-name">
+                <span>3.6 MB</span>
+              </div>
+              <div style={{ width: "19%" }} className="tablehaedtitile-name">
+                <span>Sep 24, 2021</span>
+              </div>
+              <div style={{ width: "15%" }} className="tablehaedtitile-name">
+                <span>Me</span>
+              </div>
+              <div style={{ width: "5%" }} className="tablehaedtitile-name">
+                <img src={img} style={{ width: "1.5vw" }} />
+              </div>
+              <div style={{ width: "5%" }} className="tablehaedtitile-name">
+              <img src={img12} style={{ width: "1.5vw" }} />
+              </div>
+            </div>
+      
+       </div>
         </div>
       </div>
       <div className="files-rightcontainer">
+      <div className="fileinputbox">
+          <div className="centerred-ficon">
+            <label htmlFor="ok">
+              <span>
+                <img style={{ cursor: "pointer" }} src={img7} alt="" />
+              </span>
+              <div className="importfiletxt">Import Files</div>
+              <input type="file" name="" id="ok" hidden />
+            </label>
+          </div>
+        </div>
+
+        <div className="capacitytitile" style={{textAlign:"center",cursor:"pointer",fontSize:"1.3vw"}}>
+        Click here to Upgrade Storage
+        </div>
+        <hr />
         <div className="capacitytitile" style={{textAlign:"center"}}>Storage</div>
         <div className="circle-files" style={{ width: "10vw", height: "10vw" }}>
           <CircularProgressbar
@@ -542,6 +673,7 @@ export default function FileManager() {
           />
         </div>
         <div style={{marginTop:"3vw"}} className="filesttyprmainboxxstorage">
+
           <div className="filestypestorage">
             <div className="files-detailst">
               <div className="files-detailstimg">
@@ -604,21 +736,7 @@ export default function FileManager() {
           </div>
         </div>
 
-        <div className="fileinputbox">
-          <div className="centerred-ficon">
-            <label htmlFor="ok">
-              <span>
-                <img style={{ cursor: "pointer" }} src={img7} alt="" />
-              </span>
-              <div className="importfiletxt">Import Files</div>
-              <input type="file" name="" id="ok" hidden />
-            </label>
-          </div>
-        </div>
-
-        <div className="capacitytitile" style={{textAlign:"center",cursor:"pointer"}}>
-        Click here to Upgrade Storage
-        </div>
+       
       </div>
     </div>
   );

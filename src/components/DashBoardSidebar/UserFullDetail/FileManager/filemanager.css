@@ -236,7 +236,7 @@
   color: #000000;
   font-size: 0.95vw !important;
   font-family: Poppins !important;
-  font-weight: 500 !important;
+  font-weight: 400 !important;
   opacity: 0.8;
 }
 .tablehaedtitile-namex {
@@ -357,7 +357,7 @@
 
 .fileinputbox {
   width: 85%;
-  margin: 3vw auto;
+  margin: 2vw auto;
   background: #6423c705 0% 0% no-repeat padding-box;
   border: 2px dashed #8f92a18f;
   border-radius: 16px;
