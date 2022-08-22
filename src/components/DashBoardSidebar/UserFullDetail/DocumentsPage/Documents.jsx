@@ -7,7 +7,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 
-export default function Documents({user}) {
+export default function Documents({ user }) {
   const { type, userName } = useParams();
   // const { user, loggedInStatus } = useSelector((state) => state.user);
   // const [verifyButtonUserProfile, setVerifyButtonUserProfile] = useState("");
@@ -17,26 +17,26 @@ export default function Documents({user}) {
 
     formdata.append("userId", user?.userId);
     formdata.append("verifiedByAdmin", true);
-    
-      axios
-          .post(`${API_HOST}/users/editUser`, formdata, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          })
-          .then((res) => {
-            console.log(res.data.success.data)
-            // setVerifyButtonUserProfile(res?.data?.success?.data);
-            // window.scrollTo(0, 0, { behavior: "smooth" });
-          })
-          .catch((err) => {
-            console.log(err.response);
-            // setSettingAccEmail(err.response.data.message)
-            // setRestag(true);
-          });
-  }
+
+    axios
+      .post(`${API_HOST}/users/editUser`, formdata, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log(res.data.success.data);
+        // setVerifyButtonUserProfile(res?.data?.success?.data);
+        // window.scrollTo(0, 0, { behavior: "smooth" });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        // setSettingAccEmail(err.response.data.message)
+        // setRestag(true);
+      });
+  };
   // console.log("USERS", userName,"PROPS",user)
-  
+
   return (
     <div>
       <div
@@ -66,23 +66,63 @@ export default function Documents({user}) {
             </span>
           </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center" , flexWrap: "wrap" }}>
-          <div style={{ width: "50%" }} className="inputfilesshowncatboxsingle">
-            <div className="inputfilesshowncatboxsingleimg">
-              <img src={img1} alt="" />
+        <div
+          style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
+        >
+          <div style={{ width: "50%" }}>
+            <div
+              style={{ width: "100%" }}
+              className="inputfilesshowncatboxsingle"
+            >
+              <div className="inputfilesshowncatboxsingleimg">
+                <img src={img1} alt="" />
+              </div>
+              <div className="fileselctednamecate">Modern submitted.docx</div>
             </div>
-            <div className="fileselctednamecate">Modern submitted.docx</div>
+            <div
+              style={{ width: "100%" }}
+              className="inputfilesshowncatboxsingle"
+            >
+              <div className="inputfilesshowncatboxsingleimg">
+                <img src={img1} alt="" />
+              </div>
+              <div className="fileselctednamecate">Modern submitted.docx</div>
+            </div>
+            <div
+              style={{ width: "100%" }}
+              className="inputfilesshowncatboxsingle"
+            >
+              <div className="inputfilesshowncatboxsingleimg">
+                <img src={img1} alt="" />
+              </div>
+              <div className="fileselctednamecate">Modern submitted.docx</div>
+            </div>
           </div>
-          <div style={{ width: "50%" }} className="inputfilesshowncatboxsingle">
+          <div style={{ width: "50%", display: "flex", alignItems: "center" }}>
+            <div style={{ fontSize: "1vw" }}>Status</div>
             <div className="inputfilesshowncatboxsingleimg">
-              <img src={img1} alt="" />
+              <img
+                style={{
+                  width: "1vw",
+                  margin: "0.4vw",
+                  position: "relative",
+
+                  filter: "opacity(0.5)",
+                }}
+                src={img2}
+                alt=""
+              />
             </div>
-            <div className="fileselctednamecate">Modern submitted.docx</div>
+            <div
+              style={{ fontSize: "0.8vw", color: "gray" }}
+              className="fileselctednamecate"
+            >
+              Verified by 44 resources.
+            </div>
           </div>
         </div>
-
         <div style={{ display: "flex", alignItems: "center" }}>
-          <div className="Headingdocuments">Driving License</div>
+          <div className="Headingdocuments">PAN No</div>
           <div style={{ fontWeight: "400" }} className="Headingdocuments">
             TN58009189102
             <span>
@@ -102,20 +142,45 @@ export default function Documents({user}) {
         <div
           style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
         >
-          <div style={{ width: "50%" }} className="inputfilesshowncatboxsingle">
-            <div className="inputfilesshowncatboxsingleimg">
-              <img src={img1} alt="" />
+          <div style={{ width: "50%" }}>
+          
+            <div
+              style={{ width: "100%" }}
+              className="inputfilesshowncatboxsingle"
+            >
+              <div className="inputfilesshowncatboxsingleimg">
+                <img src={img1} alt="" />
+              </div>
+              <div className="fileselctednamecate">Modern submitted.docx</div>
             </div>
-            <div className="fileselctednamecate">Modern submitted.docx</div>
           </div>
-        </div>
+          <div style={{ width: "50%", display: "flex", alignItems: "center" }}>
+            <div style={{ fontSize: "1vw" }}>Status</div>
+            <div className="inputfilesshowncatboxsingleimg">
+              <img
+                style={{
+                  width: "1vw",
+                  margin: "0.4vw",
+                  position: "relative",
 
-        <div
-          style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
-        >
-          <div className="Headingdocuments">Driving License</div>
+                  filter: "opacity(0.5)",
+                }}
+                src={img2}
+                alt=""
+              />
+            </div>
+            <div
+              style={{ fontSize: "0.8vw", color: "gray" }}
+              className="fileselctednamecate"
+            >
+              Verification Pending
+            </div>
+          </div>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <div className="Headingdocuments">GST NO</div>
           <div style={{ fontWeight: "400" }} className="Headingdocuments">
-            TN58009189102
+            DWIOO9r4
             <span>
               <img
                 style={{
@@ -133,26 +198,85 @@ export default function Documents({user}) {
         <div
           style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
         >
-          <div style={{ width: "50%" }} className="inputfilesshowncatboxsingle">
-            <div className="inputfilesshowncatboxsingleimg">
-              <img src={img1} alt="" />
+          <div style={{ width: "50%" }}>
+            <div
+              style={{ width: "100%" }}
+              className="inputfilesshowncatboxsingle"
+            >
+              <div className="inputfilesshowncatboxsingleimg">
+                <img src={img1} alt="" />
+              </div>
+              <div className="fileselctednamecate">Modern submitted.docx</div>
             </div>
-            <div className="fileselctednamecate">Modern submitted.docx</div>
+
+            <div
+              style={{ width: "100%" }}
+              className="inputfilesshowncatboxsingle"
+            >
+              <div className="inputfilesshowncatboxsingleimg">
+                <img src={img1} alt="" />
+              </div>
+              <div className="fileselctednamecate">Modern submitted.docx</div>
+            </div>
           </div>
-          <div style={{ width: "50%" }} className="inputfilesshowncatboxsingle">
+          <div style={{ width: "50%", display: "flex", alignItems: "center" }}>
+            <div style={{ fontSize: "1vw" }}>Status</div>
             <div className="inputfilesshowncatboxsingleimg">
-              <img src={img1} alt="" />
+              <img
+                style={{
+                  width: "1vw",
+                  margin: "0.4vw",
+                  position: "relative",
+
+                  filter: "opacity(0.5)",
+                }}
+                src={img2}
+                alt=""
+              />
             </div>
-            <div className="fileselctednamecate">Modern submitted.docx</div>
+            <div
+              style={{ fontSize: "0.8vw", color: "gray" }}
+              className="fileselctednamecate"
+            >
+              Verified by 44 resources.
+            </div>
           </div>
         </div>
       </div>
-      {user?.verifiedByAdmin === false ?
-        <div style={{display:'flex',paddingRight:'5vw',justifyContent:'flex-end'}}>
-          <button style={{color:'#fff', backgroundColor: '#064C87', padding: '1vw',border:'none'}} 
-                  onClick={()=> {handleVerifyButtonUser()}} >Click to Verify Document</button>
-        </div> : <div style={{borderStyle: 'dashed', float: 'right', padding: '0.8vw', jfontWeight:'600'}}>This User is Already Verified by Admin</div>
-      }
+      {/* {user?.verifiedByAdmin === false ? (
+        <div
+          style={{
+            display: "flex",
+            paddingRight: "5vw",
+            justifyContent: "flex-end",
+          }}
+        >
+          <button
+            style={{
+              color: "#fff",
+              backgroundColor: "#064C87",
+              padding: "1vw",
+              border: "none",
+            }}
+            onClick={() => {
+              handleVerifyButtonUser();
+            }}
+          >
+            Click to Verify Document
+          </button>
+        </div>
+      ) : (
+        <div
+          style={{
+            borderStyle: "dashed",
+            float: "right",
+            padding: "0.8vw",
+            jfontWeight: "600",
+          }}
+        >
+          This User is Already Verified by Admin
+        </div>
+      )} */}
     </div>
   );
 }
