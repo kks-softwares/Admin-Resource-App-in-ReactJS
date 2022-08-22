@@ -21,9 +21,19 @@ body {
   line-height: 1.2vw;
 }
 
+.makeStyles-select2-2{
+    height: 2vw !important;
+}
+
+.makeStyles-icon-7{
+  fill: black !important;
+}
+
 .css-1ptx2yq-MuiInputBase-root-MuiInput-root {
   height: 100% !important;
-  color: gray;
+  color: black;
+  display: flex;
+  align-items: center;
 }
 .css-1ptx2yq-MuiInputBase-root-MuiInput-root ::after {
   border-bottom: 2px solid white !important;

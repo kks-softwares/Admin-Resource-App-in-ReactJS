@@ -45,6 +45,8 @@ a {
 .css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input.css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input {
   color: black;
   font-weight: 400 !important;
+  display: flex;
+  align-items: center;
 }
 
 .jobpostfieldinputbox input {
