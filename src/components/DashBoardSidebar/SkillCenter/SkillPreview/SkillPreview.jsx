@@ -1,11 +1,11 @@
 import React from "react";
 import "./SkillPreview.css";
 import ReactPlayer from "react-player";
-
-import PropTypes from "prop-types";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { useNavigate } from "react-router";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 function CircularProgressWithLabel(props) {
   return (
     <Box sx={{ position: "relative", display: "inline-flex" }}>
@@ -30,8 +30,27 @@ function CircularProgressWithLabel(props) {
   );
 }
 export default function SkillPreview() {
+   const navigate=useNavigate() 
   return (
     <div style={{ padding: "1.5vw" }}>
+
+<button
+            style={{
+              cursor: "pointer",
+              zIndex: "100",
+              padding: "0.5vw 0.7vw",
+              backgroundColor: "white",
+              color: "#000",
+              fontSize:"1.2vw",
+              marginBottom:"0.5vw",
+              borderRadius: "0.3vw",
+              border: "1px solid #d7d7d7",
+            }}
+            onClick={() => navigate(-1)}
+          >
+            <ArrowBackIosNewIcon />
+          </button>
+
       <div className="courseaboutdetailtitile">Get a Business Online</div>
 
       <div className="vedioPlayercontainer">

@@ -3,6 +3,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import CloseIcon from "@mui/icons-material/Close";
 import Progress from "react-progressbar";
+import { Navigate, useNavigate } from "react-router";
 const style = {
   position: "absolute",
   top: "50%",
@@ -14,12 +15,11 @@ const style = {
   height: "40vw",
 };
 export default function SkillPopup2() {
-  const [openx, setOpenx] = React.useState(false);
-  const handleOpenx = () => setOpenx(true);
-  const handleClosex = () => setOpenx(false);
+  const navigate= useNavigate()
   return (
     <div>
       <div className="navoftableblogsdata">
+        <div style={{ width: "6vw" }}># 24</div>
         <div style={{ width: "17vw" }}>UX Research</div>
         <div style={{ width: "13vw" }}>10/12/2022</div>
         <div style={{ width: "13vw" }}>20 hrs</div>
@@ -45,7 +45,7 @@ export default function SkillPopup2() {
         </div>
         </div>
         <div
-        //   onClick={handleOpenx}
+          onClick={()=>navigate('/dashbaord/skillPreview/1')}
           style={{
             width: "8vw",
             fontWeight: "500",
@@ -53,36 +53,9 @@ export default function SkillPopup2() {
             cursor: "pointer",
           }}
         >
-          Click here
+         View
         </div>
       </div>
-      <Modal
-        open={openx}
-        onClose={handleClosex}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <div style={{ padding: "2vw", width: "100%", height: "100%" }}>
-            <div className="appliedjobformtitleflex">
-              <div>Reference Details</div>
-              <div>
-                <CloseIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-            </div>
-           
-            <div className="descriptionappliedpopup">
-              Are you ready to Reject Reference before Get Accepted?
-            </div>
-            <div className="homejobbuttons">
-              <button style={{ background: "white" }} onClick={handleClosex}>
-                Cancel
-              </button>
-              <button style={{ color: "white" }}>Rejected</button>
-            </div>
-          </div>
-        </Box>
-      </Modal>
-    </div>
+   </div>
   );
 }
