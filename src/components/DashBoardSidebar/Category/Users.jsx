@@ -28,6 +28,29 @@ export default function Users() {
   const [anchorElx, setAnchorElx] = React.useState(null);
   const canBeOpen = openx && Boolean(anchorElx);
   const id = canBeOpen ? "transition-popper" : undefined;
+  const [togglrbar, setTogglrbar] = useState(0);
+  const [datestart1, setDatestart1] = useState();
+  const [datestart2, setDatestart2] = useState();
+  const [datestart3, setDatestart3] = useState();
+  const [datestart1x, setDatestart1x] = useState();
+  const [datestart2x, setDatestart2x] = useState();
+  const [datestart3x, setDatestart3x] = useState();
+  const disablePastDate = () => {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    return yyyy + "-" + mm + "-" + dd;
+  };
+
+  const setdateadd = (datestart3x) => {
+    const today = new Date(datestart3x);
+    console.log(today);
+    const dd = String(today.getDate()+1).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    return yyyy + "-" + mm + "-" + dd;
+  };
 
   const navigate = useNavigate();
 
@@ -44,31 +67,17 @@ export default function Users() {
   const [previosfilter, setPreviosfilter] = useState([]);
   const [allusers, setAllusers] = useState([]);
 
+  const [recall, setRecall] = useState(false);
+
+
+
   useEffect(() => {
-    if (!setSelectedCategory) {
+    if (togglrbar === 3) {
+        const date = setdateadd(datestart3x)
+        console.log(date);
       axios
         .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&page=${page}`
-        )
-        .then((res) => {
-          setAllusers(res?.data?.success?.data?.docs);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&page=${
-            page + 1
-          }`
-        )
-        .then((res) => {
-          if (res?.data?.success?.data?.docs?.length > 0) {
-            settotalpages(page + 1);
-          }
-        });
-    } else {
-      axios
-        .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
+          `${API_HOST}/theSkill/viewSkill?pageSize=10&pageNumber=${page}&skill=${setSelectedCategory}&from=${datestart3}&to=${date}`
         )
         .then((res) => {
           setAllusers(res?.data?.success?.data);
@@ -76,34 +85,38 @@ export default function Users() {
         });
       axios
         .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&pageNumber=${
+          `${API_HOST}/theSkill/viewSkill?pageSize=10&pageNumber=${
             page + 1
-          }&pageSize=10`
+          }&skill=${setSelectedCategory}&from=${datestart3}&to=${datestart3x}`
         )
         .then((res) => {
           if (res?.data?.success?.data?.length > 0) {
             settotalpages(page + 1);
-          } else {
-            settotalpages(page);
+          }
+        });
+    } else {
+      axios
+        .get(
+          `${API_HOST}/theSkill/viewSkill?pageSize=10&pageNumber=${page}&skill=${setSelectedCategory}`
+        )
+        .then((res) => {
+          setAllusers(res?.data?.success?.data);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
+      axios
+        .get(
+          `${API_HOST}/theSkill/viewSkill?pageSize=10&pageNumber=${
+            page + 1
+          }&skill=${setSelectedCategory}`
+        )
+        .then((res) => {
+          if (res?.data?.success?.data?.length > 0) {
+            settotalpages(page + 1);
           }
         });
     }
-  }, [page, setSelectedCategory]);
+  }, [page, setSelectedCategory, recall]);
 
-  const [togglrbar, setTogglrbar] = useState(0);
-  const [datestart1, setDatestart1] = useState();
-  const [datestart2, setDatestart2] = useState();
-  const [datestart3, setDatestart3] = useState();
-  const [datestart1x, setDatestart1x] = useState();
-  const [datestart2x, setDatestart2x] = useState();
-  const [datestart3x, setDatestart3x] = useState();
-  const disablePastDate = () => {
-    const today = new Date();
-    const dd = String(today.getDate() ).padStart(2, "0");
-    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    const yyyy = today.getFullYear();
-    return yyyy + "-" + mm + "-" + dd;
-  };
   return (
     <div className="BrowseWorkMain-cntainer">
       <div
@@ -206,149 +219,184 @@ export default function Users() {
                     </div>
                   </div>
 
-                  { togglrbar!==0 && <div className="jobpodtedfieldtitile">Created on</div>}
-                { togglrbar===1 && <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      width: "98%",
-                    }}
-                  >
-                    <div style={{ width: "50%" }}>
-                      <div style={{fontWeight:"400"}} className="jobpodtedfieldtitile">From </div>
-                      <div className="jobpostfieldinputbox">
-                        <input
-                          style={{ width: "100%" }}
-                          type="date"
-                          className="input-homejobformdate"
-                          name=""
-                          id=""
-                          value={datestart1}
-                          max={disablePastDate()}
-                          min={"2020-01-01"}
-                          maxlength="4"
-                          onChange={(e) => {
-                            setDatestart1(e.target.value);
-                          }}
-                        />
+                  {togglrbar !== 0 && (
+                    <div className="jobpodtedfieldtitile">Created on</div>
+                  )}
+                  {togglrbar === 1 && (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        width: "98%",
+                      }}
+                    >
+                      <div style={{ width: "50%" }}>
+                        <div
+                          style={{ fontWeight: "400" }}
+                          className="jobpodtedfieldtitile"
+                        >
+                          From{" "}
+                        </div>
+                        <div className="jobpostfieldinputbox">
+                          <input
+                            style={{ width: "100%" }}
+                            type="date"
+                            className="input-homejobformdate"
+                            name=""
+                            id=""
+                            value={datestart1}
+                            max={disablePastDate()}
+                            min={"2020-01-01"}
+                            maxlength="4"
+                            onChange={(e) => {
+                              setDatestart1(e.target.value);
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <div style={{ width: "50%" }}>
+                        <div
+                          style={{ fontWeight: "400" }}
+                          className="jobpodtedfieldtitile"
+                        >
+                          To
+                        </div>
+                        <div className="jobpostfieldinputbox">
+                          <input
+                            style={{ width: "100%" }}
+                            type="date"
+                            className="input-homejobformdate"
+                            name=""
+                            id=""
+                            value={datestart1x}
+                            max={disablePastDate()}
+                            min={"2020-01-01"}
+                            maxlength="4"
+                            onChange={(e) => {
+                              setDatestart1x(e.target.value);
+                            }}
+                          />
+                        </div>
                       </div>
                     </div>
-                    <div style={{ width: "50%" }}>
-                      <div style={{fontWeight:"400"}}className="jobpodtedfieldtitile">To</div>
-                      <div className="jobpostfieldinputbox">
-                        <input
-                          style={{ width: "100%" }}
-                          type="date"
-                          className="input-homejobformdate"
-                          name=""
-                          id=""
-                          value={datestart1x}
-                          max={disablePastDate()}
-                          min={"2020-01-01"}
-                          maxlength="4"
-                          onChange={(e) => {
-                            setDatestart1x(e.target.value);
-                          }}
-                        />
+                  )}
+                  {togglrbar === 2 && (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        width: "98%",
+                      }}
+                    >
+                      <div style={{ width: "50%" }}>
+                        <div
+                          style={{ fontWeight: "400" }}
+                          className="jobpodtedfieldtitile"
+                        >
+                          From{" "}
+                        </div>
+                        <div className="jobpostfieldinputbox">
+                          <input
+                            style={{ width: "100%" }}
+                            type="date"
+                            className="input-homejobformdate"
+                            name=""
+                            id=""
+                            value={datestart2}
+                            max={disablePastDate()}
+                            min={"2020-01-01"}
+                            maxlength="4"
+                            onChange={(e) => {
+                              setDatestart2(e.target.value);
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <div style={{ width: "50%" }}>
+                        <div
+                          style={{ fontWeight: "400" }}
+                          className="jobpodtedfieldtitile"
+                        >
+                          To
+                        </div>
+                        <div className="jobpostfieldinputbox">
+                          <input
+                            style={{ width: "100%" }}
+                            type="date"
+                            className="input-homejobformdate"
+                            name=""
+                            id=""
+                            value={datestart2x}
+                            max={disablePastDate()}
+                            min={"2020-01-01"}
+                            maxlength="4"
+                            onChange={(e) => {
+                              setDatestart2x(e.target.value);
+                            }}
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                }
-                { togglrbar===2 && <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      width: "98%",
-                    }}
-                  >
-                    <div style={{ width: "50%" }}>
-                      <div style={{fontWeight:"400"}} className="jobpodtedfieldtitile">From </div>
-                      <div className="jobpostfieldinputbox">
-                        <input
-                          style={{ width: "100%" }}
-                          type="date"
-                          className="input-homejobformdate"
-                          name=""
-                          id=""
-                          value={datestart2}
-                          max={disablePastDate()}
-                          min={"2020-01-01"}
-                          maxlength="4"
-                          onChange={(e) => {
-                            setDatestart2(e.target.value);
-                          }}
-                        />
+                  )}
+                  {togglrbar === 3 && (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        width: "98%",
+                      }}
+                    >
+                      <div style={{ width: "50%" }}>
+                        <div
+                          style={{ fontWeight: "400" }}
+                          className="jobpodtedfieldtitile"
+                        >
+                          From{" "}
+                        </div>
+                        <div className="jobpostfieldinputbox">
+                          <input
+                            style={{ width: "100%" }}
+                            type="date"
+                            value={datestart3}
+                            className="input-homejobformdate"
+                            name=""
+                            id=""
+                            max={disablePastDate()}
+                            min={"2020-01-01"}
+                            maxlength="4"
+                            onChange={(e) => {
+                              setDatestart3(e.target.value);
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <div style={{ width: "50%" }}>
+                        <div
+                          style={{ fontWeight: "400" }}
+                          className="jobpodtedfieldtitile"
+                        >
+                          To
+                        </div>
+                        <div className="jobpostfieldinputbox">
+                          <input
+                            style={{ width: "100%" }}
+                            type="date"
+                            className="input-homejobformdate"
+                            name=""
+                            id=""
+                            value={datestart3x}
+                            max={disablePastDate()}
+                            min={"2020-01-01"}
+                            maxlength="4"
+                            onChange={(e) => {
+                              setDatestart3x(e.target.value);
+                            }}
+                          />
+                        </div>
                       </div>
                     </div>
-                    <div style={{ width: "50%" }}>
-                      <div style={{fontWeight:"400"}}className="jobpodtedfieldtitile">To</div>
-                      <div className="jobpostfieldinputbox">
-                        <input
-                          style={{ width: "100%" }}
-                          type="date"
-                          className="input-homejobformdate"
-                          name=""
-                          id=""
-                          value={datestart2x}
-                          max={disablePastDate()}
-                          min={"2020-01-01"}
-                          maxlength="4"
-                          onChange={(e) => {
-                            setDatestart2x(e.target.value);
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                }
-                { togglrbar===3 && <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      width: "98%",
-                    }}
-                  >
-                    <div style={{ width: "50%" }}>
-                      <div style={{fontWeight:"400"}} className="jobpodtedfieldtitile">From </div>
-                      <div className="jobpostfieldinputbox">
-                        <input
-                          style={{ width: "100%" }}
-                          type="date"
-                          value={datestart3}
-                          className="input-homejobformdate"
-                          name=""
-                          id=""
-                          max={disablePastDate()}
-                          min={"2020-01-01"}
-                          maxlength="4"
-                          onChange={(e) => {
-                            setDatestart3(e.target.value);
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <div style={{ width: "50%" }}>
-                      <div style={{fontWeight:"400"}}className="jobpodtedfieldtitile">To</div>
-                      <div className="jobpostfieldinputbox">
-                        <input
-                          style={{ width: "100%" }}
-                          type="date"
-                          className="input-homejobformdate"
-                          name=""
-                          id=""
-                          value={datestart3x}
-                          max={disablePastDate()}
-                          min={"2020-01-01"}
-                          maxlength="4"
-                          onChange={(e) => {
-                            setDatestart3x(e.target.value);
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                }
-                
+                  )}
+
                   <div
                     style={{ marginTop: "0.31vw" }}
                     className="handlemoreaboutskill"
@@ -370,7 +418,10 @@ export default function Users() {
                     <div
                       style={{ cursor: "pointer" }}
                       className="handlecirclieaboutsave"
-                      // onClick={handleeducationdelete}
+                      onClick={() => {
+                        handleClose();
+                        setRecall(!recall);
+                      }}
                     >
                       Submit
                     </div>

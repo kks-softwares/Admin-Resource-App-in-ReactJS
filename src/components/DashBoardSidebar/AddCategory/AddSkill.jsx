@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import { makeStyles } from "@material-ui/core";
-import Box from "@mui/material/Box";
+
 import { KeyboardArrowDownOutlined } from "@mui/icons-material";
 import axios from "axios";
 import API_HOST from "../../../env";
@@ -29,40 +26,49 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function AddSkill1({ handleClose, setSelectedCategory }) {
-  const initialValues = {
-    name: "",
-    title: "",
-    desc: "",
-    mobile: "",
-    email: "",
-  };
-
+  const classes = useStyles();
   const [arrayoffile, setArrayoffile] = useState();
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
 
-  const handleChangeFormVal = (e) => {
-    setFormErrors("");
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-  };
+  const [name, setName] = useState();
 
-  const [title, settitle] = useState("");
+  const [doneSaved, setDoneSaved] = useState(false);
 
   const navigate = useNavigate();
 
-  const [arrayofdegree, setArrayofdegree] = useState([
-    "Master of Computer Application (MCA)",
-    "Bachler of Computer Application (MCA)",
-  ]);
-  const [arrayoflongdegree, setArrayoflongdegree] = useState(arrayofdegree);
-  const classes = useStyles();
-  const [arrayofstudy, setArrayofstydy] = useState([
-    "Computer Science",
-    "Computer Science2",
-    "Computer Science3",
-  ]);
-  const [arrayoflongstudy, setArrayoflongstudy] = useState(arrayofstudy);
+  const [cateerror, setcateError] = useState("");
+  const [subcateerror, setsubcateError] = useState("");
+  const [titileError, setTitileError] = useState("");
+  const [imageError, setimageError] = useState("");
+  const [searchCategorysearch, setSearchCategorysearch] = useState("");
+  const [searchsubCategorysearch, setSearchsubCategorysearch] = useState("");
+
+  const [arrayoflongdegree, setArrayoflongdegree] = useState();
+  const [categogryid, setCategogryid] = useState();
+  const [subcategogryid, setsubCategogryid] = useState();
+
+  useEffect(() => {
+    axios
+      .get(
+        `${API_HOST}/theCategory/viewCategory?pageSize=10&pageNumber=1&category=${searchCategorysearch}`
+      )
+      .then((res) => {
+        setArrayoflongdegree(res?.data?.success?.data);
+      });
+  }, [searchCategorysearch]);
+
+  useEffect(() => {
+    if (categogryid) {
+      axios
+        .get(
+          `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=1&subCategory=${searchsubCategorysearch}&categoryId=${categogryid}`
+        )
+        .then((res) => {
+          console.log(res?.data?.success?.data);
+          setArrayoflongstudy(res?.data?.success?.data);
+        });
+    }
+  }, [searchsubCategorysearch, categogryid]);
+
   const [anchorElx2, setAnchorElx2] = React.useState(null);
   const handleClickx2 = (event) => {
     setAnchorElx2(event.currentTarget);
@@ -74,7 +80,13 @@ export default function AddSkill1({ handleClose, setSelectedCategory }) {
 
   const openx2 = Boolean(anchorElx2);
   const idx2 = openx2 ? "simple-popover" : undefined;
+
+  const [degreeset, setDegreeset] = useState("");
+
+  const [arrayoflongstudy, setArrayoflongstudy] = useState();
+
   const [anchorElx3, setAnchorElx3] = React.useState(null);
+
   const handleClickx3 = (event) => {
     setAnchorElx3(event.currentTarget);
   };
@@ -85,23 +97,60 @@ export default function AddSkill1({ handleClose, setSelectedCategory }) {
 
   const openx3 = Boolean(anchorElx3);
   const idx3 = openx3 ? "simple-popover" : undefined;
-
-  const [anchorElx3c, setAnchorElx3c] = React.useState(null);
-  const handleClickx3c = (event) => {
-    setAnchorElx3c(event.currentTarget);
-  };
-
-  const handleClosex3c = () => {
-    setAnchorElx3c(null);
-  };
-
-  const openx3c = Boolean(anchorElx3c);
-  const idx3c = openx3c ? "simple-popover" : undefined;
-
-  const [callagename, setCallagename] = useState("");
-
-  const [degreeset, setDegreeset] = useState("");
   const [studyset, setstudyset] = useState("");
+
+  const handlecategory = () => {
+    if (!name || !arrayoffile || !categogryid || !subcategogryid) {
+      if (!categogryid) {
+        setcateError("please Select Category");
+      }
+      if (!subcategogryid) {
+        setsubcateError("please Select Sub-Category");
+      }
+      if (!name) {
+        setTitileError("please Enter Sub-Category");
+      }
+      if (!arrayoffile) {
+        setimageError("please Select Image");
+      }
+      return;
+    } else {
+      const formdata = new FormData();
+      formdata.append("categoryId", categogryid);
+      formdata.append("subCategoryId", subcategogryid);
+      formdata.append("skill", name);
+      formdata.append("fileName", arrayoffile);
+      axios
+        .post(`${API_HOST}/theSkill/addSkill`, formdata, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization:
+              "Bearer " + JSON.parse(localStorage.getItem("token")),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          setDoneSaved(true);
+        })
+        .catch(() => {
+          setTitileError("Sub-Category Already exist");
+        });
+    }
+  };
+
+  useEffect(() => {
+    if (doneSaved) {
+      setTimeout(() => {
+        setDoneSaved(false);
+        setName("");
+        setArrayoffile();
+        setCategogryid();
+        setDegreeset("");
+        setsubCategogryid();
+        setstudyset("")
+      }, 3000);
+    }
+  }, [doneSaved]);
 
   return (
     <div
@@ -127,9 +176,8 @@ export default function AddSkill1({ handleClose, setSelectedCategory }) {
         <div className="jobpostedformheading">Add Skill </div>
 
         <div>
-        
           <div
-            style={{ left: "0vw", width: "94%",marginLeft:"0%" }}
+            style={{ left: "0vw", width: "94%", marginLeft: "0%" }}
             className="loginfield"
             onClick={handleClickx2}
           >
@@ -175,121 +223,15 @@ export default function AddSkill1({ handleClose, setSelectedCategory }) {
               horizontal: "left",
             }}
           >
-            <div style={{ maxHeight: "18vw", overflow: "scroll",    width: "36vw" , }}>
+            <div
+              style={{ maxHeight: "18vw", overflow: "scroll", width: "36vw" }}
+            >
               <Typography
                 sx={{
                   p: 1,
                   pl: 1,
                   ml: 1,
-                  pr:0,
-                  width: "35vw" ,
-                  position: "fixed",
-                  background: "white",
-                  zIndex: "10",
-                }}
-              >
-                <input
-                  onChange={(e) => {
-                    setArrayoflongdegree(
-                      arrayofdegree.filter((x) => x.includes(e.target.value))
-                    );
-                    console.log(
-                      arrayofdegree.filter((x) => x.includes(e.target.value))
-                    );
-                  }}
-                  style={{
-                    width: "97%",
-                    border: "1.5px solid #00000050",
-                    outline: "none",
-                    height: "2.5",
-                    borderRadius: "0.21vw",
-                  }}
-                />
-              </Typography>
-              <Typography
-                sx={{
-                  p: 2.5,
-                  pl: 1,
-                  ml: 1,
-                  width: "100%" ,
-                  cursor: "pointer",
-                }}
-              ></Typography>
-
-              {arrayoflongdegree.map((data, index) => {
-                return (
-                  <Typography
-                    sx={{
-                      p: 0.51,
-                      pl: 1,
-                      ml: 1,
-                      width: "100%",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => {
-                      setDegreeset(data);
-                      handleClosex2();
-                    }}
-                  >
-                    {data}
-                  </Typography>
-                );
-              })}
-            </div>
-          </Popover>
-          <div
-             style={{ left: "0vw", width: "94%",marginLeft:"0%" }}
-            className="loginfield"
-            onClick={handleClickx3}
-          >
-            <TextField
-              id="outlined-basic"
-              label="Sub Category *"
-              variant="outlined"
-              disabled
-              value={studyset}
-              style={{ width: "100%" }}
-              InputLabelProps={{
-                style: {
-                  fontSize: "1vw",
-                  fontFamily: "Poppins",
-                  fontStyle: "500",
-                  fontWeight: "500",
-                  color: "black",
-                },
-              }}
-              inputProps={{ className: classes.input }}
-              onChange={(e) => {
-                console.log(e.target.value);
-              }}
-            />
-            <span style={{ width: "0.1vw" }}>
-              <KeyboardArrowDownOutlined
-                style={{
-                  fontSize: "1.5vw",
-                  position: "relative",
-                  right: "2vw",
-                  top: "1vw",
-                }}
-              />
-            </span>
-          </div>
-          <Popover
-            id={idx3}
-            open={openx3}
-            anchorEl={anchorElx3}
-            onClose={handleClosex3}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-          >
-       <div style={{ maxHeight: "18vw", overflow: "scroll",    width: "36vw" , }}>
-              <Typography
-                sx={{
-                  p: 1,
-                  pl: 1,
-                  ml: 1,
+                  pr: 0,
                   width: "35vw",
                   position: "fixed",
                   background: "white",
@@ -297,13 +239,9 @@ export default function AddSkill1({ handleClose, setSelectedCategory }) {
                 }}
               >
                 <input
+                  placeholder="search here .."
                   onChange={(e) => {
-                    setArrayoflongstudy(
-                      arrayofstudy.filter((x) => x.includes(e.target.value))
-                    );
-                    console.log(
-                      arrayofstudy.filter((x) => x.includes(e.target.value))
-                    );
+                    setSearchCategorysearch(e.target.value);
                   }}
                   style={{
                     width: "97%",
@@ -324,38 +262,159 @@ export default function AddSkill1({ handleClose, setSelectedCategory }) {
                 }}
               ></Typography>
 
-              {arrayoflongstudy.map((data, index) => {
-                return (
+              {arrayoflongdegree?.length > 0 &&
+                arrayoflongdegree.map((data, index) => {
+                  return (
+                    <Typography
+                      sx={{
+                        p: 0.51,
+                        pl: 1,
+                        ml: 1,
+                        width: "100%",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        setCategogryid(data?._id);
+                        setDegreeset(data?.category);
+                        handleClosex2();
+                        setcateError();
+                      }}
+                    >
+                      {data?.category}
+                    </Typography>
+                  );
+                })}
+            </div>
+          </Popover>
+          <p style={{ color: "red", fontSize: "0.9vw" }}>{cateerror}</p>
+          {categogryid && (
+            <div>
+              <div
+                style={{ left: "0vw", width: "94%", marginLeft: "0%" }}
+                className="loginfield"
+                onClick={handleClickx3}
+              >
+                <TextField
+                  id="outlined-basic"
+                  label="Sub Category *"
+                  variant="outlined"
+                  disabled
+                  value={studyset}
+                  style={{ width: "100%" }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: "1vw",
+                      fontFamily: "Poppins",
+                      fontStyle: "500",
+                      fontWeight: "500",
+                      color: "black",
+                    },
+                  }}
+                  inputProps={{ className: classes.input }}
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                  }}
+                />
+                <span style={{ width: "0.1vw" }}>
+                  <KeyboardArrowDownOutlined
+                    style={{
+                      fontSize: "1.5vw",
+                      position: "relative",
+                      right: "2vw",
+                      top: "1vw",
+                    }}
+                  />
+                </span>
+              </div>
+              <Popover
+                id={idx3}
+                open={openx3}
+                anchorEl={anchorElx3}
+                onClose={handleClosex3}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+              >
+                <div
+                  style={{
+                    maxHeight: "18vw",
+                    overflow: "scroll",
+                    width: "36vw",
+                  }}
+                >
                   <Typography
                     sx={{
-                      p: 0.51,
+                      p: 1,
+                      pl: 1,
+                      ml: 1,
+                      width: "35vw",
+                      position: "fixed",
+                      background: "white",
+                      zIndex: "10",
+                    }}
+                  >
+                    <input
+                      onChange={(e) => {
+                        setSearchsubCategorysearch(e.target.value);
+                      }}
+                      style={{
+                        width: "97%",
+                        border: "1.5px solid #00000050",
+                        outline: "none",
+                        height: "2.5",
+                        borderRadius: "0.21vw",
+                      }}
+                    />
+                  </Typography>
+                  <Typography
+                    sx={{
+                      p: 2.5,
                       pl: 1,
                       ml: 1,
                       width: "100%",
                       cursor: "pointer",
                     }}
-                    onClick={() => {
-                      setstudyset(data);
-                      handleClosex3();
-                    }}
-                  >
-                    {data}
-                  </Typography>
-                );
-              })}
+                  ></Typography>
+
+                  {arrayoflongstudy?.length > 0 &&
+                    arrayoflongstudy?.map((data, index) => {
+                      return (
+                        <Typography
+                          sx={{
+                            p: 0.51,
+                            pl: 1,
+                            ml: 1,
+                            width: "100%",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => {
+                            setstudyset(data?.subCategory);
+                            setsubCategogryid(data?._id);
+                            setsubcateError("");
+                            handleClosex3();
+                          }}
+                        >
+                          {data?.subCategory}
+                        </Typography>
+                      );
+                    })}
+                </div>
+              </Popover>
+              <p style={{ color: "red", fontSize: "0.9vw" }}>{subcateerror}</p>
             </div>
-          </Popover>
+          )}
+
           <div className="jobpodtedfieldtitile">Skill Name *</div>
           <div className="jobpostfieldinputbox">
             <input
               type="text"
               name="title"
-              // value={title}
-              // onChange={(e) => {
-              //   settitle(e.target.value);
-              // }}
-              value={formValues.title}
-              onChange={handleChangeFormVal}
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+                setTitileError();
+              }}
             />
             <CloseIcon
               style={{
@@ -366,11 +425,11 @@ export default function AddSkill1({ handleClose, setSelectedCategory }) {
                 cursor: "pointer",
               }}
               onClick={() => {
-                settitle("");
+                setName("");
               }}
             />
           </div>
-          <p style={{ color: "red" }}>{formErrors.title}</p>
+          <p style={{ color: "red" }}>{titileError}</p>
           <div
             style={{
               marginBottom: "0.0vw",
@@ -404,6 +463,7 @@ export default function AddSkill1({ handleClose, setSelectedCategory }) {
                     id={`inputctaelogfile`}
                     onChange={(e) => {
                       setArrayoffile(e.target.files[0]);
+                      setimageError()
                     }}
                     hidden
                   />
@@ -448,7 +508,7 @@ export default function AddSkill1({ handleClose, setSelectedCategory }) {
               </div>
             </div>
           )}
-
+          <p style={{ color: "red", fontSize: "0.9vw" }}>{imageError}</p>
           <div style={{ marginTop: "0.31vw" }} className="handlemoreaboutskill">
             <div
               style={{
@@ -478,11 +538,15 @@ export default function AddSkill1({ handleClose, setSelectedCategory }) {
               Reset
             </div>
             <div
-              // onClick={() => handledeleteBlog()}
-              style={{ cursor: "pointer", marginRight: "1vw" }}
+              onClick={() => handlecategory()}
+              style={{
+                cursor: "pointer",
+                marginRight: "1vw",
+                background: doneSaved ? "green" : "",
+              }}
               className="handlecirclieaboutsave"
             >
-              Submit
+              {doneSaved ? "Saved" : "Submit"}
             </div>
           </div>
         </div>

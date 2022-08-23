@@ -3,9 +3,7 @@ import React, { useState } from "react";
 import img from "../../../assets/Landing page/apple (1)@2x.png";
 import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
 import { useNavigate } from "react-router";
-
 import Box from "@mui/material/Box";
-
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
 import DoneIcon from "@mui/icons-material/Done";
@@ -74,7 +72,7 @@ export default function Skillpopup({ data, index, page }) {
               objectFit: "cover",
               cursor: "pointer",
             }}
-            src={!data?.media ? img : data?.media}
+            src={!data?.categoryId?.categoryImage ? img : data?.categoryId?.categoryImage}
             alt=""
           />{" "}
         </div>
@@ -86,7 +84,7 @@ export default function Skillpopup({ data, index, page }) {
             alignItems: "center",
           }}
         >
-          Development
+         {data?.categoryId?.category}
           <img
             onClick={() => handleOpen()}
             style={{
@@ -110,7 +108,7 @@ export default function Skillpopup({ data, index, page }) {
             alignItems: "center",
           }}
         >
-          Development
+          {data?.subCategoryId?.subCategory}
           <img
             style={{
               margin: "0 0.5vw",
@@ -120,7 +118,7 @@ export default function Skillpopup({ data, index, page }) {
               objectFit: "cover",
               cursor: "pointer",
             }}
-            src={!data?.media ? img : data?.media}
+            src={!data?.subCategoryId?.subCategoryMedia? img : data?.subCategoryId?.subCategoryMedia}
             alt=""
           />{" "}
           <img
@@ -138,7 +136,7 @@ export default function Skillpopup({ data, index, page }) {
           />
         </div>
         <div style={{ width: "18vw", display: "flex", alignItems: "center" }}>
-          Development
+          {data?.skill}
           <img
             style={{
               margin: "0 0.5vw",
@@ -148,7 +146,7 @@ export default function Skillpopup({ data, index, page }) {
               objectFit: "cover",
               cursor: "pointer",
             }}
-            src={!data?.media ? img : data?.media}
+            src={!data?.skillMedia ? img :data?.skillMedia}
             alt=""
           />{" "}
           <img
@@ -166,7 +164,7 @@ export default function Skillpopup({ data, index, page }) {
           />
         </div>
         <div style={{ width: "9vw", display: "flex", alignItems: "center" }}>
-          {data?.userCreateTime?.slice(0, 10)}
+          {data?.created_at?.slice(0, 10)}
         </div>
       </div>
       <Modal
