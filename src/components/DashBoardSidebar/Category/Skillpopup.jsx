@@ -107,6 +107,92 @@ export default function Skillpopup({
         .catch((err) => {});
     }
   };
+  const editsubcategory = () => {
+    if (!subcategoryName) {
+      setsubCategoryerror("Category cannot be empty");
+    } else if (subcategoryimage) {
+      const formdata = new FormData();
+      formdata.append(`subCategory`, subcategoryName);
+      formdata.append(`subCategoryId`, data?.subCategoryId?.subCategoryId);
+      formdata.append(`fileName`, subcategoryimage);
+      axios
+        .post(`${API_HOST}/subCategory/editSubCategory`, formdata, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization:
+              "Bearer " + JSON.parse(localStorage.getItem("token")),
+          },
+        })
+        .then((res) => {
+            handleClose();
+          setRecall(!recall);
+        })
+        .catch((err) => {
+          setsubCategoryerror("Category already exist");
+        });
+    } else {
+      const formdata = new FormData();
+      formdata.append(`subCategory`, subcategoryName);
+      formdata.append(`subCategoryId`, data?.subCategoryId?.subCategoryId);
+
+      axios
+        .post(`${API_HOST}/subCategory/editSubCategory`, formdata, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization:
+              "Bearer " + JSON.parse(localStorage.getItem("token")),
+          },
+        })
+        .then((res) => {
+            handleClose2();
+          setRecall(!recall);
+        })
+        .catch((err) => {});
+    }
+  };
+  const editskill = () => {
+    if (!skillName) {
+        setskillerror("Category cannot be empty");
+      } else if (skillimage) {
+        const formdata = new FormData();
+        formdata.append(`skill`, skillName);
+        formdata.append(`skillSetId`, data?.skillSetId);
+        formdata.append(`fileName`, skillimage);
+        axios
+          .post(`${API_HOST}/theSkill/editSkill`, formdata, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization:
+                "Bearer " + JSON.parse(localStorage.getItem("token")),
+            },
+          })
+          .then((res) => {
+              handleClose3();
+            setRecall(!recall);
+          })
+          .catch((err) => {
+            setCategoryerror("Category already exist");
+          });
+      } else {
+        const formdata = new FormData();
+        formdata.append(`skill`, skillName);
+        formdata.append(`skillSetId`, data?.skillSetId);
+  
+        axios
+          .post(`${API_HOST}/theSkill/editSkill`, formdata, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization:
+                "Bearer " + JSON.parse(localStorage.getItem("token")),
+            },
+          })
+          .then((res) => {
+              handleClose3();
+            setRecall(!recall);
+          })
+          .catch((err) => {});
+      }
+  };
 
   return (
     <div>
@@ -406,7 +492,7 @@ export default function Skillpopup({
               Reset
             </div>
             <div
-              // onClick={() => handledeleteBlog()}
+              onClick={() => editskill()}
               style={{ cursor: "pointer" }}
               className="handlecirclieaboutsave"
             >
@@ -550,7 +636,7 @@ export default function Skillpopup({
               Reset
             </div>
             <div
-              // onClick={() => handledeleteBlog()}
+              onClick={() => editsubcategory()}
               style={{ cursor: "pointer" }}
               className="handlecirclieaboutsave"
             >
