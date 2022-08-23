@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import { makeStyles } from "@material-ui/core";
-import Box from "@mui/material/Box";
 
-import { KeyboardArrowDownOutlined } from "@mui/icons-material";
+
+import {  KeyboardArrowDownOutlined } from "@mui/icons-material";
 import axios from "axios";
 import API_HOST from "../../../env";
 import img1 from "../../../assets/Web 1280 – 14/Group 9831.svg";
@@ -30,40 +27,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function AddSubCategory({ handleClose, setSelectedCategory }) {
-  const initialValues = {
-    name: "",
-    title: "",
-    desc: "",
-    mobile: "",
-    email: "",
-  };
   const classes = useStyles();
   const [arrayoffile, setArrayoffile] = useState();
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
 
-  const handleChangeFormVal = (e) => {
-    setFormErrors("");
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-  };
+  const [name, setName] = useState();
 
-  const [title, settitle] = useState("");
+  const [doneSaved, setDoneSaved] = useState(false);
 
   const navigate = useNavigate();
 
-  const [arrayofdegree, setArrayofdegree] = useState([
-    "Master of Computer Application (MCA)",
-    "Bachler of Computer Application (MCA)",
-  ]);
-  const [arrayoflongdegree, setArrayoflongdegree] = useState(arrayofdegree);
+  const [cateerror, setcateError] = useState("");
+  const [titileError, setTitileError] = useState("");
+  const [imageError, setimageError] = useState("");
+  const [searchCategorysearch, setSearchCategorysearch] = useState("");
 
-  const [arrayofstudy, setArrayofstydy] = useState([
-    "Computer Science",
-    "Computer Science2",
-    "Computer Science3",
-  ]);
-  const [arrayoflongstudy, setArrayoflongstudy] = useState(arrayofstudy);
+  const [arrayoflongdegree, setArrayoflongdegree] = useState();
+
+  useEffect(() => {
+    axios
+      .get(
+        `${API_HOST}/theCategory/viewCategory?pageSize=10&pageNumber=1&category=${searchCategorysearch}`
+      )
+      .then((res) => {
+        setArrayoflongdegree(res?.data?.success?.data);
+      });
+  }, [searchCategorysearch]);
 
   const [anchorElx2, setAnchorElx2] = React.useState(null);
   const handleClickx2 = (event) => {
@@ -76,34 +64,57 @@ export default function AddSubCategory({ handleClose, setSelectedCategory }) {
 
   const openx2 = Boolean(anchorElx2);
   const idx2 = openx2 ? "simple-popover" : undefined;
-  const [anchorElx3, setAnchorElx3] = React.useState(null);
-  const handleClickx3 = (event) => {
-    setAnchorElx3(event.currentTarget);
-  };
-
-  const handleClosex3 = () => {
-    setAnchorElx3(null);
-  };
-
-  const openx3 = Boolean(anchorElx3);
-  const idx3 = openx3 ? "simple-popover" : undefined;
-
-  const [anchorElx3c, setAnchorElx3c] = React.useState(null);
-  const handleClickx3c = (event) => {
-    setAnchorElx3c(event.currentTarget);
-  };
-
-  const handleClosex3c = () => {
-    setAnchorElx3c(null);
-  };
-
-  const openx3c = Boolean(anchorElx3c);
-  const idx3c = openx3c ? "simple-popover" : undefined;
-
-  const [callagename, setCallagename] = useState("");
 
   const [degreeset, setDegreeset] = useState("");
-  const [studyset, setstudyset] = useState("");
+  const [categogryid, setCategogryid] = useState();
+
+  const handlecategory = () => {
+    if (!name || !arrayoffile || !categogryid) {
+      if (!categogryid) {
+        setcateError("please Select Category");
+      }
+      if (!name) {
+        setTitileError("please Enter Sub-Category");
+      }
+      if (!arrayoffile) {
+        setimageError("please Select Image");
+      }
+      return;
+    } 
+    else {
+      const formdata = new FormData();
+      formdata.append("categoryId", categogryid);
+      formdata.append("subCategory", name);
+      formdata.append("fileName", arrayoffile);
+      axios
+        .post(`${API_HOST}/subCategory/addSubcategory`, formdata, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization:
+              "Bearer " + JSON.parse(localStorage.getItem("token")),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          setDoneSaved(true);
+        })
+        .catch(() => {
+          setTitileError("Sub-Category Already exist");
+        });
+    }
+  };
+
+  useEffect(() => {
+    if (doneSaved) {
+      setTimeout(() => {
+        setDoneSaved(false);
+        setName("");
+        setArrayoffile();
+        setCategogryid();
+        setDegreeset("");
+      }, 3000);
+    }
+  }, [doneSaved]);
 
   return (
     <div
@@ -129,9 +140,8 @@ export default function AddSubCategory({ handleClose, setSelectedCategory }) {
         <div className="jobpostedformheading">Add Sub Category </div>
 
         <div>
-
-        <div
-            style={{ left: "0vw", width: "94%",marginLeft:"0%" }}
+          <div
+            style={{ left: "0vw", width: "94%", marginLeft: "0%" }}
             className="loginfield"
             onClick={handleClickx2}
           >
@@ -177,27 +187,25 @@ export default function AddSubCategory({ handleClose, setSelectedCategory }) {
               horizontal: "left",
             }}
           >
-            <div style={{ maxHeight: "18vw", overflow: "scroll",    width: "36vw" , }}>
+            <div
+              style={{ maxHeight: "18vw", overflow: "scroll", width: "36vw" }}
+            >
               <Typography
                 sx={{
                   p: 1,
                   pl: 1,
                   ml: 1,
-                  pr:0,
-                  width: "35vw" ,
+                  pr: 0,
+                  width: "35vw",
                   position: "fixed",
                   background: "white",
                   zIndex: "10",
                 }}
               >
                 <input
+                  placeholder="search here .."
                   onChange={(e) => {
-                    setArrayoflongdegree(
-                      arrayofdegree.filter((x) => x.includes(e.target.value))
-                    );
-                    console.log(
-                      arrayofdegree.filter((x) => x.includes(e.target.value))
-                    );
+                    setSearchCategorysearch(e.target.value);
                   }}
                   style={{
                     width: "97%",
@@ -213,44 +221,46 @@ export default function AddSubCategory({ handleClose, setSelectedCategory }) {
                   p: 2.5,
                   pl: 1,
                   ml: 1,
-                  width: "100%" ,
+                  width: "100%",
                   cursor: "pointer",
                 }}
               ></Typography>
 
-              {arrayoflongdegree.map((data, index) => {
-                return (
-                  <Typography
-                    sx={{
-                      p: 0.51,
-                      pl: 1,
-                      ml: 1,
-                      width: "100%",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => {
-                      setDegreeset(data);
-                      handleClosex2();
-                    }}
-                  >
-                    {data}
-                  </Typography>
-                );
-              })}
+              {arrayoflongdegree?.length > 0 &&
+                arrayoflongdegree.map((data, index) => {
+                  return (
+                    <Typography
+                      sx={{
+                        p: 0.51,
+                        pl: 1,
+                        ml: 1,
+                        width: "100%",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        setCategogryid(data?._id);
+                        setDegreeset(data?.category);
+                        handleClosex2();
+                        setcateError();
+                      }}
+                    >
+                      {data?.category}
+                    </Typography>
+                  );
+                })}
             </div>
           </Popover>
-        
+          <p style={{ color: "red", fontSize: "0.9vw" }}>{cateerror}</p>
           <div className="jobpodtedfieldtitile">Sub Category Name *</div>
           <div className="jobpostfieldinputbox">
             <input
               type="text"
               name="title"
-              // value={title}
-              // onChange={(e) => {
-              //   settitle(e.target.value);
-              // }}
-              value={formValues.title}
-              onChange={handleChangeFormVal}
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+                setTitileError();
+              }}
             />
             <CloseIcon
               style={{
@@ -261,12 +271,12 @@ export default function AddSubCategory({ handleClose, setSelectedCategory }) {
                 cursor: "pointer",
               }}
               onClick={() => {
-                settitle("");
+                setName("");
               }}
             />
           </div>
-          <p style={{ color: "red" }}>{formErrors.title}</p>
-      
+          <p style={{ color: "red", fontSize: "0.9vw" }}>{titileError}</p>
+
           <div
             style={{
               marginBottom: "0.0vw",
@@ -300,6 +310,7 @@ export default function AddSubCategory({ handleClose, setSelectedCategory }) {
                     id={`inputctaelogfile`}
                     onChange={(e) => {
                       setArrayoffile(e.target.files[0]);
+                      setimageError();
                     }}
                     hidden
                   />
@@ -345,6 +356,8 @@ export default function AddSubCategory({ handleClose, setSelectedCategory }) {
             </div>
           )}
 
+          <p style={{ color: "red", fontSize: "0.9vw" }}>{imageError}</p>
+
           <div style={{ marginTop: "0.31vw" }} className="handlemoreaboutskill">
             <div
               style={{
@@ -374,11 +387,15 @@ export default function AddSubCategory({ handleClose, setSelectedCategory }) {
               Reset
             </div>
             <div
-              // onClick={() => handledeleteBlog()}
-              style={{ cursor: "pointer", marginRight: "1vw" }}
+              onClick={() => handlecategory()}
+              style={{
+                cursor: "pointer",
+                marginRight: "1vw",
+                background: doneSaved ? "green" : "",
+              }}
               className="handlecirclieaboutsave"
             >
-              Submit
+              {doneSaved ? "Saved" : "Submit"}
             </div>
           </div>
         </div>

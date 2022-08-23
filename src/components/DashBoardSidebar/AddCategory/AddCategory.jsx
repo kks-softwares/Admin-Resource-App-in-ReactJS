@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { makeStyles } from "@material-ui/core";
-import Box from "@mui/material/Box";
-
 import axios from "axios";
 import API_HOST from "../../../env";
 import img1 from "../../../assets/Web 1280 – 14/Group 9831.svg";
@@ -15,27 +9,57 @@ import img from "../../../assets/Web 1280 – 14/Icon.svg";
 import { useNavigate } from "react-router";
 
 export default function AddCategory({ handleClose, setSelectedCategory }) {
-  const initialValues = {
-    name: "",
-    title: "",
-    desc: "",
-    mobile: "",
-    email: "",
-  };
-
   const [arrayoffile, setArrayoffile] = useState();
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
 
-  const handleChangeFormVal = (e) => {
-    setFormErrors("");
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-  };
+  const [name, setName] = useState();
 
-  const [title, settitle] = useState("");
+  const [doneSaved, setDoneSaved] = useState(false);
 
   const navigate = useNavigate();
+
+  const [titileError, setTitileError] = useState("");
+  const [imageError, setimageError] = useState("");
+
+  const handlecategory = () => {
+    if (!name || !arrayoffile) {
+      if (!name) {
+        setTitileError("please Enter Category");
+      }
+      if (!arrayoffile) {
+        setimageError("please Select Image");
+      }
+      return;
+    } else {
+      const formdata = new FormData();
+      formdata.append("category", name);
+      formdata.append("fileName", arrayoffile);
+      axios
+        .post(`${API_HOST}/theCategory/addCategory`, formdata, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization:
+              "Bearer " + JSON.parse(localStorage.getItem("token")),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          setDoneSaved(true);
+        })
+        .catch(() => {
+          setTitileError("Category Already exist");
+        });
+    }
+  };
+
+  useEffect(() => {
+    if (doneSaved) {
+      setTimeout(() => {
+        setDoneSaved(false);
+        setName("");
+        setArrayoffile();
+      }, 3000);
+    }
+  }, [doneSaved]);
 
   return (
     <div
@@ -66,12 +90,12 @@ export default function AddCategory({ handleClose, setSelectedCategory }) {
             <input
               type="text"
               name="title"
-              // value={title}
-              // onChange={(e) => {
-              //   settitle(e.target.value);
-              // }}
-              value={formValues.title}
-              onChange={handleChangeFormVal}
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+                setTitileError();
+              }}
+              placeholder="Category Name"
             />
             <CloseIcon
               style={{
@@ -82,11 +106,11 @@ export default function AddCategory({ handleClose, setSelectedCategory }) {
                 cursor: "pointer",
               }}
               onClick={() => {
-                settitle("");
+                setName("");
               }}
             />
           </div>
-          <p style={{ color: "red" }}>{formErrors.title}</p>
+          <p style={{ color: "red", fontSize: "0.91vw" }}>{titileError}</p>
 
           <div
             style={{
@@ -121,6 +145,7 @@ export default function AddCategory({ handleClose, setSelectedCategory }) {
                     id={`inputctaelogfile`}
                     onChange={(e) => {
                       setArrayoffile(e.target.files[0]);
+                      setimageError();
                     }}
                     hidden
                   />
@@ -165,7 +190,7 @@ export default function AddCategory({ handleClose, setSelectedCategory }) {
               </div>
             </div>
           )}
-
+          <p style={{ color: "red", fontSize: "0.91vw" }}>{imageError}</p>
           <div style={{ marginTop: "0.31vw" }} className="handlemoreaboutskill">
             <div
               style={{
@@ -195,11 +220,15 @@ export default function AddCategory({ handleClose, setSelectedCategory }) {
               Reset
             </div>
             <div
-              // onClick={() => handledeleteBlog()}
-              style={{ cursor: "pointer", marginRight: "1vw" }}
+              onClick={() => handlecategory()}
+              style={{
+                cursor: "pointer",
+                marginRight: "1vw",
+                background: doneSaved ? "green" : "",
+              }}
               className="handlecirclieaboutsave"
             >
-              Submit
+              {doneSaved ? "Saved" : "Submit"}
             </div>
           </div>
         </div>
