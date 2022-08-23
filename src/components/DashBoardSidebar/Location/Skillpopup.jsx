@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
 import { useNavigate } from "react-router";
@@ -14,6 +14,10 @@ export default function Skillpopup({
 }) {
   const navigate = useNavigate();
   const [checkonex, setCheckonex] = useState(false);
+
+  useEffect(() => {
+    setCheckonex(false);
+  }, [data]);
   return (
     <div>
       <div style={{ alignItems: "center" }} className="navoftableblogsdata">

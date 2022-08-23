@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import img from "../../../assets/Landing page/apple (1)@2x.png";
 import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
@@ -10,6 +10,7 @@ import DoneIcon from "@mui/icons-material/Done";
 import img11 from "../../../assets/Web 1280 – 14/Group 9831.svg";
 import img22 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg";
 import img111 from "../../../assets/Web 1280 – 14/Icon.svg";
+import { DataObjectSharp } from "@mui/icons-material";
 const style = {
   position: "absolute",
   top: "50%",
@@ -23,7 +24,13 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-export default function Skillpopup({ data, index, page }) {
+export default function Skillpopup({
+  data,
+  index,
+  page,
+  selecteddelete,
+  setSelecteddelete,
+}) {
   const navigate = useNavigate();
   const [open3, setOpen3] = React.useState(false);
   const handleOpen3 = () => setOpen3(true);
@@ -36,11 +43,36 @@ export default function Skillpopup({ data, index, page }) {
   const handleClose2 = () => setOpen2(false);
   const [arrayoffile, setArrayoffile] = useState();
   const [checkonex, setCheckonex] = useState(false);
+
+  useEffect(() => {
+      setCheckonex(false)
+  }, [data])
+  
   return (
     <div>
       <div style={{ alignItems: "center" }} className="navoftableblogsdata">
         <div style={{ width: "3vw" }}>
-          <div className="checkbox" onClick={() => setCheckonex(!checkonex)}>
+          <div
+            className="checkbox"
+            onClick={() => {
+              setCheckonex(!checkonex);
+              console.log(selecteddelete);
+              if (selecteddelete?.indexOf(data?.skillSetId) > -1) {
+                setSelecteddelete([
+                  ...selecteddelete.slice(
+                    0,
+                    selecteddelete.indexOf(data?.skillSetId)
+                  ),
+                  ...selecteddelete.slice(
+                    selecteddelete.indexOf(data?.skillSetId) + 1,
+                    selecteddelete.length
+                  ),
+                ]);
+              } else {
+                setSelecteddelete([...selecteddelete, data?.skillSetId]);
+              }
+            }}
+          >
             {checkonex ? (
               <DoneIcon
                 style={{
@@ -72,7 +104,11 @@ export default function Skillpopup({ data, index, page }) {
               objectFit: "cover",
               cursor: "pointer",
             }}
-            src={!data?.categoryId?.categoryImage ? img : data?.categoryId?.categoryImage}
+            src={
+              !data?.categoryId?.categoryImage
+                ? img
+                : data?.categoryId?.categoryImage
+            }
             alt=""
           />{" "}
         </div>
@@ -84,7 +120,7 @@ export default function Skillpopup({ data, index, page }) {
             alignItems: "center",
           }}
         >
-         {data?.categoryId?.category}
+          {data?.categoryId?.category}
           <img
             onClick={() => handleOpen()}
             style={{
@@ -118,7 +154,11 @@ export default function Skillpopup({ data, index, page }) {
               objectFit: "cover",
               cursor: "pointer",
             }}
-            src={!data?.subCategoryId?.subCategoryMedia? img : data?.subCategoryId?.subCategoryMedia}
+            src={
+              !data?.subCategoryId?.subCategoryMedia
+                ? img
+                : data?.subCategoryId?.subCategoryMedia
+            }
             alt=""
           />{" "}
           <img
@@ -146,7 +186,7 @@ export default function Skillpopup({ data, index, page }) {
               objectFit: "cover",
               cursor: "pointer",
             }}
-            src={!data?.skillMedia ? img :data?.skillMedia}
+            src={!data?.skillMedia ? img : data?.skillMedia}
             alt=""
           />{" "}
           <img

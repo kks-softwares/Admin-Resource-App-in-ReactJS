@@ -46,7 +46,7 @@ export default function Users() {
   const setdateadd = (datestart3x) => {
     const today = new Date(datestart3x);
     console.log(today);
-    const dd = String(today.getDate()+1).padStart(2, "0");
+    const dd = String(today.getDate() + 1).padStart(2, "0");
     const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
     const yyyy = today.getFullYear();
     return yyyy + "-" + mm + "-" + dd;
@@ -68,13 +68,13 @@ export default function Users() {
   const [allusers, setAllusers] = useState([]);
 
   const [recall, setRecall] = useState(false);
-
-
+  const [selecteddelete, setSelecteddelete] = useState([]);
+  const [selecteddeletedone, setSelecteddeletedone] = useState(true);
 
   useEffect(() => {
     if (togglrbar === 3) {
-        const date = setdateadd(datestart3x)
-        console.log(date);
+      const date = setdateadd(datestart3x);
+      console.log(date);
       axios
         .get(
           `${API_HOST}/theSkill/viewSkill?pageSize=10&pageNumber=${page}&skill=${setSelectedCategory}&from=${datestart3}&to=${date}`
@@ -116,6 +116,20 @@ export default function Users() {
         });
     }
   }, [page, setSelectedCategory, recall]);
+
+  const handleDelete = () => {
+    const formdata = new FormData();
+    formdata.append("removable", JSON.stringify(selecteddelete));
+    console.log(JSON.stringify(selecteddelete));
+    axios
+      .post(`${API_HOST}/theSkill/removeSkill`, formdata, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((res) => {
+        setSelecteddelete([]);
+        setRecall(!recall);
+      });
+  };
 
   return (
     <div className="BrowseWorkMain-cntainer">
@@ -485,6 +499,9 @@ export default function Users() {
         </div>
         <div style={{ width: "5vw", height: "1vw" }}>
           <img
+            onClick={() => {
+              handleDelete();
+            }}
             style={{
               margin: "0vw 0.5vw",
               marginRight: "3vw",
@@ -515,7 +532,15 @@ export default function Users() {
         </div>
         {allusers?.length > 0 &&
           allusers?.map((data, index) => {
-            return <Skillpopup data={data} index={index} page={page} />;
+            return (
+              <Skillpopup
+                data={data}
+                index={index}
+                page={page}
+                setSelecteddelete={setSelecteddelete}
+                selecteddelete={selecteddelete}
+              />
+            );
           })}
 
         {totalpages !== 1 ? (
