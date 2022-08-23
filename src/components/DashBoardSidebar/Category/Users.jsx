@@ -539,6 +539,8 @@ export default function Users() {
                 page={page}
                 setSelecteddelete={setSelecteddelete}
                 selecteddelete={selecteddelete}
+                setRecall={setRecall}
+                recall={recall}
               />
             );
           })}

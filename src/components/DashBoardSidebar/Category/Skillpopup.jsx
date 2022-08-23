@@ -10,7 +10,9 @@ import DoneIcon from "@mui/icons-material/Done";
 import img11 from "../../../assets/Web 1280 – 14/Group 9831.svg";
 import img22 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg";
 import img111 from "../../../assets/Web 1280 – 14/Icon.svg";
-import { DataObjectSharp } from "@mui/icons-material";
+
+import axios from "axios";
+import API_HOST from "../../../env";
 const style = {
   position: "absolute",
   top: "50%",
@@ -30,6 +32,8 @@ export default function Skillpopup({
   page,
   selecteddelete,
   setSelecteddelete,
+  setRecall,
+  recall,
 }) {
   const navigate = useNavigate();
   const [open3, setOpen3] = React.useState(false);
@@ -41,13 +45,69 @@ export default function Skillpopup({
   const [open2, setOpen2] = React.useState(false);
   const handleOpen2 = () => setOpen2(true);
   const handleClose2 = () => setOpen2(false);
-  const [arrayoffile, setArrayoffile] = useState();
+
   const [checkonex, setCheckonex] = useState(false);
+  const [categoryName, setCategoryName] = useState("");
+  const [subcategoryName, setsubCategoryName] = useState("");
+  const [skillName, setskillName] = useState("");
+  const [categoryerror, setCategoryerror] = useState("");
+  const [subcategoryerror, setsubCategoryerror] = useState("");
+  const [skillerror, setskillerror] = useState("");
+  const [categoryimage, setCategoryimage] = useState();
+  const [subcategoryimage, setsubCategoryimage] = useState();
+  const [skillimage, setskillimage] = useState();
 
   useEffect(() => {
-      setCheckonex(false)
-  }, [data])
-  
+    setCheckonex(false);
+    setCategoryName(data?.categoryId?.category);
+    setsubCategoryName(data?.subCategoryId?.subCategory);
+    setskillName(data?.skill);
+  }, [data]);
+
+  const editcategory = () => {
+    if (!categoryName) {
+      setCategoryerror("Category cannot be empty");
+    } else if (categoryimage) {
+      const formdata = new FormData();
+      formdata.append(`category`, categoryName);
+      formdata.append(`categoryId`, data?.categoryId?.categoryId);
+      formdata.append(`fileName`, categoryimage);
+      axios
+        .post(`${API_HOST}/theCategory/editCategory`, formdata, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization:
+              "Bearer " + JSON.parse(localStorage.getItem("token")),
+          },
+        })
+        .then((res) => {
+            handleClose();
+          setRecall(!recall);
+        })
+        .catch((err) => {
+          setCategoryerror("Category already exist");
+        });
+    } else {
+      const formdata = new FormData();
+      formdata.append(`category`, categoryName);
+      formdata.append(`categoryId`, data?.categoryId?.categoryId);
+
+      axios
+        .post(`${API_HOST}/theCategory/editCategory`, formdata, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization:
+              "Bearer " + JSON.parse(localStorage.getItem("token")),
+          },
+        })
+        .then((res) => {
+            handleClose();
+          setRecall(!recall);
+        })
+        .catch((err) => {});
+    }
+  };
+
   return (
     <div>
       <div style={{ alignItems: "center" }} className="navoftableblogsdata">
@@ -229,8 +289,16 @@ export default function Skillpopup({
             style={{ marginTop: "1vw", width: "106%" }}
             className="jobpostfieldinputbox"
           >
-            <input type="text" name="email" />
+            <input
+              type="text"
+              name="email"
+              value={skillName}
+              onChange={(e) => {
+                setskillName(e.target.value);
+              }}
+            />
           </div>
+          <p style={{ color: "red", fontSize: "0.91vw" }}>{skillerror}</p>
           <div
             style={{
               marginBottom: "0.0vw",
@@ -263,7 +331,7 @@ export default function Skillpopup({
                     type="file"
                     id={`inputctaelogfile`}
                     onChange={(e) => {
-                      setArrayoffile(e.target.files[0]);
+                      setskillimage(e.target.files[0]);
                     }}
                     hidden
                   />
@@ -281,7 +349,7 @@ export default function Skillpopup({
               Image should be less then 200 kb
             </div>
           </div>
-          {arrayoffile && (
+          {skillimage && (
             <div
               style={{ marginTop: "0.3vw" }}
               className="inputfilesshowncatebox"
@@ -290,7 +358,7 @@ export default function Skillpopup({
                 <div className="inputfilesshowncatboxsingleimg">
                   <img src={img11} alt="" />
                 </div>
-                <div className="fileselctednamecate">{arrayoffile?.name}</div>
+                <div className="fileselctednamecate">{skillimage?.name}</div>
                 <div className="inputfilesshowncatboxsingleimg">
                   <img
                     style={{
@@ -301,7 +369,7 @@ export default function Skillpopup({
                     src={img22}
                     alt=""
                     onClick={() => {
-                      setArrayoffile();
+                      setskillimage();
                     }}
                   />
                 </div>
@@ -364,8 +432,16 @@ export default function Skillpopup({
             style={{ marginTop: "0.31vw", width: "106%" }}
             className="jobpostfieldinputbox"
           >
-            <input type="text" name="email" />
+            <input
+              type="text"
+              name="email"
+              value={subcategoryName}
+              onChange={(e) => {
+                setsubCategoryName(e.target.value);
+              }}
+            />
           </div>
+          <p style={{ color: "red", fontSize: "0.91vw" }}>{subcategoryerror}</p>
           <div
             style={{
               marginBottom: "0.0vw",
@@ -398,7 +474,7 @@ export default function Skillpopup({
                     type="file"
                     id={`inputctaelogfile`}
                     onChange={(e) => {
-                      setArrayoffile(e.target.files[0]);
+                      setsubCategoryimage(e.target.files[0]);
                     }}
                     hidden
                   />
@@ -416,7 +492,7 @@ export default function Skillpopup({
               Image should be less then 200 kb
             </div>
           </div>
-          {arrayoffile && (
+          {subcategoryimage && (
             <div
               style={{ marginTop: "0.3vw" }}
               className="inputfilesshowncatebox"
@@ -425,7 +501,9 @@ export default function Skillpopup({
                 <div className="inputfilesshowncatboxsingleimg">
                   <img src={img11} alt="" />
                 </div>
-                <div className="fileselctednamecate">{arrayoffile?.name}</div>
+                <div className="fileselctednamecate">
+                  {subcategoryimage?.name}
+                </div>
                 <div className="inputfilesshowncatboxsingleimg">
                   <img
                     style={{
@@ -436,7 +514,7 @@ export default function Skillpopup({
                     src={img22}
                     alt=""
                     onClick={() => {
-                      setArrayoffile();
+                      setsubCategoryimage();
                     }}
                   />
                 </div>
@@ -496,8 +574,17 @@ export default function Skillpopup({
             style={{ marginTop: "0.3vw", width: "106%" }}
             className="jobpostfieldinputbox"
           >
-            <input type="text" name="email" />
+            <input
+              type="text"
+              name="email"
+              value={categoryName}
+              onChange={(e) => {
+                console.log(e.target.value);
+                setCategoryName(e.target.value);
+              }}
+            />
           </div>
+          <p style={{ color: "red", fontSize: "0.91vw" }}>{categoryerror}</p>
           <div
             style={{
               marginBottom: "0.0vw",
@@ -530,7 +617,7 @@ export default function Skillpopup({
                     type="file"
                     id={`inputctaelogfile`}
                     onChange={(e) => {
-                      setArrayoffile(e.target.files[0]);
+                      setCategoryimage(e.target.files[0]);
                     }}
                     hidden
                   />
@@ -548,7 +635,7 @@ export default function Skillpopup({
               Image should be less then 200 kb
             </div>
           </div>
-          {arrayoffile && (
+          {categoryimage && (
             <div
               style={{ marginTop: "0.3vw" }}
               className="inputfilesshowncatebox"
@@ -557,7 +644,7 @@ export default function Skillpopup({
                 <div className="inputfilesshowncatboxsingleimg">
                   <img src={img11} alt="" />
                 </div>
-                <div className="fileselctednamecate">{arrayoffile?.name}</div>
+                <div className="fileselctednamecate">{categoryimage?.name}</div>
                 <div className="inputfilesshowncatboxsingleimg">
                   <img
                     style={{
@@ -568,7 +655,7 @@ export default function Skillpopup({
                     src={img22}
                     alt=""
                     onClick={() => {
-                      setArrayoffile();
+                      setCategoryimage();
                     }}
                   />
                 </div>
@@ -604,7 +691,7 @@ export default function Skillpopup({
               Reset
             </div>
             <div
-              // onClick={() => handledeleteBlog()}
+              onClick={() => editcategory()}
               style={{ cursor: "pointer" }}
               className="handlecirclieaboutsave"
             >
