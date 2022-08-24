@@ -44,6 +44,8 @@ export default function AddSkill1({ handleClose, setSelectedCategory }) {
   const [categogryid, setCategogryid] = useState();
   const [subcategogryid, setsubCategogryid] = useState();
 
+  
+
   useEffect(() => {
     axios
       .get(
@@ -55,7 +57,7 @@ export default function AddSkill1({ handleClose, setSelectedCategory }) {
   }, [searchCategorysearch]);
 
   useEffect(() => {
-    if (categogryid) {
+    if (categogryid) { 
       axios
         .get(
           `${API_HOST}/subCategory/viewSubCategory?pageSize=50&pageNumber=1&subCategory=${searchsubCategorysearch}&categoryId=${categogryid}`

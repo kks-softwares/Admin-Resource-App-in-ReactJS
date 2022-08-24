@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-
+import CloseIcon from "@mui/icons-material/Close";
 import img from "../../../assets/Landing page/apple (1)@2x.png";
 import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
-
+import AddIcon from "@mui/icons-material/Add";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import DoneIcon from "@mui/icons-material/Done";
@@ -11,8 +11,22 @@ import img22 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg
 import img111 from "../../../assets/Web 1280 – 14/Icon.svg";
 import axios from "axios";
 import API_HOST from "../../../env";
-import { TextField } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
+import { makeStyles } from "@material-ui/core";
+import Popover from "@mui/material/Popover";
+import { KeyboardArrowDownOutlined } from "@mui/icons-material";
+const useStyles = makeStyles((theme) => ({
+  input: {
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "500",
+    fontSize: "0.91vw",
+
+    color: "#263238",
+    border: "yellow !important",
+  },
+}));
 const style = {
   position: "absolute",
   top: "50%",
@@ -27,14 +41,14 @@ const style = {
   p: 4,
 };
 const currencies = [
-    {
-      value: "Popular",
-    },
-  
-    {
-      value: "None",
-    },
-  ];
+  {
+    value: "Popular",
+  },
+
+  {
+    value: "None",
+  },
+];
 export default function Skillpopupcopy2({
   data,
   index,
@@ -44,7 +58,7 @@ export default function Skillpopupcopy2({
   setRecall,
   recall,
 }) {
-
+  const classes = useStyles();
   const [currency, setCurrency] = React.useState(
     data?.popularSubCategory ? "Popular" : "None"
   );
@@ -178,6 +192,57 @@ export default function Skillpopupcopy2({
       });
     }
   };
+
+  const handleAddCategory = () => {
+    if (!categogryid) {
+      setcateError("select Category");
+    } else {
+      axios
+        .post(`${API_HOST}/subCategory/editSubCategory`, {
+          categoryId: categogryid,
+          subCategoryId:data?.subCategoryId
+        })
+        .then(() => {
+          handleClose3();
+          setRecall(!recall);
+        });
+    }
+  };
+
+  const [open3, setOpen3] = React.useState(false);
+  const handleOpen3 = () => setOpen3(true);
+  const handleClose3 = () => setOpen3(false);
+
+  const [arrayoflongdegree, setArrayoflongdegree] = useState();
+
+  const [cateerror, setcateError] = useState("");
+
+  const [searchCategorysearch, setSearchCategorysearch] = useState("");
+  useEffect(() => {
+    axios
+      .get(
+        `${API_HOST}/theCategory/viewCategory?pageSize=50&pageNumber=1&category=${searchCategorysearch}`
+      )
+      .then((res) => {
+        setArrayoflongdegree(res?.data?.success?.data);
+      });
+  }, [searchCategorysearch]);
+
+  const [anchorElx2, setAnchorElx2] = React.useState(null);
+  const handleClickx2 = (event) => {
+    setAnchorElx2(event.currentTarget);
+  };
+
+  const handleClosex2 = () => {
+    setAnchorElx2(null);
+  };
+
+  const openx2 = Boolean(anchorElx2);
+  const idx2 = openx2 ? "simple-popover" : undefined;
+
+  const [degreeset, setDegreeset] = useState("");
+  const [categogryid, setCategogryid] = useState();
+
   return (
     <div>
       <div style={{ alignItems: "center" }} className="navoftableblogsdata">
@@ -237,30 +302,53 @@ export default function Skillpopupcopy2({
             alt=""
           />{" "}
         </div>
-        <div
-          style={{
-            width: "18vw",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          {data?.categoryId?.category}
-          <img
-            onClick={() => handleOpen()}
+        {data?.categoryId?.category ? (
+          <div
             style={{
-              margin: "0.5vw 0.5vw",
-              width: "1.4vw ",
-              height: "1.4vw",
-              borderRadius: "50%",
+              width: "18vw",
               cursor: "pointer",
-              objectFit: "cover",
+              display: "flex",
+              alignItems: "center",
             }}
-            src={img2}
-            alt=""
-          />
-        </div>
-
+          >
+            {data?.categoryId?.category}
+            <img
+              onClick={() => handleOpen()}
+              style={{
+                margin: "0.5vw 0.5vw",
+                width: "1.4vw ",
+                height: "1.4vw",
+                borderRadius: "50%",
+                cursor: "pointer",
+                objectFit: "cover",
+              }}
+              src={img2}
+              alt=""
+            />
+          </div>
+        ) : (
+          <div
+            style={{
+              width: "18vw",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <AddIcon
+              onClick={() => handleOpen3()}
+              style={{
+                margin: "0.5vw 0.5vw",
+                width: "1.4vw ",
+                height: "1.4vw",
+                borderRadius: "50%",
+                cursor: "pointer",
+                objectFit: "cover",
+                fontSize: "1.4vw",
+              }}
+            />
+          </div>
+        )}
         <div
           style={{
             width: "18vw",
@@ -297,9 +385,14 @@ export default function Skillpopupcopy2({
           />
         </div>
         <div
-          style={{ width: "18vw", display: "flex", alignItems: "center",paddingRight:"3vw" }}
+          style={{
+            width: "18vw",
+            display: "flex",
+            alignItems: "center",
+            paddingRight: "3vw",
+          }}
         >
-                 <div style={{ marginBottom: "0.5vw" }} className="inputtypeformfield">
+          <div style={{ marginBottom: "0.5vw" }} className="inputtypeformfield">
             <TextField
               id="standard-select-currency"
               select
@@ -325,7 +418,6 @@ export default function Skillpopupcopy2({
               ))}
             </TextField>
           </div>
-     
         </div>
         <div style={{ width: "9vw", display: "flex", alignItems: "center" }}>
           {data?.created_at?.slice(0, 10)}
@@ -608,6 +700,175 @@ export default function Skillpopupcopy2({
             </div>
             <div
               onClick={() => editcategory()}
+              style={{ cursor: "pointer" }}
+              className="handlecirclieaboutsave"
+            >
+              Update
+            </div>
+          </div>
+        </Box>
+      </Modal>
+
+      <Modal
+        open={open3}
+        onClose={handleClose3}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <div className="profiletitleandmenunav">
+            <div className="profiledetailstitle">Add Category</div>
+            <div className="profiledetailnavmanu">
+              <div>
+                <CloseIcon
+                  onClick={handleClose3}
+                  style={{ fontSize: "1.5vw", cursor: "pointer" }}
+                />
+              </div>
+            </div>
+          </div>
+          <hr style={{ color: "#00000090" }} />
+          <div
+            style={{ left: "0vw", width: "94%", marginLeft: "0%" }}
+            className="loginfield"
+            onClick={handleClickx2}
+          >
+            <TextField
+              id="outlined-basic"
+              label="Category *"
+              variant="outlined"
+              disabled
+              value={degreeset}
+              style={{ width: "100%" }}
+              InputLabelProps={{
+                style: {
+                  fontSize: "1vw",
+                  fontFamily: "Poppins",
+                  fontStyle: "500",
+                  fontWeight: "500",
+                  color: "black",
+                },
+              }}
+              inputProps={{ className: classes.input }}
+              onChange={(e) => {
+                console.log(e.target.value);
+              }}
+            />
+            <span style={{ width: "0.1vw" }}>
+              <KeyboardArrowDownOutlined
+                style={{
+                  fontSize: "1.5vw",
+                  position: "relative",
+                  right: "2vw",
+                  top: "1vw",
+                }}
+              />
+            </span>
+          </div>
+          <Popover
+            id={idx2}
+            open={openx2}
+            anchorEl={anchorElx2}
+            onClose={handleClosex2}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+          >
+            <div
+              style={{ maxHeight: "18vw", overflow: "scroll", width: "36vw" }}
+            >
+              <Typography
+                sx={{
+                  p: 1,
+                  pl: 1,
+                  ml: 1,
+                  pr: 0,
+                  width: "35vw",
+                  position: "fixed",
+                  background: "white",
+                  zIndex: "10",
+                }}
+              >
+                <input
+                  placeholder="search here .."
+                  onChange={(e) => {
+                    setSearchCategorysearch(e.target.value);
+                  }}
+                  style={{
+                    width: "97%",
+                    border: "1.5px solid #00000050",
+                    outline: "none",
+                    height: "2.5",
+                    borderRadius: "0.21vw",
+                  }}
+                />
+              </Typography>
+              <Typography
+                sx={{
+                  p: 2.5,
+                  pl: 1,
+                  ml: 1,
+                  width: "100%",
+                  cursor: "pointer",
+                }}
+              ></Typography>
+
+              {arrayoflongdegree?.length > 0 &&
+                arrayoflongdegree.map((data, index) => {
+                  return (
+                    <Typography
+                      sx={{
+                        p: 0.51,
+                        pl: 1,
+                        ml: 1,
+                        width: "100%",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        setCategogryid(data?._id);
+                        setDegreeset(data?.category);
+                        handleClosex2();
+                        setcateError();
+                      }}
+                    >
+                      {data?.category}
+                    </Typography>
+                  );
+                })}
+            </div>
+          </Popover>
+          <p style={{ color: "red", fontSize: "0.9vw" }}>{cateerror}</p>
+          <div style={{ marginTop: "0.31vw" }} className="handlemoreaboutskill">
+            <div
+              style={{
+                background: "white",
+                color: "#064C87",
+                cursor: "pointer",
+                border: "1px solid #064C87",
+                margin: "1vw",
+                marginBottom: "0vw",
+              }}
+              className="handlecirclieaboutsave"
+              onClick={handleClose3}
+            >
+              Cancel
+            </div>
+            <div
+              style={{
+                background: "white",
+                color: "#064C87",
+                cursor: "pointer",
+                border: "1px solid #064C87",
+                margin: "1vw",
+                marginBottom: "0vw",
+              }}
+              className="handlecirclieaboutsave"
+            >
+              Reset
+            </div>
+            <div
+              onClick={() => handleAddCategory()}
               style={{ cursor: "pointer" }}
               className="handlecirclieaboutsave"
             >
