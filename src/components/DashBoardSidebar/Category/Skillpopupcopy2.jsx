@@ -5,12 +5,10 @@ import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outl
 
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-
 import DoneIcon from "@mui/icons-material/Done";
 import img11 from "../../../assets/Web 1280 – 14/Group 9831.svg";
 import img22 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg";
 import img111 from "../../../assets/Web 1280 – 14/Icon.svg";
-
 import axios from "axios";
 import API_HOST from "../../../env";
 const style = {
@@ -45,19 +43,17 @@ export default function Skillpopupcopy2({
   const [checkonex, setCheckonex] = useState(false);
   const [categoryName, setCategoryName] = useState("");
   const [subcategoryName, setsubCategoryName] = useState("");
-  
+
   const [categoryerror, setCategoryerror] = useState("");
   const [subcategoryerror, setsubCategoryerror] = useState("");
 
   const [categoryimage, setCategoryimage] = useState();
   const [subcategoryimage, setsubCategoryimage] = useState();
-  
 
   useEffect(() => {
     setCheckonex(false);
     setCategoryName(data?.categoryId?.category);
     setsubCategoryName(data?.subCategory);
-    
   }, [data]);
 
   const editcategory = () => {

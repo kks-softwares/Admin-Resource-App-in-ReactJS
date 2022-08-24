@@ -115,7 +115,7 @@ export default function Skillpopupcopy({
                   ),
                 ]);
               } else {
-                setSelecteddelete([...selecteddelete, data?.skillSetId]);
+                setSelecteddelete([...selecteddelete, data?.categoryId]);
               }
             }}
           >
@@ -175,7 +175,6 @@ export default function Skillpopupcopy({
         <div
           style={{ width: "22vw", display: "flex", alignItems: "center" }}
         ></div>{" "}
-       
         <div style={{ width: "9vw", display: "flex", alignItems: "center" }}>
           {data?.created_at?.slice(0, 10)}
         </div>

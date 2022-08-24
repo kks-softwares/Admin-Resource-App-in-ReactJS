@@ -149,7 +149,7 @@ export default function Users() {
       console.log(date);
       axios
         .get(
-          `${API_HOST}/theCategory/viewCategory?pageSize=10&pageNumber=${page1}&category=${setSelectedCategory1}&from=${datestart3}&to=${date}`
+          `${API_HOST}/theCategory/viewCategory?pageSize=10&pageNumber=${page1}&category=${setSelectedCategory1}&from=${datestart1}&to=${date}`
         )
         .then((res) => {
           setAllusers1(res?.data?.success?.data);
@@ -213,7 +213,7 @@ export default function Users() {
       console.log(date);
       axios
         .get(
-          `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=${page2}&skill=${setSelectedCategory2}&from=${datestart2}&to=${date}`
+          `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=${page2}&subCategory=${setSelectedCategory2}&from=${datestart2}&to=${date}`
         )
         .then((res) => {
           setAllusers2(res?.data?.success?.data);
@@ -223,7 +223,7 @@ export default function Users() {
         .get(
           `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=${
             page2 + 1
-          }&skill=${setSelectedCategory2}&from=${datestart2}&to=${datestart3x}`
+          }&subCategory=${setSelectedCategory2}&from=${datestart2}&to=${date}`
         )
         .then((res) => {
           if (res?.data?.success?.data?.length > 0) {
@@ -233,7 +233,7 @@ export default function Users() {
     } else {
       axios
         .get(
-          `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=${page2}&skill=${setSelectedCategory2}`
+          `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=${page2}&subCategory=${setSelectedCategory2}`
         )
         .then((res) => {
           setAllusers2(res?.data?.success?.data);
@@ -243,7 +243,7 @@ export default function Users() {
         .get(
           `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=${
             page2 + 1
-          }&skill=${setSelectedCategory2}`
+          }&subCategory=${setSelectedCategory2}`
         )
         .then((res) => {
           if (res?.data?.success?.data?.length > 0) {
@@ -258,7 +258,7 @@ export default function Users() {
     formdata.append("removable", JSON.stringify(selecteddelete2));
     console.log(JSON.stringify(selecteddelete2));
     axios
-      .post(`${API_HOST}/theSkill/removeSkill`, formdata, {
+      .post(`${API_HOST}/subCategory/removeSubcategory`, formdata, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {
@@ -279,10 +279,26 @@ export default function Users() {
           </span>
           <input
             type="text"
-            placeholder="search Category"
-            value={setSelectedCategory}
+            placeholder={
+              toggler === 1
+                ? "search Category"
+                : toggler === 2
+                ? "search Subcategory"
+                : "search Skill"
+            }
+            value={
+              toggler === 1
+                ? setSelectedCategory1
+                : toggler === 2
+                ? setSelectedCategory2
+                : setSelectedCategory
+            }
             onChange={(e) => {
-              setSetSelectedCategory(e.target.value);
+              toggler === 1
+                ? setSetSelectedCategory1(e.target.value)
+                : toggler === 2
+                ? setSetSelectedCategory2(e.target.value)
+                : setSetSelectedCategory(e.target.value);
             }}
           />
           <button
@@ -570,7 +586,11 @@ export default function Users() {
                       className="handlecirclieaboutsave"
                       onClick={() => {
                         handleClose();
-                        setRecall(!recall);
+                        togglrbar === 1
+                          ? setRecall1(!recall1)
+                          : togglrbar === 2
+                          ? setRecall2(!recall2)
+                          : setRecall(!recall);
                       }}
                     >
                       Submit
