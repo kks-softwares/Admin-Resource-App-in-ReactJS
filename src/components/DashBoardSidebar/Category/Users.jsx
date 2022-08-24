@@ -11,6 +11,8 @@ import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
 import Modal from "@mui/material/Modal";
 import Skillpopup from "./Skillpopup";
 import img1 from "../../../assets/Jobs/Iconly-Light-Delete.svg";
+import Skillpopupcopy from "./Skillpopupcopy";
+import Skillpopupcopy2 from "./Skillpopupcopy2";
 const style = {
   position: "absolute",
   top: "50%",
@@ -24,6 +26,7 @@ const style = {
   p: 4,
 };
 export default function Users() {
+  const [toggler, setToggler] = useState(1);
   const [openx, setOpenx] = React.useState(false);
   const [anchorElx, setAnchorElx] = React.useState(null);
   const canBeOpen = openx && Boolean(anchorElx);
@@ -56,8 +59,14 @@ export default function Users() {
 
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
+  const [page1, setPage1] = useState(1);
+  const [totalpages1, settotalpages1] = useState(1);
+  const [page2, setPage2] = useState(1);
+  const [totalpages2, settotalpages2] = useState(1);
 
   const [setSelectedCategory, setSetSelectedCategory] = useState("");
+  const [setSelectedCategory1, setSetSelectedCategory1] = useState("");
+  const [setSelectedCategory2, setSetSelectedCategory2] = useState("");
 
   const [arrayoffilterselected, setarrayoffilterselected] = useState([]);
 
@@ -69,7 +78,6 @@ export default function Users() {
 
   const [recall, setRecall] = useState(false);
   const [selecteddelete, setSelecteddelete] = useState([]);
-  const [selecteddeletedone, setSelecteddeletedone] = useState(true);
 
   useEffect(() => {
     if (togglrbar === 3) {
@@ -128,6 +136,134 @@ export default function Users() {
       .then((res) => {
         setSelecteddelete([]);
         setRecall(!recall);
+      });
+  };
+  const [allusers1, setAllusers1] = useState([]);
+
+  const [recall1, setRecall1] = useState(false);
+  const [selecteddelete1, setSelecteddelete1] = useState([]);
+
+  useEffect(() => {
+    if (togglrbar === 1) {
+      const date = setdateadd(datestart1x);
+      console.log(date);
+      axios
+        .get(
+          `${API_HOST}/theCategory/viewCategory?pageSize=10&pageNumber=${page1}&category=${setSelectedCategory1}&from=${datestart3}&to=${date}`
+        )
+        .then((res) => {
+          setAllusers1(res?.data?.success?.data);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
+      axios
+        .get(
+          `${API_HOST}/theCategory/viewCategory?pageSize=10&pageNumber=${
+            page1 + 1
+          }&category=${setSelectedCategory1}&from=${datestart1}&to=${date}`
+        )
+        .then((res) => {
+          if (res?.data?.success?.data?.length > 0) {
+            settotalpages1(page1 + 1);
+          }
+        });
+    } else {
+      axios
+        .get(
+          `${API_HOST}/theCategory/viewCategory?pageSize=10&pageNumber=${page1}&category=${setSelectedCategory1}`
+        )
+        .then((res) => {
+          setAllusers1(res?.data?.success?.data);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
+      axios
+        .get(
+          `${API_HOST}/theCategory/viewCategory?pageSize=10&pageNumber=${
+            page1 + 1
+          }&category=${setSelectedCategory1}`
+        )
+        .then((res) => {
+          if (res?.data?.success?.data?.length > 0) {
+            settotalpages1(page1 + 1);
+          }
+        });
+    }
+  }, [page1, setSelectedCategory1, recall1]);
+
+  const handleDelete1 = () => {
+    const formdata = new FormData();
+    formdata.append("removable", JSON.stringify(selecteddelete1));
+    console.log(JSON.stringify(selecteddelete1));
+    axios
+      .post(`${API_HOST}/theCategory/removeCategory`, formdata, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((res) => {
+        setSelecteddelete1([]);
+        setRecall1(!recall1);
+      });
+  };
+  const [allusers2, setAllusers2] = useState([]);
+
+  const [recall2, setRecall2] = useState(false);
+  const [selecteddelete2, setSelecteddelete2] = useState([]);
+
+  useEffect(() => {
+    if (togglrbar === 2) {
+      const date = setdateadd(datestart2x);
+      console.log(date);
+      axios
+        .get(
+          `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=${page2}&skill=${setSelectedCategory2}&from=${datestart2}&to=${date}`
+        )
+        .then((res) => {
+          setAllusers2(res?.data?.success?.data);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
+      axios
+        .get(
+          `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=${
+            page2 + 1
+          }&skill=${setSelectedCategory2}&from=${datestart2}&to=${datestart3x}`
+        )
+        .then((res) => {
+          if (res?.data?.success?.data?.length > 0) {
+            settotalpages2(page2 + 1);
+          }
+        });
+    } else {
+      axios
+        .get(
+          `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=${page2}&skill=${setSelectedCategory2}`
+        )
+        .then((res) => {
+          setAllusers2(res?.data?.success?.data);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
+      axios
+        .get(
+          `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=${
+            page2 + 1
+          }&skill=${setSelectedCategory2}`
+        )
+        .then((res) => {
+          if (res?.data?.success?.data?.length > 0) {
+            settotalpages2(page2 + 1);
+          }
+        });
+    }
+  }, [page2, setSelectedCategory2, recall2]);
+
+  const handleDelete2 = () => {
+    const formdata = new FormData();
+    formdata.append("removable", JSON.stringify(selecteddelete2));
+    console.log(JSON.stringify(selecteddelete2));
+    axios
+      .post(`${API_HOST}/theSkill/removeSkill`, formdata, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((res) => {
+        setSelecteddelete2([]);
+        setRecall2(!recall2);
       });
   };
 
@@ -474,13 +610,43 @@ export default function Users() {
             className="profileworkhistruytoggleer"
           >
             <div
+              onClick={() => {
+                setToggler(1);
+              }}
               className="profileworkhistruytoggleervalue"
               style={{
                 textAlign: "center",
                 width: "12vw",
+                color: toggler === 1 ? "#064C87" : "",
               }}
             >
               List of Category
+            </div>
+            <div
+              onClick={() => {
+                setToggler(2);
+              }}
+              className="profileworkhistruytoggleervalue"
+              style={{
+                textAlign: "center",
+                width: "12vw",
+                color: toggler === 2 ? "#064C87" : "",
+              }}
+            >
+              List of Subcategory
+            </div>
+            <div
+              onClick={() => {
+                setToggler(3);
+              }}
+              className="profileworkhistruytoggleervalue"
+              style={{
+                textAlign: "center",
+                width: "12vw",
+                color: toggler === 3 ? "#064C87" : "",
+              }}
+            >
+              List of skills
             </div>
 
             <div
@@ -489,7 +655,7 @@ export default function Users() {
                 borderBottom: "0.3vw solid #064C87",
                 width: "12vw",
                 position: "relative",
-                right: "13vw",
+                right: toggler === 1 ? "41vw" : toggler === 2 ? "27vw" : "13vw",
                 bottom: "0.0vw",
                 transitionDuration: "1s",
                 borderRadius: "0.2vw",
@@ -500,7 +666,11 @@ export default function Users() {
         <div style={{ width: "5vw", height: "1vw" }}>
           <img
             onClick={() => {
-              handleDelete();
+              toggler === 1
+                ? handleDelete1()
+                : toggler === 2
+                ? handleDelete2()
+                : handleDelete();
             }}
             style={{
               margin: "0vw 0.5vw",
@@ -516,81 +686,234 @@ export default function Users() {
           />
         </div>
       </div>
+      {toggler === 1 && (
+        <div>
+          <div
+            style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
+            className="navoftableblogs"
+          >
+            <div style={{ width: "3vw" }}></div>
+            <div style={{ width: "7vw" }}>Id</div>
+            <div style={{ width: "12vw" }}> </div>
+            <div style={{ width: "30vw" }}>Category</div>
+            <div style={{ width: "22vw" }}></div>
 
-      <div>
-        <div
-          style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
-          className="navoftableblogs"
-        >
-          <div style={{ width: "3vw" }}></div>
-          <div style={{ width: "7vw" }}>Id</div>
-          <div style={{ width: "7vw" }}> </div>
-          <div style={{ width: "18vw" }}>Category</div>
-          <div style={{ width: "18vw" }}>Sub category</div>
-          <div style={{ width: "18vw" }}>Skills</div>
-          <div style={{ width: "9vw" }}>Created on</div>
-        </div>
-        {allusers?.length > 0 &&
-          allusers?.map((data, index) => {
-            return (
-              <Skillpopup
-                data={data}
-                index={index}
-                page={page}
-                setSelecteddelete={setSelecteddelete}
-                selecteddelete={selecteddelete}
-                setRecall={setRecall}
-                recall={recall}
-              />
-            );
-          })}
-
-        {totalpages !== 1 ? (
-          <div style={{ width: "25vw" }} className="paginationbox">
-            <div>
-              <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
-            </div>
-
-            <div
-              hidden={page - 4 > 0 ? false : true}
-              onClick={() => setPage(page - 4)}
-            >
-              {page - 4}
-            </div>
-            <div
-              hidden={page - 3 > 0 ? false : true}
-              onClick={() => setPage(page - 3)}
-            >
-              {page - 3}
-            </div>
-            <div
-              hidden={page - 2 > 0 ? false : true}
-              onClick={() => setPage(page - 2)}
-            >
-              {page - 2}
-            </div>
-            <div
-              hidden={page - 1 > 0 ? false : true}
-              onClick={() => setPage(page - 1)}
-            >
-              {page - 1}
-            </div>
-            <div style={{ color: "#2A6599" }}>{page}</div>
-            <div
-              hidden={page + 1 > totalpages ? true : false}
-              onClick={() => setPage(page + 1)}
-            >
-              {page + 1}
-            </div>
-
-            <div>
-              <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
-            </div>
+            <div style={{ width: "9vw" }}>Created on</div>
           </div>
-        ) : (
-          ""
-        )}
-      </div>
+          {allusers1?.length > 0 &&
+            allusers1?.map((data, index) => {
+              return (
+                <Skillpopupcopy
+                  data={data}
+                  index={index}
+                  page={page1}
+                  setSelecteddelete={setSelecteddelete1}
+                  selecteddelete={selecteddelete1}
+                  setRecall={setRecall1}
+                  recall={recall1}
+                />
+              );
+            })}
+
+          {totalpages1 !== 1 ? (
+            <div style={{ width: "25vw" }} className="paginationbox">
+              <div>
+                <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
+              </div>
+
+              <div
+                hidden={page1 - 4 > 0 ? false : true}
+                onClick={() => setPage1(page1 - 4)}
+              >
+                {page1 - 4}
+              </div>
+              <div
+                hidden={page1 - 3 > 0 ? false : true}
+                onClick={() => setPage1(page1 - 3)}
+              >
+                {page1 - 3}
+              </div>
+              <div
+                hidden={page1 - 2 > 0 ? false : true}
+                onClick={() => setPage1(page1 - 2)}
+              >
+                {page1 - 2}
+              </div>
+              <div
+                hidden={page1 - 1 > 0 ? false : true}
+                onClick={() => setPage1(page1 - 1)}
+              >
+                {page1 - 1}
+              </div>
+              <div style={{ color: "#2A6599" }}>{page1}</div>
+              <div
+                hidden={page1 + 1 > totalpages1 ? true : false}
+                onClick={() => setPage1(page1 + 1)}
+              >
+                {page1 + 1}
+              </div>
+
+              <div>
+                <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+      )}
+      {toggler === 2 && (
+        <div>
+          <div
+            style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
+            className="navoftableblogs"
+          >
+            <div style={{ width: "3vw" }}></div>
+            <div style={{ width: "7vw" }}>Id</div>
+            <div style={{ width: "7vw" }}> </div>
+            <div style={{ width: "18vw" }}>Category</div>
+            <div style={{ width: "18vw" }}>Sub category</div>
+            <div style={{ width: "18vw" }}></div>
+            <div style={{ width: "9vw" }}>Created on</div>
+          </div>
+          {allusers2?.length > 0 &&
+            allusers2?.map((data, index) => {
+              return (
+                <Skillpopupcopy2
+                  data={data}
+                  index={index}
+                  page={page2}
+                  setSelecteddelete={setSelecteddelete2}
+                  selecteddelete={selecteddelete2}
+                  setRecall={setRecall2}
+                  recall={recall2}
+                />
+              );
+            })}
+
+          {totalpages2 !== 1 ? (
+            <div style={{ width: "25vw" }} className="paginationbox">
+              <div>
+                <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
+              </div>
+
+              <div
+                hidden={page2 - 4 > 0 ? false : true}
+                onClick={() => setPage2(page2 - 4)}
+              >
+                {page2 - 4}
+              </div>
+              <div
+                hidden={page2 - 3 > 0 ? false : true}
+                onClick={() => setPage2(page2 - 3)}
+              >
+                {page2 - 3}
+              </div>
+              <div
+                hidden={page2 - 2 > 0 ? false : true}
+                onClick={() => setPage2(page2 - 2)}
+              >
+                {page2 - 2}
+              </div>
+              <div
+                hidden={page2 - 1 > 0 ? false : true}
+                onClick={() => setPage2(page2 - 1)}
+              >
+                {page2 - 1}
+              </div>
+              <div style={{ color: "#2A6599" }}>{page2}</div>
+              <div
+                hidden={page2 + 1 > totalpages2 ? true : false}
+                onClick={() => setPage2(page2 + 1)}
+              >
+                {page2 + 1}
+              </div>
+
+              <div>
+                <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+      )}
+      {toggler === 3 && (
+        <div>
+          <div
+            style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
+            className="navoftableblogs"
+          >
+            <div style={{ width: "3vw" }}></div>
+            <div style={{ width: "7vw" }}>Id</div>
+            <div style={{ width: "7vw" }}> </div>
+            <div style={{ width: "18vw" }}>Category</div>
+            <div style={{ width: "18vw" }}>Sub category</div>
+            <div style={{ width: "18vw" }}>Skills</div>
+            <div style={{ width: "9vw" }}>Created on</div>
+          </div>
+          {allusers?.length > 0 &&
+            allusers?.map((data, index) => {
+              return (
+                <Skillpopup
+                  data={data}
+                  index={index}
+                  page={page}
+                  setSelecteddelete={setSelecteddelete}
+                  selecteddelete={selecteddelete}
+                  setRecall={setRecall}
+                  recall={recall}
+                />
+              );
+            })}
+
+          {totalpages !== 1 ? (
+            <div style={{ width: "25vw" }} className="paginationbox">
+              <div>
+                <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
+              </div>
+
+              <div
+                hidden={page - 4 > 0 ? false : true}
+                onClick={() => setPage(page - 4)}
+              >
+                {page - 4}
+              </div>
+              <div
+                hidden={page - 3 > 0 ? false : true}
+                onClick={() => setPage(page - 3)}
+              >
+                {page - 3}
+              </div>
+              <div
+                hidden={page - 2 > 0 ? false : true}
+                onClick={() => setPage(page - 2)}
+              >
+                {page - 2}
+              </div>
+              <div
+                hidden={page - 1 > 0 ? false : true}
+                onClick={() => setPage(page - 1)}
+              >
+                {page - 1}
+              </div>
+              <div style={{ color: "#2A6599" }}>{page}</div>
+              <div
+                hidden={page + 1 > totalpages ? true : false}
+                onClick={() => setPage(page + 1)}
+              >
+                {page + 1}
+              </div>
+
+              <div>
+                <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+      )}
     </div>
   );
 }
