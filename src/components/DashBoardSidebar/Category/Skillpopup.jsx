@@ -406,7 +406,7 @@ export default function Skillpopup({
             }}
           >
             <AddIcon
-              onClick={() => handleOpen4()}
+              onClick={() => handleOpen5()}
               style={{
                 margin: "0.5vw 0.5vw",
                 width: "1.4vw ",
@@ -1125,7 +1125,7 @@ export default function Skillpopup({
       >
         <Box sx={style}>
           <div className="profiletitleandmenunav">
-            <div className="profiledetailstitle">Add Category</div>
+            <div className="profiledetailstitle">Add Category and Subcategory</div>
             <div className="profiledetailnavmanu">
               <div>
                 <CloseIcon
