@@ -101,6 +101,9 @@ export default function Users() {
           if (res?.data?.success?.data?.length > 0) {
             settotalpages(page + 1);
           }
+          else{
+              settotalpages(page)
+          }
         });
     } else {
       axios
@@ -121,6 +124,9 @@ export default function Users() {
           if (res?.data?.success?.data?.length > 0) {
             settotalpages(page + 1);
           }
+          else{
+            settotalpages(page)
+        }
         });
     }
   }, [page, setSelectedCategory, recall]);
@@ -165,6 +171,9 @@ export default function Users() {
           if (res?.data?.success?.data?.length > 0) {
             settotalpages1(page1 + 1);
           }
+          else{
+            settotalpages1(page1)
+          }
         });
     } else {
       axios
@@ -184,6 +193,9 @@ export default function Users() {
         .then((res) => {
           if (res?.data?.success?.data?.length > 0) {
             settotalpages1(page1 + 1);
+          }
+          else{
+            settotalpages1(page1)
           }
         });
     }
@@ -229,6 +241,9 @@ export default function Users() {
           if (res?.data?.success?.data?.length > 0) {
             settotalpages2(page2 + 1);
           }
+          else{
+            settotalpages2(page2)
+          }
         });
     } else {
       axios
@@ -248,6 +263,9 @@ export default function Users() {
         .then((res) => {
           if (res?.data?.success?.data?.length > 0) {
             settotalpages2(page2 + 1);
+          }
+          else{
+            settotalpages2(page2)
           }
         });
     }
@@ -606,7 +624,12 @@ export default function Users() {
               })}
 
             <div
-              onClick={() => setarrayoffilterselected([])}
+              onClick={() => {
+                  setTogglrbar(0)
+                  setRecall(!recall)
+                  setRecall2(!recall2)
+                  setRecall1(!recall1)
+            }}
               style={{ cursor: "pointer" }}
               className="filtericonboxname"
             >
@@ -715,8 +738,8 @@ export default function Users() {
             <div style={{ width: "3vw" }}></div>
             <div style={{ width: "7vw" }}>Id</div>
             <div style={{ width: "12vw" }}> </div>
-            <div style={{ width: "30vw" }}>Category</div>
-            <div style={{ width: "22vw" }}></div>
+            <div style={{ width: "28vw" }}>Category</div>
+            <div style={{ width: "25vw" }}></div>
 
             <div style={{ width: "9vw" }}>Created on</div>
           </div>

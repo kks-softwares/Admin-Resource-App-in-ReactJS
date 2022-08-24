@@ -49,7 +49,7 @@ export default function AddSkill1({ handleClose, setSelectedCategory }) {
   useEffect(() => {
     axios
       .get(
-        `${API_HOST}/theCategory/viewCategory?pageSize=10&pageNumber=1&category=${searchCategorysearch}`
+        `${API_HOST}/theCategory/viewCategory?pageSize=50&pageNumber=1&category=${searchCategorysearch}`
       )
       .then((res) => {
         setArrayoflongdegree(res?.data?.success?.data);
@@ -60,7 +60,7 @@ export default function AddSkill1({ handleClose, setSelectedCategory }) {
     if (categogryid) {
       axios
         .get(
-          `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=1&subCategory=${searchsubCategorysearch}&categoryId=${categogryid}`
+          `${API_HOST}/subCategory/viewSubCategory?pageSize=50&pageNumber=1&subCategory=${searchsubCategorysearch}&categoryId=${categogryid}`
         )
         .then((res) => {
           console.log(res?.data?.success?.data);

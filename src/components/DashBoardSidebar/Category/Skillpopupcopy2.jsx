@@ -11,6 +11,8 @@ import img22 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg
 import img111 from "../../../assets/Web 1280 – 14/Icon.svg";
 import axios from "axios";
 import API_HOST from "../../../env";
+import { TextField } from "@mui/material";
+import MenuItem from "@mui/material/MenuItem";
 const style = {
   position: "absolute",
   top: "50%",
@@ -24,6 +26,15 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+const currencies = [
+    {
+      value: "Popular",
+    },
+  
+    {
+      value: "None",
+    },
+  ];
 export default function Skillpopupcopy2({
   data,
   index,
@@ -33,6 +44,10 @@ export default function Skillpopupcopy2({
   setRecall,
   recall,
 }) {
+
+  const [currency, setCurrency] = React.useState(
+    data?.popularSubCategory ? "Popular" : "None"
+  );
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -54,6 +69,7 @@ export default function Skillpopupcopy2({
     setCheckonex(false);
     setCategoryName(data?.categoryId?.category);
     setsubCategoryName(data?.subCategory);
+    setCurrency(data?.popularSubCategory ? "Popular" : "None");
   }, [data]);
 
   const editcategory = () => {
@@ -143,6 +159,25 @@ export default function Skillpopupcopy2({
     }
   };
 
+  const handleChange = (event) => {
+    setCurrency(event.target.value);
+  };
+
+  const handleUpdateblog = (data1) => {
+    if (data1 === "Popular") {
+      axios.post(`${API_HOST}/subCategory/editSubCategory`, {
+        subCategoryId: data?.subCategoryId,
+        popularSubCategory: true,
+      });
+    }
+
+    if (data1 === "None") {
+      axios.post(`${API_HOST}/subCategory/editSubCategory`, {
+        subCategoryId: data?.subCategoryId,
+        popularSubCategory: false,
+      });
+    }
+  };
   return (
     <div>
       <div style={{ alignItems: "center" }} className="navoftableblogsdata">
@@ -262,8 +297,36 @@ export default function Skillpopupcopy2({
           />
         </div>
         <div
-          style={{ width: "18vw", display: "flex", alignItems: "center" }}
-        ></div>
+          style={{ width: "18vw", display: "flex", alignItems: "center",paddingRight:"3vw" }}
+        >
+                 <div style={{ marginBottom: "0.5vw" }} className="inputtypeformfield">
+            <TextField
+              id="standard-select-currency"
+              select
+              style={{
+                width: "100%",
+                textAlign: "left",
+                borderBottom: "0.11px solid white",
+                color: "black !important",
+              }}
+              value={currency}
+              onChange={handleChange}
+              variant="standard"
+            >
+              {currencies.map((option) => (
+                <MenuItem
+                  hidden={option.value === "Select Category" ? true : false}
+                  key={option.value}
+                  value={option.value}
+                  onClick={() => handleUpdateblog(option.value)}
+                >
+                  {option.value}
+                </MenuItem>
+              ))}
+            </TextField>
+          </div>
+     
+        </div>
         <div style={{ width: "9vw", display: "flex", alignItems: "center" }}>
           {data?.created_at?.slice(0, 10)}
         </div>
