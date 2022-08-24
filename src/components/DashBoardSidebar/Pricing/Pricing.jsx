@@ -37,14 +37,18 @@ export default function Pricing() {
   const handleClose = () => setOpen(false);
   const [previosfilter, setPreviosfilter] = useState([]);
   const [allusers, setAllusers] = useState([]);
-
+  const [open3, setOpen3] = React.useState(false);
+  const handleOpen3 = () => setOpen3(true);
+  const handleClose3 = () => setOpen3(false);
   const [datestart1, setDatestart1] = useState();
 
   const [datestart1x, setDatestart1x] = useState();
   useEffect(() => {
     if (datestart1 && !datestart1x) {
       axios
-        .get(`${API_HOST}/budget/viewBudget?minimumBudget=${datestart1}&maximumBudget=100000000000`)
+        .get(
+          `${API_HOST}/budget/viewBudget?minimumBudget=${datestart1}&maximumBudget=100000000000`
+        )
         .then((res) => {
           setAllusers(res?.data?.success?.data);
           window.scrollTo(0, 0, { behavior: "smooth" });
@@ -52,7 +56,9 @@ export default function Pricing() {
     }
     if (datestart1x && !datestart1) {
       axios
-        .get(`${API_HOST}/budget/viewBudget?maximumBudget=${datestart1x}&minimumBudget=0`)
+        .get(
+          `${API_HOST}/budget/viewBudget?maximumBudget=${datestart1x}&minimumBudget=0`
+        )
         .then((res) => {
           setAllusers(res?.data?.success?.data);
           window.scrollTo(0, 0, { behavior: "smooth" });
@@ -83,8 +89,8 @@ export default function Pricing() {
     formdata.append("removable", JSON.stringify(selecteddelete));
     console.log(JSON.stringify(selecteddelete));
     axios
-      .post(`${API_HOST}/budget/removeBudget`,formdata, {
-        headers: { "Content-Type": "multipart/form-data" }
+      .post(`${API_HOST}/budget/removeBudget`, formdata, {
+        headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {
         if (datestart1 && !datestart1x) {
@@ -119,6 +125,8 @@ export default function Pricing() {
             window.scrollTo(0, 0, { behavior: "smooth" });
           });
         }
+        handleClose3()
+        setSelecteddelete([]);
       });
   };
 
@@ -329,7 +337,9 @@ export default function Pricing() {
         <div style={{ width: "5vw", height: "1vw" }}>
           <img
             onClick={() => {
-              handleDelete();
+              if (selecteddelete) {
+                handleOpen3();
+              }
             }}
             style={{
               margin: "0vw 0.5vw",
@@ -344,6 +354,58 @@ export default function Pricing() {
             alt=""
           />
         </div>
+        <Modal
+          open={open3}
+          onClose={handleClose3}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <div className="profiletitleandmenunav">
+              <div className="profiledetailstitle">Delete Pricing</div>
+              <div className="profiledetailnavmanu">
+                <div>
+                  <CloseIcon
+                    onClick={handleClose3}
+                    style={{ fontSize: "1.5vw", cursor: "pointer" }}
+                  />
+                </div>
+              </div>
+            </div>
+            <hr style={{ color: "#00000090" }} />
+
+            <div style={{ left: "0vw", width: "100%" }} className="loginfield">
+              Are you really want to delete these ' Pricing '
+            </div>
+
+            <hr style={{ color: "#00000090" }} />
+            <div
+              style={{ marginTop: "0.31vw" }}
+              className="handlemoreaboutskill"
+            >
+              <div
+                style={{
+                  background: "white",
+                  color: "black",
+                  cursor: "pointer",
+                }}
+                className="handlecirclieaboutsave"
+                onClick={handleClose3}
+              >
+                Cancel
+              </div>
+              <div
+                onClick={() => {
+                  handleDelete();
+                }}
+                style={{ cursor: "pointer" }}
+                className="handlecirclieaboutsave"
+              >
+                Delete
+              </div>
+            </div>
+          </Box>
+        </Modal>
       </div>
 
       <div>

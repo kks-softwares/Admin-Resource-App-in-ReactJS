@@ -46,7 +46,7 @@ export default function AddSubCategory({ handleClose, setSelectedCategory }) {
   useEffect(() => {
     axios
       .get(
-        `${API_HOST}/theCategory/viewCategory?pageSize=10&pageNumber=1&category=${searchCategorysearch}`
+        `${API_HOST}/theCategory/viewCategory?pageSize=50&pageNumber=1&category=${searchCategorysearch}`
       )
       .then((res) => {
         setArrayoflongdegree(res?.data?.success?.data);

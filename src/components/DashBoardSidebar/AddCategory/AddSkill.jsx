@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-
 import { makeStyles } from "@material-ui/core";
-
 import { KeyboardArrowDownOutlined } from "@mui/icons-material";
 import axios from "axios";
 import API_HOST from "../../../env";

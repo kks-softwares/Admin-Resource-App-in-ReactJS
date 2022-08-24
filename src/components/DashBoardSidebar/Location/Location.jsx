@@ -28,7 +28,9 @@ export default function Location() {
   const [anchorElx, setAnchorElx] = React.useState(null);
   const canBeOpen = openx && Boolean(anchorElx);
   const id = canBeOpen ? "transition-popper" : undefined;
-
+  const [open3, setOpen3] = React.useState(false);
+  const handleOpen3 = () => setOpen3(true);
+  const handleClose3 = () => setOpen3(false);
   const navigate = useNavigate();
 
   const [page, setPage] = useState(1);
@@ -238,6 +240,7 @@ export default function Location() {
           }
         }
         setSelecteddelete([]);
+        handleClose3()
       });
   };
 
@@ -451,7 +454,11 @@ export default function Location() {
         </div>
         <div style={{ width: "5vw", height: "1vw" }}>
           <img
-            onClick={() => handleDelete()}
+            onClick={() => {
+                if (selecteddelete?.length>0) {
+                    handleOpen3()
+                }
+            }}
             style={{
               margin: "0vw 0.5vw",
               marginRight: "3vw",
@@ -465,6 +472,63 @@ export default function Location() {
             alt=""
           />
         </div>
+        <Modal
+          open={open3}
+          onClose={handleClose3}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <div className="profiletitleandmenunav">
+              <div className="profiledetailstitle">
+                Delete{" "} Location
+               
+              </div>
+              <div className="profiledetailnavmanu">
+                <div>
+                  <CloseIcon
+                    onClick={handleClose3}
+                    style={{ fontSize: "1.5vw", cursor: "pointer" }}
+                  />
+                </div>
+              </div>
+            </div>
+            <hr style={{ color: "#00000090" }} />
+
+            <div style={{ left: "0vw", width: "100%" }} className="loginfield">
+              Are you really want to delete these ' Location '
+              
+              
+            </div>
+
+            <hr style={{ color: "#00000090" }} />
+            <div
+              style={{ marginTop: "0.31vw" }}
+              className="handlemoreaboutskill"
+            >
+              <div
+                style={{
+                  background: "white",
+                  color: "black",
+                  cursor: "pointer",
+                }}
+                className="handlecirclieaboutsave"
+                onClick={handleClose3}
+              >
+                Cancel
+              </div>
+              <div
+                onClick={() => {
+                  handleDelete();
+                }}
+                style={{ cursor: "pointer" }}
+                className="handlecirclieaboutsave"
+              >
+                Delete
+              </div>
+            </div>
+          </Box>
+        </Modal>
       </div>
 
       <div>

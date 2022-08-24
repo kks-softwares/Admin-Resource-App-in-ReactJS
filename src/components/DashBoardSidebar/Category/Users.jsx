@@ -55,8 +55,9 @@ export default function Users() {
     return yyyy + "-" + mm + "-" + dd;
   };
 
-  const navigate = useNavigate();
-
+  const [open3, setOpen3] = React.useState(false);
+  const handleOpen3 = () => setOpen3(true);
+  const handleClose3 = () => setOpen3(false);
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
   const [page1, setPage1] = useState(1);
@@ -100,9 +101,8 @@ export default function Users() {
         .then((res) => {
           if (res?.data?.success?.data?.length > 0) {
             settotalpages(page + 1);
-          }
-          else{
-              settotalpages(page)
+          } else {
+            settotalpages(page);
           }
         });
     } else {
@@ -123,10 +123,9 @@ export default function Users() {
         .then((res) => {
           if (res?.data?.success?.data?.length > 0) {
             settotalpages(page + 1);
+          } else {
+            settotalpages(page);
           }
-          else{
-            settotalpages(page)
-        }
         });
     }
   }, [page, setSelectedCategory, recall]);
@@ -141,7 +140,9 @@ export default function Users() {
       })
       .then((res) => {
         setSelecteddelete([]);
+        handleClose3()
         setRecall(!recall);
+
       });
   };
   const [allusers1, setAllusers1] = useState([]);
@@ -170,9 +171,8 @@ export default function Users() {
         .then((res) => {
           if (res?.data?.success?.data?.length > 0) {
             settotalpages1(page1 + 1);
-          }
-          else{
-            settotalpages1(page1)
+          } else {
+            settotalpages1(page1);
           }
         });
     } else {
@@ -193,9 +193,8 @@ export default function Users() {
         .then((res) => {
           if (res?.data?.success?.data?.length > 0) {
             settotalpages1(page1 + 1);
-          }
-          else{
-            settotalpages1(page1)
+          } else {
+            settotalpages1(page1);
           }
         });
     }
@@ -211,6 +210,7 @@ export default function Users() {
       })
       .then((res) => {
         setSelecteddelete1([]);
+        handleClose3()
         setRecall1(!recall1);
       });
   };
@@ -240,9 +240,8 @@ export default function Users() {
         .then((res) => {
           if (res?.data?.success?.data?.length > 0) {
             settotalpages2(page2 + 1);
-          }
-          else{
-            settotalpages2(page2)
+          } else {
+            settotalpages2(page2);
           }
         });
     } else {
@@ -263,9 +262,8 @@ export default function Users() {
         .then((res) => {
           if (res?.data?.success?.data?.length > 0) {
             settotalpages2(page2 + 1);
-          }
-          else{
-            settotalpages2(page2)
+          } else {
+            settotalpages2(page2);
           }
         });
     }
@@ -281,7 +279,9 @@ export default function Users() {
       })
       .then((res) => {
         setSelecteddelete2([]);
+        handleClose3()
         setRecall2(!recall2);
+        
       });
   };
 
@@ -625,11 +625,11 @@ export default function Users() {
 
             <div
               onClick={() => {
-                  setTogglrbar(0)
-                  setRecall(!recall)
-                  setRecall2(!recall2)
-                  setRecall1(!recall1)
-            }}
+                setTogglrbar(0);
+                setRecall(!recall);
+                setRecall2(!recall2);
+                setRecall1(!recall1);
+              }}
               style={{ cursor: "pointer" }}
               className="filtericonboxname"
             >
@@ -709,11 +709,19 @@ export default function Users() {
         <div style={{ width: "5vw", height: "1vw" }}>
           <img
             onClick={() => {
-              toggler === 1
-                ? handleDelete1()
-                : toggler === 2
-                ? handleDelete2()
-                : handleDelete();
+                if (toggler===1&&selecteddelete1.length>0) {
+                    
+                    handleOpen3();
+                }
+                if (toggler===2&&selecteddelete2?.length>0) {
+                    
+                    handleOpen3();
+                }
+                if (toggler===3&&selecteddelete.length>0) {
+                    
+                    handleOpen3();
+                }
+                
             }}
             style={{
               margin: "0vw 0.5vw",
@@ -728,6 +736,76 @@ export default function Users() {
             alt=""
           />
         </div>
+
+        <Modal
+          open={open3}
+          onClose={handleClose3}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <div className="profiletitleandmenunav">
+              <div className="profiledetailstitle">
+                Delete{" "}
+                {toggler === 1
+                  ? "Category"
+                  : toggler === 2
+                  ? "Sub-Category"
+                  : "Skills"}
+              </div>
+              <div className="profiledetailnavmanu">
+                <div>
+                  <CloseIcon
+                    onClick={handleClose3}
+                    style={{ fontSize: "1.5vw", cursor: "pointer" }}
+                  />
+                </div>
+              </div>
+            </div>
+            <hr style={{ color: "#00000090" }} />
+
+            <div style={{ left: "0vw", width: "100%" }} className="loginfield">
+              Are you really want to delete these '
+              {toggler === 1
+                ? "Category"
+                : toggler === 2
+                ? "Sub-Category"
+                : "Skills"}
+              '
+            </div>
+
+            <hr style={{ color: "#00000090" }} />
+            <div
+              style={{ marginTop: "0.31vw" }}
+              className="handlemoreaboutskill"
+            >
+              <div
+                style={{
+                  background: "white",
+                  color: "black",
+                  cursor: "pointer",
+                }}
+                className="handlecirclieaboutsave"
+                onClick={handleClose3}
+              >
+                Cancel
+              </div>
+              <div
+                onClick={() => {
+                  toggler === 1
+                    ? handleDelete1()
+                    : toggler === 2
+                    ? handleDelete2()
+                    : handleDelete();
+                }}
+                style={{ cursor: "pointer" }}
+                className="handlecirclieaboutsave"
+              >
+                Delete
+              </div>
+            </div>
+          </Box>
+        </Modal>
       </div>
       {toggler === 1 && (
         <div>
