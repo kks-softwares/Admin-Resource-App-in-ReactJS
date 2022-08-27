@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import API_HOST from "../../../env";
 import { useNavigate } from "react-router";
 
@@ -21,6 +21,17 @@ export default function AddLocation({ handleClose, setSelectedCategory }) {
   const [formErrors7, setFormErrors7] = useState();
 
   const navigate = useNavigate();
+
+  const [errrorofregex, setErrrorofregex] = useState(false);
+
+  const checkalph = (data) => {
+    const regexForDigit = /^[a-zA-Z_ ]*$/;
+    return regexForDigit.test(data);
+  };
+  const checknum = (data) => {
+    const regexForDigit = /^[0-9]+$/;
+    return regexForDigit.test(data);
+  };
 
   const handleAdd = () => {
     if (
@@ -46,27 +57,27 @@ export default function AddLocation({ handleClose, setSelectedCategory }) {
           navigate("/dashbaord/location");
         });
     } else {
-        if (!formValues) {
-          setFormErrors("Please fill Address")  
-        }
-        if (!formValues2) {
-          setFormErrors2("Please fill Landmark")  
-        }
-        if (!formValues3) {
-          setFormErrors3("Please fill Area")  
-        }
-        if (!formValues4) {
-          setFormErrors4("Please fill City")  
-        }
-        if (!formValues5) {
-          setFormErrors5("Please fill Pincode")  
-        }
-        if (!formValues6) {
-          setFormErrors6("Please fill Status")  
-        }
-        if (!formValues7) {
-          setFormErrors7("Please fill Country")  
-        }
+      if (!formValues) {
+        setFormErrors("Please fill Address");
+      }
+      if (!formValues2) {
+        setFormErrors2("Please fill Landmark");
+      }
+      if (!formValues3) {
+        setFormErrors3("Please fill Area");
+      }
+      if (!formValues4) {
+        setFormErrors4("Please fill City");
+      }
+      if (!formValues5) {
+        setFormErrors5("Please fill Pincode");
+      }
+      if (!formValues6) {
+        setFormErrors6("Please fill Status");
+      }
+      if (!formValues7) {
+        setFormErrors7("Please fill Country");
+      }
     }
   };
 
@@ -115,11 +126,12 @@ export default function AddLocation({ handleClose, setSelectedCategory }) {
               }}
               onClick={() => {
                 setFormValues("");
-             
               }}
             />
           </div>
-          <p style={{ color: "red" }} className="redp">{formErrors}</p>
+          <p style={{ color: "red" }} className="redp">
+            {formErrors}
+          </p>
           <div className="jobpodtedfieldtitile">Landmark *</div>
           <div className="jobpostfieldinputbox">
             <input
@@ -141,11 +153,12 @@ export default function AddLocation({ handleClose, setSelectedCategory }) {
               }}
               onClick={() => {
                 setFormValues2();
-            
               }}
             />
           </div>
-          <p style={{ color: "red" }} className="redp">{formErrors2}</p>
+          <p style={{ color: "red" }} className="redp">
+            {formErrors2}
+          </p>
           <div className="jobpodtedfieldtitile">Area *</div>
           <div className="jobpostfieldinputbox">
             <input
@@ -155,7 +168,6 @@ export default function AddLocation({ handleClose, setSelectedCategory }) {
               onChange={(e) => {
                 setFormValues3(e.target.value);
                 setFormErrors3();
-
               }}
             />
             <CloseIcon
@@ -171,7 +183,9 @@ export default function AddLocation({ handleClose, setSelectedCategory }) {
               }}
             />
           </div>
-          <p style={{ color: "red" }} className="redp">{formErrors3}</p>
+          <p style={{ color: "red" }} className="redp">
+            {formErrors3}
+          </p>
           <div className="jobpodtedfieldtitile">City *</div>
           <div className="jobpostfieldinputbox">
             <input
@@ -180,7 +194,15 @@ export default function AddLocation({ handleClose, setSelectedCategory }) {
               value={formValues4}
               onChange={(e) => {
                 setFormValues4(e.target.value);
-                setFormErrors4();
+
+                if (!checkalph(e.target.value)) {
+                  setFormErrors4("city must be contain only Alphabets");
+                  setErrrorofregex(true);
+                } else {
+                  setFormErrors4();
+
+                  setErrrorofregex(false);
+                }
               }}
             />
             <CloseIcon
@@ -192,20 +214,33 @@ export default function AddLocation({ handleClose, setSelectedCategory }) {
                 cursor: "pointer",
               }}
               onClick={() => {
-                setFormValues4();
+                setFormValues4("");
+                setFormErrors4();
+
+                setErrrorofregex(false);
               }}
             />
           </div>
-          <p style={{ color: "red" }} className="redp">{formErrors4}</p>
+          <p style={{ color: "red" }} className="redp">
+            {formErrors4}
+          </p>
           <div className="jobpodtedfieldtitile">Pincode *</div>
           <div className="jobpostfieldinputbox">
             <input
-              type="text"
+              type="number"
               name="title"
+              pattern="[0-9]+"
               value={formValues5}
               onChange={(e) => {
                 setFormValues5(e.target.value);
-                setFormErrors5();
+                if (!checknum(e.target.value)) {
+                  setFormErrors5("Pincode must be contain only Numbers");
+                  setErrrorofregex(true);
+                } else {
+                  setFormErrors5();
+
+                  setErrrorofregex(false);
+                }
               }}
             />
             <CloseIcon
@@ -217,12 +252,16 @@ export default function AddLocation({ handleClose, setSelectedCategory }) {
                 cursor: "pointer",
               }}
               onClick={() => {
-                setFormValues5();
-               
+                setFormValues5(""); 
+                 setFormErrors5();
+
+                setErrrorofregex(false);
               }}
             />
           </div>
-          <p style={{ color: "red" }} className="redp">{formErrors5}</p>
+          <p style={{ color: "red" }} className="redp">
+            {formErrors5}
+          </p>
           <div className="jobpodtedfieldtitile">State*</div>
           <div className="jobpostfieldinputbox">
             <input
@@ -231,7 +270,14 @@ export default function AddLocation({ handleClose, setSelectedCategory }) {
               value={formValues6}
               onChange={(e) => {
                 setFormValues6(e.target.value);
-                setFormErrors6();
+                if (!checkalph(e.target.value)) {
+                  setFormErrors6("State must be contain only Alphabets");
+                  setErrrorofregex(true);
+                } else {
+                  setFormErrors6();
+
+                  setErrrorofregex(false);
+                }
               }}
             />
             <CloseIcon
@@ -243,11 +289,16 @@ export default function AddLocation({ handleClose, setSelectedCategory }) {
                 cursor: "pointer",
               }}
               onClick={() => {
-                setFormValues6();
+                setFormValues6("");
+                setFormErrors6();
+
+                setErrrorofregex(false);
               }}
             />
           </div>
-          <p style={{ color: "red" }} className="redp">{formErrors6}</p>
+          <p style={{ color: "red" }} className="redp">
+            {formErrors6}
+          </p>
           <div className="jobpodtedfieldtitile">Country*</div>
           <div className="jobpostfieldinputbox">
             <input
@@ -256,7 +307,14 @@ export default function AddLocation({ handleClose, setSelectedCategory }) {
               value={formValues7}
               onChange={(e) => {
                 setFormValues7(e.target.value);
-                setFormErrors7();
+                if (!checkalph(e.target.value)) {
+                  setFormErrors7("Country must be contain only Alphabets");
+                  setErrrorofregex(true);
+                } else {
+                  setFormErrors7();
+
+                  setErrrorofregex(false);
+                }
               }}
             />
             <CloseIcon
@@ -268,11 +326,16 @@ export default function AddLocation({ handleClose, setSelectedCategory }) {
                 cursor: "pointer",
               }}
               onClick={() => {
-                setFormValues7();
+                setFormValues7("");
+                setFormErrors7();
+
+                setErrrorofregex(false);
               }}
             />
           </div>
-          <p style={{ color: "red" }} className="redp">{formErrors7}</p>
+          <p style={{ color: "red" }} className="redp">
+            {formErrors7}
+          </p>
 
           <div style={{ marginTop: "0.31vw" }} className="handlemoreaboutskill">
             <div
@@ -303,7 +366,11 @@ export default function AddLocation({ handleClose, setSelectedCategory }) {
               Reset
             </div>
             <div
-              onClick={() => handleAdd()}
+              onClick={() => {
+                if (!errrorofregex) {
+                  handleAdd();
+                }
+              }}
               style={{ cursor: "pointer", marginRight: "1vw" }}
               className="handlecirclieaboutsave"
             >
