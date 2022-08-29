@@ -8,8 +8,10 @@ import Select from "@mui/material/Select";
 import { makeStyles } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import CloseIcon from "@mui/icons-material/Close";
-
-
+import { TextField } from "@mui/material";
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
+import { KeyboardArrowDownOutlined } from "@mui/icons-material";
 import "./profile.css";
 import axios from "axios";
 import API_HOST from "../../../env";
@@ -56,8 +58,7 @@ const useStyles = makeStyles((theme) => ({
 export default function EditUser() {
 
   const { userName } = useParams();
-
-  const [user, setUser] = useState();
+  const [cateerror, setcateError] = useState("");  const [user, setUser] = useState();
 
   useEffect(() => {
     axios.get(`${API_HOST}/users/viewUser?userName=${userName}`).then((res) => {
@@ -78,7 +79,7 @@ export default function EditUser() {
   const [age5, setAge5] = React.useState(1);
   const [countrycode, setCountrycode] = useState("+91");
   const [countryside, setCountryside] = useState(cuntrycide);
-  const [Category, setCategory] = useState("Backend Doveloper");
+  const [Category, setCategory] = useState("");
   const [mobilecuntry, setMobilecuntry] = useState(1);
   const [SettingAccEmail, setSettingAccEmail] = useState("");
 
@@ -107,12 +108,35 @@ export default function EditUser() {
       setCountrycode(user?.countryCode);
       setMobile(user?.contactNo);
       setDesc(user?.address);
+      
     }
     console.log(user);
   }, [user]);
 
 
-  
+  const [arrayoflongdegree, setArrayoflongdegree] = useState();
+  const [searchCategorysearch, setSearchCategorysearch] = useState("");
+  useEffect(() => {
+    axios
+      .get(
+        `${API_HOST}/theCategory/viewCategory?pageSize=50&pageNumber=1&category=${searchCategorysearch}`
+      )
+      .then((res) => {
+        setArrayoflongdegree(res?.data?.success?.data);
+      });
+  }, [searchCategorysearch]);
+
+  const [anchorElx2, setAnchorElx2] = React.useState(null);
+  const handleClickx2 = (event) => {
+    setAnchorElx2(event.currentTarget);
+  };
+
+  const handleClosex2 = () => {
+    setAnchorElx2(null);
+  };
+
+  const openx2 = Boolean(anchorElx2);
+  const idx2 = openx2 ? "simple-popover" : undefined;
 
   const [settingCategory, setsettingCategory] = useState([]);
 
@@ -191,103 +215,117 @@ export default function EditUser() {
             Category
           </div>
           <div style={{ width: "40vw" }} className="settingAccounttitlevalue">
-            <div className="jobpostfieldinputbox">
-              <div style={{ width: "0.1vw", zIndex: "3" }}>
-                <Box
-                  sx={{
-                    background: "white",
-                    border: "1px solid #7070705b",
-                    height: "3.0vw",
-                    width: "35vw",
-                    borderRadius: "5px",
-                    margin: "0vw 0vw",
+          <div
+              style={{ left: "0vw", width: "94%", marginLeft: "0%" }}
+              className="loginfield"
+              onClick={handleClickx2}
+            >
+              <TextField
+                id="outlined-basic"
+                label="Category *"
+                variant="outlined"
+                disabled
+                value={Category}
+                style={{ width: "100%" }}
+                InputLabelProps={{
+                  style: {
+                    fontSize: "1vw",
+                    fontFamily: "Poppins",
+                    fontStyle: "500",
+                    fontWeight: "500",
+                    color: "black",
+                  },
+                }}
+                inputProps={{ className: classes.input }}
+                onChange={(e) => {
+                  console.log(e.target.value);
+                }}
+              />
+              <span style={{ width: "0.1vw" }}>
+                <KeyboardArrowDownOutlined
+                  style={{
+                    fontSize: "1.5vw",
                     position: "relative",
-                    bottom: "0.71vw",
+                    right: "2vw",
+                    top: "1vw",
                   }}
-                  className="setting-toggler"
-                >
-                  <FormControl variant="standard" fullWidth>
-                    <Select
-                      className={classes.select2}
-                      style={{ float: "left", textAlign: "left" }}
-                      labelId="demo-simple-select-standard-label"
-                      id="demo-simple-select-standard"
-                      value={Category}
-                      disableUnderline
-                      inputProps={{
-                        classes: {
-                          icon: classes.icon,
-                        },
-                      }}
-                      onChange={handleChangeCategory}
-                      MenuProps={{
-                        PaperProps: {
-                          sx: {
-                            bgcolor: "white",
-                            maxHeight: "18vw",
-                            "& .MuiMenuItem-root": {
-                              padding: "0.1vw 0.1vw",
-                              width: "100%",
-                              height: "2vw",
-                              fontFamily: "Poppins",
-                              fontStyle: "normal",
-                              fontWeight: "500",
-                              fontSize: "0.81vw",
-                              lineHeight: "24px",
-                              color: "#6b6b6b",
-                            },
-                          },
-                        },
-                      }}
-                    >
-                      <div style={{ width: "100%" }}>
-                        <input
-                          type="text"
-                          style={{ width: "100%" }}
-                          onChange={(e) => {
-                            setCategory(
-                              settingCategory.filter((x) =>
-                                x?.categories.includes(e.target.value)
-                              )
-                            );
-                            console.log(
-                              settingCategory.filter((x) =>
-                                x?.categories.includes(e.target.value)
-                              )
-                            );
-                          }}
-                        />
-                      </div>
-                    
-
-                      {settingCategory &&
-                        settingCategory?.map((code, index) => {
-                          // console.log("code?.dial_code index ",)
-                          return (
-                            <MenuItem
-                              onClick={() => {
-                                setCategory(code?.categories);
-                              }}
-                              value={code?.categories}
-                            >
-                              <div
-                                style={{
-                                  textAlign: "left",
-                                  marginTop: "0.5vw",
-                                  paddingLeft: "10px",
-                                }}
-                              >
-                                {code?.categories}
-                              </div>
-                            </MenuItem>
-                          );
-                        })}
-                    </Select>
-                  </FormControl>
-                </Box>
-              </div>
+                />
+              </span>
             </div>
-          </div>
+
+            <Popover
+              id={idx2}
+              open={openx2}
+              anchorEl={anchorElx2}
+              onClose={handleClosex2}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+            >
+              <div
+                style={{ maxHeight: "18vw", overflow: "scroll", width: "35vw" }}
+              >
+                <Typography
+                  sx={{
+                    p: 1,
+                    pl: 1,
+                    ml: 1,
+                    pr: 0,
+                    width: "34vw",
+                    position: "fixed",
+                    background: "white",
+                    zIndex: "10",
+                  }}
+                >
+                  <input
+                    placeholder="search here .."
+                    onChange={(e) => {
+                      setSearchCategorysearch(e.target.value);
+                    }}
+                    style={{
+                      width: "97%",
+                      border: "1.5px solid #00000050",
+                      outline: "none",
+                      height: "2.5",
+                      borderRadius: "0.21vw",
+                    }}
+                  />
+                </Typography>
+                <Typography
+                  sx={{
+                    p: 2.5,
+                    pl: 1,
+                    ml: 1,
+                    width: "100%",
+                    cursor: "pointer",
+                  }}
+                ></Typography>
+
+                {arrayoflongdegree?.length > 0 &&
+                  arrayoflongdegree.map((data, index) => {
+                    return (
+                      <Typography
+                        sx={{
+                          p: 0.51,
+                          pl: 1,
+                          ml: 1,
+                          width: "100%",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => {
+                          setCategory(data?.category);
+                          handleClosex2();
+                          setcateError();
+                        }}
+                      >
+                        {data?.category}
+                      </Typography>
+                    );
+                  })}
+              </div>
+            </Popover>
+            <p style={{ color: "red", fontSize: "0.9vw" }}>{cateerror}</p></div>
         </div>
         <div className="accountdetailbox">
           <div style={{ width: "15vw" }} className="settingAccounttitle">

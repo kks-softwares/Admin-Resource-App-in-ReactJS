@@ -173,11 +173,6 @@ export default function Users() {
 
   const [togglrbar, setTogglrbar] = useState(1);
 
-  const [arrayofdegree, setArrayofdegree] = useState([
-    "Master of Computer Application (MCA)",
-    "Bachler of Computer Application (MCA)",
-  ]);
-  const [arrayoflongdegree, setArrayoflongdegree] = useState(arrayofdegree);
   const classes = useStyles();
   const [arrayofstudy, setArrayofstydy] = useState([
     "Computer Science",
@@ -189,51 +184,38 @@ export default function Users() {
   const handleClickx2 = (event) => {
     setAnchorElx2(event.currentTarget);
   };
-
   const handleClosex2 = () => {
     setAnchorElx2(null);
   };
-
   const openx2 = Boolean(anchorElx2);
   const idx2 = openx2 ? "simple-popover" : undefined;
   const [anchorElx3, setAnchorElx3] = React.useState(null);
   const handleClickx3 = (event) => {
     setAnchorElx3(event.currentTarget);
   };
-
   const handleClosex3 = () => {
     setAnchorElx3(null);
   };
-
   const openx3 = Boolean(anchorElx3);
   const idx3 = openx3 ? "simple-popover" : undefined;
-
-  const [anchorElx3c, setAnchorElx3c] = React.useState(null);
-  const handleClickx3c = (event) => {
-    setAnchorElx3c(event.currentTarget);
-  };
-
-  const handleClosex3c = () => {
-    setAnchorElx3c(null);
-  };
-
-  const openx3c = Boolean(anchorElx3c);
-  const idx3c = openx3c ? "simple-popover" : undefined;
-
-  const [callagename, setCallagename] = useState("");
-
+  const [arrayoflongdegree, setArrayoflongdegree] = useState();
+  const [searchCategorysearch, setSearchCategorysearch] = useState("");
+  useEffect(() => {
+    axios
+      .get(
+        `${API_HOST}/theCategory/viewCategory?pageSize=50&pageNumber=1&category=${searchCategorysearch}`
+      )
+      .then((res) => {
+        setArrayoflongdegree(res?.data?.success?.data);
+      });
+  }, [searchCategorysearch]);
   const [degreeset, setDegreeset] = useState("");
   const [studyset, setstudyset] = useState("");
-
   const [datestart1, setDatestart1] = useState();
-  const [datestart2, setDatestart2] = useState();
-  const [datestart3, setDatestart3] = useState();
   const [datestart1x, setDatestart1x] = useState();
-  const [datestart2x, setDatestart2x] = useState();
-  const [datestart3x, setDatestart3x] = useState();
   const disablePastDate = () => {
     const today = new Date();
-    const dd = String(today.getDate() ).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
     const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
     const yyyy = today.getFullYear();
     return yyyy + "-" + mm + "-" + dd;
@@ -250,7 +232,7 @@ export default function Users() {
           </span>
           <input
             type="text"
-            placeholder="search Location"
+            placeholder="search Users"
             value={setSelectedCategory}
             onChange={(e) => {
               setSetSelectedCategory(e.target.value);
@@ -305,7 +287,7 @@ export default function Users() {
                   </div>
                   <hr style={{ color: "#00000090" }} />
                   <div
-                    style={{ left: "0vw", width: "99%", marginLeft: "0%" }}
+                    style={{ left: "0vw", width: "98%", marginLeft: "0%" }}
                     className="loginfield"
                     onClick={handleClickx2}
                   >
@@ -341,6 +323,7 @@ export default function Users() {
                       />
                     </span>
                   </div>
+
                   <Popover
                     id={idx2}
                     open={openx2}
@@ -355,7 +338,7 @@ export default function Users() {
                       style={{
                         maxHeight: "18vw",
                         overflow: "scroll",
-                        width: "36vw",
+                        width: "44vw",
                       }}
                     >
                       <Typography
@@ -364,24 +347,16 @@ export default function Users() {
                           pl: 1,
                           ml: 1,
                           pr: 0,
-                          width: "35vw",
+                          width: "43vw",
                           position: "fixed",
                           background: "white",
                           zIndex: "10",
                         }}
                       >
                         <input
+                          placeholder="search here .."
                           onChange={(e) => {
-                            setArrayoflongdegree(
-                              arrayofdegree.filter((x) =>
-                                x.includes(e.target.value)
-                              )
-                            );
-                            console.log(
-                              arrayofdegree.filter((x) =>
-                                x.includes(e.target.value)
-                              )
-                            );
+                            setSearchCategorysearch(e.target.value);
                           }}
                           style={{
                             width: "97%",
@@ -402,27 +377,29 @@ export default function Users() {
                         }}
                       ></Typography>
 
-                      {arrayoflongdegree.map((data, index) => {
-                        return (
-                          <Typography
-                            sx={{
-                              p: 0.51,
-                              pl: 1,
-                              ml: 1,
-                              width: "100%",
-                              cursor: "pointer",
-                            }}
-                            onClick={() => {
-                              setDegreeset(data);
-                              handleClosex2();
-                            }}
-                          >
-                            {data}
-                          </Typography>
-                        );
-                      })}
+                      {arrayoflongdegree?.length > 0 &&
+                        arrayoflongdegree.map((data, index) => {
+                          return (
+                            <Typography
+                              sx={{
+                                p: 0.51,
+                                pl: 1,
+                                ml: 1,
+                                width: "100%",
+                                cursor: "pointer",
+                              }}
+                              onClick={() => {
+                                setDegreeset(data?.category);
+                                handleClosex2();
+                              }}
+                            >
+                              {data?.category}
+                            </Typography>
+                          );
+                        })}
                     </div>
                   </Popover>
+
                   <div
                     style={{ left: "0vw", width: "99%", marginLeft: "0%" }}
                     className="loginfield"
@@ -541,8 +518,8 @@ export default function Users() {
                       })}
                     </div>
                   </Popover>
-                <div className="jobpodtedfieldtitile">Joined  on</div>
-                 <div
+                  <div className="jobpodtedfieldtitile">Joined on</div>
+                  <div
                     style={{
                       display: "flex",
                       alignItems: "center",
@@ -550,7 +527,12 @@ export default function Users() {
                     }}
                   >
                     <div style={{ width: "50%" }}>
-                      <div style={{fontWeight:"400"}} className="jobpodtedfieldtitile">From </div>
+                      <div
+                        style={{ fontWeight: "400" }}
+                        className="jobpodtedfieldtitile"
+                      >
+                        From{" "}
+                      </div>
                       <div className="jobpostfieldinputbox">
                         <input
                           style={{ width: "100%" }}
@@ -569,7 +551,12 @@ export default function Users() {
                       </div>
                     </div>
                     <div style={{ width: "50%" }}>
-                      <div style={{fontWeight:"400"}}className="jobpodtedfieldtitile">To</div>
+                      <div
+                        style={{ fontWeight: "400" }}
+                        className="jobpodtedfieldtitile"
+                      >
+                        To
+                      </div>
                       <div className="jobpostfieldinputbox">
                         <input
                           style={{ width: "100%" }}
@@ -588,7 +575,7 @@ export default function Users() {
                       </div>
                     </div>
                   </div>
-                
+
                   <div
                     style={{ marginTop: "0.31vw" }}
                     className="handlemoreaboutskill"
@@ -680,8 +667,6 @@ export default function Users() {
           }}
         ></div>
       </div>
-
-      
 
       {togglrbar === 1 && (
         <div>

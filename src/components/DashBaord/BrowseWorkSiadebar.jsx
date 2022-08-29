@@ -11,7 +11,7 @@ import img8 from "../../assets/Dashboard/Skill center – 2/Iconly-Light-outline
 import img89 from "../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Profile.svg";
 import img9 from "../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Paper Plus.svg";
 import { Link } from "react-router-dom";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
@@ -28,6 +28,18 @@ export default function BrowseWorkSiadebar() {
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
+  const [anchorEl1, setAnchorEl1] = React.useState(null);
+
+  const handleClick1 = (event) => {
+    setAnchorEl1(event.currentTarget);
+  };
+
+  const handleClose1 = () => {
+    setAnchorEl1(null);
+  };
+
+  const open1 = Boolean(anchorEl1);
+  const id1 = open1 ? "simple-popover" : undefined;
 
   const [anchorElp, setAnchorElp] = React.useState(null);
 
@@ -56,124 +68,172 @@ export default function BrowseWorkSiadebar() {
   const idx = openx ? "simple-popover" : undefined;
   const navigate = useNavigate();
 
-  const location = useLocation()
-  
-  const [colorsidebar, setColorsidebar] = useState(1)
+  const location = useLocation();
+
+  const [colorsidebar, setColorsidebar] = useState(1);
 
   useEffect(() => {
-   if (location.pathname==="/dashbaord") {
-       setColorsidebar(1)
-   }
-   if (location.pathname==="/dashbaord/users") {
-       setColorsidebar(2)
-   }
-   if (location.pathname==="/dashbaord/jobs") {
-       setColorsidebar(3)
-   }
-   if (location.pathname==="/dashbaord/employee") {
-       setColorsidebar(4)
-   }
-   if (location.pathname==="/dashbaord/blogs") {
-       setColorsidebar(5)
-   }
-   if (location.pathname==="/dashbaord/shop") {
-       setColorsidebar(6)
-   }
-   console.log(location.pathname);
-   if (location.pathname==="/dashbaord/skillCenter/List%20of%20Skills") {
-       setColorsidebar(7)
-
-   }
-   if (location.pathname==="/dashbaord/skillCenter/membership") {
-       setColorsidebar(8)
-   }
-   if (location.pathname==="/dashbaord/category") {
-       setColorsidebar(9)
-   }
-   if (location.pathname==="/dashbaord/catalogue") {
-       setColorsidebar(10)
-   }
-   if (location.pathname==="/dashbaord/location") {
-       setColorsidebar(12)
-   }
-   if (location.pathname==="/dashbaord/pricing") {
-       setColorsidebar(11)
-   }
-   
-
-
-  }, [location])
-  
+    if (location.pathname === "/dashbaord") {
+      setColorsidebar(1);
+    }
+    if (location.pathname === "/dashbaord/users") {
+      setColorsidebar(2);
+    }
+    if (location.pathname === "/dashbaord/jobs") {
+      setColorsidebar(3);
+    }
+    if (location.pathname === "/dashbaord/employee") {
+      setColorsidebar(4);
+    }
+    if (location.pathname === "/dashbaord/blogs") {
+      setColorsidebar(5);
+    }
+    if (location.pathname === "/dashbaord/shop") {
+      setColorsidebar(6);
+    }
+    console.log(location.pathname);
+    if (location.pathname === "/dashbaord/skillCenter/List%20of%20Skills") {
+      setColorsidebar(7);
+    }
+    if (location.pathname === "/dashbaord/skillCenter/membership") {
+      setColorsidebar(8);
+    }
+    if (location.pathname === "/dashbaord/category") {
+      setColorsidebar(9);
+    }
+    if (location.pathname === "/dashbaord/catalogue") {
+      setColorsidebar(10);
+    }
+    if (location.pathname === "/dashbaord/location") {
+      setColorsidebar(12);
+    }
+    if (location.pathname === "/dashbaord/pricing") {
+      setColorsidebar(11);
+    }
+  }, [location]);
 
   return (
     <div style={{ position: "sticky" }} className="sidebardashbord-container">
       <Link to="/dashbaord">
-        <div className={colorsidebar===1?"firstsidebarmenu1":"firstsidebarmenu"}>
+        <div
+          className={
+            colorsidebar === 1 ? "firstsidebarmenu1" : "firstsidebarmenu"
+          }
+        >
           <img src={img89} alt="" />
           Dashboard
         </div>
       </Link>
-      <Link to="/dashbaord/users">
-        <div className={colorsidebar===2?"firstsidebarmenu1":"firstsidebarmenu"}>
-          <img src={img89} alt="" />
-          Users
-        </div>
-      </Link>
+
+      <div
+        onClick={handleClick1}
+        className={
+          colorsidebar === 2 ? "firstsidebarmenu1" : "firstsidebarmenu"
+        }
+      >
+        <img src={img89} alt="" />
+        Users
+      </div>
+
       <Link to="/dashbaord/jobs">
-        <div className={colorsidebar===3?"firstsidebarmenu1":"firstsidebarmenu"}>
+        <div
+          className={
+            colorsidebar === 3 ? "firstsidebarmenu1" : "firstsidebarmenu"
+          }
+        >
           <img src={img1} alt="" />
           Jobs
         </div>
       </Link>
 
       <Link to="/dashbaord/employee">
-        <div className={colorsidebar===4?"firstsidebarmenu1":"firstsidebarmenu"}>
+        <div
+          className={
+            colorsidebar === 4 ? "firstsidebarmenu1" : "firstsidebarmenu"
+          }
+        >
           <img src={img8} alt="" />
           Employee
         </div>
       </Link>
       <Link to="/dashbaord/blogs">
-        <div className={colorsidebar===5?"firstsidebarmenu1":"firstsidebarmenu"}>
+        <div
+          className={
+            colorsidebar === 5 ? "firstsidebarmenu1" : "firstsidebarmenu"
+          }
+        >
           <img src={img7} alt="" />
           Blogs
         </div>
       </Link>
 
       <Link to="/dashbaord/shop">
-        <div className={colorsidebar===6?"firstsidebarmenu1":"firstsidebarmenu"}>
+        <div
+          className={
+            colorsidebar === 6 ? "firstsidebarmenu1" : "firstsidebarmenu"
+          }
+        >
           <img src={img2} alt="" />
           Shop & Redeem
         </div>
       </Link>
 
       <Link to="/dashbaord/skillCenter/List of Skills">
-        <div className={colorsidebar===7?"firstsidebarmenu1":"firstsidebarmenu"}>
+        <div
+          className={
+            colorsidebar === 7 ? "firstsidebarmenu1" : "firstsidebarmenu"
+          }
+        >
           <img src={img3} alt="" />
           Skill Center
         </div>
       </Link>
 
       <Link to="/dashbaord/membership">
-        <div className={colorsidebar===8?"firstsidebarmenu1":"firstsidebarmenu"}>
+        <div
+          className={
+            colorsidebar === 8 ? "firstsidebarmenu1" : "firstsidebarmenu"
+          }
+        >
           <img src={img9} alt="" />
           Membership
         </div>
       </Link>
 
-      <div onClick={handleClickx} className={colorsidebar===9?"firstsidebarmenu1":"firstsidebarmenu"}>
+      <div
+        onClick={handleClickx}
+        className={
+          colorsidebar === 9 ? "firstsidebarmenu1" : "firstsidebarmenu"
+        }
+      >
         <img src={img17} alt="" />
         Category
       </div>
-      <div onClick={handleClickx} className={colorsidebar===10?"firstsidebarmenu1":"firstsidebarmenu"}>
+      <div
+        onClick={handleClickx}
+        className={
+          colorsidebar === 10 ? "firstsidebarmenu1" : "firstsidebarmenu"
+        }
+      >
         <img src={img17} alt="" />
         catalogue
       </div>
-      
-      <div onClick={handleClickp} className={colorsidebar===11?"firstsidebarmenu1":"firstsidebarmenu"}>
+
+      <div
+        onClick={handleClickp}
+        className={
+          colorsidebar === 11 ? "firstsidebarmenu1" : "firstsidebarmenu"
+        }
+      >
         <img src={img13} alt="" />
         Pricing & Budget
       </div>
-      <div onClick={handleClick} className={colorsidebar===12?"firstsidebarmenu1":"firstsidebarmenu"}>
+      <div
+        onClick={handleClick}
+        className={
+          colorsidebar === 12 ? "firstsidebarmenu1" : "firstsidebarmenu"
+        }
+      >
         <img src={img12} alt="" />
         Location
       </div>
@@ -248,8 +308,7 @@ export default function BrowseWorkSiadebar() {
           List of Category
         </Typography>
       </Popover>
-  
-  
+
       <Popover
         id={id}
         open={open}
@@ -264,8 +323,6 @@ export default function BrowseWorkSiadebar() {
           horizontal: "left",
         }}
       >
-       
-        
         <Typography
           sx={{ p: 1, pr: 2, pb: 1, fontSize: "1.1vw", cursor: "pointer" }}
           onClick={() => {
@@ -295,8 +352,7 @@ export default function BrowseWorkSiadebar() {
           List of Location
         </Typography>
       </Popover>
-  
-  
+
       <Popover
         id={idp}
         open={openp}
@@ -325,7 +381,7 @@ export default function BrowseWorkSiadebar() {
           />
           Add Pricing & Budget
         </Typography>
-       
+
         <Typography
           onClick={() => {
             navigate("/dashbaord/pricing");
@@ -341,8 +397,51 @@ export default function BrowseWorkSiadebar() {
           List of Pricing & Budget
         </Typography>
       </Popover>
-  
-  
+
+      <Popover
+        id={id1}
+        open={open1}
+        anchorEl={anchorEl1}
+        onClose={handleClose1}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+        <Typography
+          sx={{ p: 1, pr: 2, pb: 1, fontSize: "1.1vw", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/dashbaord/adduser");
+            handleClose1();
+          }}
+        >
+          <AddIcon
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          Add User
+        </Typography>
+
+        <Typography
+          onClick={() => {
+            navigate("/dashbaord/users");
+            handleClose1();
+          }}
+          sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
+        >
+          <img
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          List of Users
+        </Typography>
+      </Popover>
     </div>
   );
 }
