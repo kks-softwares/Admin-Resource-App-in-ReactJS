@@ -4,7 +4,7 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import { SearchSharp } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import StarRatings from "react-star-ratings";
-import { useSelector } from "react-redux";
+
 import axios from "axios";
 import API_HOST from "../../../env";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -16,6 +16,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
 import Modal from "@mui/material/Modal";
 import { makeStyles } from "@material-ui/core";
+import { TextField } from "@mui/material";
+
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
 
 const style2 = {
   position: "absolute",
@@ -67,13 +71,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function Jobs() {
-  const [openx, setOpenx] = React.useState(false);
-  const [anchorElx, setAnchorElx] = React.useState(null);
-
-  const { user, loggedInStatus } = useSelector((state) => state.user);
   const [workhistorytoggle, setWorkhistorytoggle] = useState(1);
-  const canBeOpen = openx && Boolean(anchorElx);
-  const id = canBeOpen ? "transition-popper" : undefined;
+  const [togglrbar1, setTogglrbar1] = useState();
   const navigate = useNavigate();
 
   const [page, setPage] = useState(1);
@@ -85,27 +84,15 @@ export default function Jobs() {
   const [page3, setPage3] = useState(1);
   const [totalpages3, settotalpages3] = useState(1);
 
-  const [page4, setPage4] = useState(1);
-  const [totalpages4, settotalpages4] = useState(1);
-
-  const handleSearchCategory = (e) => {
-    axios
-      .get(`${API_HOST}/category/viewCategory?categories=${e.target.value}`)
-      .then((res) => {
-        setAllcategory(res?.data?.success?.data?.docs);
-
-        setOpenx(true);
-      });
-  };
 
   const [setSelectedCategory, setSetSelectedCategory] = useState("");
 
-  const [allcategory, setAllcategory] = useState([0]);
+  
 
   const searchnewworkcreated = (setSelectedCategory) => {
     axios
       .get(
-        `${API_HOST}/jobPost/newlyWorkPosted?category=${setSelectedCategory}&pageSize=3&pageNumber=${page}&userName=${user?.userName}`
+        `${API_HOST}/jobPost/newlyWorkPosted?category=${setSelectedCategory}&pageSize=3&pageNumber=${page}`
       )
       .then((res) => {
         setAlljobposted(res?.data?.success?.data);
@@ -115,7 +102,7 @@ export default function Jobs() {
       .get(
         `${API_HOST}/jobPost/newlyWorkPosted?category=${setSelectedCategory}&pageSize=3&pageNumber=${
           page + 1
-        }&userName=${user?.userName}`
+        }`
       )
       .then((res) => {
         if (res?.data?.success?.data?.length !== 0) {
@@ -128,7 +115,7 @@ export default function Jobs() {
   const searchnewworkongoing = (setSelectedCategory) => {
     axios
       .get(
-        `${API_HOST}/jobPost/onGoingWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${page1}&userName=${user?.userName}`
+        `${API_HOST}/jobPost/onGoingWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${page1}`
       )
       .then((res) => {
         setAlljobongoing(res?.data?.success?.data);
@@ -138,7 +125,7 @@ export default function Jobs() {
       .get(
         `${API_HOST}/jobPost/onGoingWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${
           page1 + 1
-        }&userName=${user?.userName}`
+        }`
       )
       .then((res) => {
         if (res?.data?.success?.data?.length !== 0) {
@@ -151,7 +138,7 @@ export default function Jobs() {
   const searchnewworkdone = (setSelectedCategory) => {
     axios
       .get(
-        `${API_HOST}/jobPost/completedWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${page3}&userName=${user?.userName}`
+        `${API_HOST}/jobPost/completedWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${page3}`
       )
       .then((res) => {
         setAlljobondone(res?.data?.success?.data);
@@ -161,7 +148,7 @@ export default function Jobs() {
       .get(
         `${API_HOST}/jobPost/completedWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${
           page3 + 1
-        }&userName=${user?.userName}`
+        }`
       )
       .then((res) => {
         if (res?.data?.success?.data?.length !== 0) {
@@ -171,39 +158,15 @@ export default function Jobs() {
         }
       });
   };
-  const searchnewworkdone1 = (setSelectedCategory) => {
-    axios
-      .get(
-        `${API_HOST}/jobPost/exceptionJobPost?category=${setSelectedCategory}&pageSize=9&pageNumber=${page4}&userName=${user?.userName}`
-      )
-      .then((res) => {
-        setAlljobondone4(res?.data?.success?.data);
-      });
-
-    axios
-      .get(
-        `${API_HOST}/jobPost/completedWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${
-          page3 + 1
-        }&userName=${user?.userName}`
-      )
-      .then((res) => {
-        if (res?.data?.success?.data?.length !== 0) {
-          settotalpages4(page4 + 1);
-        } else {
-          settotalpages4(page4);
-        }
-      });
-  };
 
   const [alljobposted, setAlljobposted] = useState([]);
   const [alljobingoing, setAlljobongoing] = useState([]);
   const [alljobindone, setAlljobondone] = useState([]);
-  const [alljobindone4, setAlljobondone4] = useState([]);
 
   useEffect(() => {
     axios
       .get(
-        `${API_HOST}/jobPost/newlyWorkPosted?category=${setSelectedCategory}&pageSize=9&pageNumber=${page}&userName=${user?.userName}`
+        `${API_HOST}/jobPost/newlyWorkPosted?category=${setSelectedCategory}&pageSize=9&pageNumber=${page}`
       )
       .then((res) => {
         setAlljobposted(res?.data?.success?.data);
@@ -212,19 +175,19 @@ export default function Jobs() {
       .get(
         `${API_HOST}/jobPost/newlyWorkPosted?category=${setSelectedCategory}&pageSize=9&pageNumber=${
           page + 1
-        }&userName=${user?.userName}`
+        }`
       )
       .then((res) => {
         if (res?.data?.success?.data?.length !== 0) {
           settotalpages(page + 1);
         }
       });
-  }, [page, user]);
+  }, [page]);
 
   useEffect(() => {
     axios
       .get(
-        `${API_HOST}/jobPost/onGoingWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${page1}&userName=${user?.userName}`
+        `${API_HOST}/jobPost/onGoingWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${page1}`
       )
       .then((res) => {
         setAlljobongoing(res?.data?.success?.data);
@@ -233,19 +196,19 @@ export default function Jobs() {
       .get(
         `${API_HOST}/jobPost/onGoingWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${
           page1 + 1
-        }&userName=${user?.userName}`
+        }`
       )
       .then((res) => {
         if (res?.data?.success?.data?.length !== 0) {
           settotalpages1(page1 + 1);
         }
       });
-  }, [page1, user]);
+  }, [page1]);
 
   useEffect(() => {
     axios
       .get(
-        `${API_HOST}/jobPost/completedWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${page3}&userName=${user?.userName}`
+        `${API_HOST}/jobPost/completedWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${page3}`
       )
       .then((res) => {
         setAlljobondone(res?.data?.success?.data);
@@ -254,35 +217,14 @@ export default function Jobs() {
       .get(
         `${API_HOST}/jobPost/completedWork?category=${setSelectedCategory}&pageSize=9&pageNumber=${
           page3 + 1
-        }&userName=${user?.userName}`
+        }`
       )
       .then((res) => {
         if (res?.data?.success?.data?.length !== 0) {
           settotalpages3(page3 + 1);
         }
       });
-  }, [page3, user]);
-
-  useEffect(() => {
-    axios
-      .get(
-        `${API_HOST}/jobPost/exceptionJobPost?category=${setSelectedCategory}&pageSize=9&pageNumber=${page4}&userName=${user?.userName}`
-      )
-      .then((res) => {
-        setAlljobondone4(res?.data?.success?.data);
-      });
-    axios
-      .get(
-        `${API_HOST}/jobPost/exceptionJobPost?category=${setSelectedCategory}&pageSize=9&pageNumber=${
-          page4 + 1
-        }&userName=${user?.userName}`
-      )
-      .then((res) => {
-        if (res?.data?.success?.data?.length !== 0) {
-          settotalpages4(page4 + 1);
-        }
-      });
-  }, [page4, user]);
+  }, [page3]);
 
   console.log("alljobingoing", alljobingoing);
 
@@ -371,146 +313,58 @@ export default function Jobs() {
   return (
     <div className="BrowseWorkMain-cntainer">
       <div className="searchboxcontainer">
-        <div className="serachjobbox">
-          <span>
-            <SearchSharp style={{ fontSize: "1.7vw" }} />
-          </span>
-          <input
-            type="text"
-            placeholder="Search Your Job"
-            value={setSelectedCategory}
-            onChange={(e) => {
-              handleSearchCategory(e);
-              setSetSelectedCategory(e.target.value);
-              setAnchorElx(e.currentTarget);
-            }}
-          />
-          <button
-            style={{ width: "11vw", height: "2.6vw" }}
-            className="hb-button"
-            onClick={() => {
-              workhistorytoggle === 1
-                ? searchnewworkcreated(setSelectedCategory)
-                : workhistorytoggle === 2
-                ? searchnewworkongoing(setSelectedCategory)
-                : searchnewworkdone(setSelectedCategory);
-              setOpenx(false);
-              setAnchorElx(null);
-            }}
-          >
-            Search
-          </button>
-        </div>
+        <div
+          style={{ alignItems: "center", justifyContent: "flex-start" }}
+          className="searchboxcontainer"
+        >
+          <div className="serachjobbox">
+            <span>
+              <SearchSharp style={{ fontSize: "1.7vw" }} />
+            </span>
+            <input
+              type="text"
+              placeholder="search Users"
+              value={setSelectedCategory}
+              onChange={(e) => {
+                setSetSelectedCategory(e.target.value);
+              }}
+            />
+            <button
+              style={{ width: "11vw", height: "100%" }}
+              className="hb-button"
+            >
+              Search
+            </button>
+          </div>
+          <div>
+            <div
+              style={{
+                flexWrap: "wrap",
+                marginTop: "0vw",
+                marginBottom: "0vw",
+                paddingBottom: "0vw",
+                paddingTop: "0vw",
+              }}
+              className="filterboxflex"
+            >
+              <div
+                onClick={() => {
+                  handleOpen();
+                  setPreviosfilter([...arrayoffilterselected]);
+                }}
+                className="filtericonbox"
+              >
+                <img src={imgfilter} alt="" />
+              </div>
 
-        <div
-          onClick={() => {
-            navigate("/dashbaord/addJob");
-          }}
-          className="digitalwallate"
-        >
-          <span> Add Job</span>
-        </div>
-      </div>
-
-      <div
-        style={{ position: "relative", right: "1vw", top: "1vw" }}
-        className="profileworkhistruytoggleer"
-      >
-        <div
-          className="profileworkhistruytoggleervalue"
-          style={{
-            textAlign: "center",
-          }}
-          onClick={() => {
-            setWorkhistorytoggle(1);
-          }}
-        >
-          Created Jobs
-        </div>
-        <div
-          className="profileworkhistruytoggleervalue"
-          style={{
-            textAlign: "center",
-          }}
-          onClick={() => {
-            setWorkhistorytoggle(2);
-          }}
-        >
-          Ongoing Jobs
-        </div>
-        <div
-          className="profileworkhistruytoggleervalue"
-          style={{
-            textAlign: "center",
-          }}
-          onClick={() => {
-            setWorkhistorytoggle(3);
-          }}
-        >
-          Completed Jobs
-        </div>
-        <div
-          className="profileworkhistruytoggleervalue"
-          style={{
-            textAlign: "center",
-          }}
-          onClick={() => {
-            setWorkhistorytoggle(4);
-          }}
-        >
-          archived Jobs
-        </div>
-        <div
-          style={{
-            color: "#064C87",
-            borderBottom: "0.3vw solid #064C87",
-            width: "12vw",
-            position: "relative",
-            right:
-              workhistorytoggle === 1
-                ? "55vw"
-                : workhistorytoggle === 2
-                ? "41vw"
-                : workhistorytoggle === 3
-                ? "26.5vw"
-                : "13vw",
-            bottom: "0.3vw",
-            transitionDuration: "1s",
-            borderRadius: "0.2vw",
-          }}
-        ></div>
-      </div>
-
-      {workhistorytoggle === 1 ? (
-        <>
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <div>
-              <div style={{ flexWrap: "wrap" }} className="filterboxflex">
-                <div
-                  onClick={() => {
-                    handleOpen();
-                    setPreviosfilter([...arrayoffilterselected]);
-                    setPreviosfilter1([...arrayoffilterselected]);
-                  }}
-                  className="filtericonbox"
-                >
-                  <img src={imgfilter} alt="" />
-                </div>
-
-                <Modal
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box sx={style1}>
+              {/* <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <div style={{ maxHeight: "80vh", overflow: "scroll" }}>
                     <div className="profiletitleandmenunav">
                       <div className="profiledetailstitle">Add Filters</div>
                       <div className="profiledetailnavmanu">
@@ -523,63 +377,178 @@ export default function Jobs() {
                       </div>
                     </div>
                     <hr style={{ color: "#00000090" }} />
+                    <div
+                      style={{ left: "0vw", width: "98%", marginLeft: "0%" }}
+                      className="loginfield"
+                      onClick={handleClickx2}
+                    >
+                      <TextField
+                        id="outlined-basic"
+                        label="Search Category "
+                        variant="outlined"
+                        disabled
+                        value={degreeset}
+                        style={{ width: "100%" }}
+                        InputLabelProps={{
+                          style: {
+                            fontSize: "1vw",
+                            fontFamily: "Poppins",
+                            fontStyle: "500",
+                            fontWeight: "500",
+                            color: "black",
+                          },
+                        }}
+                        inputProps={{ className: classes.input }}
+                        onChange={(e) => {
+                          console.log(e.target.value);
+                        }}
+                      />
+                      <span style={{ width: "0.1vw" }}>
+                        <KeyboardArrowDownOutlined
+                          style={{
+                            fontSize: "1.5vw",
+                            position: "relative",
+                            right: "2vw",
+                            top: "1vw",
+                          }}
+                        />
+                      </span>
+                    </div>
 
-                    {arrayoffilters?.map((data, index) => {
-                      return (
-                        <div>
-                          <div
-                            style={{ fontSize: "1.2vw" }}
-                            className="profiledetailstitle"
-                          >
-                            {data?.filternameName}
-                          </div>
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              flexWrap: "wrap",
+                    <Popover
+                      id={idx2}
+                      open={openx2}
+                      anchorEl={anchorElx2}
+                      onClose={handleClosex2}
+                      anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "left",
+                      }}
+                    >
+                      <div
+                        style={{
+                          maxHeight: "18vw",
+                          overflow: "scroll",
+                          width: "44vw",
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            p: 1,
+                            pl: 1,
+                            ml: 1,
+                            pr: 0,
+                            width: "43vw",
+                            position: "fixed",
+                            background: "white",
+                            zIndex: "10",
+                          }}
+                        >
+                          <input
+                            placeholder="search here .."
+                            onChange={(e) => {
+                              setSearchCategorysearch(e.target.value);
                             }}
-                          >
-                            {data?.filters?.map((data1, index) => {
-                              return (
-                                <div
-                                  onClick={() => {
-                                    if (previosfilter1.indexOf(data1) > -1) {
-                                      setPreviosfilter1([
-                                        ...previosfilter1.slice(
-                                          0,
-                                          previosfilter1.indexOf(data1)
-                                        ),
-                                        ...previosfilter1.slice(
-                                          previosfilter1.indexOf(data1) + 1,
-                                          previosfilter1.length
-                                        ),
-                                      ]);
-                                    } else {
-                                      setPreviosfilter1([
-                                        ...previosfilter1,
-                                        data1,
-                                      ]);
-                                    }
-                                  }}
-                                  style={{
-                                    background: previosfilter1.includes(data1)
-                                      ? "#064C8720"
-                                      : "",
-                                    cursor: "pointer",
-                                  }}
-                                  className="filterboxnameskill"
-                                >
-                                  {data1}
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      );
-                    })}
+                            style={{
+                              width: "97%",
+                              border: "1.5px solid #00000050",
+                              outline: "none",
+                              height: "2.5",
+                              borderRadius: "0.21vw",
+                            }}
+                          />
+                        </Typography>
+                        <Typography
+                          sx={{
+                            p: 2.5,
+                            pl: 1,
+                            ml: 1,
+                            width: "100%",
+                            cursor: "pointer",
+                          }}
+                        ></Typography>
 
-                    <hr style={{ color: "#00000090" }} />
+                        {arrayoflongdegree?.length > 0 &&
+                          arrayoflongdegree.map((data, index) => {
+                            return (
+                              <Typography
+                                sx={{
+                                  p: 0.51,
+                                  pl: 1,
+                                  ml: 1,
+                                  width: "100%",
+                                  cursor: "pointer",
+                                }}
+                                onClick={() => {
+                                  setDegreeset(data?.category);
+                                  handleClosex2();
+                                }}
+                              >
+                                {data?.category}
+                              </Typography>
+                            );
+                          })}
+                      </div>
+                    </Popover>
+
+                  <div className="jobpodtedfieldtitile">Joined on</div>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        width: "98%",
+                      }}
+                    >
+                      <div style={{ width: "50%" }}>
+                        <div
+                          style={{ fontWeight: "400" }}
+                          className="jobpodtedfieldtitile"
+                        >
+                          From{" "}
+                        </div>
+                        <div className="jobpostfieldinputbox">
+                          <input
+                            style={{ width: "100%" }}
+                            type="date"
+                            className="input-homejobformdate"
+                            name=""
+                            id=""
+                            value={datestart1}
+                            max={disablePastDate()}
+                            min={"2020-01-01"}
+                            maxlength="4"
+                            onChange={(e) => {
+                              setDatestart1(e.target.value);
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <div style={{ width: "50%" }}>
+                        <div
+                          style={{ fontWeight: "400" }}
+                          className="jobpodtedfieldtitile"
+                        >
+                          To
+                        </div>
+                        <div className="jobpostfieldinputbox">
+                          <input
+                            style={{ width: "100%" }}
+                            type="date"
+                            className="input-homejobformdate"
+                            name=""
+                            id=""
+                            value={datestart1x}
+                            max={disablePastDate()}
+                            min={"2020-01-01"}
+                            maxlength="4"
+                            onChange={(e) => {
+                              setDatestart1x(e.target.value);
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
                     <div
                       style={{ marginTop: "0.31vw" }}
                       className="handlemoreaboutskill"
@@ -602,146 +571,95 @@ export default function Jobs() {
                         style={{ cursor: "pointer" }}
                         className="handlecirclieaboutsave"
                         onClick={() => {
-                          setarrayoffilterselected(previosfilter1);
+                          setTogglrbar1(togglrbar);
                           handleClose();
                         }}
                       >
                         Submit
                       </div>
                     </div>
-                  </Box>
-                </Modal>
+                  </div>
+                </Box>
+              </Modal>
+  */}
+              {arrayoffilterselected?.length > 0 &&
+                arrayoffilterselected?.map((filtername) => {
+                  return <div className="filtericonboxname">{filtername}</div>;
+                })}
 
-                {arrayoffilterselected?.length > 0 &&
-                  arrayoffilterselected?.map((filtername) => {
-                    return (
-                      <div className="filtericonboxname">{filtername}</div>
-                    );
-                  })}
-
-                <div
-                  onClick={() => setarrayoffilterselected([])}
-                  style={{ cursor: "pointer" }}
-                  className="filtericonboxname"
-                >
-                  Clear all
-                </div>
+              <div
+                onClick={() => setarrayoffilterselected([])}
+                style={{ cursor: "pointer" }}
+                className="filtericonboxname"
+              >
+                Clear all
               </div>
             </div>
-
-            <div style={{ width: "10vw" }} className="digitalwallate"></div>
           </div>
-          <Modal
-            open={open3}
-            onClose={handleClose3}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <div className="profiletitleandmenunav">
-                <div className="profiledetailstitle">Delete Job </div>
-                <div className="profiledetailnavmanu">
-                  <div>
-                    <CloseIcon
-                      onClick={handleClose3}
-                      style={{ fontSize: "1.5vw", cursor: "pointer" }}
-                    />
-                  </div>
-                </div>
-              </div>
-              <hr style={{ color: "#00000090" }} />
+        </div>{" "}
+      </div>
 
-              <div
-                style={{ left: "0vw", width: "100%" }}
-                className="loginfield"
-              >
-                The action will delete "Created job " From all of your profiles.{" "}
-                <br />
-                Are you sure you want to delete this Created job ?
-              </div>
+      <div
+        style={{ position: "relative", right: "1vw", top: "1vw" }}
+        className="profileworkhistruytoggleer"
+      >
+        <div
+          className="profileworkhistruytoggleervalue"
+          style={{
+            textAlign: "center",
+          }}
+          onClick={() => {
+            setWorkhistorytoggle(1);
+          }}
+        >
+          New Work Created
+        </div>
+        <div
+          className="profileworkhistruytoggleervalue"
+          style={{
+            textAlign: "center",
+          }}
+          onClick={() => {
+            setWorkhistorytoggle(2);
+          }}
+        >
+          Ongoing Work
+        </div>
+        <div
+          className="profileworkhistruytoggleervalue"
+          style={{
+            textAlign: "center",
+          }}
+          onClick={() => {
+            setWorkhistorytoggle(3);
+          }}
+        >
+          Completed work
+        </div>
 
-              <hr style={{ color: "#00000090" }} />
-              <div
-                style={{ marginTop: "0.31vw" }}
-                className="handlemoreaboutskill"
-              >
-                <div
-                  style={{
-                    background: "white",
-                    color: "black",
-                    cursor: "pointer",
-                  }}
-                  className="handlecirclieaboutsave"
-                  onClick={handleClose3}
-                >
-                  Cancel
-                </div>
-                <div
-                  onClick={() => handledeleteBlog()}
-                  style={{ cursor: "pointer" }}
-                  className="handlecirclieaboutsave"
-                >
-                  Delete
-                </div>
-              </div>
-            </Box>
-          </Modal>
-          <Modal
-            open={open2}
-            onClose={handleClose2}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <div className="profiletitleandmenunav">
-                <div className="profiledetailstitle">Delete Job </div>
-                <div className="profiledetailnavmanu">
-                  <div>
-                    <CloseIcon
-                      onClick={handleClose2}
-                      style={{ fontSize: "1.5vw", cursor: "pointer" }}
-                    />
-                  </div>
-                </div>
-              </div>
-              <hr style={{ color: "#00000090" }} />
+        <div
+          style={{
+            color: "#064C87",
+            borderBottom: "0.3vw solid #064C87",
+            width: "12vw",
+            position: "relative",
+            right:
+              workhistorytoggle === 1
+                ? "41vw"
+                : workhistorytoggle === 2
+                ? "26.5vw"
+                : "13vw",
+            bottom: "0.3vw",
+            transitionDuration: "1s",
+            borderRadius: "0.2vw",
+          }}
+        ></div>
+      </div>
 
-              <div
-                style={{ left: "0vw", width: "100%" }}
-                className="loginfield"
-              >
-                The action will Hide "Created job " From all of your profiles.{" "}
-                <br />
-                Are you sure you want to Hide this Created job ?
-              </div>
-
-              <hr style={{ color: "#00000090" }} />
-              <div
-                style={{ marginTop: "0.31vw" }}
-                className="handlemoreaboutskill"
-              >
-                <div
-                  style={{
-                    background: "white",
-                    color: "black",
-                    cursor: "pointer",
-                  }}
-                  className="handlecirclieaboutsave"
-                  onClick={handleClose2}
-                >
-                  Cancel
-                </div>
-                <div
-                  onClick={() => handledeleteBlog()}
-                  style={{ cursor: "pointer" }}
-                  className="handlecirclieaboutsave"
-                >
-                  Delete
-                </div>
-              </div>
-            </Box>
-          </Modal>
-
+      {workhistorytoggle === 1 ? (
+        <>
+          
+        
           <div className="catalogcontainerdashbaord">
             <div
               style={{
@@ -1182,154 +1100,6 @@ export default function Jobs() {
       )}
       {workhistorytoggle === 2 ? (
         <>
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <div>
-              <div style={{ flexWrap: "wrap" }} className="filterboxflex">
-                <div
-                  onClick={() => {
-                    handleOpen();
-                    setPreviosfilter([...arrayoffilterselected]);
-                    setPreviosfilter1([...arrayoffilterselected]);
-                  }}
-                  className="filtericonbox"
-                >
-                  <img src={imgfilter} alt="" />
-                </div>
-
-                <Modal
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box sx={style1}>
-                    <div className="profiletitleandmenunav">
-                      <div className="profiledetailstitle">Add Filters</div>
-                      <div className="profiledetailnavmanu">
-                        <div>
-                          <CloseIcon
-                            onClick={handleClose}
-                            style={{ fontSize: "1.5vw" }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <hr style={{ color: "#00000090" }} />
-
-                    {arrayoffilters?.map((data, index) => {
-                      return (
-                        <div>
-                          <div
-                            style={{ fontSize: "1.2vw" }}
-                            className="profiledetailstitle"
-                          >
-                            {data?.filternameName}
-                          </div>
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              flexWrap: "wrap",
-                            }}
-                          >
-                            {data?.filters?.map((data1, index) => {
-                              return (
-                                <div
-                                  onClick={() => {
-                                    if (previosfilter1.indexOf(data1) > -1) {
-                                      setPreviosfilter1([
-                                        ...previosfilter1.slice(
-                                          0,
-                                          previosfilter1.indexOf(data1)
-                                        ),
-                                        ...previosfilter1.slice(
-                                          previosfilter1.indexOf(data1) + 1,
-                                          previosfilter1.length
-                                        ),
-                                      ]);
-                                    } else {
-                                      setPreviosfilter1([
-                                        ...previosfilter1,
-                                        data1,
-                                      ]);
-                                    }
-                                  }}
-                                  style={{
-                                    background: previosfilter1.includes(data1)
-                                      ? "#064C8720"
-                                      : "",
-                                    cursor: "pointer",
-                                  }}
-                                  className="filterboxnameskill"
-                                >
-                                  {data1}
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      );
-                    })}
-
-                    <hr style={{ color: "#00000090" }} />
-                    <div
-                      style={{ marginTop: "0.31vw" }}
-                      className="handlemoreaboutskill"
-                    >
-                      <div
-                        style={{
-                          background: "white",
-                          color: "black",
-                          cursor: "pointer",
-                        }}
-                        className="handlecirclieaboutsave"
-                        onClick={() => {
-                          setarrayoffilterselected(previosfilter);
-                          handleClose();
-                        }}
-                      >
-                        Cancel
-                      </div>
-                      <div
-                        style={{ cursor: "pointer" }}
-                        className="handlecirclieaboutsave"
-                        onClick={() => {
-                          setarrayoffilterselected(previosfilter1);
-                          handleClose();
-                        }}
-                      >
-                        Submit
-                      </div>
-                    </div>
-                  </Box>
-                </Modal>
-
-                {arrayoffilterselected?.length > 0 &&
-                  arrayoffilterselected?.map((filtername) => {
-                    return (
-                      <div className="filtericonboxname">{filtername}</div>
-                    );
-                  })}
-
-                <div
-                  onClick={() => setarrayoffilterselected([])}
-                  style={{ cursor: "pointer" }}
-                  className="filtericonboxname"
-                >
-                  Clear all
-                </div>
-              </div>
-            </div>
-
-            <div style={{ width: "10vw" }} className="digitalwallate"></div>
-          </div>
           <div className="catalogcontainerdashbaord">
             <div
               style={{
@@ -1661,155 +1431,7 @@ export default function Jobs() {
       )}
       {workhistorytoggle === 3 ? (
         <>
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <div>
-              <div style={{ flexWrap: "wrap" }} className="filterboxflex">
-                <div
-                  onClick={() => {
-                    handleOpenxx();
-                    setPreviosfilterxx([...arrayoffilterselectedxx]);
-                    setPreviosfilter1xx([...arrayoffilterselectedxx]);
-                  }}
-                  className="filtericonbox"
-                >
-                  <img src={imgfilter} alt="" />
-                </div>
-
-                <Modal
-                  open={openxx}
-                  onClose={handleClosexx}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box sx={style1}>
-                    <div className="profiletitleandmenunav">
-                      <div className="profiledetailstitle">Add Filters</div>
-                      <div className="profiledetailnavmanu">
-                        <div>
-                          <CloseIcon
-                            onClick={handleClosexx}
-                            style={{ fontSize: "1.5vw" }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <hr style={{ color: "#00000090" }} />
-
-                    {arrayoffiltersxx?.map((data, index) => {
-                      return (
-                        <div>
-                          <div
-                            style={{ fontSize: "1.2vw" }}
-                            className="profiledetailstitle"
-                          >
-                            {data?.filternameName}
-                          </div>
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              flexWrap: "wrap",
-                            }}
-                          >
-                            {data?.filters?.map((data1, index) => {
-                              return (
-                                <div
-                                  onClick={() => {
-                                    if (previosfilter1xx.indexOf(data1) > -1) {
-                                      setPreviosfilter1xx([
-                                        ...previosfilter1xx.slice(
-                                          0,
-                                          previosfilter1xx.indexOf(data1)
-                                        ),
-                                        ...previosfilter1xx.slice(
-                                          previosfilter1xx.indexOf(data1) + 1,
-                                          previosfilter1xx.length
-                                        ),
-                                      ]);
-                                    } else {
-                                      setPreviosfilter1xx([
-                                        ...previosfilter1xx,
-                                        data1,
-                                      ]);
-                                    }
-                                  }}
-                                  style={{
-                                    background: previosfilter1xx.includes(data1)
-                                      ? "#064C8720"
-                                      : "",
-                                    cursor: "pointer",
-                                  }}
-                                  className="filterboxnameskill"
-                                >
-                                  {data1}
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      );
-                    })}
-
-                    <hr style={{ color: "#00000090" }} />
-                    <div
-                      style={{ marginTop: "0.31vw" }}
-                      className="handlemoreaboutskill"
-                    >
-                      <div
-                        style={{
-                          background: "white",
-                          color: "black",
-                          cursor: "pointer",
-                        }}
-                        className="handlecirclieaboutsave"
-                        onClick={() => {
-                          setarrayoffilterselectedxx(previosfilterxx);
-                          handleClosexx();
-                        }}
-                      >
-                        Cancel
-                      </div>
-                      <div
-                        style={{ cursor: "pointer" }}
-                        className="handlecirclieaboutsave"
-                        onClick={() => {
-                          setarrayoffilterselectedxx(previosfilter1xx);
-                          handleClosexx();
-                        }}
-                      >
-                        Submit
-                      </div>
-                    </div>
-                  </Box>
-                </Modal>
-
-                {arrayoffilterselectedxx?.length > 0 &&
-                  arrayoffilterselectedxx?.map((filtername) => {
-                    return (
-                      <div className="filtericonboxname">{filtername}</div>
-                    );
-                  })}
-
-                <div
-                  onClick={() => setarrayoffilterselectedxx([])}
-                  style={{ cursor: "pointer" }}
-                  className="filtericonboxname"
-                >
-                  Clear all
-                </div>
-              </div>
-            </div>
-
-            <div style={{ width: "10vw" }} className="digitalwallate"></div>
-          </div>
-          <div className="catalogcontainerdashbaord">
+           <div className="catalogcontainerdashbaord">
             <div
               style={{
                 width: "100%",
@@ -2201,538 +1823,6 @@ export default function Jobs() {
                 onClick={() => setPage3(page3 + 1)}
               >
                 {page3 + 1}
-              </div>
-
-              <div>
-                <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
-        </>
-      ) : (
-        ""
-      )}
-
-      {workhistorytoggle === 4 ? (
-        <>
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <div>
-              <div style={{ flexWrap: "wrap" }} className="filterboxflex">
-                <div
-                  onClick={() => {
-                    handleOpenxx();
-                    setPreviosfilterxx([...arrayoffilterselectedxx]);
-                    setPreviosfilter1xx([...arrayoffilterselectedxx]);
-                  }}
-                  className="filtericonbox"
-                >
-                  <img src={imgfilter} alt="" />
-                </div>
-
-                <Modal
-                  open={openxx}
-                  onClose={handleClosexx}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box sx={style1}>
-                    <div className="profiletitleandmenunav">
-                      <div className="profiledetailstitle">Add Filters</div>
-                      <div className="profiledetailnavmanu">
-                        <div>
-                          <CloseIcon
-                            onClick={handleClosexx}
-                            style={{ fontSize: "1.5vw" }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <hr style={{ color: "#00000090" }} />
-
-                    {arrayoffiltersxx?.map((data, index) => {
-                      return (
-                        <div>
-                          <div
-                            style={{ fontSize: "1.2vw" }}
-                            className="profiledetailstitle"
-                          >
-                            {data?.filternameName}
-                          </div>
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              flexWrap: "wrap",
-                            }}
-                          >
-                            {data?.filters?.map((data1, index) => {
-                              return (
-                                <div
-                                  onClick={() => {
-                                    if (previosfilter1xx.indexOf(data1) > -1) {
-                                      setPreviosfilter1xx([
-                                        ...previosfilter1xx.slice(
-                                          0,
-                                          previosfilter1xx.indexOf(data1)
-                                        ),
-                                        ...previosfilter1xx.slice(
-                                          previosfilter1xx.indexOf(data1) + 1,
-                                          previosfilter1xx.length
-                                        ),
-                                      ]);
-                                    } else {
-                                      setPreviosfilter1xx([
-                                        ...previosfilter1xx,
-                                        data1,
-                                      ]);
-                                    }
-                                  }}
-                                  style={{
-                                    background: previosfilter1xx.includes(data1)
-                                      ? "#064C8720"
-                                      : "",
-                                    cursor: "pointer",
-                                  }}
-                                  className="filterboxnameskill"
-                                >
-                                  {data1}
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      );
-                    })}
-
-                    <hr style={{ color: "#00000090" }} />
-                    <div
-                      style={{ marginTop: "0.31vw" }}
-                      className="handlemoreaboutskill"
-                    >
-                      <div
-                        style={{
-                          background: "white",
-                          color: "black",
-                          cursor: "pointer",
-                        }}
-                        className="handlecirclieaboutsave"
-                        onClick={() => {
-                          setarrayoffilterselectedxx(previosfilterxx);
-                          handleClosexx();
-                        }}
-                      >
-                        Cancel
-                      </div>
-                      <div
-                        style={{ cursor: "pointer" }}
-                        className="handlecirclieaboutsave"
-                        onClick={() => {
-                          setarrayoffilterselectedxx(previosfilter1xx);
-                          handleClosexx();
-                        }}
-                      >
-                        Submit
-                      </div>
-                    </div>
-                  </Box>
-                </Modal>
-
-                {arrayoffilterselectedxx?.length > 0 &&
-                  arrayoffilterselectedxx?.map((filtername) => {
-                    return (
-                      <div className="filtericonboxname">{filtername}</div>
-                    );
-                  })}
-
-                <div
-                  onClick={() => setarrayoffilterselectedxx([])}
-                  style={{ cursor: "pointer" }}
-                  className="filtericonboxname"
-                >
-                  Clear all
-                </div>
-              </div>
-            </div>
-
-            <div style={{ width: "10vw" }} className="digitalwallate"></div>
-          </div>
-          <div className="catalogcontainerdashbaord">
-            <div
-              style={{
-                width: "100%",
-                background: "white",
-                padding: "2vw 1vw",
-                margin: "1vw 0vw",
-              }}
-            >
-              {" "}
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div style={{ display: "flex" }}>
-                  <div className="taggreen">Mobile Application</div>
-                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
-                    Mobile Application
-                  </div>
-                </div>
-                <div style={{ display: "flex" }}>
-                  <div>
-                    <img
-                      src={img3}
-                      alt=""
-                      style={{ fontSize: "2vw", marginRight: "2vw" }}
-                    />{" "}
-                  </div>
-                </div>
-              </div>{" "}
-              <div
-                style={{
-                  fontWeight: "600",
-                  fontSize: "1.3vw",
-                  display: "flex",
-                  flexWrap: "wrap",
-                  marginTop: "1vw",
-                  marginLeft: "1vw",
-                }}
-              >
-                Senior Product Designer (#34793)
-              </div>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <span>
-                  <LocationOnOutlinedIcon
-                    style={{
-                      fontSize: "1.5vw",
-                      fontWeight: "400",
-                      margin: "0.5vw 1vw",
-                    }}
-                  />
-                </span>
-                <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
-                  {"Remote Kanpur"}
-                </span>
-                <span
-                  style={{
-                    fontSize: "0.8vw",
-                    fontWeight: "400",
-                    margin: "0 1vw",
-                  }}
-                >
-                  Posted on Sep 12 2022
-                </span>
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "0.8vw 1vw",
-                  fontSize: "0.85vw",
-                  marginBottom: "0.0vw",
-                  marginRight: "2vw",
-                }}
-                className="dashboardtitilemainparabid"
-              >
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum.
-              </div>
-              <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
-                <div>
-                  Budget <br /> $100 - $ 200
-                </div>
-                <div style={{ marginRight: "1vw" }}>
-                  Duration <br /> 3 month
-                </div>
-                <div style={{ marginRight: "1vw" }}>
-                  Status <br /> Upcoming
-                </div>
-                <div style={{ marginRight: "1vw" }}> </div>
-                <div style={{ marginRight: "1vw" }}></div>
-                <div style={{ marginRight: "1vw" }}></div>
-              </div>
-              <div className="flexlastactiveb">
-                <div style={{ color: "#00000090" }}>posted By 44 Resources</div>
-                <div
-                  style={{ color: "#00000090", cursor: "pointer" }}
-                  onClick={() =>
-                    navigate(
-                      `/dashbaord/jobdetail/eb2d6c1b-3a38-4018-99c2-169668fca15e`
-                    )
-                  }
-                >
-                  View More
-                </div>
-              </div>
-            </div>
-            <div
-              style={{
-                width: "100%",
-                background: "white",
-                padding: "2vw 1vw",
-                margin: "1vw 0vw",
-              }}
-            >
-              {" "}
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div style={{ display: "flex" }}>
-                  <div className="taggreen">Mobile Application</div>
-                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
-                    Mobile Application
-                  </div>
-                </div>
-                <div style={{ display: "flex" }}>
-                  <div>
-                    <img
-                      src={img3}
-                      alt=""
-                      style={{ fontSize: "2vw", marginRight: "2vw" }}
-                    />{" "}
-                  </div>
-                </div>
-              </div>{" "}
-              <div
-                style={{
-                  fontWeight: "600",
-                  fontSize: "1.3vw",
-                  display: "flex",
-                  flexWrap: "wrap",
-                  marginTop: "1vw",
-                  marginLeft: "1vw",
-                }}
-              >
-                Senior Product Designer (#34793)
-              </div>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <span>
-                  <LocationOnOutlinedIcon
-                    style={{
-                      fontSize: "1.5vw",
-                      fontWeight: "400",
-                      margin: "0.5vw 1vw",
-                    }}
-                  />
-                </span>
-                <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
-                  {"Remote Kanpur"}
-                </span>
-                <span
-                  style={{
-                    fontSize: "0.8vw",
-                    fontWeight: "400",
-                    margin: "0 1vw",
-                  }}
-                >
-                  Posted on Sep 12 2022
-                </span>
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "0.8vw 1vw",
-                  fontSize: "0.85vw",
-                  marginBottom: "0.0vw",
-                  marginRight: "2vw",
-                }}
-                className="dashboardtitilemainparabid"
-              >
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum.
-              </div>
-              <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
-                <div>
-                  Budget <br /> $100 - $ 200
-                </div>
-                <div style={{ marginRight: "1vw" }}>
-                  Duration <br /> 3 month
-                </div>
-                <div style={{ marginRight: "1vw" }}>
-                  Status <br /> Upcoming
-                </div>
-                <div style={{ marginRight: "1vw" }}> </div>
-                <div style={{ marginRight: "1vw" }}></div>
-                <div style={{ marginRight: "1vw" }}></div>
-              </div>
-              <div className="flexlastactiveb">
-                <div style={{ color: "#00000090" }}>posted By 44 Resources</div>
-                <div style={{ color: "#00000090" }}>View More</div>
-              </div>
-            </div>
-            <div
-              style={{
-                width: "100%",
-                background: "white",
-                padding: "2vw 1vw",
-                margin: "1vw 0vw",
-              }}
-            >
-              {" "}
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div style={{ display: "flex" }}>
-                  <div className="taggreen">Mobile Application</div>
-                  <div style={{ marginLeft: "1vw" }} className="taggreen1">
-                    Mobile Application
-                  </div>
-                </div>
-                <div style={{ display: "flex" }}>
-                  <div>
-                    <img
-                      src={img3}
-                      alt=""
-                      style={{ fontSize: "2vw", marginRight: "2vw" }}
-                    />{" "}
-                  </div>
-                </div>
-              </div>{" "}
-              <div
-                style={{
-                  fontWeight: "600",
-                  fontSize: "1.3vw",
-                  display: "flex",
-                  flexWrap: "wrap",
-                  marginTop: "1vw",
-                  marginLeft: "1vw",
-                }}
-              >
-                Senior Product Designer (#34793)
-              </div>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <span>
-                  <LocationOnOutlinedIcon
-                    style={{
-                      fontSize: "1.5vw",
-                      fontWeight: "400",
-                      margin: "0.5vw 1vw",
-                    }}
-                  />
-                </span>
-                <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
-                  {"Remote Kanpur"}
-                </span>
-                <span
-                  style={{
-                    fontSize: "0.8vw",
-                    fontWeight: "400",
-                    margin: "0 1vw",
-                  }}
-                >
-                  Posted on Sep 12 2022
-                </span>
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "0.8vw 1vw",
-                  fontSize: "0.85vw",
-                  marginBottom: "0.0vw",
-                  marginRight: "2vw",
-                }}
-                className="dashboardtitilemainparabid"
-              >
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum.
-              </div>
-              <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
-                <div>
-                  Budget <br /> $100 - $ 200
-                </div>
-                <div style={{ marginRight: "1vw" }}>
-                  Duration <br /> 3 month
-                </div>
-                <div style={{ marginRight: "1vw" }}>
-                  Status <br /> Upcoming
-                </div>
-                <div style={{ marginRight: "1vw" }}></div>
-                <div style={{ marginRight: "1vw" }}></div>
-                <div style={{ marginRight: "1vw" }}></div>
-              </div>
-              <div className="flexlastactiveb">
-                <div style={{ color: "#00000090" }}>posted By 44 Resources</div>
-                <div style={{ color: "#00000090" }}>View More</div>
-              </div>
-            </div>
-          </div>
-          {totalpages4 !== 1 ? (
-            <div style={{ width: "25vw" }} className="paginationbox">
-              <div>
-                <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-
-              <div
-                hidden={page4 - 4 > 0 ? false : true}
-                onClick={() => setPage4(page4 - 4)}
-              >
-                {page - 4}
-              </div>
-              <div
-                hidden={page4 - 3 > 0 ? false : true}
-                onClick={() => setPage4(page4 - 3)}
-              >
-                {page - 3}
-              </div>
-              <div
-                hidden={page4 - 2 > 0 ? false : true}
-                onClick={() => setPage4(page4 - 2)}
-              >
-                {page - 2}
-              </div>
-              <div
-                hidden={page4 - 1 > 0 ? false : true}
-                onClick={() => setPage4(page4 - 1)}
-              >
-                {page - 1}
-              </div>
-              <div style={{ color: "#2A6599" }}>{page}</div>
-              <div
-                hidden={page4 + 1 > totalpages4 ? true : false}
-                onClick={() => setPage4(page4 + 1)}
-              >
-                {page4 + 1}
               </div>
 
               <div>

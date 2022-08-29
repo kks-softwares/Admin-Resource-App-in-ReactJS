@@ -15,6 +15,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
+import img23 from "../../assets/Jobs/Iconly-Light-Paper Upload.svg";
 export default function BrowseWorkSiadebar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -53,6 +54,32 @@ export default function BrowseWorkSiadebar() {
 
   const open2 = Boolean(anchorEl2);
   const id2 = open2 ? "simple-popover" : undefined;
+
+  const [anchorEl3, setAnchorEl3] = React.useState(null);
+
+  const handleClick3 = (event) => {
+    setAnchorEl3(event.currentTarget);
+  };
+
+  const handleClose3 = () => {
+    setAnchorEl3(null);
+  };
+
+  const open3 = Boolean(anchorEl3);
+  const id3 = open3 ? "simple-popover" : undefined;
+
+  const [anchorEl4, setAnchorEl4] = React.useState(null);
+
+  const handleClick4 = (event) => {
+    setAnchorEl4(event.currentTarget);
+  };
+
+  const handleClose4 = () => {
+    setAnchorEl4(null);
+  };
+
+  const open4 = Boolean(anchorEl4);
+  const id4 = open4 ? "simple-popover" : undefined;
 
   const [anchorElp, setAnchorElp] = React.useState(null);
 
@@ -160,8 +187,9 @@ export default function BrowseWorkSiadebar() {
         </div>
      
 
-      <Link to="/dashbaord/employee">
+      
         <div
+        onClick={handleClick3}
           className={
             colorsidebar === 4 ? "firstsidebarmenu1" : "firstsidebarmenu"
           }
@@ -169,9 +197,10 @@ export default function BrowseWorkSiadebar() {
           <img src={img8} alt="" />
           Employee
         </div>
-      </Link>
-      <Link to="/dashbaord/blogs">
+     
+      
         <div
+          onClick={handleClick4}
           className={
             colorsidebar === 5 ? "firstsidebarmenu1" : "firstsidebarmenu"
           }
@@ -179,7 +208,7 @@ export default function BrowseWorkSiadebar() {
           <img src={img7} alt="" />
           Blogs
         </div>
-      </Link>
+   
 
       <Link to="/dashbaord/shop">
         <div
@@ -458,6 +487,67 @@ export default function BrowseWorkSiadebar() {
       </Popover>
    
       <Popover
+        id={id3}
+        open={open3}
+        anchorEl={anchorEl3}
+        onClose={handleClose3}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+        <Typography
+          sx={{ p: 1, pr: 2, pb: 1, fontSize: "1.1vw", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/dashbaord/addemployee");
+            handleClose3();
+          }}
+        >
+          <AddIcon
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          Add Employees
+        </Typography>
+
+        <Typography
+          onClick={() => {
+            navigate("/dashbaord/employee");
+            handleClose3();
+          }}
+          sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
+        >
+          <img
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          List of Employees
+        </Typography>
+      
+        <Typography
+          onClick={() => {
+            navigate("/dashbaord/addwork");
+            handleClose3();
+          }}
+          sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
+        >
+          <img
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img23}
+            alt=""
+          />
+          Assign a Work
+        </Typography>
+      
+      </Popover>
+   
+      <Popover
         id={id2}
         open={open2}
         anchorEl={anchorEl2}
@@ -495,10 +585,55 @@ export default function BrowseWorkSiadebar() {
         >
           <img
             style={{ paddingRight: "1vw", width: "2.5vw" }}
-            src={img7}
+            src={img23}
             alt=""
           />
           List of Work
+        </Typography>
+      </Popover>
+   
+      <Popover
+        id={id4}
+        open={open4}
+        anchorEl={anchorEl4}
+        onClose={handleClose2}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+        <Typography
+          sx={{ p: 1, pr: 2, pb: 1, fontSize: "1.1vw", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/dashbaord/addblog");
+            handleClose4();
+          }}
+        >
+          <AddIcon
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          Add Blog
+        </Typography>
+
+        <Typography
+          onClick={() => {
+            navigate("/dashbaord/blogs");
+            handleClose4();
+          }}
+          sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
+        >
+          <img
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img23}
+            alt=""
+          />
+          List of Blogs
         </Typography>
       </Popover>
    

@@ -31,7 +31,7 @@ export default function DashbaordNav({ user }) {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  const [postworknavtoggle, setpostworknavtoggle] = useState(true);
+  
   function logoutUser() {
     window.localStorage.removeItem("user");
     window.localStorage.removeItem("token");

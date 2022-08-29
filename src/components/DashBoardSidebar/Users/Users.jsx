@@ -47,9 +47,9 @@ export default function Users() {
   const [anchorElx, setAnchorElx] = React.useState(null);
   const canBeOpen = openx && Boolean(anchorElx);
   const id = canBeOpen ? "transition-popper" : undefined;
-  const [workhistorytoggle, setWorkhistorytoggle] = useState(1);
+  
 
-  const navigate = useNavigate();
+  
 
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
@@ -58,17 +58,7 @@ export default function Users() {
   const [totalpages1, settotalpages1] = useState(1);
 
   const [setSelectedCategory, setSetSelectedCategory] = useState("");
-  const [arrayoffilters, setArrayoffilters] = useState([
-    {
-      filternameName: "Categories",
-      filters: [
-        "Digital Marketing",
-        "Graphic Design",
-        "Data Analystics",
-        "Communication",
-      ],
-    },
-  ]);
+ 
 
   const [arrayoffilterselected, setarrayoffilterselected] = useState([]);
 
