@@ -41,6 +41,19 @@ export default function BrowseWorkSiadebar() {
   const open1 = Boolean(anchorEl1);
   const id1 = open1 ? "simple-popover" : undefined;
 
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
+
+  const handleClick2 = (event) => {
+    setAnchorEl2(event.currentTarget);
+  };
+
+  const handleClose2 = () => {
+    setAnchorEl2(null);
+  };
+
+  const open2 = Boolean(anchorEl2);
+  const id2 = open2 ? "simple-popover" : undefined;
+
   const [anchorElp, setAnchorElp] = React.useState(null);
 
   const handleClickp = (event) => {
@@ -135,8 +148,9 @@ export default function BrowseWorkSiadebar() {
         Users
       </div>
 
-      <Link to="/dashbaord/jobs">
+      
         <div
+           onClick={handleClick2}
           className={
             colorsidebar === 3 ? "firstsidebarmenu1" : "firstsidebarmenu"
           }
@@ -144,7 +158,7 @@ export default function BrowseWorkSiadebar() {
           <img src={img1} alt="" />
           Jobs
         </div>
-      </Link>
+     
 
       <Link to="/dashbaord/employee">
         <div
@@ -442,6 +456,53 @@ export default function BrowseWorkSiadebar() {
           List of Users
         </Typography>
       </Popover>
+   
+      <Popover
+        id={id2}
+        open={open2}
+        anchorEl={anchorEl2}
+        onClose={handleClose2}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+        <Typography
+          sx={{ p: 1, pr: 2, pb: 1, fontSize: "1.1vw", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/dashbaord/addJob");
+            handleClose2();
+          }}
+        >
+          <AddIcon
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          Add Work
+        </Typography>
+
+        <Typography
+          onClick={() => {
+            navigate("/dashbaord/jobs");
+            handleClose2();
+          }}
+          sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
+        >
+          <img
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          List of Work
+        </Typography>
+      </Popover>
+   
+   
     </div>
   );
 }
