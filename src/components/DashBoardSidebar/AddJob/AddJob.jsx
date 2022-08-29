@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import "./addpost.css";
 import CloseIcon from "@mui/icons-material/Close";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -14,18 +13,16 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { makeStyles } from "@material-ui/core";
 import Box from "@mui/material/Box";
-import imgxxx from "../../../assets/jobhome/Group 8797.svg";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import img2 from "../../../assets/file.svg";
 import img3 from "../../../assets/close.svg";
 import DoneIcon from "@mui/icons-material/Done";
 import Modal from "@mui/material/Modal";
-
-import cuntrycide from "../../../helper/c";
 import axios from "axios";
 import API_HOST from "../../../env";
 import Typography from "@mui/material/Typography";
 import Fade from "@mui/material/Fade";
+
 const useStyles = makeStyles((theme) => ({
   select: {
     height: "2.5vw",
@@ -75,17 +72,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "75vw",
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  height: "50vw",
-};
-
 const style1 = {
   position: "absolute",
   top: "50%",
@@ -99,29 +85,10 @@ const style1 = {
   p: 1,
 };
 
-export default function AddJob({
-  handleClose,
-  setSelectedCategory,
-
-}) {
+export default function AddJob({ handleClose, setSelectedCategory }) {
   const classes = useStyles();
-  const [age, setAge] = React.useState(10);
 
   const [age2, setAge2] = React.useState(98);
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-  const handleChange2x = (event) => {
-    setAge2(event.target.value);
-  };
-  const [age3, setAge3] = React.useState(0);
-  const handleChange3 = (event) => {
-    setAge3(event.target.value);
-  };
-  const [age3x, setAge3x] = React.useState("Backend Doveloper");
-  const handleChange3x = (event) => {
-    setAge3x(event.target.value);
-  };
 
   const [age4, setAge4] = React.useState(0);
   const [age5, setAge5] = React.useState(0);
@@ -134,9 +101,6 @@ export default function AddJob({
   const handleChange5x = (event) => {
     setAge5(event.target.value);
   };
-
-  const [countryside, setCountryside] = useState(cuntrycide);
-  const [mobilecuntry, setMobilecuntry] = useState(1);
 
   const [openx, setOpenx] = React.useState(false);
   const handleOpenx = () => setOpenx(true);
@@ -165,7 +129,7 @@ export default function AddJob({
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    // const phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
     const phoneno = /^[0-9]{10}$/;
     if (!values.name) {
       errors.name = "Username is required!";
@@ -176,29 +140,18 @@ export default function AddJob({
     if (!values.desc) {
       errors.desc = "Description is required!";
     }
-    // if (values.mobile) {
-    //   errors.mobile = "testt";
-    // }
+
     if (!phoneno.test(values.mobile)) {
       errors.mobile =
         "Required 10 digits mobile number, match requested format!!";
     }
-    // else if (!phoneno.test(values.mobile)) {
-    //   errors.mobile = "mobile Number is required!";
-    // }
+
     if (!values.email) {
       errors.email = "Email is required!";
     } else if (!regex.test(values.email)) {
       errors.email = "This is not a valid email format!";
     }
-    // if (!values.password) {
-    //   errors.password = "Password is required";
 
-    // } else if (values.password.length < 4) {
-    //   errors.password = "Password must be more than 4 characters";
-    // } else if (values.password.length > 10) {
-    //   errors.password = "Password cannot exceed more than 10 characters";
-    // }
     return errors;
   };
 
@@ -206,30 +159,21 @@ export default function AddJob({
   const [subcate, setsubcate] = useState("");
   const [title, settitle] = useState("");
   const [desc, setDesc] = useState("");
-
+  const [Category, setCategory] = useState("");
   const [minBudegt, setMinBudegt] = useState();
   const [maxBudegt, setMaxBudegt] = useState();
-  const [projectSize, setProjectSize] = useState();
+
   const [datestart, setDatestart] = useState();
   const [dateend, setDateend] = useState();
   const [file, setFile] = useState();
-
-  const [countrycode, setCountrycode] = useState("+91");
-  const [mobile, setMobile] = useState();
-  // const [email, setEmail] = useState("");
-
   const [ErrorCheck, setErrorCheck] = useState(false);
   const [ErrorCheck2, setErrorCheck2] = useState(false);
-
-  const [validateMobile, setValidateMobile] = useState("");
-  const [validateEmail, setValidateEmail] = useState("");
 
   const handlePostJOb = () => {
     if (file.size > 512000) {
       alert("File size cannot exceed more than 512 kb");
     }
-    setValidateMobile("");
-    setValidateEmail("");
+
     setFormErrors(validate(formValues));
 
     if (!(checkone && checkone1)) {
@@ -249,8 +193,6 @@ export default function AddJob({
     formdata.append("subCategory", subcate);
     formdata.append("maximuBudget", maxBudegt);
     formdata.append("minimumBudget", minBudegt);
-    formdata.append("contactNo", countrycode + formValues.mobile);
-    formdata.append("emailId", formValues.email);
 
     formdata.append("remote", !cateaddcheckbox1);
 
@@ -270,11 +212,6 @@ export default function AddJob({
         },
       })
       .then((res) => {
-        setTrackingid(res.data.success?.data?.trackingId);
-        setWorktitile(res.data.success?.data?.workTitle);
-        setPassword(res.data.success?.userDetails?.password);
-        setUsername(res.data.success?.userDetails?.userName);
-
         handleOpenp();
       })
       .catch((err) => {
@@ -282,25 +219,11 @@ export default function AddJob({
         if (
           err.response.data.fails.data.code ===
           "auth/phone-number-already-exists"
-        ) {
-          setValidateMobile(err.response.data.fails.data.message);
-        }
-        // if(err.response.data.fails.data.code === "auth/invalid-phone-number"){
-        //   setValidateMobile(err.response.data.fails.data.message)
-        // }
-        if (err.response.data.fails.data.code === "auth/email-already-exists") {
-          setValidateEmail(err.response.data.fails.data.message);
-        }
-        setErroeshow(true);
+        )
+          setErroeshow(true);
       });
   };
   const [erroeshow, setErroeshow] = useState(false);
-
-  const [worktitile, setWorktitile] = useState("");
-
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [trackingid, setTrackingid] = useState("");
 
   const [openp, setOpenp] = React.useState(false);
 
@@ -318,6 +241,7 @@ export default function AddJob({
   };
 
   const [studyset, setstudyset] = useState("");
+  const [studyset1, setstudyset1] = useState("");
 
   const [anchorElx3, setAnchorElx3] = React.useState(null);
   const handleClickx3 = (event) => {
@@ -330,26 +254,50 @@ export default function AddJob({
 
   const openx3 = Boolean(anchorElx3);
   const idx3 = openx3 ? "simple-popover" : undefined;
-  const [arrayofstudy, setArrayofstydy] = useState([
-    "Computer Science",
-    "Computer Science2",
-    "Computer Science3",
-  ]);
-  const [arrayoflongstudy, setArrayoflongstudy] = useState(arrayofstudy);
+
+  const [anchorElx4, setAnchorElx4] = React.useState(null);
+  const handleClickx4 = (event) => {
+    setAnchorElx4(event.currentTarget);
+  };
+
+  const handleClosex4 = () => {
+    setAnchorElx4(null);
+  };
+
+  const openx4 = Boolean(anchorElx4);
+  const idx4 = openx4 ? "simple-popover" : undefined;
+
+  const [arrayoflongstudy, setArrayoflongstudy] = useState([]);
+  const [arrayoflongstudy1, setArrayoflongstudy1] = useState([]);
 
   const [skillset, setskillset] = useState([]);
-  const [skilltext, setskilltext] = useState("");
+
+  const [subcateid, setsubcateid] = useState("");
 
   const handleSearchCategory = (e) => {
-    axios
-      .get(`${API_HOST}/skill/viewSkill?skill=${e.target.value}`)
-      .then((res) => {
-        setAllcategory(res?.data?.success?.data?.docs);
-
-        if (res?.data?.success?.data?.docs?.length > 0) {
-          setIstdropdown(true);
-        }
-      });
+    if (categogryid && subcateid) {
+      axios
+        .get(
+          `${API_HOST}/theSkill/viewSkill?pageSize=8&pageNumber=1&skill=${e.target.value}&categoryId=${categogryid}&subCategoryId=${subcateid}`
+        )
+        .then((res) => {
+          setAllcategory(res?.data?.success?.data);
+          setOpenx(true);
+          if (res?.data?.success?.data?.length > 0) {
+            setIstdropdown(true);
+          }
+        });
+    }
+    // axios
+    //   .get(`${API_HOST}/skill/viewSkill?skill=${e.target.value}`)
+    //   .then((res) => {
+    //     console.log(res);
+    //     setAllcategory(res?.data?.success?.data?.docs);
+    //     setOpenx(true);
+    //     if (res?.data?.success?.data?.docs?.length > 0) {
+    //       setIstdropdown(true);
+    //     }
+    //   });
   };
 
   const [setSelectedCategory1, setSetSelectedCategory1] = useState("");
@@ -363,33 +311,63 @@ export default function AddJob({
     const yyyy = today.getFullYear();
     return yyyy + "-" + mm + "-" + dd;
   };
-  const [settingCategory, setsettingCategory] = useState([]);
 
-  const [Category, setCategory] = useState("");
-  const [Category1, setCategory1] = useState("Backend Doveloper");
-
-  const [setsubSelectedCategory, setsetsubcategory] = useState([]);
-
+  const [cateerror, setcateError] = useState("");
+  const [arrayoflongdegree, setArrayoflongdegree] = useState();
+  const [searchCategorysearch, setSearchCategorysearch] = useState("");
   useEffect(() => {
     axios
-      .get(`${API_HOST}/category/viewCategory?categories=${Category}`)
+      .get(
+        `${API_HOST}/theCategory/viewCategory?pageSize=50&pageNumber=1&category=${searchCategorysearch}`
+      )
       .then((res) => {
-        setsettingCategory(res?.data?.success?.data?.docs);
-
-        console.log("viewCategory", res?.data?.success?.data?.docs);
+        setArrayoflongdegree(res?.data?.success?.data);
       });
-  }, [Category]);
+  }, [searchCategorysearch]);
 
+  const [anchorElx2, setAnchorElx2] = React.useState(null);
+  const handleClickx2 = (event) => {
+    setAnchorElx2(event.currentTarget);
+  };
+
+  const handleClosex2 = () => {
+    setAnchorElx2(null);
+  };
+  const [subcateerror, setsubcateError] = useState("");
+  const openx2 = Boolean(anchorElx2);
+  const idx2 = openx2 ? "simple-popover" : undefined;
+  const [searchsubCategorysearch, setSearchsubCategorysearch] = useState("");
+  const [categogryid, setCategogryid] = useState();
+  const [subcategogryid, setsubCategogryid] = useState();
+  useEffect(() => {
+    if (categogryid) {
+      axios
+        .get(
+          `${API_HOST}/subCategory/viewSubCategory?pageSize=50&pageNumber=1&subCategory=${searchsubCategorysearch}&categoryId=${categogryid}`
+        )
+        .then((res) => {
+          setArrayoflongstudy(res?.data?.success?.data);
+        });
+    }
+  }, [searchsubCategorysearch, categogryid]);
+
+  const [arrayofminbudget, setArrayofminbudget] = useState([]);
+  useEffect(() => {
+    axios.get(`${API_HOST}/budget/viewBudget`).then((res) => {
+      setArrayofminbudget(res?.data?.success?.data);
+    });
+  }, []);
+
+  const [locationname, setLocationname] = useState("");
   useEffect(() => {
     axios
-      .get(`${API_HOST}/category/viewCategory?categories=${Category1}`)
+      .get(
+        `${API_HOST}/location/viewLocation?pageSize=100&pageNumber=1&search=${locationname}`
+      )
       .then((res) => {
-        setsetsubcategory(res.data.success.data?.docs[0]?.subCategories);
+        setArrayoflongstudy1(res?.data?.success?.data);
       });
-  }, [Category1]);
-
-
-
+  }, [locationname]);
 
   return (
     <div
@@ -413,178 +391,6 @@ export default function AddJob({
         <div className="jobpostedformheading">Job Posted Form Posted</div>
 
         <div>
-          <div className="jobpodtedfieldtitile">Full Name *</div>
-          <div className="jobpostfieldinputbox">
-            <input
-              type="text"
-              name="name"
-              // value={name}
-              // onChange={(e) => {
-              //   setName(e.target.value);
-              // }}
-              value={formValues.name}
-              onChange={handleChangeFormVal}
-            />
-            <CloseIcon
-              style={{
-                position: "relative",
-                right: "2vw",
-                top: "1.1vw",
-                fontSize: "1.5vw",
-                cursor: "pointer",
-              }}
-              onClick={() => setName("")}
-            />
-          </div>
-          <p style={{ color: "red" }}>{formErrors.name}</p>
-          <div className="jobpodtedfieldtitile">Job Category</div>
-          <div className="">
-            <Box
-              sx={{
-                background: "white",
-                border: "1px solid #7070705b",
-                height: "3.0vw",
-                width: "29vw",
-                borderRadius: "5px",
-                margin: "0.5vw 0vw",
-              }}
-              className="setting-toggler"
-            >
-              <FormControl variant="standard" fullWidth>
-                <Select
-                  className={classes.select}
-                  labelId="demo-simple-select-standard-label"
-                  id="demo-simple-select-standard"
-                  value={age3x}
-                  disableUnderline
-                  inputProps={{
-                    classes: {
-                      // root: classes.border,
-                      icon: classes.icon,
-                    },
-                  }}
-                  onChange={handleChange3x}
-                  MenuProps={{
-                    PaperProps: {
-                      sx: {
-                        bgcolor: "white",
-
-                        "& .MuiMenuItem-root": {
-                          padding: "0vw 1vw",
-                          width: "100%vw",
-                          height: "2.5vw",
-                          fontFamily: "Poppins",
-                          fontStyle: "normal",
-                          fontWeight: "500",
-                          fontSize: "0.81vw",
-                          lineHeight: "24px",
-                          color: "#6b6b6b",
-                        },
-                      },
-                    },
-                  }}
-                >
-                  <div style={{ width: "100%" }}>
-                    <input
-                      type="text"
-                      value={Category}
-                      style={{ width: "100%" }}
-                      onChange={(e) => {
-                        setCategory(e.target.value);
-                      }}
-                    />
-                  </div>
-
-                  {settingCategory &&
-                    settingCategory?.map((code, index) => {
-                      
-                      return (
-                        <MenuItem value={code?.categories}>
-                          <div
-                            onClick={(e) => {
-                                setCategory1(code?.categories);
-                              }}
-                            style={{
-                              textAlign: "left",
-                              marginTop: "0.5vw",
-                              paddingLeft: "10px",
-                            }}
-                          >
-                            {code?.categories}
-                          </div>
-                        </MenuItem>
-                      );
-                    })}
-                </Select>
-              </FormControl>
-            </Box>
-          </div>
-          <div className="jobpodtedfieldtitile">Sub Category</div>
-          <div className="">
-            <Box
-              sx={{
-                background: "white",
-                border: "1px solid #7070705b",
-                height: "3.0vw",
-                width: "29vw",
-                borderRadius: "5px",
-                margin: "0.5vw 0vw",
-              }}
-              className="setting-toggler"
-            >
-              <FormControl variant="standard" fullWidth>
-                <Select
-                  className={classes.select}
-                  labelId="demo-simple-select-standard-label"
-                  id="demo-simple-select-standard"
-                  value={age3}
-                  disableUnderline
-                  inputProps={{
-                    classes: {
-                      // root: classes.border,
-                      icon: classes.icon,
-                    },
-                  }}
-                  onChange={handleChange3}
-                  MenuProps={{
-                    PaperProps: {
-                      sx: {
-                        bgcolor: "white",
-
-                        "& .MuiMenuItem-root": {
-                          padding: "0.1vw 2vw",
-                          width: "29vw",
-                          height: "3vw",
-                          fontFamily: "Poppins",
-                          fontStyle: "normal",
-                          fontWeight: "500",
-                          fontSize: "1vw",
-                          lineHeight: "24px",
-                          color: "#6b6b6b",
-                        },
-                      },
-                    },
-                  }}
-                >
-                  <MenuItem onClick={() => {}} value={0} hidden>
-                    Select
-                  </MenuItem>
-                  {setsubSelectedCategory?.map((res, index) => {
-                    return (
-                      <MenuItem
-                        onClick={() => {
-                          setsubcate(res);
-                        }}
-                        value={index + 1}
-                      >
-                        {res}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-              </FormControl>
-            </Box>
-          </div>
           <div className="jobpodtedfieldtitile">Job Title *</div>
           <div className="jobpostfieldinputbox">
             <input
@@ -611,20 +417,246 @@ export default function AddJob({
             />
           </div>
           <p style={{ color: "red" }}>{formErrors.title}</p>
-          <div className="jobpodtedfieldtitile">Description</div>
-          <div className="jobpostfieldinputbox">
-            <textarea
-              type="text"
-              name="desc"
-              // value={desc}
-              // onChange={(e) => {
-              //   setDesc(e.target.value);
-              // }}
-              value={formValues.desc}
-              onChange={handleChangeFormVal}
-            />
+
+          <div style={{ display: "flex", alignItems: "center", width: "97%" }}>
+            <div style={{ width: "50%" }}>
+              <div className="jobpodtedfieldtitile">Category *</div>
+              <div
+                style={{ left: "0vw", width: "94%", marginLeft: "0%" }}
+                className="loginfield"
+                onClick={handleClickx2}
+              >
+                <TextField
+                  id="outlined-basic"
+                  label="Category *"
+                  variant="outlined"
+                  disabled
+                  value={Category}
+                  style={{ width: "100%" }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: "1vw",
+                      fontFamily: "Poppins",
+                      fontStyle: "500",
+                      fontWeight: "500",
+                      color: "black",
+                    },
+                  }}
+                  inputProps={{ className: classes.input }}
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                  }}
+                />
+                <span style={{ width: "0.1vw" }}>
+                  <KeyboardArrowDownOutlined
+                    style={{
+                      fontSize: "1.5vw",
+                      position: "relative",
+                      right: "2vw",
+                      top: "1vw",
+                    }}
+                  />
+                </span>
+              </div>
+              <Popover
+                id={idx2}
+                open={openx2}
+                anchorEl={anchorElx2}
+                onClose={handleClosex2}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+              >
+                <div
+                  style={{
+                    maxHeight: "18vw",
+                    overflow: "scroll",
+                    width: "31vw",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      p: 1,
+                      pl: 1,
+                      ml: 1,
+                      pr: 0,
+                      width: "30vw",
+                      position: "fixed",
+                      background: "white",
+                      zIndex: "10",
+                    }}
+                  >
+                    <input
+                      placeholder="search here .."
+                      onChange={(e) => {
+                        setSearchCategorysearch(e.target.value);
+                      }}
+                      style={{
+                        width: "97%",
+                        border: "1.5px solid #00000050",
+                        outline: "none",
+                        height: "2.5",
+                        borderRadius: "0.21vw",
+                      }}
+                    />
+                  </Typography>
+                  <Typography
+                    sx={{
+                      p: 2.5,
+                      pl: 1,
+                      ml: 1,
+                      width: "100%",
+                      cursor: "pointer",
+                    }}
+                  ></Typography>
+
+                  {arrayoflongdegree?.length > 0 &&
+                    arrayoflongdegree.map((data, index) => {
+                      return (
+                        <Typography
+                          sx={{
+                            p: 0.51,
+                            pl: 1,
+                            ml: 1,
+                            width: "100%",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => {
+                            setCategory(data?.category);
+                            handleClosex2();
+                            setcateError();
+                            setCategogryid(data?._id);
+                          }}
+                        >
+                          {data?.category}
+                        </Typography>
+                      );
+                    })}
+                </div>
+              </Popover>
+              <p style={{ color: "red", fontSize: "0.9vw" }}>{cateerror}</p>{" "}
+            </div>
+
+            <div style={{ width: "50%" }}>
+              <div className="jobpodtedfieldtitile">Sub-Category *</div>
+              <div
+                style={{ left: "0vw", width: "94%", marginLeft: "0%" }}
+                className="loginfield"
+                onClick={handleClickx3}
+              >
+                <TextField
+                  id="outlined-basic"
+                  label="Sub Category *"
+                  variant="outlined"
+                  disabled
+                  value={studyset}
+                  style={{ width: "100%" }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: "1vw",
+                      fontFamily: "Poppins",
+                      fontStyle: "500",
+                      fontWeight: "500",
+                      color: "black",
+                    },
+                  }}
+                  inputProps={{ className: classes.input }}
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                  }}
+                />
+                <span style={{ width: "0.1vw" }}>
+                  <KeyboardArrowDownOutlined
+                    style={{
+                      fontSize: "1.5vw",
+                      position: "relative",
+                      right: "2vw",
+                      top: "1vw",
+                    }}
+                  />
+                </span>
+              </div>
+              <Popover
+                id={idx3}
+                open={openx3}
+                anchorEl={anchorElx3}
+                onClose={handleClosex3}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+              >
+                <div
+                  style={{
+                    maxHeight: "18vw",
+                    overflow: "scroll",
+                    width: "31vw",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      p: 1,
+                      pl: 1,
+                      ml: 1,
+                      pr: 0,
+                      width: "30vw",
+                      position: "fixed",
+                      background: "white",
+                      zIndex: "10",
+                    }}
+                  >
+                    <input
+                      onChange={(e) => {
+                        setSearchsubCategorysearch(e.target.value);
+                      }}
+                      style={{
+                        width: "97%",
+                        border: "1.5px solid #00000050",
+                        outline: "none",
+                        height: "2.5",
+                        borderRadius: "0.21vw",
+                      }}
+                    />
+                  </Typography>
+
+                  <Typography
+                    sx={{
+                      p: 2.5,
+                      pl: 1,
+                      ml: 1,
+                      width: "100%",
+                      cursor: "pointer",
+                    }}
+                  ></Typography>
+
+                  {arrayoflongstudy?.length > 0 &&
+                    arrayoflongstudy?.map((data, index) => {
+                      return (
+                        <Typography
+                          sx={{
+                            p: 0.51,
+                            pl: 1,
+                            ml: 1,
+                            width: "100%",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => {
+                            setstudyset(data?.subCategory);
+                            setsubcateid(data?._id);
+                            setsubcateError("");
+                            handleClosex3();
+                          }}
+                        >
+                          {data?.subCategory}
+                        </Typography>
+                      );
+                    })}
+                </div>
+              </Popover>
+              <p style={{ color: "red", fontSize: "0.9vw" }}>{subcateerror}</p>
+            </div>
           </div>
-          <p style={{ color: "red" }}>{formErrors.desc}</p>
           <div
             style={{
               marginBottom: "0.5vw",
@@ -763,182 +795,171 @@ export default function AddJob({
             </div>
           </div>
 
+          <div className="jobpodtedfieldtitile">Description</div>
+          <div className="jobpostfieldinputbox">
+            <textarea
+              type="text"
+              name="desc"
+              // value={desc}
+              // onChange={(e) => {
+              //   setDesc(e.target.value);
+              // }}
+              value={formValues.desc}
+              onChange={handleChangeFormVal}
+            />
+          </div>
+          <p style={{ color: "red" }}>{formErrors.desc}</p>
+
           <div className="jobpodtedfieldtitile">Budget *</div>
-          <div className="homjobpost-popbudegt">
-            <div  className="min-maxhomejob">min</div>
-            <div className="">
-              <Box
-                sx={{
-                  background: "white",
-                  border: "1px solid #7070705b",
-                  height: "2.6vw",
-                  width: "24.5vw",
-                  borderRadius: "5px",
-                  margin: "0.5vw 1.5vw",
-                }}
-                className="setting-toggler"
-              >
-                <FormControl variant="standard" fullWidth>
-                  <Select
-                    className={classes.select2}
-                    labelId="demo-simple-select-standard-label"
-                    id="demo-simple-select-standard"
-                    value={age4}
-                    disableUnderline
-                    inputProps={{
-                      classes: {
-                        icon: classes.icon,
-                      },
-                    }}
-                    onChange={handleChange4x}
-                    MenuProps={{
-                      PaperProps: {
-                        sx: {
-                          bgcolor: "white",
+          <div style={{ display: "flex", alignItems: "center", width: "97%" }}>
+            <div style={{ width: "50%" }}>
+              <div className="jobpodtedfieldtitile">Minimum *</div>
+              <div className="jobpostfieldinputbox">
+                <Box
+                  sx={{
+                    background: "white",
+                    border: "1px solid #7070705b",
+                    height: "3vw",
+                    width: "94%",
+                    borderRadius: "5px",
+                    padding: "0.4vw",
+                    margin: "0.5vw 0vw",
+                  }}
+                  className="setting-toggler"
+                >
+                  <FormControl variant="standard" fullWidth>
+                    <Select
+                      className={classes.select2}
+                      labelId="demo-simple-select-standard-label"
+                      id="demo-simple-select-standard"
+                      value={age4}
+                      disableUnderline
+                      inputProps={{
+                        classes: {
+                          icon: classes.icon,
+                        },
+                      }}
+                      onChange={handleChange4x}
+                      MenuProps={{
+                        PaperProps: {
+                          sx: {
+                            bgcolor: "white",
 
-                          "& .MuiMenuItem-root": {
-                            padding: "0.1vw 2vw",
-                            width: "100%",
-                            height: "2vw",
-                            fontFamily: "Poppins",
-                            fontStyle: "normal",
-                            fontWeight: "500",
-                            fontSize: "0.81vw",
-                            lineHeight: "1vw",
-                            color: "#6b6b6b",
+                            "& .MuiMenuItem-root": {
+                              padding: "0.1vw 2vw",
+                              width: "100%",
+                              height: "2vw",
+                              fontFamily: "Poppins",
+                              fontStyle: "normal",
+                              fontWeight: "500",
+                              fontSize: "0.81vw",
+                              lineHeight: "1vw",
+                              color: "#6b6b6b",
+                            },
                           },
                         },
-                      },
-                    }}
-                  >
-                    <MenuItem onClick={() => {}} value={0} hidden>
-                      Select
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setMinBudegt(10);
                       }}
-                      value={10}
                     >
-                      $ 10
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setMinBudegt(20);
-                      }}
-                      value={20}
-                    >
-                      $ 20
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setMinBudegt(50);
-                      }}
-                      value={30}
-                    >
-                      $ 50
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
+                      <MenuItem onClick={() => {}} value={0} hidden>
+                        Select
+                      </MenuItem>
+                      {arrayofminbudget?.length > 0 &&
+                        arrayofminbudget?.map((data, index) => {
+                          return (
+                            <MenuItem
+                              onClick={() => {
+                                setMinBudegt(data?.minimumBudget);
+                              }}
+                              value={index + 1}
+                            >
+                              $ {data?.minimumBudget}
+                            </MenuItem>
+                          );
+                        })}
+                    </Select>
+                  </FormControl>
+                </Box>
+              </div>
+              <p style={{ color: "red", fontSize: "1vw" }}></p>
+              <p style={{ color: "red" }}>{formErrors.email}</p>
             </div>
-            <div style={{ marginLeft: "1vw" }} className="min-maxhomejob">
-              max
-            </div>
-            <div className="">
-              <Box
-                sx={{
-                  background: "white",
-                  border: "1px solid #7070705b",
-                  height: "2.6vw",
-                  width: "24.5vw",
-                  borderRadius: "5px",
-                  margin: "0.5vw 1.5vw",
-                }}
-                className="setting-toggler"
-              >
-                <FormControl variant="standard" fullWidth>
-                  <Select
-                    className={classes.select2}
-                    labelId="demo-simple-select-standard-label"
-                    id="demo-simple-select-standard"
-                    value={age5}
-                    disableUnderline
-                    inputProps={{
-                      classes: {
-                        // root: classes.border,
-                        icon: classes.icon,
-                      },
-                    }}
-                    onChange={handleChange5x}
-                    MenuProps={{
-                      PaperProps: {
-                        sx: {
-                          bgcolor: "white",
 
-                          "& .MuiMenuItem-root": {
-                            padding: "0.1vw 2vw",
-                            width: "100%",
-                            height: "2vw",
-                            fontFamily: "Poppins",
-                            fontStyle: "normal",
-                            fontWeight: "500",
-                            fontSize: "0.81vw",
-                            lineHeight: "24px",
-                            color: "#6b6b6b",
+            <div style={{ width: "50%" }}>
+              <div className="jobpodtedfieldtitile">Maximum *</div>
+              <div className="jobpostfieldinputbox">
+                <Box
+                  sx={{
+                    background: "white",
+                    border: "1px solid #7070705b",
+                    height: "3vw",
+                    width: "94%",
+                    borderRadius: "5px",
+                    padding: "0.4vw",
+                    margin: "0.5vw 0vw",
+                  }}
+                  className="setting-toggler"
+                >
+                  <FormControl variant="standard" fullWidth>
+                    <Select
+                      className={classes.select2}
+                      labelId="demo-simple-select-standard-label"
+                      id="demo-simple-select-standard"
+                      value={age5}
+                      disableUnderline
+                      inputProps={{
+                        classes: {
+                          icon: classes.icon,
+                        },
+                      }}
+                      onChange={handleChange5x}
+                      MenuProps={{
+                        PaperProps: {
+                          sx: {
+                            bgcolor: "white",
+
+                            "& .MuiMenuItem-root": {
+                              padding: "0.1vw 2vw",
+                              width: "100%",
+                              height: "2vw",
+                              fontFamily: "Poppins",
+                              fontStyle: "normal",
+                              fontWeight: "500",
+                              fontSize: "0.81vw",
+                              lineHeight: "1vw",
+                              color: "#6b6b6b",
+                            },
                           },
                         },
-                      },
-                    }}
-                  >
-                    <MenuItem onClick={() => {}} value={0} hidden>
-                      Select
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setMaxBudegt(100);
                       }}
-                      value={10}
                     >
-                      $ 100
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setMaxBudegt(200);
-                      }}
-                      value={20}
-                    >
-                      $ 200
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        setMaxBudegt(500);
-                      }}
-                      value={30}
-                    >
-                      $ 500
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
+                      <MenuItem onClick={() => {}} value={0} hidden>
+                        Select
+                      </MenuItem>
+                      {arrayofminbudget?.length > 0 &&
+                        arrayofminbudget?.map((data, index) => {
+                          return (
+                            <MenuItem
+                              onClick={() => {
+                                setMaxBudegt(data?.maximumBudget);
+                              }}
+                              value={index + 1}
+                            >
+                              $ {data?.maximumBudget}
+                            </MenuItem>
+                          );
+                        })}
+                    </Select>
+                  </FormControl>
+                </Box>
+              </div>{" "}
+              <p style={{ color: "red", fontSize: "1vw" }}></p>
             </div>
           </div>
-          <div className="jobpodtedfieldtitile">Date *</div>
-          <div className="homjobpost-popbudegt">
-            <div className="min-maxhomejob">Start</div>
-            <div className="">
-              <Box
-                sx={{
-                  background: "white",
-                  border: "1px solid #7070705b",
-                  height: "2.6vw",
-                  width: "24.5vw",
-                  borderRadius: "5px",
-                  margin: "0.5vw 1.5vw",
-                  padding: "0 0.2vw",
-                }}
-                className="setting-toggler"
-              >
+          <div className="jobpodtedfieldtitile">Duration *</div>
+          <div style={{ display: "flex", alignItems: "center", width: "97%" }}>
+            <div style={{ width: "50%" }}>
+              <div className="jobpodtedfieldtitile">Start Date *</div>
+              <div className="jobpostfieldinputbox">
                 <input
                   style={{ width: "100%" }}
                   type="date"
@@ -952,25 +973,19 @@ export default function AddJob({
                     setDatestart(e.target.value);
                   }}
                 />
-              </Box>
+              </div>
+
+              <p style={{ color: "red" }} className="redp">
+                {formErrors.email}
+              </p>
             </div>
-            <div style={{ marginLeft: "1vw" }} className="min-maxhomejob">
-              End
-            </div>
-            <div className="">
-              <Box
-                sx={{
-                  background: "white",
-                  border: "1px solid #7070705b",
-                  height: "2.6vw",
-                  width: "24.5vw",
-                  borderRadius: "5px",
-                  margin: "0.5vw 1.5vw",
-                  padding: " 0 0.2vw",
-                }}
-                className="setting-toggler"
-              >
+
+            <div style={{ width: "50%" }}>
+              <div className="jobpodtedfieldtitile">End Date *</div>
+
+              <div className="jobpostfieldinputbox">
                 <input
+                  style={{ width: "100%" }}
                   type="date"
                   className="input-homejobformdate"
                   name=""
@@ -982,11 +997,19 @@ export default function AddJob({
                     setDateend(e.target.value);
                   }}
                 />
-              </Box>
+              </div>
+
+              <p style={{ color: "red" }} className="redp">
+                {formErrors.email}
+              </p>
             </div>
           </div>
+
           <div className="jobpodtedfieldtitile">Image/Documents </div>
-          <div style={{ width: "95%",marginLeft:"0vw" }} className="fileinputbox">
+          <div
+            style={{ width: "95%", marginLeft: "0vw" }}
+            className="fileinputbox"
+          >
             <label htmlFor="fileupload">
               <div>
                 <FileUploadIcon
@@ -1006,7 +1029,10 @@ export default function AddJob({
                   setFile(e.target.files[0]);
                 }}
               />
-              <div style={{width:"20vw",textAlign: "center"}} className="min-maxhomejob" >
+              <div
+                style={{ width: "20vw", textAlign: "center" }}
+                className="min-maxhomejob"
+              >
                 Drag and Drop or Browse to upload
               </div>
             </label>
@@ -1044,166 +1070,7 @@ export default function AddJob({
               </div>
             </div>
           )}
-          <div className="jobpodtedfieldtitile mt-2">Mobile *</div>
-          <div className="jobpostfieldinputbox">
-            <div style={{ width: "0.1vw", zIndex: "3" }}>
-              <div className="okmobilejobform" onClick={handleOpenx}>
-                {mobilecuntry}
-              </div>
-              <Box
-                sx={{
-                  background: "white",
-                  border: "1px solid #7070705b",
-                  height: "3.0vw",
-                  width: "10vw",
-                  borderRadius: "5px",
-                  margin: "0vw 0vw",
-                  position: "relative",
-                  bottom: "0.71vw",
-                }}
-                className="setting-toggler"
-              >
-                <FormControl variant="standard" fullWidth>
-                  <Select
-                    className={classes.select3}
-                    labelId="demo-simple-select-standard-label"
-                    id="demo-simple-select-standard"
-                    value={age2}
-                    defaultValue={age2}
-                    disableUnderline
-                    inputProps={{
-                      classes: {
-                        icon: classes.icon,
-                      },
-                    }}
-                    onChange={handleChange2x}
-                    MenuProps={{
-                      PaperProps: {
-                        sx: {
-                          bgcolor: "white",
-                          width: "9vw",
-                          maxHeight: "18vw",
-                          "& .MuiMenuItem-root": {
-                            padding: "0.1vw 0.1vw",
-                            width: "9vw",
-                            height: "2vw",
-                            fontFamily: "Poppins",
-                            fontStyle: "normal",
-                            fontWeight: "500",
-                            fontSize: "0.81vw",
-                            lineHeight: "24px",
-                            color: "#6b6b6b",
-                          },
-                        },
-                      },
-                    }}
-                  >
-                    <div style={{ width: "9vw" }}>
-                      <input
-                        type="number"
-                        style={{ width: "9vw" }}
-                        onChange={(e) => {
-                          setCountryside(
-                            cuntrycide.filter((x) =>
-                              x?.dial_code.includes(e.target.value)
-                            )
-                          );
-                          console.log(
-                            cuntrycide.filter((x) =>
-                              x?.dial_code.includes(e.target.value)
-                            )
-                          );
-                        }}
-                      />
-                    </div>
-                    {/* {countryside &&
-                      countryside?.filter(person => person.name == "India").map((filteredPerson, index) => {
-                        return (
-                          <MenuItem
-                            onClick={() => {
-                              setCountrycode(filteredPerson?.dial_code);
-                            }}
-                            value={index + 1}
-                          >
-                            <div
-                              style={{
-                                textAlign: "center",
-                                marginTop: "0.5vw",
-                              }}
-                            >
-                              {filteredPerson?.dial_code} {" "} {filteredPerson?.code}
-                            </div>
-                          </MenuItem>
-                        );
-                      })} */}
 
-                    {countryside &&
-                      countryside?.map((code, index) => {
-                        // console.log("code?.dial_code index ",)
-                        return (
-                          <MenuItem
-                            onClick={() => {
-                              setCountrycode(code?.dial_code);
-                            }}
-                            value={index + 1}
-                          >
-                            <div
-                              style={{
-                                textAlign: "center",
-                                marginTop: "0.5vw",
-                              }}
-                            >
-                              {code?.dial_code} {code?.code}
-                            </div>
-                          </MenuItem>
-                        );
-                      })}
-                  </Select>
-                </FormControl>
-              </Box>
-            </div>
-            <input
-              type="number"
-              style={{ paddingLeft: "11vw" }}
-              name="mobile"
-              // value={mobile}
-              // onChange={(e) => {
-              //   setMobile(e.target.value);
-              // }}
-              value={formValues.mobile}
-              onChange={handleChangeFormVal}
-            />
-            <CloseIcon
-              style={{
-                position: "relative",
-                right: "2vw",
-                top: "1.3vw",
-                fontSize: "1.3vw",
-              }}
-            />
-          </div>
-          <p style={{ color: "red", fontSize: "1vw" }}>
-            {validateMobile ? validateMobile : ""}
-          </p>
-          <p style={{ color: "red", fontSize: "1vw" }}>{formErrors.mobile}</p>
-          <div className="jobpodtedfieldtitile">Email *</div>
-          <div className="jobpostfieldinputbox">
-            <input
-              type="text"
-              style={{ width: "29.2vw" }}
-              name="email"
-              // onChange={(e) => {
-              //   setEmail(e.target.value);
-              // }}
-              // value={email}
-              value={formValues.email}
-              onChange={handleChangeFormVal}
-            />
-          </div>
-          <p style={{ color: "red", fontSize: "1vw" }}>
-            {validateEmail ? validateEmail : ""}
-          </p>
-          <p style={{ color: "red" }}>{formErrors.email}</p>
           <div className="jobpodtedfieldtitile">Location *</div>
           <div
             style={{ display: "flex", alignItems: "center", fontWeight: "500" }}
@@ -1251,14 +1118,14 @@ export default function AddJob({
               <div
                 style={{ left: "0vw", width: "41vw", marginLeft: "0" }}
                 className="loginfield"
-                onClick={handleClickx3}
+                onClick={handleClickx4}
               >
                 <TextField
                   id="outlined-basic"
                   label="Location"
                   variant="outlined"
                   disabled
-                  value={studyset}
+                  value={studyset1}
                   style={{ width: "100%" }}
                   InputLabelProps={{
                     style: {
@@ -1286,10 +1153,10 @@ export default function AddJob({
                 </span>
               </div>
               <Popover
-                id={idx3}
-                open={openx3}
-                anchorEl={anchorElx3}
-                onClose={handleClosex3}
+                id={idx4}
+                open={openx4}
+                anchorEl={anchorElx4}
+                onClose={handleClosex4}
                 anchorOrigin={{
                   vertical: "bottom",
                   horizontal: "left",
@@ -1309,12 +1176,7 @@ export default function AddJob({
                   >
                     <input
                       onChange={(e) => {
-                        setArrayoflongstudy(
-                          arrayofstudy.filter((x) => x.includes(e.target.value))
-                        );
-                        console.log(
-                          arrayofstudy.filter((x) => x.includes(e.target.value))
-                        );
+                        setLocationname(e.target.value);
                       }}
                       style={{
                         width: "95%",
@@ -1335,22 +1197,24 @@ export default function AddJob({
                     }}
                   ></Typography>
 
-                  {arrayoflongstudy.map((data, index) => {
+                  {arrayoflongstudy1?.map((data, index) => {
                     return (
                       <Typography
                         sx={{
                           p: 0.51,
                           pl: 1,
                           ml: 1,
-                          width: "40vw",
+                          width: "32.5vw",
                           cursor: "pointer",
                         }}
                         onClick={() => {
-                          setstudyset(data);
-                          handleClosex3();
+                          setstudyset1(
+                            data?.area + ", " + data?.city + ", " + data?.state
+                          );
+                          handleClosex4();
                         }}
                       >
-                        {data}
+                        {data?.area + ", " + data?.city + ", " + data?.state}
                       </Typography>
                     );
                   })}
@@ -1422,8 +1286,6 @@ export default function AddJob({
             <button
               style={{ background: "white" }}
               onClick={() => {
-                // setEmail("");
-                setMobile();
                 setName("");
                 setDesc("");
                 setFile();
@@ -1440,14 +1302,6 @@ export default function AddJob({
               Submit
             </button>
           </div>
-          {/* {erroeshow ? (
-            <div style={{ color: "red" }} className="jobpodtedfieldtitile">
-              {" "}
-              *Email and Mobile should be Correct and Unique{" "}
-            </div>
-          ) : (
-            ""
-          )}{" "} */}
         </div>
       </div>
 
