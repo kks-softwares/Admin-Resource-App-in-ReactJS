@@ -1622,7 +1622,18 @@ a {
   font-weight: 400;
   font-family: Poppins;
   line-height: 1.1vw;
-  color: rgba(105, 104, 104, 0.874);
+  color: #000000;
+  margin-top: 0.51vw;
+}
+.activejobpistbudgetbox span{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1vw;
+  font-weight: 400;
+  font-family: Poppins;
+  line-height: 1.1vw;
+  color: #00000090;
   margin-top: 0.51vw;
 }
 .descriptionactibeobbox {

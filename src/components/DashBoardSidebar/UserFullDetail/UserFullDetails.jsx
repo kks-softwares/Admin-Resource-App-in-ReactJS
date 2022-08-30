@@ -329,17 +329,7 @@ export default function SkillCenter() {
       )}
       {workhistorytoggle === 3 ? (
         <>
-          <div className="catalogcontainerdashbaord">
-            <div className="tableapplidjobflex">
-              <div style={{ width: "16vw" }}>Job Title</div>
-              <div style={{ width: "35vw", paddingLeft: "1vw" }}>
-                Job Details
-              </div>
-              <div style={{ width: "15vw" }}>Contract Value</div>
-              <div style={{ width: "11vw" }}>Status</div>
-              <div style={{ width: "8vw" }}></div>
-            </div>
-          </div>
+          
           <AppliedJobpage />
         </>
       ) : (

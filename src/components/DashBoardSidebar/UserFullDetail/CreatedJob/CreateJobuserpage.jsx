@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import {  useParams } from "react-router";
-
+import { useParams } from "react-router";
 
 import axios from "axios";
 import API_HOST from "../../../../env";
 
-export default function CreateJobuserpage({user}) {
+export default function CreateJobuserpage({ user }) {
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
-  const {  userName } = useParams();
+  const { userName } = useParams();
   const [alluserjob, setAlluserjob] = useState([]);
 
   useEffect(() => {
     axios
       .get(
-        `${API_HOST}/jobPost/viewJobPost?userName=${
-          userName
-        }&pageSize=${9}&pageNumber=${page}&category=`
+        `${API_HOST}/jobPost/viewJobPost?userName=${userName}&pageSize=${9}&pageNumber=${page}&category=`
       )
       .then((res) => {
         setAlluserjob(res?.data?.success?.data);
@@ -26,9 +23,9 @@ export default function CreateJobuserpage({user}) {
       });
     axios
       .get(
-        `${API_HOST}/jobPost/viewJobPost?userName=${
-       userName
-        }&pageSize=${9}&pageNumber=${page + 1}&category=`
+        `${API_HOST}/jobPost/viewJobPost?userName=${userName}&pageSize=${9}&pageNumber=${
+          page + 1
+        }&category=`
       )
       .then((res) => {
         if (res?.data?.success?.data?.length > 0) {
@@ -42,7 +39,10 @@ export default function CreateJobuserpage({user}) {
         {alluserjob?.length > 0 &&
           alluserjob?.map((data) => {
             return (
-              <div style={{ overflow: "hidden",display:"block" }} className="activejobpostbox">
+              <div
+                style={{ overflow: "hidden", display: "block" }}
+                className="activejobpostbox"
+              >
                 <div
                   style={{
                     display: "flex",
@@ -53,15 +53,17 @@ export default function CreateJobuserpage({user}) {
                   <div style={{ marginLeft: "0vw" }} className="tagblue">
                     {data?.category}
                   </div>
-                  <div style={{ marginLeft: "1vw",fontSize:"0.8vw" }} >
+                  <div style={{ marginLeft: "1vw", fontSize: "0.8vw" }}>
                     {data?.subCategory}
                   </div>
                 </div>
                 <div style={{ height: "1.1vw" }} className="activejobpostname">
-                  {data?.workTitle?.length>40?data?.workTitle?.slice(0,40)+"..":data?.workTitle}
+                  {data?.workTitle?.length > 40
+                    ? data?.workTitle?.slice(0, 40) + ".."
+                    : data?.workTitle}
                 </div>
                 <div
-                  style={{ lineHeight: "1.2vw !important",color:"#064C8790" }}
+                  style={{ lineHeight: "1.2vw !important", color: "#064C8790" }}
                   className="activejobpistbudgetbox"
                 >
                   <div>
@@ -71,7 +73,7 @@ export default function CreateJobuserpage({user}) {
                         fontSize: "0.9vw",
                         position: "relative",
                         bottom: "0.3vw",
-                        color:"#00000090"
+                        color: "#00000090",
                       }}
                     >
                       ${data?.minimumBudget}- ${data?.maximuBudget}
@@ -84,10 +86,14 @@ export default function CreateJobuserpage({user}) {
                         fontSize: "0.9vw",
                         position: "relative",
                         bottom: "0.3vw",
-                        color:"#00000090"
+                        color: "#00000090",
                       }}
                     >
-                      {data?.remote?"remote":data?.onSite?.length>25?data?.onSite?.slice(0,23)+"..":data?.onSite}
+                      {data?.remote
+                        ? "remote"
+                        : data?.onSite?.length > 25
+                        ? data?.onSite?.slice(0, 23) + ".."
+                        : data?.onSite}
                     </span>
                   </div>
                   <div style={{ marginRight: "1vw" }}>
@@ -97,7 +103,7 @@ export default function CreateJobuserpage({user}) {
                         fontSize: "0.9vw",
                         position: "relative",
                         bottom: "0.3vw",
-                        color:"#00000090"
+                        color: "#00000090",
                       }}
                     >
                       {data?.expiry} Days
@@ -108,8 +114,14 @@ export default function CreateJobuserpage({user}) {
                   style={{ height: "4.5vw", margin: "0vw" }}
                   className="descriptionactibeobbox"
                 >
-                  <div style={{ height: "3.5vw" }}>
-                   {data?.shortDescription?.slice(0,160)}
+                  <div
+                    style={{
+                      height: "3.5vw",
+                      color: "#707070100",
+                      fontWeight: "400",
+                    }}
+                  >
+                    {data?.shortDescription?.slice(0, 160)}
                   </div>
 
                   <br />
@@ -128,7 +140,7 @@ export default function CreateJobuserpage({user}) {
                 <div style={{ paddingLeft: "0vw" }} className="flexlastactiveb">
                   <div>No of Proposoals - {data?.listOfBider?.length}</div>
 
-                  <div style={{ color: "#00000090" }}> See More</div>
+                  <div style={{ color: "#00000090",cursor:"pointer" }}> See More</div>
                 </div>
               </div>
             );
