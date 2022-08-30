@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+
 import "./appliedjob.css";
 import { SearchSharp } from "@mui/icons-material";
 import Box from "@mui/material/Box";
@@ -391,13 +391,13 @@ export default function Users() {
                   </Popover>
 
                   <div
-                    style={{ left: "0vw", width: "99%", marginLeft: "0%" }}
+                    style={{ left: "0vw", width: "98%", marginLeft: "0%" }}
                     className="loginfield"
                     onClick={handleClickx3}
                   >
                     <TextField
                       id="outlined-basic"
-                      label="Search Designation"
+                      label="Search Skill Set"
                       variant="outlined"
                       disabled
                       value={studyset}
@@ -441,7 +441,7 @@ export default function Users() {
                       style={{
                         maxHeight: "18vw",
                         overflow: "scroll",
-                        width: "36vw",
+                        width: "44vw",
                       }}
                     >
                       <Typography
@@ -449,7 +449,7 @@ export default function Users() {
                           p: 1,
                           pl: 1,
                           ml: 1,
-                          width: "35vw",
+                          width: "43vw",
                           position: "fixed",
                           background: "white",
                           zIndex: "10",
@@ -457,16 +457,7 @@ export default function Users() {
                       >
                         <input
                           onChange={(e) => {
-                            setArrayoflongstudy(
-                              arrayofstudy.filter((x) =>
-                                x.includes(e.target.value)
-                              )
-                            );
-                            console.log(
-                              arrayofstudy.filter((x) =>
-                                x.includes(e.target.value)
-                              )
-                            );
+                            
                           }}
                           style={{
                             width: "97%",
@@ -667,9 +658,10 @@ export default function Users() {
             <div style={{ width: "6vw" }}>Id</div>
             <div style={{ width: "9vw" }}> </div>
             <div style={{ width: "15vw" }}>Name</div>
-            <div style={{ width: "15vw" }}>category</div>
-            <div style={{ width: "15vw" }}>Designation</div>
-            <div style={{ width: "12vw" }}>Joined on</div>
+            <div style={{ width: "12vw" }}>category</div>
+            <div style={{ width: "12vw" }}>Skill Set</div>
+            <div style={{ width: "12vw" }}></div>
+            <div style={{ width: "10vw" }}>Joined on</div>
             <div style={{ width: "6vw" }}></div>
           </div>
           {allusers?.length > 0 &&

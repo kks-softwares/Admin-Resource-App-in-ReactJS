@@ -177,7 +177,7 @@ export default function AddUser() {
           style={{ textAlign: "center", fontSize: "1.5vw" }}
           className="settingAccounttitle"
         >
-          User Details
+         Add User 
         </div>
 
         <hr style={{ margin: "1vw" }} />
@@ -209,7 +209,7 @@ export default function AddUser() {
             >
               <TextField
                 id="outlined-basic"
-                label="Category *"
+                label="Category "
                 variant="outlined"
                 disabled
                 value={Category}
@@ -317,18 +317,120 @@ export default function AddUser() {
         </div>
         <div className="accountdetailbox">
           <div style={{ width: "15vw" }} className="settingAccounttitle">
-            Designation
+            Skill Set
           </div>
           <div style={{ width: "40vw" }} className="settingAccounttitlevalue">
-            <div className="jobpostfieldinputbox">
-              <input
-                style={{ width: "29.2vw" }}
-                onChange={(e) => {
-                  setdesignation(e.target.value);
+            <div
+              style={{ left: "0vw", width: "94%", marginLeft: "0%" }}
+              className="loginfield"
+              onClick={handleClickx2}
+            >
+              <TextField
+                id="outlined-basic"
+                label="Skill Set"
+                variant="outlined"
+                disabled
+                value={Category}
+                style={{ width: "100%" }}
+                InputLabelProps={{
+                  style: {
+                    fontSize: "1vw",
+                    fontFamily: "Poppins",
+                    fontStyle: "500",
+                    fontWeight: "500",
+                    color: "black",
+                  },
                 }}
-                value={Designation}
+                inputProps={{ className: classes.input }}
+                onChange={(e) => {
+                  console.log(e.target.value);
+                }}
               />
+              <span style={{ width: "0.1vw" }}>
+                <KeyboardArrowDownOutlined
+                  style={{
+                    fontSize: "1.5vw",
+                    position: "relative",
+                    right: "2vw",
+                    top: "1vw",
+                  }}
+                />
+              </span>
             </div>
+
+            <Popover
+              id={idx2}
+              open={openx2}
+              anchorEl={anchorElx2}
+              onClose={handleClosex2}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+            >
+              <div
+                style={{ maxHeight: "18vw", overflow: "scroll", width: "35vw" }}
+              >
+                <Typography
+                  sx={{
+                    p: 1,
+                    pl: 1,
+                    ml: 1,
+                    pr: 0,
+                    width: "34vw",
+                    position: "fixed",
+                    background: "white",
+                    zIndex: "10",
+                  }}
+                >
+                  <input
+                    placeholder="search here .."
+                    onChange={(e) => {
+                      setSearchCategorysearch(e.target.value);
+                    }}
+                    style={{
+                      width: "97%",
+                      border: "1.5px solid #00000050",
+                      outline: "none",
+                      height: "2.5",
+                      borderRadius: "0.21vw",
+                    }}
+                  />
+                </Typography>
+                <Typography
+                  sx={{
+                    p: 2.5,
+                    pl: 1,
+                    ml: 1,
+                    width: "100%",
+                    cursor: "pointer",
+                  }}
+                ></Typography>
+
+                {arrayoflongdegree?.length > 0 &&
+                  arrayoflongdegree.map((data, index) => {
+                    return (
+                      <Typography
+                        sx={{
+                          p: 0.51,
+                          pl: 1,
+                          ml: 1,
+                          width: "100%",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => {
+                          setCategory(data?.category);
+                          handleClosex2();
+                          setcateError();
+                        }}
+                      >
+                        {data?.category}
+                      </Typography>
+                    );
+                  })}
+              </div>
+            </Popover>
+            <p style={{ color: "red", fontSize: "0.9vw" }}>{cateerror}</p>
           </div>
         </div>
         <div className="accountdetailbox">
