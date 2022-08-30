@@ -46,15 +46,17 @@
 }
 
 .filtericonbox {
-  background: #064c87 0% 0% no-repeat padding-box;
+  background: #E4E4E4 0% 0% no-repeat padding-box;
   border-radius: 4px;
-  width: 3vw;
+  width: 8vw;
   height: 3vw;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 00.5vw 1vw;
   cursor: pointer;
+  color: #064C87;
+  font-size: 1.3vw;
 }
 .filtericonboxname {
   border-radius: 4px;
@@ -71,9 +73,10 @@
   font-family: Poppins;
 }
 .filtericonbox img {
-  height: 2vw;
-  width: 2vw;
+  height: 1.7vw;
+  width: 1.7vw;
   object-fit: contain;
+  margin-right: 0.4vw;
 }
 .filterboxnameskill {
   border-radius: 1vw;

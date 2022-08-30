@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import imgfilter from "../../../../assets/Dashboard/Iconly-Light-Filter 2.png";
+import imgfilter from "../../../../assets/walletimage/Iconly-Light-Color-Filter.svg";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import AssingedStatusCurrent from "./AssingedStatusCurrent";
@@ -19,7 +19,7 @@ const style1 = {
 };
 
 export default function Assignedwork() {
-    const navigate=useNavigate()
+  const navigate = useNavigate();
   const [arrayoffilters, setArrayoffilters] = useState([
     {
       filternameName: "Work Status",
@@ -65,7 +65,7 @@ export default function Assignedwork() {
               }}
               className="filtericonbox"
             >
-              <img src={imgfilter} alt="" />
+              <img src={imgfilter} alt="" /> Filter
             </div>
 
             <Modal
@@ -203,7 +203,9 @@ export default function Assignedwork() {
           Current Work
         </div>
         <div
-        onClick={()=>{navigate('/dashbaord/addwork')}}
+          onClick={() => {
+            navigate("/dashbaord/addwork");
+          }}
           style={{
             width: "10vw",
             background: "white",

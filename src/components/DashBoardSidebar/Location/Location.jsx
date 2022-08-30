@@ -7,7 +7,7 @@ import axios from "axios";
 import API_HOST from "../../../env";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
+import imgfilter from "../../../assets/walletimage/Iconly-Light-Color-Filter.svg";
 import Modal from "@mui/material/Modal";
 import Skillpopup from "./Skillpopup";
 import img1 from "../../../assets/Jobs/Iconly-Light-Delete.svg";
@@ -240,7 +240,7 @@ export default function Location() {
           }
         }
         setSelecteddelete([]);
-        handleClose3()
+        handleClose3();
       });
   };
 
@@ -287,7 +287,7 @@ export default function Location() {
               }}
               className="filtericonbox"
             >
-              <img src={imgfilter} alt="" />
+              <img src={imgfilter} alt="" /> Filter
             </div>
 
             <Modal
@@ -455,9 +455,9 @@ export default function Location() {
         <div style={{ width: "5vw", height: "1vw" }}>
           <img
             onClick={() => {
-                if (selecteddelete?.length>0) {
-                    handleOpen3()
-                }
+              if (selecteddelete?.length > 0) {
+                handleOpen3();
+              }
             }}
             style={{
               margin: "0vw 0.5vw",
@@ -480,10 +480,7 @@ export default function Location() {
         >
           <Box sx={style}>
             <div className="profiletitleandmenunav">
-              <div className="profiledetailstitle">
-                Delete{" "} Location
-               
-              </div>
+              <div className="profiledetailstitle">Delete Location</div>
               <div className="profiledetailnavmanu">
                 <div>
                   <CloseIcon
@@ -497,8 +494,6 @@ export default function Location() {
 
             <div style={{ left: "0vw", width: "100%" }} className="loginfield">
               Are you really want to delete these ' Location '
-              
-              
             </div>
 
             <hr style={{ color: "#00000090" }} />

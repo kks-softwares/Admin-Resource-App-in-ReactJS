@@ -16,6 +16,7 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
 import img23 from "../../assets/Jobs/Iconly-Light-Paper Upload.svg";
+import img18 from '../../assets/walletimage/Iconly-Light-outline-Ticket.svg'
 export default function BrowseWorkSiadebar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -314,7 +315,7 @@ export default function BrowseWorkSiadebar() {
           colorsidebar === 10 ? "firstsidebarmenu1" : "firstsidebarmenu"
         }
       >
-        <img src={img17} alt="" />
+        <img src={img18} alt="" />
         catalogue
       </div>
 

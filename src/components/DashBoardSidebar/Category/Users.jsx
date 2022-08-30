@@ -7,7 +7,7 @@ import axios from "axios";
 import API_HOST from "../../../env";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
+import imgfilter from "../../../assets/walletimage/Iconly-Light-Color-Filter.svg";
 import Modal from "@mui/material/Modal";
 import Skillpopup from "./Skillpopup";
 import img1 from "../../../assets/Jobs/Iconly-Light-Delete.svg";
@@ -140,9 +140,8 @@ export default function Users() {
       })
       .then((res) => {
         setSelecteddelete([]);
-        handleClose3()
+        handleClose3();
         setRecall(!recall);
-
       });
   };
   const [allusers1, setAllusers1] = useState([]);
@@ -210,7 +209,7 @@ export default function Users() {
       })
       .then((res) => {
         setSelecteddelete1([]);
-        handleClose3()
+        handleClose3();
         setRecall1(!recall1);
       });
   };
@@ -279,9 +278,8 @@ export default function Users() {
       })
       .then((res) => {
         setSelecteddelete2([]);
-        handleClose3()
+        handleClose3();
         setRecall2(!recall2);
-        
       });
   };
 
@@ -344,7 +342,7 @@ export default function Users() {
               }}
               className="filtericonbox"
             >
-              <img src={imgfilter} alt="" />
+              <img src={imgfilter} alt="" /> Filter
             </div>
 
             <Modal
@@ -709,19 +707,15 @@ export default function Users() {
         <div style={{ width: "5vw", height: "1vw" }}>
           <img
             onClick={() => {
-                if (toggler===1&&selecteddelete1.length>0) {
-                    
-                    handleOpen3();
-                }
-                if (toggler===2&&selecteddelete2?.length>0) {
-                    
-                    handleOpen3();
-                }
-                if (toggler===3&&selecteddelete.length>0) {
-                    
-                    handleOpen3();
-                }
-                
+              if (toggler === 1 && selecteddelete1.length > 0) {
+                handleOpen3();
+              }
+              if (toggler === 2 && selecteddelete2?.length > 0) {
+                handleOpen3();
+              }
+              if (toggler === 3 && selecteddelete.length > 0) {
+                handleOpen3();
+              }
             }}
             style={{
               margin: "0vw 0.5vw",

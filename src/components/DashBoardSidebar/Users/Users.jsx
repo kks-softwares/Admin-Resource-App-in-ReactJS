@@ -11,7 +11,7 @@ import axios from "axios";
 import API_HOST from "../../../env";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
+import imgfilter from "../../../assets/walletimage/Iconly-Light-Color-Filter.svg";
 import Modal from "@mui/material/Modal";
 import Skillpopup from "./Skillpopup";
 import Skillpopup1 from "./Skillpopup1";
@@ -47,9 +47,6 @@ export default function Users() {
   const [anchorElx, setAnchorElx] = React.useState(null);
   const canBeOpen = openx && Boolean(anchorElx);
   const id = canBeOpen ? "transition-popper" : undefined;
-  
-
-  
 
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
@@ -58,7 +55,6 @@ export default function Users() {
   const [totalpages1, settotalpages1] = useState(1);
 
   const [setSelectedCategory, setSetSelectedCategory] = useState("");
- 
 
   const [arrayoffilterselected, setarrayoffilterselected] = useState([]);
 
@@ -253,7 +249,7 @@ export default function Users() {
               }}
               className="filtericonbox"
             >
-              <img src={imgfilter} alt="" />
+              <img src={imgfilter} alt="" /> Filter
             </div>
 
             <Modal
@@ -456,9 +452,7 @@ export default function Users() {
                         }}
                       >
                         <input
-                          onChange={(e) => {
-                            
-                          }}
+                          onChange={(e) => {}}
                           style={{
                             width: "97%",
                             border: "1.5px solid #00000050",

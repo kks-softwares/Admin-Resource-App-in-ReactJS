@@ -13,7 +13,7 @@ import img1 from "../../../assets/Jobs/Iconly-Light-Delete.svg";
 import img2 from "../../../assets/Jobs/Iconly-Light-Edit.svg";
 import img3 from "../../../assets/Jobs/Iconly-Light-Paper Upload.svg";
 import CloseIcon from "@mui/icons-material/Close";
-import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
+import imgfilter from "../../../assets/walletimage/Iconly-Light-Color-Filter.svg";
 import Modal from "@mui/material/Modal";
 import { makeStyles } from "@material-ui/core";
 import { TextField } from "@mui/material";
@@ -351,7 +351,7 @@ export default function Jobs() {
                 }}
                 className="filtericonbox"
               >
-                <img src={imgfilter} alt="" />
+                <img src={imgfilter} alt="" /> Filter
               </div>
 
               {/* <Modal

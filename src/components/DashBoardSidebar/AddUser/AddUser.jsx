@@ -94,7 +94,6 @@ export default function AddUser() {
   const openx2 = Boolean(anchorElx2);
   const idx2 = openx2 ? "simple-popover" : undefined;
 
-  
   const handleGameClick = () => {
     setDisabled(!disabled);
   };
@@ -177,7 +176,7 @@ export default function AddUser() {
           style={{ textAlign: "center", fontSize: "1.5vw" }}
           className="settingAccounttitle"
         >
-         Add User 
+          Add User
         </div>
 
         <hr style={{ margin: "1vw" }} />

@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import API_HOST from "../../../env";
-import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
+import imgfilter from "../../../assets/walletimage/Iconly-Light-Color-Filter.svg";
 import Modal from "@mui/material/Modal";
 import Skillpopup from "./Skillpopup";
 import img1 from "../../../assets/Jobs/Iconly-Light-Delete.svg";
@@ -125,7 +125,7 @@ export default function Pricing() {
             window.scrollTo(0, 0, { behavior: "smooth" });
           });
         }
-        handleClose3()
+        handleClose3();
         setSelecteddelete([]);
       });
   };
@@ -173,7 +173,7 @@ export default function Pricing() {
               }}
               className="filtericonbox"
             >
-              <img src={imgfilter} alt="" />
+              <img src={imgfilter} alt="" /> Filter
             </div>
 
             <Modal

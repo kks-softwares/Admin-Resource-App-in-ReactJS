@@ -7,7 +7,7 @@ import axios, { Axios } from "axios";
 import API_HOST from "../../../env";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import imgfilter from "../../../assets/Dashboard/Iconly-Light-Filter 2.png";
+import imgfilter from "../../../assets/walletimage/Iconly-Light-Color-Filter.svg";
 import Modal from "@mui/material/Modal";
 import Skillpopup1 from "./Skillpopup";
 import BlogButtonName from "./BlogButtonName";
@@ -142,8 +142,8 @@ export default function Blogs() {
       .then(() => {
         axios.get(`${API_HOST}/callToActionButton/viewButton`).then((res) => {
           setAllCbutton(res?.data?.success?.data);
-          handleClose3()
-          setTitleuser1("")
+          handleClose3();
+          setTitleuser1("");
         });
       });
   };
@@ -156,8 +156,8 @@ export default function Blogs() {
         .then(() => {
           axios.get(`${API_HOST}/callToActionTitle/viewTitle`).then((res) => {
             setAllCtitle(res?.data?.success?.data);
-            handleClose2()
-            setTitleuser("")
+            handleClose2();
+            setTitleuser("");
           });
         });
     }
@@ -278,7 +278,9 @@ export default function Blogs() {
               <div
                 style={{ cursor: "pointer" }}
                 className="handlecirclieaboutsave"
-                onClick={()=>{handleaddTitleName()}}
+                onClick={() => {
+                  handleaddTitleName();
+                }}
               >
                 Add
               </div>
@@ -347,7 +349,9 @@ export default function Blogs() {
               <div
                 style={{ cursor: "pointer" }}
                 className="handlecirclieaboutsave"
-                onClick={()=>{handleaddButtonName()}}
+                onClick={() => {
+                  handleaddButtonName();
+                }}
               >
                 Add
               </div>
@@ -432,7 +436,7 @@ export default function Blogs() {
                   }}
                   className="filtericonbox"
                 >
-                  <img src={imgfilter} alt="" />
+                  <img src={imgfilter} alt="" /> Filter
                 </div>
 
                 <Modal
