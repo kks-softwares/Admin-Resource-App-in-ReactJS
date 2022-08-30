@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import {  useParams } from "react-router";
-
 import axios from "axios";
 import API_HOST from "../../../../env";
 import AppliedPopup from "./AppliedPopup";
-export default function AppliedJobpage({ user }) {
+export default function AppliedJobpage({ user ,setjobdetail, setWorkhistorytoggle}) {
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
   const { type, userName } = useParams();
@@ -39,7 +38,8 @@ export default function AppliedJobpage({ user }) {
       <div className="catalogcontainerdashbaord">
         {alluserjob?.length > 0 &&
           alluserjob?.map((data) => {
-            return <AppliedPopup  data={data}/>;
+            return <AppliedPopup  setjobdetail={setjobdetail}
+            setWorkhistorytoggle={setWorkhistorytoggle}  data={data}/>;
           })}
       </div>
 

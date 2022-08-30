@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-
 import ProfileBanner from "./ProfileDashboard/ProfileBanner";
 import ProfileBadges from "./ProfileDashboard/ProfileBadges";
 import Profileuserdetails from "./ProfileDashboard/Profileuserdetails";
@@ -25,47 +24,36 @@ import Wallet from "./Wallet/Wallet";
 import FileManager from "./FileManager/FileManager";
 import Documents from "./DocumentsPage/Documents";
 import BankDetail from "./BankDetails/BankDetail";
-
+import Jobdetail from './JobDetail/Jobdetail'
 export default function SkillCenter() {
   const navigate = useNavigate();
   const [workhistorytoggle, setWorkhistorytoggle] = useState(1);
-  const [workhistorytoggle1, setWorkhistorytoggle1] = useState(1);
+
   const { type, userName } = useParams();
   const [user, setUser] = useState();
 
   useEffect(() => {
     if (type === "My Profile") {
       setWorkhistorytoggle(1);
-      setWorkhistorytoggle1(1);
     } else if (type === "Wallet") {
       setWorkhistorytoggle(8);
-      setWorkhistorytoggle1(8);
     } else if (type === "Created Job") {
       setWorkhistorytoggle(2);
-      setWorkhistorytoggle1(2);
     } else if (type === "Job Applied") {
       setWorkhistorytoggle(3);
-      setWorkhistorytoggle1(3);
     } else if (type === "Skill Center&Exams") {
       setWorkhistorytoggle(4);
-      setWorkhistorytoggle1(4);
     } else if (type === "Exams & Certificate") {
       setWorkhistorytoggle(5);
-      setWorkhistorytoggle1(5);
     } else if (type === "Reference List") {
       setWorkhistorytoggle(6);
-      setWorkhistorytoggle1(6);
     } else if (type === "File Manager") {
       setWorkhistorytoggle(7);
-      setWorkhistorytoggle1(7);
     } else if (type === "Bank Details") {
       setWorkhistorytoggle(9);
-      setWorkhistorytoggle1(9);
     } else if (type === "Documents") {
       setWorkhistorytoggle(10);
-      setWorkhistorytoggle1(10);
     } else {
-      setWorkhistorytoggle1(9);
       setWorkhistorytoggle(9);
     }
   }, [type]);
@@ -75,6 +63,8 @@ export default function SkillCenter() {
       setUser(res?.data?.success?.data);
     });
   }, [userName]);
+
+  const [jobdetail, setjobdetail] = useState("");
 
   return (
     <div className="BrowseWorkMain-cntainer">
@@ -152,7 +142,7 @@ export default function SkillCenter() {
           className="profileworkhistruytoggleervalue"
           style={{
             textAlign: "center",
-            color: workhistorytoggle === 2 ? "#064C87" : "black",
+            color: (workhistorytoggle === 2 ||workhistorytoggle===11) ? "#064C87" : "black",
             minWidth: "9vw",
           }}
           onClick={() => {
@@ -276,9 +266,9 @@ export default function SkillCenter() {
             right:
               workhistorytoggle === 1
                 ? "104vw"
-                : workhistorytoggle === 2
+                : (workhistorytoggle === 2 ||workhistorytoggle===11)
                 ? "94vw"
-                : workhistorytoggle === 3
+                : (workhistorytoggle === 3||workhistorytoggle===12)
                 ? "83.5vw"
                 : workhistorytoggle === 4
                 ? "73.5vw"
@@ -292,7 +282,9 @@ export default function SkillCenter() {
                 ? "29vw"
                 : workhistorytoggle === 9
                 ? "19vw"
-                : workhistorytoggle === 10?"9vw":"",
+                : workhistorytoggle === 10
+                ? "9vw"
+                : "",
 
             bottom: "0.3vw",
             transitionDuration: "1s",
@@ -300,7 +292,7 @@ export default function SkillCenter() {
           }}
         ></div>
       </div>
-      {workhistorytoggle1 === 1 ? (
+      {workhistorytoggle === 1 ? (
         <div>
           <div style={{ flexWrap: "wrap" }} className="filterboxflex">
             <ProfileBanner user={user} />
@@ -319,18 +311,26 @@ export default function SkillCenter() {
       ) : (
         ""
       )}
-     
-      {workhistorytoggle1 === 2 ? (
+
+      {workhistorytoggle === 2 ? (
         <div>
-          <CreateJobuserpage user={user} />
+          {
+            <CreateJobuserpage
+              user={user}
+              setjobdetail={setjobdetail}
+              setWorkhistorytoggle={setWorkhistorytoggle}
+            />
+          }
         </div>
       ) : (
         ""
       )}
       {workhistorytoggle === 3 ? (
         <>
-          
-          <AppliedJobpage />
+          <AppliedJobpage
+            setjobdetail={setjobdetail}
+            setWorkhistorytoggle={setWorkhistorytoggle}
+          />
         </>
       ) : (
         ""
@@ -375,7 +375,7 @@ export default function SkillCenter() {
       ) : (
         ""
       )}
-       {workhistorytoggle1 === 8 ? (
+      {workhistorytoggle === 8 ? (
         <div>
           <Wallet />
         </div>
@@ -389,6 +389,22 @@ export default function SkillCenter() {
       ) : (
         ""
       )}
+      {workhistorytoggle === 11 ? (
+        <>
+          <Jobdetail user={user} />
+        </>
+      ) : (
+        ""
+      )}
+      {workhistorytoggle === 12 ? (
+        <>
+          <Jobdetail user={user} />
+        </>
+      ) : (
+        ""
+      )}
+
+     
     </div>
   );
 }

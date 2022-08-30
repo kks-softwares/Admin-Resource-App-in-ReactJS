@@ -6,7 +6,7 @@ import { useParams } from "react-router";
 import axios from "axios";
 import API_HOST from "../../../../env";
 
-export default function CreateJobuserpage({ user }) {
+export default function CreateJobuserpage({setjobdetail, setWorkhistorytoggle}) {
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
   const { userName } = useParams();
@@ -140,7 +140,16 @@ export default function CreateJobuserpage({ user }) {
                 <div style={{ paddingLeft: "0vw" }} className="flexlastactiveb">
                   <div>No of Proposoals - {data?.listOfBider?.length}</div>
 
-                  <div style={{ color: "#00000090",cursor:"pointer" }}> See More</div>
+                  <div
+                    onClick={() => {
+                      setjobdetail(1);
+                      setWorkhistorytoggle(11)
+                    }}
+                    style={{ color: "#00000090", cursor: "pointer" }}
+                  >
+                    {" "}
+                    See More
+                  </div>
                 </div>
               </div>
             );

@@ -16,7 +16,11 @@ const style = {
   overflow: "scroll",
 };
 
-export default function AppliedPopup({ data }) {
+export default function AppliedPopup({
+  data,
+  setjobdetail,
+  setWorkhistorytoggle,
+}) {
   const [openx, setOpenx] = React.useState(false);
   const handleOpenx = () => setOpenx(true);
   const navigate = useNavigate();
@@ -46,12 +50,25 @@ export default function AppliedPopup({ data }) {
             </div>
           </div>
           <div style={{ display: "flex" }}>
-          <div
-                  style={{ margin: "0", height: "2.4vw",background:"#E4E4E4",fontSize:"400" }}
-                  className="digitalwallate"
-                >
-                  <span style={{ padding: "0.6vw 0.5vw",fontSize:"400",background:"none" }}>Chat to Client</span>
-                </div>
+            <div
+              style={{
+                margin: "0",
+                height: "2.4vw",
+                background: "#E4E4E4",
+                fontSize: "400",
+              }}
+              className="digitalwallate"
+            >
+              <span
+                style={{
+                  padding: "0.6vw 0.5vw",
+                  fontSize: "400",
+                  background: "none",
+                }}
+              >
+                Chat to Client
+              </span>
+            </div>
           </div>
         </div>{" "}
         <div
@@ -62,7 +79,7 @@ export default function AppliedPopup({ data }) {
             flexWrap: "wrap",
             marginTop: "1vw",
             marginLeft: "1vw",
-            color:"#064C87"
+            color: "#064C87",
           }}
         >
           Senior Product Designer (#34793)
@@ -80,7 +97,6 @@ export default function AppliedPopup({ data }) {
           <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
             {"Remote Kanpur"}
           </span>
-          
         </div>
         <div
           style={{
@@ -100,27 +116,35 @@ export default function AppliedPopup({ data }) {
           remaining essentially unchanged. It was popularised in the 1960s with
           the release of Letraset sheets containing Lorem Ipsum passages, and
           more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
+          including versions of Lorem Ipsum. the release of Letraset sheets
+          containing Lorem Ipsum passages, and more recently with desktop
+          publishing software like Aldus PageMaker including versions of Lorem
+          Ipsum.
         </div>
         <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
           <div>
-          Hired by <br /> <span>Vasaanth David.H</span>
+            Hired by <br /> <span>Vasaanth David.H</span>
           </div>
           <div style={{ marginRight: "1vw" }}>
-          Bid Value <br /> <span> $8 - $16</span>
+            Bid Value <br /> <span> $8 - $16</span>
           </div>
           <div style={{ marginRight: "1vw" }}>
-          Duration <br />  <span>3 Months </span>
+            Duration <br /> <span>3 Months </span>
           </div>
           <div style={{ marginRight: "1vw" }}>
             {" "}
-            Status <br /> <span style={{color:"#E2E228"}}> Work Applied</span>
+            Status <br />{" "}
+            <span style={{ color: "#E2E228" }}> Work Applied</span>
           </div>
-          <div style={{ marginRight: "1vw" ,color:"#064C87"}}>View</div>
-         
+          <div
+            onClick={() => {
+              setjobdetail(1);
+              setWorkhistorytoggle(12);
+            }}
+            style={{ marginRight: "1vw", color: "#064C87", cursor: "pointer" }}
+          >
+            View
+          </div>
         </div>
       </div>
       <Modal
