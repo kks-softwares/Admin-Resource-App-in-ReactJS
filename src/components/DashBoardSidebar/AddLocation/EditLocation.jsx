@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import API_HOST from "../../../env";
 import { useNavigate, useParams } from "react-router";
 
@@ -20,6 +20,19 @@ export default function EditLocation({ handleClose, setSelectedCategory }) {
   const [formValues7, setFormValues7] = useState();
   const [formErrors7, setFormErrors7] = useState();
 
+  const navigate = useNavigate();
+
+  const [errrorofregex, setErrrorofregex] = useState(false);
+
+  const checkalph = (data) => {
+    const regexForDigit = /^[a-zA-Z_ ]*$/;
+    return regexForDigit.test(data);
+  };
+  const checknum = (data) => {
+    const regexForDigit = /^[0-9]+$/;
+    return regexForDigit.test(data);
+  };
+
   const { id, address, landmark, area, city, pinCode, state, country } =
     useParams();
   useEffect(() => {
@@ -31,8 +44,6 @@ export default function EditLocation({ handleClose, setSelectedCategory }) {
     setFormValues6(state);
     setFormValues7(country);
   }, [id]);
-  const navigate = useNavigate();
-
   const handleAdd = () => {
     if (
       formValues &&
@@ -195,7 +206,15 @@ export default function EditLocation({ handleClose, setSelectedCategory }) {
               value={formValues4}
               onChange={(e) => {
                 setFormValues4(e.target.value);
-                setFormErrors4();
+
+                if (!checkalph(e.target.value)) {
+                  setFormErrors4("city must be contain only Alphabets");
+                  setErrrorofregex(true);
+                } else {
+                  setFormErrors4();
+
+                  setErrrorofregex(false);
+                }
               }}
             />
             <CloseIcon
@@ -207,7 +226,10 @@ export default function EditLocation({ handleClose, setSelectedCategory }) {
                 cursor: "pointer",
               }}
               onClick={() => {
-                setFormValues4();
+                setFormValues4("");
+                setFormErrors4();
+
+                setErrrorofregex(false);
               }}
             />
           </div>
@@ -217,12 +239,20 @@ export default function EditLocation({ handleClose, setSelectedCategory }) {
           <div className="jobpodtedfieldtitile">Pincode *</div>
           <div className="jobpostfieldinputbox">
             <input
-              type="text"
+              type="number"
               name="title"
+              pattern="[0-9]+"
               value={formValues5}
               onChange={(e) => {
                 setFormValues5(e.target.value);
-                setFormErrors5();
+                if (!checknum(e.target.value)) {
+                  setFormErrors5("Pincode must be contain only Numbers");
+                  setErrrorofregex(true);
+                } else {
+                  setFormErrors5();
+
+                  setErrrorofregex(false);
+                }
               }}
             />
             <CloseIcon
@@ -234,7 +264,10 @@ export default function EditLocation({ handleClose, setSelectedCategory }) {
                 cursor: "pointer",
               }}
               onClick={() => {
-                setFormValues5();
+                setFormValues5("");
+                setFormErrors5();
+
+                setErrrorofregex(false);
               }}
             />
           </div>
@@ -249,7 +282,14 @@ export default function EditLocation({ handleClose, setSelectedCategory }) {
               value={formValues6}
               onChange={(e) => {
                 setFormValues6(e.target.value);
-                setFormErrors6();
+                if (!checkalph(e.target.value)) {
+                  setFormErrors6("State must be contain only Alphabets");
+                  setErrrorofregex(true);
+                } else {
+                  setFormErrors6();
+
+                  setErrrorofregex(false);
+                }
               }}
             />
             <CloseIcon
@@ -261,7 +301,10 @@ export default function EditLocation({ handleClose, setSelectedCategory }) {
                 cursor: "pointer",
               }}
               onClick={() => {
-                setFormValues6();
+                setFormValues6("");
+                setFormErrors6();
+
+                setErrrorofregex(false);
               }}
             />
           </div>
@@ -276,7 +319,14 @@ export default function EditLocation({ handleClose, setSelectedCategory }) {
               value={formValues7}
               onChange={(e) => {
                 setFormValues7(e.target.value);
-                setFormErrors7();
+                if (!checkalph(e.target.value)) {
+                  setFormErrors7("Country must be contain only Alphabets");
+                  setErrrorofregex(true);
+                } else {
+                  setFormErrors7();
+
+                  setErrrorofregex(false);
+                }
               }}
             />
             <CloseIcon
@@ -288,7 +338,10 @@ export default function EditLocation({ handleClose, setSelectedCategory }) {
                 cursor: "pointer",
               }}
               onClick={() => {
-                setFormValues7();
+                setFormValues7("");
+                setFormErrors7();
+
+                setErrrorofregex(false);
               }}
             />
           </div>
@@ -325,7 +378,11 @@ export default function EditLocation({ handleClose, setSelectedCategory }) {
               Reset
             </div>
             <div
-              onClick={() => handleAdd()}
+              onClick={() => {
+                if (!errrorofregex) {
+                  handleAdd();
+                }
+              }}
               style={{ cursor: "pointer", marginRight: "1vw" }}
               className="handlecirclieaboutsave"
             >
