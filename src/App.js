@@ -54,6 +54,9 @@ import Catalog from "./pages/Catalogs/Catalog";
 import PortFolioDetail from "./components/PortfolioDetail/PortFolioDetail";
 import Topbar from "./components/Topbar/Topbar";
 import DashbaordNav from "./components/DashBaord/DashbaordNav";
+import Dashboard from "./components/DashBoardSidebar/Dashbaord/Dashboard";
+import AddRedeem from "./components/DashBoardSidebar/AddRedeem/AddRedeem";
+import Redeem from "./components/DashBoardSidebar/Redeem/Redeem";
 
 function LayoutsWithNavbar() {
   return (
@@ -103,7 +106,6 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          
           <Route
             path="/"
             element={
@@ -135,9 +137,10 @@ function App() {
               </ProtectedRoute2>
             }
           >
-            <Route path="/dashbaord" element={<Users />} />
+            <Route path="/dashbaord" element={<Dashboard />} />
             <Route path="/dashbaord/users" element={<Users />} />
             <Route path="/dashbaord/blogs" element={<Blogs />} />
+            <Route path="/dashbaord/" element={<Blogs />} />
             <Route path="/dashbaord/addBlog" element={<Addblog />} />
             <Route path="/dashbaord/adduser" element={<AddUser />} />
             <Route
@@ -174,6 +177,7 @@ function App() {
               element={<EditCondidateDetail />}
             />
 
+            <Route path="/dashbaord/shop" element={<Dashbaord />} />
             <Route path="/dashbaord/jobs" element={<Jobs />} />
             <Route path="/dashbaord/addJob" element={<AddJob />} />
             <Route
@@ -193,7 +197,8 @@ function App() {
             <Route path="/dashbaord/addwork" element={<AddWork />} />
             <Route path="/dashbaord/workdetail" element={<WorkDetail />} />
             <Route path="/dashbaord/category" element={<Users1 />} />
-            <Route path="/dashbaord/catalogue" element={<Users1 />} />
+            <Route path="/dashbaord/catalogue" element={<Dashboard />} />
+            <Route path="/dashbaord/addCatalogue" element={<Dashboard />} />
             <Route path="/dashbaord/addcategory" element={<AddCategory />} />
             <Route
               path="/dashbaord/addsubcategory"
@@ -212,6 +217,8 @@ function App() {
               element={<EditPricing />}
             />
             <Route path="/dashbaord/pricing" element={<Pricing />} />
+            <Route path="/dashbaord/addRedeem" element={<AddRedeem />} />
+            <Route path="/dashbaord/redeem" element={<Redeem />} />
           </Route>
 
           <Route
@@ -236,7 +243,10 @@ function App() {
               path="/portfolio/:portId"
               element={<PortFolioDetail width={width} />}
             />
+          
+            
           </Route>
+          
         </Routes>
       </Router>
     </div>

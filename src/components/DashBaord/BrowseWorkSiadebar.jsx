@@ -69,17 +69,44 @@ export default function BrowseWorkSiadebar() {
   const id3 = open3 ? "simple-popover" : undefined;
 
   const [anchorEl4, setAnchorEl4] = React.useState(null);
-
   const handleClick4 = (event) => {
     setAnchorEl4(event.currentTarget);
   };
-
   const handleClose4 = () => {
     setAnchorEl4(null);
   };
-
   const open4 = Boolean(anchorEl4);
   const id4 = open4 ? "simple-popover" : undefined;
+
+  const [anchorEl5, setAnchorEl5] = React.useState(null);
+  const handleClick5 = (event) => {
+    setAnchorEl5(event.currentTarget);
+  };
+  const handleClose5 = () => {
+    setAnchorEl5(null);
+  };
+  const open5 = Boolean(anchorEl5);
+  const id5 = open5 ? "simple-popover" : undefined;
+
+  const [anchorEl6, setAnchorEl6] = React.useState(null);
+  const handleClick6 = (event) => {
+    setAnchorEl6(event.currentTarget);
+  };
+  const handleClose6 = () => {
+    setAnchorEl6(null);
+  };
+  const open6 = Boolean(anchorEl6);
+  const id6 = open6 ? "simple-popover" : undefined;
+
+  const [anchorEl7, setAnchorEl7] = React.useState(null);
+  const handleClick7 = (event) => {
+    setAnchorEl7(event.currentTarget);
+  };
+  const handleClose7 = () => {
+    setAnchorEl7(null);
+  };
+  const open7 = Boolean(anchorEl7);
+  const id7 = open7 ? "simple-popover" : undefined;
 
   const [anchorElp, setAnchorElp] = React.useState(null);
 
@@ -119,8 +146,17 @@ export default function BrowseWorkSiadebar() {
     if (location.pathname === "/dashbaord/users") {
       setColorsidebar(2);
     }
+    if (location.pathname === "/dashbaord/adduser") {
+      setColorsidebar(2);
+    }
+    if (location.pathname === "/dashbaord/addJob") {
+      setColorsidebar(3);
+    }
     if (location.pathname === "/dashbaord/jobs") {
       setColorsidebar(3);
+    }
+    if (location.pathname === "/dashbaord/addemployee") {
+      setColorsidebar(4);
     }
     if (location.pathname === "/dashbaord/employee") {
       setColorsidebar(4);
@@ -128,11 +164,20 @@ export default function BrowseWorkSiadebar() {
     if (location.pathname === "/dashbaord/blogs") {
       setColorsidebar(5);
     }
-    if (location.pathname === "/dashbaord/shop") {
+    if (location.pathname === "/dashbaord/addblog") {
+      setColorsidebar(5);
+    }
+    if (location.pathname === "/dashbaord/redeem") {
       setColorsidebar(6);
     }
-    console.log(location.pathname);
+    if (location.pathname === "/dashbaord/addRedeem") {
+      setColorsidebar(6);
+    }
+   
     if (location.pathname === "/dashbaord/skillCenter/List%20of%20Skills") {
+      setColorsidebar(7);
+    }
+    if (location.pathname === "/dashbaord/AddSkill") {
       setColorsidebar(7);
     }
     if (location.pathname === "/dashbaord/skillCenter/membership") {
@@ -144,10 +189,19 @@ export default function BrowseWorkSiadebar() {
     if (location.pathname === "/dashbaord/catalogue") {
       setColorsidebar(10);
     }
+    if (location.pathname === "/dashbaord/addCatalogue") {
+      setColorsidebar(10);
+    }
     if (location.pathname === "/dashbaord/location") {
       setColorsidebar(12);
     }
+    if (location.pathname === "/dashbaord/addlocation") {
+      setColorsidebar(12);
+    }
     if (location.pathname === "/dashbaord/pricing") {
+      setColorsidebar(11);
+    }
+    if (location.pathname === "/dashbaord/addpricing") {
       setColorsidebar(11);
     }
   }, [location]);
@@ -210,8 +264,9 @@ export default function BrowseWorkSiadebar() {
         </div>
    
 
-      <Link to="/dashbaord/shop">
+      
         <div
+          onClick={handleClick5}
           className={
             colorsidebar === 6 ? "firstsidebarmenu1" : "firstsidebarmenu"
           }
@@ -219,10 +274,11 @@ export default function BrowseWorkSiadebar() {
           <img src={img2} alt="" />
           Shop & Redeem
         </div>
-      </Link>
+     
 
-      <Link to="/dashbaord/skillCenter/List of Skills">
+      
         <div
+            onClick={handleClick6}
           className={
             colorsidebar === 7 ? "firstsidebarmenu1" : "firstsidebarmenu"
           }
@@ -230,9 +286,9 @@ export default function BrowseWorkSiadebar() {
           <img src={img3} alt="" />
           Skill Center
         </div>
-      </Link>
+    
 
-      <Link to="/dashbaord/membership">
+   
         <div
           className={
             colorsidebar === 8 ? "firstsidebarmenu1" : "firstsidebarmenu"
@@ -241,7 +297,7 @@ export default function BrowseWorkSiadebar() {
           <img src={img9} alt="" />
           Membership
         </div>
-      </Link>
+    
 
       <div
         onClick={handleClickx}
@@ -253,7 +309,7 @@ export default function BrowseWorkSiadebar() {
         Category
       </div>
       <div
-        onClick={handleClickx}
+        onClick={handleClick7}
         className={
           colorsidebar === 10 ? "firstsidebarmenu1" : "firstsidebarmenu"
         }
@@ -596,7 +652,7 @@ export default function BrowseWorkSiadebar() {
         id={id4}
         open={open4}
         anchorEl={anchorEl4}
-        onClose={handleClose2}
+        onClose={handleClose4}
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "center",
@@ -635,6 +691,175 @@ export default function BrowseWorkSiadebar() {
           />
           List of Blogs
         </Typography>
+      </Popover>
+   
+      <Popover
+        id={id5}
+        open={open5}
+        anchorEl={anchorEl5}
+        onClose={handleClose5}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+        <Typography
+          sx={{ p: 1, pr: 2, pb: 1, fontSize: "1.1vw", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/dashbaord/addRedeem");
+            handleClose5();
+          }}
+        >
+          <AddIcon
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+        Add Redeem
+        </Typography>
+
+        <Typography
+          onClick={() => {
+            navigate("/dashbaord/redeem");
+            handleClose5();
+          }}
+          sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
+        >
+          <img
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img23}
+            alt=""
+          />
+          List of Redeem
+        </Typography>
+      </Popover>
+   
+      <Popover
+        id={id6}
+        open={open6}
+        anchorEl={anchorEl6}
+        onClose={handleClose6}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+        <Typography
+          sx={{ p: 1, pr: 2, pb: 1, fontSize: "1.1vw", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/dashbaord/AddSkill");
+            handleClose6();
+          }}
+        >
+          <AddIcon
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          Add Skills
+        </Typography>
+
+        <Typography
+          onClick={() => {
+            navigate("/dashbaord/skillCenter/List%20of%20Skills");
+            handleClose6();
+          }}
+          sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
+        >
+          <img
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img23}
+            alt=""
+          />
+          List of Skills
+        </Typography>
+        <Typography
+          sx={{ p: 1, pr: 2, pb: 1, fontSize: "1.1vw", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/dashbaord/AddExam");
+            handleClose6();
+          }}
+        >
+          <AddIcon
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+          Add Exam
+        </Typography>
+
+        <Typography
+          onClick={() => {
+            navigate("/dashbaord/skillCenter/exam");
+            handleClose6();
+          }}
+          sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
+        >
+          <img
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img23}
+            alt=""
+          />
+          List of Exam
+        </Typography>
+    
+      </Popover>
+   
+      <Popover
+        id={id7}
+        open={open7}
+        anchorEl={anchorEl7}
+        onClose={handleClose7}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+      
+
+      
+        <Typography
+          sx={{ p: 1, pr: 2, pb: 1, fontSize: "1.1vw", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/dashbaord/addCatalogue");
+            handleClose7();
+          }}
+        >
+          <AddIcon
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img7}
+            alt=""
+          />
+      Add Catalogue
+        </Typography>
+
+        <Typography
+          onClick={() => {
+            navigate("/dashbaord/catalogue");
+            handleClose7();
+          }}
+          sx={{ p: 1, pr: 2, pb: 1.5, fontSize: "1.1vw", cursor: "pointer" }}
+        >
+          <img
+            style={{ paddingRight: "1vw", width: "2.5vw" }}
+            src={img23}
+            alt=""
+          />
+        List of Catalogue
+        </Typography>
+    
       </Popover>
    
    

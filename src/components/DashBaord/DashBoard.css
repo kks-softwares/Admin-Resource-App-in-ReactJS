@@ -29,6 +29,7 @@
   width: 16vw;
   background-color: white;
   padding: 0vw;
+  box-shadow: 2px 0 3px -2px rgb(192, 192, 192);
 }
 
 .firstsidebarmenu {
@@ -46,16 +47,13 @@
   height: 3.5vw;
   cursor: pointer;
   transition: all 0.3s;
-  
 }
-.firstsidebarmenu:hover{
-    background-color: #064C87;
-    color: white;
+.firstsidebarmenu:hover {
+  background-color: #064c87;
+  color: white;
 }
-.firstsidebarmenu:hover img{
-    filter: invert();
-
-    
+.firstsidebarmenu:hover img {
+  filter: invert();
 }
 .firstsidebarmenu1 {
   display: flex;
@@ -72,8 +70,7 @@
   height: 3vw;
   color: white;
   cursor: pointer;
-  background-color: #064C87;
-
+  background-color: #064c87;
 }
 
 .firstsidebarmenu img {
@@ -1450,238 +1447,238 @@ a {
 }
 
 .BrowseWorkMain-cntainer {
-    width: 100%;
-    padding: 1vw;
-  }
-  .searchboxcontainer {
-    width: 100%;
-    height: 5vw;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .digitalwallate span {
-    background: #fbfbfb 0% 0% no-repeat padding-box;
-    border-radius: 6px;
-    opacity: 1;
-    padding: 1vw;
-    margin: 0 1vw;
-  }
-  .addapostnavcntainerin {
-    font-size: 1.2vw;
-    align-items: center;
-    font-weight: 500;
-    font-family: Poppins;
-  }
-  .digitalwallate {
-    font-size: 1vw;
-    align-items: center;
-    font-weight: 500;
-    font-family: Poppins;
-    margin: 1.5vw 0;
-    cursor: pointer;
-    display: flex;
-  }
-  
-  .dashboardtitilemain {
-    font-size: 1.2vw;
-    align-items: center;
-    font-weight: 500;
-    font-family: Poppins;
-    margin: 2vw 1vw;
-    cursor: pointer;
-    display: flex;
-  }
-  .badgescontainerdashbaoe {
-    height: fit-content;
-    padding: 1vw;
-    padding-bottom: 0.1vw;
-    width: 100%;
-    background-color: #ffffff;
-  }
-  .flexofcategories {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .Categoriessmallboxes {
-    width: fit-content;
-    margin: 0.5vw;
-    padding: 0.81vw;
-    font-size: 1vw;
-    align-items: center;
-    font-weight: 400;
-    font-family: Poppins;
-    background-color: white;
-    border-radius: 0.3vw;
-  }
-  .catalogcontainerdashbaord {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .displayflextopuserdashbaord {
-    display: flex;
-    align-items: center;
-  
-    justify-content: space-between;
-    max-width: 99%;
-    overflow: scroll;
-    margin: auto;
-    padding: 1vw;
-    margin: 1vw;
-    background-color: #ffffff;
-  }
-  
-  .topuserbox {
-    width: 19vw;
-    margin: 0vw 1vw;
-    height: fit-content;
-  }
-  .topuserbox img {
-    width: 7vw;
-    height: 7vw;
-    border-radius: 50%;
-    margin: 1vw 2vw;
-  }
-  .topusername {
-    text-align: center;
-    font-size: 1vw;
-    font-weight: 500;
-    font-family: Poppins;
-    color: #064c87;
-    opacity: 1;
-  }
-  .topusername1 {
-    text-align: center;
-    font-size: 0.91vw;
-    font-weight: 400;
-    font-family: Poppins;
-    line-height: 1.2vw;
-    opacity: 1;
-  }
-  .topusername2 {
-    text-align: center;
-    font-size: 0.81vw;
-    font-weight: 400;
-    font-family: Poppins;
-    line-height: 1.8vw;
-    opacity: 1;
-  }
-  
-  .activejobpostbox {
-    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
-    background: #ffffff 0% 0% no-repeat padding-box;
-    border-radius: 6px;
-    opacity: 1;
-    width: 26vw;
-    height: 20vw;
-    margin-top: 2vw;
-    padding: 1vw;
-  }
-  
-  .activejobposttag {
-    letter-spacing: var(--unnamed-character-spacing-0);
-    text-align: left;
-    font: normal normal normal 14px/21px Poppins;
-    letter-spacing: 0px;
-    color: #2a6599;
-    opacity: 1;
-    font-size: 0.81vw;
-    font-weight: 400;
-    font-family: Poppins;
-    line-height: 1.8vw;
-    margin-top: 0.51vw;
-  }
-  .activejobpostname {
-    letter-spacing: var(--unnamed-character-spacing-0);
-    text-align: left;
-    font: normal normal normal 14px/21px Poppins;
-    letter-spacing: 0px;
-    opacity: 1;
-    font-size: 1vw;
-    font-weight: 500;
-    font-family: Poppins;
-    line-height: 1.8vw;
-  }
-  
-  .flexlastactiveb {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 1vw;
-    font-size: 0.91vw;
-    font-weight: 400;
-    font-family: Poppins;
-    line-height: 1.1vw;
-    align-items: center;
-  }
-  .activejobpistbudgetbox {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1vw;
-    font-weight: 400;
-    font-family: Poppins;
-    line-height: 1.1vw;
-    color: rgba(105, 104, 104, 0.874);
-    margin-top: 1vw;
-  }
-  .descriptionactibeobbox {
-    font-weight: 400;
-    font-family: Poppins;
-    line-height: 1.1vw;
-    color: rgba(156, 154, 154, 0.774);
-    margin: 1vw;
-    margin-left: 0vw;
-    font-size: 0.91vw;
-    margin-top: 1vw;
-  }
-  .descriptionactibeobbox span {
-    font-weight: 500;
-    font-family: Poppins;
-    line-height: 1.1vw;
-    color: rgba(156, 154, 154, 0.774);
-    margin: 1vw;
-    margin-left: 0vw;
-    font-size: 0.91vw;
-    color: #2a6599;
-    cursor: pointer;
-    margin-top: 1vw;
-  }
-  
-  .offerContainerDash {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .offerboxexcard {
-    width: 22vw;
-    height: 20vw;
-    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
-    background: #ffffff 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029;
-    border-radius: 4px;
-    margin: 2vw;
-  }
-  .imgofferCard {
-    width: 22vw;
-    height: 14vw;
-  }
-  .imgofferCard img {
-    width: 22vw;
-    height: 14vw;
-    object-fit: cover;
-  }
-  .nametitleofferbox {
-    font-size: 1.1vw;
-    font-family: Poppins;
-    margin: 1vw;
-    font-weight: 500;
-  }
-  
-  .css-1mpuel2-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper
+  width: 100%;
+  padding: 1vw;
+}
+.searchboxcontainer {
+  width: 100%;
+  height: 5vw;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.digitalwallate span {
+  background: #fbfbfb 0% 0% no-repeat padding-box;
+  border-radius: 6px;
+  opacity: 1;
+  padding: 1vw;
+  margin: 0 1vw;
+}
+.addapostnavcntainerin {
+  font-size: 1.2vw;
+  align-items: center;
+  font-weight: 500;
+  font-family: Poppins;
+}
+.digitalwallate {
+  font-size: 1vw;
+  align-items: center;
+  font-weight: 500;
+  font-family: Poppins;
+  margin: 1.5vw 0;
+  cursor: pointer;
+  display: flex;
+}
+
+.dashboardtitilemain {
+  font-size: 1.2vw;
+  align-items: center;
+  font-weight: 500;
+  font-family: Poppins;
+  margin: 2vw 1vw;
+  cursor: pointer;
+  display: flex;
+}
+.badgescontainerdashbaoe {
+  height: fit-content;
+  padding: 1vw;
+  padding-bottom: 0.1vw;
+  width: 100%;
+  background-color: #ffffff;
+}
+.flexofcategories {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.Categoriessmallboxes {
+  width: fit-content;
+  margin: 0.5vw;
+  padding: 0.81vw;
+  font-size: 1vw;
+  align-items: center;
+  font-weight: 400;
+  font-family: Poppins;
+  background-color: white;
+  border-radius: 0.3vw;
+}
+.catalogcontainerdashbaord {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.displayflextopuserdashbaord {
+  display: flex;
+  align-items: center;
+
+  justify-content: space-between;
+  max-width: 99%;
+  overflow: scroll;
+  margin: auto;
+  padding: 1vw;
+  margin: 1vw;
+  background-color: #ffffff;
+}
+
+.topuserbox {
+  width: 19vw;
+  margin: 0vw 1vw;
+  height: fit-content;
+}
+.topuserbox img {
+  width: 7vw;
+  height: 7vw;
+  border-radius: 50%;
+  margin: 1vw 2vw;
+}
+.topusername {
+  text-align: center;
+  font-size: 1vw;
+  font-weight: 500;
+  font-family: Poppins;
+  color: #064c87;
+  opacity: 1;
+}
+.topusername1 {
+  text-align: center;
+  font-size: 0.91vw;
+  font-weight: 400;
+  font-family: Poppins;
+  line-height: 1.2vw;
+  opacity: 1;
+}
+.topusername2 {
+  text-align: center;
+  font-size: 0.81vw;
+  font-weight: 400;
+  font-family: Poppins;
+  line-height: 1.8vw;
+  opacity: 1;
+}
+
+.activejobpostbox {
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border-radius: 6px;
+  opacity: 1;
+  width: 26vw;
+  height: 20vw;
+  margin-top: 2vw;
+  padding: 1vw;
+}
+
+.activejobposttag {
+  letter-spacing: var(--unnamed-character-spacing-0);
+  text-align: left;
+  font: normal normal normal 14px/21px Poppins;
+  letter-spacing: 0px;
+  color: #2a6599;
+  opacity: 1;
+  font-size: 0.81vw;
+  font-weight: 400;
+  font-family: Poppins;
+  line-height: 1.8vw;
+  margin-top: 0.51vw;
+}
+.activejobpostname {
+  letter-spacing: var(--unnamed-character-spacing-0);
+  text-align: left;
+  font: normal normal normal 14px/21px Poppins;
+  letter-spacing: 0px;
+  opacity: 1;
+  font-size: 1vw;
+  font-weight: 500;
+  font-family: Poppins;
+  line-height: 1.8vw;
+}
+
+.flexlastactiveb {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1vw;
+  font-size: 0.91vw;
+  font-weight: 400;
+  font-family: Poppins;
+  line-height: 1.1vw;
+  align-items: center;
+}
+.activejobpistbudgetbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1vw;
+  font-weight: 400;
+  font-family: Poppins;
+  line-height: 1.1vw;
+  color: rgba(105, 104, 104, 0.874);
+  margin-top: 1vw;
+}
+.descriptionactibeobbox {
+  font-weight: 400;
+  font-family: Poppins;
+  line-height: 1.1vw;
+  color: rgba(156, 154, 154, 0.774);
+  margin: 1vw;
+  margin-left: 0vw;
+  font-size: 0.91vw;
+  margin-top: 1vw;
+}
+.descriptionactibeobbox span {
+  font-weight: 500;
+  font-family: Poppins;
+  line-height: 1.1vw;
+  color: rgba(156, 154, 154, 0.774);
+  margin: 1vw;
+  margin-left: 0vw;
+  font-size: 0.91vw;
+  color: #2a6599;
+  cursor: pointer;
+  margin-top: 1vw;
+}
+
+.offerContainerDash {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.offerboxexcard {
+  width: 22vw;
+  height: 20vw;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 4px;
+  margin: 2vw;
+}
+.imgofferCard {
+  width: 22vw;
+  height: 14vw;
+}
+.imgofferCard img {
+  width: 22vw;
+  height: 14vw;
+  object-fit: cover;
+}
+.nametitleofferbox {
+  font-size: 1.1vw;
+  font-family: Poppins;
+  margin: 1vw;
+  font-weight: 500;
+}
+
+.css-1mpuel2-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper
   .MuiMenuItem-root {
   width: 100% !important;
 }
@@ -1721,6 +1718,4 @@ a {
   border: 1px solid #064c87;
   border-radius: 6px;
   line-height: 3.5vw;
-  
-
 }

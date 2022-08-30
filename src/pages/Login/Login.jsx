@@ -52,7 +52,7 @@ export default function Login() {
 
         localStorage.setItem("token", JSON.stringify(res.data.success.Tokens));
         localStorage.setItem("user", JSON.stringify(res.data.success.data));
-        navigate("/dashbaord/users");
+        navigate("/dashbaord");
       })
       .catch((e) => {
         console.log(e.response);

@@ -84,10 +84,7 @@ export default function Jobs() {
   const [page3, setPage3] = useState(1);
   const [totalpages3, settotalpages3] = useState(1);
 
-
   const [setSelectedCategory, setSetSelectedCategory] = useState("");
-
-  
 
   const searchnewworkcreated = (setSelectedCategory) => {
     axios
@@ -323,7 +320,7 @@ export default function Jobs() {
             </span>
             <input
               type="text"
-              placeholder="search Users"
+              placeholder="search Job"
               value={setSelectedCategory}
               onChange={(e) => {
                 setSetSelectedCategory(e.target.value);
@@ -658,8 +655,6 @@ export default function Jobs() {
 
       {workhistorytoggle === 1 ? (
         <>
-          
-        
           <div className="catalogcontainerdashbaord">
             <div
               style={{
@@ -1431,7 +1426,7 @@ export default function Jobs() {
       )}
       {workhistorytoggle === 3 ? (
         <>
-           <div className="catalogcontainerdashbaord">
+          <div className="catalogcontainerdashbaord">
             <div
               style={{
                 width: "100%",
