@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { useNavigate, useParams } from "react-router";
+import {  useParams } from "react-router";
 
 
 import axios from "axios";
@@ -10,7 +10,7 @@ import API_HOST from "../../../../env";
 export default function CreateJobuserpage({user}) {
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
-  const { type, userName } = useParams();
+  const {  userName } = useParams();
   const [alluserjob, setAlluserjob] = useState([]);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function CreateJobuserpage({user}) {
                   </div>
                 </div>
                 <div style={{ height: "1.1vw" }} className="activejobpostname">
-                  {data?.workTitle}
+                  {data?.workTitle?.length>40?data?.workTitle?.slice(0,40)+"..":data?.workTitle}
                 </div>
                 <div
                   style={{ lineHeight: "1.2vw !important",color:"#064C8790" }}
@@ -71,7 +71,7 @@ export default function CreateJobuserpage({user}) {
                         fontSize: "0.9vw",
                         position: "relative",
                         bottom: "0.3vw",
-                        color:"#00000040"
+                        color:"#00000090"
                       }}
                     >
                       ${data?.minimumBudget}- ${data?.maximuBudget}
@@ -84,10 +84,10 @@ export default function CreateJobuserpage({user}) {
                         fontSize: "0.9vw",
                         position: "relative",
                         bottom: "0.3vw",
-                        color:"#00000040"
+                        color:"#00000090"
                       }}
                     >
-                      {data?.remote?"remote":data?.onSite}
+                      {data?.remote?"remote":data?.onSite?.length>25?data?.onSite?.slice(0,23)+"..":data?.onSite}
                     </span>
                   </div>
                   <div style={{ marginRight: "1vw" }}>
@@ -97,7 +97,7 @@ export default function CreateJobuserpage({user}) {
                         fontSize: "0.9vw",
                         position: "relative",
                         bottom: "0.3vw",
-                        color:"#00000040"
+                        color:"#00000090"
                       }}
                     >
                       {data?.expiry} Days
@@ -105,11 +105,11 @@ export default function CreateJobuserpage({user}) {
                   </div>
                 </div>
                 <div
-                  style={{ height: "4.2vw", margin: "0vw" }}
+                  style={{ height: "4.5vw", margin: "0vw" }}
                   className="descriptionactibeobbox"
                 >
-                  <div style={{ height: "2.8vw" }}>
-                   {data?.shortDescription?.slice(0,150)}
+                  <div style={{ height: "3.5vw" }}>
+                   {data?.shortDescription?.slice(0,160)}
                   </div>
 
                   <br />
