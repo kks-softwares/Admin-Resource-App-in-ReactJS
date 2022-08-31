@@ -7,12 +7,14 @@ import { useNavigate } from "react-router";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import Listofproposals from "./Listofproposals";
+import StarRatings from "react-star-ratings";
 export default function Jobdetail() {
   const [down1, setDown1] = useState(false);
   const [down2, setDown2] = useState(false);
   const [down3, setDown3] = useState(false);
   const [down4, setDown4] = useState(false);
-  const [longofproposallist, setLongofproposallist] = useState(["1","2"])
+  const [longofproposallist, setLongofproposallist] = useState(["1", "2"]);
   return (
     <div>
       <div
@@ -44,7 +46,7 @@ export default function Jobdetail() {
                 height: "2.4vw",
                 background: "#E4E4E4",
                 fontSize: "400",
-                marginRight:"1vw"
+                marginRight: "1vw",
               }}
               className="digitalwallate"
             >
@@ -143,9 +145,16 @@ export default function Jobdetail() {
           <div className="skillmap">User interface</div>
           <div className="skillmap">Prototyping</div>
         </div>
-        <div style={{height:down1? `${(longofproposallist?.length*4)+6}vw`:""}} className="boxofextension">
+        <div
+          style={{
+            height: down1 ? `${longofproposallist?.length * 4 + 7}vw` : "",
+          }}
+          className="boxofextension"
+        >
           <div className="flexofboxextentionnav">
-            <div>List of Proposal</div>
+            <div style={{ color: down1 ? "#064C87" : "", marginLeft: "0.5vw" }}>
+              List of Proposal
+            </div>
             <div
               onClick={() => {
                 setDown1(!down1);
@@ -153,25 +162,49 @@ export default function Jobdetail() {
             >
               {!down1 ? (
                 <KeyboardArrowDownIcon
-                  style={{ fontSize: "2vw", margin: "1vw",cursor:"pointer" }}
+                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
                 />
               ) : (
                 <KeyboardArrowUpIcon
-                  style={{ fontSize: "2vw", margin: "1vw",cursor:"pointer" }}
+                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
                 />
               )}
             </div>
           </div>
-            <div hidden={!down1} >
-              {longofproposallist?.map((data)=>{
-                  return <div  className="listofproposalname" >data</div>
-              })}
+          <div hidden={!down1}>
+            <div>
+              <div
+                style={{
+                  padding: "0vw 0.51vw",
+                  marginBottom: "1vw",
+                  marginTop: "0vw",
+                }}
+                className="navoftableblogs"
+              >
+                <div style={{ width: "18vw" }}>Name</div>
+                <div style={{ width: "13vw" }}>Duration</div>
+                <div style={{ width: "12vw" }}>date</div>
+                <div style={{ width: "12vw" }}>Bid Value</div>
+                <div style={{ width: "12vw" }}>Status</div>
+                <div style={{ width: "7vw" }}></div>
+              </div>
             </div>
+            {longofproposallist?.map((data) => {
+              return <Listofproposals data={data} />;
+            })}
+          </div>
         </div>
-     
-        <div style={{height:down2? `${(longofproposallist?.length*4)+6}vw`:""}} className="boxofextension">
+        <div
+          hidden
+          style={{
+            height: down2 ? `${longofproposallist?.length * 4 + 7}vw` : "",
+          }}
+          className="boxofextension"
+        >
           <div className="flexofboxextentionnav">
-            <div>View of Proposal</div>
+            <div style={{ color: down2 ? "#064C87" : "", marginLeft: "0.5vw" }}>
+              View of Proposal
+            </div>
             <div
               onClick={() => {
                 setDown2(!down2);
@@ -179,25 +212,58 @@ export default function Jobdetail() {
             >
               {!down2 ? (
                 <KeyboardArrowDownIcon
-                  style={{ fontSize: "2vw", margin: "1vw",cursor:"pointer" }}
+                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
                 />
               ) : (
                 <KeyboardArrowUpIcon
-                  style={{ fontSize: "2vw", margin: "1vw",cursor:"pointer" }}
+                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
                 />
               )}
             </div>
           </div>
-            <div hidden={!down2} >
-              {longofproposallist?.map((data)=>{
-                  return <div  className="listofproposalname" >data</div>
-              })}
+          <div hidden={!down2}>
+            <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
+              <div className="boxblackbackg">
+                Hired by <br />
+                <div>
+                  <span>Vasaanth David.H</span>
+                </div>
+              </div>
+              <div className="boxblackbackg">
+                Hired by <br />
+                <div>
+                  <span>Vasaanth David.H</span>
+                </div>
+              </div>
+              <div className="boxblackbackg">
+                Hired by <br />
+                <div>
+                  <span>Vasaanth David.H</span>
+                </div>
+              </div>
+              <div className="boxblackbackg">
+                Hired by <br />
+                <div>
+                  <span>Vasaanth David.H</span>
+                </div>
+              </div>
             </div>
+
+            {longofproposallist?.map((data) => {
+              return <div className="listofproposalname">data</div>;
+            })}
+          </div>
         </div>
-     
-        <div style={{height:down3? `${(longofproposallist?.length*4)+6}vw`:""}} className="boxofextension">
+        <div
+          style={{
+            height: down3 ? `${longofproposallist?.length * 4 + 16}vw` : "",
+          }}
+          className="boxofextension"
+        >
           <div className="flexofboxextentionnav">
-            <div>Contrac5</div>
+            <div style={{ color: down1 ? "#064C87" : "", marginLeft: "0.5vw" }}>
+              Contract
+            </div>
             <div
               onClick={() => {
                 setDown3(!down3);
@@ -205,23 +271,68 @@ export default function Jobdetail() {
             >
               {!down3 ? (
                 <KeyboardArrowDownIcon
-                  style={{ fontSize: "2vw", margin: "1vw",cursor:"pointer" }}
+                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
                 />
               ) : (
                 <KeyboardArrowUpIcon
-                  style={{ fontSize: "2vw", margin: "1vw",cursor:"pointer" }}
+                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
                 />
               )}
             </div>
           </div>
-            <div hidden={!down3} >
-              {longofproposallist?.map((data)=>{
-                  return <div  className="listofproposalname" >data</div>
-              })}
+          <div hidden={!down3}>
+            <div
+              style={{ margin: "1vw", flexWrap: "wrap", marginTop: "0vw" }}
+              className="activejobpistbudgetbox"
+            >
+              <div className="boxblackbackg">
+                Service Provider Id <br />
+                <div>
+                  <span>Vasaanth David.H</span>
+                </div>
+              </div>
+              <div className="boxblackbackg">
+                Service Provider Name <br />
+                <div>
+                  <span>Vasaanth David.H</span>
+                </div>
+              </div>
+              <div className="boxblackbackg">
+                Contract Amount <br />
+                <div>
+                  <span>Vasaanth David.H</span>
+                </div>
+              </div>
+              <div className="boxblackbackg">
+                duration <br />
+                <div>
+                  <span>Vasaanth David.H</span>
+                </div>
+              </div>
+              <div className="boxblackbackg">
+                Contract Starting Date <br />
+                <div>
+                  <span>Vasaanth David.H</span>
+                </div>
+              </div>
+              <div className="boxblackbackg">
+                Contract Ending Date <br />
+                <div>
+                  <span>Vasaanth David.H</span>
+                </div>
+              </div>
             </div>
+            {longofproposallist?.map((data) => {
+              return <div className="listofproposalname">data</div>;
+            })}
+          </div>
         </div>
-     
-        <div style={{height:down4? `${(longofproposallist?.length*4)+6}vw`:""}} className="boxofextension">
+        <div
+          style={{
+            height: down4 ? `${longofproposallist?.length * 4 +70}vw` : "",
+          }}
+          className="boxofextension"
+        >
           <div className="flexofboxextentionnav">
             <div>Contract Completion</div>
             <div
@@ -231,22 +342,153 @@ export default function Jobdetail() {
             >
               {!down4 ? (
                 <KeyboardArrowDownIcon
-                  style={{ fontSize: "2vw", margin: "1vw",cursor:"pointer" }}
+                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
                 />
               ) : (
                 <KeyboardArrowUpIcon
-                  style={{ fontSize: "2vw", margin: "1vw",cursor:"pointer" }}
+                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
                 />
               )}
             </div>
           </div>
-            <div hidden={!down4} >
-              {longofproposallist?.map((data)=>{
-                  return <div  className="listofproposalname" >data</div>
-              })}
+          <div hidden={!down4}>
+            <div
+              style={{ margin: "1vw", flexWrap: "wrap", marginTop: "0vw" }}
+              className="activejobpistbudgetbox"
+            >
+              <div className="boxblackbackg">
+                Contract Actual Date <br />
+                <div>
+                  <span>Vasaanth David.H</span>
+                </div>
+              </div>
             </div>
+            <div style={{marginLeft:"1vw",marginTop:"0vw"}} className="flexofdtaes">
+              <div className="datesofcontact">Review And Rating by service Provider</div>
+            </div>
+            <div className="chatcontaract">
+              <div
+                style={{ width: "80vw", padding: "0vw", height: "fit-content" }}
+                className="chatboxescontact"
+              >
+                <div
+                  style={{ marginLeft: "1vw", marginTop: "0vw" }}
+                  className="flexofdtaes"
+                >
+                  <div className="datesofcontact">Ratings</div>
+                </div>
+                <div className="workhistryboxdate">
+                  <span
+                    style={{
+                      width: "10vw",
+                      position: "relative",
+                      bottom: "0.5vw",
+                      left: "1vw",
+                    }}
+                  >
+                    <StarRatings
+                      rating={0}
+                      starRatedColor="#064C87"
+                      starDimension="1.6vw  "
+                      starSpacing="0.3vw"
+                      numberOfStars={5}
+                      name="rating"
+                    />
+                  </span>
+                </div>
+
+                <hr style={{ width: "90%", marginLeft: "2vw" }} />
+                <div
+                  style={{
+                    left: "0vw",
+                    width: "96%",
+                    margin: "2vw 1vw 2vw 1vw",
+                    display: "block",
+                  }}
+                  className="loginfield"
+                >
+                  <div
+                    style={{ marginBottom: "0.0vw", marginBottom: "1vw" }}
+                    className="jobpodtedfieldtitile"
+                  >
+                    Review
+                  </div>
+                  <div>
+                    <textarea
+                      name=""
+                      id=""
+                      className="reviewbox"
+                      rows="10"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+       
+            <div style={{marginLeft:"1vw",marginTop:"0vw"}} className="flexofdtaes">
+              <div className="datesofcontact">Review And Rating by Client</div>
+            </div> 
+            <div className="chatcontaract">
+              <div
+                style={{ width: "80vw", padding: "0vw",  height: "fit-content"}}
+                className="chatboxescontact"
+              >
+                <div
+                  style={{ marginLeft: "1vw", marginTop: "0vw" }}
+                  className="flexofdtaes"
+                >
+                  <div className="datesofcontact">Ratings</div>
+                </div>
+                <div className="workhistryboxdate">
+                  <span
+                    style={{
+                      width: "10vw",
+                      position: "relative",
+                      bottom: "0.5vw",
+                      left: "1vw",
+                    }}
+                  >
+                    <StarRatings
+                      rating={0}
+                      starRatedColor="#064C87"
+                      starDimension="1.6vw  "
+                      starSpacing="0.3vw"
+                      numberOfStars={5}
+                      name="rating"
+                    />
+                  </span>
+                </div>
+
+                <hr style={{ width: "90%", marginLeft: "2vw" }} />
+                <div
+                  style={{
+                    left: "0vw",
+                    width: "96%",
+                    margin: "2vw 1vw 2vw 1vw",
+                    display: "block",
+                  }}
+                  className="loginfield"
+                >
+                  <div
+                    style={{ marginBottom: "0.0vw", marginBottom: "1vw" }}
+                    className="jobpodtedfieldtitile"
+                  >
+                    Review
+                  </div>
+                  <div>
+                    <textarea
+                      name=""
+                      id=""
+                      className="reviewbox"
+                      rows="10"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+         
+          </div>
         </div>
-     
       </div>
     </div>
   );
