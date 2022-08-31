@@ -19,6 +19,7 @@
   width: 100%;
   margin-right: 0vw;
   height: 4.5vw;
+  overflow: hidden;
   transition: all 0.5s;
 }
 

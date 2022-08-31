@@ -168,6 +168,85 @@ export default function Jobdetail() {
               })}
             </div>
         </div>
+     
+        <div style={{height:down2? `${(longofproposallist?.length*4)+6}vw`:""}} className="boxofextension">
+          <div className="flexofboxextentionnav">
+            <div>View of Proposal</div>
+            <div
+              onClick={() => {
+                setDown2(!down2);
+              }}
+            >
+              {!down2 ? (
+                <KeyboardArrowDownIcon
+                  style={{ fontSize: "2vw", margin: "1vw",cursor:"pointer" }}
+                />
+              ) : (
+                <KeyboardArrowUpIcon
+                  style={{ fontSize: "2vw", margin: "1vw",cursor:"pointer" }}
+                />
+              )}
+            </div>
+          </div>
+            <div hidden={!down2} >
+              {longofproposallist?.map((data)=>{
+                  return <div  className="listofproposalname" >data</div>
+              })}
+            </div>
+        </div>
+     
+        <div style={{height:down3? `${(longofproposallist?.length*4)+6}vw`:""}} className="boxofextension">
+          <div className="flexofboxextentionnav">
+            <div>Contrac5</div>
+            <div
+              onClick={() => {
+                setDown3(!down3);
+              }}
+            >
+              {!down3 ? (
+                <KeyboardArrowDownIcon
+                  style={{ fontSize: "2vw", margin: "1vw",cursor:"pointer" }}
+                />
+              ) : (
+                <KeyboardArrowUpIcon
+                  style={{ fontSize: "2vw", margin: "1vw",cursor:"pointer" }}
+                />
+              )}
+            </div>
+          </div>
+            <div hidden={!down3} >
+              {longofproposallist?.map((data)=>{
+                  return <div  className="listofproposalname" >data</div>
+              })}
+            </div>
+        </div>
+     
+        <div style={{height:down4? `${(longofproposallist?.length*4)+6}vw`:""}} className="boxofextension">
+          <div className="flexofboxextentionnav">
+            <div>Contract Completion</div>
+            <div
+              onClick={() => {
+                setDown4(!down4);
+              }}
+            >
+              {!down4 ? (
+                <KeyboardArrowDownIcon
+                  style={{ fontSize: "2vw", margin: "1vw",cursor:"pointer" }}
+                />
+              ) : (
+                <KeyboardArrowUpIcon
+                  style={{ fontSize: "2vw", margin: "1vw",cursor:"pointer" }}
+                />
+              )}
+            </div>
+          </div>
+            <div hidden={!down4} >
+              {longofproposallist?.map((data)=>{
+                  return <div  className="listofproposalname" >data</div>
+              })}
+            </div>
+        </div>
+     
       </div>
     </div>
   );
