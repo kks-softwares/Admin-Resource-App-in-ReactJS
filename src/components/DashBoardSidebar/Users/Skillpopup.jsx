@@ -64,6 +64,7 @@ export default function Skillpopup({ data, index, page }) {
             <div
               style={{
                 fontSize: "0.9vw",
+                color:"#168B12"
               }}
             >
               verify by 44resources

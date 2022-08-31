@@ -44,6 +44,26 @@ export default function Jobdetail() {
                 height: "2.4vw",
                 background: "#E4E4E4",
                 fontSize: "400",
+                marginRight:"1vw"
+              }}
+              className="digitalwallate"
+            >
+              <span
+                style={{
+                  padding: "0.6vw 0.5vw",
+                  fontSize: "400",
+                  background: "none",
+                }}
+              >
+                view issue
+              </span>
+            </div>
+            <div
+              style={{
+                margin: "0",
+                height: "2.4vw",
+                background: "#E4E4E4",
+                fontSize: "400",
               }}
               className="digitalwallate"
             >
