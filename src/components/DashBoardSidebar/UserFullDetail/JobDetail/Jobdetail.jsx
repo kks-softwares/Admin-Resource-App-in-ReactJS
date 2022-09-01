@@ -4,11 +4,15 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "react-router";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import Listofproposals from "./Listofproposals";
 import StarRatings from "react-star-ratings";
+import img1 from "../../../../assets/Web 1280 – 14/Group 9831.svg";
+import img from "../../../../assets/Landing page/pexels-christina-morillo-1181467.png";
+import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 export default function Jobdetail() {
   const [down1, setDown1] = useState(false);
   const [down2, setDown2] = useState(false);
@@ -147,6 +151,84 @@ export default function Jobdetail() {
         </div>
         <div
           style={{
+            height: down2 ? `${longofproposallist?.length * 4 + 10}vw` : "",
+          }}
+          className="boxofextension"
+        >
+          <div className="flexofboxextentionnav">
+            <div style={{ color: down2 ? "#064C87" : "", marginLeft: "0.5vw" }}>
+              View Documents
+            </div>
+            <div
+              onClick={() => {
+                setDown2(!down2);
+              }}
+            >
+              {!down2 ? (
+                <KeyboardArrowDownIcon
+                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
+                />
+              ) : (
+                <KeyboardArrowUpIcon
+                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
+                />
+              )}
+            </div>
+          </div>
+          <div hidden={!down2}>
+            <div
+              style={{
+                margin: "1vw",
+                flexWrap: "wrap",
+                marginTop: "0vw",
+                justifyContent: "flex-start",
+              }}
+              className="activejobpistbudgetbox"
+            >
+              <div className="boxofimageorpdf">
+                <div className="imageshowboxofpdf">
+                  <img src={img} alt="" />
+                </div>
+                <div className="imageshowboxofpdfname">
+                  <div>
+                    <PictureAsPdfIcon
+                      style={{ color: "red", fontSize: "1.7vw" }}
+                    />
+                  </div>
+                  <div className="nameifimagedocuments">Front Side.pdf</div>
+                </div>
+              </div>
+              <div className="boxofimageorpdf">
+                <div className="imageshowboxofpdf">
+                  <img src={img} alt="" />
+                </div>
+                <div className="imageshowboxofpdfname">
+                  <div>
+                    <PictureAsPdfIcon
+                      style={{ color: "red", fontSize: "1.7vw" }}
+                    />
+                  </div>
+                  <div className="nameifimagedocuments">Front Side.pdf</div>
+                </div>
+              </div>
+              <div className="boxofimageorpdf">
+                <div className="imageshowboxofpdf">
+                  <img src={img} alt="" />
+                </div>
+                <div className="imageshowboxofpdfname">
+                  <div>
+                    <PictureAsPdfIcon
+                      style={{ color: "red", fontSize: "1.7vw" }}
+                    />
+                  </div>
+                  <div className="nameifimagedocuments">Front Side.pdf</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          style={{
             height: down1 ? `${longofproposallist?.length * 4 + 7}vw` : "",
           }}
           className="boxofextension"
@@ -195,73 +277,13 @@ export default function Jobdetail() {
           </div>
         </div>
         <div
-          hidden
-          style={{
-            height: down2 ? `${longofproposallist?.length * 4 + 7}vw` : "",
-          }}
-          className="boxofextension"
-        >
-          <div className="flexofboxextentionnav">
-            <div style={{ color: down2 ? "#064C87" : "", marginLeft: "0.5vw" }}>
-              View of Proposal
-            </div>
-            <div
-              onClick={() => {
-                setDown2(!down2);
-              }}
-            >
-              {!down2 ? (
-                <KeyboardArrowDownIcon
-                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
-                />
-              ) : (
-                <KeyboardArrowUpIcon
-                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
-                />
-              )}
-            </div>
-          </div>
-          <div hidden={!down2}>
-            <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
-              <div className="boxblackbackg">
-                Hired by <br />
-                <div>
-                  <span>Vasaanth David.H</span>
-                </div>
-              </div>
-              <div className="boxblackbackg">
-                Hired by <br />
-                <div>
-                  <span>Vasaanth David.H</span>
-                </div>
-              </div>
-              <div className="boxblackbackg">
-                Hired by <br />
-                <div>
-                  <span>Vasaanth David.H</span>
-                </div>
-              </div>
-              <div className="boxblackbackg">
-                Hired by <br />
-                <div>
-                  <span>Vasaanth David.H</span>
-                </div>
-              </div>
-            </div>
-
-            {longofproposallist?.map((data) => {
-              return <div className="listofproposalname">data</div>;
-            })}
-          </div>
-        </div>
-        <div
           style={{
             height: down3 ? `${longofproposallist?.length * 4 + 16}vw` : "",
           }}
           className="boxofextension"
         >
           <div className="flexofboxextentionnav">
-            <div style={{ color: down1 ? "#064C87" : "", marginLeft: "0.5vw" }}>
+            <div style={{ color: down3 ? "#064C87" : "", marginLeft: "0.5vw" }}>
               Contract
             </div>
             <div
@@ -322,14 +344,11 @@ export default function Jobdetail() {
                 </div>
               </div>
             </div>
-            {longofproposallist?.map((data) => {
-              return <div className="listofproposalname">data</div>;
-            })}
           </div>
         </div>
         <div
           style={{
-            height: down4 ? `${longofproposallist?.length * 4 +70}vw` : "",
+            height: down4 ? `${longofproposallist?.length * 4 + 81}vw` : "",
           }}
           className="boxofextension"
         >
@@ -363,8 +382,13 @@ export default function Jobdetail() {
                 </div>
               </div>
             </div>
-            <div style={{marginLeft:"1vw",marginTop:"0vw"}} className="flexofdtaes">
-              <div className="datesofcontact">Review And Rating by service Provider</div>
+            <div
+              style={{ marginLeft: "1vw", marginTop: "0vw" }}
+              className="flexofdtaes"
+            >
+              <div className="datesofcontact">
+                Review And Rating by service Provider
+              </div>
             </div>
             <div className="chatcontaract">
               <div
@@ -424,13 +448,54 @@ export default function Jobdetail() {
                 </div>
               </div>
             </div>
-       
-            <div style={{marginLeft:"1vw",marginTop:"0vw"}} className="flexofdtaes">
+            <div style={{ display: "flex", flexWrap: "wrap",marginBottom:"2vw",marginLeft:"2vw" }}>
+              <div
+                style={{
+                  width: "fit-content",
+                  marginTop: "0vw",
+                  marginBottom: "1vw",
+                }}
+                className="inputfilesshowncatboxsingle"
+              >
+                <div className="inputfilesshowncatboxsingleimg">
+                  <img src={img1} alt="" />
+                </div>
+                <div className="fileselctednamecate">Modern submitted.docx</div>
+                <div className="inputfilesshowncatboxsingleimg">
+                  <CloudDownloadOutlinedIcon
+                    style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                  />
+                </div>
+              </div>
+              <div
+                style={{
+                  width: "fit-content",
+                  marginTop: "0vw",
+                  marginBottom: "1vw",
+                }}
+                className="inputfilesshowncatboxsingle"
+              >
+                <div className="inputfilesshowncatboxsingleimg">
+                  <img src={img1} alt="" />
+                </div>
+                <div className="fileselctednamecate">Modern submitted.docx</div>
+                <div className="inputfilesshowncatboxsingleimg">
+                  <CloudDownloadOutlinedIcon
+                    style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                  />
+                </div>
+              </div>
+         
+            </div>
+            <div
+              style={{ marginLeft: "1vw", marginTop: "0vw" }}
+              className="flexofdtaes"
+            >
               <div className="datesofcontact">Review And Rating by Client</div>
-            </div> 
+            </div>
             <div className="chatcontaract">
               <div
-                style={{ width: "80vw", padding: "0vw",  height: "fit-content"}}
+                style={{ width: "80vw", padding: "0vw", height: "fit-content" }}
                 className="chatboxescontact"
               >
                 <div
@@ -484,10 +549,57 @@ export default function Jobdetail() {
                     ></textarea>
                   </div>
                 </div>
+                <div style={{ display: "flex", flexWrap: "wrap",marginLeft:"2vw" }}>
+              <div
+                style={{
+                  width: "fit-content",
+                  marginTop: "0vw",
+                  marginBottom: "1vw",
+                }}
+                className="inputfilesshowncatboxsingle"
+              >
+                <div className="inputfilesshowncatboxsingleimg">
+                  <img src={img1} alt="" />
+                </div>
+                <div className="fileselctednamecate">Modern submitted.docx</div>
+                <div className="inputfilesshowncatboxsingleimg">
+                  <CloudDownloadOutlinedIcon
+                    style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                  />
+                </div>
+              </div>
+              <div
+                style={{
+                  width: "fit-content",
+                  marginTop: "0vw",
+                  marginBottom: "1vw",
+                }}
+                className="inputfilesshowncatboxsingle"
+              >
+                <div className="inputfilesshowncatboxsingleimg">
+                  <img src={img1} alt="" />
+                </div>
+                <div className="fileselctednamecate">Modern submitted.docx</div>
+                <div className="inputfilesshowncatboxsingleimg">
+                  <CloudDownloadOutlinedIcon
+                    style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                  />
+                </div>
+              </div>
+         
+            </div>
               </div>
             </div>
-         
+            <div className="confirmationtext" >
+            Are you Sure What to Close Contract From <span>44 Resource</span> Representative
+            </div>
+            <div style={{display:"flex",justifyContent:"flex-end"}}>
+                   <button className="endbuttoncontract">
+                   End Contract
+                   </button>
+            </div>
           </div>
+           
         </div>
       </div>
     </div>
