@@ -68,21 +68,15 @@ export default function Users() {
   useEffect(() => {
     if (!setSelectedCategory) {
       axios
-        .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&page=${page}`
-        )
+        .get(`${API_HOST}/users/viewUser?pageNumber=${page}&pageSize=10`)
         .then((res) => {
-          setAllusers(res?.data?.success?.data?.docs);
+          setAllusers(res?.data?.success?.data);
           window.scrollTo(0, 0, { behavior: "smooth" });
         });
       axios
-        .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&page=${
-            page + 1
-          }`
-        )
+        .get(`${API_HOST}/users/viewUser?pageNumber=${page+1}&pageSize=10`)
         .then((res) => {
-          if (res?.data?.success?.data?.docs?.length > 0) {
+          if (res?.data?.success?.data?.length > 0) {
             settotalpages(page + 1);
           }
         });

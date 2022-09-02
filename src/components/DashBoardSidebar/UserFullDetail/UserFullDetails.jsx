@@ -25,6 +25,7 @@ import FileManager from "./FileManager/FileManager";
 import Documents from "./DocumentsPage/Documents";
 import BankDetail from "./BankDetails/BankDetail";
 import Jobdetail from './JobDetail/Jobdetail'
+import Jobdetail1 from "./AppliedJobDetail/Jobdetail1";
 export default function SkillCenter() {
   const navigate = useNavigate();
   const [workhistorytoggle, setWorkhistorytoggle] = useState(1);
@@ -398,7 +399,7 @@ export default function SkillCenter() {
       )}
       {workhistorytoggle === 12 ? (
         <>
-          <Jobdetail user={user} />
+          <Jobdetail1 user={user} />
         </>
       ) : (
         ""

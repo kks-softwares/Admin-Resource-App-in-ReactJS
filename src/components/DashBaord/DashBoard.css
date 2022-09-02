@@ -1517,7 +1517,8 @@ a {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: space-between;
+
+  justify-content: flex-start;
 }
 .displayflextopuserdashbaord {
   display: flex;
@@ -1574,7 +1575,7 @@ a {
   border-radius: 6px;
   opacity: 1;
   width: 26vw;
-  height: 20vw;
+  height: 22vw;
   margin-top: 2vw;
   padding: 1vw;
 }

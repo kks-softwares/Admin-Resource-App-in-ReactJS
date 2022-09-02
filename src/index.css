@@ -84,7 +84,6 @@ a {
   fill: black;
 }
 .css-tzsjye {
-
   padding: 0.51vw 0vw;
   padding: 0vw 0.2vw;
   color: black !important;
@@ -93,6 +92,7 @@ a {
 
 .activejobpostbox {
   display: flex;
+  margin-right: 1vw;
 
   align-items: center;
   height: fit-content !important;
@@ -277,16 +277,15 @@ a {
   font-size: 1.1vw;
 }
 
-
 .fileselctednamecate {
   max-width: 90% !important;
 }
-.redp{
-    font-size: 0.95vw;
+.redp {
+  font-size: 0.95vw;
 }
 
-@media only screen and (max-device-width: 700px){
- .redp{
-     font-size: 2.7vw;
- }
+@media only screen and (max-device-width: 700px) {
+  .redp {
+    font-size: 2.7vw;
+  }
 }
