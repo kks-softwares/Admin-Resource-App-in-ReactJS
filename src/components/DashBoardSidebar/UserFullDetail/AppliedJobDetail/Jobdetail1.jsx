@@ -8,7 +8,7 @@ import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import Listofproposals from "./Listofproposals";
+import Listofproposals from "./Listofproposals copy";
 import StarRatings from "react-star-ratings";
 import img1 from "../../../../assets/Web 1280 – 14/Group 9831.svg";
 import img from "../../../../assets/Landing page/pexels-christina-morillo-1181467.png";
@@ -231,13 +231,13 @@ export default function Jobdetail1() {
         </div>
         <div
           style={{
-            height: down1 ? `${longofproposallist?.length * 4 + 7}vw` : "",
+            height: down1 ? `${ 4 + 7}vw` : "",
           }}
           className="boxofextension"
         >
           <div className="flexofboxextentionnav">
             <div style={{ color: down1 ? "#064C87" : "", marginLeft: "0.5vw" }}>
-              List of Proposal
+              Proposal
             </div>
             <div
               onClick={() => {
@@ -256,29 +256,25 @@ export default function Jobdetail1() {
             </div>
           </div>
           <div hidden={!down1}>
-          <div
-        style={{
-          padding: "0",
-          margin: "0",
-          fontWeight: "400",
-          fontSize: "1vw",
-        }}
-        className="navoftableblogs"
-      >
-        <div style={{ width: "18vw" }}>Rahul Rajput</div>
-        <div style={{ width: "13vw" }}>4 months</div>
-        <div style={{ width: "12vw" }}>27/02/2022</div>
-        <div style={{ width: "12vw" }}>$ 500</div>
-        <div style={{ width: "12vw", color: "red" }}>Rejected</div>
-        <div
-          onClick={() => {
-            
-          }}
-          style={{ width: "7vw", cursor: "pointer", color: "#064C87" }}
-        >
-          View
-        </div>
-      </div>
+            <div>
+              <div
+                style={{
+                  padding: "0vw 0.51vw",
+                  marginBottom: "1vw",
+                  marginTop: "0vw",
+                }}
+                className="navoftableblogs"
+              >
+                <div style={{ width: "18vw" }}>Name</div>
+                <div style={{ width: "13vw" }}>Duration</div>
+                <div style={{ width: "12vw" }}>date</div>
+                <div style={{ width: "12vw" }}>Bid Value</div>
+                <div style={{ width: "12vw" }}>Status</div>
+                <div style={{ width: "7vw" }}></div>
+              </div>
+            </div>
+
+            <Listofproposals />
           </div>
         </div>
         <div

@@ -26,6 +26,7 @@ import Documents from "./DocumentsPage/Documents";
 import BankDetail from "./BankDetails/BankDetail";
 import Jobdetail from './JobDetail/Jobdetail'
 import Jobdetail1 from "./AppliedJobDetail/Jobdetail1";
+import AppliedJob from "./AppliedJobDetail/AppliedJob";
 export default function SkillCenter() {
   const navigate = useNavigate();
   const [workhistorytoggle, setWorkhistorytoggle] = useState(1);
@@ -328,7 +329,7 @@ export default function SkillCenter() {
       )}
       {workhistorytoggle === 3 ? (
         <>
-          <AppliedJobpage
+          <AppliedJob
             setjobdetail={setjobdetail}
             setWorkhistorytoggle={setWorkhistorytoggle}
           />

@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useParams } from "react-router";
-
 import axios from "axios";
 import API_HOST from "../../../../env";
 
-export default function CreateJobuserpage({setjobdetail, setWorkhistorytoggle}) {
+export default function AppliedJob({ setjobdetail, setWorkhistorytoggle }) {
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
   const { userName } = useParams();
@@ -20,8 +19,9 @@ export default function CreateJobuserpage({setjobdetail, setWorkhistorytoggle}) 
       .then((res) => {
         setAlluserjob(res?.data?.success?.data);
         window.scrollTo(0, 0, { behavior: "smooth" });
-      }).catch(()=>{
-        setAlluserjob(["1","2","3"]);
+      })
+      .catch(() => {
+        setAlluserjob(["1", "2", "3", "4", "5"]);
       });
     axios
       .get(
@@ -53,16 +53,17 @@ export default function CreateJobuserpage({setjobdetail, setWorkhistorytoggle}) 
                   }}
                 >
                   <div style={{ marginLeft: "0vw" }} className="tagblue">
-                    {data?.category}
+                    UI UX design
                   </div>
                   <div style={{ marginLeft: "1vw", fontSize: "0.8vw" }}>
-                    {data?.subCategory}
+                    UI UX design
                   </div>
                 </div>
                 <div style={{ height: "1.1vw" }} className="activejobpostname">
-                  {data?.workTitle?.length > 40
+                  {/* {data?.workTitle?.length > 40
                     ? data?.workTitle?.slice(0, 40) + ".."
-                    : data?.workTitle}
+                    : data?.workTitle} */}
+                  Senior Product Designer (#23613)
                 </div>
                 <div
                   style={{ lineHeight: "1.2vw !important", color: "#064C8790" }}
@@ -78,7 +79,7 @@ export default function CreateJobuserpage({setjobdetail, setWorkhistorytoggle}) 
                         color: "#00000090",
                       }}
                     >
-                      ${data?.minimumBudget}- ${data?.maximuBudget}
+                      $8-$16
                     </span>
                   </div>
                   <div style={{ marginRight: "1vw" }}>
@@ -91,11 +92,12 @@ export default function CreateJobuserpage({setjobdetail, setWorkhistorytoggle}) 
                         color: "#00000090",
                       }}
                     >
-                      {data?.remote
+                      {/* {data?.remote
                         ? "remote"
                         : data?.onSite?.length > 25
                         ? data?.onSite?.slice(0, 23) + ".."
-                        : data?.onSite}
+                        : data?.onSite} */}
+                      Bangalore
                     </span>
                   </div>
                   <div style={{ marginRight: "1vw" }}>
@@ -108,7 +110,7 @@ export default function CreateJobuserpage({setjobdetail, setWorkhistorytoggle}) 
                         color: "#00000090",
                       }}
                     >
-                      {data?.expiry} Days
+                      07 Days
                     </span>
                   </div>
                 </div>
@@ -123,7 +125,11 @@ export default function CreateJobuserpage({setjobdetail, setWorkhistorytoggle}) 
                       fontWeight: "400",
                     }}
                   >
-                    {data?.shortDescription?.slice(0, 160)}
+                    {/* {data?.shortDescription?.slice(0, 160)} */}
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer more
                   </div>
 
                   <br />
@@ -140,12 +146,15 @@ export default function CreateJobuserpage({setjobdetail, setWorkhistorytoggle}) 
 
                 <hr />
                 <div style={{ paddingLeft: "0vw" }} className="flexlastactiveb">
-                  <div>No of Proposoals - {data?.listOfBider?.length}</div>
+                  <div>
+                    Status -
+                    <span style={{ color: "#E2E228" }}>Work Applied</span>
+                  </div>
 
                   <div
                     onClick={() => {
                       setjobdetail(1);
-                      setWorkhistorytoggle(11)
+                      setWorkhistorytoggle(12);
                     }}
                     style={{ color: "#00000090", cursor: "pointer" }}
                   >

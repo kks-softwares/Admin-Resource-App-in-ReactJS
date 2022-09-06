@@ -241,11 +241,20 @@ export default function Listofproposals({
                 </div>
               </div>
             </div>
-            <div style={{fontSize:"0.9vw",marginLeft:"1vw",marginTop:"1vw"}}>
-            Are you Ready to Accept the Proposal ?
+            <div
+              style={{ fontSize: "0.9vw", marginLeft: "1vw", marginTop: "1vw" }}
+            >
+              Are you Ready to Accept the Proposal ?
             </div>
             {data?.status !== "pending" ? (
-              <div style={{float:"right",marginBottom:"2vw",marginTop:"0.3vw"}} className="homejobbuttons">
+              <div
+                style={{
+                  float: "right",
+                  marginBottom: "2vw",
+                  marginTop: "0.3vw",
+                }}
+                className="homejobbuttons"
+              >
                 <button
                   style={{ background: "white" }}
                   onClick={() => navigate("/dashbaord/messages")}
@@ -254,13 +263,14 @@ export default function Listofproposals({
                 </button>
                 <button
                   style={{ background: "white" }}
-                //   onClick={handleRejectbid}
+                  //   onClick={handleRejectbid}
                 >
                   Rejected
                 </button>
-                <button style={{ color: "white" }}
-                //  onClick={handleAcceptbid}
-                 >
+                <button
+                  style={{ color: "white" }}
+                  //  onClick={handleAcceptbid}
+                >
                   Accepted
                 </button>
               </div>
