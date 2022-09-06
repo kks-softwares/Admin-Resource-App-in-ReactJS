@@ -15,7 +15,7 @@ export default function CreateJobuserpage({setjobdetail, setWorkhistorytoggle}) 
   useEffect(() => {
     axios
       .get(
-        `${API_HOST}/jobPost/viewJobPost?userName=${userName}&pageSize=${9}&pageNumber=${page}&category=`
+        `${API_HOST}/jobPost/jobsByUser?userName=${userName}&pageSize=${9}&pageNumber=${page}`
       )
       .then((res) => {
         setAlluserjob(res?.data?.success?.data);
@@ -25,9 +25,9 @@ export default function CreateJobuserpage({setjobdetail, setWorkhistorytoggle}) 
       });
     axios
       .get(
-        `${API_HOST}/jobPost/viewJobPost?userName=${userName}&pageSize=${9}&pageNumber=${
+        `${API_HOST}/jobPost/jobsByUser?userName=${userName}&pageSize=${9}&pageNumber=${
           page + 1
-        }&category=`
+        }`
       )
       .then((res) => {
         if (res?.data?.success?.data?.length > 0) {

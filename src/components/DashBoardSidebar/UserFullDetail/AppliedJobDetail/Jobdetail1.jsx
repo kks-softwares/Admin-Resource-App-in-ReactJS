@@ -279,7 +279,7 @@ export default function Jobdetail1() {
         </div>
         <div
           style={{
-            height: down3 ? `${longofproposallist?.length * 4 + 16}vw` : "",
+            height: down3 ? `${longofproposallist?.length * 4 + 34}vw` : "",
           }}
           className="boxofextension"
         >
@@ -345,6 +345,64 @@ export default function Jobdetail1() {
                 </div>
               </div>
             </div>
+            <div
+              style={{ marginLeft: "1vw", marginTop: "0vw" }}
+              className="flexofdtaes"
+            >
+              <div className="datesofcontact">
+              Documents
+              </div>
+            </div>
+            <div
+              style={{
+                margin: "1vw",
+                flexWrap: "wrap",
+                marginTop: "0vw",
+                justifyContent: "flex-start",
+              }}
+              className="activejobpistbudgetbox"
+            >
+              <div className="boxofimageorpdf">
+                <div className="imageshowboxofpdf">
+                  <img src={img} alt="" />
+                </div>
+                <div className="imageshowboxofpdfname">
+                  <div>
+                    <PictureAsPdfIcon
+                      style={{ color: "red", fontSize: "1.7vw" }}
+                    />
+                  </div>
+                  <div className="nameifimagedocuments">Front Side.pdf</div>
+                </div>
+              </div>
+              <div className="boxofimageorpdf">
+                <div className="imageshowboxofpdf">
+                  <img src={img} alt="" />
+                </div>
+                <div className="imageshowboxofpdfname">
+                  <div>
+                    <PictureAsPdfIcon
+                      style={{ color: "red", fontSize: "1.7vw" }}
+                    />
+                  </div>
+                  <div className="nameifimagedocuments">Front Side.pdf</div>
+                </div>
+              </div>
+              <div className="boxofimageorpdf">
+                <div className="imageshowboxofpdf">
+                  <img src={img} alt="" />
+                </div>
+                <div className="imageshowboxofpdfname">
+                  <div>
+                    <PictureAsPdfIcon
+                      style={{ color: "red", fontSize: "1.7vw" }}
+                    />
+                  </div>
+                  <div className="nameifimagedocuments">Front Side.pdf</div>
+                </div>
+              </div>
+            </div>
+        
           </div>
         </div>
         <div
