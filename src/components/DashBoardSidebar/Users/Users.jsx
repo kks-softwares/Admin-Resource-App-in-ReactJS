@@ -14,7 +14,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import imgfilter from "../../../assets/walletimage/Iconly-Light-Color-Filter.svg";
 import Modal from "@mui/material/Modal";
 import Skillpopup from "./Skillpopup";
-import Skillpopup1 from "./Skillpopup1";
+
 import { TextField } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import Popover from "@mui/material/Popover";
@@ -50,10 +50,6 @@ export default function Users() {
 
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
-  const [togglrbar1, setTogglrbar1] = useState();
-  const [page1, setPage1] = useState(1);
-  const [totalpages1, settotalpages1] = useState(1);
-
   const [setSelectedCategory, setSetSelectedCategory] = useState("");
 
   const [arrayoffilterselected, setarrayoffilterselected] = useState([]);
@@ -63,103 +59,30 @@ export default function Users() {
   const handleClose = () => setOpen(false);
   const [previosfilter, setPreviosfilter] = useState([]);
   const [allusers, setAllusers] = useState([]);
-  const [allusers1, setAllusers1] = useState([]);
+  const [searchskill, setSearchskill] = useState("");
 
-  useEffect(() => {
-    if (!setSelectedCategory) {
-      axios
-        .get(`${API_HOST}/users/viewUser?pageNumber=${page}&pageSize=10`)
-        .then((res) => {
-          setAllusers(res?.data?.success?.data);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(`${API_HOST}/users/viewUser?pageNumber=${page+1}&pageSize=10`)
-        .then((res) => {
-          if (res?.data?.success?.data?.length > 0) {
-            settotalpages(page + 1);
-          }
-        });
-    } else {
-      axios
-        .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&pageNumber=${page}&pageSize=10`
-        )
-        .then((res) => {
-          setAllusers(res?.data?.success?.data);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(
-          `${API_HOST}/users/viewUser?emailId=${setSelectedCategory}&pageNumber=${
-            page + 1
-          }&pageSize=10`
-        )
-        .then((res) => {
-          if (res?.data?.success?.data?.length > 0) {
-            settotalpages(page + 1);
-          } else {
-            settotalpages(page);
-          }
-        });
-    }
-  }, [page, setSelectedCategory]);
-
-  useEffect(() => {
-    if (!setSelectedCategory) {
-      axios
-        .get(
-          `${API_HOST}/users/admin'sUser?emailId=${setSelectedCategory}&page=${page1}`
-        )
-        .then((res) => {
-          setAllusers1(res?.data?.success?.data?.docs);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(
-          `${API_HOST}/users/admin'sUser?emailId=${setSelectedCategory}&page=${
-            page1 + 1
-          }`
-        )
-        .then((res) => {
-          if (res?.data?.success?.data?.docs?.length > 0) {
-            settotalpages1(page1 + 1);
-          }
-        });
-    } else {
-      axios
-        .get(
-          `${API_HOST}/users/admin'sUser?emailId=${setSelectedCategory}&pageNumber=${page1}&pageSize=10`
-        )
-        .then((res) => {
-          setAllusers1(res?.data?.success?.data);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(
-          `${API_HOST}/users/admin'sUser?emailId=${setSelectedCategory}&pageNumber=${
-            page1 + 1
-          }&pageSize=10`
-        )
-        .then((res) => {
-          if (res?.data?.success?.data?.length > 0) {
-            settotalpages1(page1 + 1);
-          } else {
-            settotalpages1(page1);
-          }
-        });
-    }
-  }, [page1, setSelectedCategory]);
-
-  const [togglrbar, setTogglrbar] = useState(1);
+  const setdateadd = (datestart3x) => {
+    const today = new Date(datestart3x);
+    console.log(today);
+    const dd = String(today.getDate() + 1).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    return yyyy + "-" + mm + "-" + dd;
+  };
 
   const classes = useStyles();
-  const [arrayofstudy, setArrayofstydy] = useState([
-    "Computer Science",
-    "Computer Science2",
-    "Computer Science3",
-  ]);
-  const [arrayoflongstudy, setArrayoflongstudy] = useState(arrayofstudy);
+  const [arrayoflongdegreex, setArrayoflongdegreex] = useState();
+
+  useEffect(() => {
+    axios
+      .get(
+        `${API_HOST}/theSkill/viewSkill?pageSize=50&pageNumber=1&skill=${searchskill}`
+      )
+      .then((res) => {
+        setArrayoflongdegreex(res?.data?.success?.data);
+      });
+  }, [searchskill]);
+
   const [anchorElx2, setAnchorElx2] = React.useState(null);
   const handleClickx2 = (event) => {
     setAnchorElx2(event.currentTarget);
@@ -189,10 +112,21 @@ export default function Users() {
         setArrayoflongdegree(res?.data?.success?.data);
       });
   }, [searchCategorysearch]);
+
+  const [prevCateid, setprevCateid] = useState("");
+  const [prevskillid, setprevskillid] = useState("");
+
+  const [Cateid, setCateid] = useState("");
+  const [skillid, setskillid] = useState("");
+
   const [degreeset, setDegreeset] = useState("");
   const [studyset, setstudyset] = useState("");
   const [datestart1, setDatestart1] = useState();
   const [datestart1x, setDatestart1x] = useState();
+
+  const [prevdatestart1, setprevDatestart1] = useState();
+  const [prevdatestart1x, setprevDatestart1x] = useState();
+
   const disablePastDate = () => {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, "0");
@@ -200,6 +134,55 @@ export default function Users() {
     const yyyy = today.getFullYear();
     return yyyy + "-" + mm + "-" + dd;
   };
+
+  useEffect(() => {
+    if (datestart1 && datestart1x) {
+      const date = setdateadd(datestart1x);
+      axios
+        .get(
+          `${API_HOST}/users/viewUser?fullName=${setSelectedCategory}&pageNumber=${page}&pageSize=10&category=${Cateid}&skills=${skillid}&from=${datestart1}&to=${date}`
+        )
+        .then((res) => {
+          setAllusers(res?.data?.success?.data);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
+      axios
+        .get(
+          `${API_HOST}/users/viewUser?fullName=${setSelectedCategory}&pageNumber=${
+            page + 1
+          }&pageSize=10&category=${Cateid}&skills=${skillid}&from=${datestart1}&to=${date}`
+        )
+        .then((res) => {
+          if (res?.data?.success?.data?.length > 0) {
+            settotalpages(page + 1);
+          } else {
+            settotalpages(page);
+          }
+        });
+    } else {
+      axios
+        .get(
+          `${API_HOST}/users/viewUser?fullName=${setSelectedCategory}&pageNumber=${page}&pageSize=10&category=${Cateid}&skills=${skillid}`
+        )
+        .then((res) => {
+          setAllusers(res?.data?.success?.data);
+          window.scrollTo(0, 0, { behavior: "smooth" });
+        });
+      axios
+        .get(
+          `${API_HOST}/users/viewUser?fullName=${setSelectedCategory}&pageNumber=${
+            page + 1
+          }&pageSize=10&category=${Cateid}&skills=${skillid}`
+        )
+        .then((res) => {
+          if (res?.data?.success?.data?.length > 0) {
+            settotalpages(page + 1);
+          } else {
+            settotalpages(page);
+          }
+        });
+    }
+  }, [page, setSelectedCategory, Cateid, skillid, datestart1, datestart1x]);
   return (
     <div className="BrowseWorkMain-cntainer">
       <div
@@ -370,6 +353,7 @@ export default function Users() {
                               }}
                               onClick={() => {
                                 setDegreeset(data?.category);
+                                setprevCateid(data?._id);
                                 handleClosex2();
                               }}
                             >
@@ -429,7 +413,7 @@ export default function Users() {
                   >
                     <div
                       style={{
-                        maxHeight: "18vw",
+                        maxHeight: "15vw",
                         overflow: "scroll",
                         width: "44vw",
                       }}
@@ -466,25 +450,27 @@ export default function Users() {
                         }}
                       ></Typography>
 
-                      {arrayoflongstudy.map((data, index) => {
-                        return (
-                          <Typography
-                            sx={{
-                              p: 0.51,
-                              pl: 1,
-                              ml: 1,
-                              width: "100%",
-                              cursor: "pointer",
-                            }}
-                            onClick={() => {
-                              setstudyset(data);
-                              handleClosex3();
-                            }}
-                          >
-                            {data}
-                          </Typography>
-                        );
-                      })}
+                      {arrayoflongdegreex?.length > 0 &&
+                        arrayoflongdegreex?.map((data, index) => {
+                          return (
+                            <Typography
+                              sx={{
+                                p: 0.51,
+                                pl: 1,
+                                ml: 1,
+                                width: "100%",
+                                cursor: "pointer",
+                              }}
+                              onClick={() => {
+                                setstudyset(data?.skill);
+                                setprevskillid(data?._id);
+                                handleClosex3();
+                              }}
+                            >
+                              {data?.skill}
+                            </Typography>
+                          );
+                        })}
                     </div>
                   </Popover>
                   <div className="jobpodtedfieldtitile">Joined on</div>
@@ -509,12 +495,12 @@ export default function Users() {
                           className="input-homejobformdate"
                           name=""
                           id=""
-                          value={datestart1}
+                          value={prevdatestart1}
                           max={disablePastDate()}
                           min={"2020-01-01"}
                           maxlength="4"
                           onChange={(e) => {
-                            setDatestart1(e.target.value);
+                            setprevDatestart1(e.target.value);
                           }}
                         />
                       </div>
@@ -533,12 +519,12 @@ export default function Users() {
                           className="input-homejobformdate"
                           name=""
                           id=""
-                          value={datestart1x}
+                          value={prevdatestart1x}
                           max={disablePastDate()}
                           min={"2020-01-01"}
                           maxlength="4"
                           onChange={(e) => {
-                            setDatestart1x(e.target.value);
+                            setprevDatestart1x(e.target.value);
                           }}
                         />
                       </div>
@@ -567,7 +553,10 @@ export default function Users() {
                       style={{ cursor: "pointer" }}
                       className="handlecirclieaboutsave"
                       onClick={() => {
-                        setTogglrbar1(togglrbar);
+                        setCateid(prevCateid);
+                        setskillid(prevskillid);
+                        setDatestart1(prevdatestart1);
+                        setDatestart1x(prevdatestart1x);
                         handleClose();
                       }}
                     >
@@ -584,7 +573,18 @@ export default function Users() {
               })}
 
             <div
-              onClick={() => setarrayoffilterselected([])}
+              onClick={() => {
+                setprevCateid("");
+                setprevDatestart1("");
+                setprevDatestart1x("");
+                setprevskillid("");
+                setstudyset("");
+                setDegreeset("");
+                setCateid("");
+                setskillid("");
+                setDatestart1("");
+                setDatestart1x("");
+              }}
               style={{ cursor: "pointer" }}
               className="filtericonboxname"
             >
@@ -599,9 +599,6 @@ export default function Users() {
         className="profileworkhistruytoggleer"
       >
         <div
-          onClick={() => {
-            setTogglrbar(1);
-          }}
           className="profileworkhistruytoggleervalue"
           style={{
             textAlign: "center",
@@ -610,18 +607,6 @@ export default function Users() {
         >
           All Users
         </div>
-        {/* <div
-          onClick={() => {
-            setTogglrbar(2);
-          }}
-          className="profileworkhistruytoggleervalue"
-          style={{
-            textAlign: "center",
-            width: "11vw",
-          }}
-        >
-          Admin Users
-        </div> */}
 
         <div
           style={{
@@ -629,7 +614,7 @@ export default function Users() {
             borderBottom: "0.3vw solid #064C87",
             width: "9vw",
             position: "relative",
-            right: togglrbar === 1 ? "9.5vw" : "0.5vw",
+            right: "9.5vw",
             bottom: "0.0vw",
             transitionDuration: "1s",
             borderRadius: "0.2vw",
@@ -637,140 +622,71 @@ export default function Users() {
         ></div>
       </div>
 
-      {togglrbar === 1 && (
-        <div>
-          <div
-            style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
-            className="navoftableblogs"
-          >
-            <div style={{ width: "6vw" }}>Id</div>
-            <div style={{ width: "9vw" }}> </div>
-            <div style={{ width: "15vw" }}>Name</div>
-            <div style={{ width: "12vw" }}>category</div>
-            <div style={{ width: "12vw" }}>Skill Set</div>
-            <div style={{ width: "12vw" }}></div>
-            <div style={{ width: "10vw" }}>Joined on</div>
-            <div style={{ width: "6vw" }}></div>
-          </div>
-          {allusers?.length > 0 &&
-            allusers?.map((data, index) => {
-              return <Skillpopup data={data} index={index} page={page} />;
-            })}
-
-          {totalpages !== 1 ? (
-            <div style={{ width: "25vw" }} className="paginationbox">
-              <div>
-                <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-
-              <div
-                hidden={page - 4 > 0 ? false : true}
-                onClick={() => setPage(page - 4)}
-              >
-                {page - 4}
-              </div>
-              <div
-                hidden={page - 3 > 0 ? false : true}
-                onClick={() => setPage(page - 3)}
-              >
-                {page - 3}
-              </div>
-              <div
-                hidden={page - 2 > 0 ? false : true}
-                onClick={() => setPage(page - 2)}
-              >
-                {page - 2}
-              </div>
-              <div
-                hidden={page - 1 > 0 ? false : true}
-                onClick={() => setPage(page - 1)}
-              >
-                {page - 1}
-              </div>
-              <div style={{ color: "#2A6599" }}>{page}</div>
-              <div
-                hidden={page + 1 > totalpages ? true : false}
-                onClick={() => setPage(page + 1)}
-              >
-                {page + 1}
-              </div>
-
-              <div>
-                <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
+      <div>
+        <div
+          style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
+          className="navoftableblogs"
+        >
+          <div style={{ width: "6vw" }}>Id</div>
+          <div style={{ width: "9vw" }}> </div>
+          <div style={{ width: "15vw" }}>Name</div>
+          <div style={{ width: "12vw" }}>category</div>
+          <div style={{ width: "12vw" }}>Skill Set</div>
+          <div style={{ width: "12vw" }}></div>
+          <div style={{ width: "10vw" }}>Joined on</div>
+          <div style={{ width: "6vw" }}></div>
         </div>
-      )}
-      {/* {togglrbar === 2 && (
-        <div>
-          <div
-            style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
-            className="navoftableblogs"
-          >
-            <div style={{ width: "5vw" }}>Id</div>
-            <div style={{ width: "7vw" }}> </div>
-            <div style={{ width: "12vw" }}>Name</div>
-            <div style={{ width: "12vw" }}>category</div>
-            <div style={{ width: "14vw" }}>Designation</div>
-            <div style={{ width: "19vw" }}>PassWord</div>
-            <div style={{ width: "8vw" }}>Joined on</div>
-            <div style={{ width: "3vw" }}></div>
-          </div>
-          {allusers1?.length > 0 &&
-            allusers1?.map((data, index) => {
-              return <Skillpopup1 data={data} index={index} page={page} />;
-            })}
+        {allusers?.length > 0 &&
+          allusers?.map((data, index) => {
+            return <Skillpopup data={data} index={index} page={page} />;
+          })}
 
-          {totalpages1 !== 1 ? (
-            <div style={{ width: "25vw" }} className="paginationbox">
-              <div>
-                <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-
-              <div
-                hidden={page1 - 4 > 0 ? false : true}
-                onClick={() => setPage1(page1 - 4)}
-              >
-                {page1 - 4}
-              </div>
-              <div
-                hidden={page1 - 3 > 0 ? false : true}
-                onClick={() => setPage1(page1 - 3)}
-              >
-                {page1 - 3}
-              </div>
-              <div
-                hidden={page1 - 2 > 0 ? false : true}
-                onClick={() => setPage1(page1 - 2)}
-              >
-                {page1 - 2}
-              </div>
-              <div
-                hidden={page1 - 1 > 0 ? false : true}
-                onClick={() => setPage1(page1 - 1)}
-              >
-                {page1 - 1}
-              </div>
-              <div style={{ color: "#2A6599" }}>{page}</div>
-              <div
-                hidden={page1 + 1 > totalpages1 ? true : false}
-                onClick={() => setPage1(page1 + 1)}
-              >
-                {page1 + 1}
-              </div>
-
-              <div>
-                <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
+        {totalpages !== 1 ? (
+          <div style={{ width: "25vw" }} className="paginationbox">
+            <div>
+              <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
             </div>
-          ) : (
-            ""
-          )}
-        </div>
-      )} */}
+
+            <div
+              hidden={page - 4 > 0 ? false : true}
+              onClick={() => setPage(page - 4)}
+            >
+              {page - 4}
+            </div>
+            <div
+              hidden={page - 3 > 0 ? false : true}
+              onClick={() => setPage(page - 3)}
+            >
+              {page - 3}
+            </div>
+            <div
+              hidden={page - 2 > 0 ? false : true}
+              onClick={() => setPage(page - 2)}
+            >
+              {page - 2}
+            </div>
+            <div
+              hidden={page - 1 > 0 ? false : true}
+              onClick={() => setPage(page - 1)}
+            >
+              {page - 1}
+            </div>
+            <div style={{ color: "#2A6599" }}>{page}</div>
+            <div
+              hidden={page + 1 > totalpages ? true : false}
+              onClick={() => setPage(page + 1)}
+            >
+              {page + 1}
+            </div>
+
+            <div>
+              <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 }

@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import "./setting.css";
 import cuntrycide from "../../../helper/c";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { makeStyles } from "@material-ui/core";
 import Box from "@mui/material/Box";
+import { KeyboardArrowDownOutlined } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
+import axios from "axios";
+import API_HOST from "../../../env";
 import { TextField } from "@mui/material";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
-import { KeyboardArrowDownOutlined } from "@mui/icons-material";
+
 import "./profile.css";
-import axios from "axios";
-import API_HOST from "../../../env";
+import "./setting.css";
 
 const useStyles = makeStyles((theme) => ({
   select3: {
@@ -55,9 +56,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EditUser() {
+export default function AddUser() {
   const { userName } = useParams();
-  const [cateerror, setcateError] = useState("");
+
   const [user, setUser] = useState();
 
   useEffect(() => {
@@ -76,42 +77,21 @@ export default function EditUser() {
   const [desc, setDesc] = useState("");
   const [mobile, setMobile] = useState();
   const [age2, setAge2] = React.useState(98);
-  const [age5, setAge5] = React.useState(1);
+  const [oldemail, setoldemail] = useState("");
   const [countrycode, setCountrycode] = useState("+91");
   const [countryside, setCountryside] = useState(cuntrycide);
   const [Category, setCategory] = useState("");
+  const [Categoryid, setCategoryid] = useState();
+  const [skill, setskill] = useState("");
+  const [skillid, setskillid] = useState();
   const [mobilecuntry, setMobilecuntry] = useState(1);
   const [SettingAccEmail, setSettingAccEmail] = useState("");
-
-  const classes = useStyles();
-  const handleChange2x = (event) => {
-    setAge2(event.target.value);
-  };
-  const handleChangeCategory = (event) => {
-    setAge5(event.target.value);
-  };
-
-  useEffect(() => {
-    axios.get(`${API_HOST}/category/viewCategory`).then((res) => {
-      setsettingCategory(res?.data?.success?.data?.docs);
-
-      console.log("viewCategory", res?.data?.success?.data?.docs);
-    });
-
-    if (user) {
-      setName(user?.fullName);
-      setCategory(user?.category);
-      setdesignation(user?.designation);
-      setEmail(user?.emailId);
-      setCountrycode(user?.countryCode?user?.countryCode:"+91");
-      setMobile(user?.contactNo);
-      setDesc(user?.address);
-    }
-    console.log(user);
-  }, [user]);
-
+  const [disabled, setDisabled] = useState(true);
   const [arrayoflongdegree, setArrayoflongdegree] = useState();
+  const [arrayoflongdegreex, setArrayoflongdegreex] = useState();
   const [searchCategorysearch, setSearchCategorysearch] = useState("");
+  const [searchskill, setSearchskill] = useState("");
+
   useEffect(() => {
     axios
       .get(
@@ -122,65 +102,133 @@ export default function EditUser() {
       });
   }, [searchCategorysearch]);
 
+  useEffect(() => {
+    axios
+      .get(
+        `${API_HOST}/theSkill/viewSkill?pageSize=50&pageNumber=1&skill=${searchskill}`
+      )
+      .then((res) => {
+        setArrayoflongdegreex(res?.data?.success?.data);
+      });
+  }, [searchskill]);
+
   const [anchorElx2, setAnchorElx2] = React.useState(null);
   const handleClickx2 = (event) => {
     setAnchorElx2(event.currentTarget);
   };
-
   const handleClosex2 = () => {
     setAnchorElx2(null);
   };
-
   const openx2 = Boolean(anchorElx2);
   const idx2 = openx2 ? "simple-popover" : undefined;
 
-  const [settingCategory, setsettingCategory] = useState([]);
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
+  const handleClick2 = (event) => {
+    setAnchorEl2(event.currentTarget);
+  };
+  const handleClose2 = () => {
+    setAnchorEl2(null);
+  };
+  const open2 = Boolean(anchorEl2);
+  const id2 = open2 ? "simple-popover" : undefined;
 
-  console.log("countrycode", countrycode);
+  const classes = useStyles();
+  const handleChange2x = (event) => {
+    setAge2(event.target.value);
+  };
 
+  const [cateerror, setcateError] = useState("");
   const [color, setColor] = useState("#064c87");
   const [btnText, setbtnText] = useState("SAVE");
 
-  // Save Main Setting +++++++++++++
-  const handlesavededitSetting = () => {
-    const formdata = new FormData();
+  const handleAddUser = () => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
-    formdata.append("userId", user?.userId);
-    formdata.append("fullName", Name);
-    formdata.append("category", Category);
-    formdata.append("designation", Designation);
-    formdata.append("countryCode", countrycode);
-    // formdata.append("emailId", email);
-    formdata.append("contactNo", mobile);
-    formdata.append("address", desc);
+    if (!regex.test(email)) {
+      setRestag("Email is not correct");
+      return;
+    } else if (oldemail === email) {
+      const formdata = new FormData();
+      formdata.append("userId", user?.userId);
+      formdata.append("fullName", Name);
+      formdata.append("category", Categoryid);
+      formdata.append("skills", skillid);
+      // formdata.append("countryCode", countrycode);
 
-    axios
-      .post(`${API_HOST}/users/editUser`, formdata, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((res) => {
-        setTimeout(() => {
-          // Most recent value
-          setColor("#064c87");
-          setbtnText("SAVE");
-        }, 2000);
-      })
-      .catch((err) => {
-        console.log(err.response);
-        setSettingAccEmail(err.response.data.message);
-        setRestag(true);
-      });
+      formdata.append("contactNo", countrycode + mobile);
+      formdata.append("address", desc);
+      axios
+        .post(`${API_HOST}/users/editEmail`, formdata, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          setColor("green");
+          setbtnText("UPDATED");
+          navigate("/dashbaord/users");
+        })
+        .catch((err) => {
+          setSettingAccEmail(err?.response?.data?.fails?.data?.code);
+          setRestag(err?.response?.data?.fails?.data?.code);
+        });
+    } else {
+      const formdata = new FormData();
+      formdata.append("userId", user?.userId);
+      formdata.append("fullName", Name);
+      formdata.append("category", Categoryid);
+      formdata.append("skills", skillid);
+      // formdata.append("countryCode", countrycode);
+      formdata.append("newEmail", email);
+      formdata.append("contactNo", countrycode + mobile);
+      formdata.append("address", desc);
+      axios
+        .post(`${API_HOST}/users/editEmail`, formdata, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          setColor("green");
+          setbtnText("UPDATED");
+          navigate("/dashbaord/users");
+        })
+        .catch((err) => {
+          setSettingAccEmail(err?.response?.data?.fails?.data?.code);
+          setRestag(err?.response?.data?.fails?.data?.code);
+        });
+    }
   };
 
   const [restag, setRestag] = useState(false);
 
+  useEffect(() => {
+    setRestag(false);
+  }, [Name, Category, Designation, countrycode, email, mobile, desc]);
+
+  useEffect(() => {
+    if (user) {
+      setName(user?.fullName);
+      setCategory(user?.category?.category);
+      setCategoryid(user?.category?._id);
+      setskill(user?.skillSet?.skill);
+      setskillid(user?.skillSet?._id);
+      setEmail(user?.emailId);
+      setoldemail(user?.emailId);
+      setCountrycode( user?.contactNo?"+" + JSON.stringify(user?.contactNo).slice(0, 2):"+91");
+      setMobile(parseInt(JSON.stringify(user?.contactNo).slice(2)));
+      setDesc(user?.address);
+    }
+  }, [user]);
+
   return (
     <div>
       <div className="settingAccountcontainer">
-        <div className="settingAccounttitle">
-          Need to Update your User Details ?
+        <div
+          style={{ textAlign: "center", fontSize: "1.5vw" }}
+          className="settingAccounttitle"
+        >
+          Add User
         </div>
 
         <hr style={{ margin: "1vw" }} />
@@ -305,6 +353,7 @@ export default function EditUser() {
                         }}
                         onClick={() => {
                           setCategory(data?.category);
+                          setCategoryid(data?._id);
                           handleClosex2();
                           setcateError();
                         }}
@@ -320,20 +369,20 @@ export default function EditUser() {
         </div>
         <div className="accountdetailbox">
           <div style={{ width: "15vw" }} className="settingAccounttitle">
-          Skill Set
+            Skill Set
           </div>
           <div style={{ width: "40vw" }} className="settingAccounttitlevalue">
             <div
               style={{ left: "0vw", width: "94%", marginLeft: "0%" }}
               className="loginfield"
-              onClick={handleClickx2}
+              onClick={handleClick2}
             >
               <TextField
                 id="outlined-basic"
-                label="Skill Set "
+                label="Skill Set"
                 variant="outlined"
                 disabled
-                value={Category}
+                value={skill}
                 style={{ width: "100%" }}
                 InputLabelProps={{
                   style: {
@@ -362,10 +411,10 @@ export default function EditUser() {
             </div>
 
             <Popover
-              id={idx2}
-              open={openx2}
-              anchorEl={anchorElx2}
-              onClose={handleClosex2}
+              id={id2}
+              open={open2}
+              anchorEl={anchorEl2}
+              onClose={handleClose2}
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "left",
@@ -389,7 +438,7 @@ export default function EditUser() {
                   <input
                     placeholder="search here .."
                     onChange={(e) => {
-                      setSearchCategorysearch(e.target.value);
+                      setSearchskill(e.target.value);
                     }}
                     style={{
                       width: "97%",
@@ -410,8 +459,8 @@ export default function EditUser() {
                   }}
                 ></Typography>
 
-                {arrayoflongdegree?.length > 0 &&
-                  arrayoflongdegree.map((data, index) => {
+                {arrayoflongdegreex?.length > 0 &&
+                  arrayoflongdegreex.map((data, index) => {
                     return (
                       <Typography
                         sx={{
@@ -422,12 +471,13 @@ export default function EditUser() {
                           cursor: "pointer",
                         }}
                         onClick={() => {
-                          setCategory(data?.category);
-                          handleClosex2();
+                          setskill(data?.skill);
+                          setskillid(data?._id);
+                          handleClose2();
                           setcateError();
                         }}
                       >
-                        {data?.category}
+                        {data?.skill}
                       </Typography>
                     );
                   })}
@@ -443,7 +493,6 @@ export default function EditUser() {
           <div style={{ width: "40vw" }} className="settingAccounttitlevalue">
             <div className="jobpostfieldinputbox">
               <input
-                disabled="true"
                 type="email"
                 style={{ width: "29.2vw" }}
                 onChange={(e) => {
@@ -452,7 +501,6 @@ export default function EditUser() {
                 value={email}
               />
             </div>
-            {/* <p style={{color: 'red', fontSize:'10px'}}>{SettingAccEmail ? SettingAccEmail : ""}</p> */}
           </div>
         </div>
         <div className="accountdetailbox">
@@ -588,6 +636,10 @@ export default function EditUser() {
             </div>
           </div>
         </div>
+        <p style={{ color: "red", fontSize: "0.91vw", marginLeft: "7.5vw" }}>
+          {restag ? restag + "*" : ""}
+        </p>
+
         <div
           style={{ marginTop: "2vw" }}
           className="accountdetailbox homejobbuttons"
@@ -604,9 +656,7 @@ export default function EditUser() {
             style={{ background: color }}
             className="handlecirclieaboutsaveSetting"
             onClick={() => {
-              handlesavededitSetting();
-              setColor("green");
-              setbtnText("UPDATED");
+              handleAddUser();
             }}
           >
             {btnText}

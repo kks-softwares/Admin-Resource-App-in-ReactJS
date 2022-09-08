@@ -44,8 +44,8 @@ export default function Skillpopup({ data, index, page }) {
           {data?.fullName}
         </div>
 
-        <div style={{ width: "12vw", fontWeight: "400" }}>{data?.category}</div>
-        <div style={{ width: "12vw" }}>{data?.designation}</div>
+        <div style={{ width: "12vw", fontWeight: "400" }}>{data?.category?.category}</div>
+        <div style={{ width: "12vw" }}>{data?.skillSet?.skill}</div>
         <div style={{ width: "12vw" }}>
           {!verify ? (
             <button

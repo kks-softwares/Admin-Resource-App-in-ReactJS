@@ -63,15 +63,21 @@ export default function AddUser() {
   const [desc, setDesc] = useState("");
   const [mobile, setMobile] = useState();
   const [age2, setAge2] = React.useState(98);
-  const [age5, setAge5] = React.useState(1);
+
   const [countrycode, setCountrycode] = useState("+91");
   const [countryside, setCountryside] = useState(cuntrycide);
   const [Category, setCategory] = useState("");
+  const [Categoryid, setCategoryid] = useState();
+  const [skill, setskill] = useState("");
+  const [skillid, setskillid] = useState();
   const [mobilecuntry, setMobilecuntry] = useState(1);
   const [SettingAccEmail, setSettingAccEmail] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [arrayoflongdegree, setArrayoflongdegree] = useState();
+  const [arrayoflongdegreex, setArrayoflongdegreex] = useState();
   const [searchCategorysearch, setSearchCategorysearch] = useState("");
+  const [searchskill, setSearchskill] = useState("");
+
   useEffect(() => {
     axios
       .get(
@@ -82,69 +88,63 @@ export default function AddUser() {
       });
   }, [searchCategorysearch]);
 
+  useEffect(() => {
+    if (Categoryid) {
+      axios
+        .get(
+          `${API_HOST}/theSkill/viewSkill?pageSize=50&pageNumber=1&skill=${searchskill}&categoryId=${Categoryid}`
+        )
+        .then((res) => {
+          setArrayoflongdegreex(res?.data?.success?.data);
+        });
+    }
+  }, [searchskill, Categoryid]);
+
   const [anchorElx2, setAnchorElx2] = React.useState(null);
   const handleClickx2 = (event) => {
     setAnchorElx2(event.currentTarget);
   };
-
   const handleClosex2 = () => {
     setAnchorElx2(null);
   };
-
   const openx2 = Boolean(anchorElx2);
   const idx2 = openx2 ? "simple-popover" : undefined;
 
-  const handleGameClick = () => {
-    setDisabled(!disabled);
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
+  const handleClick2 = (event) => {
+    setAnchorEl2(event.currentTarget);
   };
-
-  useEffect(() => {
-    axios.get(`${API_HOST}/category/viewCategory`).then((res) => {
-      setsettingCategory(res?.data?.success?.data?.docs);
-
-      console.log("viewCategory", res?.data?.success?.data?.docs);
-    });
-  }, []);
+  const handleClose2 = () => {
+    setAnchorEl2(null);
+  };
+  const open2 = Boolean(anchorEl2);
+  const id2 = open2 ? "simple-popover" : undefined;
 
   const classes = useStyles();
   const handleChange2x = (event) => {
     setAge2(event.target.value);
   };
-  const handleChangeCategory = (event) => {
-    setAge5(event.target.value);
-  };
 
-  const handlepost = (e) => {
-    setSetSelectedCategory(e);
-    console.log("handlePost", e);
-  };
-
-  const [setSelectedCategory, setSetSelectedCategory] = useState("");
-
-  const [settingCategory, setsettingCategory] = useState([]);
-
-  console.log("countrycode", countrycode);
-
-  const [openxp, setOpenxp] = React.useState(false);
-  const [anchorElxp, setAnchorElxp] = React.useState(null);
-  const canBeOpenp = openxp && Boolean(anchorElxp);
-  const idxp = canBeOpenp ? "transition-popper" : undefined;
   const [cateerror, setcateError] = useState("");
   const [color, setColor] = useState("#064c87");
   const [btnText, setbtnText] = useState("SAVE");
 
-  //   Save Main Setting +++++++++++++
-  const handlesavededitSetting = () => {
+  const handleAddUser = () => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
+    if (!regex.test(email)) {
+      setRestag("Email is not correct");
+      return;
+    }
+
     const formdata = new FormData();
-
     formdata.append("fullName", Name);
-    formdata.append("category", Category);
-    formdata.append("designation", Designation);
-    formdata.append("countryCode", countrycode);
+    formdata.append("category", Categoryid);
+    formdata.append("skills", skillid);
+    // formdata.append("countryCode", countrycode);
     formdata.append("emailId", email);
-    formdata.append("contactNo", mobile);
+    formdata.append("contactNo", countrycode + mobile);
     formdata.append("address", desc);
-
     axios
       .post(`${API_HOST}/users/userByAdmin`, formdata, {
         headers: {
@@ -157,7 +157,6 @@ export default function AddUser() {
         navigate("/dashbaord/users");
       })
       .catch((err) => {
-        console.log(err?.response?.data?.fails?.data?.code);
         setSettingAccEmail(err?.response?.data?.fails?.data?.code);
         setRestag(err?.response?.data?.fails?.data?.code);
       });
@@ -301,6 +300,7 @@ export default function AddUser() {
                         }}
                         onClick={() => {
                           setCategory(data?.category);
+                          setCategoryid(data?._id);
                           handleClosex2();
                           setcateError();
                         }}
@@ -322,14 +322,14 @@ export default function AddUser() {
             <div
               style={{ left: "0vw", width: "94%", marginLeft: "0%" }}
               className="loginfield"
-              onClick={handleClickx2}
+              onClick={handleClick2}
             >
               <TextField
                 id="outlined-basic"
                 label="Skill Set"
                 variant="outlined"
                 disabled
-                value={Category}
+                value={skill}
                 style={{ width: "100%" }}
                 InputLabelProps={{
                   style: {
@@ -358,10 +358,10 @@ export default function AddUser() {
             </div>
 
             <Popover
-              id={idx2}
-              open={openx2}
-              anchorEl={anchorElx2}
-              onClose={handleClosex2}
+              id={id2}
+              open={open2}
+              anchorEl={anchorEl2}
+              onClose={handleClose2}
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "left",
@@ -385,7 +385,7 @@ export default function AddUser() {
                   <input
                     placeholder="search here .."
                     onChange={(e) => {
-                      setSearchCategorysearch(e.target.value);
+                      setSearchskill(e.target.value);
                     }}
                     style={{
                       width: "97%",
@@ -406,8 +406,8 @@ export default function AddUser() {
                   }}
                 ></Typography>
 
-                {arrayoflongdegree?.length > 0 &&
-                  arrayoflongdegree.map((data, index) => {
+                {arrayoflongdegreex?.length > 0 &&
+                  arrayoflongdegreex.map((data, index) => {
                     return (
                       <Typography
                         sx={{
@@ -418,12 +418,13 @@ export default function AddUser() {
                           cursor: "pointer",
                         }}
                         onClick={() => {
-                          setCategory(data?.category);
-                          handleClosex2();
+                          setskill(data?.skill);
+                          setskillid(data?._id);
+                          handleClose2();
                           setcateError();
                         }}
                       >
-                        {data?.category}
+                        {data?.skill}
                       </Typography>
                     );
                   })}
@@ -582,7 +583,7 @@ export default function AddUser() {
             </div>
           </div>
         </div>
-        <p style={{ color: "red", fontSize: "0.81vw", marginLeft: "7.5vw" }}>
+        <p style={{ color: "red", fontSize: "0.91vw", marginLeft: "7.5vw" }}>
           {restag ? restag + "*" : ""}
         </p>
 
@@ -602,7 +603,7 @@ export default function AddUser() {
             style={{ background: color }}
             className="handlecirclieaboutsaveSetting"
             onClick={() => {
-              handlesavededitSetting();
+              handleAddUser();
             }}
           >
             {btnText}
