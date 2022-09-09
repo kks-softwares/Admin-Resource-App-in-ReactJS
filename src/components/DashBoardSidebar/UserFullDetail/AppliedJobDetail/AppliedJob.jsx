@@ -53,17 +53,21 @@ export default function AppliedJob({ setjobdetail, setWorkhistorytoggle }) {
                   }}
                 >
                   <div style={{ marginLeft: "0vw" }} className="tagblue">
-                  {data?.category?.category}
+                    {data?.category?.category}
                   </div>
                   <div style={{ marginLeft: "1vw", fontSize: "0.8vw" }}>
-                  {data?.category?.category}
+                    {data?.subCategory?.subCategory
+                      ? data?.subCategory?.subCategory
+                      : "-"}
                   </div>
                 </div>
                 <div style={{ height: "1.1vw" }} className="activejobpostname">
                   {data?.appliedForJobPost[0]?.jobPostId?.workTitle?.length > 40
-                    ? data?.appliedForJobPost[0]?.jobPostId?.workTitle?.slice(0, 40) + ".."
+                    ? data?.appliedForJobPost[0]?.jobPostId?.workTitle?.slice(
+                        0,
+                        40
+                      ) + ".."
                     : data?.appliedForJobPost[0]?.jobPostId?.workTitle}
-            
                 </div>
                 <div
                   style={{ lineHeight: "1.2vw !important", color: "#064C8790" }}
@@ -79,7 +83,8 @@ export default function AppliedJob({ setjobdetail, setWorkhistorytoggle }) {
                         color: "#00000090",
                       }}
                     >
-                      $8-$16
+                      ${data?.appliedForJobPost[0]?.jobPostId?.minimumBudget}-$
+                      {data?.appliedForJobPost[0]?.jobPostId?.maximuBudget}
                     </span>
                   </div>
                   <div style={{ marginRight: "1vw" }}>
@@ -92,12 +97,15 @@ export default function AppliedJob({ setjobdetail, setWorkhistorytoggle }) {
                         color: "#00000090",
                       }}
                     >
-                      {/* {data?.remote
+                      {data?.appliedForJobPost[0]?.jobPostId?.remote
                         ? "remote"
-                        : data?.onSite?.length > 25
-                        ? data?.onSite?.slice(0, 23) + ".."
-                        : data?.onSite} */}
-                      Bangalore
+                        : data?.appliedForJobPost[0]?.jobPostId?.onSite
+                            ?.length > 25
+                        ? data?.appliedForJobPost[0]?.jobPostId?.onSite?.slice(
+                            0,
+                            23
+                          ) + ".."
+                        : data?.appliedForJobPost[0]?.jobPostId?.onSite}
                     </span>
                   </div>
                   <div style={{ marginRight: "1vw" }}>
@@ -110,7 +118,7 @@ export default function AppliedJob({ setjobdetail, setWorkhistorytoggle }) {
                         color: "#00000090",
                       }}
                     >
-                      07 Days
+                      {data?.appliedForJobPost[0]?.jobPostId?.expiry} Days
                     </span>
                   </div>
                 </div>
@@ -125,11 +133,10 @@ export default function AppliedJob({ setjobdetail, setWorkhistorytoggle }) {
                       fontWeight: "400",
                     }}
                   >
-                    {/* {data?.shortDescription?.slice(0, 160)} */}
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer more
+                    {data?.appliedForJobPost[0]?.jobPostId?.shortDescription?.slice(
+                      0,
+                      160
+                    )}
                   </div>
 
                   <br />
@@ -148,7 +155,18 @@ export default function AppliedJob({ setjobdetail, setWorkhistorytoggle }) {
                 <div style={{ paddingLeft: "0vw" }} className="flexlastactiveb">
                   <div>
                     Status -
-                    <span style={{ color: "#E2E228" }}>Work Applied</span>
+                    <span
+                      style={{
+                        color:
+                          data?.workStatus === "completed"
+                            ? "green"
+                            : data?.workStatus === "work applied"
+                            ? "#E2E228"
+                            : "red",
+                      }}
+                    >
+                      {data?.workStatus}
+                    </span>
                   </div>
 
                   <div
