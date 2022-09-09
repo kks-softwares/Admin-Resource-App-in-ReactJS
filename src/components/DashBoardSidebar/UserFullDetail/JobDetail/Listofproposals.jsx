@@ -38,11 +38,25 @@ export default function Listofproposals({
         }}
         className="navoftableblogs"
       >
-        <div style={{ width: "18vw" }}>Rahul Rajput</div>
-        <div style={{ width: "13vw" }}>4 months</div>
-        <div style={{ width: "12vw" }}>27/02/2022</div>
-        <div style={{ width: "12vw" }}>$ 500</div>
-        <div style={{ width: "12vw", color: "red" }}>Rejected</div>
+        <div style={{ width: "18vw" }}>{data?.user_id?.fullName}</div>
+        <div style={{ width: "13vw" }}>--</div>
+        <div style={{ width: "12vw" }}>{data?.timestamps?.slice(0, 10)}</div>
+        <div style={{ width: "12vw" }}>
+          $ {data?.bidingId?.totalProjectPrice}
+        </div>
+        <div
+          style={{
+            width: "12vw",
+            color:
+              data?.bidingId?.workStatus === "completed"
+                ? "green"
+                : data?.bidingId?.workStatus === "pending"
+                ? "red"
+                : "yellow",
+          }}
+        >
+          {data?.bidingId?.workStatus}
+        </div>
         <div
           onClick={() => {
             handleOpenx();
@@ -72,24 +86,39 @@ export default function Listofproposals({
             <hr style={{ height: "0.1vw" }} />
             <div style={{ margin: "1vw" }} className="activejobpistbudgetbox">
               <div>
-                Bidder Name <br /> <span>Vasaanth David.H</span>
+                Bidder Name <br /> <span>{data?.user_id?.fullName}</span>
               </div>
               <div style={{ marginRight: "1vw" }}>
-                Bids Applied On <br /> <span> $8 - $16</span>
+                Bids Applied On <br />{" "}
+                <span> {data?.timestamps?.slice(0, 10)}</span>
               </div>
               <div style={{ marginRight: "1vw" }}>
-                Estimate Time to Complete <br /> <span>3 Months </span>
+                Estimate Time to Complete <br /> <span>---</span>
               </div>
               <div style={{ marginRight: "1vw" }}>
                 {" "}
-                Status <br /> <span style={{ color: "red" }}>Rejected</span>
+                Status <br />{" "}
+                <span
+                  style={{
+                    color:
+                      data?.bidingId?.workStatus === "completed"
+                        ? "green"
+                        : data?.bidingId?.workStatus === "pending"
+                        ? "red"
+                        : "yellow",
+                  }}
+                >
+                  {data?.bidingId?.workStatus}
+                </span>
               </div>
             </div>
-            <div
-              style={{ color: "#064C87", margin: "0.5vw", fontWeight: "500" }}
-            >
-              Image / Documents
-            </div>
+            {data?.files?.length > 0 && (
+              <div
+                style={{ color: "#064C87", margin: "0.5vw", fontWeight: "500" }}
+              >
+                Image / Documents
+              </div>
+            )}
             <div
               style={{
                 margin: "1vw",
@@ -99,153 +128,227 @@ export default function Listofproposals({
               }}
               className="activejobpistbudgetbox"
             >
-              <div className="boxofimageorpdf">
-                <div className="imageshowboxofpdf">
-                  <img src={img} alt="" />
-                </div>
-                <div className="imageshowboxofpdfname">
-                  <div>
-                    <PictureAsPdfIcon
-                      style={{ color: "red", fontSize: "1.7vw" }}
-                    />
+              {data?.files?.slice(0, 3)?.map((data) => {
+                return (
+                  <div className="boxofimageorpdf">
+                    <div className="imageshowboxofpdf">
+                      <img src={data?.file} alt="" />
+                    </div>
+                    <div className="imageshowboxofpdfname">
+                      <div>
+                        <PictureAsPdfIcon
+                          style={{ color: "red", fontSize: "1.7vw" }}
+                        />
+                      </div>
+                      <div className="nameifimagedocuments">Front Side.pdf</div>
+                    </div>
                   </div>
-                  <div className="nameifimagedocuments">Front Side.pdf</div>
-                </div>
-              </div>
-              <div className="boxofimageorpdf">
-                <div className="imageshowboxofpdf">
-                  <img src={img} alt="" />
-                </div>
-                <div className="imageshowboxofpdfname">
-                  <div>
-                    <PictureAsPdfIcon
-                      style={{ color: "red", fontSize: "1.7vw" }}
-                    />
-                  </div>
-                  <div className="nameifimagedocuments">Front Side.pdf</div>
-                </div>
-              </div>
-              <div className="boxofimageorpdf">
-                <div className="imageshowboxofpdf">
-                  <img src={img} alt="" />
-                </div>
-                <div className="imageshowboxofpdfname">
-                  <div>
-                    <PictureAsPdfIcon
-                      style={{ color: "red", fontSize: "1.7vw" }}
-                    />
-                  </div>
-                  <div className="nameifimagedocuments">Front Side.pdf</div>
-                </div>
-              </div>
+                );
+              })}
             </div>
             <div style={{ margin: "0.5vw", fontWeight: "500" }}>
               Total Milestone
             </div>
 
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-              className="colpletedmilestonescontacts"
+            {data?.bidingId?.milestoneDescription1 !== null && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+                className="colpletedmilestonescontacts"
+              >
+                <div>
+                  <div>1. {data?.bidingId?.milestoneDescription1}</div>
+                  <div
+                    style={{
+                      fontSize: "0.95vw",
+                      color: "black",
+                      fontWeight: "400",
+                    }}
+                  >
+                    $ {data?.bidingId?.milestonePrice1}
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style={{ color: "#064C87", fontWeight: "400" }}
+                    className="profilebannernameandpostemail"
+                  >
+                    <span>
+                      <img src={img2} alt="" />
+                    </span>
+                    -
+                  </div>
+                </div>
+              </div>
+            )}
+            {data?.bidingId?.milestoneDescription1 !== null && (
+              <hr style={{ width: "100%", margin: "0.3vw" }} />
+            )}
+            {data?.bidingId?.milestoneDescription2 !== null && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+                className="colpletedmilestonescontacts"
+              >
+                <div>
+                  <div>2. {data?.bidingId?.milestoneDescription2}</div>
+                  <div
+                    style={{
+                      fontSize: "0.95vw",
+                      color: "black",
+                      fontWeight: "400",
+                    }}
+                  >
+                    $ {data?.bidingId?.milestonePrice2}
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style={{ color: "#064C87", fontWeight: "400" }}
+                    className="profilebannernameandpostemail"
+                  >
+                    <span>
+                      <img src={img2} alt="" />
+                    </span>
+                    -
+                  </div>
+                </div>
+              </div>
+            )}
+            {data?.bidingId?.milestoneDescription2 !== null && (
+              <hr style={{ width: "100%", margin: "0.3vw" }} />
+            )}
+            {data?.bidingId?.milestoneDescription3 !== null && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+                className="colpletedmilestonescontacts"
+              >
+                <div>
+                  <div>1. {data?.bidingId?.milestoneDescription3}</div>
+                  <div
+                    style={{
+                      fontSize: "0.95vw",
+                      color: "black",
+                      fontWeight: "400",
+                    }}
+                  >
+                    $ {data?.bidingId?.milestonePrice3}
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style={{ color: "#064C87", fontWeight: "400" }}
+                    className="profilebannernameandpostemail"
+                  >
+                    <span>
+                      <img src={img2} alt="" />
+                    </span>
+                    -
+                  </div>
+                </div>
+              </div>
+            )}
+            {data?.bidingId?.milestoneDescription3 !== null && (
+              <hr style={{ width: "100%", margin: "0.3vw" }} />
+            )}
+            {data?.bidingId?.milestoneDescription4 !== null && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+                className="colpletedmilestonescontacts"
+              >
+                <div>
+                  <div>1. {data?.bidingId?.milestoneDescription4}</div>
+                  <div
+                    style={{
+                      fontSize: "0.95vw",
+                      color: "black",
+                      fontWeight: "400",
+                    }}
+                  >
+                    $ {data?.bidingId?.milestonePrice4}
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style={{ color: "#064C87", fontWeight: "400" }}
+                    className="profilebannernameandpostemail"
+                  >
+                    <span>
+                      <img src={img2} alt="" />
+                    </span>
+                    -
+                  </div>
+                </div>
+              </div>
+            )}
+            {data?.bidingId?.milestoneDescription4 !== null && (
+              <hr style={{ width: "100%", margin: "0.3vw" }} />
+            )}
+            {data?.bidingId?.milestoneDescription5 !== null && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+                className="colpletedmilestonescontacts"
+              >
+                <div>
+                  <div>1. {data?.bidingId?.milestoneDescription5}</div>
+                  <div
+                    style={{
+                      fontSize: "0.95vw",
+                      color: "black",
+                      fontWeight: "400",
+                    }}
+                  >
+                    $ {data?.bidingId?.milestonePrice5}
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style={{ color: "#064C87", fontWeight: "400" }}
+                    className="profilebannernameandpostemail"
+                  >
+                    <span>
+                      <img src={img2} alt="" />
+                    </span>
+                    -
+                  </div>
+                </div>
+              </div>
+            )}
+            {data?.bidingId?.milestoneDescription5 !== null && (
+              <hr style={{ width: "100%", margin: "0.3vw" }} />
+            )}
+          { data?.bidingId?.workStatus === "pending" && <div
+              style={{ fontSize: "0.9vw", marginLeft: "1vw", marginTop: "1vw" }}
             >
-              <div>
-                <div>1. Website Wireframe Approval with Prototype</div>
-                <div
-                  style={{
-                    fontSize: "0.95vw",
-                    color: "black",
-                    fontWeight: "400",
-                  }}
-                >
-                  $300
-                </div>
-              </div>
-              <div>
-                <div
-                  style={{ color: "#064C87", fontWeight: "400" }}
-                  className="profilebannernameandpostemail"
-                >
-                  <span>
-                    <img src={img2} alt="" />
-                  </span>
-                  Paid Milestone
-                </div>
-              </div>
-            </div>
-            <hr style={{ width: "100%", margin: "0.3vw" }} />
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-              className="colpletedmilestonescontacts"
-            >
-              <div>
-                <div>1. Website Wireframe Approval with Prototype</div>
-                <div
-                  style={{
-                    fontSize: "0.95vw",
-                    color: "black",
-                    fontWeight: "400",
-                  }}
-                >
-                  $300
-                </div>
-              </div>
-              <div>
-                <div
-                  style={{ color: "#064C87", fontWeight: "400" }}
-                  className="profilebannernameandpostemail"
-                >
-                  <span>
-                    <img src={img2} alt="" />
-                  </span>
-                  Paid Milestone
-                </div>
-              </div>
-            </div>
-            <hr style={{ width: "100%", margin: "0.3vw" }} />
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-              className="colpletedmilestonescontacts"
-            >
-              <div>
-                <div>1. Website Wireframe Approval with Prototype</div>
-                <div
-                  style={{
-                    fontSize: "0.95vw",
-                    color: "black",
-                    fontWeight: "400",
-                  }}
-                >
-                  $300
-                </div>
-              </div>
-              <div>
-                <div
-                  style={{ color: "#064C87", fontWeight: "400" }}
-                  className="profilebannernameandpostemail"
-                >
-                  <span>
-                    <img src={img2} alt="" />
-                  </span>
-                  Paid Milestone
-                </div>
-              </div>
-            </div>
-            <div style={{fontSize:"0.9vw",marginLeft:"1vw",marginTop:"1vw"}}>
-            Are you Ready to Accept the Proposal ?
-            </div>
-            {data?.status !== "pending" ? (
-              <div style={{float:"right",marginBottom:"2vw",marginTop:"0.3vw"}} className="homejobbuttons">
+              Are you Ready to Accept the Proposal ?
+            </div>}
+            {data?.bidingId?.workStatus === "pending" ? (
+              <div
+                style={{
+                  float: "right",
+                  marginBottom: "2vw",
+                  marginTop: "0.3vw",
+                }}
+                className="homejobbuttons"
+              >
                 <button
                   style={{ background: "white" }}
                   onClick={() => navigate("/dashbaord/messages")}
@@ -254,13 +357,14 @@ export default function Listofproposals({
                 </button>
                 <button
                   style={{ background: "white" }}
-                //   onClick={handleRejectbid}
+                  //   onClick={handleRejectbid}
                 >
                   Rejected
                 </button>
-                <button style={{ color: "white" }}
-                //  onClick={handleAcceptbid}
-                 >
+                <button
+                  style={{ color: "white" }}
+                  //  onClick={handleAcceptbid}
+                >
                   Accepted
                 </button>
               </div>

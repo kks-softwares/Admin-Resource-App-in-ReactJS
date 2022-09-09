@@ -144,7 +144,7 @@ export default function CreateJobuserpage({setjobdetail, setWorkhistorytoggle}) 
 
                   <div
                     onClick={() => {
-                      setjobdetail(1);
+                      setjobdetail(data?.jobPostId);
                       setWorkhistorytoggle(11)
                     }}
                     style={{ color: "#00000090", cursor: "pointer" }}

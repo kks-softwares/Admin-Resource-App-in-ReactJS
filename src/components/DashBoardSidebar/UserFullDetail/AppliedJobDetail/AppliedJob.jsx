@@ -171,7 +171,7 @@ export default function AppliedJob({ setjobdetail, setWorkhistorytoggle }) {
 
                   <div
                     onClick={() => {
-                      setjobdetail(1);
+                      setjobdetail(data?.appliedForJobPost[0]?.jobPostId?.jobPostId);
                       setWorkhistorytoggle(12);
                     }}
                     style={{ color: "#00000090", cursor: "pointer" }}

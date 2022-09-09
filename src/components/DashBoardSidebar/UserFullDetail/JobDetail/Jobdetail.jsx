@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./jobdetail.css";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import CloseIcon from "@mui/icons-material/Close";
-import { useNavigate } from "react-router";
+
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -13,12 +10,27 @@ import StarRatings from "react-star-ratings";
 import img1 from "../../../../assets/Web 1280 – 14/Group 9831.svg";
 import img from "../../../../assets/Landing page/pexels-christina-morillo-1181467.png";
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
-export default function Jobdetail() {
+import API_HOST from "../../../../env";
+import axios from "axios";
+
+export default function Jobdetail({ jobdetail }) {
   const [down1, setDown1] = useState(false);
   const [down2, setDown2] = useState(false);
   const [down3, setDown3] = useState(false);
   const [down4, setDown4] = useState(false);
   const [longofproposallist, setLongofproposallist] = useState(["1", "2"]);
+  const [data1, setdata1] = useState();
+
+  useEffect(() => {
+    axios
+      .get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${jobdetail}`)
+      .then((res) => {
+        console.log(res?.data?.success?.data[0]);
+        setdata1(res?.data?.success?.data[0]);
+        setLongofproposallist(res?.data?.success?.data[0]?.listOfBider)
+      });
+  }, [jobdetail]);
+
   return (
     <div>
       <div
@@ -38,9 +50,9 @@ export default function Jobdetail() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center" }}>
-            <div className="tagblue">Mobile Application</div>
+            <div className="tagblue">{data1?.category?.category}</div>
             <div style={{ marginLeft: "1vw", fontSize: "0.9vw" }}>
-              Mobile Application
+              {data1?.subCategory?.subCategory}
             </div>
           </div>
           <div style={{ display: "flex" }}>
@@ -96,7 +108,7 @@ export default function Jobdetail() {
             color: "#064C87",
           }}
         >
-          Senior Product Designer (#34793)
+          {data1?.workTitle}
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
           <span>
@@ -109,7 +121,7 @@ export default function Jobdetail() {
             />
           </span>
           <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
-            {"Remote Kanpur"}
+            {data1?.remote ? "Remote" : data1?.onSite}
           </span>
         </div>
         <div
@@ -122,18 +134,7 @@ export default function Jobdetail() {
           }}
           className="dashboardtitilemainparabid"
         >
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum. the release of Letraset sheets
-          containing Lorem Ipsum passages, and more recently with desktop
-          publishing software like Aldus PageMaker including versions of Lorem
-          Ipsum.
+          {data1?.shortDescription}
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
           <span style={{ fontSize: "1.1vw", fontWeight: "500", margin: "1vw" }}>
@@ -143,11 +144,16 @@ export default function Jobdetail() {
         <div
           style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
         >
-          <div className="skillmap">Usability Testing</div>
-          <div className="skillmap">Prototyping</div>
-          <div className="skillmap">Prototyping</div>
-          <div className="skillmap">User interface</div>
-          <div className="skillmap">Prototyping</div>
+          {data1?.skill1 && <div className="skillmap">{data1?.skill1}</div>}
+          {data1?.skill2 && <div className="skillmap">{data1?.skill2}</div>}
+          {data1?.skill3 && <div className="skillmap">{data1?.skill3}</div>}
+          {data1?.skill4 && <div className="skillmap">{data1?.skill4}</div>}
+          {data1?.skill5 && <div className="skillmap">{data1?.skill5}</div>}
+          {data1?.skill6 && <div className="skillmap">{data1?.skill6}</div>}
+          {data1?.skill7 && <div className="skillmap">{data1?.skill7}</div>}
+          {data1?.skill8 && <div className="skillmap">{data1?.skill8}</div>}
+          {data1?.skill9 && <div className="skillmap">{data1?.skill9}</div>}
+          {data1?.skill10 && <div className="skillmap">{data1?.skill10}</div>}
         </div>
         <div
           style={{
@@ -185,45 +191,23 @@ export default function Jobdetail() {
               }}
               className="activejobpistbudgetbox"
             >
-              <div className="boxofimageorpdf">
-                <div className="imageshowboxofpdf">
-                  <img src={img} alt="" />
-                </div>
-                <div className="imageshowboxofpdfname">
-                  <div>
-                    <PictureAsPdfIcon
-                      style={{ color: "red", fontSize: "1.7vw" }}
-                    />
+              {data1?.icons?.map((data) => {
+                return (
+                  <div className="boxofimageorpdf">
+                    <div className="imageshowboxofpdf">
+                      <img src={data?.icon} alt="" />
+                    </div>
+                    <div className="imageshowboxofpdfname">
+                      <div>
+                        <PictureAsPdfIcon
+                          style={{ color: "red", fontSize: "1.7vw" }}
+                        />
+                      </div>
+                      <div className="nameifimagedocuments">Front Side.pdf</div>
+                    </div>
                   </div>
-                  <div className="nameifimagedocuments">Front Side.pdf</div>
-                </div>
-              </div>
-              <div className="boxofimageorpdf">
-                <div className="imageshowboxofpdf">
-                  <img src={img} alt="" />
-                </div>
-                <div className="imageshowboxofpdfname">
-                  <div>
-                    <PictureAsPdfIcon
-                      style={{ color: "red", fontSize: "1.7vw" }}
-                    />
-                  </div>
-                  <div className="nameifimagedocuments">Front Side.pdf</div>
-                </div>
-              </div>
-              <div className="boxofimageorpdf">
-                <div className="imageshowboxofpdf">
-                  <img src={img} alt="" />
-                </div>
-                <div className="imageshowboxofpdfname">
-                  <div>
-                    <PictureAsPdfIcon
-                      style={{ color: "red", fontSize: "1.7vw" }}
-                    />
-                  </div>
-                  <div className="nameifimagedocuments">Front Side.pdf</div>
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -348,9 +332,7 @@ export default function Jobdetail() {
               style={{ marginLeft: "1vw", marginTop: "0vw" }}
               className="flexofdtaes"
             >
-              <div className="datesofcontact">
-              Documents
-              </div>
+              <div className="datesofcontact">Documents</div>
             </div>
             <div
               style={{
@@ -401,7 +383,6 @@ export default function Jobdetail() {
                 </div>
               </div>
             </div>
-        
           </div>
         </div>
         <div
@@ -506,7 +487,14 @@ export default function Jobdetail() {
                 </div>
               </div>
             </div>
-            <div style={{ display: "flex", flexWrap: "wrap",marginBottom:"2vw",marginLeft:"2vw" }}>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                marginBottom: "2vw",
+                marginLeft: "2vw",
+              }}
+            >
               <div
                 style={{
                   width: "fit-content",
@@ -543,7 +531,6 @@ export default function Jobdetail() {
                   />
                 </div>
               </div>
-         
             </div>
             <div
               style={{ marginLeft: "1vw", marginTop: "0vw" }}
@@ -607,57 +594,64 @@ export default function Jobdetail() {
                     ></textarea>
                   </div>
                 </div>
-                <div style={{ display: "flex", flexWrap: "wrap",marginLeft:"2vw" }}>
-              <div
-                style={{
-                  width: "fit-content",
-                  marginTop: "0vw",
-                  marginBottom: "1vw",
-                }}
-                className="inputfilesshowncatboxsingle"
-              >
-                <div className="inputfilesshowncatboxsingleimg">
-                  <img src={img1} alt="" />
-                </div>
-                <div className="fileselctednamecate">Modern submitted.docx</div>
-                <div className="inputfilesshowncatboxsingleimg">
-                  <CloudDownloadOutlinedIcon
-                    style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                  />
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    marginLeft: "2vw",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "fit-content",
+                      marginTop: "0vw",
+                      marginBottom: "1vw",
+                    }}
+                    className="inputfilesshowncatboxsingle"
+                  >
+                    <div className="inputfilesshowncatboxsingleimg">
+                      <img src={img1} alt="" />
+                    </div>
+                    <div className="fileselctednamecate">
+                      Modern submitted.docx
+                    </div>
+                    <div className="inputfilesshowncatboxsingleimg">
+                      <CloudDownloadOutlinedIcon
+                        style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                      />
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      width: "fit-content",
+                      marginTop: "0vw",
+                      marginBottom: "1vw",
+                    }}
+                    className="inputfilesshowncatboxsingle"
+                  >
+                    <div className="inputfilesshowncatboxsingleimg">
+                      <img src={img1} alt="" />
+                    </div>
+                    <div className="fileselctednamecate">
+                      Modern submitted.docx
+                    </div>
+                    <div className="inputfilesshowncatboxsingleimg">
+                      <CloudDownloadOutlinedIcon
+                        style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div
-                style={{
-                  width: "fit-content",
-                  marginTop: "0vw",
-                  marginBottom: "1vw",
-                }}
-                className="inputfilesshowncatboxsingle"
-              >
-                <div className="inputfilesshowncatboxsingleimg">
-                  <img src={img1} alt="" />
-                </div>
-                <div className="fileselctednamecate">Modern submitted.docx</div>
-                <div className="inputfilesshowncatboxsingleimg">
-                  <CloudDownloadOutlinedIcon
-                    style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                  />
-                </div>
-              </div>
-         
             </div>
-              </div>
+            <div className="confirmationtext">
+              Are you Sure What to Close Contract From <span>44 Resource</span>{" "}
+              Representative
             </div>
-            <div className="confirmationtext" >
-            Are you Sure What to Close Contract From <span>44 Resource</span> Representative
-            </div>
-            <div style={{display:"flex",justifyContent:"flex-end"}}>
-                   <button className="endbuttoncontract">
-                   End Contract
-                   </button>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <button className="endbuttoncontract">End Contract</button>
             </div>
           </div>
-           
         </div>
       </div>
     </div>

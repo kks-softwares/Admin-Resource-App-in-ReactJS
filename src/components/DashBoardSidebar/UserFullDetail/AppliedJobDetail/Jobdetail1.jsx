@@ -15,7 +15,7 @@ import img from "../../../../assets/Landing page/pexels-christina-morillo-118146
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 import img2 from "../../../../assets/Success stories Definition/checkmark (1).svg";
 
-export default function Jobdetail1() {
+export default function Jobdetail1({jobdetail}) {
   const [down1, setDown1] = useState(false);
   const [down2, setDown2] = useState(false);
   const [down3, setDown3] = useState(false);

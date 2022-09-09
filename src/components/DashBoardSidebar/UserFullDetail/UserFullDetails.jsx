@@ -16,7 +16,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import axios from "axios";
 import API_HOST from "../../../env";
 import CreateJobuserpage from "./CreatedJob/CreateJobuserpage";
-import AppliedJobpage from "./AppliedJiob/AppliedJobpage";
+
 import Skillcenteruser from "./SkillCenter/Skillcenteruser";
 import Skillfirstuser from "./SkillCenter/Skillfirstuser";
 import Refrences from "./Refrences/Refrences";
@@ -55,7 +55,8 @@ export default function SkillCenter() {
       setWorkhistorytoggle(9);
     } else if (type === "Documents") {
       setWorkhistorytoggle(10);
-    } else {
+    } 
+    else {
       setWorkhistorytoggle(9);
     }
   }, [type]);
@@ -67,6 +68,8 @@ export default function SkillCenter() {
   }, [userName]);
 
   const [jobdetail, setjobdetail] = useState("");
+
+
 
   return (
     <div className="BrowseWorkMain-cntainer">
@@ -393,14 +396,14 @@ export default function SkillCenter() {
       )}
       {workhistorytoggle === 11 ? (
         <>
-          <Jobdetail user={user} />
+        {jobdetail? <Jobdetail user={user} jobdetail={jobdetail} />:""}
         </>
       ) : (
         ""
       )}
       {workhistorytoggle === 12 ? (
         <>
-          <Jobdetail1 user={user} />
+         {jobdetail? <Jobdetail1 user={user} jobdetail={jobdetail} />:""}
         </>
       ) : (
         ""
