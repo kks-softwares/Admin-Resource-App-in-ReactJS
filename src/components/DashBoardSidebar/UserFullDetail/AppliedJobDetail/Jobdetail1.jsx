@@ -1,26 +1,34 @@
-import React, { useState } from "react";
-
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import CloseIcon from "@mui/icons-material/Close";
-import { useNavigate } from "react-router";
+import React, { useEffect, useState } from "react";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import Listofproposals from "./Listofproposals copy";
+import Listofproposals from "./Listofproposals";
 import StarRatings from "react-star-ratings";
 import img1 from "../../../../assets/Web 1280 – 14/Group 9831.svg";
 import img from "../../../../assets/Landing page/pexels-christina-morillo-1181467.png";
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
-import img2 from "../../../../assets/Success stories Definition/checkmark (1).svg";
-
-export default function Jobdetail1({jobdetail}) {
+import axios from "axios";
+import API_HOST from "../../../../env";
+export default function Jobdetail1({ jobdetail }) {
   const [down1, setDown1] = useState(false);
   const [down2, setDown2] = useState(false);
   const [down3, setDown3] = useState(false);
   const [down4, setDown4] = useState(false);
   const [longofproposallist, setLongofproposallist] = useState(["1", "2"]);
+  const [data1, setdata1] = useState();
+
+  useEffect(() => {
+    axios
+      .get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${jobdetail}`)
+      .then((res) => {
+        console.log(res?.data?.success?.data[0]);
+        setdata1(res?.data?.success?.data[0]);
+        setLongofproposallist(res?.data?.success?.data[0]?.listOfBider);
+      });
+  }, [jobdetail]);
+
+  const date = new Date();
   return (
     <div>
       <div
@@ -31,7 +39,6 @@ export default function Jobdetail1({jobdetail}) {
           margin: "1vw 0vw",
         }}
       >
-        {" "}
         <div
           style={{
             width: "100%",
@@ -39,10 +46,11 @@ export default function Jobdetail1({jobdetail}) {
             justifyContent: "space-between",
           }}
         >
+          {" "}
           <div style={{ display: "flex", alignItems: "center" }}>
-            <div className="tagblue">Mobile Application</div>
+            <div className="tagblue">{data1?.category?.category}</div>
             <div style={{ marginLeft: "1vw", fontSize: "0.9vw" }}>
-              Mobile Application
+              {data1?.subCategory?.subCategory}
             </div>
           </div>
           <div style={{ display: "flex" }}>
@@ -98,7 +106,7 @@ export default function Jobdetail1({jobdetail}) {
             color: "#064C87",
           }}
         >
-          Senior Product Designer (#34793)
+          {data1?.workTitle}
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
           <span>
@@ -111,7 +119,7 @@ export default function Jobdetail1({jobdetail}) {
             />
           </span>
           <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
-            {"Remote Kanpur"}
+            {data1?.remote ? "Remote" : data1?.onSite}
           </span>
         </div>
         <div
@@ -124,18 +132,7 @@ export default function Jobdetail1({jobdetail}) {
           }}
           className="dashboardtitilemainparabid"
         >
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum. the release of Letraset sheets
-          containing Lorem Ipsum passages, and more recently with desktop
-          publishing software like Aldus PageMaker including versions of Lorem
-          Ipsum.
+          {data1?.shortDescription}
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
           <span style={{ fontSize: "1.1vw", fontWeight: "500", margin: "1vw" }}>
@@ -145,11 +142,16 @@ export default function Jobdetail1({jobdetail}) {
         <div
           style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
         >
-          <div className="skillmap">Usability Testing</div>
-          <div className="skillmap">Prototyping</div>
-          <div className="skillmap">Prototyping</div>
-          <div className="skillmap">User interface</div>
-          <div className="skillmap">Prototyping</div>
+          {data1?.skill1 && <div className="skillmap">{data1?.skill1}</div>}
+          {data1?.skill2 && <div className="skillmap">{data1?.skill2}</div>}
+          {data1?.skill3 && <div className="skillmap">{data1?.skill3}</div>}
+          {data1?.skill4 && <div className="skillmap">{data1?.skill4}</div>}
+          {data1?.skill5 && <div className="skillmap">{data1?.skill5}</div>}
+          {data1?.skill6 && <div className="skillmap">{data1?.skill6}</div>}
+          {data1?.skill7 && <div className="skillmap">{data1?.skill7}</div>}
+          {data1?.skill8 && <div className="skillmap">{data1?.skill8}</div>}
+          {data1?.skill9 && <div className="skillmap">{data1?.skill9}</div>}
+          {data1?.skill10 && <div className="skillmap">{data1?.skill10}</div>}
         </div>
         <div
           style={{
@@ -187,51 +189,29 @@ export default function Jobdetail1({jobdetail}) {
               }}
               className="activejobpistbudgetbox"
             >
-              <div className="boxofimageorpdf">
-                <div className="imageshowboxofpdf">
-                  <img src={img} alt="" />
-                </div>
-                <div className="imageshowboxofpdfname">
-                  <div>
-                    <PictureAsPdfIcon
-                      style={{ color: "red", fontSize: "1.7vw" }}
-                    />
+              {data1?.icons?.map((data) => {
+                return (
+                  <div className="boxofimageorpdf">
+                    <div className="imageshowboxofpdf">
+                      <img src={data?.icon} alt="" />
+                    </div>
+                    <div className="imageshowboxofpdfname">
+                      <div>
+                        <PictureAsPdfIcon
+                          style={{ color: "red", fontSize: "1.7vw" }}
+                        />
+                      </div>
+                      <div className="nameifimagedocuments">Front Side.pdf</div>
+                    </div>
                   </div>
-                  <div className="nameifimagedocuments">Front Side.pdf</div>
-                </div>
-              </div>
-              <div className="boxofimageorpdf">
-                <div className="imageshowboxofpdf">
-                  <img src={img} alt="" />
-                </div>
-                <div className="imageshowboxofpdfname">
-                  <div>
-                    <PictureAsPdfIcon
-                      style={{ color: "red", fontSize: "1.7vw" }}
-                    />
-                  </div>
-                  <div className="nameifimagedocuments">Front Side.pdf</div>
-                </div>
-              </div>
-              <div className="boxofimageorpdf">
-                <div className="imageshowboxofpdf">
-                  <img src={img} alt="" />
-                </div>
-                <div className="imageshowboxofpdfname">
-                  <div>
-                    <PictureAsPdfIcon
-                      style={{ color: "red", fontSize: "1.7vw" }}
-                    />
-                  </div>
-                  <div className="nameifimagedocuments">Front Side.pdf</div>
-                </div>
-              </div>
-            </div>
+                );
+              })}
+            </div>{" "}
           </div>
         </div>
         <div
           style={{
-            height: down1 ? `${ 4 + 7}vw` : "",
+            height: down1 ? `${4 + 7}vw` : "",
           }}
           className="boxofextension"
         >
@@ -274,7 +254,9 @@ export default function Jobdetail1({jobdetail}) {
               </div>
             </div>
 
-            <Listofproposals />
+            {longofproposallist?.map((data) => {
+              return <div>{data?.bidingId?.workStatus==="pending" && <Listofproposals data={data} />} </div>;
+            })}
           </div>
         </div>
         <div
@@ -311,37 +293,37 @@ export default function Jobdetail1({jobdetail}) {
               <div className="boxblackbackg">
                 Service Provider Id <br />
                 <div>
-                  <span>Vasaanth David.H</span>
+                  <span>{data1?.user_id?.userId}</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Service Provider Name <br />
                 <div>
-                  <span>Vasaanth David.H</span>
+                  <span>{data1?.user_id?.fullName}</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Contract Amount <br />
                 <div>
-                  <span>Vasaanth David.H</span>
+                  <span>-</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 duration <br />
                 <div>
-                  <span>Vasaanth David.H</span>
+                  <span>-</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Contract Starting Date <br />
                 <div>
-                  <span>Vasaanth David.H</span>
+                  <span>-</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Contract Ending Date <br />
                 <div>
-                  <span>Vasaanth David.H</span>
+                  <span>-</span>
                 </div>
               </div>
             </div>
@@ -349,9 +331,7 @@ export default function Jobdetail1({jobdetail}) {
               style={{ marginLeft: "1vw", marginTop: "0vw" }}
               className="flexofdtaes"
             >
-              <div className="datesofcontact">
-              Documents
-              </div>
+              <div className="datesofcontact">Documents</div>
             </div>
             <div
               style={{
@@ -362,49 +342,24 @@ export default function Jobdetail1({jobdetail}) {
               }}
               className="activejobpistbudgetbox"
             >
-              <div className="boxofimageorpdf">
-                <div className="imageshowboxofpdf">
-                  <img src={img} alt="" />
-                </div>
-                <div className="imageshowboxofpdfname">
-                  <div>
-                    <PictureAsPdfIcon
-                      style={{ color: "red", fontSize: "1.7vw" }}
-                    />
+          {data1?.icons?.map((data) => {
+                return (
+                  <div className="boxofimageorpdf">
+                    <div className="imageshowboxofpdf">
+                      <img src={data?.icon} alt="" />
+                    </div>
+                    <div className="imageshowboxofpdfname">
+                      <div>
+                        <PictureAsPdfIcon
+                          style={{ color: "red", fontSize: "1.7vw" }}
+                        />
+                      </div>
+                      <div className="nameifimagedocuments">Front Side.pdf</div>
+                    </div>
                   </div>
-                  <div className="nameifimagedocuments">Front Side.pdf</div>
-                </div>
-              </div>
-              <div className="boxofimageorpdf">
-                <div className="imageshowboxofpdf">
-                  <img src={img} alt="" />
-                </div>
-                <div className="imageshowboxofpdfname">
-                  <div>
-                    <PictureAsPdfIcon
-                      style={{ color: "red", fontSize: "1.7vw" }}
-                    />
-                  </div>
-                  <div className="nameifimagedocuments">Front Side.pdf</div>
-                </div>
-              </div>
-              <div className="boxofimageorpdf">
-                <div className="imageshowboxofpdf">
-                  <img src={img} alt="" />
-                </div>
-                <div className="imageshowboxofpdfname">
-                  <div>
-                    <PictureAsPdfIcon
-                      style={{ color: "red", fontSize: "1.7vw" }}
-                    />
-                  </div>
-                  <div className="nameifimagedocuments">Front Side.pdf</div>
-                </div>
-              </div>
-            </div>
-        
-          </div>
-        </div>
+                );
+              })} </div>
+          </div> </div>
         <div
           style={{
             height: down4 ? `${longofproposallist?.length * 4 + 81}vw` : "",
