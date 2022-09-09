@@ -31,6 +31,8 @@ export default function Jobdetail({ jobdetail }) {
       });
   }, [jobdetail]);
 
+  const date =new Date()
+
   return (
     <div>
       <div
@@ -41,7 +43,7 @@ export default function Jobdetail({ jobdetail }) {
           margin: "1vw 0vw",
         }}
       >
-        {" "}
+    
         <div
           style={{
             width: "100%",
@@ -294,37 +296,37 @@ export default function Jobdetail({ jobdetail }) {
               <div className="boxblackbackg">
                 Service Provider Id <br />
                 <div>
-                  <span>Vasaanth David.H</span>
+                  <span>{data1?.user_id?.userId}</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Service Provider Name <br />
                 <div>
-                  <span>Vasaanth David.H</span>
+                  <span>{data1?.user_id?.fullName}</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Contract Amount <br />
                 <div>
-                  <span>Vasaanth David.H</span>
+                  <span>-</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 duration <br />
                 <div>
-                  <span>Vasaanth David.H</span>
+                  <span>-</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Contract Starting Date <br />
                 <div>
-                  <span>Vasaanth David.H</span>
+                  <span>-</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Contract Ending Date <br />
                 <div>
-                  <span>Vasaanth David.H</span>
+                  <span>-</span>
                 </div>
               </div>
             </div>
@@ -343,46 +345,23 @@ export default function Jobdetail({ jobdetail }) {
               }}
               className="activejobpistbudgetbox"
             >
-              <div className="boxofimageorpdf">
-                <div className="imageshowboxofpdf">
-                  <img src={img} alt="" />
-                </div>
-                <div className="imageshowboxofpdfname">
-                  <div>
-                    <PictureAsPdfIcon
-                      style={{ color: "red", fontSize: "1.7vw" }}
-                    />
+          {data1?.icons?.map((data) => {
+                return (
+                  <div className="boxofimageorpdf">
+                    <div className="imageshowboxofpdf">
+                      <img src={data?.icon} alt="" />
+                    </div>
+                    <div className="imageshowboxofpdfname">
+                      <div>
+                        <PictureAsPdfIcon
+                          style={{ color: "red", fontSize: "1.7vw" }}
+                        />
+                      </div>
+                      <div className="nameifimagedocuments">Front Side.pdf</div>
+                    </div>
                   </div>
-                  <div className="nameifimagedocuments">Front Side.pdf</div>
-                </div>
-              </div>
-              <div className="boxofimageorpdf">
-                <div className="imageshowboxofpdf">
-                  <img src={img} alt="" />
-                </div>
-                <div className="imageshowboxofpdfname">
-                  <div>
-                    <PictureAsPdfIcon
-                      style={{ color: "red", fontSize: "1.7vw" }}
-                    />
-                  </div>
-                  <div className="nameifimagedocuments">Front Side.pdf</div>
-                </div>
-              </div>
-              <div className="boxofimageorpdf">
-                <div className="imageshowboxofpdf">
-                  <img src={img} alt="" />
-                </div>
-                <div className="imageshowboxofpdfname">
-                  <div>
-                    <PictureAsPdfIcon
-                      style={{ color: "red", fontSize: "1.7vw" }}
-                    />
-                  </div>
-                  <div className="nameifimagedocuments">Front Side.pdf</div>
-                </div>
-              </div>
-            </div>
+                );
+              })} </div>
           </div>
         </div>
         <div
@@ -417,7 +396,7 @@ export default function Jobdetail({ jobdetail }) {
               <div className="boxblackbackg">
                 Contract Actual Date <br />
                 <div>
-                  <span>Vasaanth David.H</span>
+                  <span>{String(date).slice(0,15)}</span>
                 </div>
               </div>
             </div>
