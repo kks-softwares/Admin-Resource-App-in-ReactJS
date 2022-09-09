@@ -53,17 +53,17 @@ export default function AppliedJob({ setjobdetail, setWorkhistorytoggle }) {
                   }}
                 >
                   <div style={{ marginLeft: "0vw" }} className="tagblue">
-                    UI UX design
+                  {data?.category?.category}
                   </div>
                   <div style={{ marginLeft: "1vw", fontSize: "0.8vw" }}>
-                    UI UX design
+                  {data?.category?.category}
                   </div>
                 </div>
                 <div style={{ height: "1.1vw" }} className="activejobpostname">
-                  {/* {data?.workTitle?.length > 40
-                    ? data?.workTitle?.slice(0, 40) + ".."
-                    : data?.workTitle} */}
-                  Senior Product Designer (#23613)
+                  {data?.appliedForJobPost[0]?.jobPostId?.workTitle?.length > 40
+                    ? data?.appliedForJobPost[0]?.jobPostId?.workTitle?.slice(0, 40) + ".."
+                    : data?.appliedForJobPost[0]?.jobPostId?.workTitle}
+            
                 </div>
                 <div
                   style={{ lineHeight: "1.2vw !important", color: "#064C8790" }}

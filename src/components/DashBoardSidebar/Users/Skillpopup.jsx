@@ -1,12 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import img from "../../../assets/Landing page/apple (1)@2x.png";
 import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
 import { useNavigate } from "react-router";
+import axios from "axios";
+import API_HOST from "../../../env";
 
 export default function Skillpopup({ data, index, page }) {
   const navigate = useNavigate();
   const [verify, setVerify] = useState(false);
+  useEffect(() => {
+    setVerify(data?.verifiedByAdmin);
+  }, [data]);
+
+  const verifyuser = () => {
+    axios.post(
+      `${API_HOST}/users/editUser`,
+      {
+        verifiedByAdmin: true,
+        userId: data?.userId,
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      }
+    ).then((res)=>{
+setVerify(true)
+    });
+  };
+
   return (
     <div>
       <div style={{ alignItems: "center" }} className="navoftableblogsdata">
@@ -44,12 +67,14 @@ export default function Skillpopup({ data, index, page }) {
           {data?.fullName}
         </div>
 
-        <div style={{ width: "12vw", fontWeight: "400" }}>{data?.category?.category}</div>
+        <div style={{ width: "12vw", fontWeight: "400" }}>
+          {data?.category?.category}
+        </div>
         <div style={{ width: "12vw" }}>{data?.skillSet?.skill}</div>
         <div style={{ width: "12vw" }}>
           {!verify ? (
             <button
-              onClick={() => setVerify(true)}
+              onClick={() => verifyuser()}
               style={{
                 fontSize: "1vw",
                 height: "2.5vw",
@@ -64,7 +89,7 @@ export default function Skillpopup({ data, index, page }) {
             <div
               style={{
                 fontSize: "0.9vw",
-                color:"#168B12"
+                color: "#168B12",
               }}
             >
               verify by 44resources

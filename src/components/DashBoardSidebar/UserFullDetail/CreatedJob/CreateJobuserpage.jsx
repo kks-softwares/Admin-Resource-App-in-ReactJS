@@ -53,10 +53,10 @@ export default function CreateJobuserpage({setjobdetail, setWorkhistorytoggle}) 
                   }}
                 >
                   <div style={{ marginLeft: "0vw" }} className="tagblue">
-                    {data?.category}
+                    {data?.category?.category}
                   </div>
                   <div style={{ marginLeft: "1vw", fontSize: "0.8vw" }}>
-                    {data?.subCategory}
+                    {data?.subCategory?.subCategory}
                   </div>
                 </div>
                 <div style={{ height: "1.1vw" }} className="activejobpostname">

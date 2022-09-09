@@ -14,7 +14,6 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import imgfilter from "../../../assets/walletimage/Iconly-Light-Color-Filter.svg";
 import Modal from "@mui/material/Modal";
 import Skillpopup from "./Skillpopup";
-
 import { TextField } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import Popover from "@mui/material/Popover";
