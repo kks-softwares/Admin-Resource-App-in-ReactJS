@@ -27,11 +27,11 @@ export default function Jobdetail({ jobdetail }) {
       .then((res) => {
         console.log(res?.data?.success?.data[0]);
         setdata1(res?.data?.success?.data[0]);
-        setLongofproposallist(res?.data?.success?.data[0]?.listOfBider)
+        setLongofproposallist(res?.data?.success?.data[0]?.listOfBider);
       });
   }, [jobdetail]);
 
-  const date =new Date()
+  const date = new Date();
 
   return (
     <div>
@@ -43,7 +43,6 @@ export default function Jobdetail({ jobdetail }) {
           margin: "1vw 0vw",
         }}
       >
-    
         <div
           style={{
             width: "100%",
@@ -159,7 +158,9 @@ export default function Jobdetail({ jobdetail }) {
         </div>
         <div
           style={{
-            height: down2 ? `${longofproposallist?.length * 4 + 10}vw` : "",
+            height: down2
+              ? `${parseInt((data1?.icons?.length + 3) / 3) * 10 + 10}vw`
+              : "",
           }}
           className="boxofextension"
         >
@@ -205,7 +206,9 @@ export default function Jobdetail({ jobdetail }) {
                           style={{ color: "red", fontSize: "1.7vw" }}
                         />
                       </div>
-                      <div className="nameifimagedocuments">Front Side.pdf</div>
+                      <div className="nameifimagedocuments">
+                        {data?.icon?.split("%24")[1]?.slice(0, 22)}
+                      </div>
                     </div>
                   </div>
                 );
@@ -258,13 +261,23 @@ export default function Jobdetail({ jobdetail }) {
               </div>
             </div>
             {longofproposallist?.map((data) => {
-              return <Listofproposals data={data} />;
+              return (
+                <Listofproposals
+                  data={data}
+                  jobdetail={jobdetail}
+                  setdata1={setdata1}
+                  data1={data1}
+                  setLongofproposallist={setLongofproposallist}
+                />
+              );
             })}
           </div>
         </div>
         <div
           style={{
-            height: down3 ? `${longofproposallist?.length * 4 + 34}vw` : "",
+            height: down3
+              ? `${parseInt((data1?.icons?.length + 3) / 3) * 12 + 30}vw`
+              : "",
           }}
           className="boxofextension"
         >
@@ -308,25 +321,25 @@ export default function Jobdetail({ jobdetail }) {
               <div className="boxblackbackg">
                 Contract Amount <br />
                 <div>
-                  <span>-</span>
+                  <span>{data1?.workAssigned ? "" : "-"} </span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 duration <br />
                 <div>
-                  <span>-</span>
+                  <span>{data1?.workAssigned ? "" : "-"}</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Contract Starting Date <br />
                 <div>
-                  <span>-</span>
+                  <span>{data1?.workAssigned ? "" : "-"}</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Contract Ending Date <br />
                 <div>
-                  <span>-</span>
+                  <span>{data1?.workAssigned ? "" : "-"}</span>
                 </div>
               </div>
             </div>
@@ -345,7 +358,7 @@ export default function Jobdetail({ jobdetail }) {
               }}
               className="activejobpistbudgetbox"
             >
-          {data1?.icons?.map((data) => {
+              {data1?.icons?.map((data) => {
                 return (
                   <div className="boxofimageorpdf">
                     <div className="imageshowboxofpdf">
@@ -357,281 +370,308 @@ export default function Jobdetail({ jobdetail }) {
                           style={{ color: "red", fontSize: "1.7vw" }}
                         />
                       </div>
-                      <div className="nameifimagedocuments">Front Side.pdf</div>
+                      <div className="nameifimagedocuments">
+                        {data?.icon?.split("%24")[1]?.slice(0, 22)}
+                      </div>
                     </div>
                   </div>
                 );
-              })} </div>
+              })}{" "}
+            </div>
           </div>
         </div>
-        <div
-          style={{
-            height: down4 ? `${longofproposallist?.length * 4 + 81}vw` : "",
-          }}
-          className="boxofextension"
-        >
-          <div className="flexofboxextentionnav">
-            <div>Contract Completion</div>
-            <div
-              onClick={() => {
-                setDown4(!down4);
-              }}
-            >
-              {!down4 ? (
-                <KeyboardArrowDownIcon
-                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
-                />
-              ) : (
-                <KeyboardArrowUpIcon
-                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
-                />
-              )}
-            </div>
-          </div>
-          <div hidden={!down4}>
-            <div
-              style={{ margin: "1vw", flexWrap: "wrap", marginTop: "0vw" }}
-              className="activejobpistbudgetbox"
-            >
-              <div className="boxblackbackg">
-                Contract Actual Date <br />
-                <div>
-                  <span>{String(date).slice(0,15)}</span>
-                </div>
-              </div>
-            </div>
-            <div
-              style={{ marginLeft: "1vw", marginTop: "0vw" }}
-              className="flexofdtaes"
-            >
-              <div className="datesofcontact">
-                Review And Rating by service Provider
-              </div>
-            </div>
-            <div className="chatcontaract">
+        {data1?.workAssigned && (
+          <div
+            style={{
+              height: down4 ? `${longofproposallist?.length * 4 + 81}vw` : "",
+            }}
+            className="boxofextension"
+          >
+            <div className="flexofboxextentionnav">
+              <div>Contract Completion</div>
               <div
-                style={{ width: "80vw", padding: "0vw", height: "fit-content" }}
-                className="chatboxescontact"
+                onClick={() => {
+                  setDown4(!down4);
+                }}
               >
-                <div
-                  style={{ marginLeft: "1vw", marginTop: "0vw" }}
-                  className="flexofdtaes"
-                >
-                  <div className="datesofcontact">Ratings</div>
-                </div>
-                <div className="workhistryboxdate">
-                  <span
+                {!down4 ? (
+                  <KeyboardArrowDownIcon
                     style={{
-                      width: "10vw",
-                      position: "relative",
-                      bottom: "0.5vw",
-                      left: "1vw",
+                      fontSize: "2vw",
+                      margin: "1vw",
+                      cursor: "pointer",
                     }}
-                  >
-                    <StarRatings
-                      rating={0}
-                      starRatedColor="#064C87"
-                      starDimension="1.6vw  "
-                      starSpacing="0.3vw"
-                      numberOfStars={5}
-                      name="rating"
-                    />
-                  </span>
+                  />
+                ) : (
+                  <KeyboardArrowUpIcon
+                    style={{
+                      fontSize: "2vw",
+                      margin: "1vw",
+                      cursor: "pointer",
+                    }}
+                  />
+                )}
+              </div>
+            </div>
+            <div hidden={!down4}>
+              <div
+                style={{ margin: "1vw", flexWrap: "wrap", marginTop: "0vw" }}
+                className="activejobpistbudgetbox"
+              >
+                <div className="boxblackbackg">
+                  Contract Actual Date <br />
+                  <div>
+                    <span>{String(date).slice(0, 15)}</span>
+                  </div>
                 </div>
-
-                <hr style={{ width: "90%", marginLeft: "2vw" }} />
+              </div>
+              <div
+                style={{ marginLeft: "1vw", marginTop: "0vw" }}
+                className="flexofdtaes"
+              >
+                <div className="datesofcontact">
+                  Review And Rating by service Provider
+                </div>
+              </div>
+              <div className="chatcontaract">
                 <div
                   style={{
-                    left: "0vw",
-                    width: "96%",
-                    margin: "2vw 1vw 2vw 1vw",
-                    display: "block",
+                    width: "80vw",
+                    padding: "0vw",
+                    height: "fit-content",
                   }}
-                  className="loginfield"
+                  className="chatboxescontact"
                 >
                   <div
-                    style={{ marginBottom: "0.0vw", marginBottom: "1vw" }}
-                    className="jobpodtedfieldtitile"
+                    style={{ marginLeft: "1vw", marginTop: "0vw" }}
+                    className="flexofdtaes"
                   >
-                    Review
+                    <div className="datesofcontact">Ratings</div>
                   </div>
-                  <div>
-                    <textarea
-                      name=""
-                      id=""
-                      className="reviewbox"
-                      rows="10"
-                    ></textarea>
+                  <div className="workhistryboxdate">
+                    <span
+                      style={{
+                        width: "10vw",
+                        position: "relative",
+                        bottom: "0.5vw",
+                        left: "1vw",
+                      }}
+                    >
+                      <StarRatings
+                        rating={0}
+                        starRatedColor="#064C87"
+                        starDimension="1.6vw  "
+                        starSpacing="0.3vw"
+                        numberOfStars={5}
+                        name="rating"
+                      />
+                    </span>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                marginBottom: "2vw",
-                marginLeft: "2vw",
-              }}
-            >
-              <div
-                style={{
-                  width: "fit-content",
-                  marginTop: "0vw",
-                  marginBottom: "1vw",
-                }}
-                className="inputfilesshowncatboxsingle"
-              >
-                <div className="inputfilesshowncatboxsingleimg">
-                  <img src={img1} alt="" />
-                </div>
-                <div className="fileselctednamecate">Modern submitted.docx</div>
-                <div className="inputfilesshowncatboxsingleimg">
-                  <CloudDownloadOutlinedIcon
-                    style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                  />
+
+                  <hr style={{ width: "90%", marginLeft: "2vw" }} />
+                  <div
+                    style={{
+                      left: "0vw",
+                      width: "96%",
+                      margin: "2vw 1vw 2vw 1vw",
+                      display: "block",
+                    }}
+                    className="loginfield"
+                  >
+                    <div
+                      style={{ marginBottom: "0.0vw", marginBottom: "1vw" }}
+                      className="jobpodtedfieldtitile"
+                    >
+                      Review
+                    </div>
+                    <div>
+                      <textarea
+                        name=""
+                        id=""
+                        className="reviewbox"
+                        rows="10"
+                      ></textarea>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div
                 style={{
-                  width: "fit-content",
-                  marginTop: "0vw",
-                  marginBottom: "1vw",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginBottom: "2vw",
+                  marginLeft: "2vw",
                 }}
-                className="inputfilesshowncatboxsingle"
-              >
-                <div className="inputfilesshowncatboxsingleimg">
-                  <img src={img1} alt="" />
-                </div>
-                <div className="fileselctednamecate">Modern submitted.docx</div>
-                <div className="inputfilesshowncatboxsingleimg">
-                  <CloudDownloadOutlinedIcon
-                    style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              style={{ marginLeft: "1vw", marginTop: "0vw" }}
-              className="flexofdtaes"
-            >
-              <div className="datesofcontact">Review And Rating by Client</div>
-            </div>
-            <div className="chatcontaract">
-              <div
-                style={{ width: "80vw", padding: "0vw", height: "fit-content" }}
-                className="chatboxescontact"
               >
                 <div
-                  style={{ marginLeft: "1vw", marginTop: "0vw" }}
-                  className="flexofdtaes"
+                  style={{
+                    width: "fit-content",
+                    marginTop: "0vw",
+                    marginBottom: "1vw",
+                  }}
+                  className="inputfilesshowncatboxsingle"
                 >
-                  <div className="datesofcontact">Ratings</div>
-                </div>
-                <div className="workhistryboxdate">
-                  <span
-                    style={{
-                      width: "10vw",
-                      position: "relative",
-                      bottom: "0.5vw",
-                      left: "1vw",
-                    }}
-                  >
-                    <StarRatings
-                      rating={0}
-                      starRatedColor="#064C87"
-                      starDimension="1.6vw  "
-                      starSpacing="0.3vw"
-                      numberOfStars={5}
-                      name="rating"
+                  <div className="inputfilesshowncatboxsingleimg">
+                    <img src={img1} alt="" />
+                  </div>
+                  <div className="fileselctednamecate">
+                    Modern submitted.docx
+                  </div>
+                  <div className="inputfilesshowncatboxsingleimg">
+                    <CloudDownloadOutlinedIcon
+                      style={{ fontSize: "1.5vw", margin: "0 1vw" }}
                     />
-                  </span>
+                  </div>
                 </div>
+                <div
+                  style={{
+                    width: "fit-content",
+                    marginTop: "0vw",
+                    marginBottom: "1vw",
+                  }}
+                  className="inputfilesshowncatboxsingle"
+                >
+                  <div className="inputfilesshowncatboxsingleimg">
+                    <img src={img1} alt="" />
+                  </div>
+                  <div className="fileselctednamecate">
+                    Modern submitted.docx
+                  </div>
+                  <div className="inputfilesshowncatboxsingleimg">
+                    <CloudDownloadOutlinedIcon
+                      style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                style={{ marginLeft: "1vw", marginTop: "0vw" }}
+                className="flexofdtaes"
+              >
+                <div className="datesofcontact">
+                  Review And Rating by Client
+                </div>
+              </div>
+              <div className="chatcontaract">
+                <div
+                  style={{
+                    width: "80vw",
+                    padding: "0vw",
+                    height: "fit-content",
+                  }}
+                  className="chatboxescontact"
+                >
+                  <div
+                    style={{ marginLeft: "1vw", marginTop: "0vw" }}
+                    className="flexofdtaes"
+                  >
+                    <div className="datesofcontact">Ratings</div>
+                  </div>
+                  <div className="workhistryboxdate">
+                    <span
+                      style={{
+                        width: "10vw",
+                        position: "relative",
+                        bottom: "0.5vw",
+                        left: "1vw",
+                      }}
+                    >
+                      <StarRatings
+                        rating={0}
+                        starRatedColor="#064C87"
+                        starDimension="1.6vw  "
+                        starSpacing="0.3vw"
+                        numberOfStars={5}
+                        name="rating"
+                      />
+                    </span>
+                  </div>
 
-                <hr style={{ width: "90%", marginLeft: "2vw" }} />
-                <div
-                  style={{
-                    left: "0vw",
-                    width: "96%",
-                    margin: "2vw 1vw 2vw 1vw",
-                    display: "block",
-                  }}
-                  className="loginfield"
-                >
-                  <div
-                    style={{ marginBottom: "0.0vw", marginBottom: "1vw" }}
-                    className="jobpodtedfieldtitile"
-                  >
-                    Review
-                  </div>
-                  <div>
-                    <textarea
-                      name=""
-                      id=""
-                      className="reviewbox"
-                      rows="10"
-                    ></textarea>
-                  </div>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    marginLeft: "2vw",
-                  }}
-                >
+                  <hr style={{ width: "90%", marginLeft: "2vw" }} />
                   <div
                     style={{
-                      width: "fit-content",
-                      marginTop: "0vw",
-                      marginBottom: "1vw",
+                      left: "0vw",
+                      width: "96%",
+                      margin: "2vw 1vw 2vw 1vw",
+                      display: "block",
                     }}
-                    className="inputfilesshowncatboxsingle"
+                    className="loginfield"
                   >
-                    <div className="inputfilesshowncatboxsingleimg">
-                      <img src={img1} alt="" />
+                    <div
+                      style={{ marginBottom: "0.0vw", marginBottom: "1vw" }}
+                      className="jobpodtedfieldtitile"
+                    >
+                      Review
                     </div>
-                    <div className="fileselctednamecate">
-                      Modern submitted.docx
-                    </div>
-                    <div className="inputfilesshowncatboxsingleimg">
-                      <CloudDownloadOutlinedIcon
-                        style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                      />
+                    <div>
+                      <textarea
+                        name=""
+                        id=""
+                        className="reviewbox"
+                        rows="10"
+                      ></textarea>
                     </div>
                   </div>
                   <div
                     style={{
-                      width: "fit-content",
-                      marginTop: "0vw",
-                      marginBottom: "1vw",
+                      display: "flex",
+                      flexWrap: "wrap",
+                      marginLeft: "2vw",
                     }}
-                    className="inputfilesshowncatboxsingle"
                   >
-                    <div className="inputfilesshowncatboxsingleimg">
-                      <img src={img1} alt="" />
+                    <div
+                      style={{
+                        width: "fit-content",
+                        marginTop: "0vw",
+                        marginBottom: "1vw",
+                      }}
+                      className="inputfilesshowncatboxsingle"
+                    >
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <img src={img1} alt="" />
+                      </div>
+                      <div className="fileselctednamecate">
+                        Modern submitted.docx
+                      </div>
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <CloudDownloadOutlinedIcon
+                          style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                        />
+                      </div>
                     </div>
-                    <div className="fileselctednamecate">
-                      Modern submitted.docx
-                    </div>
-                    <div className="inputfilesshowncatboxsingleimg">
-                      <CloudDownloadOutlinedIcon
-                        style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                      />
+                    <div
+                      style={{
+                        width: "fit-content",
+                        marginTop: "0vw",
+                        marginBottom: "1vw",
+                      }}
+                      className="inputfilesshowncatboxsingle"
+                    >
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <img src={img1} alt="" />
+                      </div>
+                      <div className="fileselctednamecate">
+                        Modern submitted.docx
+                      </div>
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <CloudDownloadOutlinedIcon
+                          style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="confirmationtext">
-              Are you Sure What to Close Contract From <span>44 Resource</span>{" "}
-              Representative
-            </div>
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <button className="endbuttoncontract">End Contract</button>
+              <div className="confirmationtext">
+                Are you Sure What to Close Contract From{" "}
+                <span>44 Resource</span> Representative
+              </div>
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <button className="endbuttoncontract">End Contract</button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
