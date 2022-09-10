@@ -52,9 +52,10 @@ export default function Listofproposals({
           .post(`${API_HOST}/jobPost/editJobPost`, {
             jobPostId: data1.jobPostId,
             workStatus: "Accepted",
-            assignedJob: true,
+            workAssigned: true,
             workAssignDate: date,
             jobDoerId: data?.user_id?._id,
+            workAssignedTo:data?.bidingId?._id
           })
           .then(() => {
             axios
@@ -120,7 +121,7 @@ export default function Listofproposals({
                 ? "green"
                 : data?.bidingId?.workStatus === "pending"
                 ? "red"
-                : "yellow",
+                : "#E2E228",
           }}
         >
           {data?.bidingId?.workStatus}
@@ -417,7 +418,7 @@ export default function Listofproposals({
                 Are you Ready to Accept the Proposal ?
               </div>
             )}
-            {data?.bidingId?.workStatus === "pending" ? (
+            {((data?.bidingId?.workStatus === "pending") && (data1?.workAssigned===false)) ? (
               <div
                 style={{
                   float: "right",

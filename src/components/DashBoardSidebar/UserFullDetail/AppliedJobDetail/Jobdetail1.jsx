@@ -10,7 +10,7 @@ import img from "../../../../assets/Landing page/pexels-christina-morillo-118146
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 import axios from "axios";
 import API_HOST from "../../../../env";
-export default function Jobdetail1({ jobdetail }) {
+export default function Jobdetail1({user, jobdetail }) {
   const [down1, setDown1] = useState(false);
   const [down2, setDown2] = useState(false);
   const [down3, setDown3] = useState(false);
@@ -255,7 +255,13 @@ export default function Jobdetail1({ jobdetail }) {
             </div>
 
             {longofproposallist?.map((data) => {
-              return <div>{data?.bidingId?.workStatus==="pending" && <Listofproposals data={data} />} </div>;
+              return (
+                <div>
+                  {data?.user_id?.userId === user?.userId && (
+                    <Listofproposals data={data} />
+                  )}{" "}
+                </div>
+              );
             })}
           </div>
         </div>
@@ -305,25 +311,31 @@ export default function Jobdetail1({ jobdetail }) {
               <div className="boxblackbackg">
                 Contract Amount <br />
                 <div>
-                  <span>-</span>
+                  <span>
+                    {data1?.workAssigned
+                      ? data1?.workAssignedTo?.totalProjectPrice
+                      : "-"}{" "}
+                  </span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 duration <br />
                 <div>
-                  <span>-</span>
+                  <span>{data1?.workAssigned ? "-" : "-"}</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Contract Starting Date <br />
                 <div>
-                  <span>-</span>
+                  <span>
+                    {data1?.workAssigned ? data1?.workAssignDate : "-"}
+                  </span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Contract Ending Date <br />
                 <div>
-                  <span>-</span>
+                  <span>{data1?.workAssigned ? "-" : "-"}</span>
                 </div>
               </div>
             </div>
@@ -342,11 +354,11 @@ export default function Jobdetail1({ jobdetail }) {
               }}
               className="activejobpistbudgetbox"
             >
-          {data1?.icons?.map((data) => {
+              {data1?.workAssignedTo?.files?.map((data) => {
                 return (
                   <div className="boxofimageorpdf">
                     <div className="imageshowboxofpdf">
-                      <img src={data?.icon} alt="" />
+                      <img src={data?.file} alt="" />
                     </div>
                     <div className="imageshowboxofpdfname">
                       <div>
@@ -354,12 +366,16 @@ export default function Jobdetail1({ jobdetail }) {
                           style={{ color: "red", fontSize: "1.7vw" }}
                         />
                       </div>
-                      <div className="nameifimagedocuments">Front Side.pdf</div>
+                      <div className="nameifimagedocuments">
+                        {data?.file?.split("%24")[1]?.slice(0, 22)}
+                      </div>
                     </div>
                   </div>
                 );
-              })} </div>
-          </div> </div>
+              })}{" "}
+            </div>
+          </div>{" "}
+        </div>
         <div
           style={{
             height: down4 ? `${longofproposallist?.length * 4 + 81}vw` : "",

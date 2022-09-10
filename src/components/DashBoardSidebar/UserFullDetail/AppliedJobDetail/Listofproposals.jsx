@@ -6,6 +6,8 @@ import { useNavigate } from "react-router";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import img2 from "../../../../assets/Success stories Definition/checkmark (1).svg";
 import img from "../../../../assets/Landing page/pexels-christina-morillo-1181467.png";
+import axios from "axios";
+import API_HOST from "../../../../env";
 const style = {
   position: "absolute",
   top: "50%",
@@ -20,13 +22,80 @@ const style = {
 
 export default function Listofproposals({
   data,
-  setjobdetail,
-  setWorkhistorytoggle,
+  data1,
+  setLongofproposallist,
+  setdata1,
+  jobdetail,
 }) {
   const [openx, setOpenx] = React.useState(false);
   const handleOpenx = () => setOpenx(true);
   const navigate = useNavigate();
   const handleClosex = () => setOpenx(false);
+
+  const handleAcceptbid = () => {
+    var today = new Date(),
+      date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate();
+    axios
+      .post(`${API_HOST}/biding/editBiding`, {
+        bidingId: data.bidingId?.bidingId,
+        workStatus: "Accepted",
+        assignedJob: true,
+        assignedJobDate: date,
+      })
+      .then((res) => {
+        axios
+          .post(`${API_HOST}/jobPost/editJobPost`, {
+            jobPostId: data1.jobPostId,
+            workStatus: "Accepted",
+            workAssigned: true,
+            workAssignDate: date,
+            jobDoerId: data?.user_id?._id,
+            workAssignedTo:data?.bidingId?._id
+          })
+          .then(() => {
+            axios
+              .get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${jobdetail}`)
+              .then((res) => {
+                console.log(res?.data?.success?.data[0]);
+                setdata1(res?.data?.success?.data[0]);
+                setLongofproposallist(res?.data?.success?.data[0]?.listOfBider);
+                handleClosex();
+              });
+          });
+      });
+  };
+  const handleRejectbid = () => {
+    var today = new Date(),
+      date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate();
+    axios
+      .post(`${API_HOST}/biding/editBiding`, {
+        bidingId: data.bidingId?.bidingId,
+        workStatus: "Reject",
+        assignedJob: true,
+        assignedJobDate: date,
+      })
+      .then((res) => {
+        axios
+          .get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${jobdetail}`)
+          .then((res) => {
+            console.log(res?.data?.success?.data[0]);
+            setdata1(res?.data?.success?.data[0]);
+            setLongofproposallist(res?.data?.success?.data[0]?.listOfBider);
+            handleClosex();
+          });
+      });
+  };
+
   return (
     <div className="listofproposalname">
       <div
@@ -52,7 +121,7 @@ export default function Listofproposals({
                 ? "green"
                 : data?.bidingId?.workStatus === "pending"
                 ? "red"
-                : "yellow",
+                : "#E2E228",
           }}
         >
           {data?.bidingId?.workStatus}
@@ -112,7 +181,8 @@ export default function Listofproposals({
                 </span>
               </div>
             </div>
-            {data?.files?.length > 0 && (
+
+            {data?.bidingId?.files?.length > 0 && (
               <div
                 style={{ color: "#064C87", margin: "0.5vw", fontWeight: "500" }}
               >
@@ -128,7 +198,7 @@ export default function Listofproposals({
               }}
               className="activejobpistbudgetbox"
             >
-              {data?.files?.slice(0, 3)?.map((data) => {
+              {data?.bidingId?.files?.slice(0, 3)?.map((data) => {
                 return (
                   <div className="boxofimageorpdf">
                     <div className="imageshowboxofpdf">
@@ -140,7 +210,9 @@ export default function Listofproposals({
                           style={{ color: "red", fontSize: "1.7vw" }}
                         />
                       </div>
-                      <div className="nameifimagedocuments">Front Side.pdf</div>
+                      <div className="nameifimagedocuments">
+                        {data?.file?.split("%24")[1]?.slice(0, 22)}
+                      </div>
                     </div>
                   </div>
                 );
@@ -335,12 +407,18 @@ export default function Listofproposals({
             {data?.bidingId?.milestoneDescription5 !== null && (
               <hr style={{ width: "100%", margin: "0.3vw" }} />
             )}
-          { data?.bidingId?.workStatus === "pending" && <div
-              style={{ fontSize: "0.9vw", marginLeft: "1vw", marginTop: "1vw" }}
-            >
-              Are you Ready to Accept the Proposal ?
-            </div>}
-            {data?.bidingId?.workStatus === "pending" ? (
+            {data?.bidingId?.workStatus === "pending" && (
+              <div
+                style={{
+                  fontSize: "0.9vw",
+                  marginLeft: "1vw",
+                  marginTop: "1vw",
+                }}
+              >
+                Are you Ready to Accept the Proposal ?
+              </div>
+            )}
+            {((data?.bidingId?.workStatus === "pending") && (data1?.workAssigned===false)) ? (
               <div
                 style={{
                   float: "right",
@@ -357,14 +435,11 @@ export default function Listofproposals({
                 </button>
                 <button
                   style={{ background: "white" }}
-                  //   onClick={handleRejectbid}
+                  onClick={handleRejectbid}
                 >
                   Rejected
                 </button>
-                <button
-                  style={{ color: "white" }}
-                  //  onClick={handleAcceptbid}
-                >
+                <button style={{ color: "white" }} onClick={handleAcceptbid}>
                   Accepted
                 </button>
               </div>

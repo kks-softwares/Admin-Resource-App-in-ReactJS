@@ -321,25 +321,25 @@ export default function Jobdetail({ jobdetail }) {
               <div className="boxblackbackg">
                 Contract Amount <br />
                 <div>
-                  <span>{data1?.workAssigned ? "" : "-"} </span>
+                  <span>{data1?.workAssigned ? data1?.workAssignedTo?.totalProjectPrice : "-"} </span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 duration <br />
                 <div>
-                  <span>{data1?.workAssigned ? "" : "-"}</span>
+                  <span>{data1?.workAssigned ? "-" : "-"}</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Contract Starting Date <br />
                 <div>
-                  <span>{data1?.workAssigned ? "" : "-"}</span>
+                  <span>{data1?.workAssigned ? data1?.workAssignDate : "-"}</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Contract Ending Date <br />
                 <div>
-                  <span>{data1?.workAssigned ? "" : "-"}</span>
+                  <span>{data1?.workAssigned ? "-" : "-"}</span>
                 </div>
               </div>
             </div>
@@ -358,11 +358,11 @@ export default function Jobdetail({ jobdetail }) {
               }}
               className="activejobpistbudgetbox"
             >
-              {data1?.icons?.map((data) => {
+              {data1?.workAssignedTo?.files?.map((data) => {
                 return (
                   <div className="boxofimageorpdf">
                     <div className="imageshowboxofpdf">
-                      <img src={data?.icon} alt="" />
+                      <img src={data?.file} alt="" />
                     </div>
                     <div className="imageshowboxofpdfname">
                       <div>
@@ -371,7 +371,7 @@ export default function Jobdetail({ jobdetail }) {
                         />
                       </div>
                       <div className="nameifimagedocuments">
-                        {data?.icon?.split("%24")[1]?.slice(0, 22)}
+                        {data?.file?.split("%24")[1]?.slice(0, 22)}
                       </div>
                     </div>
                   </div>

@@ -160,7 +160,7 @@ export default function AppliedJob({ setjobdetail, setWorkhistorytoggle }) {
                         color:
                           data?.workStatus === "completed"
                             ? "green"
-                            : data?.workStatus === "work applied"
+                            : data?.workStatus === "Accepted"
                             ? "#E2E228"
                             : "red",
                       }}

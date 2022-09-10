@@ -403,7 +403,7 @@ export default function SkillCenter() {
       )}
       {workhistorytoggle === 12 ? (
         <>
-         {jobdetail? <Jobdetail1 user={user} jobdetail={jobdetail} />:""}
+         {jobdetail? <Jobdetail1 user={user} jobdetail={jobdetail}  />:""}
         </>
       ) : (
         ""
