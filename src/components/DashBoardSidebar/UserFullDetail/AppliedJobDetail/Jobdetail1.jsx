@@ -520,8 +520,8 @@ export default function Jobdetail1({ user, jobdetail }) {
                             <img src={img1} alt="" />
                           </div>
                           <div className="fileselctednamecate">
+                            {dataqq?.docx?.split("%24")[1]?.slice(0, 22)}
                             
-                            Modern submitted.docx
                           </div>
                           <div className="inputfilesshowncatboxsingleimg">
                             <a href={`${dataqq?.docx}`} download>
@@ -622,7 +622,7 @@ export default function Jobdetail1({ user, jobdetail }) {
                           </div>
                           <div className="fileselctednamecate">
                             
-                            Modern submitted.docx
+                          {dataqq?.docx?.split("%24")[1]?.slice(0, 22)}
                           </div>
                           <div className="inputfilesshowncatboxsingleimg">
                             <a href={`${dataqq?.docx}`} download>
