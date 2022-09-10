@@ -514,43 +514,35 @@ export default function Jobdetail({ jobdetail }) {
                 marginLeft: "2vw",
               }}
             >
-              <div
-                style={{
-                  width: "fit-content",
-                  marginTop: "0vw",
-                  marginBottom: "1vw",
-                }}
-                className="inputfilesshowncatboxsingle"
-              >
-                <div className="inputfilesshowncatboxsingleimg">
-                  <img src={img1} alt="" />
-                </div>
-                <div className="fileselctednamecate">Modern submitted.docx</div>
-                <div className="inputfilesshowncatboxsingleimg">
-                  <CloudDownloadOutlinedIcon
-                    style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                  />
-                </div>
-              </div>
-              <div
-                style={{
-                  width: "fit-content",
-                  marginTop: "0vw",
-                  marginBottom: "1vw",
-                }}
-                className="inputfilesshowncatboxsingle"
-              >
-                <div className="inputfilesshowncatboxsingleimg">
-                  <img src={img1} alt="" />
-                </div>
-                <div className="fileselctednamecate">Modern submitted.docx</div>
-                <div className="inputfilesshowncatboxsingleimg">
-                  <CloudDownloadOutlinedIcon
-                    style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                  />
-                </div>
-              </div>
-            </div>
+         {data1?.workAssignedTo?.docs?.length > 0 &&
+                    data1?.workAssignedTo?.docs?.map((dataqq) => {
+                      return (
+                        <div
+                          style={{
+                            width: "fit-content",
+                            marginTop: "0vw",
+                            marginBottom: "1vw",
+                          }}
+                          className="inputfilesshowncatboxsingle"
+                        >
+                          <div className="inputfilesshowncatboxsingleimg">
+                            <img src={img1} alt="" />
+                          </div>
+                          <div className="fileselctednamecate">
+                            
+                            Modern submitted.docx
+                          </div>
+                          <div className="inputfilesshowncatboxsingleimg">
+                            <a href={`${dataqq?.docx}`} download>
+                              {" "}
+                              <CloudDownloadOutlinedIcon
+                                style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                              />{" "}
+                            </a>
+                          </div>
+                        </div>
+                      );
+                    })}  </div>
             <div
               style={{ marginLeft: "1vw", marginTop: "0vw" }}
               className="flexofdtaes"
@@ -623,47 +615,35 @@ export default function Jobdetail({ jobdetail }) {
                     marginLeft: "2vw",
                   }}
                 >
-                  <div
-                    style={{
-                      width: "fit-content",
-                      marginTop: "0vw",
-                      marginBottom: "1vw",
-                    }}
-                    className="inputfilesshowncatboxsingle"
-                  >
-                    <div className="inputfilesshowncatboxsingleimg">
-                      <img src={img1} alt="" />
-                    </div>
-                    <div className="fileselctednamecate">
-                      Modern submitted.docx
-                    </div>
-                    <div className="inputfilesshowncatboxsingleimg">
-                      <CloudDownloadOutlinedIcon
-                        style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                      />
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      width: "fit-content",
-                      marginTop: "0vw",
-                      marginBottom: "1vw",
-                    }}
-                    className="inputfilesshowncatboxsingle"
-                  >
-                    <div className="inputfilesshowncatboxsingleimg">
-                      <img src={img1} alt="" />
-                    </div>
-                    <div className="fileselctednamecate">
-                      Modern submitted.docx
-                    </div>
-                    <div className="inputfilesshowncatboxsingleimg">
-                      <CloudDownloadOutlinedIcon
-                        style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                      />
-                    </div>
-                  </div>
-                </div>
+               {data1?.docs?.length > 0 &&
+                    data1?.docs?.map((dataqq) => {
+                      return (
+                        <div
+                          style={{
+                            width: "fit-content",
+                            marginTop: "0vw",
+                            marginBottom: "1vw",
+                          }}
+                          className="inputfilesshowncatboxsingle"
+                        >
+                          <div className="inputfilesshowncatboxsingleimg">
+                            <img src={img1} alt="" />
+                          </div>
+                          <div className="fileselctednamecate">
+                            
+                            Modern submitted.docx
+                          </div>
+                          <div className="inputfilesshowncatboxsingleimg">
+                            <a href={`${dataqq?.docx}`} download>
+                              {" "}
+                              <CloudDownloadOutlinedIcon
+                                style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                              />{" "}
+                            </a>
+                          </div>
+                        </div>
+                      );
+                    })} </div>
               </div>
             </div>
             {/* <div className="confirmationtext">

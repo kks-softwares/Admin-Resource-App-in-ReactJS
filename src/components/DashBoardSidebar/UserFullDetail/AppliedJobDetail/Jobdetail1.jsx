@@ -295,16 +295,22 @@ export default function Jobdetail1({ user, jobdetail }) {
               style={{ margin: "1vw", flexWrap: "wrap", marginTop: "0vw" }}
               className="activejobpistbudgetbox"
             >
-               <div className="boxblackbackg">
+              <div className="boxblackbackg">
                 Service Provider Id <br />
                 <div>
-                  <span>{data1?.jobDoerId?.userId?data1?.jobDoerId?.userId:"-"}</span>
+                  <span>
+                    {data1?.jobDoerId?.userId ? data1?.jobDoerId?.userId : "-"}
+                  </span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Service Provider Name <br />
                 <div>
-                  <span>{data1?.jobDoerId?.fullName?data1?.jobDoerId?.fullName:"-"}</span>
+                  <span>
+                    {data1?.jobDoerId?.fullName
+                      ? data1?.jobDoerId?.fullName
+                      : "-"}
+                  </span>
                 </div>
               </div>
               <div className="boxblackbackg">
@@ -499,43 +505,35 @@ export default function Jobdetail1({ user, jobdetail }) {
                 marginLeft: "2vw",
               }}
             >
-              <div
-                style={{
-                  width: "fit-content",
-                  marginTop: "0vw",
-                  marginBottom: "1vw",
-                }}
-                className="inputfilesshowncatboxsingle"
-              >
-                <div className="inputfilesshowncatboxsingleimg">
-                  <img src={img1} alt="" />
-                </div>
-                <div className="fileselctednamecate">Modern submitted.docx</div>
-                <div className="inputfilesshowncatboxsingleimg">
-                  <CloudDownloadOutlinedIcon
-                    style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                  />
-                </div>
-              </div>
-              <div
-                style={{
-                  width: "fit-content",
-                  marginTop: "0vw",
-                  marginBottom: "1vw",
-                }}
-                className="inputfilesshowncatboxsingle"
-              >
-                <div className="inputfilesshowncatboxsingleimg">
-                  <img src={img1} alt="" />
-                </div>
-                <div className="fileselctednamecate">Modern submitted.docx</div>
-                <div className="inputfilesshowncatboxsingleimg">
-                  <CloudDownloadOutlinedIcon
-                    style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                  />
-                </div>
-              </div>
-            </div>
+      {data1?.workAssignedTo?.docs?.length > 0 &&
+                    data1?.workAssignedTo?.docs?.map((dataqq) => {
+                      return (
+                        <div
+                          style={{
+                            width: "fit-content",
+                            marginTop: "0vw",
+                            marginBottom: "1vw",
+                          }}
+                          className="inputfilesshowncatboxsingle"
+                        >
+                          <div className="inputfilesshowncatboxsingleimg">
+                            <img src={img1} alt="" />
+                          </div>
+                          <div className="fileselctednamecate">
+                            
+                            Modern submitted.docx
+                          </div>
+                          <div className="inputfilesshowncatboxsingleimg">
+                            <a href={`${dataqq?.docx}`} download>
+                              {" "}
+                              <CloudDownloadOutlinedIcon
+                                style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                              />{" "}
+                            </a>
+                          </div>
+                        </div>
+                      );
+                    })}   </div>
             <div
               style={{ marginLeft: "1vw", marginTop: "0vw" }}
               className="flexofdtaes"
@@ -608,46 +606,35 @@ export default function Jobdetail1({ user, jobdetail }) {
                     marginLeft: "2vw",
                   }}
                 >
-                  <div
-                    style={{
-                      width: "fit-content",
-                      marginTop: "0vw",
-                      marginBottom: "1vw",
-                    }}
-                    className="inputfilesshowncatboxsingle"
-                  >
-                    <div className="inputfilesshowncatboxsingleimg">
-                      <img src={img1} alt="" />
-                    </div>
-                    <div className="fileselctednamecate">
-                      Modern submitted.docx
-                    </div>
-                    <div className="inputfilesshowncatboxsingleimg">
-                      <CloudDownloadOutlinedIcon
-                        style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                      />
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      width: "fit-content",
-                      marginTop: "0vw",
-                      marginBottom: "1vw",
-                    }}
-                    className="inputfilesshowncatboxsingle"
-                  >
-                    <div className="inputfilesshowncatboxsingleimg">
-                      <img src={img1} alt="" />
-                    </div>
-                    <div className="fileselctednamecate">
-                      Modern submitted.docx
-                    </div>
-                    <div className="inputfilesshowncatboxsingleimg">
-                      <CloudDownloadOutlinedIcon
-                        style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                      />
-                    </div>
-                  </div>
+                  {data1?.docs?.length > 0 &&
+                    data1?.docs?.map((dataqq) => {
+                      return (
+                        <div
+                          style={{
+                            width: "fit-content",
+                            marginTop: "0vw",
+                            marginBottom: "1vw",
+                          }}
+                          className="inputfilesshowncatboxsingle"
+                        >
+                          <div className="inputfilesshowncatboxsingleimg">
+                            <img src={img1} alt="" />
+                          </div>
+                          <div className="fileselctednamecate">
+                            
+                            Modern submitted.docx
+                          </div>
+                          <div className="inputfilesshowncatboxsingleimg">
+                            <a href={`${dataqq?.docx}`} download>
+                              {" "}
+                              <CloudDownloadOutlinedIcon
+                                style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                              />{" "}
+                            </a>
+                          </div>
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
             </div>
