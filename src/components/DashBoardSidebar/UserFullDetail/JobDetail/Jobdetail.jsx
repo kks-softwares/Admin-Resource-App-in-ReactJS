@@ -309,13 +309,13 @@ export default function Jobdetail({ jobdetail }) {
               <div className="boxblackbackg">
                 Service Provider Id <br />
                 <div>
-                  <span>{data1?.user_id?.userId}</span>
+                  <span>{data1?.jobDoerId?.userId?data1?.jobDoerId?.userId:"-"}</span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Service Provider Name <br />
                 <div>
-                  <span>{data1?.user_id?.fullName}</span>
+                  <span>{data1?.jobDoerId?.fullName?data1?.jobDoerId?.fullName:"-"}</span>
                 </div>
               </div>
               <div className="boxblackbackg">
@@ -413,15 +413,20 @@ export default function Jobdetail({ jobdetail }) {
                 )}
               </div>
             </div>
+       
             <div hidden={!down4}>
             <div
               style={{ margin: "1vw", flexWrap: "wrap", marginTop: "0vw" }}
               className="activejobpistbudgetbox"
             >
               <div className="boxblackbackg">
-              Contract Actual End Date <br />
+                Contract Actual End Date <br />
                 <div>
-                  <span>{data1?.assignWorkComplitionDate?data1?.assignWorkComplitionDate:"-"}</span>
+                  <span>
+                    {data1?.assignWorkComplitionDate
+                      ? data1?.assignWorkComplitionDate
+                      : "-"}
+                  </span>
                 </div>
               </div>
             </div>
@@ -454,7 +459,11 @@ export default function Jobdetail({ jobdetail }) {
                     }}
                   >
                     <StarRatings
-                      rating={data1?.rating?data1?.rating:0}
+                      rating={
+                        data1?.workAssignedTo?.ratings
+                          ? data1?.workAssignedTo?.ratings
+                          : 0
+                      }
                       starRatedColor="#064C87"
                       starDimension="1.6vw  "
                       starSpacing="0.3vw"
@@ -486,7 +495,12 @@ export default function Jobdetail({ jobdetail }) {
                       id=""
                       className="reviewbox"
                       rows="10"
-                      value={data1?.review?data1?.review:""}
+                      disabled
+                      value={
+                        data1?.workAssignedTo?.reviews
+                          ? data1?.workAssignedTo?.reviews
+                          : ""
+                      }
                     ></textarea>
                   </div>
                 </div>
@@ -554,6 +568,7 @@ export default function Jobdetail({ jobdetail }) {
                 >
                   <div className="datesofcontact">Ratings</div>
                 </div>
+
                 <div className="workhistryboxdate">
                   <span
                     style={{
@@ -564,7 +579,7 @@ export default function Jobdetail({ jobdetail }) {
                     }}
                   >
                     <StarRatings
-                      rating={0}
+                      rating={data1?.rating ? data1?.rating : 0}
                       starRatedColor="#064C87"
                       starDimension="1.6vw  "
                       starSpacing="0.3vw"
@@ -596,10 +611,11 @@ export default function Jobdetail({ jobdetail }) {
                       id=""
                       className="reviewbox"
                       rows="10"
-                      value={data1?.workAssignedTo?.reviews?data1?.workAssignedTo?.reviews:""}
+                      value={data1?.review ? data1?.review : ""}
                     ></textarea>
                   </div>
                 </div>
+
                 <div
                   style={{
                     display: "flex",
@@ -658,7 +674,8 @@ export default function Jobdetail({ jobdetail }) {
               <button className="endbuttoncontract">End Contract</button>
             </div> */}
           </div>
-         </div>
+     
+        </div>
      
       </div>
     </div>
