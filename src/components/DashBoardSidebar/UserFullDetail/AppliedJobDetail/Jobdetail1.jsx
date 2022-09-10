@@ -6,7 +6,7 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import Listofproposals from "./Listofproposals";
 import StarRatings from "react-star-ratings";
 import img1 from "../../../../assets/Web 1280 – 14/Group 9831.svg";
-import img from "../../../../assets/Landing page/pexels-christina-morillo-1181467.png";
+
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 import axios from "axios";
 import API_HOST from "../../../../env";
@@ -406,9 +406,9 @@ export default function Jobdetail1({user, jobdetail }) {
               className="activejobpistbudgetbox"
             >
               <div className="boxblackbackg">
-                Contract Actual Date <br />
+              Contract Actual End Date <br />
                 <div>
-                  <span>Vasaanth David.H</span>
+                  <span>{data1?.assignWorkComplitionDate?data1?.assignWorkComplitionDate:"-"}</span>
                 </div>
               </div>
             </div>
@@ -441,7 +441,7 @@ export default function Jobdetail1({user, jobdetail }) {
                     }}
                   >
                     <StarRatings
-                      rating={0}
+                      rating={data1?.rating?data1?.rating:0}
                       starRatedColor="#064C87"
                       starDimension="1.6vw  "
                       starSpacing="0.3vw"
@@ -473,6 +473,7 @@ export default function Jobdetail1({user, jobdetail }) {
                       id=""
                       className="reviewbox"
                       rows="10"
+                      value={data1?.review?data1?.review:""}
                     ></textarea>
                   </div>
                 </div>
@@ -582,6 +583,7 @@ export default function Jobdetail1({user, jobdetail }) {
                       id=""
                       className="reviewbox"
                       rows="10"
+                      value={data1?.workAssignedTo?.reviews?data1?.workAssignedTo?.reviews:""}
                     ></textarea>
                   </div>
                 </div>
@@ -635,13 +637,13 @@ export default function Jobdetail1({user, jobdetail }) {
                 </div>
               </div>
             </div>
-            <div className="confirmationtext">
+            {/* <div className="confirmationtext">
               Are you Sure What to Close Contract From <span>44 Resource</span>{" "}
               Representative
-            </div>
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            </div> */}
+            {/* <div style={{ display: "flex", justifyContent: "flex-end" }}>
               <button className="endbuttoncontract">End Contract</button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
