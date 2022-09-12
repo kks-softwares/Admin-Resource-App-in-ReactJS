@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "react-router";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import img2 from "../../../../assets/Success stories Definition/checkmark (1).svg";
-import img from "../../../../assets/Landing page/pexels-christina-morillo-1181467.png";
+import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 import axios from "axios";
 import API_HOST from "../../../../env";
+
+const style1 = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "60vw",
+  bgcolor: "background.paper",
+  border: "2px solid white",
+  boxShadow: 24,
+};
 const style = {
   position: "absolute",
   top: "50%",
@@ -32,6 +43,11 @@ export default function Listofproposals({
   const navigate = useNavigate();
   const handleClosex = () => setOpenx(false);
 
+  const [openx1, setOpenx1] = React.useState(false);
+  const handleOpenx1 = () => setOpenx1(true);
+
+  const handleClosex1 = () => setOpenx1(false);
+
   const handleAcceptbid = () => {
     var today = new Date(),
       date =
@@ -55,7 +71,7 @@ export default function Listofproposals({
             workAssigned: true,
             workAssignDate: date,
             jobDoerId: data?.user_id?._id,
-            workAssignedTo:data?.bidingId?._id
+            workAssignedTo: data?.bidingId?._id,
           })
           .then(() => {
             axios
@@ -95,6 +111,8 @@ export default function Listofproposals({
           });
       });
   };
+
+  const [imagesave, setImagesave] = useState();
 
   return (
     <div className="listofproposalname">
@@ -162,7 +180,19 @@ export default function Listofproposals({
                 <span> {data?.timestamps?.slice(0, 10)}</span>
               </div>
               <div style={{ marginRight: "1vw" }}>
-                Estimate Time to Complete <br /> <span>---</span>
+                Estimate Time to Complete <br /> <span> <span>
+                    {data1?.workAssigned
+                      ? data1?.workAssignedTo?.milestoneDueDate5
+                        ? data1?.workAssignedTo?.milestoneDueDate5
+                        : data1?.workAssignedTo?.milestoneDueDate4
+                        ? data1?.workAssignedTo?.milestoneDueDate4
+                        : data1?.workAssignedTo?.milestoneDueDate3
+                        ? data1?.workAssignedTo?.milestoneDueDate3
+                        : data1?.workAssignedTo?.milestoneDueDate2
+                        ? data1?.workAssignedTo?.milestoneDueDate2
+                        : data1?.workAssignedTo?.milestoneDueDate1
+                      : "-"}
+                  </span></span>
               </div>
               <div style={{ marginRight: "1vw" }}>
                 {" "}
@@ -201,7 +231,14 @@ export default function Listofproposals({
               {data?.bidingId?.files?.slice(0, 3)?.map((data) => {
                 return (
                   <div className="boxofimageorpdf">
-                    <div className="imageshowboxofpdf">
+                    <div
+                      onClick={() => {
+                        handleOpenx1();
+                        setImagesave(data?.file);
+                      }}
+                      style={{ cursor: "pointer" }}
+                      className="imageshowboxofpdf"
+                    >
                       <img src={data?.file} alt="" />
                     </div>
                     <div className="imageshowboxofpdfname">
@@ -211,13 +248,35 @@ export default function Listofproposals({
                         />
                       </div>
                       <div className="nameifimagedocuments">
-                        {data?.file?.split("%24")[1]?.slice(0, 22)}
+                        {data?.file?.split("%24")[1]?.slice(0, 16)}
+                      </div>
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <a href={`${data?.file}`} download>
+                          {" "}
+                          <CloudDownloadOutlinedIcon
+                            style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                          />{" "}
+                        </a>
                       </div>
                     </div>
                   </div>
                 );
               })}
             </div>
+            <Modal
+              open={openx1}
+              onClose={handleClosex1}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style1}>
+                {imagesave && (
+                  <div className="imgbocofcerti">
+                    <img src={imagesave} alt="" />
+                  </div>
+                )}
+              </Box>
+            </Modal>
             <div style={{ margin: "0.5vw", fontWeight: "500" }}>
               Total Milestone
             </div>

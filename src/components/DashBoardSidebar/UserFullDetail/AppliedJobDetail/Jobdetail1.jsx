@@ -9,6 +9,20 @@ import img1 from "../../../../assets/Web 1280 – 14/Group 9831.svg";
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 import axios from "axios";
 import API_HOST from "../../../../env";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import img23 from "../../../../assets/Dashboard/Skill center – 2/wepik--2022426-10102.png";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "60vw",
+  bgcolor: "background.paper",
+  border: "2px solid white",
+  boxShadow: 24,
+};
 export default function Jobdetail1({ user, jobdetail }) {
   const [down1, setDown1] = useState(false);
   const [down2, setDown2] = useState(false);
@@ -16,7 +30,9 @@ export default function Jobdetail1({ user, jobdetail }) {
   const [down4, setDown4] = useState(false);
   const [longofproposallist, setLongofproposallist] = useState(["1", "2"]);
   const [data1, setdata1] = useState();
-
+  const [openx, setOpenx] = React.useState(false);
+  const handleOpenx = () => setOpenx(true);
+  const handleClosex = () => setOpenx(false);
   useEffect(() => {
     axios
       .get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${jobdetail}`)
@@ -26,8 +42,8 @@ export default function Jobdetail1({ user, jobdetail }) {
         setLongofproposallist(res?.data?.success?.data[0]?.listOfBider);
       });
   }, [jobdetail]);
+  const [imagesave, setImagesave] = useState();
 
-  const date = new Date();
   return (
     <div>
       <div
@@ -191,7 +207,14 @@ export default function Jobdetail1({ user, jobdetail }) {
               {data1?.icons?.map((data) => {
                 return (
                   <div className="boxofimageorpdf">
-                    <div className="imageshowboxofpdf">
+                    <div
+                      onClick={() => {
+                        handleOpenx();
+                        setImagesave(data?.icon);
+                      }}
+                      style={{ cursor: "pointer" }}
+                      className="imageshowboxofpdf"
+                    >
                       <img src={data?.icon} alt="" />
                     </div>
                     <div className="imageshowboxofpdfname">
@@ -200,13 +223,37 @@ export default function Jobdetail1({ user, jobdetail }) {
                           style={{ color: "red", fontSize: "1.7vw" }}
                         />
                       </div>
-                      <div className="nameifimagedocuments">Front Side.pdf</div>
+                      <div className="nameifimagedocuments">
+                        {data?.icon?.split("%24")[1]?.slice(0, 17)}
+                      </div>{" "}
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <a href={`${data?.icon}`} download>
+                          {" "}
+                          <CloudDownloadOutlinedIcon
+                            style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                          />{" "}
+                        </a>
+                      </div>
                     </div>
                   </div>
                 );
               })}
             </div>{" "}
           </div>
+          <Modal
+            open={openx}
+            onClose={handleClosex}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              {imagesave && (
+                <div className="imgbocofcerti">
+                  <img src={imagesave} alt="" />
+                </div>
+              )}
+            </Box>
+          </Modal>
         </div>
         <div
           style={{
@@ -340,7 +387,19 @@ export default function Jobdetail1({ user, jobdetail }) {
               <div className="boxblackbackg">
                 Contract Ending Date <br />
                 <div>
-                  <span>{data1?.workAssigned ? "-" : "-"}</span>
+                <span>
+                    {data1?.workAssigned
+                      ? data1?.workAssignedTo?.milestoneDueDate5
+                        ? data1?.workAssignedTo?.milestoneDueDate5
+                        : data1?.workAssignedTo?.milestoneDueDate4
+                        ? data1?.workAssignedTo?.milestoneDueDate4
+                        : data1?.workAssignedTo?.milestoneDueDate3
+                        ? data1?.workAssignedTo?.milestoneDueDate3
+                        : data1?.workAssignedTo?.milestoneDueDate2
+                        ? data1?.workAssignedTo?.milestoneDueDate2
+                        : data1?.workAssignedTo?.milestoneDueDate1
+                      : "-"}
+                  </span>
                 </div>
               </div>
             </div>
@@ -362,7 +421,14 @@ export default function Jobdetail1({ user, jobdetail }) {
               {data1?.workAssignedTo?.files?.map((data) => {
                 return (
                   <div className="boxofimageorpdf">
-                    <div className="imageshowboxofpdf">
+                    <div
+                      onClick={() => {
+                        handleOpenx();
+                        setImagesave(data?.file);
+                      }}
+                      style={{ cursor: "pointer" }}
+                      className="imageshowboxofpdf"
+                    >
                       <img src={data?.file} alt="" />
                     </div>
                     <div className="imageshowboxofpdfname">
@@ -372,7 +438,15 @@ export default function Jobdetail1({ user, jobdetail }) {
                         />
                       </div>
                       <div className="nameifimagedocuments">
-                        {data?.file?.split("%24")[1]?.slice(0, 22)}
+                        {data?.file?.split("%24")[1]?.slice(0, 16)}
+                      </div>
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <a href={`${data?.file}`} download>
+                          {" "}
+                          <CloudDownloadOutlinedIcon
+                            style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                          />{" "}
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -505,35 +579,35 @@ export default function Jobdetail1({ user, jobdetail }) {
                 marginLeft: "2vw",
               }}
             >
-      {data1?.workAssignedTo?.docs?.length > 0 &&
-                    data1?.workAssignedTo?.docs?.map((dataqq) => {
-                      return (
-                        <div
-                          style={{
-                            width: "fit-content",
-                            marginTop: "0vw",
-                            marginBottom: "1vw",
-                          }}
-                          className="inputfilesshowncatboxsingle"
-                        >
-                          <div className="inputfilesshowncatboxsingleimg">
-                            <img src={img1} alt="" />
-                          </div>
-                          <div className="fileselctednamecate">
-                            {dataqq?.docx?.split("%24")[1]?.slice(0, 22)}
-                            
-                          </div>
-                          <div className="inputfilesshowncatboxsingleimg">
-                            <a href={`${dataqq?.docx}`} download>
-                              {" "}
-                              <CloudDownloadOutlinedIcon
-                                style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                              />{" "}
-                            </a>
-                          </div>
-                        </div>
-                      );
-                    })}   </div>
+              {data1?.workAssignedTo?.docs?.length > 0 &&
+                data1?.workAssignedTo?.docs?.map((dataqq) => {
+                  return (
+                    <div
+                      style={{
+                        width: "fit-content",
+                        marginTop: "0vw",
+                        marginBottom: "1vw",
+                      }}
+                      className="inputfilesshowncatboxsingle"
+                    >
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <img src={img1} alt="" />
+                      </div>
+                      <div className="fileselctednamecate">
+                        {dataqq?.docx?.split("%24")[1]?.slice(0, 22)}
+                      </div>
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <a href={`${dataqq?.docx}`} download>
+                          {" "}
+                          <CloudDownloadOutlinedIcon
+                            style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                          />{" "}
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}{" "}
+            </div>
             <div
               style={{ marginLeft: "1vw", marginTop: "0vw" }}
               className="flexofdtaes"
@@ -621,8 +695,7 @@ export default function Jobdetail1({ user, jobdetail }) {
                             <img src={img1} alt="" />
                           </div>
                           <div className="fileselctednamecate">
-                            
-                          {dataqq?.docx?.split("%24")[1]?.slice(0, 22)}
+                            {dataqq?.docx?.split("%24")[1]?.slice(0, 22)}
                           </div>
                           <div className="inputfilesshowncatboxsingleimg">
                             <a href={`${dataqq?.docx}`} download>

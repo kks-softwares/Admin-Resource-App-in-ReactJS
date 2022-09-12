@@ -12,7 +12,20 @@ import img from "../../../../assets/Landing page/pexels-christina-morillo-118146
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 import API_HOST from "../../../../env";
 import axios from "axios";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import img23 from "../../../../assets/Dashboard/Skill center – 2/wepik--2022426-10102.png";
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "60vw",
+  bgcolor: "background.paper",
+  border: "2px solid white",
+  boxShadow: 24,
+};
 export default function Jobdetail({ jobdetail }) {
   const [down1, setDown1] = useState(false);
   const [down2, setDown2] = useState(false);
@@ -20,7 +33,9 @@ export default function Jobdetail({ jobdetail }) {
   const [down4, setDown4] = useState(false);
   const [longofproposallist, setLongofproposallist] = useState(["1", "2"]);
   const [data1, setdata1] = useState();
-
+  const [openx, setOpenx] = React.useState(false);
+  const handleOpenx = () => setOpenx(true);
+  const handleClosex = () => setOpenx(false);
   useEffect(() => {
     axios
       .get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${jobdetail}`)
@@ -31,7 +46,7 @@ export default function Jobdetail({ jobdetail }) {
       });
   }, [jobdetail]);
 
-  const date = new Date();
+  const [imagesave, setImagesave] = useState();
 
   return (
     <div>
@@ -197,8 +212,19 @@ export default function Jobdetail({ jobdetail }) {
               {data1?.icons?.map((data) => {
                 return (
                   <div className="boxofimageorpdf">
-                    <div className="imageshowboxofpdf">
-                      <img src={data?.icon} alt="" />
+                    <div
+                      onClick={() => {
+                        handleOpenx();
+                        setImagesave(data?.icon);
+                      }}
+                      style={{ cursor: "pointer" }}
+                      className="imageshowboxofpdf"
+                    >
+                      <img
+                        style={{ cursor: "pointer" }}
+                        src={data?.icon}
+                        alt=""
+                      />
                     </div>
                     <div className="imageshowboxofpdfname">
                       <div>
@@ -207,7 +233,15 @@ export default function Jobdetail({ jobdetail }) {
                         />
                       </div>
                       <div className="nameifimagedocuments">
-                        {data?.icon?.split("%24")[1]?.slice(0, 22)}
+                        {data?.icon?.split("%24")[1]?.slice(0, 17)}
+                      </div>
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <a href={`${data?.icon}`} download>
+                          {" "}
+                          <CloudDownloadOutlinedIcon
+                            style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                          />{" "}
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -215,6 +249,20 @@ export default function Jobdetail({ jobdetail }) {
               })}
             </div>
           </div>
+          <Modal
+            open={openx}
+            onClose={handleClosex}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              {imagesave && (
+                <div className="imgbocofcerti">
+                  <img src={imagesave} alt="" />
+                </div>
+              )}
+            </Box>
+          </Modal>
         </div>
         <div
           style={{
@@ -385,7 +433,14 @@ export default function Jobdetail({ jobdetail }) {
               {data1?.workAssignedTo?.files?.map((data) => {
                 return (
                   <div className="boxofimageorpdf">
-                    <div className="imageshowboxofpdf">
+                    <div
+                      onClick={() => {
+                        handleOpenx();
+                        setImagesave(data?.file);
+                      }}
+                      style={{ cursor: "pointer" }}
+                      className="imageshowboxofpdf"
+                    >
                       <img src={data?.file} alt="" />
                     </div>
                     <div className="imageshowboxofpdfname">
@@ -395,7 +450,15 @@ export default function Jobdetail({ jobdetail }) {
                         />
                       </div>
                       <div className="nameifimagedocuments">
-                        {data?.file?.split("%24")[1]?.slice(0, 22)}
+                        {data?.file?.split("%24")[1]?.slice(0, 16)}
+                      </div>
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <a href={`${data?.file}`} download>
+                          {" "}
+                          <CloudDownloadOutlinedIcon
+                            style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                          />{" "}
+                        </a>
                       </div>
                     </div>
                   </div>
