@@ -407,7 +407,7 @@ export default function Listofproposals({
             {data?.bidingId?.milestoneDescription5 !== null && (
               <hr style={{ width: "100%", margin: "0.3vw" }} />
             )}
-            {data?.bidingId?.workStatus === "pending" && (
+            {/* {data?.bidingId?.workStatus === "pending" && (
               <div
                 style={{
                   fontSize: "0.9vw",
@@ -445,7 +445,7 @@ export default function Listofproposals({
               </div>
             ) : (
               ""
-            )}
+            )} */}
           </div>
         </Box>
       </Modal>

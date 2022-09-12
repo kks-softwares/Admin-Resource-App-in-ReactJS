@@ -309,19 +309,29 @@ export default function Jobdetail({ jobdetail }) {
               <div className="boxblackbackg">
                 Service Provider Id <br />
                 <div>
-                  <span>{data1?.jobDoerId?.userId?data1?.jobDoerId?.userId:"-"}</span>
+                  <span>
+                    {data1?.jobDoerId?.userId ? data1?.jobDoerId?.userId : "-"}
+                  </span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Service Provider Name <br />
                 <div>
-                  <span>{data1?.jobDoerId?.fullName?data1?.jobDoerId?.fullName:"-"}</span>
+                  <span>
+                    {data1?.jobDoerId?.fullName
+                      ? data1?.jobDoerId?.fullName
+                      : "-"}
+                  </span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Contract Amount <br />
                 <div>
-                  <span>{data1?.workAssigned ? data1?.workAssignedTo?.totalProjectPrice : "-"} </span>
+                  <span>
+                    {data1?.workAssigned
+                      ? data1?.workAssignedTo?.totalProjectPrice
+                      : "-"}{" "}
+                  </span>
                 </div>
               </div>
               <div className="boxblackbackg">
@@ -333,13 +343,27 @@ export default function Jobdetail({ jobdetail }) {
               <div className="boxblackbackg">
                 Contract Starting Date <br />
                 <div>
-                  <span>{data1?.workAssigned ? data1?.workAssignDate : "-"}</span>
+                  <span>
+                    {data1?.workAssigned ? data1?.workAssignDate : "-"}
+                  </span>
                 </div>
               </div>
               <div className="boxblackbackg">
                 Contract Ending Date <br />
                 <div>
-                  <span>{data1?.workAssigned ? "-" : "-"}</span>
+                  <span>
+                    {data1?.workAssigned
+                      ? data1?.workAssignedTo?.milestoneDueDate5
+                        ? data1?.workAssignedTo?.milestoneDueDate5
+                        : data1?.workAssignedTo?.milestoneDueDate4
+                        ? data1?.workAssignedTo?.milestoneDueDate4
+                        : data1?.workAssignedTo?.milestoneDueDate3
+                        ? data1?.workAssignedTo?.milestoneDueDate3
+                        : data1?.workAssignedTo?.milestoneDueDate2
+                        ? data1?.workAssignedTo?.milestoneDueDate2
+                        : data1?.workAssignedTo?.milestoneDueDate1
+                      : "-"}
+                  </span>
                 </div>
               </div>
             </div>
@@ -380,41 +404,40 @@ export default function Jobdetail({ jobdetail }) {
             </div>
           </div>
         </div>
-     
-          <div
-            style={{
-              height: down4 ? `${longofproposallist?.length * 4 + 81}vw` : "",
-            }}
-            className="boxofextension"
-          >
-            <div className="flexofboxextentionnav">
-              <div>Contract Completion</div>
-              <div
-                onClick={() => {
-                  setDown4(!down4);
-                }}
-              >
-                {!down4 ? (
-                  <KeyboardArrowDownIcon
-                    style={{
-                      fontSize: "2vw",
-                      margin: "1vw",
-                      cursor: "pointer",
-                    }}
-                  />
-                ) : (
-                  <KeyboardArrowUpIcon
-                    style={{
-                      fontSize: "2vw",
-                      margin: "1vw",
-                      cursor: "pointer",
-                    }}
-                  />
-                )}
-              </div>
+        <div
+          style={{
+            height: down4 ? `${longofproposallist?.length * 4 + 81}vw` : "",
+          }}
+          className="boxofextension"
+        >
+          <div className="flexofboxextentionnav">
+            <div>Contract Completion</div>
+            <div
+              onClick={() => {
+                setDown4(!down4);
+              }}
+            >
+              {!down4 ? (
+                <KeyboardArrowDownIcon
+                  style={{
+                    fontSize: "2vw",
+                    margin: "1vw",
+                    cursor: "pointer",
+                  }}
+                />
+              ) : (
+                <KeyboardArrowUpIcon
+                  style={{
+                    fontSize: "2vw",
+                    margin: "1vw",
+                    cursor: "pointer",
+                  }}
+                />
+              )}
             </div>
-       
-            <div hidden={!down4}>
+          </div>
+
+          <div hidden={!down4}>
             <div
               style={{ margin: "1vw", flexWrap: "wrap", marginTop: "0vw" }}
               className="activejobpistbudgetbox"
@@ -514,35 +537,35 @@ export default function Jobdetail({ jobdetail }) {
                 marginLeft: "2vw",
               }}
             >
-         {data1?.workAssignedTo?.docs?.length > 0 &&
-                    data1?.workAssignedTo?.docs?.map((dataqq) => {
-                      return (
-                        <div
-                          style={{
-                            width: "fit-content",
-                            marginTop: "0vw",
-                            marginBottom: "1vw",
-                          }}
-                          className="inputfilesshowncatboxsingle"
-                        >
-                          <div className="inputfilesshowncatboxsingleimg">
-                            <img src={img1} alt="" />
-                          </div>
-                          <div className="fileselctednamecate">
-                            
-                          {dataqq?.docx?.split("%24")[1]?.slice(0, 22)}
-                          </div>
-                          <div className="inputfilesshowncatboxsingleimg">
-                            <a href={`${dataqq?.docx}`} download>
-                              {" "}
-                              <CloudDownloadOutlinedIcon
-                                style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                              />{" "}
-                            </a>
-                          </div>
-                        </div>
-                      );
-                    })}  </div>
+              {data1?.workAssignedTo?.docs?.length > 0 &&
+                data1?.workAssignedTo?.docs?.map((dataqq) => {
+                  return (
+                    <div
+                      style={{
+                        width: "fit-content",
+                        marginTop: "0vw",
+                        marginBottom: "1vw",
+                      }}
+                      className="inputfilesshowncatboxsingle"
+                    >
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <img src={img1} alt="" />
+                      </div>
+                      <div className="fileselctednamecate">
+                        {dataqq?.docx?.split("%24")[1]?.slice(0, 22)}
+                      </div>
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <a href={`${dataqq?.docx}`} download>
+                          {" "}
+                          <CloudDownloadOutlinedIcon
+                            style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                          />{" "}
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}{" "}
+            </div>
             <div
               style={{ marginLeft: "1vw", marginTop: "0vw" }}
               className="flexofdtaes"
@@ -615,7 +638,7 @@ export default function Jobdetail({ jobdetail }) {
                     marginLeft: "2vw",
                   }}
                 >
-               {data1?.docs?.length > 0 &&
+                  {data1?.docs?.length > 0 &&
                     data1?.docs?.map((dataqq) => {
                       return (
                         <div
@@ -630,8 +653,7 @@ export default function Jobdetail({ jobdetail }) {
                             <img src={img1} alt="" />
                           </div>
                           <div className="fileselctednamecate">
-                            
-                          {dataqq?.docx?.split("%24")[1]?.slice(0, 22)}
+                            {dataqq?.docx?.split("%24")[1]?.slice(0, 22)}
                           </div>
                           <div className="inputfilesshowncatboxsingleimg">
                             <a href={`${dataqq?.docx}`} download>
@@ -643,7 +665,8 @@ export default function Jobdetail({ jobdetail }) {
                           </div>
                         </div>
                       );
-                    })} </div>
+                    })}{" "}
+                </div>
               </div>
             </div>
             {/* <div className="confirmationtext">
@@ -654,9 +677,7 @@ export default function Jobdetail({ jobdetail }) {
               <button className="endbuttoncontract">End Contract</button>
             </div> */}
           </div>
-     
         </div>
-     
       </div>
     </div>
   );

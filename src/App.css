@@ -10,8 +10,8 @@
   margin: 0.81vw 0;
 }
 body {
-    overflow-x: hidden;
-  }
+  overflow-x: hidden;
+}
 .inputtypeformfield input {
   border: none;
   outline: none;
@@ -21,11 +21,11 @@ body {
   line-height: 1.2vw;
 }
 
-.makeStyles-select2-2{
-    height: 2vw !important;
+.makeStyles-select2-2 {
+  height: 2vw !important;
 }
 
-.makeStyles-icon-7{
+.makeStyles-icon-7 {
   fill: black !important;
 }
 
@@ -91,16 +91,16 @@ body {
   margin: 1vw;
   cursor: pointer;
 }
-.backbutton{
-    width: 3vw;
-    height: 3vw;
-    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border-radius: 4px;
-    opacity: 1;
-    margin-left: 1vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+.backbutton {
+  width: 3vw;
+  height: 3vw;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  opacity: 1;
+  margin-left: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
