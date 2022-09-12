@@ -170,8 +170,7 @@ export default function Listofjobbox({ data }) {
 
           <div
             onClick={() => {
-              //   setjobdetail(1);
-              //   setWorkhistorytoggle(11)
+                navigate(`/dashbaord/jobdetail/${data?.postId?data?.postId:2}`)
             }}
             style={{ color: "#00000090", cursor: "pointer" }}
           >

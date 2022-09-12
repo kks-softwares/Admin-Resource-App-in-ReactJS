@@ -4,10 +4,9 @@ import Box from "@mui/material/Box";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "react-router";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
-import img2 from "../../../../assets/Success stories Definition/checkmark (1).svg";
+import img2 from "../../../assets/Success stories Definition/checkmark (1).svg";
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
-import axios from "axios";
-import API_HOST from "../../../../env";
+
 
 const style1 = {
   position: "absolute",
@@ -34,7 +33,6 @@ const style = {
 export default function Listofproposals({
   data,
   data1,
-
 }) {
   const [openx, setOpenx] = React.useState(false);
   const handleOpenx = () => setOpenx(true);
@@ -46,7 +44,7 @@ export default function Listofproposals({
 
   const handleClosex1 = () => setOpenx1(false);
 
- 
+
 
   const [imagesave, setImagesave] = useState();
 
