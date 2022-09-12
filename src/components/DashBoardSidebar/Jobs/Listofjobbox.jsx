@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
-import img2 from "../../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
+import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
 import { useNavigate } from "react-router";
 export default function Listofjobbox({ data }) {
   const [checkonex, setCheckonex] = useState(true);

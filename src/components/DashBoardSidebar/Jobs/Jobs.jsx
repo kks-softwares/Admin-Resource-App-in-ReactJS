@@ -9,7 +9,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import imgfilter from "../../../assets/walletimage/Iconly-Light-Color-Filter.svg";
 import Modal from "@mui/material/Modal";
 import img1 from "../../../assets/Jobs/Iconly-Light-Delete.svg";
-import Listofjobbox from "./CreatedWork/Listofjobbox";
+import Listofjobbox from "./Listofjobbox";
 
 const style = {
   position: "absolute",
@@ -23,17 +23,16 @@ const style = {
   p: 4,
 };
 export default function Jobs() {
-  const [toggler, setToggler] = useState(1);
   const [openx, setOpenx] = React.useState(false);
   const [anchorElx, setAnchorElx] = React.useState(null);
   const canBeOpen = openx && Boolean(anchorElx);
   const id = canBeOpen ? "transition-popper" : undefined;
-  const [togglrbar, setTogglrbar] = useState(0);
+
   const [datestart1, setDatestart1] = useState();
-  const [datestart2, setDatestart2] = useState();
+
   const [datestart3, setDatestart3] = useState();
   const [datestart1x, setDatestart1x] = useState();
-  const [datestart2x, setDatestart2x] = useState();
+
   const [datestart3x, setDatestart3x] = useState();
   const disablePastDate = () => {
     const today = new Date();
@@ -57,14 +56,8 @@ export default function Jobs() {
   const handleClose3 = () => setOpen3(false);
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
-  const [page1, setPage1] = useState(1);
-  const [totalpages1, settotalpages1] = useState(1);
-  const [page2, setPage2] = useState(1);
-  const [totalpages2, settotalpages2] = useState(1);
 
   const [setSelectedCategory, setSetSelectedCategory] = useState("");
-  const [setSelectedCategory1, setSetSelectedCategory1] = useState("");
-  const [setSelectedCategory2, setSetSelectedCategory2] = useState("");
 
   const [arrayoffilterselected, setarrayoffilterselected] = useState([]);
 
@@ -77,55 +70,7 @@ export default function Jobs() {
   const [recall, setRecall] = useState(false);
   const [selecteddelete, setSelecteddelete] = useState([]);
 
-  useEffect(() => {
-    if (togglrbar === 3) {
-      const date = setdateadd(datestart3x);
-      console.log(date);
-      axios
-        .get(
-          `${API_HOST}/theSkill/viewSkill?pageSize=10&pageNumber=${page}&skill=${setSelectedCategory}&from=${datestart3}&to=${date}`
-        )
-        .then((res) => {
-          setAllusers(res?.data?.success?.data);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(
-          `${API_HOST}/theSkill/viewSkill?pageSize=10&pageNumber=${
-            page + 1
-          }&skill=${setSelectedCategory}&from=${datestart3}&to=${datestart3x}`
-        )
-        .then((res) => {
-          if (res?.data?.success?.data?.length > 0) {
-            settotalpages(page + 1);
-          } else {
-            settotalpages(page);
-          }
-        });
-    } else {
-      axios
-        .get(
-          `${API_HOST}/theSkill/viewSkill?pageSize=10&pageNumber=${page}&skill=${setSelectedCategory}`
-        )
-        .then((res) => {
-          setAllusers(res?.data?.success?.data);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(
-          `${API_HOST}/theSkill/viewSkill?pageSize=10&pageNumber=${
-            page + 1
-          }&skill=${setSelectedCategory}`
-        )
-        .then((res) => {
-          if (res?.data?.success?.data?.length > 0) {
-            settotalpages(page + 1);
-          } else {
-            settotalpages(page);
-          }
-        });
-    }
-  }, [page, setSelectedCategory, recall]);
+  useEffect(() => {}, [page, setSelectedCategory, recall]);
 
   const handleDelete = () => {
     const formdata = new FormData();
@@ -141,144 +86,6 @@ export default function Jobs() {
         setRecall(!recall);
       });
   };
-  const [allusers1, setAllusers1] = useState([]);
-
-  const [recall1, setRecall1] = useState(false);
-  const [selecteddelete1, setSelecteddelete1] = useState([]);
-
-  useEffect(() => {
-    if (togglrbar === 1) {
-      const date = setdateadd(datestart1x);
-      console.log(date);
-      axios
-        .get(
-          `${API_HOST}/theCategory/viewCategory?pageSize=10&pageNumber=${page1}&category=${setSelectedCategory1}&from=${datestart1}&to=${date}`
-        )
-        .then((res) => {
-          setAllusers1(res?.data?.success?.data);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(
-          `${API_HOST}/theCategory/viewCategory?pageSize=10&pageNumber=${
-            page1 + 1
-          }&category=${setSelectedCategory1}&from=${datestart1}&to=${date}`
-        )
-        .then((res) => {
-          if (res?.data?.success?.data?.length > 0) {
-            settotalpages1(page1 + 1);
-          } else {
-            settotalpages1(page1);
-          }
-        });
-    } else {
-      axios
-        .get(
-          `${API_HOST}/theCategory/viewCategory?pageSize=10&pageNumber=${page1}&category=${setSelectedCategory1}`
-        )
-        .then((res) => {
-          setAllusers1(res?.data?.success?.data);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(
-          `${API_HOST}/theCategory/viewCategory?pageSize=10&pageNumber=${
-            page1 + 1
-          }&category=${setSelectedCategory1}`
-        )
-        .then((res) => {
-          if (res?.data?.success?.data?.length > 0) {
-            settotalpages1(page1 + 1);
-          } else {
-            settotalpages1(page1);
-          }
-        });
-    }
-  }, [page1, setSelectedCategory1, recall1]);
-
-  const handleDelete1 = () => {
-    const formdata = new FormData();
-    formdata.append("removable", JSON.stringify(selecteddelete1));
-    console.log(JSON.stringify(selecteddelete1));
-    axios
-      .post(`${API_HOST}/theCategory/removeCategory`, formdata, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then((res) => {
-        setSelecteddelete1([]);
-        handleClose3();
-        setRecall1(!recall1);
-      });
-  };
-  const [allusers2, setAllusers2] = useState([]);
-
-  const [recall2, setRecall2] = useState(false);
-  const [selecteddelete2, setSelecteddelete2] = useState([]);
-
-  useEffect(() => {
-    if (togglrbar === 2) {
-      const date = setdateadd(datestart2x);
-      console.log(date);
-      axios
-        .get(
-          `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=${page2}&subCategory=${setSelectedCategory2}&from=${datestart2}&to=${date}`
-        )
-        .then((res) => {
-          setAllusers2(res?.data?.success?.data);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(
-          `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=${
-            page2 + 1
-          }&subCategory=${setSelectedCategory2}&from=${datestart2}&to=${date}`
-        )
-        .then((res) => {
-          if (res?.data?.success?.data?.length > 0) {
-            settotalpages2(page2 + 1);
-          } else {
-            settotalpages2(page2);
-          }
-        });
-    } else {
-      axios
-        .get(
-          `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=${page2}&subCategory=${setSelectedCategory2}`
-        )
-        .then((res) => {
-          setAllusers2(res?.data?.success?.data);
-          window.scrollTo(0, 0, { behavior: "smooth" });
-        });
-      axios
-        .get(
-          `${API_HOST}/subCategory/viewSubCategory?pageSize=10&pageNumber=${
-            page2 + 1
-          }&subCategory=${setSelectedCategory2}`
-        )
-        .then((res) => {
-          if (res?.data?.success?.data?.length > 0) {
-            settotalpages2(page2 + 1);
-          } else {
-            settotalpages2(page2);
-          }
-        });
-    }
-  }, [page2, setSelectedCategory2, recall2]);
-
-  const handleDelete2 = () => {
-    const formdata = new FormData();
-    formdata.append("removable", JSON.stringify(selecteddelete2));
-    console.log(JSON.stringify(selecteddelete2));
-    axios
-      .post(`${API_HOST}/subCategory/removeSubcategory`, formdata, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then((res) => {
-        setSelecteddelete2([]);
-        handleClose3();
-        setRecall2(!recall2);
-      });
-  };
 
   return (
     <div className="BrowseWorkMain-cntainer">
@@ -292,26 +99,10 @@ export default function Jobs() {
           </span>
           <input
             type="text"
-            placeholder={
-              toggler === 1
-                ? "search Category"
-                : toggler === 2
-                ? "search Subcategory"
-                : "search Skill"
-            }
-            value={
-              toggler === 1
-                ? setSelectedCategory1
-                : toggler === 2
-                ? setSelectedCategory2
-                : setSelectedCategory
-            }
+            placeholder={"search Your Job "}
+            value={setSelectedCategory}
             onChange={(e) => {
-              toggler === 1
-                ? setSetSelectedCategory1(e.target.value)
-                : toggler === 2
-                ? setSetSelectedCategory2(e.target.value)
-                : setSetSelectedCategory(e.target.value);
+              setSetSelectedCategory(e.target.value);
             }}
           />
           <button
@@ -363,219 +154,6 @@ export default function Jobs() {
                   </div>
                   <hr style={{ color: "#00000090" }} />
 
-                  <div className="jobpodtedfieldtitile">Please Select</div>
-
-                  <div style={{ display: "flex" }}>
-                    <div
-                      onClick={() => setTogglrbar(1)}
-                      className={
-                        togglrbar === 1
-                          ? "selectbuttonfilter1"
-                          : "selectbuttonfilter"
-                      }
-                    >
-                      Category
-                    </div>
-                    <div
-                      onClick={() => setTogglrbar(2)}
-                      className={
-                        togglrbar === 2
-                          ? "selectbuttonfilter1"
-                          : "selectbuttonfilter"
-                      }
-                    >
-                      Sub Category
-                    </div>
-                    <div
-                      onClick={() => setTogglrbar(3)}
-                      className={
-                        togglrbar === 3
-                          ? "selectbuttonfilter1"
-                          : "selectbuttonfilter"
-                      }
-                    >
-                      Skills
-                    </div>
-                  </div>
-
-                  {togglrbar !== 0 && (
-                    <div className="jobpodtedfieldtitile">Created on</div>
-                  )}
-                  {togglrbar === 1 && (
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        width: "98%",
-                      }}
-                    >
-                      <div style={{ width: "50%" }}>
-                        <div
-                          style={{ fontWeight: "400" }}
-                          className="jobpodtedfieldtitile"
-                        >
-                          From{" "}
-                        </div>
-                        <div className="jobpostfieldinputbox">
-                          <input
-                            style={{ width: "100%" }}
-                            type="date"
-                            className="input-homejobformdate"
-                            name=""
-                            id=""
-                            value={datestart1}
-                            max={disablePastDate()}
-                            min={"2020-01-01"}
-                            maxlength="4"
-                            onChange={(e) => {
-                              setDatestart1(e.target.value);
-                            }}
-                          />
-                        </div>
-                      </div>
-                      <div style={{ width: "50%" }}>
-                        <div
-                          style={{ fontWeight: "400" }}
-                          className="jobpodtedfieldtitile"
-                        >
-                          To
-                        </div>
-                        <div className="jobpostfieldinputbox">
-                          <input
-                            style={{ width: "100%" }}
-                            type="date"
-                            className="input-homejobformdate"
-                            name=""
-                            id=""
-                            value={datestart1x}
-                            max={disablePastDate()}
-                            min={"2020-01-01"}
-                            maxlength="4"
-                            onChange={(e) => {
-                              setDatestart1x(e.target.value);
-                            }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                  {togglrbar === 2 && (
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        width: "98%",
-                      }}
-                    >
-                      <div style={{ width: "50%" }}>
-                        <div
-                          style={{ fontWeight: "400" }}
-                          className="jobpodtedfieldtitile"
-                        >
-                          From{" "}
-                        </div>
-                        <div className="jobpostfieldinputbox">
-                          <input
-                            style={{ width: "100%" }}
-                            type="date"
-                            className="input-homejobformdate"
-                            name=""
-                            id=""
-                            value={datestart2}
-                            max={disablePastDate()}
-                            min={"2020-01-01"}
-                            maxlength="4"
-                            onChange={(e) => {
-                              setDatestart2(e.target.value);
-                            }}
-                          />
-                        </div>
-                      </div>
-                      <div style={{ width: "50%" }}>
-                        <div
-                          style={{ fontWeight: "400" }}
-                          className="jobpodtedfieldtitile"
-                        >
-                          To
-                        </div>
-                        <div className="jobpostfieldinputbox">
-                          <input
-                            style={{ width: "100%" }}
-                            type="date"
-                            className="input-homejobformdate"
-                            name=""
-                            id=""
-                            value={datestart2x}
-                            max={disablePastDate()}
-                            min={"2020-01-01"}
-                            maxlength="4"
-                            onChange={(e) => {
-                              setDatestart2x(e.target.value);
-                            }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                  {togglrbar === 3 && (
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        width: "98%",
-                      }}
-                    >
-                      <div style={{ width: "50%" }}>
-                        <div
-                          style={{ fontWeight: "400" }}
-                          className="jobpodtedfieldtitile"
-                        >
-                          From{" "}
-                        </div>
-                        <div className="jobpostfieldinputbox">
-                          <input
-                            style={{ width: "100%" }}
-                            type="date"
-                            value={datestart3}
-                            className="input-homejobformdate"
-                            name=""
-                            id=""
-                            max={disablePastDate()}
-                            min={"2020-01-01"}
-                            maxlength="4"
-                            onChange={(e) => {
-                              setDatestart3(e.target.value);
-                            }}
-                          />
-                        </div>
-                      </div>
-                      <div style={{ width: "50%" }}>
-                        <div
-                          style={{ fontWeight: "400" }}
-                          className="jobpodtedfieldtitile"
-                        >
-                          To
-                        </div>
-                        <div className="jobpostfieldinputbox">
-                          <input
-                            style={{ width: "100%" }}
-                            type="date"
-                            className="input-homejobformdate"
-                            name=""
-                            id=""
-                            value={datestart3x}
-                            max={disablePastDate()}
-                            min={"2020-01-01"}
-                            maxlength="4"
-                            onChange={(e) => {
-                              setDatestart3x(e.target.value);
-                            }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
                   <div
                     style={{ marginTop: "0.31vw" }}
                     className="handlemoreaboutskill"
@@ -599,11 +177,8 @@ export default function Jobs() {
                       className="handlecirclieaboutsave"
                       onClick={() => {
                         handleClose();
-                        togglrbar === 1
-                          ? setRecall1(!recall1)
-                          : togglrbar === 2
-                          ? setRecall2(!recall2)
-                          : setRecall(!recall);
+
+                        setRecall(!recall);
                       }}
                     >
                       Submit
@@ -613,17 +188,9 @@ export default function Jobs() {
               </Box>
             </Modal>
 
-            {arrayoffilterselected?.length > 0 &&
-              arrayoffilterselected?.map((filtername) => {
-                return <div className="filtericonboxname">{filtername}</div>;
-              })}
-
             <div
               onClick={() => {
-                setTogglrbar(0);
                 setRecall(!recall);
-                setRecall2(!recall2);
-                setRecall1(!recall1);
               }}
               style={{ cursor: "pointer" }}
               className="filtericonboxname"
@@ -648,43 +215,14 @@ export default function Jobs() {
             className="profileworkhistruytoggleer"
           >
             <div
-              onClick={() => {
-                setToggler(1);
-              }}
               className="profileworkhistruytoggleervalue"
               style={{
                 textAlign: "center",
                 width: "12vw",
-                color: toggler === 1 ? "#064C87" : "",
+                color: "#064C87",
               }}
             >
-              List of Category
-            </div>
-            <div
-              onClick={() => {
-                setToggler(2);
-              }}
-              className="profileworkhistruytoggleervalue"
-              style={{
-                textAlign: "center",
-                width: "12vw",
-                color: toggler === 2 ? "#064C87" : "",
-              }}
-            >
-              List of Subcategory
-            </div>
-            <div
-              onClick={() => {
-                setToggler(3);
-              }}
-              className="profileworkhistruytoggleervalue"
-              style={{
-                textAlign: "center",
-                width: "12vw",
-                color: toggler === 3 ? "#064C87" : "",
-              }}
-            >
-              List of skills
+              List of Created Work
             </div>
 
             <div
@@ -693,7 +231,7 @@ export default function Jobs() {
                 borderBottom: "0.3vw solid #064C87",
                 width: "12vw",
                 position: "relative",
-                right: toggler === 1 ? "41vw" : toggler === 2 ? "27vw" : "13vw",
+                right: "13vw",
                 bottom: "0.0vw",
                 transitionDuration: "1s",
                 borderRadius: "0.2vw",
@@ -704,13 +242,7 @@ export default function Jobs() {
         <div style={{ width: "5vw", height: "1vw" }}>
           <img
             onClick={() => {
-              if (toggler === 1 && selecteddelete1.length > 0) {
-                handleOpen3();
-              }
-              if (toggler === 2 && selecteddelete2?.length > 0) {
-                handleOpen3();
-              }
-              if (toggler === 3 && selecteddelete.length > 0) {
+              if (selecteddelete.length > 0) {
                 handleOpen3();
               }
             }}
@@ -736,14 +268,7 @@ export default function Jobs() {
         >
           <Box sx={style}>
             <div className="profiletitleandmenunav">
-              <div className="profiledetailstitle">
-                Delete{" "}
-                {toggler === 1
-                  ? "Category"
-                  : toggler === 2
-                  ? "Sub-Category"
-                  : "Skills"}
-              </div>
+              <div className="profiledetailstitle">Delete Jobs</div>
               <div className="profiledetailnavmanu">
                 <div>
                   <CloseIcon
@@ -756,13 +281,7 @@ export default function Jobs() {
             <hr style={{ color: "#00000090" }} />
 
             <div style={{ left: "0vw", width: "100%" }} className="loginfield">
-              Are you really want to delete these '
-              {toggler === 1
-                ? "Category"
-                : toggler === 2
-                ? "Sub-Category"
-                : "Skills"}
-              '
+              Are you really want to delete these ' Job '
             </div>
 
             <hr style={{ color: "#00000090" }} />
@@ -783,11 +302,7 @@ export default function Jobs() {
               </div>
               <div
                 onClick={() => {
-                  toggler === 1
-                    ? handleDelete1()
-                    : toggler === 2
-                    ? handleDelete2()
-                    : handleDelete();
+                  handleDelete();
                 }}
                 style={{ cursor: "pointer" }}
                 className="handlecirclieaboutsave"
@@ -798,203 +313,25 @@ export default function Jobs() {
           </Box>
         </Modal>
       </div>
-      {toggler === 1 && (
-        <div>
-          <div className="catalogcontainerdashbaord">
-            {allusers1?.length > 0 &&
-              allusers1?.map((data, index) => {
-                return (
-                  <Listofjobbox
-                    data={data}
-                    index={index}
-                    page={page1}
-                    setSelecteddelete={setSelecteddelete1}
-                    selecteddelete={selecteddelete1}
-                    setRecall={setRecall1}
-                    recall={recall1}
-                  />
-                );
-              })}
-          </div>
-          {totalpages1 !== 1 ? (
-            <div style={{ width: "25vw" }} className="paginationbox">
-              <div>
-                <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
 
-              <div
-                hidden={page1 - 4 > 0 ? false : true}
-                onClick={() => setPage1(page1 - 4)}
-              >
-                {page1 - 4}
-              </div>
-              <div
-                hidden={page1 - 3 > 0 ? false : true}
-                onClick={() => setPage1(page1 - 3)}
-              >
-                {page1 - 3}
-              </div>
-              <div
-                hidden={page1 - 2 > 0 ? false : true}
-                onClick={() => setPage1(page1 - 2)}
-              >
-                {page1 - 2}
-              </div>
-              <div
-                hidden={page1 - 1 > 0 ? false : true}
-                onClick={() => setPage1(page1 - 1)}
-              >
-                {page1 - 1}
-              </div>
-              <div style={{ color: "#2A6599" }}>{page1}</div>
-              <div
-                hidden={page1 + 1 > totalpages1 ? true : false}
-                onClick={() => setPage1(page1 + 1)}
-              >
-                {page1 + 1}
-              </div>
-
-              <div>
-                <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
+      <div>
+        <div className="catalogcontainerdashbaord">
+          {allusers?.length > 0 &&
+            allusers?.map((data, index) => {
+              return (
+                <Listofjobbox
+                  data={data}
+                  index={index}
+                  page={page}
+                  setSelecteddelete={setSelecteddelete}
+                  selecteddelete={selecteddelete}
+                  setRecall={setRecall}
+                  recall={recall}
+                />
+              );
+            })}
         </div>
-      )}
-      {toggler === 2 && (
-        <div>
-          <div className="catalogcontainerdashbaord">
-            {allusers1?.length > 0 &&
-              allusers1?.map((data, index) => {
-                return (
-                  <Listofjobbox
-                    data={data}
-                    index={index}
-                    page={page1}
-                    setSelecteddelete={setSelecteddelete1}
-                    selecteddelete={selecteddelete1}
-                    setRecall={setRecall1}
-                    recall={recall1}
-                  />
-                );
-              })}
-          </div>
-
-          {totalpages2 !== 1 ? (
-            <div style={{ width: "25vw" }} className="paginationbox">
-              <div>
-                <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-
-              <div
-                hidden={page2 - 4 > 0 ? false : true}
-                onClick={() => setPage2(page2 - 4)}
-              >
-                {page2 - 4}
-              </div>
-              <div
-                hidden={page2 - 3 > 0 ? false : true}
-                onClick={() => setPage2(page2 - 3)}
-              >
-                {page2 - 3}
-              </div>
-              <div
-                hidden={page2 - 2 > 0 ? false : true}
-                onClick={() => setPage2(page2 - 2)}
-              >
-                {page2 - 2}
-              </div>
-              <div
-                hidden={page2 - 1 > 0 ? false : true}
-                onClick={() => setPage2(page2 - 1)}
-              >
-                {page2 - 1}
-              </div>
-              <div style={{ color: "#2A6599" }}>{page2}</div>
-              <div
-                hidden={page2 + 1 > totalpages2 ? true : false}
-                onClick={() => setPage2(page2 + 1)}
-              >
-                {page2 + 1}
-              </div>
-
-              <div>
-                <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
-      )}
-      {toggler === 3 && (
-        <div>
-          <div className="catalogcontainerdashbaord">
-            {allusers1?.length > 0 &&
-              allusers1?.map((data, index) => {
-                return (
-                  <Listofjobbox
-                    data={data}
-                    index={index}
-                    page={page1}
-                    setSelecteddelete={setSelecteddelete1}
-                    selecteddelete={selecteddelete1}
-                    setRecall={setRecall1}
-                    recall={recall1}
-                  />
-                );
-              })}
-          </div>
-
-          {totalpages !== 1 ? (
-            <div style={{ width: "25vw" }} className="paginationbox">
-              <div>
-                <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-
-              <div
-                hidden={page - 4 > 0 ? false : true}
-                onClick={() => setPage(page - 4)}
-              >
-                {page - 4}
-              </div>
-              <div
-                hidden={page - 3 > 0 ? false : true}
-                onClick={() => setPage(page - 3)}
-              >
-                {page - 3}
-              </div>
-              <div
-                hidden={page - 2 > 0 ? false : true}
-                onClick={() => setPage(page - 2)}
-              >
-                {page - 2}
-              </div>
-              <div
-                hidden={page - 1 > 0 ? false : true}
-                onClick={() => setPage(page - 1)}
-              >
-                {page - 1}
-              </div>
-              <div style={{ color: "#2A6599" }}>{page}</div>
-              <div
-                hidden={page + 1 > totalpages ? true : false}
-                onClick={() => setPage(page + 1)}
-              >
-                {page + 1}
-              </div>
-
-              <div>
-                <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
-      )}
+      </div>
     </div>
   );
 }

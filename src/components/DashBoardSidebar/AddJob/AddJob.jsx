@@ -13,9 +13,10 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { makeStyles } from "@material-ui/core";
 import Box from "@mui/material/Box";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
-import img2 from "../../../assets/file.svg";
-import img3 from "../../../assets/close.svg";
+import img from "../../../assets/Web 1280 – 14/Icon.svg";
+
+import img1 from "../../../assets/Web 1280 – 14/Group 9831.svg";
+import img21 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg";
 import DoneIcon from "@mui/icons-material/Done";
 import Modal from "@mui/material/Modal";
 import axios from "axios";
@@ -288,18 +289,9 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
           }
         });
     }
-    // axios
-    //   .get(`${API_HOST}/skill/viewSkill?skill=${e.target.value}`)
-    //   .then((res) => {
-    //     console.log(res);
-    //     setAllcategory(res?.data?.success?.data?.docs);
-    //     setOpenx(true);
-    //     if (res?.data?.success?.data?.docs?.length > 0) {
-    //       setIstdropdown(true);
-    //     }
-    //   });
+   
   };
-
+  const [arrayoffiles, setArrayoffiles] = useState([]);
   const [setSelectedCategory1, setSetSelectedCategory1] = useState("");
   const [istdropdown, setIstdropdown] = useState(false);
   const [allcategory, setAllcategory] = useState([0]);
@@ -385,10 +377,11 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
           paddingBottom: "3vw",
           width: "70vw",
           margin: "2vw",
+          paddingTop:"1vw"
         }}
         className="homepostjob-right"
       >
-        <div className="jobpostedformheading">Job Posted Form Posted</div>
+        <div className="jobpostedformheading">Add Create Work</div>
 
         <div>
           <div className="jobpodtedfieldtitile">Job Title *</div>
@@ -1007,37 +1000,36 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
 
           <div className="jobpodtedfieldtitile">Image/Documents </div>
           <div
-            style={{ width: "95%", marginLeft: "0vw" }}
-            className="fileinputbox"
-          >
-            <label htmlFor="fileupload">
-              <div>
-                <FileUploadIcon
-                  style={{
-                    fontSize: "3vw",
-                    color: "#8f92a173",
-                    cursor: "pointer",
-                  }}
-                />
+              style={{
+                background: "white",
+                padding: "0.51vw",
+                marginTop: "0vw",
+                paddingRight: "3vw",
+              }}
+            >
+              <div className="inputfilebox">
+                <div>
+                  <label htmlFor="inputctaelogfile">
+                    <div className="inputicon">
+                      <img src={img} alt="" />
+                    </div>
+                    <div className="inputcateaddformfile">
+                      Drag and Drop ,Browse to upload
+                    </div>
+                    <input
+                      type="file"
+                      id="inputctaelogfile"
+                      onChange={(e) => {
+                        setArrayoffiles([...arrayoffiles, e.target.files[0]]);
+                      }}
+                      hidden
+                    />
+                  </label>
+                </div>
               </div>
-              <input
-                type="file"
-                name="fileupload"
-                id="fileupload"
-                hidden
-                onChange={(e) => {
-                  setFile(e.target.files[0]);
-                }}
-              />
-              <div
-                style={{ width: "20vw", textAlign: "center" }}
-                className="min-maxhomejob"
-              >
-                Drag and Drop or Browse to upload
-              </div>
-            </label>
-          </div>
-          <div
+            
+            </div>
+               <div
             style={{
               display: "flex",
               justifyContent: "flex-end",
@@ -1050,27 +1042,44 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
             <br />
             Image should be less then 512 kb.
           </div>
-          {file && (
-            <div className="selectedhjobfile">
-              <div>
-                <img src={img2} alt="" />
-              </div>
-              <div className="">{file?.name}</div>
-              <div>
-                <img
-                  style={{
-                    marginLeft: "1vw",
-                    width: "1.2vw",
-                    cursor: "pointer",
-                  }}
-                  src={img3}
-                  onClick={() => setFile()}
-                  alt=""
-                />
-              </div>
+          <div
+              className={
+                arrayoffiles?.length > 0 ? "inputfilesshowncatebox" : ""
+              }
+            >
+              {arrayoffiles?.length > 0 &&
+                arrayoffiles?.map((file, index) => {
+                  return (
+                    <div className="inputfilesshowncatboxsingle">
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <img src={img1} alt="" />
+                      </div>
+                      <div className="fileselctednamecate">{file?.name}</div>
+                      <div className="inputfilesshowncatboxsingleimg">
+                        <img
+                          style={{
+                            width: "1.5vw",
+                            marginLeft: "1vw",
+                            cursor: "pointer",
+                          }}
+                          src={img21}
+                          alt=""
+                          onClick={() => {
+                            setArrayoffiles([
+                              ...arrayoffiles.slice(0, index),
+                              ...arrayoffiles.slice(
+                                index + 1,
+                                arrayoffiles.length
+                              ),
+                            ]);
+                          }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
-          )}
-
+       
           <div className="jobpodtedfieldtitile">Location *</div>
           <div
             style={{ display: "flex", alignItems: "center", fontWeight: "500" }}

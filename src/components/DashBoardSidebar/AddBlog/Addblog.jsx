@@ -398,6 +398,7 @@ export default function Addblog() {
                   );
                 })}
             </div>
+       
             <div className="jobpodtedfieldtitile"> Image Title *</div>
             <div className="jobpostfieldinputbox">
               <input
