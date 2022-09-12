@@ -3,9 +3,9 @@ import DoneIcon from "@mui/icons-material/Done";
 import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
 import { useNavigate } from "react-router";
 export default function Listofjobbox({ data }) {
-  const [checkonex, setCheckonex] = useState(true);
+  const [checkonex, setCheckonex] = useState(false);
   useEffect(() => {
-    setCheckonex(true);
+    setCheckonex(false);
   }, [data]);
   const navigate = useNavigate();
   return (
@@ -19,29 +19,29 @@ export default function Listofjobbox({ data }) {
             display: "flex",
             alignItems: "center",
             height: "1vw",
-            marginBottom:"0.751vw",
+            marginBottom: "0.751vw",
             justifyContent: "space-between",
           }}
         >
           <div
             className="checkbox"
-            //   onClick={() => {
-            //     setCheckonex(!checkonex);
-            //     if (selecteddelete?.indexOf(data?.budgetId) > -1) {
-            //       setSelecteddelete([
-            //         ...selecteddelete.slice(
-            //           0,
-            //           selecteddelete.indexOf(data?.budgetId)
-            //         ),
-            //         ...selecteddelete.slice(
-            //           selecteddelete.indexOf(data?.budgetId) + 1,
-            //           selecteddelete.length
-            //         ),
-            //       ]);
-            //     } else {
-            //       setSelecteddelete([...selecteddelete, data?.budgetId]);
-            //     }
-            //   }}
+              onClick={() => {
+                setCheckonex(!checkonex);
+                // if (selecteddelete?.indexOf(data?.budgetId) > -1) {
+                //   setSelecteddelete([
+                //     ...selecteddelete.slice(
+                //       0,
+                //       selecteddelete.indexOf(data?.budgetId)
+                //     ),
+                //     ...selecteddelete.slice(
+                //       selecteddelete.indexOf(data?.budgetId) + 1,
+                //       selecteddelete.length
+                //     ),
+                //   ]);
+                // } else {
+                //   setSelecteddelete([...selecteddelete, data?.budgetId]);
+                // }
+              }}
           >
             {checkonex ? (
               <DoneIcon
@@ -56,24 +56,24 @@ export default function Listofjobbox({ data }) {
             )}{" "}
           </div>
           <div style={{ width: "2vw" }}>
-        <img
-          onClick={() =>
-            navigate(
-              `/dashbaord/editpricing/${data?.budgetId}/${data?.minimumBudget}/${data?.maximumBudget}`
-            )
-          }
-          style={{
-            margin: "0.5vw 0.5vw",
-            width: "1.4vw ",
-            height: "1.4vw",
-            borderRadius: "50%",
-            cursor: "pointer",
-            objectFit: "cover",
-          }}
-          src={img2}
-          alt=""
-        />
-      </div>
+            <img
+              onClick={() =>
+                navigate(
+                  `/dashbaord/editpricing/${data?.budgetId}/${data?.minimumBudget}/${data?.maximumBudget}`
+                )
+              }
+              style={{
+                margin: "0.5vw 0.5vw",
+                width: "1.4vw ",
+                height: "1.4vw",
+                borderRadius: "50%",
+                cursor: "pointer",
+                objectFit: "cover",
+              }}
+              src={img2}
+              alt=""
+            />
+          </div>
         </div>
         <div
           style={{

@@ -58,3 +58,16 @@
 .activejobpostname:hover {
   color: #064c87;
 }
+
+.filterslectboxofprice{
+    width: fit-content;
+    height: 2.5vw;
+    padding: 0.5vw 1.2vw;
+    text-align: center;
+    background: var(--unnamed-color-e4e4e4) 0% 0% no-repeat padding-box;
+    background: #e4e4e478 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+    font-size: 1vw;
+    margin: 0.5vw;
+    cursor: pointer;
+}

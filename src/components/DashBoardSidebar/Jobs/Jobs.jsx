@@ -10,7 +10,22 @@ import imgfilter from "../../../assets/walletimage/Iconly-Light-Color-Filter.svg
 import Modal from "@mui/material/Modal";
 import img1 from "../../../assets/Jobs/Iconly-Light-Delete.svg";
 import Listofjobbox from "./Listofjobbox";
+import { TextField } from "@mui/material";
+import { makeStyles } from "@material-ui/core";
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
+import { KeyboardArrowDownOutlined } from "@mui/icons-material";
+const useStyles = makeStyles((theme) => ({
+  input: {
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "500",
+    fontSize: "0.91vw",
 
+    color: "#263238",
+    border: "yellow !important",
+  },
+}));
 const style = {
   position: "absolute",
   top: "50%",
@@ -23,10 +38,48 @@ const style = {
   p: 4,
 };
 export default function Jobs() {
+  const classes = useStyles();
+  const [degreeset, setDegreeset] = useState("");
+  const [arrayoflongdegree, setArrayoflongdegree] = useState();
+  const [searchCategorysearch, setSearchCategorysearch] = useState("");
+  useEffect(() => {
+    axios
+      .get(
+        `${API_HOST}/theCategory/viewCategory?pageSize=50&pageNumber=1&category=${searchCategorysearch}`
+      )
+      .then((res) => {
+        setArrayoflongdegree(res?.data?.success?.data);
+      });
+  }, [searchCategorysearch]);
+  const [Cateid, setCateid] = useState("");
+  const [prevCateid, setprevCateid] = useState("");
+
+  const [selectedbiddingvalue, setSelectedbiddingvalue] = useState(0);
+  const [prevselectedbiddingvalue, setprevSelectedbiddingvalue] = useState(0);
+
+  const [locationname, setLocationname] = useState([]);
+
+  const [morelocation, setMorelocation] = useState(false);
+
+  const [pageoflocation, setPageoflocation] = useState(1);
+
+  useEffect(() => {
+    axios
+      .get(
+        `${API_HOST}/location/viewLocation?pageSize=8&pageNumber=${pageoflocation}`
+      )
+      .then((res) => {
+        setLocationname([...locationname,...res?.data?.success?.data]);
+      });
+  }, [pageoflocation]);
+
   const [openx, setOpenx] = React.useState(false);
   const [anchorElx, setAnchorElx] = React.useState(null);
   const canBeOpen = openx && Boolean(anchorElx);
   const id = canBeOpen ? "transition-popper" : undefined;
+
+  const [prevdatestart1, setprevDatestart1] = useState();
+  const [prevdatestart1x, setprevDatestart1x] = useState();
 
   const [datestart1, setDatestart1] = useState();
 
@@ -51,6 +104,16 @@ export default function Jobs() {
     return yyyy + "-" + mm + "-" + dd;
   };
 
+  const [anchorElx2, setAnchorElx2] = React.useState(null);
+  const handleClickx2 = (event) => {
+    setAnchorElx2(event.currentTarget);
+  };
+  const handleClosex2 = () => {
+    setAnchorElx2(null);
+  };
+  const openx2 = Boolean(anchorElx2);
+  const idx2 = openx2 ? "simple-popover" : undefined;
+
   const [open3, setOpen3] = React.useState(false);
   const handleOpen3 = () => setOpen3(true);
   const handleClose3 = () => setOpen3(false);
@@ -65,7 +128,7 @@ export default function Jobs() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [previosfilter, setPreviosfilter] = useState([]);
-  const [allusers, setAllusers] = useState([]);
+  const [allusers, setAllusers] = useState(["1", "2", "3", "4"]);
 
   const [recall, setRecall] = useState(false);
   const [selecteddelete, setSelecteddelete] = useState([]);
@@ -153,6 +216,285 @@ export default function Jobs() {
                     </div>
                   </div>
                   <hr style={{ color: "#00000090" }} />
+                  <div
+                    style={{ left: "0vw", width: "98%", marginLeft: "0%" }}
+                    className="loginfield"
+                    onClick={handleClickx2}
+                  >
+                    <TextField
+                      id="outlined-basic"
+                      label="Select Category "
+                      variant="outlined"
+                      disabled
+                      value={degreeset}
+                      style={{ width: "100%" }}
+                      InputLabelProps={{
+                        style: {
+                          fontSize: "1vw",
+                          fontFamily: "Poppins",
+                          fontStyle: "500",
+                          fontWeight: "500",
+                          color: "black",
+                        },
+                      }}
+                      inputProps={{ className: classes.input }}
+                      onChange={(e) => {
+                        console.log(e.target.value);
+                      }}
+                    />
+                    <span style={{ width: "0.1vw" }}>
+                      <KeyboardArrowDownOutlined
+                        style={{
+                          fontSize: "1.5vw",
+                          position: "relative",
+                          right: "2vw",
+                          top: "1vw",
+                        }}
+                      />
+                    </span>
+                  </div>
+
+                  <Popover
+                    id={idx2}
+                    open={openx2}
+                    anchorEl={anchorElx2}
+                    onClose={handleClosex2}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "left",
+                    }}
+                  >
+                    <div
+                      style={{
+                        maxHeight: "18vw",
+                        overflow: "scroll",
+                        width: "44vw",
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          p: 1,
+                          pl: 1,
+                          ml: 1,
+                          pr: 0,
+                          width: "43vw",
+                          position: "fixed",
+                          background: "white",
+                          zIndex: "10",
+                        }}
+                      >
+                        <input
+                          placeholder="search here .."
+                          onChange={(e) => {
+                            setSearchCategorysearch(e.target.value);
+                          }}
+                          style={{
+                            width: "97%",
+                            border: "1.5px solid #00000050",
+                            outline: "none",
+                            height: "2.5",
+                            borderRadius: "0.21vw",
+                          }}
+                        />
+                      </Typography>
+                      <Typography
+                        sx={{
+                          p: 2.5,
+                          pl: 1,
+                          ml: 1,
+                          width: "100%",
+                          cursor: "pointer",
+                        }}
+                      ></Typography>
+
+                      {arrayoflongdegree?.length > 0 &&
+                        arrayoflongdegree.map((data, index) => {
+                          return (
+                            <Typography
+                              sx={{
+                                p: 0.51,
+                                pl: 1,
+                                ml: 1,
+                                width: "100%",
+                                cursor: "pointer",
+                              }}
+                              onClick={() => {
+                                setDegreeset(data?.category);
+                                setprevCateid(data?._id);
+                                handleClosex2();
+                              }}
+                            >
+                              {data?.category}
+                            </Typography>
+                          );
+                        })}
+                    </div>
+                  </Popover>
+                  <div className="jobpodtedfieldtitile">
+                    {" "}
+                    Select Bidding Value{" "}
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      width: "100%",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div
+                      className="filterslectboxofprice"
+                      onClick={() => {
+                        setprevSelectedbiddingvalue(10);
+                      }}
+                    >
+                      $ 10+
+                    </div>
+                    <div
+                      className="filterslectboxofprice"
+                      onClick={() => {
+                        setprevSelectedbiddingvalue(20);
+                      }}
+                    >
+                      $ 20+
+                    </div>
+                    <div
+                      className="filterslectboxofprice"
+                      onClick={() => {
+                        setprevSelectedbiddingvalue(30);
+                      }}
+                    >
+                      $ 30+
+                    </div>
+                    <div
+                      className="filterslectboxofprice"
+                      onClick={() => {
+                        setprevSelectedbiddingvalue(40);
+                      }}
+                    >
+                      $ 40+
+                    </div>
+                    <div
+                      className="filterslectboxofprice"
+                      onClick={() => {
+                        setprevSelectedbiddingvalue(50);
+                      }}
+                    >
+                      $ 50+
+                    </div>
+                    <div
+                      className="filterslectboxofprice"
+                      onClick={() => {
+                        setprevSelectedbiddingvalue(100);
+                      }}
+                    >
+                      $ 100+
+                    </div>
+                    <div
+                      className="filterslectboxofprice"
+                      onClick={() => {
+                        setprevSelectedbiddingvalue(100);
+                      }}
+                    >
+                      $ 500+
+                    </div>
+                  </div>
+
+                  <div className="jobpodtedfieldtitile"> Select Location </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      width: "100%",
+                      alignItems: "center",
+                    }}
+                  >
+                    {locationname?.length > 0 &&
+                      locationname?.map((data) => {
+                        return (
+                          <div
+                            className="filterslectboxofprice"
+                            onClick={() => {
+                            //   setprevSelectedbiddingvalue(10);
+                            }}
+                          >
+                            {data?.city}
+                          </div>
+                        );
+                      })}
+                    <div
+                      style={{ background: "#064C87", color: "white" }}
+                      className="filterslectboxofprice"
+                      onClick={() => {
+                        
+                        setPageoflocation(pageoflocation+1)
+                      }}
+                    >
+                      View More
+                    </div>
+                  </div>
+
+
+
+
+                  <div className="jobpodtedfieldtitile">Created on</div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      width: "98%",
+                    }}
+                  >
+                    <div style={{ width: "50%" }}>
+                      <div
+                        style={{ fontWeight: "400" }}
+                        className="jobpodtedfieldtitile"
+                      >
+                        From{" "}
+                      </div>
+                      <div className="jobpostfieldinputbox">
+                        <input
+                          style={{ width: "100%" }}
+                          type="date"
+                          className="input-homejobformdate"
+                          name=""
+                          id=""
+                          value={prevdatestart1}
+                          max={disablePastDate()}
+                          min={"2020-01-01"}
+                          maxlength="4"
+                          onChange={(e) => {
+                            setprevDatestart1(e.target.value);
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div style={{ width: "50%" }}>
+                      <div
+                        style={{ fontWeight: "400" }}
+                        className="jobpodtedfieldtitile"
+                      >
+                        To
+                      </div>
+                      <div className="jobpostfieldinputbox">
+                        <input
+                          style={{ width: "100%" }}
+                          type="date"
+                          className="input-homejobformdate"
+                          name=""
+                          id=""
+                          value={prevdatestart1x}
+                          max={disablePastDate()}
+                          min={"2020-01-01"}
+                          maxlength="4"
+                          onChange={(e) => {
+                            setprevDatestart1x(e.target.value);
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
 
                   <div
                     style={{ marginTop: "0.31vw" }}
@@ -176,14 +518,18 @@ export default function Jobs() {
                       style={{ cursor: "pointer" }}
                       className="handlecirclieaboutsave"
                       onClick={() => {
+                        setCateid(prevCateid);
+                       
+                        setDatestart1(prevdatestart1);
+                        setDatestart1x(prevdatestart1x);
                         handleClose();
-
-                        setRecall(!recall);
                       }}
                     >
                       Submit
                     </div>
                   </div>
+                
+
                 </div>
               </Box>
             </Modal>
@@ -332,6 +678,52 @@ export default function Jobs() {
             })}
         </div>
       </div>
+
+      {totalpages !== 1 ? (
+        <div style={{ width: "25vw" }} className="paginationbox">
+          <div>
+            <ArrowBackIosIcon style={{ fontSize: "1.5vw" }} />
+          </div>
+
+          <div
+            hidden={page - 4 > 0 ? false : true}
+            onClick={() => setPage(page - 4)}
+          >
+            {page - 4}
+          </div>
+          <div
+            hidden={page - 3 > 0 ? false : true}
+            onClick={() => setPage(page - 3)}
+          >
+            {page - 3}
+          </div>
+          <div
+            hidden={page - 2 > 0 ? false : true}
+            onClick={() => setPage(page - 2)}
+          >
+            {page - 2}
+          </div>
+          <div
+            hidden={page - 1 > 0 ? false : true}
+            onClick={() => setPage(page - 1)}
+          >
+            {page - 1}
+          </div>
+          <div style={{ color: "#2A6599" }}>{page}</div>
+          <div
+            hidden={page + 1 > totalpages ? true : false}
+            onClick={() => setPage(page + 1)}
+          >
+            {page + 1}
+          </div>
+
+          <div>
+            <ArrowForwardIosIcon style={{ fontSize: "1.5vw" }} />
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
