@@ -1,4 +1,4 @@
-import { KeyboardArrowDownOutlined, MoreVert } from "@mui/icons-material";
+import {  MoreVert } from "@mui/icons-material";
 import React, { useState } from "react";
 import "./filemanager.css";
 import img1 from "../../../../assets/Webfiles/Group 8738.svg";
@@ -16,10 +16,6 @@ import imgp1 from "../../../../assets/Webfiles/Web 1366 – 9/Add User.svg";
 import imgp2 from "../../../../assets/Webfiles/Web 1366 – 9/Edit.svg";
 import imgp3 from "../../../../assets/Webfiles/Web 1366 – 9/Iconly-Light-Delete.svg";
 import imgp4 from "../../../../assets/Webfiles/Web 1366 – 9/Iconly-Light-Paper Download.svg";
-
-import axios from "axios";
-import API_HOST from "../../../../env";
-import { useNavigate } from "react-router";
 import img from '../../../../assets/walletimage/Iconly-Light-outline-Show.svg'
 import img11 from '../../../../assets/walletimage/arrow_forward.svg'
 import img12 from "../../../../assets/Jobs/Iconly-Light-Delete.svg";
@@ -33,24 +29,10 @@ export default function FileManager() {
   };
   const openx = Boolean(anchorElx);
   const idx = openx ? "simple-popover" : undefined;
-  const [openxx, setOpenxx] = React.useState(false);
-  const [anchorElxx, setAnchorElxx] = React.useState(null);
-  const canBeOpenxx = openxx && Boolean(anchorElx);
-  const idxx = canBeOpenxx ? "transition-popper" : undefined;
-  const handleSearchCategory = (e) => {
-    axios
-      .get(`${API_HOST}/category/viewCategory?categories=${e.target.value}`)
-      .then((res) => {
-        setAllcategory(res?.data?.success?.data?.docs);
 
-        setOpenxx(true);
-      });
-  };
-  const [setSelectedCategory, setSetSelectedCategory] = useState("");
-  const [setsubSelectedCategory, setsubSetSelectedCategory] = useState([]);
-  const [allcategory, setAllcategory] = useState([0]);
+ 
 
-  const navigate = useNavigate()
+  
   return (
     <div className="files-main-container">
       <div className="files-leftcontainer">
