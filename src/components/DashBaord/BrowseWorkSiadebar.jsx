@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./DashBoard.css";
+import img from '../../assets/walletimage/Activity.svg'
 import img1 from "../../assets/Dashboard/Iconly-Light-outline-Bookmark.svg";
 import img2 from "../../assets/Dashboard/Iconly-Light-outline-Buy.svg";
 import img3 from "../../assets/Dashboard/Iconly-Light-outline-Chart.svg";
@@ -215,7 +216,7 @@ export default function BrowseWorkSiadebar() {
             colorsidebar === 1 ? "firstsidebarmenu1" : "firstsidebarmenu"
           }
         >
-          <img src={img89} alt="" />
+          <img style={{width:"1.8vw"}} src={img} alt="" />
           Dashboard
         </div>
       </Link>
