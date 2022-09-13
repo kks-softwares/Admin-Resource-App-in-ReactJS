@@ -42,6 +42,7 @@ export default function Jobs() {
   const [degreeset, setDegreeset] = useState("");
   const [arrayoflongdegree, setArrayoflongdegree] = useState();
   const [searchCategorysearch, setSearchCategorysearch] = useState("");
+
   useEffect(() => {
     axios
       .get(
@@ -51,42 +52,62 @@ export default function Jobs() {
         setArrayoflongdegree(res?.data?.success?.data);
       });
   }, [searchCategorysearch]);
+
   const [Cateid, setCateid] = useState("");
   const [prevCateid, setprevCateid] = useState("");
 
-  const [selectedbiddingvalue, setSelectedbiddingvalue] = useState(0);
-  const [prevselectedbiddingvalue, setprevSelectedbiddingvalue] = useState(0);
+  const [anchorElx4, setAnchorElx4] = React.useState(null);
+  const handleClickx4 = (event) => {
+    setAnchorElx4(event.currentTarget);
+  };
+  const handleClosex4 = () => {
+    setAnchorElx4(null);
+  };
+  const openx4 = Boolean(anchorElx4);
+  const idx4 = openx4 ? "simple-popover" : undefined;
+
+  const [anchorEl4, setAnchorEl4] = React.useState(null);
+  const handleClick4 = (event) => {
+    setAnchorEl4(event.currentTarget);
+  };
+  const handleClose4 = () => {
+    setAnchorEl4(null);
+  };
+  const open4 = Boolean(anchorEl4);
+  const id4 = open4 ? "simple-popover" : undefined;
+
+  const [selectedbiddingvalue, setSelectedbiddingvalue] = useState("");
+  const [prevselectedbiddingvalue, setprevSelectedbiddingvalue] = useState("");
 
   const [locationname, setLocationname] = useState([]);
 
-  const [morelocation, setMorelocation] = useState(false);
-
-  const [pageoflocation, setPageoflocation] = useState(1);
-
+  const [arrayoflongstudy1, setArrayoflongstudy1] = useState([]);
   useEffect(() => {
     axios
       .get(
-        `${API_HOST}/location/viewLocation?pageSize=8&pageNumber=${pageoflocation}`
+        `${API_HOST}/location/viewLocation?pageSize=100&pageNumber=1&search=${locationname}`
       )
       .then((res) => {
-        setLocationname([...locationname,...res?.data?.success?.data]);
+        setArrayoflongstudy1(res?.data?.success?.data);
       });
-  }, [pageoflocation]);
+  }, [locationname]);
 
-  const [openx, setOpenx] = React.useState(false);
-  const [anchorElx, setAnchorElx] = React.useState(null);
-  const canBeOpen = openx && Boolean(anchorElx);
-  const id = canBeOpen ? "transition-popper" : undefined;
+  const [studyset, setstudyset] = useState("");
+  const [studyset1, setstudyset1] = useState("");
+
+  const [arrayofminbudget, setArrayofminbudget] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${API_HOST}/budget/viewBudget`).then((res) => {
+      setArrayofminbudget(res?.data?.success?.data);
+    });
+  }, []);
 
   const [prevdatestart1, setprevDatestart1] = useState();
   const [prevdatestart1x, setprevDatestart1x] = useState();
-
   const [datestart1, setDatestart1] = useState();
-
-  const [datestart3, setDatestart3] = useState();
   const [datestart1x, setDatestart1x] = useState();
 
-  const [datestart3x, setDatestart3x] = useState();
   const disablePastDate = () => {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, "0");
@@ -117,17 +138,18 @@ export default function Jobs() {
   const [open3, setOpen3] = React.useState(false);
   const handleOpen3 = () => setOpen3(true);
   const handleClose3 = () => setOpen3(false);
+
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
 
   const [setSelectedCategory, setSetSelectedCategory] = useState("");
-
-  const [arrayoffilterselected, setarrayoffilterselected] = useState([]);
+ 
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [previosfilter, setPreviosfilter] = useState([]);
+
+
   const [allusers, setAllusers] = useState(["1", "2", "3", "4"]);
 
   const [recall, setRecall] = useState(false);
@@ -189,7 +211,7 @@ export default function Jobs() {
             <div
               onClick={() => {
                 handleOpen();
-                setPreviosfilter([...arrayoffilterselected]);
+              
               }}
               className="filtericonbox"
             >
@@ -216,6 +238,8 @@ export default function Jobs() {
                     </div>
                   </div>
                   <hr style={{ color: "#00000090" }} />
+                  <div className="jobpodtedfieldtitile"> Select Category </div>
+
                   <div
                     style={{ left: "0vw", width: "98%", marginLeft: "0%" }}
                     className="loginfield"
@@ -223,7 +247,7 @@ export default function Jobs() {
                   >
                     <TextField
                       id="outlined-basic"
-                      label="Select Category "
+                      label="Category "
                       variant="outlined"
                       disabled
                       value={degreeset}
@@ -335,108 +359,195 @@ export default function Jobs() {
                     Select Bidding Value{" "}
                   </div>
 
-                  <div
-                    style={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      width: "100%",
-                      alignItems: "center",
-                    }}
-                  >
+                  <div>
                     <div
-                      className="filterslectboxofprice"
-                      onClick={() => {
-                        setprevSelectedbiddingvalue(10);
+                      style={{ left: "0vw", width: "44.5vw", marginLeft: "0" }}
+                      className="loginfield"
+                      onClick={handleClick4}
+                    >
+                      <TextField
+                        id="outlined-basic"
+                        label="Bidding"
+                        variant="outlined"
+                        disabled
+                        value={prevselectedbiddingvalue}
+                        style={{ width: "100%" }}
+                        InputLabelProps={{
+                          style: {
+                            fontSize: "1vw",
+                            fontFamily: "Poppins",
+                            fontStyle: "500",
+                            fontWeight: "500",
+                            color: "black",
+                          },
+                        }}
+                        inputProps={{ className: classes.input }}
+                      />
+                      <span style={{ width: "0.1vw" }}>
+                        <KeyboardArrowDownOutlined
+                          style={{
+                            fontSize: "1.5vw",
+                            position: "relative",
+                            right: "2vw",
+                            top: "1vw",
+                          }}
+                        />
+                      </span>
+                    </div>
+                    <Popover
+                      id={id4}
+                      open={open4}
+                      anchorEl={anchorEl4}
+                      onClose={handleClose4}
+                      anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "left",
                       }}
                     >
-                      $ 10+
-                    </div>
-                    <div
-                      className="filterslectboxofprice"
-                      onClick={() => {
-                        setprevSelectedbiddingvalue(20);
-                      }}
-                    >
-                      $ 20+
-                    </div>
-                    <div
-                      className="filterslectboxofprice"
-                      onClick={() => {
-                        setprevSelectedbiddingvalue(30);
-                      }}
-                    >
-                      $ 30+
-                    </div>
-                    <div
-                      className="filterslectboxofprice"
-                      onClick={() => {
-                        setprevSelectedbiddingvalue(40);
-                      }}
-                    >
-                      $ 40+
-                    </div>
-                    <div
-                      className="filterslectboxofprice"
-                      onClick={() => {
-                        setprevSelectedbiddingvalue(50);
-                      }}
-                    >
-                      $ 50+
-                    </div>
-                    <div
-                      className="filterslectboxofprice"
-                      onClick={() => {
-                        setprevSelectedbiddingvalue(100);
-                      }}
-                    >
-                      $ 100+
-                    </div>
-                    <div
-                      className="filterslectboxofprice"
-                      onClick={() => {
-                        setprevSelectedbiddingvalue(100);
-                      }}
-                    >
-                      $ 500+
-                    </div>
+                      <div style={{ maxHeight: "18vw", overflow: "scroll" }}>
+                        {arrayofminbudget?.length > 0 &&
+                          arrayofminbudget?.map((data, index) => {
+                            return (
+                              <Typography
+                                sx={{
+                                  p: 0.51,
+                                  pl: 1,
+                                  ml: 1,
+                                  width: "43.5vw",
+                                  cursor: "pointer",
+                                }}
+                                onClick={() => {
+                                  setprevSelectedbiddingvalue(
+                                    data?.minimumBudget
+                                  );
+                                  handleClose4();
+                                }}
+                              >
+                                $ {data?.minimumBudget} +
+                              </Typography>
+                            );
+                          })}
+                      </div>
+                    </Popover>
                   </div>
 
                   <div className="jobpodtedfieldtitile"> Select Location </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      width: "100%",
-                      alignItems: "center",
-                    }}
-                  >
-                    {locationname?.length > 0 &&
-                      locationname?.map((data) => {
-                        return (
-                          <div
-                            className="filterslectboxofprice"
-                            onClick={() => {
-                            //   setprevSelectedbiddingvalue(10);
-                            }}
-                          >
-                            {data?.city}
-                          </div>
-                        );
-                      })}
+
+                  <div>
                     <div
-                      style={{ background: "#064C87", color: "white" }}
-                      className="filterslectboxofprice"
-                      onClick={() => {
-                        
-                        setPageoflocation(pageoflocation+1)
+                      style={{ left: "0vw", width: "44.5vw", marginLeft: "0" }}
+                      className="loginfield"
+                      onClick={handleClickx4}
+                    >
+                      <TextField
+                        id="outlined-basic"
+                        label="Location"
+                        variant="outlined"
+                        disabled
+                        value={studyset1}
+                        style={{ width: "100%" }}
+                        InputLabelProps={{
+                          style: {
+                            fontSize: "1vw",
+                            fontFamily: "Poppins",
+                            fontStyle: "500",
+                            fontWeight: "500",
+                            color: "black",
+                          },
+                        }}
+                        inputProps={{ className: classes.input }}
+                        onChange={(e) => {
+                          console.log(e.target.value);
+                        }}
+                      />
+                      <span style={{ width: "0.1vw" }}>
+                        <KeyboardArrowDownOutlined
+                          style={{
+                            fontSize: "1.5vw",
+                            position: "relative",
+                            right: "2vw",
+                            top: "1vw",
+                          }}
+                        />
+                      </span>
+                    </div>
+                    <Popover
+                      id={idx4}
+                      open={openx4}
+                      anchorEl={anchorElx4}
+                      onClose={handleClosex4}
+                      anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "left",
                       }}
                     >
-                      View More
-                    </div>
+                      <div style={{ maxHeight: "18vw", overflow: "scroll" }}>
+                        <Typography
+                          sx={{
+                            p: 1,
+                            pl: 1,
+                            ml: 1,
+                            width: "43vw",
+                            position: "fixed",
+                            background: "white",
+                            zIndex: "10",
+                          }}
+                        >
+                          <input
+                            onChange={(e) => {
+                              setLocationname(e.target.value);
+                            }}
+                            style={{
+                              width: "95%",
+                              border: "1.5px solid #00000050",
+                              outline: "none",
+                              height: "2.5",
+                              borderRadius: "0.21vw",
+                            }}
+                          />
+                        </Typography>
+                        <Typography
+                          sx={{
+                            p: 2.5,
+                            pl: 1,
+                            ml: 1,
+                            width: "43vw",
+                            cursor: "pointer",
+                          }}
+                        ></Typography>
+
+                        {arrayoflongstudy1?.map((data, index) => {
+                          return (
+                            <Typography
+                              sx={{
+                                p: 0.51,
+                                pl: 1,
+                                ml: 1,
+                                width: "43.5vw",
+                                cursor: "pointer",
+                              }}
+                              onClick={() => {
+                                setstudyset1(
+                                  data?.area +
+                                    ", " +
+                                    data?.city +
+                                    ", " +
+                                    data?.state
+                                );
+                                handleClosex4();
+                              }}
+                            >
+                              {data?.area +
+                                ", " +
+                                data?.city +
+                                ", " +
+                                data?.state}
+                            </Typography>
+                          );
+                        })}
+                      </div>
+                    </Popover>
                   </div>
-
-
-
 
                   <div className="jobpodtedfieldtitile">Created on</div>
                   <div
@@ -508,7 +619,7 @@ export default function Jobs() {
                       }}
                       className="handlecirclieaboutsave"
                       onClick={() => {
-                        setarrayoffilterselected(previosfilter);
+                        
                         handleClose();
                       }}
                     >
@@ -519,17 +630,16 @@ export default function Jobs() {
                       className="handlecirclieaboutsave"
                       onClick={() => {
                         setCateid(prevCateid);
-                       
                         setDatestart1(prevdatestart1);
                         setDatestart1x(prevdatestart1x);
+                        setstudyset(studyset1)
+                        setSelectedbiddingvalue(prevselectedbiddingvalue)
                         handleClose();
                       }}
                     >
                       Submit
                     </div>
                   </div>
-                
-
                 </div>
               </Box>
             </Modal>

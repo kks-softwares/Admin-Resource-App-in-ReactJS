@@ -331,6 +331,7 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
   const [searchsubCategorysearch, setSearchsubCategorysearch] = useState("");
   const [categogryid, setCategogryid] = useState();
   const [subcategogryid, setsubCategogryid] = useState();
+  
   useEffect(() => {
     if (categogryid) {
       axios
@@ -1122,6 +1123,10 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
               </div>
             </div>
           </div>
+         
+         
+         
+         
           {cateaddcheckbox1 ? (
             <div>
               <div
@@ -1233,6 +1238,8 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
           ) : (
             ""
           )}
+        
+        
           <div className="checktemandc">
             <div
               className="checkbox"
