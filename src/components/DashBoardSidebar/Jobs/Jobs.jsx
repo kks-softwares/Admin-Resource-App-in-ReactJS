@@ -198,7 +198,7 @@ export default function Jobs() {
       .then((res) => {
         setAllusers(res.data?.success?.data);
         if (res.data?.success?.data?.length===9) {
-            settotalpages(page)
+            settotalpages(page+1)
         }
       });
   }, [page, setSelectedCategory, recall]);

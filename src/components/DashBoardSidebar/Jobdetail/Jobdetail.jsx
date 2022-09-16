@@ -37,13 +37,11 @@ export default function Jobdetail() {
   const handleOpenx = () => setOpenx(true);
   const handleClosex = () => setOpenx(false);
   useEffect(() => {
-    axios
-      .get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${id}`)
-      .then((res) => {
-        console.log(res?.data?.success?.data[0]);
-        setdata1(res?.data?.success?.data[0]);
-        setLongofproposallist(res?.data?.success?.data[0]?.listOfBider);
-      });
+    axios.get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${id}`).then((res) => {
+      console.log(res?.data?.success?.data[0]);
+      setdata1(res?.data?.success?.data[0]);
+      setLongofproposallist(res?.data?.success?.data[0]?.listOfBider);
+    });
   }, [id]);
 
   const [imagesave, setImagesave] = useState();
@@ -65,699 +63,766 @@ export default function Jobdetail() {
         <ArrowBackIosNewIcon />
       </button>
       <div>
-      <div
-        style={{
-          width: "100%",
-          background: "white",
-          padding: "2vw 1vw",
-          margin: "1vw 0vw",
-        }}
-      >
         <div
           style={{
             width: "100%",
-            display: "flex",
-            justifyContent: "space-between",
+            background: "white",
+            padding: "2vw 1vw",
+            margin: "1vw 0vw",
           }}
         >
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div className="tagblue">{data1?.category?.category}</div>
+              <div style={{ marginLeft: "1vw", fontSize: "0.9vw" }}>
+                {data1?.subCategory?.subCategory}
+              </div>
+            </div>
+            <div style={{ display: "flex" }}>
+              <div
+                style={{
+                  margin: "0",
+                  height: "2.4vw",
+                  background: "#E4E4E4",
+                  fontSize: "400",
+                  marginRight: "1vw",
+                }}
+                className="digitalwallate"
+              >
+                <span
+                  style={{
+                    padding: "0.6vw 0.5vw",
+                    fontSize: "400",
+                    background: "none",
+                  }}
+                >
+                  view issue
+                </span>
+              </div>
+              <div
+                style={{
+                  margin: "0",
+                  height: "2.4vw",
+                  background: "#E4E4E4",
+                  fontSize: "400",
+                }}
+                className="digitalwallate"
+              >
+                <span
+                  style={{
+                    padding: "0.6vw 0.5vw",
+                    fontSize: "400",
+                    background: "none",
+                  }}
+                >
+                  Chat to Client
+                </span>
+              </div>
+            </div>
+          </div>{" "}
+          <div
+            style={{
+              fontWeight: "600",
+              fontSize: "1.3vw",
+              display: "flex",
+              flexWrap: "wrap",
+              marginTop: "1vw",
+              marginLeft: "1vw",
+              color: "#064C87",
+            }}
+          >
+            {data1?.workTitle}
+          </div>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <div className="tagblue">{data1?.category?.category}</div>
-            <div style={{ marginLeft: "1vw", fontSize: "0.9vw" }}>
-              {data1?.subCategory?.subCategory}
-            </div>
-          </div>
-          <div style={{ display: "flex" }}>
-            <div
-              style={{
-                margin: "0",
-                height: "2.4vw",
-                background: "#E4E4E4",
-                fontSize: "400",
-                marginRight: "1vw",
-              }}
-              className="digitalwallate"
-            >
-              <span
+            <span>
+              <LocationOnOutlinedIcon
                 style={{
-                  padding: "0.6vw 0.5vw",
-                  fontSize: "400",
-                  background: "none",
+                  fontSize: "1.5vw",
+                  fontWeight: "400",
+                  margin: "0.5vw 1vw",
+                }}
+              />
+            </span>
+            <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
+              {data1?.remote ? "Remote" : data1?.onSite}
+            </span>
+          </div>
+          <div
+            style={{
+              width: "100%",
+              margin: "0.8vw 1vw",
+              fontSize: "0.85vw",
+              marginBottom: "0.0vw",
+              marginRight: "2vw",
+            }}
+            className="dashboardtitilemainparabid"
+          >
+            {data1?.shortDescription}
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <span
+              style={{ fontSize: "1.1vw", fontWeight: "500", margin: "1vw" }}
+            >
+              {"Skills"}
+            </span>
+          </div>
+          <div
+            style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
+          >
+            {data1?.skill1 && <div className="skillmap">{data1?.skill1}</div>}
+            {data1?.skill2 && <div className="skillmap">{data1?.skill2}</div>}
+            {data1?.skill3 && <div className="skillmap">{data1?.skill3}</div>}
+            {data1?.skill4 && <div className="skillmap">{data1?.skill4}</div>}
+            {data1?.skill5 && <div className="skillmap">{data1?.skill5}</div>}
+            {data1?.skill6 && <div className="skillmap">{data1?.skill6}</div>}
+            {data1?.skill7 && <div className="skillmap">{data1?.skill7}</div>}
+            {data1?.skill8 && <div className="skillmap">{data1?.skill8}</div>}
+            {data1?.skill9 && <div className="skillmap">{data1?.skill9}</div>}
+            {data1?.skill10 && <div className="skillmap">{data1?.skill10}</div>}
+          </div>
+          <div
+            style={{
+              height: down2
+                ? `${parseInt((data1?.icons?.length + 2) / 3) * 13.5 + 5}vw`
+                : "",
+            }}
+            className="boxofextension"
+          >
+            <div className="flexofboxextentionnav">
+              <div
+                style={{ color: down2 ? "#064C87" : "", marginLeft: "0.5vw" }}
+              >
+                View Documents
+              </div>
+              <div
+                onClick={() => {
+                  setDown2(!down2);
                 }}
               >
-                view issue
-              </span>
+                {!down2 ? (
+                  <KeyboardArrowDownIcon
+                    style={{
+                      fontSize: "2vw",
+                      margin: "1vw",
+                      cursor: "pointer",
+                    }}
+                  />
+                ) : (
+                  <KeyboardArrowUpIcon
+                    style={{
+                      fontSize: "2vw",
+                      margin: "1vw",
+                      cursor: "pointer",
+                    }}
+                  />
+                )}
+              </div>
             </div>
-            <div
-              style={{
-                margin: "0",
-                height: "2.4vw",
-                background: "#E4E4E4",
-                fontSize: "400",
-              }}
-              className="digitalwallate"
-            >
-              <span
+            <div hidden={!down2}>
+              <div
                 style={{
-                  padding: "0.6vw 0.5vw",
-                  fontSize: "400",
-                  background: "none",
+                  margin: "1vw",
+                  flexWrap: "wrap",
+                  marginTop: "0vw",
+                  justifyContent: "flex-start",
                 }}
+                className="activejobpistbudgetbox"
               >
-                Chat to Client
-              </span>
-            </div>
-          </div>
-        </div>{" "}
-        <div
-          style={{
-            fontWeight: "600",
-            fontSize: "1.3vw",
-            display: "flex",
-            flexWrap: "wrap",
-            marginTop: "1vw",
-            marginLeft: "1vw",
-            color: "#064C87",
-          }}
-        >
-          {data1?.workTitle}
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <span>
-            <LocationOnOutlinedIcon
-              style={{
-                fontSize: "1.5vw",
-                fontWeight: "400",
-                margin: "0.5vw 1vw",
-              }}
-            />
-          </span>
-          <span style={{ fontSize: "1.1vw", fontWeight: "500" }}>
-            {data1?.remote ? "Remote" : data1?.onSite}
-          </span>
-        </div>
-        <div
-          style={{
-            width: "100%",
-            margin: "0.8vw 1vw",
-            fontSize: "0.85vw",
-            marginBottom: "0.0vw",
-            marginRight: "2vw",
-          }}
-          className="dashboardtitilemainparabid"
-        >
-          {data1?.shortDescription}
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <span style={{ fontSize: "1.1vw", fontWeight: "500", margin: "1vw" }}>
-            {"Skills"}
-          </span>
-        </div>
-        <div
-          style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
-        >
-          {data1?.skill1 && <div className="skillmap">{data1?.skill1}</div>}
-          {data1?.skill2 && <div className="skillmap">{data1?.skill2}</div>}
-          {data1?.skill3 && <div className="skillmap">{data1?.skill3}</div>}
-          {data1?.skill4 && <div className="skillmap">{data1?.skill4}</div>}
-          {data1?.skill5 && <div className="skillmap">{data1?.skill5}</div>}
-          {data1?.skill6 && <div className="skillmap">{data1?.skill6}</div>}
-          {data1?.skill7 && <div className="skillmap">{data1?.skill7}</div>}
-          {data1?.skill8 && <div className="skillmap">{data1?.skill8}</div>}
-          {data1?.skill9 && <div className="skillmap">{data1?.skill9}</div>}
-          {data1?.skill10 && <div className="skillmap">{data1?.skill10}</div>}
-        </div>
-        <div
-          style={{
-            height: down2
-              ? `${parseInt((data1?.icons?.length + 3) / 3) * 10 + 10}vw`
-              : "",
-          }}
-          className="boxofextension"
-        >
-          <div className="flexofboxextentionnav">
-            <div style={{ color: down2 ? "#064C87" : "", marginLeft: "0.5vw" }}>
-              View Documents
-            </div>
-            <div
-              onClick={() => {
-                setDown2(!down2);
-              }}
-            >
-              {!down2 ? (
-                <KeyboardArrowDownIcon
-                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
-                />
-              ) : (
-                <KeyboardArrowUpIcon
-                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
-                />
-              )}
-            </div>
-          </div>
-          <div hidden={!down2}>
-            <div
-              style={{
-                margin: "1vw",
-                flexWrap: "wrap",
-                marginTop: "0vw",
-                justifyContent: "flex-start",
-              }}
-              className="activejobpistbudgetbox"
-            >
-              {data1?.icons?.map((data) => {
-                return (
-                  <div className="boxofimageorpdf">
-                    <div
-                      onClick={() => {
-                        handleOpenx();
-                        setImagesave(data?.icon);
-                      }}
-                      style={{ cursor: "pointer" }}
-                      className="imageshowboxofpdf"
-                    >
-                      <img
+                {data1?.icons?.map((data) => {
+                  return (
+                    <div className="boxofimageorpdf">
+                      <div
+                        onClick={() => {
+                          handleOpenx();
+                          setImagesave(data?.icon);
+                        }}
                         style={{ cursor: "pointer" }}
-                        src={data?.icon}
-                        alt=""
-                      />
-                    </div>
-                    <div className="imageshowboxofpdfname">
-                      <div>
-                        <PictureAsPdfIcon
-                          style={{ color: "red", fontSize: "1.7vw" }}
+                        className="imageshowboxofpdf"
+                      >
+                        <img
+                          style={{ cursor: "pointer" }}
+                          src={data?.icon}
+                          alt=""
                         />
                       </div>
-                      <div className="nameifimagedocuments">
-                        {data?.icon?.split("%24")[1]?.slice(0, 17)}
-                      </div>
-                      <div className="inputfilesshowncatboxsingleimg">
-                        <a href={`${data?.icon}`} download>
-                          {" "}
-                          <CloudDownloadOutlinedIcon
-                            style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                          />{" "}
-                        </a>
+                      <div className="imageshowboxofpdfname">
+                        <div>
+                          <PictureAsPdfIcon
+                            style={{ color: "red", fontSize: "1.7vw" }}
+                          />
+                        </div>
+                        <div className="nameifimagedocuments">
+                          {data?.icon?.split("%24")[1]?.slice(0, 17)}
+                        </div>
+                        <div className="inputfilesshowncatboxsingleimg">
+                          <a href={`${data?.icon}`} download>
+                            {" "}
+                            <CloudDownloadOutlinedIcon
+                              style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                            />{" "}
+                          </a>
+                        </div>
                       </div>
                     </div>
+                  );
+                })}
+              </div>
+            </div>
+            <Modal
+              open={openx}
+              onClose={handleClosex}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                {imagesave && (
+                  <div className="imgbocofcerti">
+                    <img src={imagesave} alt="" />
                   </div>
+                )}
+              </Box>
+            </Modal>
+          </div>
+          <div
+            style={{
+              height: down1 ? `${longofproposallist?.length * 4 + 7}vw` : "",
+            }}
+            className="boxofextension"
+          >
+            <div className="flexofboxextentionnav">
+              <div
+                style={{ color: down1 ? "#064C87" : "", marginLeft: "0.5vw" }}
+              >
+                List of Proposal
+              </div>
+              <div
+                onClick={() => {
+                  setDown1(!down1);
+                }}
+              >
+                {!down1 ? (
+                  <KeyboardArrowDownIcon
+                    style={{
+                      fontSize: "2vw",
+                      margin: "1vw",
+                      cursor: "pointer",
+                    }}
+                  />
+                ) : (
+                  <KeyboardArrowUpIcon
+                    style={{
+                      fontSize: "2vw",
+                      margin: "1vw",
+                      cursor: "pointer",
+                    }}
+                  />
+                )}
+              </div>
+            </div>
+            <div hidden={!down1}>
+              <div>
+                <div
+                  style={{
+                    padding: "0vw 0.51vw",
+                    marginBottom: "1vw",
+                    marginTop: "0vw",
+                  }}
+                  className="navoftableblogs"
+                >
+                  <div style={{ width: "18vw" }}>Name</div>
+                  <div style={{ width: "13vw" }}>Duration</div>
+                  <div style={{ width: "12vw" }}>date</div>
+                  <div style={{ width: "12vw" }}>Bid Value</div>
+                  <div style={{ width: "12vw" }}>Status</div>
+                  <div style={{ width: "7vw" }}></div>
+                </div>
+              </div>
+              {longofproposallist?.map((data) => {
+                return (
+                  <Listofproposals
+                    data={data}
+                    setdata1={setdata1}
+                    data1={data1}
+                    setLongofproposallist={setLongofproposallist}
+                  />
                 );
               })}
             </div>
           </div>
-          <Modal
-            open={openx}
-            onClose={handleClosex}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+          <div
+            style={{
+              height: down3
+                ? `${
+                    parseInt(
+                      (data1?.workAssignedTo?.files
+                        ? data1?.workAssignedTo?.files?.length + 2
+                        : 1) / 3
+                    ) *
+                      14 +
+                    26
+                  }vw`
+                : "",
+            }}
+            className="boxofextension"
           >
-            <Box sx={style}>
-              {imagesave && (
-                <div className="imgbocofcerti">
-                  <img src={imagesave} alt="" />
+            <div className="flexofboxextentionnav">
+              <div
+                style={{ color: down3 ? "#064C87" : "", marginLeft: "0.5vw" }}
+              >
+                Contract
+              </div>
+              <div
+                onClick={() => {
+                  setDown3(!down3);
+                }}
+              >
+                {!down3 ? (
+                  <KeyboardArrowDownIcon
+                    style={{
+                      fontSize: "2vw",
+                      margin: "1vw",
+                      cursor: "pointer",
+                    }}
+                  />
+                ) : (
+                  <KeyboardArrowUpIcon
+                    style={{
+                      fontSize: "2vw",
+                      margin: "1vw",
+                      cursor: "pointer",
+                    }}
+                  />
+                )}
+              </div>
+            </div>
+            <div hidden={!down3}>
+              <div
+                style={{ margin: "1vw", flexWrap: "wrap", marginTop: "0vw" }}
+                className="activejobpistbudgetbox"
+              >
+                <div className="boxblackbackg">
+                  Service Provider Id <br />
+                  <div>
+                    <span>
+                      {data1?.jobDoerId?.userId
+                        ? data1?.jobDoerId?.userId
+                        : "-"}
+                    </span>
+                  </div>
                 </div>
-              )}
-            </Box>
-          </Modal>
-        </div>
-        <div
-          style={{
-            height: down1 ? `${longofproposallist?.length * 4 + 7}vw` : "",
-          }}
-          className="boxofextension"
-        >
-          <div className="flexofboxextentionnav">
-            <div style={{ color: down1 ? "#064C87" : "", marginLeft: "0.5vw" }}>
-              List of Proposal
-            </div>
-            <div
-              onClick={() => {
-                setDown1(!down1);
-              }}
-            >
-              {!down1 ? (
-                <KeyboardArrowDownIcon
-                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
-                />
-              ) : (
-                <KeyboardArrowUpIcon
-                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
-                />
-              )}
-            </div>
-          </div>
-          <div hidden={!down1}>
-            <div>
+                <div className="boxblackbackg">
+                  Service Provider Name <br />
+                  <div>
+                    <span>
+                      {data1?.jobDoerId?.fullName
+                        ? data1?.jobDoerId?.fullName
+                        : "-"}
+                    </span>
+                  </div>
+                </div>
+                <div className="boxblackbackg">
+                  Contract Amount <br />
+                  <div>
+                    <span>
+                      {data1?.workAssigned
+                        ? data1?.workAssignedTo?.totalProjectPrice
+                        : "-"}{" "}
+                    </span>
+                  </div>
+                </div>
+                <div className="boxblackbackg">
+                  duration <br />
+                  <div>
+                    <span>{data1?.workAssigned ? "-" : "-"}</span>
+                  </div>
+                </div>
+                <div className="boxblackbackg">
+                  Contract Starting Date <br />
+                  <div>
+                    <span>
+                      {data1?.workAssigned ? data1?.workAssignDate : "-"}
+                    </span>
+                  </div>
+                </div>
+                <div className="boxblackbackg">
+                  Contract Ending Date <br />
+                  <div>
+                    <span>
+                      {data1?.workAssigned
+                        ? data1?.workAssignedTo?.milestoneDueDate5
+                          ? data1?.workAssignedTo?.milestoneDueDate5
+                          : data1?.workAssignedTo?.milestoneDueDate4
+                          ? data1?.workAssignedTo?.milestoneDueDate4
+                          : data1?.workAssignedTo?.milestoneDueDate3
+                          ? data1?.workAssignedTo?.milestoneDueDate3
+                          : data1?.workAssignedTo?.milestoneDueDate2
+                          ? data1?.workAssignedTo?.milestoneDueDate2
+                          : data1?.workAssignedTo?.milestoneDueDate1
+                        : "-"}
+                    </span>
+                  </div>
+                </div>
+              </div>
               <div
                 style={{
-                  padding: "0vw 0.51vw",
-                  marginBottom: "1vw",
+                  marginLeft: "1vw",
                   marginTop: "0vw",
+                  marginBottom: "1.2vw",
                 }}
-                className="navoftableblogs"
+                className="flexofdtaes"
               >
-                <div style={{ width: "18vw" }}>Name</div>
-                <div style={{ width: "13vw" }}>Duration</div>
-                <div style={{ width: "12vw" }}>date</div>
-                <div style={{ width: "12vw" }}>Bid Value</div>
-                <div style={{ width: "12vw" }}>Status</div>
-                <div style={{ width: "7vw" }}></div>
+                <div className="datesofcontact">Documents</div>
               </div>
-            </div>
-            {longofproposallist?.map((data) => {
-              return (
-                <Listofproposals
-                  data={data}
-                 
-                  setdata1={setdata1}
-                  data1={data1}
-                  setLongofproposallist={setLongofproposallist}
-                />
-              );
-            })}
-          </div>
-        </div>
-        <div
-          style={{
-            height: down3
-              ? `${parseInt((data1?.icons?.length + 3) / 3) * 12 + 30}vw`
-              : "",
-          }}
-          className="boxofextension"
-        >
-          <div className="flexofboxextentionnav">
-            <div style={{ color: down3 ? "#064C87" : "", marginLeft: "0.5vw" }}>
-              Contract
-            </div>
-            <div
-              onClick={() => {
-                setDown3(!down3);
-              }}
-            >
-              {!down3 ? (
-                <KeyboardArrowDownIcon
-                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
-                />
-              ) : (
-                <KeyboardArrowUpIcon
-                  style={{ fontSize: "2vw", margin: "1vw", cursor: "pointer" }}
-                />
-              )}
-            </div>
-          </div>
-          <div hidden={!down3}>
-            <div
-              style={{ margin: "1vw", flexWrap: "wrap", marginTop: "0vw" }}
-              className="activejobpistbudgetbox"
-            >
-              <div className="boxblackbackg">
-                Service Provider Id <br />
-                <div>
-                  <span>
-                    {data1?.jobDoerId?.userId ? data1?.jobDoerId?.userId : "-"}
-                  </span>
-                </div>
-              </div>
-              <div className="boxblackbackg">
-                Service Provider Name <br />
-                <div>
-                  <span>
-                    {data1?.jobDoerId?.fullName
-                      ? data1?.jobDoerId?.fullName
-                      : "-"}
-                  </span>
-                </div>
-              </div>
-              <div className="boxblackbackg">
-                Contract Amount <br />
-                <div>
-                  <span>
-                    {data1?.workAssigned
-                      ? data1?.workAssignedTo?.totalProjectPrice
-                      : "-"}{" "}
-                  </span>
-                </div>
-              </div>
-              <div className="boxblackbackg">
-                duration <br />
-                <div>
-                  <span>{data1?.workAssigned ? "-" : "-"}</span>
-                </div>
-              </div>
-              <div className="boxblackbackg">
-                Contract Starting Date <br />
-                <div>
-                  <span>
-                    {data1?.workAssigned ? data1?.workAssignDate : "-"}
-                  </span>
-                </div>
-              </div>
-              <div className="boxblackbackg">
-                Contract Ending Date <br />
-                <div>
-                  <span>
-                    {data1?.workAssigned
-                      ? data1?.workAssignedTo?.milestoneDueDate5
-                        ? data1?.workAssignedTo?.milestoneDueDate5
-                        : data1?.workAssignedTo?.milestoneDueDate4
-                        ? data1?.workAssignedTo?.milestoneDueDate4
-                        : data1?.workAssignedTo?.milestoneDueDate3
-                        ? data1?.workAssignedTo?.milestoneDueDate3
-                        : data1?.workAssignedTo?.milestoneDueDate2
-                        ? data1?.workAssignedTo?.milestoneDueDate2
-                        : data1?.workAssignedTo?.milestoneDueDate1
-                      : "-"}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              style={{ marginLeft: "1vw", marginTop: "0vw" }}
-              className="flexofdtaes"
-            >
-              <div className="datesofcontact">Documents</div>
-            </div>
-            <div
-              style={{
-                margin: "1vw",
-                flexWrap: "wrap",
-                marginTop: "0vw",
-                justifyContent: "flex-start",
-              }}
-              className="activejobpistbudgetbox"
-            >
-              {data1?.workAssignedTo?.files?.map((data) => {
-                return (
-                  <div className="boxofimageorpdf">
-                    <div
-                      onClick={() => {
-                        handleOpenx();
-                        setImagesave(data?.file);
-                      }}
-                      style={{ cursor: "pointer" }}
-                      className="imageshowboxofpdf"
-                    >
-                      <img src={data?.file} alt="" />
-                    </div>
-                    <div className="imageshowboxofpdfname">
-                      <div>
-                        <PictureAsPdfIcon
-                          style={{ color: "red", fontSize: "1.7vw" }}
-                        />
-                      </div>
-                      <div className="nameifimagedocuments">
-                        {data?.file?.split("%24")[1]?.slice(0, 16)}
-                      </div>
-                      <div className="inputfilesshowncatboxsingleimg">
-                        <a href={`${data?.file}`} download>
-                          {" "}
-                          <CloudDownloadOutlinedIcon
-                            style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                          />{" "}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}{" "}
-            </div>
-          </div>
-        </div>
-        <div
-          style={{
-            height: down4 ? `${longofproposallist?.length * 4 + 81}vw` : "",
-          }}
-          className="boxofextension"
-        >
-          <div className="flexofboxextentionnav">
-            <div>Contract Completion</div>
-            <div
-              onClick={() => {
-                setDown4(!down4);
-              }}
-            >
-              {!down4 ? (
-                <KeyboardArrowDownIcon
-                  style={{
-                    fontSize: "2vw",
-                    margin: "1vw",
-                    cursor: "pointer",
-                  }}
-                />
-              ) : (
-                <KeyboardArrowUpIcon
-                  style={{
-                    fontSize: "2vw",
-                    margin: "1vw",
-                    cursor: "pointer",
-                  }}
-                />
-              )}
-            </div>
-          </div>
-
-          <div hidden={!down4}>
-            <div
-              style={{ margin: "1vw", flexWrap: "wrap", marginTop: "0vw" }}
-              className="activejobpistbudgetbox"
-            >
-              <div className="boxblackbackg">
-                Contract Actual End Date <br />
-                <div>
-                  <span>
-                    {data1?.assignWorkComplitionDate
-                      ? data1?.assignWorkComplitionDate
-                      : "-"}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              style={{ marginLeft: "1vw", marginTop: "0vw" }}
-              className="flexofdtaes"
-            >
-              <div className="datesofcontact">
-                Review And Rating by service Provider
-              </div>
-            </div>
-            <div className="chatcontaract">
               <div
-                style={{ width: "80vw", padding: "0vw", height: "fit-content" }}
-                className="chatboxescontact"
+                style={{
+                  margin: "1vw",
+                  flexWrap: "wrap",
+                  marginTop: "0vw",
+                  justifyContent: "flex-start",
+                }}
+                className="activejobpistbudgetbox"
               >
-                <div
-                  style={{ marginLeft: "1vw", marginTop: "0vw" }}
-                  className="flexofdtaes"
-                >
-                  <div className="datesofcontact">Ratings</div>
-                </div>
-                <div className="workhistryboxdate">
-                  <span
-                    style={{
-                      width: "10vw",
-                      position: "relative",
-                      bottom: "0.5vw",
-                      left: "1vw",
-                    }}
-                  >
-                    <StarRatings
-                      rating={
-                        data1?.workAssignedTo?.ratings
-                          ? data1?.workAssignedTo?.ratings
-                          : 0
-                      }
-                      starRatedColor="#064C87"
-                      starDimension="1.6vw  "
-                      starSpacing="0.3vw"
-                      numberOfStars={5}
-                      name="rating"
-                    />
-                  </span>
-                </div>
-
-                <hr style={{ width: "90%", marginLeft: "2vw" }} />
-                <div
-                  style={{
-                    left: "0vw",
-                    width: "96%",
-                    margin: "2vw 1vw 2vw 1vw",
-                    display: "block",
-                  }}
-                  className="loginfield"
-                >
-                  <div
-                    style={{ marginBottom: "0.0vw", marginBottom: "1vw" }}
-                    className="jobpodtedfieldtitile"
-                  >
-                    Review
-                  </div>
-                  <div>
-                    <textarea
-                      name=""
-                      id=""
-                      className="reviewbox"
-                      rows="10"
-                      disabled
-                      value={
-                        data1?.workAssignedTo?.reviews
-                          ? data1?.workAssignedTo?.reviews
-                          : ""
-                      }
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                marginBottom: "2vw",
-                marginLeft: "2vw",
-              }}
-            >
-              {data1?.workAssignedTo?.docs?.length > 0 &&
-                data1?.workAssignedTo?.docs?.map((dataqq) => {
+                {data1?.workAssignedTo?.files?.map((data) => {
                   return (
-                    <div
-                      style={{
-                        width: "fit-content",
-                        marginTop: "0vw",
-                        marginBottom: "1vw",
-                      }}
-                      className="inputfilesshowncatboxsingle"
-                    >
-                      <div className="inputfilesshowncatboxsingleimg">
-                        <img src={img1} alt="" />
+                    <div className="boxofimageorpdf">
+                      <div
+                        onClick={() => {
+                          handleOpenx();
+                          setImagesave(data?.file);
+                        }}
+                        style={{ cursor: "pointer" }}
+                        className="imageshowboxofpdf"
+                      >
+                        <img src={data?.file} alt="" />
                       </div>
-                      <div className="fileselctednamecate">
-                        {dataqq?.docx?.split("%24")[1]?.slice(0, 22)}
-                      </div>
-                      <div className="inputfilesshowncatboxsingleimg">
-                        <a href={`${dataqq?.docx}`} download>
-                          {" "}
-                          <CloudDownloadOutlinedIcon
-                            style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                          />{" "}
-                        </a>
+                      <div className="imageshowboxofpdfname">
+                        <div>
+                          <PictureAsPdfIcon
+                            style={{ color: "red", fontSize: "1.7vw" }}
+                          />
+                        </div>
+                        <div className="nameifimagedocuments">
+                          {data?.file?.split("%24")[1]?.slice(0, 16)}
+                        </div>
+                        <div className="inputfilesshowncatboxsingleimg">
+                          <a href={`${data?.file}`} download>
+                            {" "}
+                            <CloudDownloadOutlinedIcon
+                              style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                            />{" "}
+                          </a>
+                        </div>
                       </div>
                     </div>
                   );
                 })}{" "}
-            </div>
-            <div
-              style={{ marginLeft: "1vw", marginTop: "0vw" }}
-              className="flexofdtaes"
-            >
-              <div className="datesofcontact">Review And Rating by Client</div>
-            </div>
-            <div className="chatcontaract">
-              <div
-                style={{ width: "80vw", padding: "0vw", height: "fit-content" }}
-                className="chatboxescontact"
-              >
-                <div
-                  style={{ marginLeft: "1vw", marginTop: "0vw" }}
-                  className="flexofdtaes"
-                >
-                  <div className="datesofcontact">Ratings</div>
-                </div>
-
-                <div className="workhistryboxdate">
-                  <span
-                    style={{
-                      width: "10vw",
-                      position: "relative",
-                      bottom: "0.5vw",
-                      left: "1vw",
-                    }}
-                  >
-                    <StarRatings
-                      rating={data1?.rating ? data1?.rating : 0}
-                      starRatedColor="#064C87"
-                      starDimension="1.6vw  "
-                      starSpacing="0.3vw"
-                      numberOfStars={5}
-                      name="rating"
-                    />
-                  </span>
-                </div>
-
-                <hr style={{ width: "90%", marginLeft: "2vw" }} />
-                <div
-                  style={{
-                    left: "0vw",
-                    width: "96%",
-                    margin: "2vw 1vw 2vw 1vw",
-                    display: "block",
-                  }}
-                  className="loginfield"
-                >
-                  <div
-                    style={{ marginBottom: "0.0vw", marginBottom: "1vw" }}
-                    className="jobpodtedfieldtitile"
-                  >
-                    Review
-                  </div>
-                  <div>
-                    <textarea
-                      name=""
-                      id=""
-                      className="reviewbox"
-                      rows="10"
-                      value={data1?.review ? data1?.review : ""}
-                    ></textarea>
-                  </div>
-                </div>
-
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    marginLeft: "2vw",
-                  }}
-                >
-                  {data1?.docs?.length > 0 &&
-                    data1?.docs?.map((dataqq) => {
-                      return (
-                        <div
-                          style={{
-                            width: "fit-content",
-                            marginTop: "0vw",
-                            marginBottom: "1vw",
-                          }}
-                          className="inputfilesshowncatboxsingle"
-                        >
-                          <div className="inputfilesshowncatboxsingleimg">
-                            <img src={img1} alt="" />
-                          </div>
-                          <div className="fileselctednamecate">
-                            {dataqq?.docx?.split("%24")[1]?.slice(0, 22)}
-                          </div>
-                          <div className="inputfilesshowncatboxsingleimg">
-                            <a href={`${dataqq?.docx}`} download>
-                              {" "}
-                              <CloudDownloadOutlinedIcon
-                                style={{ fontSize: "1.5vw", margin: "0 1vw" }}
-                              />{" "}
-                            </a>
-                          </div>
-                        </div>
-                      );
-                    })}{" "}
-                </div>
               </div>
             </div>
-            {/* <div className="confirmationtext">
+          </div>
+          <div
+            style={{
+              height: down4
+                ? `${
+                    parseInt(
+                      (data1?.workAssignedTo?.docs
+                        ? data1?.workAssignedTo?.docs?.length + 2
+                        : 1) / 3
+                    ) *
+                      4 +
+                    parseInt((data1?.docs ? data1?.docs?.length + 2 : 1) / 3) *
+                      4 +
+                    77
+                  }vw`
+                : "",
+            }}
+            className="boxofextension"
+          >
+            <div className="flexofboxextentionnav">
+              <div>Contract Completion</div>
+              <div
+                onClick={() => {
+                  setDown4(!down4);
+                }}
+              >
+                {!down4 ? (
+                  <KeyboardArrowDownIcon
+                    style={{
+                      fontSize: "2vw",
+                      margin: "1vw",
+                      cursor: "pointer",
+                    }}
+                  />
+                ) : (
+                  <KeyboardArrowUpIcon
+                    style={{
+                      fontSize: "2vw",
+                      margin: "1vw",
+                      cursor: "pointer",
+                    }}
+                  />
+                )}
+              </div>
+            </div>
+
+            <div hidden={!down4}>
+              <div
+                style={{ margin: "1vw", flexWrap: "wrap", marginTop: "0vw" }}
+                className="activejobpistbudgetbox"
+              >
+                <div className="boxblackbackg">
+                  Contract Actual End Date <br />
+                  <div>
+                    <span>
+                      {data1?.assignWorkComplitionDate
+                        ? data1?.assignWorkComplitionDate
+                        : "-"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div
+                style={{ marginLeft: "1vw", marginTop: "0vw" }}
+                className="flexofdtaes"
+              >
+                <div className="datesofcontact">
+                  Review And Rating by service Provider
+                </div>
+              </div>
+              <div className="chatcontaract">
+                <div
+                  style={{
+                    width: "80vw",
+                    padding: "0vw",
+                    height: "fit-content",
+                  }}
+                  className="chatboxescontact"
+                >
+                  <div
+                    style={{ marginLeft: "1vw", marginTop: "0vw" }}
+                    className="flexofdtaes"
+                  >
+                    <div className="datesofcontact">Ratings</div>
+                  </div>
+                  <div className="workhistryboxdate">
+                    <span
+                      style={{
+                        width: "10vw",
+                        position: "relative",
+                        bottom: "0.5vw",
+                        left: "1vw",
+                      }}
+                    >
+                      <StarRatings
+                        rating={
+                          data1?.workAssignedTo?.ratings
+                            ? data1?.workAssignedTo?.ratings
+                            : 0
+                        }
+                        starRatedColor="#064C87"
+                        starDimension="1.6vw  "
+                        starSpacing="0.3vw"
+                        numberOfStars={5}
+                        name="rating"
+                      />
+                    </span>
+                  </div>
+
+                  <hr style={{ width: "90%", marginLeft: "2vw" }} />
+                  <div
+                    style={{
+                      left: "0vw",
+                      width: "96%",
+                      margin: "2vw 1vw 2vw 1vw",
+                      display: "block",
+                    }}
+                    className="loginfield"
+                  >
+                    <div
+                      style={{ marginBottom: "0.0vw", marginBottom: "1vw" }}
+                      className="jobpodtedfieldtitile"
+                    >
+                      Review
+                    </div>
+                    <div>
+                      <textarea
+                        name=""
+                        id=""
+                        className="reviewbox"
+                        rows="10"
+                        disabled
+                        value={
+                          data1?.workAssignedTo?.reviews
+                            ? data1?.workAssignedTo?.reviews
+                            : ""
+                        }
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginBottom: "2vw",
+                  marginLeft: "2vw",
+                }}
+              >
+                {data1?.workAssignedTo?.docs?.length > 0 &&
+                  data1?.workAssignedTo?.docs?.map((dataqq) => {
+                    return (
+                      <div
+                        style={{
+                          width: "fit-content",
+                          marginTop: "0vw",
+                          marginBottom: "1vw",
+                        }}
+                        className="inputfilesshowncatboxsingle"
+                      >
+                        <div className="inputfilesshowncatboxsingleimg">
+                          <img src={img1} alt="" />
+                        </div>
+                        <div className="fileselctednamecate">
+                          {dataqq?.docx?.split("%24")[1]?.slice(0, 22)}
+                        </div>
+                        <div className="inputfilesshowncatboxsingleimg">
+                          <a href={`${dataqq?.docx}`} download>
+                            {" "}
+                            <CloudDownloadOutlinedIcon
+                              style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                            />{" "}
+                          </a>
+                        </div>
+                      </div>
+                    );
+                  })}{" "}
+              </div>
+              <div
+                style={{ marginLeft: "1vw", marginTop: "0vw" }}
+                className="flexofdtaes"
+              >
+                <div className="datesofcontact">
+                  Review And Rating by Client
+                </div>
+              </div>
+              <div className="chatcontaract">
+                <div
+                  style={{
+                    width: "80vw",
+                    padding: "0vw",
+                    height: "fit-content",
+                  }}
+                  className="chatboxescontact"
+                >
+                  <div
+                    style={{ marginLeft: "1vw", marginTop: "0vw" }}
+                    className="flexofdtaes"
+                  >
+                    <div className="datesofcontact">Ratings</div>
+                  </div>
+
+                  <div className="workhistryboxdate">
+                    <span
+                      style={{
+                        width: "10vw",
+                        position: "relative",
+                        bottom: "0.5vw",
+                        left: "1vw",
+                      }}
+                    >
+                      <StarRatings
+                        rating={data1?.rating ? data1?.rating : 0}
+                        starRatedColor="#064C87"
+                        starDimension="1.6vw  "
+                        starSpacing="0.3vw"
+                        numberOfStars={5}
+                        name="rating"
+                      />
+                    </span>
+                  </div>
+
+                  <hr style={{ width: "90%", marginLeft: "2vw" }} />
+                  <div
+                    style={{
+                      left: "0vw",
+                      width: "96%",
+                      margin: "2vw 1vw 2vw 1vw",
+                      display: "block",
+                    }}
+                    className="loginfield"
+                  >
+                    <div
+                      style={{ marginBottom: "0.0vw", marginBottom: "1vw" }}
+                      className="jobpodtedfieldtitile"
+                    >
+                      Review
+                    </div>
+                    <div>
+                      <textarea
+                        name=""
+                        id=""
+                        className="reviewbox"
+                        rows="10"
+                        value={data1?.review ? data1?.review : ""}
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      marginLeft: "2vw",
+                    }}
+                  >
+                    {data1?.docs?.length > 0 &&
+                      data1?.docs?.map((dataqq) => {
+                        return (
+                          <div
+                            style={{
+                              width: "fit-content",
+                              marginTop: "0vw",
+                              marginBottom: "1vw",
+                            }}
+                            className="inputfilesshowncatboxsingle"
+                          >
+                            <div className="inputfilesshowncatboxsingleimg">
+                              <img src={img1} alt="" />
+                            </div>
+                            <div className="fileselctednamecate">
+                              {dataqq?.docx?.split("%24")[1]?.slice(0, 22)}
+                            </div>
+                            <div className="inputfilesshowncatboxsingleimg">
+                              <a href={`${dataqq?.docx}`} download>
+                                {" "}
+                                <CloudDownloadOutlinedIcon
+                                  style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+                                />{" "}
+                              </a>
+                            </div>
+                          </div>
+                        );
+                      })}{" "}
+                  </div>
+                </div>
+              </div>
+              {/* <div className="confirmationtext">
               Are you Sure What to Close Contract From <span>44 Resource</span>{" "}
               Representative
             </div> */}
-            {/* <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              {/* <div style={{ display: "flex", justifyContent: "flex-end" }}>
               <button className="endbuttoncontract">End Contract</button>
             </div> */}
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }
