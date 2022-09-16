@@ -14,7 +14,6 @@ import Select from "@mui/material/Select";
 import { makeStyles } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import img from "../../../assets/Web 1280 – 14/Icon.svg";
-
 import img1 from "../../../assets/Web 1280 – 14/Group 9831.svg";
 import img21 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg";
 import DoneIcon from "@mui/icons-material/Done";
@@ -36,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     fontSize: "1vw",
     lineHeight: "120%",
-
     color: "#FFFFFF",
   },
   select2: {
@@ -88,14 +86,8 @@ const style1 = {
 
 export default function AddJob({ handleClose, setSelectedCategory }) {
   const classes = useStyles();
-
-  const [age2, setAge2] = React.useState(98);
-
   const [age4, setAge4] = React.useState(0);
   const [age5, setAge5] = React.useState(0);
-
-  console.log("age2", age2);
-
   const handleChange4x = (event) => {
     setAge4(event.target.value);
   };
@@ -111,20 +103,13 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
   const [checkone1, setCheckone1] = useState(false);
   const [cateaddcheckbox1, setCateaddcheckbox1] = useState(true);
   /* VALIDATION FUNCTIONALITY */
+
   const initialValues = {
     name: "",
     title: "",
     desc: "",
     mobile: "",
     email: "",
-  };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
-
-  const handleChangeFormVal = (e) => {
-    setFormErrors("");
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
   };
 
   const validate = (values) => {
@@ -156,14 +141,11 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
     return errors;
   };
 
-  const [name, setName] = useState("");
-  const [subcate, setsubcate] = useState("");
   const [title, settitle] = useState("");
   const [desc, setDesc] = useState("");
   const [Category, setCategory] = useState("");
   const [minBudegt, setMinBudegt] = useState();
   const [maxBudegt, setMaxBudegt] = useState();
-
   const [datestart, setDatestart] = useState();
   const [dateend, setDateend] = useState();
   const [file, setFile] = useState();
@@ -171,11 +153,7 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
   const [ErrorCheck2, setErrorCheck2] = useState(false);
 
   const handlePostJOb = () => {
-    if (file.size > 512000) {
-      alert("File size cannot exceed more than 512 kb");
-    }
-
-    setFormErrors(validate(formValues));
+    // setFormErrors(validate(formValues));
 
     if (!(checkone && checkone1)) {
       console.log("first", checkone, checkone1);
@@ -184,21 +162,21 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
       return false;
     }
     const formdata = new FormData();
-    formdata.append("fullName", formValues.name);
-    formdata.append("workTitle", formValues.title);
-    formdata.append("fileName", file);
-    formdata.append("shortDescription", formValues.desc);
+    formdata.append("workTitle", title);
+    arrayoffiles?.map((data) => {
+      formdata.append("fileName", data);
+    });
+    formdata.append("shortDescription", desc);
     formdata.append("jobPostingDate", datestart);
     formdata.append("terminationDate", dateend);
-    formdata.append("category", setSelectedCategory);
-    formdata.append("subCategory", subcate);
+    formdata.append("category", categogryid);
+    formdata.append("subCategory", subcateid);
     formdata.append("maximuBudget", maxBudegt);
     formdata.append("minimumBudget", minBudegt);
-
     formdata.append("remote", !cateaddcheckbox1);
 
     if (cateaddcheckbox1) {
-      formdata.append("onSite", studyset);
+      formdata.append("onSite", studyset1);
     }
 
     skillset?.length > 0 &&
@@ -207,9 +185,10 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
       });
 
     axios
-      .post(`${API_HOST}/jobPost/newUserJobPost`, formdata, {
+      .post(`${API_HOST}/jobPost/jobPostBy_admin`, formdata, {
         headers: {
           "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
       })
       .then((res) => {
@@ -289,7 +268,6 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
           }
         });
     }
-   
   };
   const [arrayoffiles, setArrayoffiles] = useState([]);
   const [setSelectedCategory1, setSetSelectedCategory1] = useState("");
@@ -330,8 +308,7 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
   const idx2 = openx2 ? "simple-popover" : undefined;
   const [searchsubCategorysearch, setSearchsubCategorysearch] = useState("");
   const [categogryid, setCategogryid] = useState();
-  const [subcategogryid, setsubCategogryid] = useState();
-  
+
   useEffect(() => {
     if (categogryid) {
       axios
@@ -352,6 +329,7 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
   }, []);
 
   const [locationname, setLocationname] = useState("");
+
   useEffect(() => {
     axios
       .get(
@@ -378,7 +356,7 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
           paddingBottom: "3vw",
           width: "70vw",
           margin: "2vw",
-          paddingTop:"1vw"
+          paddingTop: "1vw",
         }}
         className="homepostjob-right"
       >
@@ -390,12 +368,10 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
             <input
               type="text"
               name="title"
-              // value={title}
-              // onChange={(e) => {
-              //   settitle(e.target.value);
-              // }}
-              value={formValues.title}
-              onChange={handleChangeFormVal}
+              value={title}
+              onChange={(e) => {
+                settitle(e.target.value);
+              }}
             />
             <CloseIcon
               style={{
@@ -410,7 +386,7 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
               }}
             />
           </div>
-          <p style={{ color: "red" }}>{formErrors.title}</p>
+          <p style={{ color: "red" }}></p>
 
           <div style={{ display: "flex", alignItems: "center", width: "97%" }}>
             <div style={{ width: "50%" }}>
@@ -794,15 +770,13 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
             <textarea
               type="text"
               name="desc"
-              // value={desc}
-              // onChange={(e) => {
-              //   setDesc(e.target.value);
-              // }}
-              value={formValues.desc}
-              onChange={handleChangeFormVal}
+              value={desc}
+              onChange={(e) => {
+                setDesc(e.target.value);
+              }}
             />
           </div>
-          <p style={{ color: "red" }}>{formErrors.desc}</p>
+          <p style={{ color: "red" }}></p>
 
           <div className="jobpodtedfieldtitile">Budget *</div>
           <div style={{ display: "flex", alignItems: "center", width: "97%" }}>
@@ -875,7 +849,6 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
                 </Box>
               </div>
               <p style={{ color: "red", fontSize: "1vw" }}></p>
-              <p style={{ color: "red" }}>{formErrors.email}</p>
             </div>
 
             <div style={{ width: "50%" }}>
@@ -969,9 +942,7 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
                 />
               </div>
 
-              <p style={{ color: "red" }} className="redp">
-                {formErrors.email}
-              </p>
+              <p style={{ color: "red" }} className="redp"></p>
             </div>
 
             <div style={{ width: "50%" }}>
@@ -993,44 +964,41 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
                 />
               </div>
 
-              <p style={{ color: "red" }} className="redp">
-                {formErrors.email}
-              </p>
+              <p style={{ color: "red" }} className="redp"></p>
             </div>
           </div>
 
           <div className="jobpodtedfieldtitile">Image/Documents </div>
           <div
-              style={{
-                background: "white",
-                padding: "0.51vw",
-                marginTop: "0vw",
-                paddingRight: "3vw",
-              }}
-            >
-              <div className="inputfilebox">
-                <div>
-                  <label htmlFor="inputctaelogfile">
-                    <div className="inputicon">
-                      <img src={img} alt="" />
-                    </div>
-                    <div className="inputcateaddformfile">
-                      Drag and Drop ,Browse to upload
-                    </div>
-                    <input
-                      type="file"
-                      id="inputctaelogfile"
-                      onChange={(e) => {
-                        setArrayoffiles([...arrayoffiles, e.target.files[0]]);
-                      }}
-                      hidden
-                    />
-                  </label>
-                </div>
+            style={{
+              background: "white",
+              padding: "0.51vw",
+              marginTop: "0vw",
+              paddingRight: "3vw",
+            }}
+          >
+            <div className="inputfilebox">
+              <div>
+                <label htmlFor="inputctaelogfile">
+                  <div className="inputicon">
+                    <img src={img} alt="" />
+                  </div>
+                  <div className="inputcateaddformfile">
+                    Drag and Drop ,Browse to upload
+                  </div>
+                  <input
+                    type="file"
+                    id="inputctaelogfile"
+                    onChange={(e) => {
+                      setArrayoffiles([...arrayoffiles, e.target.files[0]]);
+                    }}
+                    hidden
+                  />
+                </label>
               </div>
-            
             </div>
-               <div
+          </div>
+          <div
             style={{
               display: "flex",
               justifyContent: "flex-end",
@@ -1044,43 +1012,41 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
             Image should be less then 512 kb.
           </div>
           <div
-              className={
-                arrayoffiles?.length > 0 ? "inputfilesshowncatebox" : ""
-              }
-            >
-              {arrayoffiles?.length > 0 &&
-                arrayoffiles?.map((file, index) => {
-                  return (
-                    <div className="inputfilesshowncatboxsingle">
-                      <div className="inputfilesshowncatboxsingleimg">
-                        <img src={img1} alt="" />
-                      </div>
-                      <div className="fileselctednamecate">{file?.name}</div>
-                      <div className="inputfilesshowncatboxsingleimg">
-                        <img
-                          style={{
-                            width: "1.5vw",
-                            marginLeft: "1vw",
-                            cursor: "pointer",
-                          }}
-                          src={img21}
-                          alt=""
-                          onClick={() => {
-                            setArrayoffiles([
-                              ...arrayoffiles.slice(0, index),
-                              ...arrayoffiles.slice(
-                                index + 1,
-                                arrayoffiles.length
-                              ),
-                            ]);
-                          }}
-                        />
-                      </div>
+            className={arrayoffiles?.length > 0 ? "inputfilesshowncatebox" : ""}
+          >
+            {arrayoffiles?.length > 0 &&
+              arrayoffiles?.map((file, index) => {
+                return (
+                  <div className="inputfilesshowncatboxsingle">
+                    <div className="inputfilesshowncatboxsingleimg">
+                      <img src={img1} alt="" />
                     </div>
-                  );
-                })}
-            </div>
-       
+                    <div className="fileselctednamecate">{file?.name}</div>
+                    <div className="inputfilesshowncatboxsingleimg">
+                      <img
+                        style={{
+                          width: "1.5vw",
+                          marginLeft: "1vw",
+                          cursor: "pointer",
+                        }}
+                        src={img21}
+                        alt=""
+                        onClick={() => {
+                          setArrayoffiles([
+                            ...arrayoffiles.slice(0, index),
+                            ...arrayoffiles.slice(
+                              index + 1,
+                              arrayoffiles.length
+                            ),
+                          ]);
+                        }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+
           <div className="jobpodtedfieldtitile">Location *</div>
           <div
             style={{ display: "flex", alignItems: "center", fontWeight: "500" }}
@@ -1123,10 +1089,7 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
               </div>
             </div>
           </div>
-         
-         
-         
-         
+
           {cateaddcheckbox1 ? (
             <div>
               <div
@@ -1238,8 +1201,7 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
           ) : (
             ""
           )}
-        
-        
+
           <div className="checktemandc">
             <div
               className="checkbox"
@@ -1302,7 +1264,6 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
             <button
               style={{ background: "white" }}
               onClick={() => {
-                setName("");
                 setDesc("");
                 setFile();
                 settitle("");
