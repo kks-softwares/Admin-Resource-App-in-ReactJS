@@ -42,7 +42,12 @@ export default function Jobs() {
   const [degreeset, setDegreeset] = useState("");
   const [arrayoflongdegree, setArrayoflongdegree] = useState();
   const [searchCategorysearch, setSearchCategorysearch] = useState("");
-
+  const [subcategogryid, setsubCategogryid] = useState();
+  const [prevsubcategogryid, setprevsubCategogryid] = useState();
+  const [searchsubCategorysearch, setSearchsubCategorysearch] = useState("");
+  const [Cateid, setCateid] = useState("");
+  const [prevCateid, setprevCateid] = useState("");
+  const [arrayoflongstudy, setArrayoflongstudy] = useState();
   useEffect(() => {
     axios
       .get(
@@ -53,8 +58,17 @@ export default function Jobs() {
       });
   }, [searchCategorysearch]);
 
-  const [Cateid, setCateid] = useState("");
-  const [prevCateid, setprevCateid] = useState("");
+  useEffect(() => {
+    if (prevCateid) {
+      axios
+        .get(
+          `${API_HOST}/subCategory/viewSubCategory?pageSize=50&pageNumber=1&subCategory=${searchsubCategorysearch}&categoryId=${prevCateid}`
+        )
+        .then((res) => {
+          setArrayoflongstudy(res?.data?.success?.data);
+        });
+    }
+  }, [searchsubCategorysearch, prevCateid]);
 
   const [anchorElx4, setAnchorElx4] = React.useState(null);
   const handleClickx4 = (event) => {
@@ -94,6 +108,8 @@ export default function Jobs() {
 
   const [studyset, setstudyset] = useState("");
   const [studyset1, setstudyset1] = useState("");
+  const [studyset2, setstudyset2] = useState("");
+  const [studyset3, setstudyset3] = useState("");
 
   const [arrayofminbudget, setArrayofminbudget] = useState([]);
 
@@ -138,17 +154,27 @@ export default function Jobs() {
   const [open3, setOpen3] = React.useState(false);
   const handleOpen3 = () => setOpen3(true);
   const handleClose3 = () => setOpen3(false);
+  const [anchorElx3, setAnchorElx3] = React.useState(null);
+
+  const handleClickx3 = (event) => {
+    setAnchorElx3(event.currentTarget);
+  };
+
+  const handleClosex3 = () => {
+    setAnchorElx3(null);
+  };
+
+  const openx3 = Boolean(anchorElx3);
+  const idx3 = openx3 ? "simple-popover" : undefined;
 
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
 
   const [setSelectedCategory, setSetSelectedCategory] = useState("");
- 
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
 
   const [allusers, setAllusers] = useState(["1", "2", "3", "4"]);
 
@@ -211,7 +237,6 @@ export default function Jobs() {
             <div
               onClick={() => {
                 handleOpen();
-              
               }}
               className="filtericonbox"
             >
@@ -354,6 +379,122 @@ export default function Jobs() {
                         })}
                     </div>
                   </Popover>
+
+                  <div>
+                    <div
+                      style={{ left: "0vw", width: "98%", marginLeft: "0%" }}
+                      className="loginfield"
+                      onClick={handleClickx3}
+                    >
+                      <TextField
+                        id="outlined-basic"
+                        label="Sub Category *"
+                        variant="outlined"
+                        disabled
+                        value={studyset2}
+                        style={{ width: "100%" }}
+                        InputLabelProps={{
+                          style: {
+                            fontSize: "1vw",
+                            fontFamily: "Poppins",
+                            fontStyle: "500",
+                            fontWeight: "500",
+                            color: "black",
+                          },
+                        }}
+                        inputProps={{ className: classes.input }}
+                        onChange={(e) => {
+                          console.log(e.target.value);
+                        }}
+                      />
+                      <span style={{ width: "0.1vw" }}>
+                        <KeyboardArrowDownOutlined
+                          style={{
+                            fontSize: "1.5vw",
+                            position: "relative",
+                            right: "2vw",
+                            top: "1vw",
+                          }}
+                        />
+                      </span>
+                    </div>
+                    <Popover
+                      id={idx3}
+                      open={openx3}
+                      anchorEl={anchorElx3}
+                      onClose={handleClosex3}
+                      anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "left",
+                      }}
+                    >
+                      <div
+                        style={{
+                          maxHeight: "18vw",
+                          overflow: "scroll",
+                          width: "44vw",
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            p: 1,
+                            pl: 1,
+                            ml: 1,
+                            width: "43vw",
+                            position: "fixed",
+                            background: "white",
+                            zIndex: "10",
+                          }}
+                        >
+                          <input
+                            onChange={(e) => {
+                              setSearchsubCategorysearch(e.target.value);
+                            }}
+                            style={{
+                              width: "97%",
+                              border: "1.5px solid #00000050",
+                              outline: "none",
+                              height: "2.5",
+                              borderRadius: "0.21vw",
+                            }}
+                          />
+                        </Typography>
+                        <Typography
+                          sx={{
+                            p: 2.5,
+                            pl: 1,
+                            ml: 1,
+                            width: "100%",
+                            cursor: "pointer",
+                          }}
+                        ></Typography>
+
+                        {arrayoflongstudy?.length > 0 &&
+                          arrayoflongstudy?.map((data, index) => {
+                            return (
+                              <Typography
+                                sx={{
+                                  p: 0.51,
+                                  pl: 1,
+                                  ml: 1,
+                                  width: "100%",
+                                  cursor: "pointer",
+                                }}
+                                onClick={() => {
+                                  setstudyset2(data?.subCategory);
+                                  setprevsubCategogryid(data?._id);
+
+                                  handleClosex3();
+                                }}
+                              >
+                                {data?.subCategory}
+                              </Typography>
+                            );
+                          })}
+                      </div>
+                    </Popover>
+                  </div>
+
                   <div className="jobpodtedfieldtitile">
                     {" "}
                     Select Bidding Value{" "}
@@ -619,7 +760,6 @@ export default function Jobs() {
                       }}
                       className="handlecirclieaboutsave"
                       onClick={() => {
-                        
                         handleClose();
                       }}
                     >
@@ -632,9 +772,10 @@ export default function Jobs() {
                         setCateid(prevCateid);
                         setDatestart1(prevdatestart1);
                         setDatestart1x(prevdatestart1x);
-                        setstudyset(studyset1)
-                        setSelectedbiddingvalue(prevselectedbiddingvalue)
+                        setstudyset(studyset1);
+                        setSelectedbiddingvalue(prevselectedbiddingvalue);
                         handleClose();
+                        setsubCategogryid(prevsubcategogryid);
                       }}
                     >
                       Submit
