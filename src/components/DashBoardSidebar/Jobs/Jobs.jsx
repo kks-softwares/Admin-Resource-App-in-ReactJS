@@ -208,7 +208,7 @@ export default function Jobs() {
     formdata.append("removable", JSON.stringify(selecteddelete));
     console.log(JSON.stringify(selecteddelete));
     axios
-      .post(`${API_HOST}/theSkill/removeSkill`, formdata, {
+      .post(`${API_HOST}/jobPost/removeJobPost`, formdata, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {

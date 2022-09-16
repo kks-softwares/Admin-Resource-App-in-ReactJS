@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import img2 from "../../../assets/Dashboard/Skill center – 2/Iconly-Light-outline-Edit.svg";
 import { useNavigate } from "react-router";
-export default function Listofjobbox({ data }) {
+export default function Listofjobbox({ data,selecteddelete,setSelecteddelete }) {
   const [checkonex, setCheckonex] = useState(false);
   useEffect(() => {
     setCheckonex(false);
@@ -27,20 +27,20 @@ export default function Listofjobbox({ data }) {
             className="checkbox"
             onClick={() => {
               setCheckonex(!checkonex);
-              // if (selecteddelete?.indexOf(data?.budgetId) > -1) {
-              //   setSelecteddelete([
-              //     ...selecteddelete.slice(
-              //       0,
-              //       selecteddelete.indexOf(data?.budgetId)
-              //     ),
-              //     ...selecteddelete.slice(
-              //       selecteddelete.indexOf(data?.budgetId) + 1,
-              //       selecteddelete.length
-              //     ),
-              //   ]);
-              // } else {
-              //   setSelecteddelete([...selecteddelete, data?.budgetId]);
-              // }
+              if (selecteddelete?.indexOf(data?.jobPostId) > -1) {
+                setSelecteddelete([
+                  ...selecteddelete.slice(
+                    0,
+                    selecteddelete.indexOf(data?.jobPostId)
+                  ),
+                  ...selecteddelete.slice(
+                    selecteddelete.indexOf(data?.jobPostId) + 1,
+                    selecteddelete.length
+                  ),
+                ]);
+              } else {
+                setSelecteddelete([...selecteddelete, data?.jobPostId]);
+              }
             }}
           >
             {checkonex ? (
@@ -57,11 +57,7 @@ export default function Listofjobbox({ data }) {
           </div>
           <div style={{ width: "2vw" }}>
             <img
-              onClick={() =>
-                navigate(
-                  `/dashbaord/editpricing/${data?.budgetId}/${data?.minimumBudget}/${data?.maximumBudget}`
-                )
-              }
+              onClick={() => navigate(`/dashbaord/editJob/${data?.jobPostId}`)}
               style={{
                 margin: "0.5vw 0.5vw",
                 width: "1.4vw ",

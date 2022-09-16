@@ -22,7 +22,7 @@ import axios from "axios";
 import API_HOST from "../../../env";
 import Typography from "@mui/material/Typography";
 import Fade from "@mui/material/Fade";
-import { Navigate, useNavigate } from "react-router";
+import { useParams } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   select: {
@@ -85,7 +85,7 @@ const style1 = {
   p: 1,
 };
 
-export default function AddJob({ handleClose, setSelectedCategory }) {
+export default function EditJob({ handleClose, setSelectedCategory }) {
   const classes = useStyles();
   const [age4, setAge4] = React.useState(0);
   const [age5, setAge5] = React.useState(0);
@@ -103,7 +103,6 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
   const [checkone, setCheckone] = useState(false);
   const [checkone1, setCheckone1] = useState(false);
   const [cateaddcheckbox1, setCateaddcheckbox1] = useState(true);
-  /* VALIDATION FUNCTIONALITY */
 
   const validate = () => {
     if (
@@ -151,12 +150,13 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
   const [minBudegt, setMinBudegt] = useState();
   const [maxBudegt, setMaxBudegt] = useState();
 
-  const navigate = useNavigate();
-
   const [budgetError, setBudgetError] = useState("");
+
   const [datestart, setDatestart] = useState();
   const [dateend, setDateend] = useState();
+
   const [dateerror, setDateerror] = useState("");
+
   const [ErrorCheck, setErrorCheck] = useState(false);
   const [ErrorCheck2, setErrorCheck2] = useState(false);
 
@@ -219,14 +219,12 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
     setTimeout(function () {
       setOpenp(false);
       handleOpenx();
-      navigate("/dashbaord/createWork");
     }, 5000);
   };
 
   const handleClosep = () => {
     setOpenp(false);
     handleOpenx();
-    navigate("/dashbaord/createWork");
   };
 
   const [studyset, setstudyset] = useState("");
@@ -347,6 +345,128 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
         setArrayoflongstudy1(res?.data?.success?.data);
       });
   }, [locationname]);
+
+
+  const { id } = useParams();
+  useEffect(() => {
+     if (arrayofminbudget?.length!==0) {
+         
+         axios.get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${id}`).then((res) => {
+           settitle(res.data?.success?.data[0]?.workTitle);
+           setCategogryid(res.data?.success?.data[0]?.category?._id);
+           setsubcateid(res.data?.success?.data[0]?.subCategory?._id);
+           setCategory(res.data?.success?.data[0]?.category?.category);
+           setstudyset(res.data?.success?.data[0]?.subCategory?.subCategory);
+           setskillset(
+             res.data?.success?.data[0]?.skill10
+               ? [
+                   res.data?.success?.data[0]?.skill10,
+                   res.data?.success?.data[0]?.skill9,
+                   res.data?.success?.data[0]?.skill8,
+                   res.data?.success?.data[0]?.skill7,
+                   res.data?.success?.data[0]?.skill6,
+                   res.data?.success?.data[0]?.skill5,
+                   res.data?.success?.data[0]?.skill4,
+                   res.data?.success?.data[0]?.skill3,
+                   res.data?.success?.data[0]?.skill2,
+                   res.data?.success?.data[0]?.skill1,
+                 ]
+               : res.data?.success?.data[0]?.skill9
+               ? [
+                   res.data?.success?.data[0]?.skill9,
+                   res.data?.success?.data[0]?.skill8,
+                   res.data?.success?.data[0]?.skill7,
+                   res.data?.success?.data[0]?.skill6,
+                   res.data?.success?.data[0]?.skill5,
+                   res.data?.success?.data[0]?.skill4,
+                   res.data?.success?.data[0]?.skill3,
+                   res.data?.success?.data[0]?.skill2,
+                   res.data?.success?.data[0]?.skill1,
+                 ]
+               : res.data?.success?.data[0]?.skill8
+               ? [
+                   res.data?.success?.data[0]?.skill8,
+                   res.data?.success?.data[0]?.skill7,
+                   res.data?.success?.data[0]?.skill6,
+                   res.data?.success?.data[0]?.skill5,
+                   res.data?.success?.data[0]?.skill4,
+                   res.data?.success?.data[0]?.skill3,
+                   res.data?.success?.data[0]?.skill2,
+                   res.data?.success?.data[0]?.skill1,
+                 ]
+               : res.data?.success?.data[0]?.skill7
+               ? [
+                   res.data?.success?.data[0]?.skill7,
+                   res.data?.success?.data[0]?.skill6,
+                   res.data?.success?.data[0]?.skill5,
+                   res.data?.success?.data[0]?.skill4,
+                   res.data?.success?.data[0]?.skill3,
+                   res.data?.success?.data[0]?.skill2,
+                   res.data?.success?.data[0]?.skill1,
+                 ]
+               : res.data?.success?.data[0]?.skill6
+               ? [
+                   res.data?.success?.data[0]?.skill6,
+                   res.data?.success?.data[0]?.skill5,
+                   res.data?.success?.data[0]?.skill4,
+                   res.data?.success?.data[0]?.skill3,
+                   res.data?.success?.data[0]?.skill2,
+                   res.data?.success?.data[0]?.skill1,
+                 ]
+               : res.data?.success?.data[0]?.skill5
+               ? [
+                   res.data?.success?.data[0]?.skill5,
+                   res.data?.success?.data[0]?.skill4,
+                   res.data?.success?.data[0]?.skill3,
+                   res.data?.success?.data[0]?.skill2,
+                   res.data?.success?.data[0]?.skill1,
+                 ]
+               : res.data?.success?.data[0]?.skill4
+               ? [
+                   res.data?.success?.data[0]?.skill4,
+                   res.data?.success?.data[0]?.skill3,
+                   res.data?.success?.data[0]?.skill2,
+                   res.data?.success?.data[0]?.skill1,
+                 ]
+               : res.data?.success?.data[0]?.skill3
+               ? [
+                   res.data?.success?.data[0]?.skill3,
+                   res.data?.success?.data[0]?.skill2,
+                   res.data?.success?.data[0]?.skill1,
+                 ]
+               : res.data?.success?.data[0]?.skill2
+               ? [
+                   res.data?.success?.data[0]?.skill2,
+                   res.data?.success?.data[0]?.skill1,
+                 ]
+               : res.data?.success?.data[0]?.skill1
+               ? [res.data?.success?.data[0]?.skill1]
+               : []
+           );
+           setMinBudegt(res.data?.success?.data[0]?.minimumBudget);
+           setMaxBudegt(res.data?.success?.data[0]?.maximuBudget);
+       
+          arrayofminbudget?.map((data, index) => {
+             if (data?.minimumBudget === res.data?.success?.data[0]?.minimumBudget) {
+               setAge4(index+1);
+             }
+           });
+           arrayofminbudget?.map((data, index) => {
+             if (data?.maximumBudget === res.data?.success?.data[0]?.maximuBudget) {
+               setAge5(index + 1);
+             }
+           });
+           setDateend(res.data?.success?.data[0]?.jobPostingDate)
+           setDatestart(res.data?.success?.data[0]?.terminationDate)
+           setCateaddcheckbox1(!res?.data?.success?.data[0]?.remote)
+           setstudyset1(res?.data?.success?.data[0]?.onSite)
+
+         });
+     } 
+  }, [id,arrayofminbudget]);
+
+ 
+  
 
   return (
     <div
@@ -710,17 +830,6 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
                       handleSearchCategory(e);
                       setSetSelectedCategory1(e.target.value);
                     }}
-                    // onKeyPress={(e) => {
-                    //   if (e.key === "Enter") {
-                    //     e.preventDefault();
-                    //     if (skillset.indexOf(setSelectedCategory1) < 0) {
-                    //       setskillset(
-                    //         [...skillset, setSelectedCategory1].slice(0, 10)
-                    //       );
-                    //     }
-                    //   }
-                    //  setSetSelectedCategory1("")
-                    // }}
                   />
                 ) : (
                   ""
@@ -946,6 +1055,7 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
                   name=""
                   id=""
                   min={disablePastDate()}
+                  value={datestart}
                   max={"2025-12-31"}
                   maxlength="4"
                   onChange={(e) => {
@@ -972,6 +1082,7 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
                   id=""
                   min={disablePastDate()}
                   max={"2025-12-31"}
+                  value={dateend}
                   maxlength="4"
                   onChange={(e) => {
                     setDateend(e.target.value);

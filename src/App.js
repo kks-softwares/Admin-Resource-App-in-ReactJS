@@ -58,6 +58,7 @@ import Dashboard from "./components/DashBoardSidebar/Dashbaord/Dashboard";
 import AddRedeem from "./components/DashBoardSidebar/AddRedeem/AddRedeem";
 import Redeem from "./components/DashBoardSidebar/Redeem/Redeem";
 import Jobdetail from "./components/DashBoardSidebar/Jobdetail/Jobdetail";
+import EditJob from "./components/DashBoardSidebar/AddJob/EditJob";
 
 function LayoutsWithNavbar() {
   return (
@@ -182,6 +183,7 @@ function App() {
             <Route path="/dashbaord/jobs" element={<Jobs />} />
             <Route path="/dashbaord/jobdetail/:id" element={<Jobdetail />} />
             <Route path="/dashbaord/addJob" element={<AddJob />} />
+            <Route path="/dashbaord/editJob/:id" element={<EditJob />} />
             <Route
               path="/dashbaord/jobdetail/:postid"
               element={<Jobdetils />}
