@@ -121,8 +121,8 @@ export default function Jobs() {
 
   const [prevdatestart1, setprevDatestart1] = useState();
   const [prevdatestart1x, setprevDatestart1x] = useState();
-  const [datestart1, setDatestart1] = useState();
-  const [datestart1x, setDatestart1x] = useState();
+  const [datestart1, setDatestart1] = useState("");
+  const [datestart1x, setDatestart1x] = useState("");
 
   const disablePastDate = () => {
     const today = new Date();
@@ -176,12 +176,32 @@ export default function Jobs() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [allusers, setAllusers] = useState(["1", "2", "3", "4"]);
+  const [allusers, setAllusers] = useState([]);
 
   const [recall, setRecall] = useState(false);
   const [selecteddelete, setSelecteddelete] = useState([]);
 
-  useEffect(() => {}, [page, setSelectedCategory, recall]);
+  useEffect(() => {
+    axios
+      .get(
+        `${API_HOST}/jobPost/viewJobPost?pageSize=9&pageNumber=${page}&search=${setSelectedCategory}&${
+          subcategogryid ? "subCategory=" : ""
+        }${subcategogryid}&${
+          selectedbiddingvalue ? "bidingValue=" : ""
+        }${selectedbiddingvalue}&${studyset ? "location=" : ""}${studyset}&${
+          Cateid ? "category=" : ""
+        }${Cateid}&${datestart1 ? "from=" : ""}${datestart1}&${
+          datestart1 ? "to=" : ""
+        }${datestart1x}
+        `
+      )
+      .then((res) => {
+        setAllusers(res.data?.success?.data);
+        if (res.data?.success?.data?.length===9) {
+            settotalpages(page)
+        }
+      });
+  }, [page, setSelectedCategory, recall]);
 
   const handleDelete = () => {
     const formdata = new FormData();
@@ -502,7 +522,7 @@ export default function Jobs() {
 
                   <div>
                     <div
-                      style={{ left: "0vw", width: "44.5vw", marginLeft: "0" }}
+                         style={{ left: "0vw", width: "98%", marginLeft: "0%" }}
                       className="loginfield"
                       onClick={handleClick4}
                     >
@@ -576,7 +596,7 @@ export default function Jobs() {
 
                   <div>
                     <div
-                      style={{ left: "0vw", width: "44.5vw", marginLeft: "0" }}
+                        style={{ left: "0vw", width: "98%", marginLeft: "0%" }}
                       className="loginfield"
                       onClick={handleClickx4}
                     >
@@ -776,6 +796,7 @@ export default function Jobs() {
                         setSelectedbiddingvalue(prevselectedbiddingvalue);
                         handleClose();
                         setsubCategogryid(prevsubcategogryid);
+                        setRecall(!recall);
                       }}
                     >
                       Submit

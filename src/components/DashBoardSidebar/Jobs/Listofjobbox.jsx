@@ -25,23 +25,23 @@ export default function Listofjobbox({ data }) {
         >
           <div
             className="checkbox"
-              onClick={() => {
-                setCheckonex(!checkonex);
-                // if (selecteddelete?.indexOf(data?.budgetId) > -1) {
-                //   setSelecteddelete([
-                //     ...selecteddelete.slice(
-                //       0,
-                //       selecteddelete.indexOf(data?.budgetId)
-                //     ),
-                //     ...selecteddelete.slice(
-                //       selecteddelete.indexOf(data?.budgetId) + 1,
-                //       selecteddelete.length
-                //     ),
-                //   ]);
-                // } else {
-                //   setSelecteddelete([...selecteddelete, data?.budgetId]);
-                // }
-              }}
+            onClick={() => {
+              setCheckonex(!checkonex);
+              // if (selecteddelete?.indexOf(data?.budgetId) > -1) {
+              //   setSelecteddelete([
+              //     ...selecteddelete.slice(
+              //       0,
+              //       selecteddelete.indexOf(data?.budgetId)
+              //     ),
+              //     ...selecteddelete.slice(
+              //       selecteddelete.indexOf(data?.budgetId) + 1,
+              //       selecteddelete.length
+              //     ),
+              //   ]);
+              // } else {
+              //   setSelecteddelete([...selecteddelete, data?.budgetId]);
+              // }
+            }}
           >
             {checkonex ? (
               <DoneIcon
@@ -83,14 +83,16 @@ export default function Listofjobbox({ data }) {
           }}
         >
           <div style={{ marginLeft: "0vw" }} className="tagblue">
-            Mobile Application
+            {data?.category?.category}
           </div>
           <div style={{ marginLeft: "1vw", fontSize: "0.8vw" }}>
-            UX/UI Design
+            {data?.subCategory?.subCategory}
           </div>
         </div>
         <div style={{ height: "1.1vw" }} className="activejobpostname">
-          Senior Product Designer (#23613)
+          {data?.workTitle?.length > 40
+            ? data?.workTitle?.slice(0, 40) + ".."
+            : data?.workTitle}
         </div>
         <div
           style={{ lineHeight: "1.2vw !important", color: "#064C8790" }}
@@ -106,7 +108,7 @@ export default function Listofjobbox({ data }) {
                 color: "#00000090",
               }}
             >
-              $8-$16
+              ${data?.minimumBudget}- ${data?.maximuBudget}
             </span>
           </div>
           <div style={{ marginRight: "1vw" }}>
@@ -119,7 +121,11 @@ export default function Listofjobbox({ data }) {
                 color: "#00000090",
               }}
             >
-              Bangalore
+              {data?.remote
+                ? "remote"
+                : data?.onSite?.length > 20
+                ? data?.onSite?.slice(0, 18) + ".."
+                : data?.onSite}
             </span>
           </div>
           <div style={{ marginRight: "1vw" }}>
@@ -132,7 +138,7 @@ export default function Listofjobbox({ data }) {
                 color: "#00000090",
               }}
             >
-              07 Days
+              {data?.expiry} Days
             </span>
           </div>
         </div>
@@ -147,9 +153,7 @@ export default function Listofjobbox({ data }) {
               fontWeight: "400",
             }}
           >
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer more
+            {data?.shortDescription?.slice(0, 160)}
           </div>
 
           <br />
@@ -166,11 +170,13 @@ export default function Listofjobbox({ data }) {
 
         <hr />
         <div style={{ paddingLeft: "0vw" }} className="flexlastactiveb">
-          <div>No of Proposoals - {"4"}</div>
+          <div>No of Proposoals - {data?.listOfBider?.length}</div>
 
           <div
             onClick={() => {
-                navigate(`/dashbaord/jobdetail/${data?.postId?data?.postId:2}`)
+              navigate(
+                `/dashbaord/jobdetail/${data?.jobPostId ? data?.jobPostId : 2}`
+              );
             }}
             style={{ color: "#00000090", cursor: "pointer" }}
           >

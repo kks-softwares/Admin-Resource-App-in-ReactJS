@@ -38,7 +38,7 @@ export default function Jobdetail() {
   const handleClosex = () => setOpenx(false);
   useEffect(() => {
     axios
-      .get(`${API_HOST}/jobPost/viewJobPost?jobPostId=3c62076f-135c-4473-8873-9f1c7046ff2e`)
+      .get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${id}`)
       .then((res) => {
         console.log(res?.data?.success?.data[0]);
         setdata1(res?.data?.success?.data[0]);
