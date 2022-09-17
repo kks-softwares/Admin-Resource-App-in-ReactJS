@@ -7,7 +7,6 @@ import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import img2 from "../../../assets/Success stories Definition/checkmark (1).svg";
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 
-
 const style1 = {
   position: "absolute",
   top: "50%",
@@ -30,10 +29,7 @@ const style = {
   overflow: "scroll",
 };
 
-export default function Listofproposals({
-  data,
-  data1,
-}) {
+export default function Listofproposals({ data, data1 }) {
   const [openx, setOpenx] = React.useState(false);
   const handleOpenx = () => setOpenx(true);
   const navigate = useNavigate();
@@ -43,8 +39,6 @@ export default function Listofproposals({
   const handleOpenx1 = () => setOpenx1(true);
 
   const handleClosex1 = () => setOpenx1(false);
-
-
 
   const [imagesave, setImagesave] = useState();
 
@@ -114,19 +108,21 @@ export default function Listofproposals({
                 <span> {data?.timestamps?.slice(0, 10)}</span>
               </div>
               <div style={{ marginRight: "1vw" }}>
-                Estimate Time to Complete <br /> <span> <span>
-                    {data1?.workAssigned
+                Estimate Time to Complete <br />{" "}
+                <span>
+                  {" "}
+                  <span>
+                    {data1?.workAssignedTo?.milestoneDueDate5
                       ? data1?.workAssignedTo?.milestoneDueDate5
-                        ? data1?.workAssignedTo?.milestoneDueDate5
-                        : data1?.workAssignedTo?.milestoneDueDate4
-                        ? data1?.workAssignedTo?.milestoneDueDate4
-                        : data1?.workAssignedTo?.milestoneDueDate3
-                        ? data1?.workAssignedTo?.milestoneDueDate3
-                        : data1?.workAssignedTo?.milestoneDueDate2
-                        ? data1?.workAssignedTo?.milestoneDueDate2
-                        : data1?.workAssignedTo?.milestoneDueDate1
-                      : "-"}
-                  </span></span>
+                      : data1?.workAssignedTo?.milestoneDueDate4
+                      ? data1?.workAssignedTo?.milestoneDueDate4
+                      : data1?.workAssignedTo?.milestoneDueDate3
+                      ? data1?.workAssignedTo?.milestoneDueDate3
+                      : data1?.workAssignedTo?.milestoneDueDate2
+                      ? data1?.workAssignedTo?.milestoneDueDate2
+                      : data1?.workAssignedTo?.milestoneDueDate1}
+                  </span>
+                </span>
               </div>
               <div style={{ marginRight: "1vw" }}>
                 {" "}
