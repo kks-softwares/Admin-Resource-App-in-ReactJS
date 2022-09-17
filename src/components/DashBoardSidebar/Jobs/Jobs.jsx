@@ -197,8 +197,8 @@ export default function Jobs() {
       )
       .then((res) => {
         setAllusers(res.data?.success?.data);
-        if (res.data?.success?.data?.length===9) {
-            settotalpages(page+1)
+        if (res.data?.success?.data?.length === 9) {
+          settotalpages(page + 1);
         }
       });
   }, [page, setSelectedCategory, recall]);
@@ -522,7 +522,7 @@ export default function Jobs() {
 
                   <div>
                     <div
-                         style={{ left: "0vw", width: "98%", marginLeft: "0%" }}
+                      style={{ left: "0vw", width: "98%", marginLeft: "0%" }}
                       className="loginfield"
                       onClick={handleClick4}
                     >
@@ -596,7 +596,7 @@ export default function Jobs() {
 
                   <div>
                     <div
-                        style={{ left: "0vw", width: "98%", marginLeft: "0%" }}
+                      style={{ left: "0vw", width: "98%", marginLeft: "0%" }}
                       className="loginfield"
                       onClick={handleClickx4}
                     >
@@ -808,6 +808,21 @@ export default function Jobs() {
 
             <div
               onClick={() => {
+                setCateid();
+                setDatestart1();
+                setDatestart1x();
+                setstudyset("");
+                setSelectedbiddingvalue("");
+                handleClose();
+                setsubCategogryid();
+                setprevCateid();
+                setprevDatestart1();
+                setprevDatestart1x();
+                setstudyset1("");
+                setprevSelectedbiddingvalue("");
+                setprevsubCategogryid();
+                setDegreeset("");
+                setstudyset2("");
                 setRecall(!recall);
               }}
               style={{ cursor: "pointer" }}

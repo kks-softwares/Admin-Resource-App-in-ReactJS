@@ -183,7 +183,7 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
     formdata.append("remote", !cateaddcheckbox1);
 
     if (cateaddcheckbox1) {
-      formdata.append("onSite", studyset1 ? studyset : "Remote");
+      formdata.append("onSite", studyset1 ? studyset1 : "Remote");
     }
 
     skillset?.length > 0 &&
