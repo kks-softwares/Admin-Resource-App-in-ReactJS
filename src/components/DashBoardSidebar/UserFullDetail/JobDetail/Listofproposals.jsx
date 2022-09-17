@@ -117,15 +117,15 @@ export default function Listofproposals({
               </div>
               <div style={{ marginRight: "1vw" }}>
                 Estimate Time to Complete <br /> <span> <span>
-                {data1?.workAssignedTo?.milestoneDueDate5
-                      ? data1?.workAssignedTo?.milestoneDueDate5
-                      : data1?.workAssignedTo?.milestoneDueDate4
-                      ? data1?.workAssignedTo?.milestoneDueDate4
-                      : data1?.workAssignedTo?.milestoneDueDate3
-                      ? data1?.workAssignedTo?.milestoneDueDate3
-                      : data1?.workAssignedTo?.milestoneDueDate2
-                      ? data1?.workAssignedTo?.milestoneDueDate2
-                      : data1?.workAssignedTo?.milestoneDueDate1}
+                {data?.bidingId?.milestoneDueDate5
+                    ? data?.bidingId?.milestoneDueDate5
+                    : data?.bidingId?.milestoneDueDate4
+                    ? data?.bidingId?.milestoneDueDate4
+                    : data?.bidingId?.milestoneDueDate3
+                    ? data?.bidingId?.milestoneDueDate3
+                    : data?.bidingId?.milestoneDueDate2
+                    ? data?.bidingId?.milestoneDueDate2
+                    : data?.bidingId?.milestoneDueDate1}
                   </span></span>
               </div>
               <div style={{ marginRight: "1vw" }}>
