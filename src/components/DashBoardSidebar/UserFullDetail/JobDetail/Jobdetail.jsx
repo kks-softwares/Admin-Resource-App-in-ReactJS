@@ -324,8 +324,16 @@ export default function Jobdetail({ jobdetail }) {
         <div
           style={{
             height: down3
-              ? `${parseInt((data1?.icons?.length + 3) / 3) * 12 + 30}vw`
-              : "",
+            ? `${
+                parseInt(
+                  (data1?.workAssignedTo?.files
+                    ? data1?.workAssignedTo?.files?.length + 2
+                    : 1) / 3
+                ) *
+                  14 +
+                26
+              }vw`
+            : "",
           }}
           className="boxofextension"
         >
