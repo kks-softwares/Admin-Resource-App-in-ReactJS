@@ -22,7 +22,7 @@ import axios from "axios";
 import API_HOST from "../../../env";
 import Typography from "@mui/material/Typography";
 import Fade from "@mui/material/Fade";
-import { Navigate, useNavigate } from "react-router";
+import {  useNavigate } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   select: {

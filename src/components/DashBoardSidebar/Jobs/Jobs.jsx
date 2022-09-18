@@ -191,7 +191,7 @@ export default function Jobs() {
         }${selectedbiddingvalue}&${studyset ? "location=" : ""}${studyset}&${
           Cateid ? "category=" : ""
         }${Cateid}&${datestart1 ? "from=" : ""}${datestart1}&${
-          datestart1 ? "to=" : ""
+          datestart1x ? "to=" : ""
         }${datestart1x}
         `
       )
