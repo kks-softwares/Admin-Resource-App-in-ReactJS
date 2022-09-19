@@ -219,14 +219,14 @@ export default function AddJob({ handleClose, setSelectedCategory }) {
     setTimeout(function () {
       setOpenp(false);
       handleOpenx();
-      navigate("/dashbaord/createWork");
+      navigate("/dashbaord/jobs");
     }, 5000);
   };
 
   const handleClosep = () => {
     setOpenp(false);
     handleOpenx();
-    navigate("/dashbaord/createWork");
+    navigate("/dashbaord/jobs");
   };
 
   const [studyset, setstudyset] = useState("");

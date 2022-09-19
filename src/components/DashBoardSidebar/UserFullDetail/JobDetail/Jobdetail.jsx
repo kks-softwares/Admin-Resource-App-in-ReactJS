@@ -122,9 +122,18 @@ export default function Jobdetail({ jobdetail }) {
             marginTop: "1vw",
             marginLeft: "1vw",
             color: "#064C87",
+            justifyContent: "space-between",
           }}
         >
-          {data1?.workTitle}
+          <div>{data1?.workTitle}</div>
+          {data1?.assignWorkComplitionDate && (
+            <div>
+              Status :{" "}
+              <span style={{ color: "green", marginRight: "1vw" }}>
+                {data1?.workStatus}
+              </span>
+            </div>
+          )}
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
           <span>
