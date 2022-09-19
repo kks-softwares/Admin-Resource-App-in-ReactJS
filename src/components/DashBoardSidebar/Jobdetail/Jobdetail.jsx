@@ -13,7 +13,61 @@ import API_HOST from "../../../env";
 import axios from "axios";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import { useSelector } from "react-redux";
+import { KeyboardArrowDownOutlined } from "@mui/icons-material";
+import { TextField } from "@mui/material";
+import Popover from "@mui/material/Popover";
+import { makeStyles } from "@material-ui/core";
+import Typography from "@mui/material/Typography";
+import CloseIcon from "@mui/icons-material/Close";
 
+const useStyles = makeStyles((theme) => ({
+  select: {
+    height: "2.5vw",
+    width: "100%",
+    marginTop: "0.2vw",
+    padding: "1vw",
+    marginLeft: "0vw",
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: "1vw",
+    lineHeight: "120%",
+    color: "#FFFFFF",
+  },
+  select2: {
+    height: "1vw",
+    width: "100%",
+    marginTop: "0.1vw",
+    padding: "0.9vw 0.5vw",
+    marginLeft: "0vw",
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "0.51vw",
+    lineHeight: "100%",
+    color: "#FFFFFF",
+  },
+  select3: {
+    height: "1vw",
+    width: "100%",
+    marginTop: "0.1vw",
+    padding: "0vw 0vw",
+    marginLeft: "0vw",
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "0.51vw",
+    lineHeight: "100%",
+    color: "#FFFFFF",
+    position: "relative",
+    top: "0.81vw",
+    left: "0.2vw",
+  },
+  icon: {
+    fill: "white",
+  },
+}));
 const style = {
   position: "absolute",
   top: "50%",
@@ -24,8 +78,21 @@ const style = {
   border: "2px solid white",
   boxShadow: 24,
 };
+const style1 = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "50vw",
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    height: "fit-content",
+    overflow: "scroll",
+    padding: "1vw",
+  };
 export default function Jobdetail() {
   const { id } = useParams();
+  const classes = useStyles();
   const navigate = useNavigate();
   const [down1, setDown1] = useState(false);
   const [down2, setDown2] = useState(false);
@@ -45,6 +112,50 @@ export default function Jobdetail() {
   }, [id]);
 
   const [imagesave, setImagesave] = useState();
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const { user } = useSelector((state) => state.user);
+  const [desc, setDesc] = useState("");
+  const [descerr, setDescerr] = useState("");
+  const [title, settitle] = useState("");
+  const [titleerr, settitleerr] = useState("");
+  const [anchorElx2, setAnchorElx2] = React.useState(null);
+  const handleClickx2 = (event) => {
+    setAnchorElx2(event.currentTarget);
+  };
+
+  const handleClosex2 = () => {
+    setAnchorElx2(null);
+  };
+
+  const openx2 = Boolean(anchorElx2);
+  const idx2 = openx2 ? "simple-popover" : undefined;
+
+  const handleAddIssue = () => {
+    if (!title || !desc) {
+      if (!title) {
+        settitleerr("Select Issue Type !");
+      }
+      if (!desc) {
+        setDescerr("Description Required !");
+      }
+      return;
+    }
+    axios
+      .post(`${API_HOST}/jobPost/addIssue`, {
+        jobPostId: id,
+        issueType: title,
+        issueDescription: desc,
+        user_id: user?._id,
+      })
+      .then((res) => {
+        settitle("")
+        handleClose();
+        setDesc("")
+      });
+  };
   return (
     <div className="BrowseWorkMain-cntainer">
       <button
@@ -94,6 +205,9 @@ export default function Jobdetail() {
                   marginRight: "1vw",
                 }}
                 className="digitalwallate"
+                onClick={()=>{
+                    handleOpen()
+                }}
               >
                 <span
                   style={{
@@ -102,7 +216,7 @@ export default function Jobdetail() {
                     background: "none",
                   }}
                 >
-                  view issue
+                  Raise issue
                 </span>
               </div>
               <div
@@ -126,6 +240,164 @@ export default function Jobdetail() {
               </div>
             </div>
           </div>{" "}
+          <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style1}>
+            <div className="profiletitleandmenunav">
+              <div className="profiledetailstitle">Raise Issue</div>
+              <div className="profiledetailnavmanu">
+                <div>
+                  <CloseIcon
+                    onClick={handleClose}
+                    style={{ fontSize: "1.5vw", cursor: "pointer" }}
+                  />
+                </div>
+              </div>
+            </div>
+            <hr style={{ color: "#00000090" }} />
+
+            <div
+              style={{ left: "0vw", width: "92%", marginLeft: "2%" }}
+              className="loginfield"
+              onClick={handleClickx2}
+            >
+              <TextField
+                id="outlined-basic"
+                label="Issue Type *"
+                variant="outlined"
+                disabled
+                value={title}
+                style={{ width: "100%" }}
+                InputLabelProps={{
+                  style: {
+                    fontSize: "1vw",
+                    fontFamily: "Poppins",
+                    fontStyle: "500",
+                    fontWeight: "500",
+                    color: "black",
+                  },
+                }}
+                inputProps={{ className: classes.input }}
+                onChange={(e) => {
+                  console.log(e.target.value);
+                }}
+              />
+              <span style={{ width: "0.1vw" }}>
+                <KeyboardArrowDownOutlined
+                  style={{
+                    fontSize: "1.5vw",
+                    position: "relative",
+                    right: "2vw",
+                    top: "1vw",
+                  }}
+                />
+              </span>
+            </div>
+            <Popover
+              id={idx2}
+              open={openx2}
+              anchorEl={anchorElx2}
+              onClose={handleClosex2}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+            >
+              <div
+                style={{
+                  maxHeight: "18vw",
+                  overflow: "scroll",
+                  width: "44vw",
+                }}
+              >
+                <Typography
+                  sx={{
+                    p: 0.51,
+                    pl: 1,
+                    ml: 1,
+                    width: "100%",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    settitle("Bidder Was not doing Work Properly");          handleClosex2()
+                  }}
+                >
+                  Bidder Was not doing Work Properly
+                </Typography>
+                <Typography
+                  sx={{
+                    p: 0.51,
+                    pl: 1,
+                    ml: 1,
+                    width: "100%",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    settitle("Bidder Was not doing Work Properly");          handleClosex2()
+                  }}
+                >
+                  Bidder Was not doing Work Properly
+                </Typography>
+                <Typography
+                  sx={{
+                    p: 0.51,
+                    pl: 1,
+                    ml: 1,
+                    width: "100%",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    settitle("Bidder Was not doing Work Properly");          handleClosex2()
+                  }}
+                >
+                  Bidder Was not doing Work Properly
+                </Typography>
+              </div>
+            </Popover>
+            <p style={{ color: "red",fontSize:"0.9vw",marginLeft:"1vw" }}>{titleerr}</p>
+            <div style={{ marginLeft: "1vw" }} className="jobpodtedfieldtitile">
+              Issue Description
+            </div>
+            <div style={{ marginLeft: "1vw" }} className="jobpostfieldinputbox">
+              <textarea
+                type="text"
+                name="desc"
+                value={desc}
+                onChange={(e) => setDesc(e.target.value)}
+              />
+            </div>
+            <p style={{ color: "red",fontSize:"0.9vw",marginLeft:"1vw" }}>{descerr}</p>
+
+            <div
+              style={{ marginTop: "0.31vw" }}
+              className="handlemoreaboutskill"
+            >
+              <div
+                style={{
+                  background: "white",
+                  color: "black",
+                  cursor: "pointer",
+                }}
+                className="handlecirclieaboutsave"
+                onClick={handleClose}
+              >
+                Cancel
+              </div>
+              <div
+                style={{ cursor: "pointer" }}
+                className="handlecirclieaboutsave"
+                onClick={handleAddIssue}
+              >
+                SAVE
+              </div>
+            </div>
+          </Box>
+        </Modal>
+      
           <div
           style={{
             fontWeight: "600",
