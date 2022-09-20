@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./addpost.css";
 import CloseIcon from "@mui/icons-material/Close";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import img33 from "../../../assets/Landing page/Group 1179.svg";
 import img51 from "../../../assets/Web 1280 – 14/Group 10219.svg";
 import { KeyboardArrowDownOutlined } from "@mui/icons-material";
 import { TextField } from "@mui/material";
@@ -17,12 +15,11 @@ import img from "../../../assets/Web 1280 – 14/Icon.svg";
 import img1 from "../../../assets/Web 1280 – 14/Group 9831.svg";
 import img21 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg";
 import DoneIcon from "@mui/icons-material/Done";
-import Modal from "@mui/material/Modal";
 import axios from "axios";
 import API_HOST from "../../../env";
 import Typography from "@mui/material/Typography";
 import Fade from "@mui/material/Fade";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   select: {
@@ -71,19 +68,6 @@ const useStyles = makeStyles((theme) => ({
     fill: "white",
   },
 }));
-
-const style1 = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "50vw",
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  textAlign: "center",
-  p: 1,
-};
 
 export default function EditJob({ handleClose, setSelectedCategory }) {
   const classes = useStyles();
@@ -177,6 +161,7 @@ export default function EditJob({ handleClose, setSelectedCategory }) {
     formdata.append("jobPostingDate", datestart);
     formdata.append("terminationDate", dateend);
     formdata.append("category", categogryid);
+    formdata.append("jobPostId", id);
     formdata.append("subCategory", subcateid);
     formdata.append("maximuBudget", maxBudegt);
     formdata.append("minimumBudget", minBudegt);
@@ -192,14 +177,14 @@ export default function EditJob({ handleClose, setSelectedCategory }) {
       });
 
     axios
-      .post(`${API_HOST}/jobPost/jobPostBy_admin`, formdata, {
+      .post(`${API_HOST}/jobPost/editJobPost`, formdata, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
         },
       })
       .then((res) => {
-        handleOpenp();
+        navigate("/dashbaord/jobs");
       })
       .catch((err) => {
         console.log("err", err.response);
@@ -212,20 +197,7 @@ export default function EditJob({ handleClose, setSelectedCategory }) {
   };
   const [erroeshow, setErroeshow] = useState(false);
 
-  const [openp, setOpenp] = React.useState(false);
-
-  const handleOpenp = () => {
-    setOpenp(true);
-    setTimeout(function () {
-      setOpenp(false);
-      handleOpenx();
-    }, 5000);
-  };
-
-  const handleClosep = () => {
-    setOpenp(false);
-    handleOpenx();
-  };
+  const navigate = useNavigate();
 
   const [studyset, setstudyset] = useState("");
   const [studyset1, setstudyset1] = useState("");
@@ -346,127 +318,167 @@ export default function EditJob({ handleClose, setSelectedCategory }) {
       });
   }, [locationname]);
 
-
   const { id } = useParams();
   useEffect(() => {
-     if (arrayofminbudget?.length!==0) {
-         
-         axios.get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${id}`).then((res) => {
-           settitle(res.data?.success?.data[0]?.workTitle);
-           setCategogryid(res.data?.success?.data[0]?.category?._id);
-           setsubcateid(res.data?.success?.data[0]?.subCategory?._id);
-           setCategory(res.data?.success?.data[0]?.category?.category);
-           setstudyset(res.data?.success?.data[0]?.subCategory?.subCategory);
-           setskillset(
-             res.data?.success?.data[0]?.skill10
-               ? [
-                   res.data?.success?.data[0]?.skill10,
-                   res.data?.success?.data[0]?.skill9,
-                   res.data?.success?.data[0]?.skill8,
-                   res.data?.success?.data[0]?.skill7,
-                   res.data?.success?.data[0]?.skill6,
-                   res.data?.success?.data[0]?.skill5,
-                   res.data?.success?.data[0]?.skill4,
-                   res.data?.success?.data[0]?.skill3,
-                   res.data?.success?.data[0]?.skill2,
-                   res.data?.success?.data[0]?.skill1,
-                 ]
-               : res.data?.success?.data[0]?.skill9
-               ? [
-                   res.data?.success?.data[0]?.skill9,
-                   res.data?.success?.data[0]?.skill8,
-                   res.data?.success?.data[0]?.skill7,
-                   res.data?.success?.data[0]?.skill6,
-                   res.data?.success?.data[0]?.skill5,
-                   res.data?.success?.data[0]?.skill4,
-                   res.data?.success?.data[0]?.skill3,
-                   res.data?.success?.data[0]?.skill2,
-                   res.data?.success?.data[0]?.skill1,
-                 ]
-               : res.data?.success?.data[0]?.skill8
-               ? [
-                   res.data?.success?.data[0]?.skill8,
-                   res.data?.success?.data[0]?.skill7,
-                   res.data?.success?.data[0]?.skill6,
-                   res.data?.success?.data[0]?.skill5,
-                   res.data?.success?.data[0]?.skill4,
-                   res.data?.success?.data[0]?.skill3,
-                   res.data?.success?.data[0]?.skill2,
-                   res.data?.success?.data[0]?.skill1,
-                 ]
-               : res.data?.success?.data[0]?.skill7
-               ? [
-                   res.data?.success?.data[0]?.skill7,
-                   res.data?.success?.data[0]?.skill6,
-                   res.data?.success?.data[0]?.skill5,
-                   res.data?.success?.data[0]?.skill4,
-                   res.data?.success?.data[0]?.skill3,
-                   res.data?.success?.data[0]?.skill2,
-                   res.data?.success?.data[0]?.skill1,
-                 ]
-               : res.data?.success?.data[0]?.skill6
-               ? [
-                   res.data?.success?.data[0]?.skill6,
-                   res.data?.success?.data[0]?.skill5,
-                   res.data?.success?.data[0]?.skill4,
-                   res.data?.success?.data[0]?.skill3,
-                   res.data?.success?.data[0]?.skill2,
-                   res.data?.success?.data[0]?.skill1,
-                 ]
-               : res.data?.success?.data[0]?.skill5
-               ? [
-                   res.data?.success?.data[0]?.skill5,
-                   res.data?.success?.data[0]?.skill4,
-                   res.data?.success?.data[0]?.skill3,
-                   res.data?.success?.data[0]?.skill2,
-                   res.data?.success?.data[0]?.skill1,
-                 ]
-               : res.data?.success?.data[0]?.skill4
-               ? [
-                   res.data?.success?.data[0]?.skill4,
-                   res.data?.success?.data[0]?.skill3,
-                   res.data?.success?.data[0]?.skill2,
-                   res.data?.success?.data[0]?.skill1,
-                 ]
-               : res.data?.success?.data[0]?.skill3
-               ? [
-                   res.data?.success?.data[0]?.skill3,
-                   res.data?.success?.data[0]?.skill2,
-                   res.data?.success?.data[0]?.skill1,
-                 ]
-               : res.data?.success?.data[0]?.skill2
-               ? [
-                   res.data?.success?.data[0]?.skill2,
-                   res.data?.success?.data[0]?.skill1,
-                 ]
-               : res.data?.success?.data[0]?.skill1
-               ? [res.data?.success?.data[0]?.skill1]
-               : []
-           );
-           setMinBudegt(res.data?.success?.data[0]?.minimumBudget);
-           setMaxBudegt(res.data?.success?.data[0]?.maximuBudget);
-       
+    if (arrayofminbudget?.length !== 0) {
+      axios
+        .get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${id}`)
+        .then((res) => {
+          settitle(res.data?.success?.data[0]?.workTitle);
+          setCategogryid(res.data?.success?.data[0]?.category?._id);
+          setsubcateid(res.data?.success?.data[0]?.subCategory?._id);
+          setCategory(res.data?.success?.data[0]?.category?.category);
+          setDesc(res.data?.success?.data[0]?.shortDescription);
+          setstudyset(res.data?.success?.data[0]?.subCategory?.subCategory);
+          setskillset(
+            res.data?.success?.data[0]?.skill10
+              ? [
+                  res.data?.success?.data[0]?.skill10,
+                  res.data?.success?.data[0]?.skill9,
+                  res.data?.success?.data[0]?.skill8,
+                  res.data?.success?.data[0]?.skill7,
+                  res.data?.success?.data[0]?.skill6,
+                  res.data?.success?.data[0]?.skill5,
+                  res.data?.success?.data[0]?.skill4,
+                  res.data?.success?.data[0]?.skill3,
+                  res.data?.success?.data[0]?.skill2,
+                  res.data?.success?.data[0]?.skill1,
+                ]
+              : res.data?.success?.data[0]?.skill9
+              ? [
+                  res.data?.success?.data[0]?.skill9,
+                  res.data?.success?.data[0]?.skill8,
+                  res.data?.success?.data[0]?.skill7,
+                  res.data?.success?.data[0]?.skill6,
+                  res.data?.success?.data[0]?.skill5,
+                  res.data?.success?.data[0]?.skill4,
+                  res.data?.success?.data[0]?.skill3,
+                  res.data?.success?.data[0]?.skill2,
+                  res.data?.success?.data[0]?.skill1,
+                ]
+              : res.data?.success?.data[0]?.skill8
+              ? [
+                  res.data?.success?.data[0]?.skill8,
+                  res.data?.success?.data[0]?.skill7,
+                  res.data?.success?.data[0]?.skill6,
+                  res.data?.success?.data[0]?.skill5,
+                  res.data?.success?.data[0]?.skill4,
+                  res.data?.success?.data[0]?.skill3,
+                  res.data?.success?.data[0]?.skill2,
+                  res.data?.success?.data[0]?.skill1,
+                ]
+              : res.data?.success?.data[0]?.skill7
+              ? [
+                  res.data?.success?.data[0]?.skill7,
+                  res.data?.success?.data[0]?.skill6,
+                  res.data?.success?.data[0]?.skill5,
+                  res.data?.success?.data[0]?.skill4,
+                  res.data?.success?.data[0]?.skill3,
+                  res.data?.success?.data[0]?.skill2,
+                  res.data?.success?.data[0]?.skill1,
+                ]
+              : res.data?.success?.data[0]?.skill6
+              ? [
+                  res.data?.success?.data[0]?.skill6,
+                  res.data?.success?.data[0]?.skill5,
+                  res.data?.success?.data[0]?.skill4,
+                  res.data?.success?.data[0]?.skill3,
+                  res.data?.success?.data[0]?.skill2,
+                  res.data?.success?.data[0]?.skill1,
+                ]
+              : res.data?.success?.data[0]?.skill5
+              ? [
+                  res.data?.success?.data[0]?.skill5,
+                  res.data?.success?.data[0]?.skill4,
+                  res.data?.success?.data[0]?.skill3,
+                  res.data?.success?.data[0]?.skill2,
+                  res.data?.success?.data[0]?.skill1,
+                ]
+              : res.data?.success?.data[0]?.skill4
+              ? [
+                  res.data?.success?.data[0]?.skill4,
+                  res.data?.success?.data[0]?.skill3,
+                  res.data?.success?.data[0]?.skill2,
+                  res.data?.success?.data[0]?.skill1,
+                ]
+              : res.data?.success?.data[0]?.skill3
+              ? [
+                  res.data?.success?.data[0]?.skill3,
+                  res.data?.success?.data[0]?.skill2,
+                  res.data?.success?.data[0]?.skill1,
+                ]
+              : res.data?.success?.data[0]?.skill2
+              ? [
+                  res.data?.success?.data[0]?.skill2,
+                  res.data?.success?.data[0]?.skill1,
+                ]
+              : res.data?.success?.data[0]?.skill1
+              ? [res.data?.success?.data[0]?.skill1]
+              : []
+          );
+          setMinBudegt(res.data?.success?.data[0]?.minimumBudget);
+          setMaxBudegt(res.data?.success?.data[0]?.maximuBudget);
+
           arrayofminbudget?.map((data, index) => {
-             if (data?.minimumBudget === res.data?.success?.data[0]?.minimumBudget) {
-               setAge4(index+1);
-             }
-           });
-           arrayofminbudget?.map((data, index) => {
-             if (data?.maximumBudget === res.data?.success?.data[0]?.maximuBudget) {
-               setAge5(index + 1);
-             }
-           });
-           setDateend(res.data?.success?.data[0]?.jobPostingDate)
-           setDatestart(res.data?.success?.data[0]?.terminationDate)
-           setCateaddcheckbox1(!res?.data?.success?.data[0]?.remote)
-           setstudyset1(res?.data?.success?.data[0]?.onSite)
+            if (
+              data?.minimumBudget === res.data?.success?.data[0]?.minimumBudget
+            ) {
+              setAge4(index + 1);
+            }
+          });
+          arrayofminbudget?.map((data, index) => {
+            if (
+              data?.maximumBudget === res.data?.success?.data[0]?.maximuBudget
+            ) {
+              setAge5(index + 1);
+            }
+          });
+          setDateend(res.data?.success?.data[0]?.jobPostingDate);
+          setDatestart(res.data?.success?.data[0]?.terminationDate);
+          setCateaddcheckbox1(!res?.data?.success?.data[0]?.remote);
+          setstudyset1(res?.data?.success?.data[0]?.onSite);
+          setArrayoffiles(res?.data?.success?.data[0]?.icons);
+        });
+    }
+  }, [id, arrayofminbudget]);
 
-         });
-     } 
-  }, [id,arrayofminbudget]);
+  const updateFile = (data) => {
+    const formdata = new FormData();
+    formdata.append("jobPostId", id);
+    formdata.append("fileName", data);
+    axios
+      .post(`${API_HOST}/jobPost/updateFiles`, formdata, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      })
+      .then((res) => {
+        setArrayoffiles(res?.data?.success?.data?.icons);
+      });
+  };
 
- 
-  
+  const removefile = (data,index) => {
+    const formdata = new FormData();
+    formdata.append("jobPostId", id);
+    formdata.append("_id", data);
+    axios
+      .post(`${API_HOST}/jobPost/removeFile`, formdata, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+        },
+      })
+      .then((res) => {
+        setArrayoffiles([
+            ...arrayoffiles.slice(0, index),
+            ...arrayoffiles.slice(
+              index + 1,
+              arrayoffiles.length
+            ),
+          ]);
+      });
+  };
 
   return (
     <div
@@ -488,7 +500,7 @@ export default function EditJob({ handleClose, setSelectedCategory }) {
         }}
         className="homepostjob-right"
       >
-        <div className="jobpostedformheading">Add Create Work</div>
+        <div className="jobpostedformheading">Edit Create Work</div>
 
         <div>
           <div className="jobpodtedfieldtitile">Job Title *</div>
@@ -1119,7 +1131,7 @@ export default function EditJob({ handleClose, setSelectedCategory }) {
                     type="file"
                     id="inputctaelogfile"
                     onChange={(e) => {
-                      setArrayoffiles([...arrayoffiles, e.target.files[0]]);
+                      updateFile(e.target.files[0]);
                     }}
                     hidden
                   />
@@ -1150,7 +1162,9 @@ export default function EditJob({ handleClose, setSelectedCategory }) {
                     <div className="inputfilesshowncatboxsingleimg">
                       <img src={img1} alt="" />
                     </div>
-                    <div className="fileselctednamecate">{file?.name}</div>
+                    <div className="fileselctednamecate">
+                      {file?.icon?.split("%24")[1]}
+                    </div>
                     <div className="inputfilesshowncatboxsingleimg">
                       <img
                         style={{
@@ -1161,13 +1175,8 @@ export default function EditJob({ handleClose, setSelectedCategory }) {
                         src={img21}
                         alt=""
                         onClick={() => {
-                          setArrayoffiles([
-                            ...arrayoffiles.slice(0, index),
-                            ...arrayoffiles.slice(
-                              index + 1,
-                              arrayoffiles.length
-                            ),
-                          ]);
+                          removefile(file?._id,index);
+                         
                         }}
                       />
                     </div>
@@ -1412,60 +1421,6 @@ export default function EditJob({ handleClose, setSelectedCategory }) {
           </div>
         </div>
       </div>
-
-      <Modal
-        open={openp}
-        onClose={handleClosep}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style1}>
-          <div className="imgboxofrewardpostlogo">
-            <img src={img33} alt="" />{" "}
-            <span>
-              {" "}
-              <CloseIcon
-                style={{
-                  position: "relative",
-                  left: "23vw",
-                  bottom: "22vw",
-                  fontSize: "1.5vw",
-                  cursor: "pointer",
-                }}
-                onClick={() => handleClosep()}
-              />
-            </span>
-          </div>
-          <div className="rewardtiitle500">Successfully Posted the Job</div>
-          <div className="rewardsubtiitle500">Get your Benefits on below</div>
-          <div className="buttonbox500reward">Rs 500 added to your Wallet</div>
-          <hr style={{ margin: "1vw 0vw", color: "gray" }} />
-          <div className="buttonbox500reward">
-            50% offer For all Products{" "}
-            <span>
-              <ContentCopyIcon
-                style={{
-                  fontSize: "2vw",
-                  position: "relative",
-                  left: "3.5vw",
-                }}
-              />
-            </span>
-          </div>
-          <div
-            style={{
-              fontSize: "1vw",
-              width: "30vw",
-              margin: " 0 auto",
-              textAlign: "left",
-            }}
-            className="rewardsubtiitle500"
-          >
-            Copied
-          </div>
-          <div style={{ height: "2vw" }}></div>
-        </Box>
-      </Modal>
     </div>
   );
 }
