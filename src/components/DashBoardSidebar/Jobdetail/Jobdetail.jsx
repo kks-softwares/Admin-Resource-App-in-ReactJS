@@ -79,17 +79,17 @@ const style = {
   boxShadow: 24,
 };
 const style1 = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "50vw",
-    bgcolor: "background.paper",
-    boxShadow: 24,
-    height: "fit-content",
-    overflow: "scroll",
-    padding: "1vw",
-  };
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "50vw",
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  height: "fit-content",
+  overflow: "scroll",
+  padding: "1vw",
+};
 export default function Jobdetail() {
   const { id } = useParams();
   const classes = useStyles();
@@ -151,9 +151,9 @@ export default function Jobdetail() {
         user_id: user?._id,
       })
       .then((res) => {
-        settitle("")
+        settitle("");
         handleClose();
-        setDesc("")
+        setDesc("");
       });
   };
   return (
@@ -205,8 +205,8 @@ export default function Jobdetail() {
                   marginRight: "1vw",
                 }}
                 className="digitalwallate"
-                onClick={()=>{
-                    handleOpen()
+                onClick={() => {
+                  handleOpen();
                 }}
               >
                 <span
@@ -241,185 +241,197 @@ export default function Jobdetail() {
             </div>
           </div>{" "}
           <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style1}>
-            <div className="profiletitleandmenunav">
-              <div className="profiledetailstitle">Raise Issue</div>
-              <div className="profiledetailnavmanu">
-                <div>
-                  <CloseIcon
-                    onClick={handleClose}
-                    style={{ fontSize: "1.5vw", cursor: "pointer" }}
-                  />
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style1}>
+              <div className="profiletitleandmenunav">
+                <div className="profiledetailstitle">Raise Issue</div>
+                <div className="profiledetailnavmanu">
+                  <div>
+                    <CloseIcon
+                      onClick={handleClose}
+                      style={{ fontSize: "1.5vw", cursor: "pointer" }}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <hr style={{ color: "#00000090" }} />
+              <hr style={{ color: "#00000090" }} />
 
-            <div
-              style={{ left: "0vw", width: "92%", marginLeft: "2%" }}
-              className="loginfield"
-              onClick={handleClickx2}
-            >
-              <TextField
-                id="outlined-basic"
-                label="Issue Type *"
-                variant="outlined"
-                disabled
-                value={title}
-                style={{ width: "100%" }}
-                InputLabelProps={{
-                  style: {
-                    fontSize: "1vw",
-                    fontFamily: "Poppins",
-                    fontStyle: "500",
-                    fontWeight: "500",
-                    color: "black",
-                  },
-                }}
-                inputProps={{ className: classes.input }}
-                onChange={(e) => {
-                  console.log(e.target.value);
-                }}
-              />
-              <span style={{ width: "0.1vw" }}>
-                <KeyboardArrowDownOutlined
-                  style={{
-                    fontSize: "1.5vw",
-                    position: "relative",
-                    right: "2vw",
-                    top: "1vw",
+              <div
+                style={{ left: "0vw", width: "92%", marginLeft: "2%" }}
+                className="loginfield"
+                onClick={handleClickx2}
+              >
+                <TextField
+                  id="outlined-basic"
+                  label="Issue Type *"
+                  variant="outlined"
+                  disabled
+                  value={title}
+                  style={{ width: "100%" }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: "1vw",
+                      fontFamily: "Poppins",
+                      fontStyle: "500",
+                      fontWeight: "500",
+                      color: "black",
+                    },
+                  }}
+                  inputProps={{ className: classes.input }}
+                  onChange={(e) => {
+                    console.log(e.target.value);
                   }}
                 />
-              </span>
-            </div>
-            <Popover
-              id={idx2}
-              open={openx2}
-              anchorEl={anchorElx2}
-              onClose={handleClosex2}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-            >
-              <div
-                style={{
-                  maxHeight: "18vw",
-                  overflow: "scroll",
-                  width: "44vw",
+                <span style={{ width: "0.1vw" }}>
+                  <KeyboardArrowDownOutlined
+                    style={{
+                      fontSize: "1.5vw",
+                      position: "relative",
+                      right: "2vw",
+                      top: "1vw",
+                    }}
+                  />
+                </span>
+              </div>
+              <Popover
+                id={idx2}
+                open={openx2}
+                anchorEl={anchorElx2}
+                onClose={handleClosex2}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
                 }}
               >
-                <Typography
-                  sx={{
-                    p: 0.51,
-                    pl: 1,
-                    ml: 1,
-                    width: "100%",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    settitle("Bidder Was not doing Work Properly");          handleClosex2()
+                <div
+                  style={{
+                    maxHeight: "18vw",
+                    overflow: "scroll",
+                    width: "44vw",
                   }}
                 >
-                  Bidder Was not doing Work Properly
-                </Typography>
-                <Typography
-                  sx={{
-                    p: 0.51,
-                    pl: 1,
-                    ml: 1,
-                    width: "100%",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    settitle("Bidder Was not doing Work Properly");          handleClosex2()
-                  }}
-                >
-                  Bidder Was not doing Work Properly
-                </Typography>
-                <Typography
-                  sx={{
-                    p: 0.51,
-                    pl: 1,
-                    ml: 1,
-                    width: "100%",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    settitle("Bidder Was not doing Work Properly");          handleClosex2()
-                  }}
-                >
-                  Bidder Was not doing Work Properly
-                </Typography>
+                  <Typography
+                    sx={{
+                      p: 0.51,
+                      pl: 1,
+                      ml: 1,
+                      width: "100%",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      settitle("Bidder Was not doing Work Properly");
+                      handleClosex2();
+                    }}
+                  >
+                    Bidder Was not doing Work Properly
+                  </Typography>
+                  <Typography
+                    sx={{
+                      p: 0.51,
+                      pl: 1,
+                      ml: 1,
+                      width: "100%",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      settitle("Bidder Was not doing Work Properly");
+                      handleClosex2();
+                    }}
+                  >
+                    Bidder Was not doing Work Properly
+                  </Typography>
+                  <Typography
+                    sx={{
+                      p: 0.51,
+                      pl: 1,
+                      ml: 1,
+                      width: "100%",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      settitle("Bidder Was not doing Work Properly");
+                      handleClosex2();
+                    }}
+                  >
+                    Bidder Was not doing Work Properly
+                  </Typography>
+                </div>
+              </Popover>
+              <p style={{ color: "red", fontSize: "0.9vw", marginLeft: "1vw" }}>
+                {titleerr}
+              </p>
+              <div
+                style={{ marginLeft: "1vw" }}
+                className="jobpodtedfieldtitile"
+              >
+                Issue Description
               </div>
-            </Popover>
-            <p style={{ color: "red",fontSize:"0.9vw",marginLeft:"1vw" }}>{titleerr}</p>
-            <div style={{ marginLeft: "1vw" }} className="jobpodtedfieldtitile">
-              Issue Description
-            </div>
-            <div style={{ marginLeft: "1vw" }} className="jobpostfieldinputbox">
-              <textarea
-                type="text"
-                name="desc"
-                value={desc}
-                onChange={(e) => setDesc(e.target.value)}
-              />
-            </div>
-            <p style={{ color: "red",fontSize:"0.9vw",marginLeft:"1vw" }}>{descerr}</p>
+              <div
+                style={{ marginLeft: "1vw" }}
+                className="jobpostfieldinputbox"
+              >
+                <textarea
+                  type="text"
+                  name="desc"
+                  value={desc}
+                  onChange={(e) => setDesc(e.target.value)}
+                />
+              </div>
+              <p style={{ color: "red", fontSize: "0.9vw", marginLeft: "1vw" }}>
+                {descerr}
+              </p>
 
-            <div
-              style={{ marginTop: "0.31vw" }}
-              className="handlemoreaboutskill"
-            >
               <div
-                style={{
-                  background: "white",
-                  color: "black",
-                  cursor: "pointer",
-                }}
-                className="handlecirclieaboutsave"
-                onClick={handleClose}
+                style={{ marginTop: "0.31vw" }}
+                className="handlemoreaboutskill"
               >
-                Cancel
+                <div
+                  style={{
+                    background: "white",
+                    color: "black",
+                    cursor: "pointer",
+                  }}
+                  className="handlecirclieaboutsave"
+                  onClick={handleClose}
+                >
+                  Cancel
+                </div>
+                <div
+                  style={{ cursor: "pointer" }}
+                  className="handlecirclieaboutsave"
+                  onClick={handleAddIssue}
+                >
+                  SAVE
+                </div>
               </div>
-              <div
-                style={{ cursor: "pointer" }}
-                className="handlecirclieaboutsave"
-                onClick={handleAddIssue}
-              >
-                SAVE
-              </div>
-            </div>
-          </Box>
-        </Modal>
-      
+            </Box>
+          </Modal>
           <div
-          style={{
-            fontWeight: "600",
-            fontSize: "1.3vw",
-            display: "flex",
-            flexWrap: "wrap",
-            marginTop: "1vw",
-            marginLeft: "1vw",
-            color: "#064C87",
-            justifyContent: "space-between",
-          }}
-        >
-          <div>{data1?.workTitle}</div>
-          {data1?.assignWorkComplitionDate && (
-            <div>
-              Status :{" "}
-              <span style={{ color: "green", marginRight: "1vw" }}>
-                {data1?.workStatus}
-              </span>
-            </div>
-          )}
-        </div>
+            style={{
+              fontWeight: "600",
+              fontSize: "1.3vw",
+              display: "flex",
+              flexWrap: "wrap",
+              marginTop: "1vw",
+              marginLeft: "1vw",
+              color: "#064C87",
+              justifyContent: "space-between",
+            }}
+          >
+            <div>{data1?.workTitle}</div>
+            {data1?.assignWorkComplitionDate && (
+              <div>
+                Status :{" "}
+                <span style={{ color: "green", marginRight: "1vw" }}>
+                  {data1?.workStatus}
+                </span>
+              </div>
+            )}
+          </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <span>
               <LocationOnOutlinedIcon
@@ -617,8 +629,8 @@ export default function Jobdetail() {
                   className="navoftableblogs"
                 >
                   <div style={{ width: "18vw" }}>Name</div>
-                  <div style={{ width: "13vw" }}>Duration</div>
-                  <div style={{ width: "12vw" }}>date</div>
+                  <div style={{ width: "13vw" }}>Completion Date</div>
+                <div style={{ width: "12vw" }}>Bidding date</div>
                   <div style={{ width: "12vw" }}>Bid Value</div>
                   <div style={{ width: "12vw" }}>Status</div>
                   <div style={{ width: "7vw" }}></div>
@@ -646,7 +658,7 @@ export default function Jobdetail() {
                         : 1) / 3
                     ) *
                       14 +
-                    26
+                    35
                   }vw`
                 : "",
             }}
@@ -687,68 +699,97 @@ export default function Jobdetail() {
                 style={{ margin: "1vw", flexWrap: "wrap", marginTop: "0vw" }}
                 className="activejobpistbudgetbox"
               >
-                <div className="boxblackbackg">
-                  Service Provider Id <br />
-                  <div>
-                    <span>
-                      {data1?.jobDoerId?.userId
-                        ? data1?.jobDoerId?.userId
-                        : "-"}
-                    </span>
-                  </div>
+                           <div className="boxblackbackg">
+                Client ID <br />
+                <div>
+                  <span>
+                    {data1?.user_id?.userId ? data1?.user_id?.userId : "-"}
+                  </span>
                 </div>
-                <div className="boxblackbackg">
-                  Service Provider Name <br />
-                  <div>
-                    <span>
-                      {data1?.jobDoerId?.fullName
-                        ? data1?.jobDoerId?.fullName
-                        : "-"}
-                    </span>
-                  </div>
+              </div>
+              <div className="boxblackbackg">
+                Client Name <br />
+                <div>
+                  <span>
+                    {data1?.user_id?.fullName ? data1?.user_id?.fullName : "-"}
+                  </span>
                 </div>
-                <div className="boxblackbackg">
-                  Contract Amount <br />
-                  <div>
-                    <span>
-                      {data1?.workAssigned
-                        ? data1?.workAssignedTo?.totalProjectPrice
-                        : "-"}{" "}
-                    </span>
-                  </div>
+              </div>
+              <div className="boxblackbackg">
+                Job Starting Date <br />
+                <div>
+                  <span>
+                    {data1?.jobPostingDate ? data1?.jobPostingDate : "-"}
+                  </span>
                 </div>
-                <div className="boxblackbackg">
-                  duration <br />
-                  <div>
-                    <span>{data1?.workAssigned ? "-" : "-"}</span>
-                  </div>
+              </div>
+
+              <div className="boxblackbackg">
+                Service Provider Id <br />
+                <div>
+                  <span>
+                    {data1?.jobDoerId?.userId ? data1?.jobDoerId?.userId : "-"}
+                  </span>
                 </div>
-                <div className="boxblackbackg">
-                  Contract Starting Date <br />
-                  <div>
-                    <span>
-                      {data1?.workAssigned ? data1?.workAssignDate : "-"}
-                    </span>
-                  </div>
+              </div>
+              <div className="boxblackbackg">
+                Service Provider Name <br />
+                <div>
+                  <span>
+                    {data1?.jobDoerId?.fullName
+                      ? data1?.jobDoerId?.fullName
+                      : "-"}
+                  </span>
                 </div>
-                <div className="boxblackbackg">
-                  Contract Ending Date <br />
-                  <div>
-                    <span>
-                      {data1?.workAssigned
+              </div>
+
+              <div className="boxblackbackg">
+                Contract Amount <br />
+                <div>
+                  <span>
+                    {data1?.workAssigned
+                      ? data1?.workAssignedTo?.totalProjectPrice
+                      : "-"}{" "}
+                  </span>
+                </div>
+              </div>
+              <div className="boxblackbackg">
+                duration <br />
+                <div>
+                  <span>
+                    {data1?.deliveryDate ? data1?.deliveryDate + " days" : "-"}
+                  </span>
+                </div>
+              </div>
+
+              <div className="boxblackbackg">
+                Contract Starting Date <br />
+                <div>
+                  <span>
+                    {data1?.workAssigned ? data1?.workAssignDate : "-"}
+                  </span>
+                </div>
+              </div>
+
+              <div className="boxblackbackg">
+                Contract Ending Date <br />
+                <div>
+                  <span>
+                    {data1?.workAssigned
+                      ? data1?.workAssignedTo?.milestoneDueDate5
                         ? data1?.workAssignedTo?.milestoneDueDate5
-                          ? data1?.workAssignedTo?.milestoneDueDate5
-                          : data1?.workAssignedTo?.milestoneDueDate4
-                          ? data1?.workAssignedTo?.milestoneDueDate4
-                          : data1?.workAssignedTo?.milestoneDueDate3
-                          ? data1?.workAssignedTo?.milestoneDueDate3
-                          : data1?.workAssignedTo?.milestoneDueDate2
-                          ? data1?.workAssignedTo?.milestoneDueDate2
-                          : data1?.workAssignedTo?.milestoneDueDate1
-                        : "-"}
-                    </span>
-                  </div>
+                        : data1?.workAssignedTo?.milestoneDueDate4
+                        ? data1?.workAssignedTo?.milestoneDueDate4
+                        : data1?.workAssignedTo?.milestoneDueDate3
+                        ? data1?.workAssignedTo?.milestoneDueDate3
+                        : data1?.workAssignedTo?.milestoneDueDate2
+                        ? data1?.workAssignedTo?.milestoneDueDate2
+                        : data1?.workAssignedTo?.milestoneDueDate1
+                      : "-"}
+                  </span>
                 </div>
+              </div>
+           
               </div>
               <div
                 style={{
@@ -925,7 +966,7 @@ export default function Jobdetail() {
                     className="loginfield"
                   >
                     <div
-                      style={{ marginBottom: "0.0vw", marginBottom: "1vw" }}
+                      style={{ marginBottom: "0.0vw" }}
                       className="jobpodtedfieldtitile"
                     >
                       Review

@@ -62,7 +62,15 @@ export default function Listofproposals({
         className="navoftableblogs"
       >
         <div style={{ width: "18vw" }}>{data?.user_id?.fullName}</div>
-        <div style={{ width: "13vw" }}>--</div>
+        <div style={{ width: "13vw" }}>  {data?.bidingId?.milestoneDueDate5
+            ? data?.bidingId?.milestoneDueDate5
+            : data?.bidingId?.milestoneDueDate4
+            ? data?.bidingId?.milestoneDueDate4
+            : data?.bidingId?.milestoneDueDate3
+            ? data?.bidingId?.milestoneDueDate3
+            : data?.bidingId?.milestoneDueDate2
+            ? data?.bidingId?.milestoneDueDate2
+            : data?.bidingId?.milestoneDueDate1}</div>
         <div style={{ width: "12vw" }}>{data?.timestamps?.slice(0, 10)}</div>
         <div style={{ width: "12vw" }}>
           $ {data?.bidingId?.totalProjectPrice}

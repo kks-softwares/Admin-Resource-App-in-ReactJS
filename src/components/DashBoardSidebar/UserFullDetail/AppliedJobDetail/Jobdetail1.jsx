@@ -179,7 +179,7 @@ export default function Jobdetail1({ user, jobdetail }) {
         </div>
         <div
           style={{
-            height: down2 ? `${longofproposallist?.length * 4 + 10}vw` : "",
+            height: down2 ? `${parseInt((data1?.icons?.length + 2) / 3) * 13.5 + 5}vw` : "",
           }}
           className="boxofextension"
         >
@@ -301,8 +301,8 @@ export default function Jobdetail1({ user, jobdetail }) {
                 className="navoftableblogs"
               >
                 <div style={{ width: "18vw" }}>Name</div>
-                <div style={{ width: "13vw" }}>Duration</div>
-                <div style={{ width: "12vw" }}>date</div>
+                <div style={{ width: "13vw" }}>Completion Date</div>
+                <div style={{ width: "12vw" }}>Bidding date</div>
                 <div style={{ width: "12vw" }}>Bid Value</div>
                 <div style={{ width: "12vw" }}>Status</div>
                 <div style={{ width: "7vw" }}></div>
@@ -330,7 +330,7 @@ export default function Jobdetail1({ user, jobdetail }) {
                     : 1) / 3
                 ) *
                   14 +
-                26
+                35
               }vw`
             : "",
           }}
@@ -361,6 +361,31 @@ export default function Jobdetail1({ user, jobdetail }) {
               style={{ margin: "1vw", flexWrap: "wrap", marginTop: "0vw" }}
               className="activejobpistbudgetbox"
             >
+                    <div className="boxblackbackg">
+                Client ID <br />
+                <div>
+                  <span>
+                    {data1?.user_id?.userId ? data1?.user_id?.userId : "-"}
+                  </span>
+                </div>
+              </div>
+              <div className="boxblackbackg">
+                Client Name <br />
+                <div>
+                  <span>
+                    {data1?.user_id?.fullName ? data1?.user_id?.fullName : "-"}
+                  </span>
+                </div>
+              </div>
+              <div className="boxblackbackg">
+                Job Starting Date <br />
+                <div>
+                  <span>
+                    {data1?.jobPostingDate ? data1?.jobPostingDate : "-"}
+                  </span>
+                </div>
+              </div>
+
               <div className="boxblackbackg">
                 Service Provider Id <br />
                 <div>
@@ -379,6 +404,7 @@ export default function Jobdetail1({ user, jobdetail }) {
                   </span>
                 </div>
               </div>
+
               <div className="boxblackbackg">
                 Contract Amount <br />
                 <div>
@@ -392,9 +418,12 @@ export default function Jobdetail1({ user, jobdetail }) {
               <div className="boxblackbackg">
                 duration <br />
                 <div>
-                  <span>{data1?.workAssigned ? "-" : "-"}</span>
+                  <span>
+                    {data1?.deliveryDate ? data1?.deliveryDate + " days" : "-"}
+                  </span>
                 </div>
               </div>
+
               <div className="boxblackbackg">
                 Contract Starting Date <br />
                 <div>
@@ -403,10 +432,11 @@ export default function Jobdetail1({ user, jobdetail }) {
                   </span>
                 </div>
               </div>
+
               <div className="boxblackbackg">
                 Contract Ending Date <br />
                 <div>
-                <span>
+                  <span>
                     {data1?.workAssigned
                       ? data1?.workAssignedTo?.milestoneDueDate5
                         ? data1?.workAssignedTo?.milestoneDueDate5
@@ -421,7 +451,7 @@ export default function Jobdetail1({ user, jobdetail }) {
                   </span>
                 </div>
               </div>
-            </div>
+             </div>
             <div
               style={{ marginLeft: "1vw", marginTop: "0vw" }}
               className="flexofdtaes"

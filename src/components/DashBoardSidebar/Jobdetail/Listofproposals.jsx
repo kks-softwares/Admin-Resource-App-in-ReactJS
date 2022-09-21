@@ -54,7 +54,15 @@ export default function Listofproposals({ data, data1 }) {
         className="navoftableblogs"
       >
         <div style={{ width: "18vw" }}>{data?.user_id?.fullName}</div>
-        <div style={{ width: "13vw" }}>--</div>
+        <div style={{ width: "13vw" }}>  {data?.bidingId?.milestoneDueDate5
+            ? data?.bidingId?.milestoneDueDate5
+            : data?.bidingId?.milestoneDueDate4
+            ? data?.bidingId?.milestoneDueDate4
+            : data?.bidingId?.milestoneDueDate3
+            ? data?.bidingId?.milestoneDueDate3
+            : data?.bidingId?.milestoneDueDate2
+            ? data?.bidingId?.milestoneDueDate2
+            : data?.bidingId?.milestoneDueDate1}</div>
         <div style={{ width: "12vw" }}>{data?.timestamps?.slice(0, 10)}</div>
         <div style={{ width: "12vw" }}>
           $ {data?.bidingId?.totalProjectPrice}
@@ -207,6 +215,23 @@ export default function Listofproposals({ data, data1 }) {
                 )}
               </Box>
             </Modal>
+            <div
+              style={{ color: "#064C87", margin: "0.5vw", fontWeight: "500" }}
+            >
+              Description
+            </div>
+            <div
+              style={{
+                width: "100%",
+                margin: "0.5vw 1vw",
+                fontSize: "0.85vw",
+                marginBottom: "0.0vw",
+                marginRight: "2vw",
+              }}
+              className="dashboardtitilemainparabid"
+            >
+              {data?.bidingId?.shortDescription}
+            </div>
             <div style={{ margin: "0.5vw", fontWeight: "500" }}>
               Total Milestone
             </div>
