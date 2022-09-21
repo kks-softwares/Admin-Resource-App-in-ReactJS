@@ -11,7 +11,7 @@ import axios from "axios";
 import API_HOST from "../../../../env";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import img23 from "../../../../assets/Dashboard/Skill center – 2/wepik--2022426-10102.png";
+
 
 const style = {
   position: "absolute",
@@ -123,12 +123,43 @@ export default function Jobdetail1({ user, jobdetail }) {
           }}
         >
           <div>{data1?.workTitle}</div>
-          {data1?.assignWorkComplitionDate && (
+          {data1?.closeBy44 ? (
             <div>
               Status :{" "}
               <span style={{ color: "green", marginRight: "1vw" }}>
-                {data1?.workStatus}
+                Completed
               </span>
+            </div>
+          ) : (
+            <div>
+              {" "}
+              {data1?.workAssignedTo?.assignedJobComplition &&
+                !data1?.assignWorkComplition && (
+                  <div>
+                    Status :{" "}
+                    <span style={{ color: "green", marginRight: "1vw" }}>
+                      Contract Ended by service Provider
+                    </span>
+                  </div>
+                )}
+              {data1?.workAssignedTo?.assignedJobComplition &&
+                data1?.assignWorkComplition && (
+                  <div>
+                    Status :{" "}
+                    <span style={{ color: "green", marginRight: "1vw" }}>
+                      Contract Ended by Client and service Provider
+                    </span>
+                  </div>
+                )}
+              {!data1?.workAssignedTo?.assignedJobComplition &&
+                data1?.assignWorkComplition && (
+                  <div>
+                    Status :
+                    <span style={{ color: "green", marginRight: "1vw" }}>
+                    Contract Ended by service Provider
+                    </span>
+                  </div>
+                )}
             </div>
           )}
         </div>

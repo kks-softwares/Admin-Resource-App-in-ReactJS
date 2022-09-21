@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./jobdetail.css";
-
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -8,13 +7,12 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import Listofproposals from "./Listofproposals";
 import StarRatings from "react-star-ratings";
 import img1 from "../../../../assets/Web 1280 – 14/Group 9831.svg";
-import img from "../../../../assets/Landing page/pexels-christina-morillo-1181467.png";
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 import API_HOST from "../../../../env";
 import axios from "axios";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import img23 from "../../../../assets/Dashboard/Skill center – 2/wepik--2022426-10102.png";
+
 
 const style = {
   position: "absolute",
@@ -126,14 +124,47 @@ export default function Jobdetail({ jobdetail }) {
           }}
         >
           <div>{data1?.workTitle}</div>
-          {data1?.assignWorkComplitionDate && (
+          
+              {data1?.closeBy44 ? (
             <div>
               Status :{" "}
               <span style={{ color: "green", marginRight: "1vw" }}>
-                {data1?.workStatus}
+                Completed
               </span>
             </div>
+          ) : (
+            <div>
+              {" "}
+              {data1?.workAssignedTo?.assignedJobComplition &&
+                !data1?.assignWorkComplition && (
+                  <div>
+                    Status :{" "}
+                    <span style={{ color: "green", marginRight: "1vw" }}>
+                      Contract Ended by service Provider
+                    </span>
+                  </div>
+                )}
+              {data1?.workAssignedTo?.assignedJobComplition &&
+                data1?.assignWorkComplition && (
+                  <div>
+                    Status :{" "}
+                    <span style={{ color: "green", marginRight: "1vw" }}>
+                      Contract Ended by Client and service Provider
+                    </span>
+                  </div>
+                )}
+              {!data1?.workAssignedTo?.assignedJobComplition &&
+                data1?.assignWorkComplition && (
+                  <div>
+                    Status :
+                    <span style={{ color: "green", marginRight: "1vw" }}>
+                    Contract Ended by service Provider
+                    </span>
+                  </div>
+                )}
+            </div>
           )}
+            
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
           <span>

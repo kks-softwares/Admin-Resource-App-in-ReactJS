@@ -113,6 +113,28 @@ export default function Jobdetail() {
 
   const [imagesave, setImagesave] = useState();
 
+  const [open3, setOpen3] = React.useState(false);
+  const handleOpen3 = () => setOpen3(true);
+  const handleClose3 = () => setOpen3(false);
+
+  const handleendContarct = () => {
+    const formdata = new FormData();
+
+    formdata.append("closeBy44", true);
+    formdata.append("jobPostId", data1?.jobPostId);
+
+    axios.post(`${API_HOST}/jobPost/submitReview`, formdata, {}).then((res) => {
+      axios
+        .get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${id}`)
+        .then((res) => {
+          console.log(res?.data?.success?.data[0]);
+          setdata1(res?.data?.success?.data[0]);
+          setLongofproposallist(res?.data?.success?.data[0]?.listOfBider);
+          handleClose3();
+        });
+    });
+  };
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -423,12 +445,43 @@ export default function Jobdetail() {
             }}
           >
             <div>{data1?.workTitle}</div>
-            {data1?.assignWorkComplitionDate && (
+            {data1?.closeBy44 ? (
               <div>
                 Status :{" "}
                 <span style={{ color: "green", marginRight: "1vw" }}>
-                  {data1?.workStatus}
+                  Completed
                 </span>
+              </div>
+            ) : (
+              <div>
+                {" "}
+                {data1?.workAssignedTo?.assignedJobComplition &&
+                  !data1?.assignWorkComplition && (
+                    <div>
+                      Status :{" "}
+                      <span style={{ color: "green", marginRight: "1vw" }}>
+                        Contract Ended by service Provider
+                      </span>
+                    </div>
+                  )}
+                {data1?.workAssignedTo?.assignedJobComplition &&
+                  data1?.assignWorkComplition && (
+                    <div>
+                      Status :{" "}
+                      <span style={{ color: "green", marginRight: "1vw" }}>
+                      Contract Ended by Client and Service Provider
+                      </span>
+                    </div>
+                  )}
+                {!data1?.workAssignedTo?.assignedJobComplition &&
+                  data1?.assignWorkComplition && (
+                    <div>
+                      Status :
+                      <span style={{ color: "green", marginRight: "1vw" }}>
+                      Contract Ended by Client
+                      </span>
+                    </div>
+                  )}
               </div>
             )}
           </div>
@@ -630,7 +683,7 @@ export default function Jobdetail() {
                 >
                   <div style={{ width: "18vw" }}>Name</div>
                   <div style={{ width: "13vw" }}>Completion Date</div>
-                <div style={{ width: "12vw" }}>Bidding date</div>
+                  <div style={{ width: "12vw" }}>Bidding date</div>
                   <div style={{ width: "12vw" }}>Bid Value</div>
                   <div style={{ width: "12vw" }}>Status</div>
                   <div style={{ width: "7vw" }}></div>
@@ -699,97 +752,102 @@ export default function Jobdetail() {
                 style={{ margin: "1vw", flexWrap: "wrap", marginTop: "0vw" }}
                 className="activejobpistbudgetbox"
               >
-                           <div className="boxblackbackg">
-                Client ID <br />
-                <div>
-                  <span>
-                    {data1?.user_id?.userId ? data1?.user_id?.userId : "-"}
-                  </span>
+                <div className="boxblackbackg">
+                  Client ID <br />
+                  <div>
+                    <span>
+                      {data1?.user_id?.userId ? data1?.user_id?.userId : "-"}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="boxblackbackg">
-                Client Name <br />
-                <div>
-                  <span>
-                    {data1?.user_id?.fullName ? data1?.user_id?.fullName : "-"}
-                  </span>
+                <div className="boxblackbackg">
+                  Client Name <br />
+                  <div>
+                    <span>
+                      {data1?.user_id?.fullName
+                        ? data1?.user_id?.fullName
+                        : "-"}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="boxblackbackg">
-                Job Starting Date <br />
-                <div>
-                  <span>
-                    {data1?.jobPostingDate ? data1?.jobPostingDate : "-"}
-                  </span>
+                <div className="boxblackbackg">
+                  Job Starting Date <br />
+                  <div>
+                    <span>
+                      {data1?.jobPostingDate ? data1?.jobPostingDate : "-"}
+                    </span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="boxblackbackg">
-                Service Provider Id <br />
-                <div>
-                  <span>
-                    {data1?.jobDoerId?.userId ? data1?.jobDoerId?.userId : "-"}
-                  </span>
+                <div className="boxblackbackg">
+                  Service Provider Id <br />
+                  <div>
+                    <span>
+                      {data1?.jobDoerId?.userId
+                        ? data1?.jobDoerId?.userId
+                        : "-"}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="boxblackbackg">
-                Service Provider Name <br />
-                <div>
-                  <span>
-                    {data1?.jobDoerId?.fullName
-                      ? data1?.jobDoerId?.fullName
-                      : "-"}
-                  </span>
+                <div className="boxblackbackg">
+                  Service Provider Name <br />
+                  <div>
+                    <span>
+                      {data1?.jobDoerId?.fullName
+                        ? data1?.jobDoerId?.fullName
+                        : "-"}
+                    </span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="boxblackbackg">
-                Contract Amount <br />
-                <div>
-                  <span>
-                    {data1?.workAssigned
-                      ? data1?.workAssignedTo?.totalProjectPrice
-                      : "-"}{" "}
-                  </span>
+                <div className="boxblackbackg">
+                  Contract Amount <br />
+                  <div>
+                    <span>
+                      {data1?.workAssigned
+                        ? data1?.workAssignedTo?.totalProjectPrice
+                        : "-"}{" "}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="boxblackbackg">
-                duration <br />
-                <div>
-                  <span>
-                    {data1?.deliveryDate ? data1?.deliveryDate + " days" : "-"}
-                  </span>
+                <div className="boxblackbackg">
+                  duration <br />
+                  <div>
+                    <span>
+                      {data1?.deliveryDate
+                        ? data1?.deliveryDate + " days"
+                        : "-"}
+                    </span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="boxblackbackg">
-                Contract Starting Date <br />
-                <div>
-                  <span>
-                    {data1?.workAssigned ? data1?.workAssignDate : "-"}
-                  </span>
+                <div className="boxblackbackg">
+                  Contract Starting Date <br />
+                  <div>
+                    <span>
+                      {data1?.workAssigned ? data1?.workAssignDate : "-"}
+                    </span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="boxblackbackg">
-                Contract Ending Date <br />
-                <div>
-                  <span>
-                    {data1?.workAssigned
-                      ? data1?.workAssignedTo?.milestoneDueDate5
+                <div className="boxblackbackg">
+                  Contract Ending Date <br />
+                  <div>
+                    <span>
+                      {data1?.workAssigned
                         ? data1?.workAssignedTo?.milestoneDueDate5
-                        : data1?.workAssignedTo?.milestoneDueDate4
-                        ? data1?.workAssignedTo?.milestoneDueDate4
-                        : data1?.workAssignedTo?.milestoneDueDate3
-                        ? data1?.workAssignedTo?.milestoneDueDate3
-                        : data1?.workAssignedTo?.milestoneDueDate2
-                        ? data1?.workAssignedTo?.milestoneDueDate2
-                        : data1?.workAssignedTo?.milestoneDueDate1
-                      : "-"}
-                  </span>
+                          ? data1?.workAssignedTo?.milestoneDueDate5
+                          : data1?.workAssignedTo?.milestoneDueDate4
+                          ? data1?.workAssignedTo?.milestoneDueDate4
+                          : data1?.workAssignedTo?.milestoneDueDate3
+                          ? data1?.workAssignedTo?.milestoneDueDate3
+                          : data1?.workAssignedTo?.milestoneDueDate2
+                          ? data1?.workAssignedTo?.milestoneDueDate2
+                          : data1?.workAssignedTo?.milestoneDueDate1
+                        : "-"}
+                    </span>
+                  </div>
                 </div>
-              </div>
-           
               </div>
               <div
                 style={{
@@ -859,7 +917,7 @@ export default function Jobdetail() {
                       4 +
                     parseInt((data1?.docs ? data1?.docs?.length + 2 : 1) / 3) *
                       4 +
-                    77
+                    83
                   }vw`
                 : "",
             }}
@@ -1134,13 +1192,85 @@ export default function Jobdetail() {
                   </div>
                 </div>
               </div>
-              {/* <div className="confirmationtext">
-              Are you Sure What to Close Contract From <span>44 Resource</span>{" "}
-              Representative
-            </div> */}
-              {/* <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <button className="endbuttoncontract">End Contract</button>
-            </div> */}
+
+              {!data1?.closeBy44 && (
+                <div>
+                  <div className="confirmationtext">
+                    Are you Sure What to Close Contract From{" "}
+                    <span>44 Resource</span> Representative
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                    <button
+                      onClick={() => {
+                        handleOpen3();
+                      }}
+                      className="endbuttoncontract"
+                    >
+                      End Contract
+                    </button>
+                  </div>
+                </div>
+              )}
+              <Modal
+                open={open3}
+                onClose={handleClose3}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style1}>
+                  <div className="profiletitleandmenunav">
+                    <div className="profiledetailstitle">End Contract </div>
+                    <div className="profiledetailnavmanu">
+                      <div>
+                        <CloseIcon
+                          onClick={handleClose3}
+                          style={{ fontSize: "1.5vw", cursor: "pointer" }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <hr style={{ color: "#00000090" }} />
+
+                  <div
+                    style={{ left: "0vw", width: "100%" }}
+                    className="loginfield"
+                  >
+                    The Action Will End Contract " {data1?.workTitle}" .
+                  </div>
+
+                  <hr style={{ color: "#00000090" }} />
+                  <div
+                    style={{ marginTop: "0.31vw" }}
+                    className="handlemoreaboutskill"
+                  >
+                    <div
+                      style={{
+                        background: "white",
+                        color: "black",
+                        cursor: "pointer",
+                      }}
+                      className="handlecirclieaboutsave"
+                      onClick={handleClose3}
+                    >
+                      Cancel
+                    </div>
+                    <div
+                      onClick={() => {
+                        handleendContarct();
+                      }}
+                      style={{
+                        cursor: "pointer",
+                        background: "#FF0000",
+                        padding: "0.71vw",
+                        width: "fit-content",
+                      }}
+                      className="handlecirclieaboutsave"
+                    >
+                      End Contract
+                    </div>
+                  </div>
+                </Box>
+              </Modal>
             </div>
           </div>
         </div>
