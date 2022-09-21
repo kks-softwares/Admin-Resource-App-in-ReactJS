@@ -433,8 +433,8 @@ export default function EditJob({ handleClose, setSelectedCategory }) {
               setAge5(index + 1);
             }
           });
-          setDateend(res.data?.success?.data[0]?.jobPostingDate);
-          setDatestart(res.data?.success?.data[0]?.terminationDate);
+          setDateend(res.data?.success?.data[0]?.terminationDate);
+          setDatestart(res.data?.success?.data[0]?.jobPostingDate);
           setCateaddcheckbox1(!res?.data?.success?.data[0]?.remote);
           setstudyset1(res?.data?.success?.data[0]?.onSite);
           setArrayoffiles(res?.data?.success?.data[0]?.icons);
