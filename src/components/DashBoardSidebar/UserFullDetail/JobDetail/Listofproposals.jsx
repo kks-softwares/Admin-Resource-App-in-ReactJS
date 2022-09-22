@@ -79,11 +79,13 @@ export default function Listofproposals({
           style={{
             width: "12vw",
             color:
-              data?.bidingId?.workStatus === "completed"
-                ? "green"
-                : data?.bidingId?.workStatus === "pending"
-                ? "red"
-                : "#E2E228",
+            data?.bidingId?.workStatus === "Completed"
+            ? "green"
+            : data?.bidingId?.workStatus === "pending" ||
+              data?.bidingId?.workStatus === "Withdraw" ||
+              data?.bidingId?.workStatus === "Reject"
+            ? "red"
+            : "#E2E228",
           }}
         >
           {data?.bidingId?.workStatus}
@@ -142,11 +144,13 @@ export default function Listofproposals({
                 <span
                   style={{
                     color:
-                      data?.bidingId?.workStatus === "completed"
-                        ? "green"
-                        : data?.bidingId?.workStatus === "pending"
-                        ? "red"
-                        : "yellow",
+                    data?.bidingId?.workStatus === "Completed"
+                    ? "green"
+                    : data?.bidingId?.workStatus === "pending" ||
+                      data?.bidingId?.workStatus === "Withdraw" ||
+                      data?.bidingId?.workStatus === "Reject"
+                    ? "red"
+                    : "#E2E228",
                   }}
                 >
                   {data?.bidingId?.workStatus}

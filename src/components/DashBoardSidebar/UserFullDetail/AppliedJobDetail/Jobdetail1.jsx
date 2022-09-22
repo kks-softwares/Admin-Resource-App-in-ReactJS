@@ -11,8 +11,6 @@ import axios from "axios";
 import API_HOST from "../../../../env";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-
-
 const style = {
   position: "absolute",
   top: "50%",
@@ -123,7 +121,11 @@ export default function Jobdetail1({ user, jobdetail }) {
           }}
         >
           <div>{data1?.workTitle}</div>
-          {data1?.closeBy44 ? (
+         
+          {
+              data1?.jobDoerId?.userId === user?.userId &&
+              <div>
+ {data1?.closeBy44 ? (
             <div>
               Status :{" "}
               <span style={{ color: "green", marginRight: "1vw" }}>
@@ -162,6 +164,8 @@ export default function Jobdetail1({ user, jobdetail }) {
                 )}
             </div>
           )}
+              </div>
+          }
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
           <span>
@@ -356,7 +360,7 @@ export default function Jobdetail1({ user, jobdetail }) {
             height: down3
             ? `${
                 parseInt(
-                  (data1?.workAssignedTo?.files
+                   ( (data1?.jobDoerId?.userId === user?.userId) &&data1?.workAssignedTo?.files 
                     ? data1?.workAssignedTo?.files?.length + 2
                     : 1) / 3
                 ) *
@@ -420,54 +424,54 @@ export default function Jobdetail1({ user, jobdetail }) {
               <div className="boxblackbackg">
                 Service Provider Id <br />
                 <div>
-                  <span>
+                  { data1?.jobDoerId?.userId === user?.userId &&<span>
                     {data1?.jobDoerId?.userId ? data1?.jobDoerId?.userId : "-"}
-                  </span>
+                  </span>}
                 </div>
               </div>
               <div className="boxblackbackg">
                 Service Provider Name <br />
                 <div>
-                  <span>
+                  {data1?.jobDoerId?.userId === user?.userId &&<span>
                     {data1?.jobDoerId?.fullName
                       ? data1?.jobDoerId?.fullName
                       : "-"}
-                  </span>
+                  </span>}
                 </div>
               </div>
 
               <div className="boxblackbackg">
                 Contract Amount <br />
                 <div>
-                  <span>
+                  {data1?.jobDoerId?.userId === user?.userId &&<span>
                     {data1?.workAssigned
                       ? data1?.workAssignedTo?.totalProjectPrice
                       : "-"}{" "}
-                  </span>
+                  </span>}
                 </div>
               </div>
               <div className="boxblackbackg">
                 duration <br />
                 <div>
-                  <span>
+                 { data1?.jobDoerId?.userId === user?.userId &&<span>
                     {data1?.deliveryDate ? data1?.deliveryDate + " days" : "-"}
-                  </span>
+                  </span>}
                 </div>
               </div>
 
               <div className="boxblackbackg">
                 Contract Starting Date <br />
                 <div>
-                  <span>
+                 {data1?.jobDoerId?.userId === user?.userId && <span>
                     {data1?.workAssigned ? data1?.workAssignDate : "-"}
-                  </span>
+                  </span>}
                 </div>
               </div>
 
               <div className="boxblackbackg">
                 Contract Ending Date <br />
                 <div>
-                  <span>
+                 {data1?.jobDoerId?.userId === user?.userId && <span>
                     {data1?.workAssigned
                       ? data1?.workAssignedTo?.milestoneDueDate5
                         ? data1?.workAssignedTo?.milestoneDueDate5
@@ -479,7 +483,7 @@ export default function Jobdetail1({ user, jobdetail }) {
                         ? data1?.workAssignedTo?.milestoneDueDate2
                         : data1?.workAssignedTo?.milestoneDueDate1
                       : "-"}
-                  </span>
+                  </span>}
                 </div>
               </div>
              </div>
@@ -489,7 +493,7 @@ export default function Jobdetail1({ user, jobdetail }) {
             >
               <div className="datesofcontact">Documents</div>
             </div>
-            <div
+          { data1?.jobDoerId?.userId === user?.userId && <div
               style={{
                 margin: "1vw",
                 flexWrap: "wrap",
@@ -533,11 +537,12 @@ export default function Jobdetail1({ user, jobdetail }) {
                 );
               })}{" "}
             </div>
+        }
           </div>{" "}
         </div>
-        <div
+       { data1?.jobDoerId?.userId === user?.userId && <div
           style={{
-            height: down4 ? `${longofproposallist?.length * 4 + 81}vw` : "",
+            height: down4 ? `77vw` : "",
           }}
           className="boxofextension"
         >
@@ -629,7 +634,7 @@ export default function Jobdetail1({ user, jobdetail }) {
                   className="loginfield"
                 >
                   <div
-                    style={{ marginBottom: "0.0vw", marginBottom: "1vw" }}
+                    style={{ marginBottom: "0.0vw", }}
                     className="jobpodtedfieldtitile"
                   >
                     Review
@@ -737,7 +742,7 @@ export default function Jobdetail1({ user, jobdetail }) {
                   className="loginfield"
                 >
                   <div
-                    style={{ marginBottom: "0.0vw", marginBottom: "1vw" }}
+                    style={{ marginBottom: "0.0vw" }}
                     className="jobpodtedfieldtitile"
                   >
                     Review
@@ -791,15 +796,10 @@ export default function Jobdetail1({ user, jobdetail }) {
                 </div>
               </div>
             </div>
-            {/* <div className="confirmationtext">
-              Are you Sure What to Close Contract From <span>44 Resource</span>{" "}
-              Representative
-            </div> */}
-            {/* <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <button className="endbuttoncontract">End Contract</button>
-            </div> */}
+          
           </div>
         </div>
+      }
       </div>
     </div>
   );

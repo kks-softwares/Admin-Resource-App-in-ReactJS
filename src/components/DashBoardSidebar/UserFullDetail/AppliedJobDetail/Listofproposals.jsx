@@ -48,69 +48,7 @@ export default function Listofproposals({
 
   const handleClosex1 = () => setOpenx1(false);
 
-  const handleAcceptbid = () => {
-    var today = new Date(),
-      date =
-        today.getFullYear() +
-        "-" +
-        (today.getMonth() + 1) +
-        "-" +
-        today.getDate();
-    axios
-      .post(`${API_HOST}/biding/editBiding`, {
-        bidingId: data.bidingId?.bidingId,
-        workStatus: "Accepted",
-        assignedJob: true,
-        assignedJobDate: date,
-      })
-      .then((res) => {
-        axios
-          .post(`${API_HOST}/jobPost/editJobPost`, {
-            jobPostId: data1.jobPostId,
-            workStatus: "Accepted",
-            workAssigned: true,
-            workAssignDate: date,
-            jobDoerId: data?.user_id?._id,
-            workAssignedTo: data?.bidingId?._id,
-          })
-          .then(() => {
-            axios
-              .get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${jobdetail}`)
-              .then((res) => {
-                console.log(res?.data?.success?.data[0]);
-                setdata1(res?.data?.success?.data[0]);
-                setLongofproposallist(res?.data?.success?.data[0]?.listOfBider);
-                handleClosex();
-              });
-          });
-      });
-  };
-  const handleRejectbid = () => {
-    var today = new Date(),
-      date =
-        today.getFullYear() +
-        "-" +
-        (today.getMonth() + 1) +
-        "-" +
-        today.getDate();
-    axios
-      .post(`${API_HOST}/biding/editBiding`, {
-        bidingId: data.bidingId?.bidingId,
-        workStatus: "Reject",
-        assignedJob: true,
-        assignedJobDate: date,
-      })
-      .then((res) => {
-        axios
-          .get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${jobdetail}`)
-          .then((res) => {
-            console.log(res?.data?.success?.data[0]);
-            setdata1(res?.data?.success?.data[0]);
-            setLongofproposallist(res?.data?.success?.data[0]?.listOfBider);
-            handleClosex();
-          });
-      });
-  };
+ 
 
   const [imagesave, setImagesave] = useState();
 
@@ -143,11 +81,13 @@ export default function Listofproposals({
           style={{
             width: "12vw",
             color:
-              data?.bidingId?.workStatus === "completed"
-                ? "green"
-                : data?.bidingId?.workStatus === "pending"
-                ? "red"
-                : "#E2E228",
+            data?.bidingId?.workStatus === "Completed"
+            ? "green"
+            : data?.bidingId?.workStatus === "pending" ||
+              data?.bidingId?.workStatus === "Withdraw" ||
+              data?.bidingId?.workStatus === "Reject"
+            ? "red"
+            : "#E2E228",
           }}
         >
           {data?.bidingId?.workStatus}
@@ -206,11 +146,13 @@ export default function Listofproposals({
                 <span
                   style={{
                     color:
-                      data?.bidingId?.workStatus === "completed"
-                        ? "green"
-                        : data?.bidingId?.workStatus === "pending"
-                        ? "red"
-                        : "yellow",
+                    data?.bidingId?.workStatus === "Completed"
+                    ? "green"
+                    : data?.bidingId?.workStatus === "pending" ||
+                      data?.bidingId?.workStatus === "Withdraw" ||
+                      data?.bidingId?.workStatus === "Reject"
+                    ? "red"
+                    : "#E2E228",
                   }}
                 >
                   {data?.bidingId?.workStatus}
@@ -472,45 +414,7 @@ export default function Listofproposals({
             {data?.bidingId?.milestoneDescription5 !== null && (
               <hr style={{ width: "100%", margin: "0.3vw" }} />
             )}
-            {/* {data?.bidingId?.workStatus === "pending" && (
-              <div
-                style={{
-                  fontSize: "0.9vw",
-                  marginLeft: "1vw",
-                  marginTop: "1vw",
-                }}
-              >
-                Are you Ready to Accept the Proposal ?
-              </div>
-            )}
-            {((data?.bidingId?.workStatus === "pending") && (data1?.workAssigned===false)) ? (
-              <div
-                style={{
-                  float: "right",
-                  marginBottom: "2vw",
-                  marginTop: "0.3vw",
-                }}
-                className="homejobbuttons"
-              >
-                <button
-                  style={{ background: "white" }}
-                  onClick={() => navigate("/dashbaord/messages")}
-                >
-                  Chat us
-                </button>
-                <button
-                  style={{ background: "white" }}
-                  onClick={handleRejectbid}
-                >
-                  Rejected
-                </button>
-                <button style={{ color: "white" }} onClick={handleAcceptbid}>
-                  Accepted
-                </button>
-              </div>
-            ) : (
-              ""
-            )} */}
+            
           </div>
         </Box>
       </Modal>
