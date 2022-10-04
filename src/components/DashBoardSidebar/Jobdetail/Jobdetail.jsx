@@ -13,61 +13,9 @@ import API_HOST from "../../../env";
 import axios from "axios";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import { useSelector } from "react-redux";
-import { KeyboardArrowDownOutlined } from "@mui/icons-material";
-import { TextField } from "@mui/material";
-import Popover from "@mui/material/Popover";
-import { makeStyles } from "@material-ui/core";
-import Typography from "@mui/material/Typography";
+
 import CloseIcon from "@mui/icons-material/Close";
 
-const useStyles = makeStyles((theme) => ({
-  select: {
-    height: "2.5vw",
-    width: "100%",
-    marginTop: "0.2vw",
-    padding: "1vw",
-    marginLeft: "0vw",
-    fontFamily: "Poppins",
-    fontStyle: "normal",
-    fontWeight: "bold",
-    fontSize: "1vw",
-    lineHeight: "120%",
-    color: "#FFFFFF",
-  },
-  select2: {
-    height: "1vw",
-    width: "100%",
-    marginTop: "0.1vw",
-    padding: "0.9vw 0.5vw",
-    marginLeft: "0vw",
-    fontFamily: "Poppins",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: "0.51vw",
-    lineHeight: "100%",
-    color: "#FFFFFF",
-  },
-  select3: {
-    height: "1vw",
-    width: "100%",
-    marginTop: "0.1vw",
-    padding: "0vw 0vw",
-    marginLeft: "0vw",
-    fontFamily: "Poppins",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: "0.51vw",
-    lineHeight: "100%",
-    color: "#FFFFFF",
-    position: "relative",
-    top: "0.81vw",
-    left: "0.2vw",
-  },
-  icon: {
-    fill: "white",
-  },
-}));
 const style = {
   position: "absolute",
   top: "50%",
@@ -92,17 +40,19 @@ const style1 = {
 };
 export default function Jobdetail() {
   const { id } = useParams();
-  const classes = useStyles();
+
   const navigate = useNavigate();
   const [down1, setDown1] = useState(false);
   const [down2, setDown2] = useState(false);
   const [down3, setDown3] = useState(false);
   const [down4, setDown4] = useState(false);
+  const [down5, setDown5] = useState(false);
   const [longofproposallist, setLongofproposallist] = useState(["1", "2"]);
   const [data1, setdata1] = useState();
   const [openx, setOpenx] = React.useState(false);
   const handleOpenx = () => setOpenx(true);
   const handleClosex = () => setOpenx(false);
+
   useEffect(() => {
     axios.get(`${API_HOST}/jobPost/viewJobPost?jobPostId=${id}`).then((res) => {
       console.log(res?.data?.success?.data[0]);
@@ -135,49 +85,6 @@ export default function Jobdetail() {
     });
   };
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const { user } = useSelector((state) => state.user);
-  const [desc, setDesc] = useState("");
-  const [descerr, setDescerr] = useState("");
-  const [title, settitle] = useState("");
-  const [titleerr, settitleerr] = useState("");
-  const [anchorElx2, setAnchorElx2] = React.useState(null);
-  const handleClickx2 = (event) => {
-    setAnchorElx2(event.currentTarget);
-  };
-
-  const handleClosex2 = () => {
-    setAnchorElx2(null);
-  };
-
-  const openx2 = Boolean(anchorElx2);
-  const idx2 = openx2 ? "simple-popover" : undefined;
-
-  const handleAddIssue = () => {
-    if (!title || !desc) {
-      if (!title) {
-        settitleerr("Select Issue Type !");
-      }
-      if (!desc) {
-        setDescerr("Description Required !");
-      }
-      return;
-    }
-    axios
-      .post(`${API_HOST}/jobPost/addIssue`, {
-        jobPostId: id,
-        issueType: title,
-        issueDescription: desc,
-        user_id: user?._id,
-      })
-      .then((res) => {
-        settitle("");
-        handleClose();
-        setDesc("");
-      });
-  };
   return (
     <div className="BrowseWorkMain-cntainer">
       <button
@@ -224,29 +131,6 @@ export default function Jobdetail() {
                   height: "2.4vw",
                   background: "#E4E4E4",
                   fontSize: "400",
-                  marginRight: "1vw",
-                }}
-                className="digitalwallate"
-                onClick={() => {
-                  handleOpen();
-                }}
-              >
-                <span
-                  style={{
-                    padding: "0.6vw 0.5vw",
-                    fontSize: "400",
-                    background: "none",
-                  }}
-                >
-                  Raise issue
-                </span>
-              </div>
-              <div
-                style={{
-                  margin: "0",
-                  height: "2.4vw",
-                  background: "#E4E4E4",
-                  fontSize: "400",
                 }}
                 className="digitalwallate"
               >
@@ -262,176 +146,6 @@ export default function Jobdetail() {
               </div>
             </div>
           </div>{" "}
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style1}>
-              <div className="profiletitleandmenunav">
-                <div className="profiledetailstitle">Raise Issue</div>
-                <div className="profiledetailnavmanu">
-                  <div>
-                    <CloseIcon
-                      onClick={handleClose}
-                      style={{ fontSize: "1.5vw", cursor: "pointer" }}
-                    />
-                  </div>
-                </div>
-              </div>
-              <hr style={{ color: "#00000090" }} />
-
-              <div
-                style={{ left: "0vw", width: "92%", marginLeft: "2%" }}
-                className="loginfield"
-                onClick={handleClickx2}
-              >
-                <TextField
-                  id="outlined-basic"
-                  label="Issue Type *"
-                  variant="outlined"
-                  disabled
-                  value={title}
-                  style={{ width: "100%" }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: "1vw",
-                      fontFamily: "Poppins",
-                      fontStyle: "500",
-                      fontWeight: "500",
-                      color: "black",
-                    },
-                  }}
-                  inputProps={{ className: classes.input }}
-                  onChange={(e) => {
-                    console.log(e.target.value);
-                  }}
-                />
-                <span style={{ width: "0.1vw" }}>
-                  <KeyboardArrowDownOutlined
-                    style={{
-                      fontSize: "1.5vw",
-                      position: "relative",
-                      right: "2vw",
-                      top: "1vw",
-                    }}
-                  />
-                </span>
-              </div>
-              <Popover
-                id={idx2}
-                open={openx2}
-                anchorEl={anchorElx2}
-                onClose={handleClosex2}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-              >
-                <div
-                  style={{
-                    maxHeight: "18vw",
-                    overflow: "scroll",
-                    width: "44vw",
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      p: 0.51,
-                      pl: 1,
-                      ml: 1,
-                      width: "100%",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => {
-                      settitle("Bidder Was not doing Work Properly");
-                      handleClosex2();
-                    }}
-                  >
-                    Bidder Was not doing Work Properly
-                  </Typography>
-                  <Typography
-                    sx={{
-                      p: 0.51,
-                      pl: 1,
-                      ml: 1,
-                      width: "100%",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => {
-                      settitle("Bidder Was not doing Work Properly");
-                      handleClosex2();
-                    }}
-                  >
-                    Bidder Was not doing Work Properly
-                  </Typography>
-                  <Typography
-                    sx={{
-                      p: 0.51,
-                      pl: 1,
-                      ml: 1,
-                      width: "100%",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => {
-                      settitle("Bidder Was not doing Work Properly");
-                      handleClosex2();
-                    }}
-                  >
-                    Bidder Was not doing Work Properly
-                  </Typography>
-                </div>
-              </Popover>
-              <p style={{ color: "red", fontSize: "0.9vw", marginLeft: "1vw" }}>
-                {titleerr}
-              </p>
-              <div
-                style={{ marginLeft: "1vw" }}
-                className="jobpodtedfieldtitile"
-              >
-                Issue Description
-              </div>
-              <div
-                style={{ marginLeft: "1vw" }}
-                className="jobpostfieldinputbox"
-              >
-                <textarea
-                  type="text"
-                  name="desc"
-                  value={desc}
-                  onChange={(e) => setDesc(e.target.value)}
-                />
-              </div>
-              <p style={{ color: "red", fontSize: "0.9vw", marginLeft: "1vw" }}>
-                {descerr}
-              </p>
-
-              <div
-                style={{ marginTop: "0.31vw" }}
-                className="handlemoreaboutskill"
-              >
-                <div
-                  style={{
-                    background: "white",
-                    color: "black",
-                    cursor: "pointer",
-                  }}
-                  className="handlecirclieaboutsave"
-                  onClick={handleClose}
-                >
-                  Cancel
-                </div>
-                <div
-                  style={{ cursor: "pointer" }}
-                  className="handlecirclieaboutsave"
-                  onClick={handleAddIssue}
-                >
-                  SAVE
-                </div>
-              </div>
-            </Box>
-          </Modal>
           <div
             style={{
               fontWeight: "600",
@@ -469,7 +183,7 @@ export default function Jobdetail() {
                     <div>
                       Status :{" "}
                       <span style={{ color: "green", marginRight: "1vw" }}>
-                      Contract Ended by Client and Service Provider
+                        Contract Ended by Client and Service Provider
                       </span>
                     </div>
                   )}
@@ -478,7 +192,7 @@ export default function Jobdetail() {
                     <div>
                       Status :
                       <span style={{ color: "green", marginRight: "1vw" }}>
-                      Contract Ended by Client
+                        Contract Ended by Client
                       </span>
                     </div>
                   )}
@@ -1273,6 +987,214 @@ export default function Jobdetail() {
               </Modal>
             </div>
           </div>
+          <div
+            style={{
+              height: down5
+                ? `${parseInt(data1?.issues?.length) * 27.5 + 5}vw`
+                : "",
+            }}
+            className="boxofextension"
+          >
+            <div className="flexofboxextentionnav">
+              <div
+                style={{ color: down5 ? "#064C87" : "", marginLeft: "0.5vw" }}
+              >
+                View Issue
+              </div>
+              <div
+                onClick={() => {
+                  setDown5(!down5);
+                }}
+              >
+                {!down5 ? (
+                  <KeyboardArrowDownIcon
+                    style={{
+                      fontSize: "2vw",
+                      margin: "1vw",
+                      cursor: "pointer",
+                    }}
+                  />
+                ) : (
+                  <KeyboardArrowUpIcon
+                    style={{
+                      fontSize: "2vw",
+                      margin: "1vw",
+                      cursor: "pointer",
+                    }}
+                  />
+                )}
+              </div>
+            </div>
+            <div hidden={!down5}>
+              <div
+                style={{
+                  margin: "1vw",
+                  flexWrap: "wrap",
+                  marginTop: "0vw",
+                  justifyContent: "flex-start",
+                }}
+                className="activejobpistbudgetbox"
+              >
+                {data1?.issues?.map((data) => {
+                  return (
+                    <div className="boxofViewissue">
+                      <div
+                        style={{ fontSize: "1vw" }}
+                        className="datesofcontact"
+                      >
+                        {" "}
+                        Issue Type - {data?.issueType}
+                      </div>
+                      <div
+                        style={{
+                          left: "0vw",
+                          width: "96%",
+                          margin: "0.5vw",
+                          display: "block",
+                        }}
+                        className="loginfield"
+                      >
+                        <div
+                          style={{ marginBottom: "0.0vw" }}
+                          className="jobpodtedfieldtitile"
+                        >
+                          Issue description
+                        </div>
+                        <div>
+                          <textarea
+                            name=""
+                            id=""
+                            className="reviewbox"
+                            rows="10"
+                            disabled
+                            value={
+                              data.issueDescription ? data.issueDescription : ""
+                            }
+                          ></textarea>
+                        </div>
+                      </div>
+                      <div
+                        style={{ fontSize: "1vw" }}
+                        className="datesofcontact"
+                      >
+                        User Detail -
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "flex-start",
+                          justifyContent: "space-between",
+                          margin: "0vw 1vw",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        <div
+                          style={{ width: "25%" }}
+                          className="detailjobposttags"
+                        >
+                          <div
+                            style={{
+                              margin: "0.5vw",
+                              color: "#064C87",
+                              marginBottom: "0.40vw",
+                              fontSize: "1vw",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Issue by
+                          </div>
+                          <div
+                            style={{
+                              display: "block",
+                              height: "fit-content",
+                              padding: "0.5vw",
+                              paddingBottom: "0.3vw",
+                              paddingLeft: "0.61vw",
+                              lineHeight: "2.7vw",
+                            }}
+                            className="tagvaluejobpostbox"
+                          >
+                            {data?.user_id?.fullName?.slice(0, 18)}
+                          </div>
+                        </div>
+
+                        <div
+                          style={{ width: "25%" }}
+                          className="detailjobposttags"
+                        >
+                          <div
+                            style={{
+                              margin: "0.5vw",
+                              color: "#064C87",
+                              marginBottom: "0.40vw",
+                              fontSize: "1vw",
+
+                              fontWeight: "500",
+                            }}
+                          >
+                            Email
+                          </div>
+                          <div
+                            className="tagvaluejobpostbox"
+                            style={{
+                              paddingLeft: "1vw",
+                            }}
+                          >
+                            {data?.user_id?.emailId}
+                          </div>
+                        </div>
+
+                        <div className="detailjobposttags">
+                          <div
+                            style={{
+                              margin: "0.5vw",
+                              color: "#064C87",
+                              marginBottom: "0.40vw",
+                              fontSize: "1vw",
+                              fontWeight: "500",
+                            }}
+                          >
+                            contact no
+                          </div>
+                          <div
+                            style={{
+                              paddingLeft: "1vw",
+                            }}
+                            className="tagvaluejobpostbox"
+                          >
+                            {data?.user_id?.contactNo}
+                          </div>
+                        </div>
+
+                        <div className="detailjobposttags">
+                          <div
+                            style={{
+                              margin: "0.5vw",
+                              color: "#064C87",
+                              marginBottom: "0.40vw",
+                              fontSize: "1vw",
+                              fontWeight: "500",
+                            }}
+                          >
+                          userName
+                          </div>
+                          <div
+                            style={{
+                              paddingLeft: "1vw",
+                            }}
+                            className="tagvaluejobpostbox"
+                          >
+                            {data?.user_id?.userName}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        
         </div>
       </div>
     </div>

@@ -29,6 +29,7 @@ export default function Jobdetail({ jobdetail }) {
   const [down2, setDown2] = useState(false);
   const [down3, setDown3] = useState(false);
   const [down4, setDown4] = useState(false);
+  const [down5, setDown5] = useState(false);
   const [longofproposallist, setLongofproposallist] = useState(["1", "2"]);
   const [data1, setdata1] = useState();
   const [openx, setOpenx] = React.useState(false);
@@ -70,26 +71,7 @@ export default function Jobdetail({ jobdetail }) {
             </div>
           </div>
           <div style={{ display: "flex" }}>
-            <div
-              style={{
-                margin: "0",
-                height: "2.4vw",
-                background: "#E4E4E4",
-                fontSize: "400",
-                marginRight: "1vw",
-              }}
-              className="digitalwallate"
-            >
-              <span
-                style={{
-                  padding: "0.6vw 0.5vw",
-                  fontSize: "400",
-                  background: "none",
-                }}
-              >
-                view issue
-              </span>
-            </div>
+            
             <div
               style={{
                 margin: "0",
@@ -810,15 +792,218 @@ export default function Jobdetail({ jobdetail }) {
                 </div>
               </div>
             </div>
-            {/* <div className="confirmationtext">
-              Are you Sure What to Close Contract From <span>44 Resource</span>{" "}
-              Representative
-            </div> */}
-            {/* <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <button className="endbuttoncontract">End Contract</button>
-            </div> */}
+          
           </div>
         </div>
+    
+        <div
+            style={{
+              height: down5
+                ? `${parseInt(data1?.issues?.length) * 27.5 + 5}vw`
+                : "",
+            }}
+            className="boxofextension"
+          >
+            <div className="flexofboxextentionnav">
+              <div
+                style={{ color: down5 ? "#064C87" : "", marginLeft: "0.5vw" }}
+              >
+                View Issue
+              </div>
+              <div
+                onClick={() => {
+                  setDown5(!down5);
+                }}
+              >
+                {!down5 ? (
+                  <KeyboardArrowDownIcon
+                    style={{
+                      fontSize: "2vw",
+                      margin: "1vw",
+                      cursor: "pointer",
+                    }}
+                  />
+                ) : (
+                  <KeyboardArrowUpIcon
+                    style={{
+                      fontSize: "2vw",
+                      margin: "1vw",
+                      cursor: "pointer",
+                    }}
+                  />
+                )}
+              </div>
+            </div>
+            <div hidden={!down5}>
+              <div
+                style={{
+                  margin: "1vw",
+                  flexWrap: "wrap",
+                  marginTop: "0vw",
+                  justifyContent: "flex-start",
+                }}
+                className="activejobpistbudgetbox"
+              >
+                {data1?.issues?.map((data) => {
+                  return (
+                    <div className="boxofViewissue">
+                      <div
+                        style={{ fontSize: "1vw" }}
+                        className="datesofcontact"
+                      >
+                        {" "}
+                        Issue Type - {data?.issueType}
+                      </div>
+                      <div
+                        style={{
+                          left: "0vw",
+                          width: "96%",
+                          margin: "0.5vw",
+                          display: "block",
+                        }}
+                        className="loginfield"
+                      >
+                        <div
+                          style={{ marginBottom: "0.0vw" }}
+                          className="jobpodtedfieldtitile"
+                        >
+                          Issue description
+                        </div>
+                        <div>
+                          <textarea
+                            name=""
+                            id=""
+                            className="reviewbox"
+                            rows="10"
+                            disabled
+                            value={
+                              data.issueDescription ? data.issueDescription : ""
+                            }
+                          ></textarea>
+                        </div>
+                      </div>
+                      <div
+                        style={{ fontSize: "1vw" }}
+                        className="datesofcontact"
+                      >
+                        User Detail -
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "flex-start",
+                          justifyContent: "space-between",
+                          margin: "0vw 1vw",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        <div
+                          style={{ width: "25%" }}
+                          className="detailjobposttags"
+                        >
+                          <div
+                            style={{
+                              margin: "0.5vw",
+                              color: "#064C87",
+                              marginBottom: "0.40vw",
+                              fontSize: "1vw",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Issue by
+                          </div>
+                          <div
+                            style={{
+                              display: "block",
+                              height: "fit-content",
+                              padding: "0.5vw",
+                              paddingBottom: "0.3vw",
+                              paddingLeft: "0.61vw",
+                              lineHeight: "2.7vw",
+                            }}
+                            className="tagvaluejobpostbox"
+                          >
+                            {data?.user_id?.fullName?.slice(0, 18)}
+                          </div>
+                        </div>
+
+                        <div
+                          style={{ width: "25%" }}
+                          className="detailjobposttags"
+                        >
+                          <div
+                            style={{
+                              margin: "0.5vw",
+                              color: "#064C87",
+                              marginBottom: "0.40vw",
+                              fontSize: "1vw",
+
+                              fontWeight: "500",
+                            }}
+                          >
+                            Email
+                          </div>
+                          <div
+                            className="tagvaluejobpostbox"
+                            style={{
+                              paddingLeft: "1vw",
+                            }}
+                          >
+                            {data?.user_id?.emailId}
+                          </div>
+                        </div>
+
+                        <div className="detailjobposttags">
+                          <div
+                            style={{
+                              margin: "0.5vw",
+                              color: "#064C87",
+                              marginBottom: "0.40vw",
+                              fontSize: "1vw",
+                              fontWeight: "500",
+                            }}
+                          >
+                            contact no
+                          </div>
+                          <div
+                            style={{
+                              paddingLeft: "1vw",
+                            }}
+                            className="tagvaluejobpostbox"
+                          >
+                            {data?.user_id?.contactNo}
+                          </div>
+                        </div>
+
+                        <div className="detailjobposttags">
+                          <div
+                            style={{
+                              margin: "0.5vw",
+                              color: "#064C87",
+                              marginBottom: "0.40vw",
+                              fontSize: "1vw",
+                              fontWeight: "500",
+                            }}
+                          >
+                          userName
+                          </div>
+                          <div
+                            style={{
+                              paddingLeft: "1vw",
+                            }}
+                            className="tagvaluejobpostbox"
+                          >
+                            {data?.user_id?.userName}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        
       </div>
     </div>
   );
