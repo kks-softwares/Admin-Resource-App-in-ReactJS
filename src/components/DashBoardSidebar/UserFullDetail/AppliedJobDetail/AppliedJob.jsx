@@ -67,7 +67,7 @@ export default function AppliedJob({ setjobdetail, setWorkhistorytoggle }) {
                         0,
                         40
                       ) + ".."
-                    : data?.appliedForJobPost[0]?.jobPostId?.workTitle}
+                    : data?.appliedForJobPost[0]?.jobPostId?.workTitle}   ({data?.trackingId})
                 </div>
                 <div
                   style={{ lineHeight: "1.2vw !important", color: "#064C8790" }}
@@ -140,15 +140,7 @@ export default function AppliedJob({ setjobdetail, setWorkhistorytoggle }) {
                   </div>
 
                   <br />
-                  <span
-                  // onClick={() => {
-                  //   navigate(
-                  //     `/dashbaord/jobdetailforbid/${data?.jobPostId}`
-                  //   );
-                  // }}
-                  >
-                    more
-                  </span>
+                 
                 </div>
 
                 <hr />

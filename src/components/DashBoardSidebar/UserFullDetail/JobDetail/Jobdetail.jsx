@@ -105,7 +105,7 @@ export default function Jobdetail({ jobdetail }) {
             justifyContent: "space-between",
           }}
         >
-          <div>{data1?.workTitle}</div>
+          <div>{data1?.workTitle}   ({data1?.trackingId})</div>
           
               {data1?.closeBy44 ? (
             <div>

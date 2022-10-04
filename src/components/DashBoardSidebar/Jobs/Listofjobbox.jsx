@@ -88,7 +88,7 @@ export default function Listofjobbox({ data,selecteddelete,setSelecteddelete }) 
         <div style={{ height: "1.1vw" }} className="activejobpostname">
           {data?.workTitle?.length > 40
             ? data?.workTitle?.slice(0, 40) + ".."
-            : data?.workTitle}
+            : data?.workTitle}   ({data?.trackingId})
         </div>
         <div
           style={{ lineHeight: "1.2vw !important", color: "#064C8790" }}
