@@ -258,7 +258,8 @@ export default function Listofproposals({ data, data1 }) {
                       fontWeight: "400",
                     }}
                   >
-                    $ {data?.bidingId?.milestonePrice1}
+                   $ {data?.bidingId?.milestonePrice1} ,
+                    <span> Due Date - {data?.bidingId?.milestoneDueDate1}</span>
                   </div>
                 </div>
                 <div>
@@ -295,7 +296,8 @@ export default function Listofproposals({ data, data1 }) {
                       fontWeight: "400",
                     }}
                   >
-                    $ {data?.bidingId?.milestonePrice2}
+                   $ {data?.bidingId?.milestonePrice2} ,
+                    <span> Due Date - {data?.bidingId?.milestoneDueDate2}</span>
                   </div>
                 </div>
                 <div>
@@ -332,7 +334,8 @@ export default function Listofproposals({ data, data1 }) {
                       fontWeight: "400",
                     }}
                   >
-                    $ {data?.bidingId?.milestonePrice3}
+                    $ {data?.bidingId?.milestonePrice3} ,
+                    <span> Due Date - {data?.bidingId?.milestoneDueDate3}</span>
                   </div>
                 </div>
                 <div>
@@ -369,7 +372,8 @@ export default function Listofproposals({ data, data1 }) {
                       fontWeight: "400",
                     }}
                   >
-                    $ {data?.bidingId?.milestonePrice4}
+                   $ {data?.bidingId?.milestonePrice4} ,
+                    <span> Due Date - {data?.bidingId?.milestoneDueDate4}</span>
                   </div>
                 </div>
                 <div>
@@ -406,7 +410,8 @@ export default function Listofproposals({ data, data1 }) {
                       fontWeight: "400",
                     }}
                   >
-                    $ {data?.bidingId?.milestonePrice5}
+                  $ {data?.bidingId?.milestonePrice5} ,
+                    <span> Due Date - {data?.bidingId?.milestoneDueDate5}</span>
                   </div>
                 </div>
                 <div>
