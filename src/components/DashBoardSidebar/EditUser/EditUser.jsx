@@ -228,7 +228,7 @@ export default function AddUser() {
           style={{ textAlign: "center", fontSize: "1.5vw" }}
           className="settingAccounttitle"
         >
-          Add User
+          Edit User
         </div>
 
         <hr style={{ margin: "1vw" }} />

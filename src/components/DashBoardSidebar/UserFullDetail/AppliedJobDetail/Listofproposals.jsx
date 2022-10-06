@@ -6,9 +6,6 @@ import { useNavigate } from "react-router";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import img2 from "../../../../assets/Success stories Definition/checkmark (1).svg";
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
-import axios from "axios";
-import API_HOST from "../../../../env";
-
 const style1 = {
   position: "absolute",
   top: "50%",
