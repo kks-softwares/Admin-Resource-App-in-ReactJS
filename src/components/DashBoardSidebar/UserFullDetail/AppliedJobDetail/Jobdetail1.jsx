@@ -101,9 +101,11 @@ export default function Jobdetail1({ user, jobdetail }) {
             justifyContent: "space-between",
           }}
         >
-          <div>{data1?.workTitle}   ({data1?.trackingId})</div>
+          <div>
+            {data1?.workTitle} ({data1?.trackingId})
+          </div>
 
-          {data1?.jobDoerId?.userId === user?.userId && (
+          {data1?.jobDoerId?.userId === user?.userId ? (
             <div>
               {data1?.closeBy44 ? (
                 <div>
@@ -145,6 +147,15 @@ export default function Jobdetail1({ user, jobdetail }) {
                 </div>
               )}
             </div>
+          ) : (
+            data1?.jobDoerId?.userName && (
+              <div>
+                Status :{" "}
+                <span style={{ color: "red", marginRight: "1vw" }}>
+                  assigned to another User
+                </span>
+              </div>
+            )
           )}
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>

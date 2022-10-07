@@ -4,7 +4,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useParams } from "react-router";
 import axios from "axios";
 import API_HOST from "../../../../env";
-
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 export default function AppliedJob({ setjobdetail, setWorkhistorytoggle }) {
   const [page, setPage] = useState(1);
   const [totalpages, settotalpages] = useState(1);
@@ -58,7 +58,19 @@ export default function AppliedJob({ setjobdetail, setWorkhistorytoggle }) {
                   <div style={{ marginLeft: "1vw", fontSize: "0.8vw" }}>
                     {data?.subCategory?.subCategory
                       ? data?.subCategory?.subCategory
-                      : "-"}
+                      : "-"} <span>
+                      <FiberManualRecordIcon
+                        style={{
+                          fontSize:  "1.5vw" ,
+                          color:
+                            data?.assignedJob
+                              ? "greenyellow"
+                              : data?.appliedForJobPost[0].jobPostId.jobDoerId
+                              ? "red"
+                              : "yellow",
+                        }}
+                      />
+                    </span>
                   </div>
                 </div>
                 <div style={{ height: "1.1vw" }} className="activejobpostname">
