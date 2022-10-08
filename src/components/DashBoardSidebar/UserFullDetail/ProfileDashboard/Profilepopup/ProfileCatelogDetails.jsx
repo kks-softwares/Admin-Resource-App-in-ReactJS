@@ -18,7 +18,7 @@ export default function ProfileCatelogdetails({
 
   return (
     <div>
-      <div className="pcatelogbox">
+      <div style={{width:"28vw"}} className="pcatelogbox">
         <div
           style={{
             background: `url('${

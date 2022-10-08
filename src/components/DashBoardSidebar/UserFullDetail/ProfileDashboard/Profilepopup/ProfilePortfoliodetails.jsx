@@ -12,7 +12,7 @@ export default function ProfilePortfoliodetails({
 
   return (
     <div>
-      <div className="pportfoliocard">
+      <div style={{width:"30vw"}} className="pportfoliocard">
         <div
           style={{
             background: `url('${
