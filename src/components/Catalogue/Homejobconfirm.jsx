@@ -3,7 +3,7 @@ import React from "react";
 import img from "../../assets/jobhome/Completed-pana (1).svg";
 import img1 from "../../assets/jobhome/checkmark (1) (1).svg";
 import { userActions } from "../../store/userSlice";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 export default function Homejobconfirm({
   width,
   handleClose,
@@ -13,12 +13,11 @@ export default function Homejobconfirm({
   password,
   username,
   email,
-}){
-
-    const dispatch = useDispatch();
-    const handleStart = () => {
-      dispatch(userActions.openloginForm());
-    };
+}) {
+  const dispatch = useDispatch();
+  const handleStart = () => {
+    dispatch(userActions.openloginForm());
+  };
   return (
     <div className="homejobpostcinfirm-container">
       <div className="homejobpostconfirmthankuhead">Confirmation</div>
@@ -44,15 +43,15 @@ export default function Homejobconfirm({
                 <img src={img1} alt="" />
               </div>
               <div className="homejocconfirmdattye">Title-</div>
-              <div className="homejocconfirmdattye-value">Content Writer</div>
+              <div className="homejocconfirmdattye-value">{workTitle}</div>
             </div>
-            <div className="homejobconfirmdata">
+            {/* <div className="homejobconfirmdata">
               <div className="imgofjobconfirmdetails">
                 <img src={img1} alt="" />
               </div>
               <div className="homejocconfirmdattye">Booking Id-</div>
-              <div className="homejocconfirmdattye-value">42352346</div>
-            </div>
+              <div className="homejocconfirmdattye-value">{trackingId}</div>
+            </div> */}
             <div className="homejobconfirmdata">
               <div className="imgofjobconfirmdetails">
                 <img src={img1} alt="" />
@@ -80,7 +79,7 @@ export default function Homejobconfirm({
             onClick={() => {
               handleClose();
               handleClosex();
-              handleStart()
+              handleStart();
             }}
           >
             Click here to Login

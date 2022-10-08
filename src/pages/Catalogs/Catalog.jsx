@@ -2,9 +2,9 @@ import axios from "axios";
 import React, {  useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Catalogbanner from "../../components/Catalogue/Catalogbanner";
-
+import './Faq.css'
 import API_HOST from "../../env";
-
+import './Homeabout.css'
 export default function Catalog({width}) {
   const navigate = useNavigate();
   const { catId } = useParams();
