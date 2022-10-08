@@ -305,7 +305,7 @@ export default function SkillCenter() {
             <Profileuserdetails user={user} />
             <Profileworkhistroy user={user} />
             <ProfileCatalogs user={user} />
-            {/* <Profileportfolio user={user} /> */}
+            <Profileportfolio user={user} />
             <ProfileSkills user={user} />
             <ProfileCertificate user={user} />
             <ProfileWorkexperince user={user} />
