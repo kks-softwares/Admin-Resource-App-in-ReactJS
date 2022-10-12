@@ -4,38 +4,20 @@ import img2 from "../../../../assets/Success stories Definition/checkmark (1).sv
 import img1 from "../../../../assets/Web 1280 – 14/Group 9831.svg";
 import API_HOST from "../../../../env";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router";
+import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 
 export default function Documents({ user }) {
-  const { type, userName } = useParams();
-  // const { user, loggedInStatus } = useSelector((state) => state.user);
-  // const [verifyButtonUserProfile, setVerifyButtonUserProfile] = useState("");
-
-  const handleVerifyButtonUser = () => {
-    const formdata = new FormData();
-
-    formdata.append("userId", user?.userId);
-    formdata.append("verifiedByAdmin", true);
-
+  useEffect(() => {
     axios
-      .post(`${API_HOST}/users/editUser`, formdata, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .get(
+        `${API_HOST}/users/viewDocument?pageSize=1000&pageNumber=1&userName=${user?.userName}`
+      )
       .then((res) => {
-        console.log(res.data.success.data);
-        // setVerifyButtonUserProfile(res?.data?.success?.data);
-        // window.scrollTo(0, 0, { behavior: "smooth" });
-      })
-      .catch((err) => {
-        console.log(err.response);
-        // setSettingAccEmail(err.response.data.message)
-        // setRestag(true);
+        setArrayofdocumentdetail(res.data?.success?.data);
       });
-  };
-  // console.log("USERS", userName,"PROPS",user)
+  }, [user]);
+
+  const [arrayofdocumentdetail, setArrayofdocumentdetail] = useState([]);
 
   return (
     <div>
@@ -48,235 +30,67 @@ export default function Documents({ user }) {
 
       <div className="boxoddocuments">
         <div className="titledocuments">Id Verification</div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <div className="Headingdocuments">Driving License</div>
-          <div style={{ fontWeight: "400" }} className="Headingdocuments">
-            TN58009189102
-            <span>
-              <img
-                style={{
-                  width: "1vw",
-                  margin: "0.4vw",
-                  position: "relative",
-                  bottom: "0.2vw",
-                }}
-                src={img2}
-                alt=""
-              />
-            </span>
-          </div>
-        </div>
-        <div
-          style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
-        >
-          <div style={{ width: "50%" }}>
-            <div
-              style={{ width: "100%" }}
-              className="inputfilesshowncatboxsingle"
-            >
-              <div className="inputfilesshowncatboxsingleimg">
-                <img src={img1} alt="" />
+        {arrayofdocumentdetail?.map((data) => {
+          return (
+            <div style={{ marginTop: "1vw" }}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <div className="Headingdocuments">{data?.documentType}</div>
+                <div style={{ fontWeight: "400" }} className="Headingdocuments">
+                  {data?.documentNumber}
+                  <span hidden>
+                    <img
+                      style={{
+                        width: "1vw",
+                        margin: "0.4vw",
+                        position: "relative",
+                        bottom: "0.2vw",
+                      }}
+                      src={img2}
+                      alt=""
+                    />
+                  </span>
+                </div>
               </div>
-              <div className="fileselctednamecate">Modern submitted.docx</div>
-            </div>
-            <div
-              style={{ width: "100%" }}
-              className="inputfilesshowncatboxsingle"
-            >
-              <div className="inputfilesshowncatboxsingleimg">
-                <img src={img1} alt="" />
-              </div>
-              <div className="fileselctednamecate">Modern submitted.docx</div>
-            </div>
-            <div
-              style={{ width: "100%" }}
-              className="inputfilesshowncatboxsingle"
-            >
-              <div className="inputfilesshowncatboxsingleimg">
-                <img src={img1} alt="" />
-              </div>
-              <div className="fileselctednamecate">Modern submitted.docx</div>
-            </div>
-          </div>
-          <div style={{ width: "50%", display: "flex", alignItems: "center" }}>
-            <div style={{ fontSize: "1vw" }}>Status</div>
-            <div className="inputfilesshowncatboxsingleimg">
-              <img
+              <div
                 style={{
-                  width: "1vw",
-                  margin: "0.4vw",
-                  position: "relative",
-
-                  filter: "opacity(0.5)",
+                  display: "flex",
+                  alignItems: "center",
+                  flexWrap: "wrap",
                 }}
-                src={img2}
-                alt=""
-              />
-            </div>
-            <div
-              style={{ fontSize: "0.8vw", color: "gray" }}
-              className="fileselctednamecate"
-            >
-              Verified by 44 resources.
-            </div>
-          </div>
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <div className="Headingdocuments">PAN No</div>
-          <div style={{ fontWeight: "400" }} className="Headingdocuments">
-            TN58009189102
-            <span>
-              <img
-                style={{
-                  width: "1vw",
-                  margin: "0.4vw",
-                  position: "relative",
-                  bottom: "0.2vw",
-                }}
-                src={img2}
-                alt=""
-              />
-            </span>
-          </div>
-        </div>
-        <div
-          style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
-        >
-          <div style={{ width: "50%" }}>
-          
-            <div
-              style={{ width: "100%" }}
-              className="inputfilesshowncatboxsingle"
-            >
-              <div className="inputfilesshowncatboxsingleimg">
-                <img src={img1} alt="" />
+              >
+                {data?.files?.map((data1) => {
+                  return (
+                    <div style={{ width: "100%" }}>
+                      <div
+                        style={{ width: "100%" }}
+                        className="inputfilesshowncatboxsingle"
+                      >
+                        <div className="inputfilesshowncatboxsingleimg">
+                          <img src={img1} alt="" />
+                        </div>
+                        <div className="fileselctednamecate">
+                        {data1?.file?.split("%24")[1]?.slice(0, 17)}
+                        </div>
+                        <div className="inputfilesshowncatboxsingleimg">
+                  <a href={`${data1?.file}`} download>
+                    {" "}
+                    <CloudDownloadOutlinedIcon
+                      style={{
+                        fontSize:  "1.5vw" ,
+                        margin: "0 1vw",
+                      }}
+                    />{" "}
+                  </a>
+                </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-              <div className="fileselctednamecate">Modern submitted.docx</div>
             </div>
-          </div>
-          <div style={{ width: "50%", display: "flex", alignItems: "center" }}>
-            <div style={{ fontSize: "1vw" }}>Status</div>
-            <div className="inputfilesshowncatboxsingleimg">
-              <img
-                style={{
-                  width: "1vw",
-                  margin: "0.4vw",
-                  position: "relative",
-
-                  filter: "opacity(0.5)",
-                }}
-                src={img2}
-                alt=""
-              />
-            </div>
-            <div
-              style={{ fontSize: "0.8vw", color: "gray" }}
-              className="fileselctednamecate"
-            >
-              Verification Pending
-            </div>
-          </div>
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <div className="Headingdocuments">GST NO</div>
-          <div style={{ fontWeight: "400" }} className="Headingdocuments">
-            DWIOO9r4
-            <span>
-              <img
-                style={{
-                  width: "1vw",
-                  margin: "0.4vw",
-                  position: "relative",
-                  bottom: "0.2vw",
-                }}
-                src={img2}
-                alt=""
-              />
-            </span>
-          </div>
-        </div>
-        <div
-          style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
-        >
-          <div style={{ width: "50%" }}>
-            <div
-              style={{ width: "100%" }}
-              className="inputfilesshowncatboxsingle"
-            >
-              <div className="inputfilesshowncatboxsingleimg">
-                <img src={img1} alt="" />
-              </div>
-              <div className="fileselctednamecate">Modern submitted.docx</div>
-            </div>
-
-            <div
-              style={{ width: "100%" }}
-              className="inputfilesshowncatboxsingle"
-            >
-              <div className="inputfilesshowncatboxsingleimg">
-                <img src={img1} alt="" />
-              </div>
-              <div className="fileselctednamecate">Modern submitted.docx</div>
-            </div>
-          </div>
-          <div style={{ width: "50%", display: "flex", alignItems: "center" }}>
-            <div style={{ fontSize: "1vw" }}>Status</div>
-            <div className="inputfilesshowncatboxsingleimg">
-              <img
-                style={{
-                  width: "1vw",
-                  margin: "0.4vw",
-                  position: "relative",
-
-                  filter: "opacity(0.5)",
-                }}
-                src={img2}
-                alt=""
-              />
-            </div>
-            <div
-              style={{ fontSize: "0.8vw", color: "gray" }}
-              className="fileselctednamecate"
-            >
-              Verified by 44 resources.
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
-      {/* {user?.verifiedByAdmin === false ? (
-        <div
-          style={{
-            display: "flex",
-            paddingRight: "5vw",
-            justifyContent: "flex-end",
-          }}
-        >
-          <button
-            style={{
-              color: "#fff",
-              backgroundColor: "#064C87",
-              padding: "1vw",
-              border: "none",
-            }}
-            onClick={() => {
-              handleVerifyButtonUser();
-            }}
-          >
-            Click to Verify Document
-          </button>
-        </div>
-      ) : (
-        <div
-          style={{
-            borderStyle: "dashed",
-            float: "right",
-            padding: "0.8vw",
-            jfontWeight: "600",
-          }}
-        >
-          This User is Already Verified by Admin
-        </div>
-      )} */}
     </div>
   );
 }
