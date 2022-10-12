@@ -1,86 +1,72 @@
 import React from "react";
-import img from "../../../../assets/Dashboard/Skill center – 2/indian-bank-logo-B89BF08C2C-seeklogo.com.png";
-import img1 from "../../../../assets/Dashboard/Skill center – 2/Mask Group 9.png";
-import img2 from "../../../../assets/Success stories Definition/checkmark (1).svg";
-
-export default function BankCard() {
+import img51 from "../../../../assets/Web 1280 – 14/Group 10219.svg";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
+export default function BankCard({ data }) {
   return (
-    <div className="bankcard-conatainer">
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <div style={{ width: "70%" }}>
-          <div className="titledocuments">Primary Account</div>
-        </div>
-        <div style={{ width: "30%" }}>
-          <div>
+    <div style={{ height: "35vw" }} className="bankcardContainer">
+      <div style={{ marginBottom: "1vw" }} className="titleboxflexofbank">
+        <div>
+          <span>
             <img
+              src={img51}
               style={{
-                width: "8vw",
+                width: "1.1vw",
                 objectFit: "contain",
-                textAlign: "center",
+                margin: "0 1vw",
+                filter: data?.primaryAcc ? "" : "grayscale(1)",
               }}
-              src={img}
               alt=""
             />
-          </div>
+          </span>
+          {data?.primaryAcc ? "Primary Account" : "Secondry Account"}
         </div>
       </div>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <div style={{ width: "70%" }}>
-          <div className="Headingdocuments">Indian Bank</div>
-        </div>
-        <div style={{ width: "30%" }}>
-          <div
-            className="Headingdocuments"
-            style={{
-              fontSize: "0.91vw",
-              margin: "0vw",
-              width: "100%",
-              textAlign: "center",
-            }}
-          >
-            Account Details
-          </div>
+
+      <div className="flexofbankdetails">
+        <div className="titleboxflexofbank">Bank Name</div>
+        <div style={{ fontWeight: "400" }} className="titleboxflexofbank">
+          {data?.bankName}
         </div>
       </div>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <div style={{ width: "70%" }}>
-          <div
-            style={{ fontSize: "400", width: "100%" }}
-            className="Headingdocuments"
-          >
-            SB *********8473
-          </div>
-          <div
-            style={{ fontSize: "400", width: "100%" }}
-            className="Headingdocuments"
-          >
-            IFSC code - IDIB000667
-          </div>
-          <div
-            style={{ fontSize: "400", width: "100%" }}
-            className="Headingdocuments"
-          >
-            Status -
-            <span>
-              <img
-                style={{
-                  width: "1vw",
-                  margin: "0.4vw",
-                  position: "relative",
-                }}
-                src={img2}
-                alt=""
-              />
-            </span>
-            <span style={{ fontSize: "0.8vw" }}>Verified by 44 resources.</span>
-          </div>
+
+      <div className="flexofbankdetails">
+        <div className="titleboxflexofbank">Account Number</div>
+        <div style={{ fontWeight: "400" }} className="titleboxflexofbank">
+          {data?.accountNumber.toString().slice(0, 2)}********
+          {data?.accountNumber
+            .toString()
+            .slice(
+              data?.accountNumber.toString().length - 2,
+              data?.accountNumber.toString().length
+            )}
         </div>
-        <div style={{ width: "30%" }}>
-          <img
-            src={img1}
-            style={{ width: "9vw", objectFit: "contain" }}
-            alt=""
-          />
+      </div>
+      <div className="flexofbankdetails">
+        <div className="titleboxflexofbank">IFSC code - </div>
+        <div style={{ fontWeight: "400" }} className="titleboxflexofbank">
+          {data?.ifscCode}
+        </div>
+      </div>
+      <div style={{marginTop:"1vw",width:"100%",height:"20vw"}} className="boxofimageorpdf">
+        <div style={{  width:"100%",height:"16vw" }} className="imageshowboxofpdf">
+          <img style={{ width:"100%",height:"16vw" }} src={data?.files[0]?.file} alt="" />
+        </div>
+        <div className="imageshowboxofpdfname">
+          <div>
+            <PictureAsPdfIcon style={{ color: "red", fontSize: "1.7vw" }} />
+          </div>
+          <div className="nameifimagedocuments">
+            {data?.files[0]?.file?.split("%24")[1]?.slice(0, 17)}
+          </div>
+          <div className="inputfilesshowncatboxsingleimg">
+            <a href={`${data?.files[0]?.file}`} download>
+              {" "}
+              <CloudDownloadOutlinedIcon
+                style={{ fontSize: "1.5vw", margin: "0 1vw" }}
+              />{" "}
+            </a>
+          </div>
         </div>
       </div>
     </div>

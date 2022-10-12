@@ -1,7 +1,20 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import API_HOST from '../../../../env';
 import './Bank.css'
 import BankCard from './BankCard'
-export default function BankDetail() {
+export default function BankDetail({user}) {
+    useEffect(() => {
+        axios
+          .get(
+            `${API_HOST}/users/viewACCount?pageSize=1000&pageNumber=1&userName=${user?.userName}`
+          )
+          .then((res) => {
+            setArrayofbankdetail(res.data?.success?.data);
+          });
+      }, [user]);
+    
+      const [arrayofbankdetail, setArrayofbankdetail] = useState([]);
   return (
     <div>
          <div
@@ -10,12 +23,18 @@ export default function BankDetail() {
       >
         List Of Bank Details
       </div>
-        <div style={{ display: "flex", alignItems: "center" , flexWrap: "wrap" }}>
-            <BankCard/>
-            <BankCard/>
-            <BankCard/>
-            <BankCard/>
-        </div>
+        <div className="flexbanakcards">
+              {arrayofbankdetail?.map((data, index) => {
+                return (
+                  <BankCard
+                    setArrayofbankdetail={setArrayofbankdetail}
+                    data={data}
+                 
+
+                  />
+                );
+              })}
+            </div>
     </div>
   )
 }

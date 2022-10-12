@@ -16,7 +16,6 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import axios from "axios";
 import API_HOST from "../../../env";
 import CreateJobuserpage from "./CreatedJob/CreateJobuserpage";
-
 import Skillcenteruser from "./SkillCenter/Skillcenteruser";
 import Skillfirstuser from "./SkillCenter/Skillfirstuser";
 import Refrences from "./Refrences/Refrences";
@@ -375,7 +374,7 @@ export default function SkillCenter() {
       )}
       {workhistorytoggle === 9 ? (
         <>
-          <BankDetail />
+          <BankDetail  user={user}/>
         </>
       ) : (
         ""

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./jobdetail.css";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import Listofproposals from "./Listofproposals";
 import StarRatings from "react-star-ratings";
 import img1 from "../../../../assets/Web 1280 – 14/Group 9831.svg";
-import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 import API_HOST from "../../../../env";
 import axios from "axios";
 import Modal from "@mui/material/Modal";
