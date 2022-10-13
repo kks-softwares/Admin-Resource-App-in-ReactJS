@@ -206,6 +206,9 @@ export default function BrowseWorkSiadebar() {
     if (location.pathname === "/dashbaord/addpricing") {
       setColorsidebar(11);
     }
+    if (location.pathname === "/dashbaord/contactUs") {
+      setColorsidebar(13);
+    }
   }, [location]);
 
   return (
@@ -338,6 +341,17 @@ export default function BrowseWorkSiadebar() {
         <img src={img12} alt="" />
         Location
       </div>
+      <Link to="/dashbaord/contactUs">
+      <div
+      
+        className={
+          colorsidebar === 13 ? "firstsidebarmenu1" : "firstsidebarmenu"
+        }
+      >
+        <img src={img12} alt="" />
+        Contact Us
+      </div>
+      </Link>
       <Popover
         id={idx}
         open={openx}

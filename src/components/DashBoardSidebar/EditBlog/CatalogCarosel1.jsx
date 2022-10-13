@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import imgla from "../../../assets/Web 1280 – 2/Group 9969.svg";
 import imgra from "../../../assets/Web 1280 – 2/Group 9970.svg";
-import img11 from "../../../assets/Web 1280 – 2/collins-lesulie-0VEDrQXxrQo-unsplash.png";
-import img21 from "../../../assets/Web 1280 – 2/kaleidico-3V8xo5Gbusk-unsplash.png";
-import img31 from "../../../assets/Web 1280 – 2/studio-republic-fotKKqWNMQ4-unsplash.png";
-import img41 from "../../../assets/Web 1280 – 2/Group 10053.png";
+
 function SampleNextArrow(props) {
   const { onClick } = props;
   return (
