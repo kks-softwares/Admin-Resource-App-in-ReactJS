@@ -126,7 +126,10 @@ export default function Addblog() {
       })
       .then((res) => {
         navigate(-1);
-      });
+      }).catch((err)=>{
+        setFirstsumbitblog(false) 
+      })
+      ;
   };
 
   const [erroraddblog, setErroraddblog] = useState(false);

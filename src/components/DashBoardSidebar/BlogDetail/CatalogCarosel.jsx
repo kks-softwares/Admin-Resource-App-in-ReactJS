@@ -65,69 +65,8 @@ function SamplePrevArrow(props) {
 export default class Cataloguecarosel extends Component {
   render() {
     const settings = {
-      customPaging: function (i) {
-        return (
-          <a style={{ width: "5vw", height: "5vw" }}>
-            {i === 0 ? (
-              <img
-                style={{
-                  width: "5.5vw",
-                  height: "5.5vw",
-                  objectFit: "cover",
-                  borderRadius: "50%",
-                }}
-                src={img1}
-                alt=""
-              />
-            ) : (
-              ""
-            )}
-            {i === 1 ? (
-              <img
-                style={{
-                  width: "5.5vw",
-                  height: "5.5vw",
-                  objectFit: "cover",
-                  borderRadius: "50%",
-                }}
-                src={img2}
-                alt=""
-              />
-            ) : (
-              ""
-            )}
-            {i === 2 ? (
-              <img
-                style={{
-                  width: "5.5vw",
-                  height: "5.5vw",
-                  objectFit: "cover",
-                  borderRadius: "50%",
-                }}
-                src={img3}
-                alt=""
-              />
-            ) : (
-              ""
-            )}
-            {i === 3 ? (
-              <img
-                style={{
-                  width: "5.5vw",
-                  height: "5.5vw",
-                  objectFit: "cover",
-                  borderRadius: "50%",
-                }}
-                src={img4}
-                alt=""
-              />
-            ) : (
-              ""
-            )}
-          </a>
-        );
-      },
-      dots: true,
+     
+
       dotsClass: "slick-dots1 slick-thumb",
       infinite: true,
       speed: 500,

@@ -64,77 +64,7 @@ function SamplePrevArrow(props) {
 export default class Cataloguecarosel1 extends Component {
   render() {
     const settings = {
-      customPaging: function (i) {
-        return (
-          <a style={{ width: "5vw", height: "5vw" }}>
-            {i === 0 ? (
-             <div  style={{
-                width: "5.5vw",
-                height: "5.5vw",
-                objectFit: "cover",
-                borderRadius: "50%",
-              }}>
-                  <img
-                style={{
-                  width: "5.5vw",
-                  height: "5.5vw",
-                  objectFit: "cover",
-                  borderRadius: "50%",
-                }}
-                src={img11}
-                alt=""
-              />
-             </div>
-
-            ) : (
-              ""
-            )}
-            {i === 1 ? (
-              <img
-                style={{
-                  width: "5.5vw",
-                  height: "5.5vw",
-                  objectFit: "cover",
-                  borderRadius: "50%",
-                }}
-                src={img21}
-                alt=""
-              />
-            ) : (
-              ""
-            )}
-            {i === 2 ? (
-              <img
-                style={{
-                  width: "5.5vw",
-                  height: "5.5vw",
-                  objectFit: "cover",
-                  borderRadius: "50%",
-                }}
-                src={img31}
-                alt=""
-              />
-            ) : (
-              ""
-            )}
-            {i === 3 ? (
-              <img
-                style={{
-                  width: "5.5vw",
-                  height: "5.5vw",
-                  objectFit: "cover",
-                  borderRadius: "50%",
-                }}
-                src={img41}
-                alt=""
-              />
-            ) : (
-              ""
-            )}
-          </a>
-        );
-      },
-      dots: true,
+     
       dotsClass: "slick-dots1 slick-thumb",
       infinite: true,
       speed: 500,

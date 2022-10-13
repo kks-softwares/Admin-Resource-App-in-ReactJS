@@ -18,6 +18,7 @@ import { TextField } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
+import { display } from "@mui/system";
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -182,6 +183,14 @@ export default function Users() {
         });
     }
   }, [page, setSelectedCategory, Cateid, skillid, datestart1, datestart1x]);
+
+  const [linkusers, setLinkusers] = useState()
+  useEffect(() => {
+    axios.get(`${API_HOST}/users/exportUser`).then((res) => {
+      setLinkusers(res?.data?.success?.data?.Location) 
+    });
+  }, []);
+
   return (
     <div className="BrowseWorkMain-cntainer">
       <div
@@ -200,12 +209,7 @@ export default function Users() {
               setSetSelectedCategory(e.target.value);
             }}
           />
-          <button
-            style={{ width: "11vw", height: "100%" }}
-            className="hb-button"
-          >
-            Search
-          </button>
+         
         </div>
         <div>
           <div
@@ -592,35 +596,60 @@ export default function Users() {
           </div>
         </div>
       </div>
-
       <div
-        style={{ position: "relative", right: "1vw", marginBottom: "1vw" }}
-        className="profileworkhistruytoggleer"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "95%",
+        }}
       >
         <div
-          className="profileworkhistruytoggleervalue"
-          style={{
-            textAlign: "center",
-            width: "8vw",
-          }}
+          style={{ position: "relative", right: "1vw", marginBottom: "1vw" }}
+          className="profileworkhistruytoggleer"
         >
-          All Users
-        </div>
+          <div
+            className="profileworkhistruytoggleervalue"
+            style={{
+              textAlign: "center",
+              width: "8vw",
+            }}
+          >
+            All Users
+          </div>
 
+          <div
+            style={{
+              color: "#064C87",
+              borderBottom: "0.3vw solid #064C87",
+              width: "9vw",
+              position: "relative",
+              right: "9.5vw",
+              bottom: "0.0vw",
+              transitionDuration: "1s",
+              borderRadius: "0.2vw",
+            }}
+          ></div>
+        </div>
         <div
           style={{
-            color: "#064C87",
-            borderBottom: "0.3vw solid #064C87",
-            width: "9vw",
-            position: "relative",
-            right: "9.5vw",
-            bottom: "0.0vw",
-            transitionDuration: "1s",
-            borderRadius: "0.2vw",
+            width: "8vw",
+            height: "3vw",
+            padding: "0.51vw",
+            fontSize: "1vw",
+            background: "#286497",
+            color: "white",
+            fontWeight: "500",
+            borderRadius: "0.3vw",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
           }}
-        ></div>
+        >
+          <a href={linkusers} download style={{color:"white"}}> <span style={{color:"white"}}> Export
+              </span></a> 
+        </div>
       </div>
-
       <div>
         <div
           style={{ margin: "0vw 1vw", padding: "0vw 1vw" }}
