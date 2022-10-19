@@ -2,7 +2,7 @@ import React from "react";
 import img51 from "../../../../assets/Web 1280 – 14/Group 10219.svg";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
-export default function BankCard({ data }) {
+export default function BankCard({ data,primaryAccount }) {
   return (
     <div style={{ height: "35vw" }} className="bankcardContainer">
       <div style={{ marginBottom: "1vw" }} className="titleboxflexofbank">
@@ -14,12 +14,12 @@ export default function BankCard({ data }) {
                 width: "1.1vw",
                 objectFit: "contain",
                 margin: "0 1vw",
-                filter: data?.primaryAcc ? "" : "grayscale(1)",
+                filter: data?.accountId===primaryAccount?.accountId?.accountId ? "" : "grayscale(1)",
               }}
               alt=""
             />
           </span>
-          {data?.primaryAcc ? "Primary Account" : "Secondry Account"}
+          {data?.accountId===primaryAccount?.accountId?.accountId ? "Primary Account" : "Secondry Account"}
         </div>
       </div>
 
