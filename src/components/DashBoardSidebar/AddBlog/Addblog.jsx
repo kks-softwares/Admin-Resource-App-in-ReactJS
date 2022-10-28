@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     fill: "black",
   },
 }));
-export default function Addblog() {
+export default function Addblog({ width }) {
   const classes = useStyles();
   const { user } = useSelector((state) => state.user);
 
@@ -102,8 +102,515 @@ export default function Addblog() {
   const [arrayoffiles, setArrayoffiles] = useState([]);
   const [scate, setsCate] = useState("");
 
+  const [service1Question, setService1Question] = useState("");
+  const [service2Question, setService2Question] = useState("");
+  const [service3Question, setService3Question] = useState("");
+  const [service4Question, setService4Question] = useState("");
+  const [service5Question, setService5Question] = useState("");
+  const [service6Question, setService6Question] = useState("");
+  const [service7Question, setService7Question] = useState("");
+  const [service8Question, setService8Question] = useState("");
+  const [service9Question, setService9Question] = useState("");
+  const [service10Question, setService10Question] = useState("");
+  const [service11Question, setService11Question] = useState("");
+  const [service12Question, setService12Question] = useState("");
+  const [service13Question, setService13Question] = useState("");
+  const [service14Question, setService14Question] = useState("");
+  const [service15Question, setService15Question] = useState("");
+  const [service16Question, setService16Question] = useState("");
+  const [service17Question, setService17Question] = useState("");
+  const [service18Question, setService18Question] = useState("");
+  const [service19Question, setService19Question] = useState("");
+  const [service20Question, setService20Question] = useState("");
+
+  const [service1Answer, setService1Answer] = useState("");
+  const [service2Answer, setService2Answer] = useState("");
+  const [service3Answer, setService3Answer] = useState("");
+  const [service4Answer, setService4Answer] = useState("");
+  const [service5Answer, setService5Answer] = useState("");
+  const [service6Answer, setService6Answer] = useState("");
+  const [service7Answer, setService7Answer] = useState("");
+  const [service8Answer, setService8Answer] = useState("");
+  const [service9Answer, setService9Answer] = useState("");
+  const [service10Answer, setService10Answer] = useState("");
+  const [service11Answer, setService11Answer] = useState("");
+  const [service12Answer, setService12Answer] = useState("");
+  const [service13Answer, setService13Answer] = useState("");
+  const [service14Answer, setService14Answer] = useState("");
+  const [service15Answer, setService15Answer] = useState("");
+  const [service16Answer, setService16Answer] = useState("");
+  const [service17Answer, setService17Answer] = useState("");
+  const [service18Answer, setService18Answer] = useState("");
+  const [service19Answer, setService19Answer] = useState("");
+  const [service20Answer, setService20Answer] = useState("");
+
   const handlesumbitBlog = () => {
     const formdata = new FormData();
+    if (arrayofservicesFAQ.length === 0) {
+      // setRestag(true);
+      return;
+    }
+    if (arrayofservicesFAQ.length === 1) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+    }
+    if (arrayofservicesFAQ.length === 2) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+    }
+    if (arrayofservicesFAQ.length === 3) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+    }
+    if (arrayofservicesFAQ.length === 4) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+    }
+    if (arrayofservicesFAQ.length === 5) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+    }
+    if (arrayofservicesFAQ.length === 6) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+    }
+    if (arrayofservicesFAQ.length === 7) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+    }
+    if (arrayofservicesFAQ.length === 8) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+    }
+    if (arrayofservicesFAQ.length === 9) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+    }
+    if (arrayofservicesFAQ.length === 10) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+    }
+    if (arrayofservicesFAQ.length === 11) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+    }
+    if (arrayofservicesFAQ.length === 12) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+    }
+    if (arrayofservicesFAQ.length === 13) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+    }
+    if (arrayofservicesFAQ.length === 14) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+      formdata.append("Q14", service14Question);
+      formdata.append("A14", service14Answer);
+    }
+    if (arrayofservicesFAQ.length === 15) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+      formdata.append("Q14", service14Question);
+      formdata.append("A14", service14Answer);
+      formdata.append("Q15", service15Question);
+      formdata.append("A15", service15Answer);
+    }
+    if (arrayofservicesFAQ.length === 16) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+      formdata.append("Q14", service14Question);
+      formdata.append("A14", service14Answer);
+      formdata.append("Q15", service15Question);
+      formdata.append("A15", service15Answer);
+      formdata.append("Q16", service16Question);
+      formdata.append("A16", service16Answer);
+    }
+    if (arrayofservicesFAQ.length === 17) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+      formdata.append("Q14", service14Question);
+      formdata.append("A14", service14Answer);
+      formdata.append("Q15", service15Question);
+      formdata.append("A15", service15Answer);
+      formdata.append("Q16", service16Question);
+      formdata.append("A16", service16Answer);
+      formdata.append("Q17", service17Question);
+      formdata.append("A17", service17Answer);
+    }
+    if (arrayofservicesFAQ.length === 18) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+      formdata.append("Q14", service14Question);
+      formdata.append("A14", service14Answer);
+      formdata.append("Q15", service15Question);
+      formdata.append("A15", service15Answer);
+      formdata.append("Q16", service16Question);
+      formdata.append("A16", service16Answer);
+      formdata.append("Q17", service17Question);
+      formdata.append("A17", service17Answer);
+      formdata.append("Q18", service18Question);
+      formdata.append("A18", service18Answer);
+    }
+    if (arrayofservicesFAQ.length === 19) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+      formdata.append("Q14", service14Question);
+      formdata.append("A14", service14Answer);
+      formdata.append("Q15", service15Question);
+      formdata.append("A15", service15Answer);
+      formdata.append("Q16", service16Question);
+      formdata.append("A16", service16Answer);
+      formdata.append("Q17", service17Question);
+      formdata.append("A17", service17Answer);
+      formdata.append("Q18", service18Question);
+      formdata.append("A18", service18Answer);
+      formdata.append("Q19", service19Question);
+      formdata.append("A19", service19Answer);
+    }
+    if (arrayofservicesFAQ.length === 20) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+      formdata.append("Q14", service14Question);
+      formdata.append("A14", service14Answer);
+      formdata.append("Q15", service15Question);
+      formdata.append("A15", service15Answer);
+      formdata.append("Q16", service16Question);
+      formdata.append("A16", service16Answer);
+      formdata.append("Q17", service17Question);
+      formdata.append("A17", service17Answer);
+      formdata.append("Q18", service18Question);
+      formdata.append("A18", service18Answer);
+      formdata.append("Q19", service19Question);
+      formdata.append("A19", service19Answer);
+      formdata.append("Q20", service20Question);
+      formdata.append("A20", service20Answer);
+    }
+
     if (arrayoffiles?.length > 0) {
       arrayoffiles?.map((data) => {
         formdata.append("fileName", data);
@@ -126,8 +633,8 @@ export default function Addblog() {
       })
       .then((res) => {
         navigate(-1);
-      }).catch((err)=>{
-        setFirstsumbitblog(false) 
+      }).catch((err) => {
+        setFirstsumbitblog(false)
       })
       ;
   };
@@ -177,6 +684,10 @@ export default function Addblog() {
       setAllCbutton(res?.data?.success?.data);
     });
   }, []);
+
+  const [arrayofservicesFAQ, setArrayofservicesFAQ] = useState([
+    { quetion: "Enter Quetion", answer: "Enter Answer", id: 1 },
+  ]);
 
   return (
     <div>
@@ -249,7 +760,7 @@ export default function Addblog() {
                     },
                   }}
                 >
-                  <MenuItem onClick={() => {}} value={0} hidden>
+                  <MenuItem onClick={() => { }} value={0} hidden>
                     Select
                   </MenuItem>
 
@@ -401,7 +912,7 @@ export default function Addblog() {
                   );
                 })}
             </div>
-       
+
             <div className="jobpodtedfieldtitile"> Image Title *</div>
             <div className="jobpostfieldinputbox">
               <input
@@ -470,6 +981,406 @@ export default function Addblog() {
                 <AddIcon style={{ fontSize: "1.3vw" }} />
               </span>{" "}
               Add Paragraph
+            </div>
+            <div className="mt-4"
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                width: "100%",
+              }}
+            >
+              <div
+                style={{ marginBottom: "0.5vw" }}
+                className="jobpodtedfieldtitile"
+              >
+                FAQ
+              </div>
+              <div
+                style={{ width: width > 700 ? "" : "15%" }}
+                className="servicesmenuname4box"
+              >
+                <span
+                  style={{ color: "red", cursor: "pointer" }}
+                  onClick={() => {
+                    const index = arrayofservicesFAQ.length - 1;
+                    index + 1 === 1
+                      ? setService1Question("")
+                      : index + 1 === 2
+                        ? setService2Question("")
+                        : index + 1 === 3
+                          ? setService3Question("")
+                          : index + 1 === 4
+                            ? setService4Question("")
+                            : index + 1 === 5
+                              ? setService5Question("")
+                              : index + 1 === 6
+                                ? setService6Question("")
+                                : index + 1 === 7
+                                  ? setService7Question("")
+                                  : index + 1 === 8
+                                    ? setService8Question("")
+                                    : index + 1 === 9
+                                      ? setService9Question("")
+                                      : index + 1 === 10
+                                        ? setService10Question("")
+                                        : index + 1 === 11
+                                          ? setService11Question("")
+                                          : index + 1 === 12
+                                            ? setService12Question("")
+                                            : index + 1 === 13
+                                              ? setService13Question("")
+                                              : index + 1 === 14
+                                                ? setService14Question("")
+                                                : index + 1 === 15
+                                                  ? setService15Question("")
+                                                  : index + 1 === 16
+                                                    ? setService16Question("")
+                                                    : index + 1 === 17
+                                                      ? setService17Question("")
+                                                      : index + 1 === 18
+                                                        ? setService18Question("")
+                                                        : index + 1 === 19
+                                                          ? setService19Question("")
+                                                          : setService20Question("");
+                    index + 1 === 1
+                      ? setService1Answer("")
+                      : index + 1 === 2
+                        ? setService2Answer("")
+                        : index + 1 === 3
+                          ? setService3Answer("")
+                          : index + 1 === 4
+                            ? setService4Answer("")
+                            : index + 1 === 5
+                              ? setService5Answer("")
+                              : index + 1 === 6
+                                ? setService6Answer("")
+                                : index + 1 === 7
+                                  ? setService7Answer("")
+                                  : index + 1 === 8
+                                    ? setService8Answer("")
+                                    : index + 1 === 9
+                                      ? setService9Answer("")
+                                      : index + 1 === 10
+                                        ? setService10Answer("")
+                                        : index + 1 === 11
+                                          ? setService11Answer("")
+                                          : index + 1 === 12
+                                            ? setService12Answer("")
+                                            : index + 1 === 13
+                                              ? setService13Answer("")
+                                              : index + 1 === 14
+                                                ? setService14Answer("")
+                                                : index + 1 === 15
+                                                  ? setService15Answer("")
+                                                  : index + 1 === 16
+                                                    ? setService16Answer("")
+                                                    : index + 1 === 17
+                                                      ? setService17Answer("")
+                                                      : index + 1 === 18
+                                                        ? setService18Answer("")
+                                                        : index + 1 === 19
+                                                          ? setService19Answer("")
+                                                          : setService20Answer("");
+                    setArrayofservicesFAQ([
+                      ...arrayofservicesFAQ.slice(0, arrayofservicesFAQ.length - 1),
+                    ]);
+                  }}
+                >
+                  Remove
+                </span>
+              </div>
+            </div>
+            {arrayofservicesFAQ?.map((data, index) => {
+              return (
+                <div style={{ marginTop: "1vw" }} className="servicesmenudivfaq">
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      width: "100%",
+                    }}
+                  >
+                    <div
+                      style={{ width: width > 700 ? "" : "80%" }}
+                      className="mb-2"
+                    >
+                      Question
+                    </div>
+                  </div>
+                  <div className="servicesmenuname1boxfaq">
+                    <input
+                      type="text"
+                      value={
+                        index + 1 === 1
+                          ? service1Question
+                          : index + 1 === 2
+                            ? service2Question
+                            : index + 1 === 3
+                              ? service3Question
+                              : index + 1 === 4
+                                ? service4Question
+                                : index + 1 === 5
+                                  ? service5Question
+                                  : index + 1 === 6
+                                    ? service6Question
+                                    : index + 1 === 7
+                                      ? service7Question
+                                      : index + 1 === 8
+                                        ? service8Question
+                                        : index + 1 === 9
+                                          ? service9Question
+                                          : index + 1 === 10
+                                            ? service10Question
+                                            : index + 1 === 11
+                                              ? service11Question
+                                              : index + 1 === 12
+                                                ? service12Question
+                                                : index + 1 === 13
+                                                  ? service13Question
+                                                  : index + 1 === 14
+                                                    ? service14Question
+                                                    : index + 1 === 15
+                                                      ? service15Question
+                                                      : index + 1 === 16
+                                                        ? service16Question
+                                                        : index + 1 === 17
+                                                          ? service17Question
+                                                          : index + 1 === 18
+                                                            ? service18Question
+                                                            : index + 1 === 19
+                                                              ? service19Question
+                                                              : service20Question
+                      }
+                      onChange={(e) => {
+                        index + 1 === 1
+                          ? setService1Question(e.target.value)
+                          : index + 1 === 2
+                            ? setService2Question(e.target.value)
+                            : index + 1 === 3
+                              ? setService3Question(e.target.value)
+                              : index + 1 === 4
+                                ? setService4Question(e.target.value)
+                                : index + 1 === 5
+                                  ? setService5Question(e.target.value)
+                                  : index + 1 === 6
+                                    ? setService6Question(e.target.value)
+                                    : index + 1 === 7
+                                      ? setService7Question(e.target.value)
+                                      : index + 1 === 8
+                                        ? setService8Question(e.target.value)
+                                        : index + 1 === 9
+                                          ? setService9Question(e.target.value)
+                                          : index + 1 === 10
+                                            ? setService10Question(e.target.value)
+                                            : index + 1 === 11
+                                              ? setService11Question(e.target.value)
+                                              : index + 1 === 12
+                                                ? setService12Question(e.target.value)
+                                                : index + 1 === 13
+                                                  ? setService13Question(e.target.value)
+                                                  : index + 1 === 14
+                                                    ? setService14Question(e.target.value)
+                                                    : index + 1 === 15
+                                                      ? setService15Question(e.target.value)
+                                                      : index + 1 === 16
+                                                        ? setService16Question(e.target.value)
+                                                        : index + 1 === 17
+                                                          ? setService17Question(e.target.value)
+                                                          : index + 1 === 18
+                                                            ? setService18Question(e.target.value)
+                                                            : index + 1 === 19
+                                                              ? setService19Question(e.target.value)
+                                                              : setService20Question(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div style={{ width: "100%" }} className="mt-2 mb-2">
+                    Answer
+                  </div>
+                  <div className="servicesmenuname2boxfaq">
+                    <input
+                      type="text"
+                      value={
+                        index + 1 === 1
+                          ? service1Answer
+                          : index + 1 === 2
+                            ? service2Answer
+                            : index + 1 === 3
+                              ? service3Answer
+                              : index + 1 === 4
+                                ? service4Answer
+                                : index + 1 === 5
+                                  ? service5Answer
+                                  : index + 1 === 6
+                                    ? service6Answer
+                                    : index + 1 === 7
+                                      ? service7Answer
+                                      : index + 1 === 8
+                                        ? service8Answer
+                                        : index + 1 === 9
+                                          ? service9Answer
+                                          : index + 1 === 10
+                                            ? service10Answer
+                                            : index + 1 === 11
+                                              ? service11Answer
+                                              : index + 1 === 12
+                                                ? service12Answer
+                                                : index + 1 === 13
+                                                  ? service13Answer
+                                                  : index + 1 === 14
+                                                    ? service14Answer
+                                                    : index + 1 === 14
+                                                      ? service14Answer
+                                                      : index + 1 === 15
+                                                        ? service15Answer
+                                                        : index + 1 === 16
+                                                          ? service16Answer
+                                                          : index + 1 === 17
+                                                            ? service17Answer
+                                                            : index + 1 === 18
+                                                              ? service18Answer
+                                                              : index + 1 === 19
+                                                                ? service19Answer
+                                                                : service20Answer
+                      }
+                      onChange={(e) => {
+                        index + 1 === 1
+                          ? setService1Answer(e.target.value)
+                          : index + 1 === 2
+                            ? setService2Answer(e.target.value)
+                            : index + 1 === 3
+                              ? setService3Answer(e.target.value)
+                              : index + 1 === 4
+                                ? setService4Answer(e.target.value)
+                                : index + 1 === 5
+                                  ? setService5Answer(e.target.value)
+                                  : index + 1 === 6
+                                    ? setService6Answer(e.target.value)
+                                    : index + 1 === 7
+                                      ? setService7Answer(e.target.value)
+                                      : index + 1 === 8
+                                        ? setService8Answer(e.target.value)
+                                        : index + 1 === 9
+                                          ? setService9Answer(e.target.value)
+                                          : index + 1 === 10
+                                            ? setService10Answer(e.target.value)
+                                            : index + 1 === 11
+                                              ? setService11Answer(e.target.value)
+                                              : index + 1 === 12
+                                                ? setService12Answer(e.target.value)
+                                                : index + 1 === 13
+                                                  ? setService13Answer(e.target.value)
+                                                  : index + 1 === 14
+                                                    ? setService14Answer(e.target.value)
+                                                    : index + 1 === 15
+                                                      ? setService15Answer(e.target.value)
+                                                      : index + 1 === 16
+                                                        ? setService16Answer(e.target.value)
+                                                        : index + 1 === 17
+                                                          ? setService17Answer(e.target.value)
+                                                          : index + 1 === 18
+                                                            ? setService18Answer(e.target.value)
+                                                            : index + 1 === 19
+                                                              ? setService19Answer(e.target.value)
+                                                              : setService20Answer(e.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+            <div
+              className="addmoreservicecatalog"
+              onClick={() => {
+                const index = arrayofservicesFAQ.length;
+                index + 1 === 1
+                  ? setService1Question("")
+                  : index + 1 === 2
+                    ? setService2Question("")
+                    : index + 1 === 3
+                      ? setService3Question("")
+                      : index + 1 === 4
+                        ? setService4Question("")
+                        : index + 1 === 5
+                          ? setService5Question("")
+                          : index + 1 === 6
+                            ? setService6Question("")
+                            : index + 1 === 7
+                              ? setService7Question("")
+                              : index + 1 === 8
+                                ? setService8Question("")
+                                : index + 1 === 9
+                                  ? setService9Question("")
+                                  : index + 1 === 10
+                                    ? setService10Question("")
+                                    : index + 1 === 11
+                                      ? setService11Question("")
+                                      : index + 1 === 12
+                                        ? setService12Question("")
+                                        : index + 1 === 13
+                                          ? setService13Question("")
+                                          : index + 1 === 14
+                                            ? setService14Question("")
+                                            : index + 1 === 15
+                                              ? setService15Question("")
+                                              : index + 1 === 16
+                                                ? setService16Question("")
+                                                : index + 1 === 17
+                                                  ? setService17Question("")
+                                                  : index + 1 === 18
+                                                    ? setService18Question("")
+                                                    : index + 1 === 19
+                                                      ? setService19Question("")
+                                                      : setService20Question("");
+                index + 1 === 1
+                  ? setService1Answer("")
+                  : index + 1 === 2
+                    ? setService2Answer("")
+                    : index + 1 === 3
+                      ? setService3Answer("")
+                      : index + 1 === 4
+                        ? setService4Answer("")
+                        : index + 1 === 5
+                          ? setService5Answer("")
+                          : index + 1 === 6
+                            ? setService6Answer("")
+                            : index + 1 === 7
+                              ? setService7Answer("")
+                              : index + 1 === 8
+                                ? setService8Answer("")
+                                : index + 1 === 9
+                                  ? setService9Answer("")
+                                  : index + 1 === 10
+                                    ? setService10Answer("")
+                                    : index + 1 === 11
+                                      ? setService11Answer("")
+                                      : index + 1 === 12
+                                        ? setService12Answer("")
+                                        : index + 1 === 13
+                                          ? setService13Answer("")
+                                          : index + 1 === 14
+                                            ? setService14Answer("")
+                                            : index + 1 === 15
+                                              ? setService15Answer("")
+                                              : index + 1 === 16
+                                                ? setService16Answer("")
+                                                : index + 1 === 17
+                                                  ? setService17Answer("")
+                                                  : index + 1 === 18
+                                                    ? setService18Answer("")
+                                                    : index + 1 === 19
+                                                      ? setService19Answer("")
+                                                      : setService20Answer("");
+                setArrayofservicesFAQ([
+                  ...arrayofservicesFAQ,
+                  { quetion: "", answer: "" },
+                ]);
+              }}
+            >
+              <span>
+                <AddIcon style={{ fontSize: width > 700 ? "1.3vw" : "2vw" }} />
+              </span>{" "}
+              Add FAQ
             </div>
             {erroeshow ? (
               <div style={{ color: "red" }} className="jobpodtedfieldtitile">
@@ -550,17 +1461,17 @@ export default function Addblog() {
                     arrayoffiles[2]
                       ? arrayoffiles[2]
                       : arrayoffiles[0]
-                      ? arrayoffiles[0]
-                      : arrayoffiles[1]
+                        ? arrayoffiles[0]
+                        : arrayoffiles[1]
                   }
                   img4={
                     arrayoffiles[3]
                       ? arrayoffiles[3]
                       : arrayoffiles[1]
-                      ? arrayoffiles[1]
-                      : arrayoffiles[2]
-                      ? arrayoffiles[2]
-                      : arrayoffiles[0]
+                        ? arrayoffiles[1]
+                        : arrayoffiles[2]
+                          ? arrayoffiles[2]
+                          : arrayoffiles[0]
                   }
                 />
               </div>
@@ -646,9 +1557,9 @@ export default function Addblog() {
               <div
                 onClick={() => {
                   if (!firstsumbitblog) {
-                    setFirstsumbitblog(true)  
+                    setFirstsumbitblog(true)
                     handlesumbitBlog();
-                }
+                  }
                 }}
                 style={{ cursor: "pointer" }}
                 className="handlecirclieaboutsave"
