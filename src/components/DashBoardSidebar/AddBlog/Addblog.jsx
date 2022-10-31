@@ -93,6 +93,9 @@ export default function Addblog({ width }) {
   const [title, setTitle] = useState("");
   const [imagetitle, setimagetitle] = useState("");
   const [open, setOpen] = React.useState(false);
+  const [metaTag, setMetaTag] = useState("");
+  const [metaTitle, setMetaTitle] = useState("");
+  const [metaDescription, setMetaDescription] = useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [age3, setAge3] = React.useState(0);
@@ -623,6 +626,9 @@ export default function Addblog({ width }) {
     formdata.append("toC", JSON.stringify(arrayofblogs));
     formdata.append("category", scate);
     formdata.append("iconTitle", imagetitle);
+    formdata.append("imageAltTag", metaTag);
+    formdata.append("metaTitle", metaTitle);
+    formdata.append("metaDescription", metaDescription);
 
     axios
       .post(`${API_HOST}/contentManagement/addByAdmin`, formdata, {
@@ -1381,6 +1387,78 @@ export default function Addblog({ width }) {
                 <AddIcon style={{ fontSize: width > 700 ? "1.3vw" : "2vw" }} />
               </span>{" "}
               Add FAQ
+            </div>
+            <div className="jobpodtedfieldtitile mt-4">META TAG *</div>
+            <div className="jobpostfieldinputbox">
+              <input
+                type="text"
+                value={metaTag}
+                onChange={(e) => {
+                  setMetaTag(e.target.value);
+                }}
+              />
+              {width > 700 && (
+                <CloseIcon
+                  style={{
+                    position: "relative",
+                    right: "2vw",
+                    top: "1.1vw",
+                    fontSize: width > 700 ? "1.5vw" : "3vw",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setMetaTag("");
+                  }}
+                />
+              )}
+            </div>
+            <div className="jobpodtedfieldtitile">META TITLE *</div>
+            <div className="jobpostfieldinputbox">
+            <input
+                  type="text"
+                  value={metaTitle}
+                  onChange={(e) => {
+                    setMetaTitle(e.target.value);
+                  }}
+                />
+              {width > 700 && (
+                <CloseIcon
+                  style={{
+                    position: "relative",
+                    right: "2vw",
+                    top: "1.1vw",
+                    fontSize: width > 700 ? "1.5vw" : "3vw",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setMetaTitle("");
+                  }}
+                />
+              )}
+            </div>
+            <div className="jobpodtedfieldtitile">META DESCRIPTION *</div>
+            <div className="jobpostfieldinputbox">
+            <input
+                  type="text"
+                  value={metaDescription}
+                  onChange={(e) => {
+                    setMetaDescription(e.target.value);
+                  }}
+                />
+              {width > 700 && (
+                <CloseIcon
+                  style={{
+                    position: "relative",
+                    right: "2vw",
+                    top: "1.1vw",
+                    fontSize: width > 700 ? "1.5vw" : "3vw",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setMetaDescription("");
+                  }}
+                />
+              )}
             </div>
             {erroeshow ? (
               <div style={{ color: "red" }} className="jobpodtedfieldtitile">
