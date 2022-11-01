@@ -1388,6 +1388,7 @@ export default function Addblog({ width }) {
               </span>{" "}
               Add FAQ
             </div>
+            <div className="jobpodtedfieldtitile" style={{fontSize: '1.6vw', fontSize: '1.8vw', marginTop: '2vw'}}>*All Meta Field's are required for GOOGLE ranking.</div>
             <div className="jobpodtedfieldtitile mt-4">META TAG *</div>
             <div className="jobpostfieldinputbox">
               <input

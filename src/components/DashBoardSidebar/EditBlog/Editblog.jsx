@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     fill: "black",
   },
 }));
-export default function Addblog() {
+export default function Addblog({ width }) {
   const classes = useStyles();
 
   const [arrayofblogs, setArrayofblogs] = useState([
@@ -83,7 +83,10 @@ export default function Addblog() {
   const [erroeshow, setErroeshow] = useState(false);
   const [title, setTitle] = useState("");
   const [imagetitle, setimagetitle] = useState("");
-
+  const [imageTagAlt, setImageTagAlt] = useState("");
+  const [metaTag, setMetaTag] = useState("");
+  const [metaTitle, setMetaTitle] = useState("");
+  const [metaDescription, setMetaDescription] = useState("");
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -105,6 +108,10 @@ export default function Addblog() {
         setData(res?.data?.success?.data[0]);
         setTitle(res?.data?.success?.data[0]?.contentName);
         setimagetitle(res?.data?.success?.data[0]?.iconTitle);
+        setMetaTag(res?.data?.success?.data[0]?.slug);
+        setMetaTitle(res?.data?.success?.data[0]?.metaTitle);
+        setMetaDescription(res?.data?.success?.data[0]?.metaDescription);
+        setImageTagAlt(res?.data?.success?.data[0]?.imageAltTag);
         setArrayofblogs(res?.data?.success?.data[0]?.toC);
         setAge3(
           res?.data?.success?.data[0]?.category === "Business Ideas"
@@ -137,6 +144,10 @@ export default function Addblog() {
     formdata.append("category", scate);
     formdata.append("contentId", Id);
     formdata.append("iconTitle", imagetitle);
+    formdata.append("imageAltTag", imageTagAlt);
+    formdata.append("slug", metaTag);
+    formdata.append("metaTitle", metaTitle);
+    formdata.append("metaDescription", metaDescription);
 
     axios
       .post(`${API_HOST}/contentManagement/editcontent`, formdata, {
@@ -460,6 +471,30 @@ export default function Addblog() {
                   );
                 })}
             </div>
+            <div className="jobpodtedfieldtitile mt-4">Image ALT TAG *</div>
+            <div className="jobpostfieldinputbox">
+              <input
+                type="text"
+                value={imageTagAlt}
+                onChange={(e) => {
+                  setImageTagAlt(e.target.value);
+                }}
+              />
+              {width > 700 && (
+                <CloseIcon
+                  style={{
+                    position: "relative",
+                    right: "2vw",
+                    top: "1.1vw",
+                    fontSize: width > 700 ? "1.5vw" : "3vw",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setImageTagAlt("");
+                  }}
+                />
+              )}
+            </div>
             <div className="jobpodtedfieldtitile"> Image Title *</div>
             <div className="jobpostfieldinputbox">
               <input
@@ -528,6 +563,79 @@ export default function Addblog() {
                 <AddIcon style={{ fontSize: "1.3vw" }} />
               </span>{" "}
               Add Paragraph
+            </div>
+            <div className="jobpodtedfieldtitile" style={{fontSize: '1.6vw', fontSize: '1.5vw', marginTop: '2vw'}}>*All Meta Field's are required for GOOGLE ranking.</div>
+            <div className="jobpodtedfieldtitile mt-4">META TAG *</div>
+            <div className="jobpostfieldinputbox">
+              <input
+                type="text"
+                value={metaTag}
+                onChange={(e) => {
+                  setMetaTag(e.target.value);
+                }}
+              />
+              {width > 700 && (
+                <CloseIcon
+                  style={{
+                    position: "relative",
+                    right: "2vw",
+                    top: "1.1vw",
+                    fontSize: width > 700 ? "1.5vw" : "3vw",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setMetaTag("");
+                  }}
+                />
+              )}
+            </div>
+            <div className="jobpodtedfieldtitile">META TITLE *</div>
+            <div className="jobpostfieldinputbox">
+            <input
+                  type="text"
+                  value={metaTitle}
+                  onChange={(e) => {
+                    setMetaTitle(e.target.value);
+                  }}
+                />
+              {width > 700 && (
+                <CloseIcon
+                  style={{
+                    position: "relative",
+                    right: "2vw",
+                    top: "1.1vw",
+                    fontSize: width > 700 ? "1.5vw" : "3vw",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setMetaTitle("");
+                  }}
+                />
+              )}
+            </div>
+            <div className="jobpodtedfieldtitile">META DESCRIPTION *</div>
+            <div className="jobpostfieldinputbox">
+            <input
+                  type="text"
+                  value={metaDescription}
+                  onChange={(e) => {
+                    setMetaDescription(e.target.value);
+                  }}
+                />
+              {width > 700 && (
+                <CloseIcon
+                  style={{
+                    position: "relative",
+                    right: "2vw",
+                    top: "1.1vw",
+                    fontSize: width > 700 ? "1.5vw" : "3vw",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setMetaDescription("");
+                  }}
+                />
+              )}
             </div>
             {erroeshow ? (
               <div style={{ color: "red" }} className="jobpodtedfieldtitile">
