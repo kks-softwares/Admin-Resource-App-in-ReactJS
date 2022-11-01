@@ -93,6 +93,7 @@ export default function Addblog({ width }) {
   const [title, setTitle] = useState("");
   const [imagetitle, setimagetitle] = useState("");
   const [open, setOpen] = React.useState(false);
+  const [imageTagAlt, setImageTagAlt] = useState("");
   const [metaTag, setMetaTag] = useState("");
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
@@ -626,7 +627,8 @@ export default function Addblog({ width }) {
     formdata.append("toC", JSON.stringify(arrayofblogs));
     formdata.append("category", scate);
     formdata.append("iconTitle", imagetitle);
-    formdata.append("imageAltTag", metaTag);
+    formdata.append("imageAltTag", imageTagAlt);
+    formdata.append("slug", metaTag);
     formdata.append("metaTitle", metaTitle);
     formdata.append("metaDescription", metaDescription);
 
@@ -918,7 +920,30 @@ export default function Addblog({ width }) {
                   );
                 })}
             </div>
-
+            <div className="jobpodtedfieldtitile mt-4">Image ALT TAG *</div>
+            <div className="jobpostfieldinputbox">
+              <input
+                type="text"
+                value={imageTagAlt}
+                onChange={(e) => {
+                  setImageTagAlt(e.target.value);
+                }}
+              />
+              {width > 700 && (
+                <CloseIcon
+                  style={{
+                    position: "relative",
+                    right: "2vw",
+                    top: "1.1vw",
+                    fontSize: width > 700 ? "1.5vw" : "3vw",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setImageTagAlt("");
+                  }}
+                />
+              )}
+            </div>
             <div className="jobpodtedfieldtitile"> Image Title *</div>
             <div className="jobpostfieldinputbox">
               <input
