@@ -16,6 +16,7 @@ import { makeStyles } from "@material-ui/core";
 import axios from "axios";
 import API_HOST from "../../../env";
 import { useSelector } from "react-redux";
+import { TextEditor } from "../AddBlog/Texteditor";
 const style = {
   position: "absolute",
   top: "50%",
@@ -112,34 +113,582 @@ export default function Addblog({ width }) {
         setMetaTitle(res?.data?.success?.data[0]?.metaTitle);
         setMetaDescription(res?.data?.success?.data[0]?.metaDescription);
         setImageTagAlt(res?.data?.success?.data[0]?.imageAltTag);
+        setService1Question(res?.data?.success?.data[0]?.Q1);
+        setService1Answer(res?.data?.success?.data[0]?.A1);
+        setService2Question(res?.data?.success?.data[0]?.Q2);
+        setService2Answer(res?.data?.success?.data[0]?.A2);
+        setService3Question(res?.data?.success?.data[0]?.Q3);
+        setService3Answer(res?.data?.success?.data[0]?.A3);
+        setService4Question(res?.data?.success?.data[0]?.Q4);
+        setService4Answer(res?.data?.success?.data[0]?.A4);
+        setService5Question(res?.data?.success?.data[0]?.Q5);
+        setService5Answer(res?.data?.success?.data[0]?.A5);
+        setService6Question(res?.data?.success?.data[0]?.Q6);
+        setService6Answer(res?.data?.success?.data[0]?.A6);
+        setService7Question(res?.data?.success?.data[0]?.Q7);
+        setService7Answer(res?.data?.success?.data[0]?.A7);
+        setService8Question(res?.data?.success?.data[0]?.Q8);
+        setService8Answer(res?.data?.success?.data[0]?.A8);
+        setService9Question(res?.data?.success?.data[0]?.Q9);
+        setService9Answer(res?.data?.success?.data[0]?.A9);
+        setService10Question(res?.data?.success?.data[0]?.Q10);
+        setService10Answer(res?.data?.success?.data[0]?.A10);
+        setService11Question(res?.data?.success?.data[0]?.Q11);
+        setService11Answer(res?.data?.success?.data[0]?.A11);
+        setService12Question(res?.data?.success?.data[0]?.Q12);
+        setService12Answer(res?.data?.success?.data[0]?.A12);
+        setService13Question(res?.data?.success?.data[0]?.Q13);
+        setService13Answer(res?.data?.success?.data[0]?.A13);
+        setService14Question(res?.data?.success?.data[0]?.Q14);
+        setService14Answer(res?.data?.success?.data[0]?.A14);
+        setService15Question(res?.data?.success?.data[0]?.Q15);
+        setService15Answer(res?.data?.success?.data[0]?.A15);
+        setService16Question(res?.data?.success?.data[0]?.Q16);
+        setService16Answer(res?.data?.success?.data[0]?.A16);
+        setService17Question(res?.data?.success?.data[0]?.Q17);
+        setService17Answer(res?.data?.success?.data[0]?.A17);
+        setService18Question(res?.data?.success?.data[0]?.Q18);
+        setService18Answer(res?.data?.success?.data[0]?.A18);
+        setService19Question(res?.data?.success?.data[0]?.Q19);
+        setService19Answer(res?.data?.success?.data[0]?.A19);
+        setService20Question(res?.data?.success?.data[0]?.Q20);
+        setService20Answer(res?.data?.success?.data[0]?.A20);
         setArrayofblogs(res?.data?.success?.data[0]?.toC);
         setAge3(
           res?.data?.success?.data[0]?.category === "Business Ideas"
             ? 1
             : res?.data?.success?.data[0]?.category === "Business Plans"
-            ? 2
-            : res?.data?.success?.data[0]?.category === "Business Problems"
-            ? 3
-            : 4
+              ? 2
+              : res?.data?.success?.data[0]?.category === "Business Problems"
+                ? 3
+                : 4
         );
         setsCate(
           res?.data?.success?.data[0]?.category === "Business Ideas"
             ? "Business Ideas"
             : res?.data?.success?.data[0]?.category === "Business Plans"
-            ? "Business Plans"
-            : res?.data?.success?.data[0]?.category === "Business Problems"
-            ? "Business Problems"
-            : "Others"
+              ? "Business Plans"
+              : res?.data?.success?.data[0]?.category === "Business Problems"
+                ? "Business Problems"
+                : "Others"
         );
         setArrayoffiles(res?.data?.success?.data[0]?.icon);
       });
   }, [Id]);
 
-  
+  const [service1Question, setService1Question] = useState("");
+  const [service2Question, setService2Question] = useState("");
+  const [service3Question, setService3Question] = useState("");
+  const [service4Question, setService4Question] = useState("");
+  const [service5Question, setService5Question] = useState("");
+  const [service6Question, setService6Question] = useState("");
+  const [service7Question, setService7Question] = useState("");
+  const [service8Question, setService8Question] = useState("");
+  const [service9Question, setService9Question] = useState("");
+  const [service10Question, setService10Question] = useState("");
+  const [service11Question, setService11Question] = useState("");
+  const [service12Question, setService12Question] = useState("");
+  const [service13Question, setService13Question] = useState("");
+  const [service14Question, setService14Question] = useState("");
+  const [service15Question, setService15Question] = useState("");
+  const [service16Question, setService16Question] = useState("");
+  const [service17Question, setService17Question] = useState("");
+  const [service18Question, setService18Question] = useState("");
+  const [service19Question, setService19Question] = useState("");
+  const [service20Question, setService20Question] = useState("");
+
+  const [service1Answer, setService1Answer] = useState("");
+  const [service2Answer, setService2Answer] = useState("");
+  const [service3Answer, setService3Answer] = useState("");
+  const [service4Answer, setService4Answer] = useState("");
+  const [service5Answer, setService5Answer] = useState("");
+  const [service6Answer, setService6Answer] = useState("");
+  const [service7Answer, setService7Answer] = useState("");
+  const [service8Answer, setService8Answer] = useState("");
+  const [service9Answer, setService9Answer] = useState("");
+  const [service10Answer, setService10Answer] = useState("");
+  const [service11Answer, setService11Answer] = useState("");
+  const [service12Answer, setService12Answer] = useState("");
+  const [service13Answer, setService13Answer] = useState("");
+  const [service14Answer, setService14Answer] = useState("");
+  const [service15Answer, setService15Answer] = useState("");
+  const [service16Answer, setService16Answer] = useState("");
+  const [service17Answer, setService17Answer] = useState("");
+  const [service18Answer, setService18Answer] = useState("");
+  const [service19Answer, setService19Answer] = useState("");
+  const [service20Answer, setService20Answer] = useState("");
+
+  const [arrayofservicesFAQ, setArrayofservicesFAQ] = useState([
+    { quetion: "Enter Quetion", answer: "Enter Answer", id: 1 },
+  ]);
 
   const handlesumbitBlog = () => {
     const formdata = new FormData();
-
+    
+    if (arrayofservicesFAQ.length === 0) {
+      // setRestag(true);
+      return;
+    }
+    if (arrayofservicesFAQ.length === 1) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+    }
+    if (arrayofservicesFAQ.length === 2) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+    }
+    if (arrayofservicesFAQ.length === 3) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+    }
+    if (arrayofservicesFAQ.length === 4) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+    }
+    if (arrayofservicesFAQ.length === 5) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+    }
+    if (arrayofservicesFAQ.length === 6) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+    }
+    if (arrayofservicesFAQ.length === 7) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+    }
+    if (arrayofservicesFAQ.length === 8) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+    }
+    if (arrayofservicesFAQ.length === 9) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+    }
+    if (arrayofservicesFAQ.length === 10) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+    }
+    if (arrayofservicesFAQ.length === 11) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+    }
+    if (arrayofservicesFAQ.length === 12) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+    }
+    if (arrayofservicesFAQ.length === 13) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+    }
+    if (arrayofservicesFAQ.length === 14) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+      formdata.append("Q14", service14Question);
+      formdata.append("A14", service14Answer);
+    }
+    if (arrayofservicesFAQ.length === 15) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+      formdata.append("Q14", service14Question);
+      formdata.append("A14", service14Answer);
+      formdata.append("Q15", service15Question);
+      formdata.append("A15", service15Answer);
+    }
+    if (arrayofservicesFAQ.length === 16) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+      formdata.append("Q14", service14Question);
+      formdata.append("A14", service14Answer);
+      formdata.append("Q15", service15Question);
+      formdata.append("A15", service15Answer);
+      formdata.append("Q16", service16Question);
+      formdata.append("A16", service16Answer);
+    }
+    if (arrayofservicesFAQ.length === 17) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+      formdata.append("Q14", service14Question);
+      formdata.append("A14", service14Answer);
+      formdata.append("Q15", service15Question);
+      formdata.append("A15", service15Answer);
+      formdata.append("Q16", service16Question);
+      formdata.append("A16", service16Answer);
+      formdata.append("Q17", service17Question);
+      formdata.append("A17", service17Answer);
+    }
+    if (arrayofservicesFAQ.length === 18) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+      formdata.append("Q14", service14Question);
+      formdata.append("A14", service14Answer);
+      formdata.append("Q15", service15Question);
+      formdata.append("A15", service15Answer);
+      formdata.append("Q16", service16Question);
+      formdata.append("A16", service16Answer);
+      formdata.append("Q17", service17Question);
+      formdata.append("A17", service17Answer);
+      formdata.append("Q18", service18Question);
+      formdata.append("A18", service18Answer);
+    }
+    if (arrayofservicesFAQ.length === 19) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+      formdata.append("Q14", service14Question);
+      formdata.append("A14", service14Answer);
+      formdata.append("Q15", service15Question);
+      formdata.append("A15", service15Answer);
+      formdata.append("Q16", service16Question);
+      formdata.append("A16", service16Answer);
+      formdata.append("Q17", service17Question);
+      formdata.append("A17", service17Answer);
+      formdata.append("Q18", service18Question);
+      formdata.append("A18", service18Answer);
+      formdata.append("Q19", service19Question);
+      formdata.append("A19", service19Answer);
+    }
+    if (arrayofservicesFAQ.length === 20) {
+      formdata.append("Q1", service1Question);
+      formdata.append("A1", service1Answer);
+      formdata.append("Q2", service2Question);
+      formdata.append("A2", service2Answer);
+      formdata.append("Q3", service3Question);
+      formdata.append("A3", service3Answer);
+      formdata.append("Q4", service4Question);
+      formdata.append("A4", service4Answer);
+      formdata.append("Q5", service5Question);
+      formdata.append("A5", service5Answer);
+      formdata.append("Q6", service6Question);
+      formdata.append("A6", service6Answer);
+      formdata.append("Q7", service7Question);
+      formdata.append("A7", service7Answer);
+      formdata.append("Q8", service8Question);
+      formdata.append("A8", service8Answer);
+      formdata.append("Q9", service9Question);
+      formdata.append("A9", service9Answer);
+      formdata.append("Q10", service10Question);
+      formdata.append("A10", service10Answer);
+      formdata.append("Q11", service11Question);
+      formdata.append("A11", service11Answer);
+      formdata.append("Q12", service12Question);
+      formdata.append("A12", service12Answer);
+      formdata.append("Q13", service13Question);
+      formdata.append("A13", service13Answer);
+      formdata.append("Q14", service14Question);
+      formdata.append("A14", service14Answer);
+      formdata.append("Q15", service15Question);
+      formdata.append("A15", service15Answer);
+      formdata.append("Q16", service16Question);
+      formdata.append("A16", service16Answer);
+      formdata.append("Q17", service17Question);
+      formdata.append("A17", service17Answer);
+      formdata.append("Q18", service18Question);
+      formdata.append("A18", service18Answer);
+      formdata.append("Q19", service19Question);
+      formdata.append("A19", service19Answer);
+      formdata.append("Q20", service20Question);
+      formdata.append("A20", service20Answer);
+    }
     formdata.append("contentName", title);
     formdata.append("category", scate);
     formdata.append("contentId", Id);
@@ -319,7 +868,7 @@ export default function Addblog({ width }) {
                     },
                   }}
                 >
-                  <MenuItem onClick={() => {}} value={0} hidden>
+                  <MenuItem onClick={() => { }} value={0} hidden>
                     Select
                   </MenuItem>
 
@@ -473,7 +1022,7 @@ export default function Addblog({ width }) {
             </div>
             <div className="jobpodtedfieldtitile mt-4">Image ALT TAG *</div>
             <div className="jobpostfieldinputbox">
-              <input
+              {/* <input
                 type="text"
                 value={imageTagAlt}
                 onChange={(e) => {
@@ -493,11 +1042,20 @@ export default function Addblog({ width }) {
                     setImageTagAlt("");
                   }}
                 />
-              )}
+              )} */}
+              <div style={{ margin: "0vw 0vw 1vw 0vw" }}>
+                {imageTagAlt && (
+                  <TextEditor
+                    width={"64vw"}
+                    setTitle={setImageTagAlt}
+                    title={imageTagAlt}
+                  />
+                )}
+              </div>
             </div>
             <div className="jobpodtedfieldtitile"> Image Title *</div>
             <div className="jobpostfieldinputbox">
-              <input
+              {/* <input
                 type="text"
                 value={imagetitle}
                 onChange={(e) => {
@@ -515,7 +1073,16 @@ export default function Addblog({ width }) {
                 onClick={() => {
                   setimagetitle("");
                 }}
-              />
+              /> */}
+              <div style={{ margin: "0vw 0vw 1vw 0vw" }}>
+                {imagetitle && (
+                  <TextEditor
+                    width={"64vw"}
+                    setTitle={setimagetitle}
+                    title={imagetitle}
+                  />
+                )}
+              </div>
             </div>
             <div
               style={{ textAlign: "left", fontSize: "1.4vw", marginTop: "1vw" }}
@@ -564,10 +1131,410 @@ export default function Addblog({ width }) {
               </span>{" "}
               Add Paragraph
             </div>
-            <div className="jobpodtedfieldtitile" style={{fontSize: '1.6vw', fontSize: '1.5vw', marginTop: '2vw'}}>*All Meta Field's are required for GOOGLE ranking.</div>
+            <div className="mt-4"
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                width: "100%",
+              }}
+            >
+              <div
+                style={{ marginBottom: "0.5vw" }}
+                className="jobpodtedfieldtitile"
+              >
+                FAQ
+              </div>
+              <div
+                style={{ width: width > 700 ? "" : "15%" }}
+                className="servicesmenuname4box"
+              >
+                <span
+                  style={{ color: "red", cursor: "pointer" }}
+                  onClick={() => {
+                    const index = arrayofservicesFAQ.length - 1;
+                    index + 1 === 1
+                      ? setService1Question("")
+                      : index + 1 === 2
+                        ? setService2Question("")
+                        : index + 1 === 3
+                          ? setService3Question("")
+                          : index + 1 === 4
+                            ? setService4Question("")
+                            : index + 1 === 5
+                              ? setService5Question("")
+                              : index + 1 === 6
+                                ? setService6Question("")
+                                : index + 1 === 7
+                                  ? setService7Question("")
+                                  : index + 1 === 8
+                                    ? setService8Question("")
+                                    : index + 1 === 9
+                                      ? setService9Question("")
+                                      : index + 1 === 10
+                                        ? setService10Question("")
+                                        : index + 1 === 11
+                                          ? setService11Question("")
+                                          : index + 1 === 12
+                                            ? setService12Question("")
+                                            : index + 1 === 13
+                                              ? setService13Question("")
+                                              : index + 1 === 14
+                                                ? setService14Question("")
+                                                : index + 1 === 15
+                                                  ? setService15Question("")
+                                                  : index + 1 === 16
+                                                    ? setService16Question("")
+                                                    : index + 1 === 17
+                                                      ? setService17Question("")
+                                                      : index + 1 === 18
+                                                        ? setService18Question("")
+                                                        : index + 1 === 19
+                                                          ? setService19Question("")
+                                                          : setService20Question("");
+                    index + 1 === 1
+                      ? setService1Answer("")
+                      : index + 1 === 2
+                        ? setService2Answer("")
+                        : index + 1 === 3
+                          ? setService3Answer("")
+                          : index + 1 === 4
+                            ? setService4Answer("")
+                            : index + 1 === 5
+                              ? setService5Answer("")
+                              : index + 1 === 6
+                                ? setService6Answer("")
+                                : index + 1 === 7
+                                  ? setService7Answer("")
+                                  : index + 1 === 8
+                                    ? setService8Answer("")
+                                    : index + 1 === 9
+                                      ? setService9Answer("")
+                                      : index + 1 === 10
+                                        ? setService10Answer("")
+                                        : index + 1 === 11
+                                          ? setService11Answer("")
+                                          : index + 1 === 12
+                                            ? setService12Answer("")
+                                            : index + 1 === 13
+                                              ? setService13Answer("")
+                                              : index + 1 === 14
+                                                ? setService14Answer("")
+                                                : index + 1 === 15
+                                                  ? setService15Answer("")
+                                                  : index + 1 === 16
+                                                    ? setService16Answer("")
+                                                    : index + 1 === 17
+                                                      ? setService17Answer("")
+                                                      : index + 1 === 18
+                                                        ? setService18Answer("")
+                                                        : index + 1 === 19
+                                                          ? setService19Answer("")
+                                                          : setService20Answer("");
+                    setArrayofservicesFAQ([
+                      ...arrayofservicesFAQ.slice(0, arrayofservicesFAQ.length - 1),
+                    ]);
+                  }}
+                >
+                  Remove
+                </span>
+              </div>
+            </div>
+            {arrayofservicesFAQ?.map((data, index) => {
+              return (
+                <div style={{ marginTop: "1vw" }} className="servicesmenudivfaq">
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      width: "100%",
+                    }}
+                  >
+                    <div
+                      style={{ width: width > 700 ? "" : "80%" }}
+                      className="mb-2"
+                    >
+                      Question
+                    </div>
+                  </div>
+                  <div className="servicesmenuname1boxfaq">
+                    <input
+                      type="text"
+                      value={
+                        index + 1 === 1
+                          ? service1Question
+                          : index + 1 === 2
+                            ? service2Question
+                            : index + 1 === 3
+                              ? service3Question
+                              : index + 1 === 4
+                                ? service4Question
+                                : index + 1 === 5
+                                  ? service5Question
+                                  : index + 1 === 6
+                                    ? service6Question
+                                    : index + 1 === 7
+                                      ? service7Question
+                                      : index + 1 === 8
+                                        ? service8Question
+                                        : index + 1 === 9
+                                          ? service9Question
+                                          : index + 1 === 10
+                                            ? service10Question
+                                            : index + 1 === 11
+                                              ? service11Question
+                                              : index + 1 === 12
+                                                ? service12Question
+                                                : index + 1 === 13
+                                                  ? service13Question
+                                                  : index + 1 === 14
+                                                    ? service14Question
+                                                    : index + 1 === 15
+                                                      ? service15Question
+                                                      : index + 1 === 16
+                                                        ? service16Question
+                                                        : index + 1 === 17
+                                                          ? service17Question
+                                                          : index + 1 === 18
+                                                            ? service18Question
+                                                            : index + 1 === 19
+                                                              ? service19Question
+                                                              : service20Question
+                      }
+                      onChange={(e) => {
+                        index + 1 === 1
+                          ? setService1Question(e.target.value)
+                          : index + 1 === 2
+                            ? setService2Question(e.target.value)
+                            : index + 1 === 3
+                              ? setService3Question(e.target.value)
+                              : index + 1 === 4
+                                ? setService4Question(e.target.value)
+                                : index + 1 === 5
+                                  ? setService5Question(e.target.value)
+                                  : index + 1 === 6
+                                    ? setService6Question(e.target.value)
+                                    : index + 1 === 7
+                                      ? setService7Question(e.target.value)
+                                      : index + 1 === 8
+                                        ? setService8Question(e.target.value)
+                                        : index + 1 === 9
+                                          ? setService9Question(e.target.value)
+                                          : index + 1 === 10
+                                            ? setService10Question(e.target.value)
+                                            : index + 1 === 11
+                                              ? setService11Question(e.target.value)
+                                              : index + 1 === 12
+                                                ? setService12Question(e.target.value)
+                                                : index + 1 === 13
+                                                  ? setService13Question(e.target.value)
+                                                  : index + 1 === 14
+                                                    ? setService14Question(e.target.value)
+                                                    : index + 1 === 15
+                                                      ? setService15Question(e.target.value)
+                                                      : index + 1 === 16
+                                                        ? setService16Question(e.target.value)
+                                                        : index + 1 === 17
+                                                          ? setService17Question(e.target.value)
+                                                          : index + 1 === 18
+                                                            ? setService18Question(e.target.value)
+                                                            : index + 1 === 19
+                                                              ? setService19Question(e.target.value)
+                                                              : setService20Question(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div style={{ width: "100%" }} className="mt-2 mb-2">
+                    Answer
+                  </div>
+                  <div className="servicesmenuname2boxfaq">
+                    <input
+                      type="text"
+                      value={
+                        index + 1 === 1
+                          ? service1Answer
+                          : index + 1 === 2
+                            ? service2Answer
+                            : index + 1 === 3
+                              ? service3Answer
+                              : index + 1 === 4
+                                ? service4Answer
+                                : index + 1 === 5
+                                  ? service5Answer
+                                  : index + 1 === 6
+                                    ? service6Answer
+                                    : index + 1 === 7
+                                      ? service7Answer
+                                      : index + 1 === 8
+                                        ? service8Answer
+                                        : index + 1 === 9
+                                          ? service9Answer
+                                          : index + 1 === 10
+                                            ? service10Answer
+                                            : index + 1 === 11
+                                              ? service11Answer
+                                              : index + 1 === 12
+                                                ? service12Answer
+                                                : index + 1 === 13
+                                                  ? service13Answer
+                                                  : index + 1 === 14
+                                                    ? service14Answer
+                                                    : index + 1 === 14
+                                                      ? service14Answer
+                                                      : index + 1 === 15
+                                                        ? service15Answer
+                                                        : index + 1 === 16
+                                                          ? service16Answer
+                                                          : index + 1 === 17
+                                                            ? service17Answer
+                                                            : index + 1 === 18
+                                                              ? service18Answer
+                                                              : index + 1 === 19
+                                                                ? service19Answer
+                                                                : service20Answer
+                      }
+                      onChange={(e) => {
+                        index + 1 === 1
+                          ? setService1Answer(e.target.value)
+                          : index + 1 === 2
+                            ? setService2Answer(e.target.value)
+                            : index + 1 === 3
+                              ? setService3Answer(e.target.value)
+                              : index + 1 === 4
+                                ? setService4Answer(e.target.value)
+                                : index + 1 === 5
+                                  ? setService5Answer(e.target.value)
+                                  : index + 1 === 6
+                                    ? setService6Answer(e.target.value)
+                                    : index + 1 === 7
+                                      ? setService7Answer(e.target.value)
+                                      : index + 1 === 8
+                                        ? setService8Answer(e.target.value)
+                                        : index + 1 === 9
+                                          ? setService9Answer(e.target.value)
+                                          : index + 1 === 10
+                                            ? setService10Answer(e.target.value)
+                                            : index + 1 === 11
+                                              ? setService11Answer(e.target.value)
+                                              : index + 1 === 12
+                                                ? setService12Answer(e.target.value)
+                                                : index + 1 === 13
+                                                  ? setService13Answer(e.target.value)
+                                                  : index + 1 === 14
+                                                    ? setService14Answer(e.target.value)
+                                                    : index + 1 === 15
+                                                      ? setService15Answer(e.target.value)
+                                                      : index + 1 === 16
+                                                        ? setService16Answer(e.target.value)
+                                                        : index + 1 === 17
+                                                          ? setService17Answer(e.target.value)
+                                                          : index + 1 === 18
+                                                            ? setService18Answer(e.target.value)
+                                                            : index + 1 === 19
+                                                              ? setService19Answer(e.target.value)
+                                                              : setService20Answer(e.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+            <div
+              className="addmoreservicecatalog"
+              onClick={() => {
+                const index = arrayofservicesFAQ.length;
+                index + 1 === 1
+                  ? setService1Question("")
+                  : index + 1 === 2
+                    ? setService2Question("")
+                    : index + 1 === 3
+                      ? setService3Question("")
+                      : index + 1 === 4
+                        ? setService4Question("")
+                        : index + 1 === 5
+                          ? setService5Question("")
+                          : index + 1 === 6
+                            ? setService6Question("")
+                            : index + 1 === 7
+                              ? setService7Question("")
+                              : index + 1 === 8
+                                ? setService8Question("")
+                                : index + 1 === 9
+                                  ? setService9Question("")
+                                  : index + 1 === 10
+                                    ? setService10Question("")
+                                    : index + 1 === 11
+                                      ? setService11Question("")
+                                      : index + 1 === 12
+                                        ? setService12Question("")
+                                        : index + 1 === 13
+                                          ? setService13Question("")
+                                          : index + 1 === 14
+                                            ? setService14Question("")
+                                            : index + 1 === 15
+                                              ? setService15Question("")
+                                              : index + 1 === 16
+                                                ? setService16Question("")
+                                                : index + 1 === 17
+                                                  ? setService17Question("")
+                                                  : index + 1 === 18
+                                                    ? setService18Question("")
+                                                    : index + 1 === 19
+                                                      ? setService19Question("")
+                                                      : setService20Question("");
+                index + 1 === 1
+                  ? setService1Answer("")
+                  : index + 1 === 2
+                    ? setService2Answer("")
+                    : index + 1 === 3
+                      ? setService3Answer("")
+                      : index + 1 === 4
+                        ? setService4Answer("")
+                        : index + 1 === 5
+                          ? setService5Answer("")
+                          : index + 1 === 6
+                            ? setService6Answer("")
+                            : index + 1 === 7
+                              ? setService7Answer("")
+                              : index + 1 === 8
+                                ? setService8Answer("")
+                                : index + 1 === 9
+                                  ? setService9Answer("")
+                                  : index + 1 === 10
+                                    ? setService10Answer("")
+                                    : index + 1 === 11
+                                      ? setService11Answer("")
+                                      : index + 1 === 12
+                                        ? setService12Answer("")
+                                        : index + 1 === 13
+                                          ? setService13Answer("")
+                                          : index + 1 === 14
+                                            ? setService14Answer("")
+                                            : index + 1 === 15
+                                              ? setService15Answer("")
+                                              : index + 1 === 16
+                                                ? setService16Answer("")
+                                                : index + 1 === 17
+                                                  ? setService17Answer("")
+                                                  : index + 1 === 18
+                                                    ? setService18Answer("")
+                                                    : index + 1 === 19
+                                                      ? setService19Answer("")
+                                                      : setService20Answer("");
+                setArrayofservicesFAQ([
+                  ...arrayofservicesFAQ,
+                  { quetion: "", answer: "" },
+                ]);
+              }}
+            >
+              <span>
+                <AddIcon style={{ fontSize: width > 700 ? "1.3vw" : "2vw" }} />
+              </span>{" "}
+              Add FAQ
+            </div>
+            <div className="jobpodtedfieldtitile" style={{ fontSize: '1.6vw', fontSize: '1.5vw', marginTop: '2vw' }}>*All Meta Field's are required for GOOGLE ranking.</div>
             <div className="jobpodtedfieldtitile mt-4">META TAG *</div>
             <div className="jobpostfieldinputbox">
-              <input
+              {/* <input
                 type="text"
                 value={metaTag}
                 onChange={(e) => {
@@ -587,17 +1554,25 @@ export default function Addblog({ width }) {
                     setMetaTag("");
                   }}
                 />
-              )}
+              )} */}
+              <div style={{ margin: "0vw 0vw 1vw 0vw" }}>
+                {metaTag && (<TextEditor
+                  width={"64vw"}
+                  setTitle={setMetaTag}
+                  title={metaTag}
+                />
+                )}
+              </div>
             </div>
             <div className="jobpodtedfieldtitile">META TITLE *</div>
             <div className="jobpostfieldinputbox">
-            <input
-                  type="text"
-                  value={metaTitle}
-                  onChange={(e) => {
-                    setMetaTitle(e.target.value);
-                  }}
-                />
+              {/* <input
+                type="text"
+                value={metaTitle}
+                onChange={(e) => {
+                  setMetaTitle(e.target.value);
+                }}
+              />
               {width > 700 && (
                 <CloseIcon
                   style={{
@@ -611,17 +1586,25 @@ export default function Addblog({ width }) {
                     setMetaTitle("");
                   }}
                 />
-              )}
+              )} */}
+              <div style={{ margin: "0vw 0vw 1vw 0vw" }}>
+                {metaTitle && (<TextEditor
+                  width={"64vw"}
+                  setTitle={setMetaTitle}
+                  title={metaTitle}
+                />
+                )}
+              </div>
             </div>
             <div className="jobpodtedfieldtitile">META DESCRIPTION *</div>
             <div className="jobpostfieldinputbox">
-            <input
-                  type="text"
-                  value={metaDescription}
-                  onChange={(e) => {
-                    setMetaDescription(e.target.value);
-                  }}
-                />
+              {/* <input
+                type="text"
+                value={metaDescription}
+                onChange={(e) => {
+                  setMetaDescription(e.target.value);
+                }}
+              />
               {width > 700 && (
                 <CloseIcon
                   style={{
@@ -635,7 +1618,15 @@ export default function Addblog({ width }) {
                     setMetaDescription("");
                   }}
                 />
-              )}
+              )} */}
+              <div style={{ margin: "0vw 0vw 1vw 0vw" }}>
+                {metaDescription && (<TextEditor
+                  width={"64vw"}
+                  setTitle={setMetaDescription}
+                  title={metaDescription}
+                />
+                )}
+              </div>
             </div>
             {erroeshow ? (
               <div style={{ color: "red" }} className="jobpodtedfieldtitile">
@@ -706,7 +1697,7 @@ export default function Addblog({ width }) {
                 >
                   {scate}
                 </button>
-                <div className="textofcontainercatalgue">{imagetitle}</div>
+                <div className="textofcontainercatalgue" dangerouslySetInnerHTML={{__html: imagetitle}}></div>
               </div>
               <div style={{ position: "relative", bottom: "2.2vw" }}>
                 <Cataloguecarosel1
@@ -716,17 +1707,17 @@ export default function Addblog({ width }) {
                     arrayoffiles[2]
                       ? arrayoffiles[2]
                       : arrayoffiles[0]
-                      ? arrayoffiles[0]
-                      : arrayoffiles[1]
+                        ? arrayoffiles[0]
+                        : arrayoffiles[1]
                   }
                   img4={
                     arrayoffiles[3]
                       ? arrayoffiles[3]
                       : arrayoffiles[1]
-                      ? arrayoffiles[1]
-                      : arrayoffiles[0]
-                      ? arrayoffiles[0]
-                      : arrayoffiles[2]
+                        ? arrayoffiles[1]
+                        : arrayoffiles[0]
+                          ? arrayoffiles[0]
+                          : arrayoffiles[2]
                   }
                 />
               </div>

@@ -16,7 +16,7 @@ import { makeStyles } from "@material-ui/core";
 import axios from "axios";
 import API_HOST from "../../../env";
 import { useSelector } from "react-redux";
-
+import { TextEditor } from "./Texteditor";
 const style = {
   position: "absolute",
   top: "50%",
@@ -811,7 +811,7 @@ export default function Addblog({ width }) {
           </div>
 
           <div>
-            <div className="jobpodtedfieldtitile"> Blog Title *</div>
+            <div className="jobpodtedfieldtitile mt-2"> Blog Title *</div>
             <div className="jobpostfieldinputbox">
               <input
                 type="text"
@@ -922,7 +922,7 @@ export default function Addblog({ width }) {
             </div>
             <div className="jobpodtedfieldtitile mt-4">Image ALT TAG *</div>
             <div className="jobpostfieldinputbox">
-              <input
+              {/* <input
                 type="text"
                 value={imageTagAlt}
                 onChange={(e) => {
@@ -942,11 +942,22 @@ export default function Addblog({ width }) {
                     setImageTagAlt("");
                   }}
                 />
-              )}
+              )} */}
+              <div style={{ margin: "0vw 0vw 1vw 0vw" }}>
+                <TextEditor
+                  width={"64vw"}
+                  // value={imageTagAlt}
+                  // onChange={(e) => {
+                  //   setImageTagAlt(e.target.value);
+                  // }}
+                  setTitle={setImageTagAlt}
+                  title={imageTagAlt}
+                />
+              </div>
             </div>
             <div className="jobpodtedfieldtitile"> Image Title *</div>
             <div className="jobpostfieldinputbox">
-              <input
+              {/* <input
                 type="text"
                 value={imagetitle}
                 onChange={(e) => {
@@ -964,7 +975,18 @@ export default function Addblog({ width }) {
                 onClick={() => {
                   setimagetitle("");
                 }}
-              />
+              /> */}
+              <div style={{ margin: "0vw 0vw 1vw 0vw" }}>
+                <TextEditor
+                  width={"64vw"}
+                  // value={imagetitle}
+                  // onChange={(e) => {
+                  //   setimagetitle(e.target.value);
+                  // }}
+                  setTitle={setimagetitle}
+                  title={imagetitle}
+                />
+              </div>
             </div>
             <div
               style={{ textAlign: "left", fontSize: "1.4vw", marginTop: "1vw" }}
@@ -1413,10 +1435,10 @@ export default function Addblog({ width }) {
               </span>{" "}
               Add FAQ
             </div>
-            <div className="jobpodtedfieldtitile" style={{fontSize: '1.6vw', fontSize: '1.8vw', marginTop: '2vw'}}>*All Meta Field's are required for GOOGLE ranking.</div>
+            <div className="jobpodtedfieldtitile" style={{ fontSize: '1.6vw', fontSize: '1.8vw', marginTop: '2vw' }}>*All Meta Field's are required for GOOGLE ranking.</div>
             <div className="jobpodtedfieldtitile mt-4">META TAG *</div>
             <div className="jobpostfieldinputbox">
-              <input
+              {/* <input
                 type="text"
                 value={metaTag}
                 onChange={(e) => {
@@ -1436,17 +1458,28 @@ export default function Addblog({ width }) {
                     setMetaTag("");
                   }}
                 />
-              )}
+              )} */}
+              <div style={{ margin: "0vw 0vw 1vw 0vw" }}>
+                <TextEditor
+                  width={"64vw"}
+                  // value={metaTag}
+                  // onChange={(e) => {
+                  //   setMetaTag(e.target.value);
+                  // }}
+                  setTitle={setMetaTag}
+                  title={metaTag}
+                />
+              </div>
             </div>
             <div className="jobpodtedfieldtitile">META TITLE *</div>
             <div className="jobpostfieldinputbox">
-            <input
-                  type="text"
-                  value={metaTitle}
-                  onChange={(e) => {
-                    setMetaTitle(e.target.value);
-                  }}
-                />
+              {/* <input
+                type="text"
+                value={metaTitle}
+                onChange={(e) => {
+                  setMetaTitle(e.target.value);
+                }}
+              />
               {width > 700 && (
                 <CloseIcon
                   style={{
@@ -1460,17 +1493,28 @@ export default function Addblog({ width }) {
                     setMetaTitle("");
                   }}
                 />
-              )}
+              )} */}
+              <div style={{ margin: "0vw 0vw 1vw 0vw" }}>
+                <TextEditor
+                  width={"64vw"}
+                  // value={metaTitle}
+                  // onChange={(e) => {
+                  //   setMetaTitle(e.target.value);
+                  // }}
+                  setTitle={setMetaTitle}
+                  title={metaTitle}
+                />
+              </div>
             </div>
             <div className="jobpodtedfieldtitile">META DESCRIPTION *</div>
             <div className="jobpostfieldinputbox">
-            <input
-                  type="text"
-                  value={metaDescription}
-                  onChange={(e) => {
-                    setMetaDescription(e.target.value);
-                  }}
-                />
+              {/* <input
+                type="text"
+                value={metaDescription}
+                onChange={(e) => {
+                  setMetaDescription(e.target.value);
+                }}
+              />
               {width > 700 && (
                 <CloseIcon
                   style={{
@@ -1484,7 +1528,18 @@ export default function Addblog({ width }) {
                     setMetaDescription("");
                   }}
                 />
-              )}
+              )} */}
+              <div style={{ margin: "0vw 0vw 1vw 0vw" }}>
+                <TextEditor
+                  width={"64vw"}
+                  // value={metaDescription}
+                  // onChange={(e) => {
+                  //   setMetaDescription(e.target.value);
+                  // }}
+                  setTitle={setMetaDescription}
+                  title={metaDescription}
+                />
+              </div>
             </div>
             {erroeshow ? (
               <div style={{ color: "red" }} className="jobpodtedfieldtitile">
@@ -1555,7 +1610,7 @@ export default function Addblog({ width }) {
                 >
                   {scate}
                 </button>
-                <div className="textofcontainercatalgue">{imagetitle}</div>
+                <div className="textofcontainercatalgue" style={{color:'white'}} dangerouslySetInnerHTML={{__html: imagetitle}}></div>
               </div>
               <div style={{ position: "relative", bottom: "2.2vw" }}>
                 <Cataloguecarosel
