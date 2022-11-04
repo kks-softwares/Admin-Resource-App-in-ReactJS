@@ -120,8 +120,8 @@ export default function BlogDetail() {
                     <div
                       className=""
                       style={{ color: "black", fontWeight: "500" }}
+                      dangerouslySetInnerHTML={{ __html: data?.heading }}
                     >
-                      {data?.heading}
                     </div>
                     <div
                       className="dataeofblogcontnet1"
@@ -146,8 +146,8 @@ export default function BlogDetail() {
                         <div className="Joinwithusblogboxtitle">
                           {data?.title}
                         </div>
-                        <div className="Joinwithusblogboxdetail">
-                          {data?.desc?.slice(0, 200)}
+                        <div className="Joinwithusblogboxdetail" dangerouslySetInnerHTML={{ __html: data?.desc?.slice(0, 200) }}>
+                          {/* {data?.desc?.slice(0, 200)} */}
                         </div>
                       </div>
                       <div style={{ width: "40%", textAlign: "center" }}>

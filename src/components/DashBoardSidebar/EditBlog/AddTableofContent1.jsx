@@ -11,6 +11,7 @@ import img22 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg
 import { TextEditor } from "../BiddingForm/Texteditor";
 import axios from "axios";
 import API_HOST from "../../../env";
+import { TextEditor_TOC } from "../BiddingForm/Texteditor_TOC";
 
 const useStyles = makeStyles((theme) => ({
   select: {
@@ -72,7 +73,8 @@ export default function AddTableofContent1({
 }) {
   const [description1, setDescription1] = useState(data.toc);
   const [description2, setDescription2] = useState(data.desc);
-
+  const [heading1, setHeading1] = useState(data.heading);
+  const [desc1, setDesc1] = useState(data.desc);
   const classes = useStyles();
   const [age4, setAge4] = React.useState(10);
   const [age5, setAge5] = React.useState(10);
@@ -91,16 +93,16 @@ export default function AddTableofContent1({
     setArrayofblogs([
       ...arrayofblogs.slice(0, index),
       {
-        heading: data?.heading,
+        heading: heading1,
         toc: description1,
         file: data?.file,
-        desc: data?.desc,
+        desc: desc1,
         title: data?.title,
         button: data?.button,
       },
       ...arrayofblogs.slice(index + 1, arrayofblogs.length),
     ]);
-  }, [description1]);
+  }, [description1,heading1,desc1]);
 
   useEffect(() => {
     if (
@@ -123,7 +125,9 @@ export default function AddTableofContent1({
   }, [data, title, scate, arrayoffiles, imagetitle]);
 
   useEffect(() => {
-    setDescription2(data?.desc);
+    setHeading1(data?.heading);
+    setDesc1(data?.desc);
+    // setDescription2(data?.desc);
     setDescription1(data?.toc);
     setAge4(data?.title ? data?.title : 10);
     setAge5(data?.button ? data?.button : 10);
@@ -199,7 +203,16 @@ export default function AddTableofContent1({
             </div>
             <div className="jobpodtedfieldtitile"> Paragraph heading *</div>
             <div style={{ width: "69vw" }} className="jobpostfieldinputbox">
-              <input
+            <div style={{ margin: "0vw 0vw 1vw 0vw" }}>
+                {heading1 && (
+                  <TextEditor_TOC
+                    width={"64vw"}
+                    setDescription1={setHeading1}
+                    description1={heading1}
+                  />
+                )}
+              </div>
+              {/* <input
                 type="text"
                 style={{ width: "100vw" }}
                 value={data?.heading}
@@ -217,7 +230,7 @@ export default function AddTableofContent1({
                     ...arrayofblogs.slice(index + 1, arrayofblogs.length),
                   ]);
                 }}
-              />
+              /> */}
             </div>
           </div>
           <div
@@ -509,7 +522,14 @@ export default function AddTableofContent1({
 
           <div className="jobpostfieldinputbox">
             {console.log(data)}
-            <textarea
+            {desc1 && (
+              <TextEditor_TOC
+                width={"64vw"}
+                setDescription1={setDesc1}
+                description1={desc1}
+              />
+            )}
+            {/* <textarea
               type="text"
               placeholder="distinctio debitis est neque dolore ipsum ut amet pariatur laboriosam nisi ipsam?"
               style={{ padding: "0.5vw" }}
@@ -529,7 +549,7 @@ export default function AddTableofContent1({
                   ...arrayofblogs.slice(index + 1, arrayofblogs.length),
                 ]);
               }}
-            />
+            /> */}
           </div>
         </div>
       }

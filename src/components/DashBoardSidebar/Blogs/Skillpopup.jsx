@@ -141,8 +141,8 @@ export default function Skillpopup1({
         </div>
 
         <div style={{ width: "10vw", fontWeight: "400" }}>{data?.author}</div>
-        <div style={{ width: "18vw", fontSize: "0.85vw" }}>
-          {data?.toC[0]?.desc?.slice(0, 200)}
+        <div style={{ width: "18vw", fontSize: "0.85vw" }} dangerouslySetInnerHTML={{__html: data?.toC[0]?.desc?.slice(0, 200)}}>
+          {/* {data?.toC[0]?.desc?.slice(0, 200)} */}
         </div>
         <div
           style={{

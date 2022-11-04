@@ -12,6 +12,7 @@ import img22 from "../../../assets/My profile – 28/Component 85 – 16 (1).svg
 import { TextEditor } from "../BiddingForm/Texteditor";
 import axios from "axios";
 import API_HOST from "../../../env";
+import { TextEditor_TOC } from "../BiddingForm/Texteditor_TOC";
 
 const useStyles = makeStyles((theme) => ({
   select: {
@@ -76,7 +77,8 @@ export default function AddTableofContent({
   const classes = useStyles();
   const [age4, setAge4] = React.useState(10);
   const [age5, setAge5] = React.useState(10);
-
+  const [heading1, setHeading1] = useState("");
+  const [buttonDesc1, setButtonDesc1] = useState("");
   const [arrayoffile, setArrayoffile] = useState();
 
   const handleChange4x = (event) => {
@@ -91,16 +93,16 @@ export default function AddTableofContent({
     setArrayofblogs([
       ...arrayofblogs.slice(0, index),
       {
-        heading: data?.heading,
+        heading: heading1,
         toc: description1,
         file: data?.file,
-        desc: data?.desc,
+        desc: buttonDesc1,
         title: data?.title,
         button: data?.button,
       },
       ...arrayofblogs.slice(index + 1, arrayofblogs.length),
     ]);
-  }, [description1]);
+  }, [description1, heading1, buttonDesc1]);
 
   useEffect(() => {
     if (
@@ -192,7 +194,14 @@ export default function AddTableofContent({
 
             <div className="jobpodtedfieldtitile"> Paragraph heading *</div>
             <div style={{ width: "69vw" }} className="jobpostfieldinputbox">
-              <input
+            <div style={{ margin: "0vw 0vw 1vw 0vw" }}>
+              <TextEditor_TOC
+                width={"64vw"}
+                setDescription1={setHeading1}
+                description1={heading1}
+              />
+            </div>
+              {/* <input
                 type="text"
                 onChange={(e) => {
                   setArrayofblogs([
@@ -208,7 +217,7 @@ export default function AddTableofContent({
                     ...arrayofblogs.slice(index + 1, arrayofblogs.length),
                   ]);
                 }}
-              />
+              /> */}
             </div>
             <div
               style={{
@@ -485,7 +494,14 @@ export default function AddTableofContent({
 
           <div className="jobpostfieldinputbox">
             {console.log(arrayofblogs)}
-            <textarea
+            <div style={{ margin: "0vw 0vw 1vw 0vw" }}>
+              <TextEditor_TOC
+                width={"64vw"}
+                setDescription1={setButtonDesc1}
+                description1={buttonDesc1}
+              />
+            </div>
+            {/* <textarea
               type="text"
               placeholder="  distinctio debitis est neque dolore ipsum ut amet pariatur laboriosam nisi ipsam?"
               style={{ padding: "0.5vw", fontSize: "1vw" }}
@@ -503,7 +519,7 @@ export default function AddTableofContent({
                   ...arrayofblogs.slice(index + 1, arrayofblogs.length),
                 ]);
               }}
-            />
+            /> */}
           </div>
         </div>
       }

@@ -988,6 +988,7 @@ export default function Addblog({ width }) {
                 />
               </div>
             </div>
+            <hr style={{height: '3px', background: '#064C87', width: '98%'}}/>
             <div
               style={{ textAlign: "left", fontSize: "1.4vw", marginTop: "1vw" }}
               className="jobpodtedfieldtitile"
@@ -1020,10 +1021,10 @@ export default function Addblog({ width }) {
                 setArrayofblogs([
                   ...arrayofblogs,
                   {
-                    heading: "",
+                    heading: " ",
                     toc: "",
                     file: "",
-                    desc: "",
+                    desc: " ",
                     title: "",
                     button: "",
                   },
@@ -1035,6 +1036,7 @@ export default function Addblog({ width }) {
               </span>{" "}
               Add Paragraph
             </div>
+            <hr style={{height: '3px', background: '#064C87', width: '98%'}}/>
             <div className="mt-4"
               style={{
                 display: "flex",
